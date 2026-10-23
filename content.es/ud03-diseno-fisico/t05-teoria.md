@@ -237,7 +237,7 @@ Elegir bien el tipo de cada columna (RA3.c) evita errores, ahorra espacio y perm
 > **En Oracle la cadena vacía `''` es `NULL`.** `INSERT INTO alumno (..., email) VALUES (..., '')` guarda un `NULL`, y la condición `email = ''` nunca es verdadera. En MySQL y PostgreSQL la cadena vacía y `NULL` son cosas distintas. Es una de las diferencias que más errores provoca al migrar.
 
 > [!WARNING]
-> El tipo `DATE` de Oracle **siempre guarda la hora**. `SYSDATE` devuelve fecha y hora actuales. Si comparas `fecha_matricula = DATE '2025-09-15'` y la fila se insertó con `SYSDATE`, no coincidirá porque la hora no es 00:00:00. Lo trataremos en la Tema 6.
+> El tipo `DATE` de Oracle **siempre guarda la hora**. `SYSDATE` devuelve fecha y hora actuales. Si comparas `fecha_matricula = DATE '2025-09-15'` y la fila se insertó con `SYSDATE`, no coincidirá porque la hora no es 00:00:00. Lo trataremos en el tema 6.
 
 #### Calculadora de `NUMBER(p, s)`
 
@@ -443,9 +443,9 @@ Define columnas, tipos y restricciones y observa el script que genera. Las restr
   explain: "La clave primaria es única por tabla, aunque puede constar de varias columnas. Las claves alternativas se definen con `UNIQUE` y pueden ser varias."
 {{< /quiz >}}
 
-#### De las reglas de transformación de la Tema 3 al DDL
+#### De las reglas de transformación del tema 3 al DDL
 
-En la Tema 3 diseñaste el esquema relacional sin escribir SQL. Esta tabla traduce cada decisión de diseño a su sentencia en Oracle:
+En el tema 3 diseñaste el esquema relacional sin escribir SQL. Esta tabla traduce cada decisión de diseño a su sentencia en Oracle:
 
 | Decisión de diseño (Tema 3) | Se implanta en Oracle como |
 |---|---|
@@ -461,7 +461,7 @@ En la Tema 3 diseñaste el esquema relacional sin escribir SQL. Esta tabla tradu
 | Cambio de clave en cascada | **No existe** `ON UPDATE` en Oracle: por eso se usan claves primarias estables |
 
 > [!TIP]
-> Cuando traduzcas un esquema de la Tema 3, sigue este orden: primero las tablas sin claves ajenas, después las tablas hijas y, por último, las claves ajenas circulares con `ALTER TABLE`.
+> Cuando traduzcas un esquema del tema 3, sigue este orden: primero las tablas sin claves ajenas, después las tablas hijas y, por último, las claves ajenas circulares con `ALTER TABLE`.
 
 
 ---
@@ -607,7 +607,7 @@ DROP INDEX ix_alumno_apellidos_nombre;
 | Columnas usadas para ordenar resultados grandes | Columnas que se modifican constantemente |
 
 > [!IMPORTANT]
-> Un índice **acelera las lecturas** pero **ralentiza las escrituras**: cada `INSERT`, `UPDATE` o `DELETE` tiene que actualizar también todos los índices de la tabla, y además ocupa espacio. Indexar es una decisión de **diseño físico**: la Tema 7 enseña a comprobar con el plan de ejecución si un índice se usa.
+> Un índice **acelera las lecturas** pero **ralentiza las escrituras**: cada `INSERT`, `UPDATE` o `DELETE` tiene que actualizar también todos los índices de la tabla, y además ocupa espacio. Indexar es una decisión de **diseño físico**: el tema 7 enseña a comprobar con el plan de ejecución si un índice se usa.
 
 ---
 
@@ -859,7 +859,7 @@ El criterio RA3.g, RA3.h pide usar **asistentes, herramientas gráficas y los le
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 5" >}}
+{{< tarjetas titulo="Repasa los términos del tema 5" >}}
 - t: "DDL"
   d: "Lenguaje de definición de datos: CREATE, ALTER, DROP."
 - t: "DCL"

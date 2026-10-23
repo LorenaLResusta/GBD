@@ -237,7 +237,7 @@ Triar bé el tipus de cada columna (RA3.c) evita errors, estalvia espai i permet
 > **En Oracle la cadena buida `''` és `NULL`.** `INSERT INTO alumno (..., email) VALUES (..., '')` guarda un `NULL`, i la condició `email = ''` mai no és vertadera. En MySQL i PostgreSQL la cadena buida i `NULL` són coses distintes. És una de les diferències que més errors provoca en migrar.
 
 > [!WARNING]
-> El tipus `DATE` d'Oracle **sempre guarda l'hora**. `SYSDATE` torna data i hora actuals. Si compares `fecha_matricula = DATE '2025-09-15'` i la fila es va inserir amb `SYSDATE`, no coincidirà perquè l'hora no és 00:00:00. Ho tractarem a la Tema 6.
+> El tipus `DATE` d'Oracle **sempre guarda l'hora**. `SYSDATE` torna data i hora actuals. Si compares `fecha_matricula = DATE '2025-09-15'` i la fila es va inserir amb `SYSDATE`, no coincidirà perquè l'hora no és 00:00:00. Ho tractarem a el tema 6.
 
 #### Calculadora de `NUMBER(p, s)`
 
@@ -443,9 +443,9 @@ Defineix columnes, tipus i restriccions i observa l'script que genera. Les restr
   explain: "La clau primària és única per taula, encara que pot constar de diverses columnes. Les claus alternatives es defineixen amb `UNIQUE` i poden ser diverses."
 {{< /quiz >}}
 
-#### De les regles de transformació de la Tema 3 al DDL
+#### De les regles de transformació del tema 3 al DDL
 
-A la Tema 3 vas dissenyar l'esquema relacional sense escriure SQL. Esta taula tradueix cada decisió de disseny a la seua sentència en Oracle:
+A el tema 3 vas dissenyar l'esquema relacional sense escriure SQL. Esta taula tradueix cada decisió de disseny a la seua sentència en Oracle:
 
 | Decisió de disseny (Tema 3) | S'implanta en Oracle com a |
 |---|---|
@@ -461,7 +461,7 @@ A la Tema 3 vas dissenyar l'esquema relacional sense escriure SQL. Esta taula tr
 | Canvi de clau en cascada | **No existix** `ON UPDATE` en Oracle: per això s'usen claus primàries estables |
 
 > [!TIP]
-> Quan traduïsques un esquema de la Tema 3, seguix este ordre: primer les taules sense claus alienes, després les taules filles i, finalment, les claus alienes circulars amb `ALTER TABLE`.
+> Quan traduïsques un esquema del tema 3, seguix este ordre: primer les taules sense claus alienes, després les taules filles i, finalment, les claus alienes circulars amb `ALTER TABLE`.
 
 
 ---
@@ -607,7 +607,7 @@ DROP INDEX ix_alumno_apellidos_nombre;
 | Columnes usades per a ordenar resultats grans | Columnes que es modifiquen constantment |
 
 > [!IMPORTANT]
-> Un índex **accelera les lectures** però **alenteix les escriptures**: cada `INSERT`, `UPDATE` o `DELETE` ha d'actualitzar també tots els índexs de la taula, i a més ocupa espai. Indexar és una decisió de **disseny físic**: la Tema 7 ensenya a comprovar amb el pla d'execució si un índex s'usa.
+> Un índex **accelera les lectures** però **alenteix les escriptures**: cada `INSERT`, `UPDATE` o `DELETE` ha d'actualitzar també tots els índexs de la taula, i a més ocupa espai. Indexar és una decisió de **disseny físic**: el tema 7 ensenya a comprovar amb el pla d'execució si un índex s'usa.
 
 ---
 
@@ -859,7 +859,7 @@ El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llengua
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 5" >}}
+{{< tarjetas titulo="Repassa els termes del tema 5" >}}
 - t: "DDL"
   d: "Llenguatge de definició de dades: CREATE, ALTER, DROP."
 - t: "DCL"

@@ -299,7 +299,7 @@ Executa cada experiment i **prediu** els saldos finals abans de consultar `SELEC
 
 #### Ampliació: la transferència segura
 
-Escriu la transferència de 500 € d'A a C com una transacció que **no** confirme res si alguna de les dues actualitzacions no afecta exactament una fila. Usa `SQL%ROWCOUNT` en un bloc anònim (avanç de la Tema 9):
+Escriu la transferència de 500 € d'A a C com una transacció que **no** confirme res si alguna de les dues actualitzacions no afecta exactament una fila. Usa `SQL%ROWCOUNT` en un bloc anònim (avanç del tema 9):
 
 ```sql
 BEGIN
@@ -554,9 +554,9 @@ Amb `WHENEVER SQLERROR EXIT`, l'error acaba el guió.
 #### Enunciat
 
 1. **Dades de 2026-27.** Executa el teu guió de promoció (pràctica 8.7) i afig un guió `alta_nuevo_alumnado.sql` que done d'alta **deu** alumnes nous de primer amb les seues matrícules, en una sola transacció.
-2. **Baixa lògica.** Afig a `ALUMNO` una columna `fecha_baja` i escriu el guió que dona de baixa un alumne **sense esborrar** el seu expedient. Modifica les vistes de la Tema 5 perquè no mostren l'alumnat donat de baixa.
+2. **Baixa lògica.** Afig a `ALUMNO` una columna `fecha_baja` i escriu el guió que dona de baixa un alumne **sense esborrar** el seu expedient. Modifica les vistes del tema 5 perquè no mostren l'alumnat donat de baixa.
 3. **Política de concurrència.** En `08-transacciones.md`, decidix i justifica l'estratègia de bloqueig (pessimista o optimista) per a tres operacions de l'aplicació: posar notes, matricular i registrar faltes.
-4. **Integritat.** Revisa el teu catàleg de restriccions (Tema 3-Tema 5): alguna pot implementar-se amb una restricció diferida o amb un guió transaccional? Documenta què queda per a la Tema 9.
+4. **Integritat.** Revisa el teu catàleg de restriccions (Tema 3-Tema 5): alguna pot implementar-se amb una restricció diferida o amb un guió transaccional? Documenta què queda per a el tema 9.
 
 #### Comprovació
 

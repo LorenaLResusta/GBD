@@ -94,7 +94,7 @@ Una botiga en línia necessita guardar els seus **clients** i les seues **comand
     ORDER  BY table_name, constraint_type;
     ```
 
-5. **Inserix dades correctes** (a la Tema 8 estudiaràs `INSERT` amb detall):
+5. **Inserix dades correctes** (a el tema 8 estudiaràs `INSERT` amb detall):
 
     ```sql
     INSERT INTO cliente (id_cliente, nombre, email) VALUES (1, 'Ana Ruiz', 'ana@mail.com');
@@ -166,7 +166,7 @@ Canvia `fk_pedido_cliente` perquè en esborrar un client s'esborren les seues co
 
 #### Objectiu
 
-Implementar en Oracle els patrons de transformació de la Tema 3 (1:N, N:M, entitat feble, 1:1 i jerarquia) i reconéixer les diferències amb altres SGBD.
+Implementar en Oracle els patrons de transformació del tema 3 (1:N, N:M, entitat feble, 1:1 i jerarquia) i reconéixer les diferències amb altres SGBD.
 
 #### Context
 
@@ -612,7 +612,7 @@ Carrega l'esquema de referència: executa [els scripts del projecte](/guia/proye
         WITH READ ONLY;
     ```
 
-4. **Vista de matrícules llegibles**, que oculta els identificadors interns (avanç de la Tema 7):
+4. **Vista de matrícules llegibles**, que oculta els identificadors interns (avanç del tema 7):
 
     ```sql
     CREATE OR REPLACE VIEW v_matricula_detalle AS
@@ -663,7 +663,7 @@ Carrega l'esquema de referència: executa [els scripts del projecte](/guia/proye
 
 #### Ampliació
 
-Crea una vista `v_resumen_grupo` amb el codi de grup, el cicle, el torn i el nom complet del tutor (els grups sense tutor també han d'aparéixer). Necessitaràs un `LEFT JOIN`, que veuràs a la Tema 7.
+Crea una vista `v_resumen_grupo` amb el codi de grup, el cicle, el torn i el nom complet del tutor (els grups sense tutor també han d'aparéixer). Necessitaràs un `LEFT JOIN`, que veuràs a el tema 7.
 
 ---
 
@@ -846,7 +846,7 @@ Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` n
 
 1. **El teu script d'esquema.** Implementa en Oracle **el teu** model relacional normalitzat (EduGest-4) en un script relanzable, amb totes les restriccions amb nom, índexs sobre les claus alienes i comentaris en les taules.
 2. **Comparació.** Executa el teu script en un usuari `EDUGEST_MIO` i el de referència en `EDUGEST`. Usa el diccionari (`USER_TAB_COLUMNS`, `USER_CONSTRAINTS`) per a llistar les diferències i justifica les teues en `05-implementacion.md`.
-3. **Restriccions implementables amb DDL.** Del teu catàleg de restriccions (Tema 3-Tema 4), implementa totes les que es puguen expressar amb `CHECK` o índexs únics basats en funció. Marca les que queden per a la Tema 9.
+3. **Restriccions implementables amb DDL.** Del teu catàleg de restriccions (Tema 3-Tema 4), implementa totes les que es puguen expressar amb `CHECK` o índexs únics basats en funció. Marca les que queden per a el tema 9.
 4. **Seguretat.** Lliura `03_seguridad.sql` (pràctica 5.7 completa, amb perfils) i la matriu de proves.
 5. **Vistes i índexs.** Lliura `04_vistas_indices.sql` (pràctica 5.6 i la seua ampliació).
 6. **Diagrama.** Genera amb SQL Developer Data Modeler el diagrama relacional de l'esquema `EDUGEST` per enginyeria inversa i inclou-lo en la documentació.
@@ -859,5 +859,5 @@ Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` n
 - [ ] La matriu de seguretat està completa i coincidix amb l'esperat.
 
 > [!TIP]
-> A partir de la Tema 6, **tot el grup** treballa sobre l'esquema de referència `EDUGEST` carregat amb els scripts 01 i 02, perquè els resultats de les consultes coincidisquen amb els dels apunts.
+> A partir del tema 6, **tot el grup** treballa sobre l'esquema de referència `EDUGEST` carregat amb els scripts 01 i 02, perquè els resultats de les consultes coincidisquen amb els dels apunts.
 {{% /comprobacion %}}

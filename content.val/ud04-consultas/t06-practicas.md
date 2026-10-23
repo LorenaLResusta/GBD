@@ -211,7 +211,7 @@ Dades de partida: `ALUMNO` té 32 files; 3 sense grup, 4 sense DNI, 3 sense emai
 {{< solucion id="ud06-017" title="Resultats reals i explicació" />}}
 
 > [!CAUTION]
-> El cas 10 és una trampa clàssica que apareixerà de nou a la Tema 7 amb les subconsultes: `WHERE id NOT IN (SELECT ...)` no torna res si la subconsulta torna algun `NULL`.
+> El cas 10 és una trampa clàssica que apareixerà de nou a el tema 7 amb les subconsultes: `WHERE id NOT IN (SELECT ...)` no torna res si la subconsulta torna algun `NULL`.
 
 ---
 

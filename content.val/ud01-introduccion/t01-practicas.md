@@ -99,7 +99,7 @@ La teua resposta és completa si:
 
 #### Ampliació
 
-Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en la Tema 4 (normalització).
+Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en el tema 4 (normalització).
 
 ---
 
@@ -424,7 +424,7 @@ La direcció d'estudis vol saber si el percentatge d'aprovats en *Bases de dades
 - [ ] La resposta del punt 5 menciona l'impacte en el rendiment i les dades històriques.
 
 > [!TIP]
-> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En la Tema 7 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
+> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En el tema 7 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
 {{% /comprobacion %}}
 
 ---

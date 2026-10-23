@@ -314,7 +314,7 @@ Normalitzar és **descompondre** una taula en diverses. Una descomposició corre
 | ALUMNO(nia, alumno, cod_grupo) + GRUPO(cod_grupo, tutor, cod_ciclo...) | cod_grupo | Sí, de GRUPO | ✅ |
 | A(nia, alumno, tutor) + B(alumno, cod_grupo) | alumno | No | ❌ Si dos alumnes es diuen igual, el `JOIN` barreja els seus grups i genera files falses |
 
-Quan arribem a la Tema 7 podràs comprovar-ho en Oracle: la consulta que reconstruïx el full original és un `JOIN` de totes les taules normalitzades.
+Quan arribem a el tema 7 podràs comprovar-ho en Oracle: la consulta que reconstruïx el full original és un `JOIN` de totes les taules normalitzades.
 
 ---
 
@@ -363,7 +363,7 @@ La normalització elimina les redundàncies, però **no** resol totes les regles
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 4" >}}
+{{< tarjetas titulo="Repassa els termes del tema 4" >}}
 - t: "Anomalia"
   d: "Problema d'inserció, esborrat o modificació causat per dades repetides."
 - t: "Dependència funcional"

@@ -280,7 +280,7 @@ Pistas: `RPAD(nombre, 45)` alinea columnas; `TO_CHAR(nota, '90.00')` formatea la
 
 #### Objetivo
 
-Implementar con disparadores la auditoría de cambios y las restricciones de EduGest que no pudieron declararse en el modelo lógico (catálogo de la Tema 3).
+Implementar con disparadores la auditoría de cambios y las restricciones de EduGest que no pudieron declararse en el modelo lógico (catálogo del tema 3).
 
 #### Desarrollo
 
@@ -361,7 +361,7 @@ Hay que implementar la restricción R4: «un profesor no puede superar 20 horas 
     - `UPDATE imparte SET horas_semanales = horas_semanales + 1 WHERE id_profesor = 102;` → correcto (Javier pasa de 16 a 20 horas).
     - Repite la sentencia → `ORA-20030` (24 horas: la sentencia suma 1 hora a cada una de sus 4 asignaciones).
     - `INSERT` de una asignación de 6 horas a Marta (101, 15 horas) en el curso 2026-27 → correcto (es otro curso).
-5. ¿Qué pasaría con dos sesiones que, a la vez, añaden horas al mismo profesor sin confirmar? ¿Garantiza el disparador la regla en ese caso? Relaciónalo con la Tema 8 y propón una solución.
+5. ¿Qué pasaría con dos sesiones que, a la vez, añaden horas al mismo profesor sin confirmar? ¿Garantiza el disparador la regla en ese caso? Relaciónalo con el tema 8 y propón una solución.
 
 {{% details title="Pista para el apartado 5" %}}
 Cada sesión ve solo sus propios cambios sin confirmar (consistencia de lectura). Las dos pueden sumar 19 horas y confirmar, dejando 22. Una solución es serializar las modificaciones de cada profesor bloqueando su fila en `PROFESOR` con `SELECT ... FOR UPDATE` dentro del disparador, antes de sumar.
@@ -439,7 +439,7 @@ END pkg_secretaria;
 #### Comprobación
 
 {{% comprobacion %}}
-- [ ] La promoción devuelve 12 alumnos promocionados y 18 matrículas de pendientes, igual que el guion de la Tema 8.
+- [ ] La promoción devuelve 12 alumnos promocionados y 18 matrículas de pendientes, igual que el guion del tema 8.
 - [ ] Una segunda llamada lanza el error propio.
 - [ ] El cuerpo del paquete no tiene `COMMIT`.
 {{% /comprobacion %}}

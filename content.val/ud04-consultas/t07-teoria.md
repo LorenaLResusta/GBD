@@ -8,11 +8,11 @@ bookToc: true
 
 ## Resum del tema
 
-A la Tema 6 vas aprendre a consultar **una** taula. Però una base de dades ben dissenyada reparteix la informació entre moltes taules: el nom de l'alumne està a `ALUMNO`, la seua nota a `MATRICULA` i el nom del mòdul a `MODULO`. Quasi cap pregunta real del centre es respon amb una sola taula. Esta unitat ensenya a **tornar a juntar** el que el disseny va separar (composicions o *joins*), a **resumir** moltes files en poques (funcions d'agregat i `GROUP BY`) i a **encadenar consultes** unes dins d'altres (subconsultes).
+A el tema 6 vas aprendre a consultar **una** taula. Però una base de dades ben dissenyada reparteix la informació entre moltes taules: el nom de l'alumne està a `ALUMNO`, la seua nota a `MATRICULA` i el nom del mòdul a `MODULO`. Quasi cap pregunta real del centre es respon amb una sola taula. Esta unitat ensenya a **tornar a juntar** el que el disseny va separar (composicions o *joins*), a **resumir** moltes files en poques (funcions d'agregat i `GROUP BY`) i a **encadenar consultes** unes dins d'altres (subconsultes).
 
 El recorregut és acumulatiu. Primer es resumix una sola taula, perquè agrupar és més fàcil d'entendre sense composicions pel mig. Després es combinen taules, primer de forma interna (només les files que emparellen) i després externa (conservant també les que no emparellen: el grup sense tutor, el cicle sense grups). A continuació s'usen subconsultes per a preguntes que necessiten dos passos («qui està per damunt de la mitjana del seu mòdul»). Finalment es guarden les consultes útils com a **vistes**, es combinen resultats amb `UNION`, `INTERSECT` i `MINUS`, i s'introduïxen les **funcions analítiques** i l'**optimització** amb el pla d'execució.
 
-Esta és la unitat que converteix l'SQL en una eina professional: en acabar-la seràs capaç de contestar pràcticament qualsevol pregunta que secretaria, cap d'estudis o l'equip docent li puguen fer a EduGest. A la Tema 8 reutilitzaràs quasi tot el d'ací, perquè `UPDATE` i `DELETE` admeten subconsultes, i a la Tema 9 encapsularàs estes consultes en procediments i vistes més elaborades.
+Esta és la unitat que converteix l'SQL en una eina professional: en acabar-la seràs capaç de contestar pràcticament qualsevol pregunta que secretaria, cap d'estudis o l'equip docent li puguen fer a EduGest. A el tema 8 reutilitzaràs quasi tot el d'ací, perquè `UPDATE` i `DELETE` admeten subconsultes, i a el tema 9 encapsularàs estes consultes en procediments i vistes més elaborades.
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** amb les dades del curs **2025-26** carregades amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables): 5 departaments, 12 professors, 4 cicles, 24 mòduls, 6 grups, 32 alumnes, 143 matrícules, 24 assignacions docents i 46 faltes d'assistència.
 
@@ -77,7 +77,7 @@ autonomo:
 
 ### 1.1 Quin problema resolen
 
-Les funcions de fila de la Tema 6 (`UPPER`, `ROUND`, `TO_CHAR`…) tornen **un valor per cada fila**: entren 143 files i en isen 143. Però moltes preguntes no demanen files, demanen **un número que resumisca** les files: «quantes matrícules hi ha?», «quina és la nota mitjana?», «quina és la nota més alta?».
+Les funcions de fila del tema 6 (`UPPER`, `ROUND`, `TO_CHAR`…) tornen **un valor per cada fila**: entren 143 files i en isen 143. Però moltes preguntes no demanen files, demanen **un número que resumisca** les files: «quantes matrícules hi ha?», «quina és la nota mitjana?», «quina és la nota més alta?».
 
 Per a això estan les **funcions d'agregat** (també anomenades funcions de grup o de columna): reben un conjunt de files i tornen **un únic valor**.
 
@@ -857,7 +857,7 @@ ORDER  BY g.cod_grupo;
 
 *6 files*
 
-Resultat esperat: **les 6 files de `GRUPO`**, perquè `GRUPO` està a l'esquerra. La fila de 2ASIR es conserva amb totes les columnes de `PROFESOR` a `NULL`. Per a presentar-ho es combina amb les funcions de la Tema 6:
+Resultat esperat: **les 6 files de `GRUPO`**, perquè `GRUPO` està a l'esquerra. La fila de 2ASIR es conserva amb totes les columnes de `PROFESOR` a `NULL`. Per a presentar-ho es combina amb les funcions del tema 6:
 
 ```sql
 SELECT g.cod_grupo,
@@ -1336,7 +1336,7 @@ WHERE  id_profesor NOT IN (SELECT id_tutor FROM grupo);
 
 *1 fila*
 
-Zero files, quan sabem que hi ha set professors sense tutoria. **No és un error d'Oracle**: és la lògica de tres valors de la Tema 6. La subconsulta torna sis valors, i un d'ells és `NULL` (2ASIR no té tutor). Llavors:
+Zero files, quan sabem que hi ha set professors sense tutoria. **No és un error d'Oracle**: és la lògica de tres valors del tema 6. La subconsulta torna sis valors, i un d'ells és `NULL` (2ASIR no té tutor). Llavors:
 
 ```text
 id_profesor NOT IN (105, 103, 106, NULL, 104, 107)
@@ -1554,7 +1554,7 @@ ORDER  BY ma.media DESC;
 
 ### 7.1 De la consulta útil a la vista
 
-A la Tema 5 vas crear vistes sobre una sola taula. El seu veritable valor apareix ara: una vista pot **encapsular una composició de diverses taules** i oferir-la a la resta del centre com si fora una taula senzilla.
+A el tema 5 vas crear vistes sobre una sola taula. El seu veritable valor apareix ara: una vista pot **encapsular una composició de diverses taules** i oferir-la a la resta del centre com si fora una taula senzilla.
 
 | Avantatge | A la pràctica |
 |---|---|
@@ -2259,7 +2259,7 @@ Provar el model amb altres grandàries:
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 7" >}}
+{{< tarjetas titulo="Repassa els termes del tema 7" >}}
 - t: "INNER JOIN"
   d: "Torna només les files que tenen parella en ambdues taules."
 - t: "LEFT JOIN"

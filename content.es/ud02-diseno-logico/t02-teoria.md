@@ -630,7 +630,7 @@ erDiagram
 | Poner en una entidad un atributo de la relación (`nota` en `ALUMNO`) | El atributo depende de las dos entidades a la vez | Si el valor cambia según la pareja, va en la relación |
 | Usar el nombre como identificador | Los nombres se repiten y cambian | Usa códigos estables o identificadores artificiales |
 | Relaciones redundantes (ciclos en el diagrama) | Generan datos duplicados e inconsistentes | Comprueba si la relación se deduce de otras |
-| Cardinalidades «a ojo» | Producen tablas mal diseñadas en la Tema 3 | Formula siempre las dos preguntas (mínimo y máximo) en los dos sentidos |
+| Cardinalidades «a ojo» | Producen tablas mal diseñadas en el tema 3 | Formula siempre las dos preguntas (mínimo y máximo) en los dos sentidos |
 | Atributos calculados (`edad`) guardados como atributos normales | Quedan desactualizados | Guarda `fecha_nacimiento` y calcula la edad |
 | Inventar requisitos | El diseño deja de responder al cliente | Anota las dudas como **supuestos** y valídalos con el cliente |
 
@@ -638,7 +638,7 @@ erDiagram
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 2" >}}
+{{< tarjetas titulo="Repasa los términos del tema 2" >}}
 - t: "Entidad"
   d: "Objeto del mundo real sobre el que se guarda información."
 - t: "Entidad débil"

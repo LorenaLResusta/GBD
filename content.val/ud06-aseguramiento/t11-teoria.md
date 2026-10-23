@@ -124,7 +124,7 @@ Esta flexibilitat resol el problema 2 de l'apartat anterior, però té conseqü�
 
 ### 1.4 La desnormalització com a decisió de disseny
 
-En la Tema 4 vas aprendre a eliminar la redundància perquè provoca **anomalies**: la mateixa dada guardada en dos llocs acaba sent diferent en els dos llocs. Eixa conclusió era correcta **per al model relacional**, on recompondre la informació amb `JOIN` és barat.
+En el tema 4 vas aprendre a eliminar la redundància perquè provoca **anomalies**: la mateixa dada guardada en dos llocs acaba sent diferent en els dos llocs. Eixa conclusió era correcta **per al model relacional**, on recompondre la informació amb `JOIN` és barat.
 
 En un sistema distribuït la situació canvia: un `JOIN` entre taules repartides en màquines diferents exigix trànsit de xarxa i coordinació. Per això el modelatge documental **incrusta** (duplica) informació deliberadament, de manera que el que es llig junt es guarde junt i cada lectura toque un sol document i una sola màquina.
 
@@ -145,10 +145,10 @@ En un sistema distribuït la situació canvia: un `JOIN` entre taules repartides
 | **Escalat vertical** (*scale up*) | Posar més CPU, més memòria o discos més ràpids en el **mateix** servidor | Hi ha un topall físic i el preu creix més ràpid que la potència; continua havent-hi un punt únic de fallada |
 | **Escalat horitzontal** (*scale out*) | Repartir càrrega i dades entre **més** servidors (nodes) | Exigix coordinació entre nodes; apareixen els problemes del §2 |
 
-Sobre l'escalat horitzontal es construïxen dos mecanismes que ja vas vore en la Tema 1 amb altres noms:
+Sobre l'escalat horitzontal es construïxen dos mecanismes que ja vas vore en el tema 1 amb altres noms:
 
 - **Rèplica** (*replica set* en MongoDB): diversos nodes guarden **una còpia completa** de les dades. Un és el **primari** i rep les escriptures; els **secundaris** les repliquen. Millora la disponibilitat (si cau el primari, se n'elegix un altre) i permet repartir lectures.
-- **Particionat** (*sharding*): les dades es **reparteixen** entre diversos conjunts de rèplica segons una **clau de partició** (*shard key*). És la fragmentació horitzontal de la Tema 1. Permet créixer sense límit teòric, però triar mal la clau concentra la càrrega en un sol node.
+- **Particionat** (*sharding*): les dades es **reparteixen** entre diversos conjunts de rèplica segons una **clau de partició** (*shard key*). És la fragmentació horitzontal del tema 1. Permet créixer sense límit teòric, però triar mal la clau concentra la càrrega en un sol node.
 
 ```mermaid
 flowchart LR
@@ -195,7 +195,7 @@ Carlo Strozzi el va usar en 1998 per a una base de dades relacional lleugera que
 
 ### 2.1 Recordatori: ACID
 
-En la Tema 8 vas definir una transacció com una unitat de treball que complix quatre propietats: **A**tomicitat (tot o res), **C**onsistència (es passa d'un estat vàlid a un altre vàlid), **A**illament (les transaccions concurrents no es destorben) i **D**urabilitat (el confirmat sobreviu a una caiguda). Oracle les garantix en un servidor sense que calga demanar-ho.
+En el tema 8 vas definir una transacció com una unitat de treball que complix quatre propietats: **A**tomicitat (tot o res), **C**onsistència (es passa d'un estat vàlid a un altre vàlid), **A**illament (les transaccions concurrents no es destorben) i **D**urabilitat (el confirmat sobreviu a una caiguda). Oracle les garantix en un servidor sense que calga demanar-ho.
 
 Mantindre ACID **entre diverses màquines** és molt més car: cada confirmació exigix que tots els nodes implicats es posen d'acord (protocols de consens o de confirmació en dues fases), la qual cosa afig latència i, si un node no respon, bloqueja l'operació.
 
@@ -448,7 +448,7 @@ flowchart LR
 | Clau primària | Camp **`_id`** | Obligatori, únic, indexat i **no modificable**; si no el poses, el genera el servidor |
 | Clau aliena | Referència manual (`_id` d'un altre document) | **No existix** la integritat referencial declarativa |
 | `JOIN` | `$lookup` o **document embegut** | El normal és evitar el creuament incrustant les dades |
-| Índex | Índex | Mateix concepte i utilitat que en la Tema 5 i la Tema 7 |
+| Índex | Índex | Mateix concepte i utilitat que en el tema 5 i el tema 7 |
 | Vista | Vista (`db.createView`) | De només lectura, definida amb una pipeline d'agregació |
 
 ### 4.3 BSON i els tipus de dades
@@ -671,7 +671,7 @@ db.expedientes.insertMany([
 }
 ```
 
-**Resultat esperat.** `db.expedientes.countDocuments()` torna ara 35. Observa que el segon document va rebre un `ObjectId` generat pel servidor: una clau primària artificial, com la columna identitat de la Tema 5, però generada **en el client o en el servidor** sense necessitat de seqüència.
+**Resultat esperat.** `db.expedientes.countDocuments()` torna ara 35. Observa que el segon document va rebre un `ObjectId` generat pel servidor: una clau primària artificial, com la columna identitat del tema 5, però generada **en el client o en el servidor** sense necessitat de seqüència.
 
 **Errors habituals.**
 
@@ -804,7 +804,7 @@ SELECT id_alumno, apellidos FROM alumno WHERE apellidos LIKE 'Iborra%';
 ```
 
 > [!TIP]
-> Una expressió regular **ancorada al principi** (`/^Iborra/`) pot aprofitar un índex, igual que `LIKE 'Iborra%'` en Oracle. Si comença per comodí (`/Iborra/` o `LIKE '%Iborra%'`), els dos sistemes han de recórrer tota la col·lecció o taula. El criteri de la Tema 7 sobre índexs i comodins s'aplica ací sense canvis.
+> Una expressió regular **ancorada al principi** (`/^Iborra/`) pot aprofitar un índex, igual que `LIKE 'Iborra%'` en Oracle. Si comença per comodí (`/Iborra/` o `LIKE '%Iborra%'`), els dos sistemes han de recórrer tota la col·lecció o taula. El criteri del tema 7 sobre índexs i comodins s'aplica ací sense canvis.
 
 #### Ordenar, limitar, saltar i comptar
 
@@ -1151,7 +1151,7 @@ WHERE  EXISTS (SELECT 1
 *2 files*
 
 > [!TIP]
-> `$elemMatch` és l'**`EXISTS` correlacionat** de la Tema 7, i la coincidència implícita sobre l'array és l'`IN` amb subconsulta. Si domines eixa parella de la Tema 7, esta secció és una traducció.
+> `$elemMatch` és l'**`EXISTS` correlacionat** del tema 7, i la coincidència implícita sobre l'array és l'`IN` amb subconsulta. Si domines eixa parella del tema 7, esta secció és una traducció.
 
 #### L'operador posicional `$`
 
@@ -1207,7 +1207,7 @@ db.expedientes.updateOne(
 
 ### 7.1 El concepte de canonada
 
-Els `GROUP BY`, `HAVING` i funcions de grup de la Tema 7 es resolen en MongoDB amb el **marc d'agregació** (*aggregation framework*): una **canonada** (*pipeline*) d'**etapes** per les quals van passant els documents, transformant-se en cada pas.
+Els `GROUP BY`, `HAVING` i funcions de grup del tema 7 es resolen en MongoDB amb el **marc d'agregació** (*aggregation framework*): una **canonada** (*pipeline*) d'**etapes** per les quals van passant els documents, transformant-se en cada pas.
 
 ```mermaid
 flowchart LR
@@ -1238,7 +1238,7 @@ La idea és la mateixa que l'ordre d'avaluació d'un `SELECT` (Tema 6), amb una 
 Acumuladors de `$group` més usats: `$sum`, `$avg`, `$min`, `$max`, `$count`, `$first`, `$last`, `$push` (arreplega tots els valors en un array) i `$addToSet` (sense repetits). Els quatre primers es corresponen amb `SUM`, `AVG`, `MIN` i `MAX`, i com ells **ignoren els valors absents o no numèrics**.
 
 > [!IMPORTANT]
-> L'ordre de les etapes importa. `$match` **al principi** reduïx els documents que recorren la resta del pipeline i pot usar índexs; darrere d'un `$group` ja no hi ha índexs que usar i actua com un `HAVING`. Posa sempre `$match` i `$project` com més prompte millor: és el mateix criteri de la Tema 7 sobre filtrar abans d'agrupar.
+> L'ordre de les etapes importa. `$match` **al principi** reduïx els documents que recorren la resta del pipeline i pot usar índexs; darrere d'un `$group` ja no hi ha índexs que usar i actua com un `HAVING`. Posa sempre `$match` i `$project` com més prompte millor: és el mateix criteri del tema 7 sobre filtrar abans d'agrupar.
 
 ### 7.3 El mateix informe en Oracle i en MongoDB
 
@@ -1479,7 +1479,7 @@ En la nostra versió documental es van prendre estes decisions:
 
 ### 8.5 La integritat que ara és responsabilitat teua
 
-En passar de l'esquema de la Tema 3 al model documental, estes restriccions **deixen d'estar garantides pel gestor**:
+En passar de l'esquema del tema 3 al model documental, estes restriccions **deixen d'estar garantides pel gestor**:
 
 | Restricció d'EduGest | Com la garantix Oracle | Què cal fer en MongoDB |
 |---|---|---|
@@ -1499,7 +1499,7 @@ En passar de l'esquema de la Tema 3 al model documental, estes restriccions **de
 
 ### 9.1 Validadors amb `$jsonSchema`
 
-Que MongoDB no exigisca un esquema no significa que no es puga **declarar** un. Un **validador** s'associa a la col·lecció i el servidor el comprova en cada escriptura, igual que les restriccions de la Tema 5. {{< sgbd "MongoDB 8.0" >}}
+Que MongoDB no exigisca un esquema no significa que no es puga **declarar** un. Un **validador** s'associa a la col·lecció i el servidor el comprova en cada escriptura, igual que les restriccions del tema 5. {{< sgbd "MongoDB 8.0" >}}
 
 ```javascript
 db.createCollection("expedientes", {
@@ -1571,7 +1571,7 @@ Dos paràmetres controlen el rigor:
 
 ### 9.2 Índexs
 
-Els índexs de MongoDB són la mateixa idea de la Tema 5 i la Tema 7: una estructura auxiliar (arbre B) que evita recórrer tots els documents, a canvi d'ocupar espai i encarir les escriptures.
+Els índexs de MongoDB són la mateixa idea del tema 5 i el tema 7: una estructura auxiliar (arbre B) que evita recórrer tots els documents, a canvi d'ocupar espai i encarir les escriptures.
 
 ```javascript
 db.expedientes.createIndex({ nia: 1 }, { unique: true, name: "ux_nia" })  // únic, com UNIQUE
@@ -1657,7 +1657,7 @@ db.getUsers()
 | `dbOwner` | `readWrite` + `dbAdmin` + `userAdmin` | Propietari de l'esquema |
 | `clusterAdmin`, `root` | Administració del clúster; tot | `SYSDBA` |
 
-El **principi de mínim privilegi** és idèntic al de la Tema 5: l'aplicació web es connecta amb `readWrite` sobre `edugest` i res més; el panell d'informes, amb `read`; ningú treballa a diari amb `root`. I, com allí, els rols personalitzats (`db.createRole`) permeten ajustar permisos per col·lecció i per acció.
+El **principi de mínim privilegi** és idèntic al del tema 5: l'aplicació web es connecta amb `readWrite` sobre `edugest` i res més; el panell d'informes, amb `read`; ningú treballa a diari amb `root`. I, com allí, els rols personalitzats (`db.createRole`) permeten ajustar permisos per col·lecció i per acció.
 
 ### 10.3 Xifratge, còpies i dades personals
 
@@ -1791,7 +1791,7 @@ I alhora hi ha parts d'un centre educatiu on el model documental encaixa molt b�
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 11" >}}
+{{< tarjetas titulo="Repassa els termes del tema 11" >}}
 - t: "Document"
   d: "Registre JSON/BSON amb camps i valors, que pot aniuar altres documents."
 - t: "Col·lecció"

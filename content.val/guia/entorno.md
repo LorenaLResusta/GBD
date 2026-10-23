@@ -158,7 +158,7 @@ show dbs
 Com a client gràfic usa **MongoDB Compass** amb la cadena de connexió `mongodb://localhost:27017`.
 
 > [!CAUTION]
-> Estes instal·lacions són **per a l'aula**. MongoDB arranca sense autenticació i les contrasenyes d'Oracle són d'exemple. En la Tema 5 i en la Tema 11 vorem per què un servidor de bases de dades mai no ha d'exposar-se així en producció.
+> Estes instal·lacions són **per a l'aula**. MongoDB arranca sense autenticació i les contrasenyes d'Oracle són d'exemple. En el tema 5 i en el tema 11 vorem per què un servidor de bases de dades mai no ha d'exposar-se així en producció.
 
 ## 6. Problemes freqüents
 

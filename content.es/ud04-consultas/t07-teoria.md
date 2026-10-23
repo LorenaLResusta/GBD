@@ -8,11 +8,11 @@ bookToc: true
 
 ## Resumen del tema
 
-En la Tema 6 aprendiste a consultar **una** tabla. Pero una base de datos bien diseñada reparte la información entre muchas tablas: el nombre del alumno está en `ALUMNO`, su nota en `MATRICULA` y el nombre del módulo en `MODULO`. Casi ninguna pregunta real del centro se responde con una sola tabla. Esta unidad enseña a **volver a juntar** lo que el diseño separó (composiciones o *joins*), a **resumir** muchas filas en pocas (funciones de agregado y `GROUP BY`) y a **encadenar consultas** unas dentro de otras (subconsultas).
+En el tema 6 aprendiste a consultar **una** tabla. Pero una base de datos bien diseñada reparte la información entre muchas tablas: el nombre del alumno está en `ALUMNO`, su nota en `MATRICULA` y el nombre del módulo en `MODULO`. Casi ninguna pregunta real del centro se responde con una sola tabla. Esta unidad enseña a **volver a juntar** lo que el diseño separó (composiciones o *joins*), a **resumir** muchas filas en pocas (funciones de agregado y `GROUP BY`) y a **encadenar consultas** unas dentro de otras (subconsultas).
 
 El recorrido es acumulativo. Primero se resume una sola tabla, porque agrupar es más fácil de entender sin composiciones de por medio. Después se combinan tablas, primero de forma interna (solo las filas que emparejan) y luego externa (conservando también las que no emparejan: el grupo sin tutor, el ciclo sin grupos). A continuación se usan subconsultas para preguntas que necesitan dos pasos («quién está por encima de la media de su módulo»). Por último se guardan las consultas útiles como **vistas**, se combinan resultados con `UNION`, `INTERSECT` y `MINUS`, y se introducen las **funciones analíticas** y la **optimización** con el plan de ejecución.
 
-Esta es la unidad que convierte el SQL en una herramienta profesional: al terminarla serás capaz de contestar prácticamente cualquier pregunta que secretaría, jefatura de estudios o el equipo docente le puedan hacer a EduGest. En la Tema 8 reutilizarás casi todo lo de aquí, porque `UPDATE` y `DELETE` admiten subconsultas, y en la Tema 9 encapsularás estas consultas en procedimientos y vistas más elaboradas.
+Esta es la unidad que convierte el SQL en una herramienta profesional: al terminarla serás capaz de contestar prácticamente cualquier pregunta que secretaría, jefatura de estudios o el equipo docente le puedan hacer a EduGest. En el tema 8 reutilizarás casi todo lo de aquí, porque `UPDATE` y `DELETE` admiten subconsultas, y en el tema 9 encapsularás estas consultas en procedimientos y vistas más elaboradas.
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** con los datos del curso **2025-26** cargados con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables): 5 departamentos, 12 profesores, 4 ciclos, 24 módulos, 6 grupos, 32 alumnos, 143 matrículas, 24 asignaciones docentes y 46 faltas de asistencia.
 
@@ -77,7 +77,7 @@ autonomo:
 
 ### 1.1 Qué problema resuelven
 
-Las funciones de fila de la Tema 6 (`UPPER`, `ROUND`, `TO_CHAR`…) devuelven **un valor por cada fila**: entran 143 filas y salen 143. Pero muchas preguntas no piden filas, piden **un número que resuma** las filas: «¿cuántas matrículas hay?», «¿cuál es la nota media?», «¿cuál es la nota más alta?».
+Las funciones de fila del tema 6 (`UPPER`, `ROUND`, `TO_CHAR`…) devuelven **un valor por cada fila**: entran 143 filas y salen 143. Pero muchas preguntas no piden filas, piden **un número que resuma** las filas: «¿cuántas matrículas hay?», «¿cuál es la nota media?», «¿cuál es la nota más alta?».
 
 Para eso están las **funciones de agregado** (también llamadas funciones de grupo o de columna): reciben un conjunto de filas y devuelven **un único valor**.
 
@@ -857,7 +857,7 @@ ORDER  BY g.cod_grupo;
 
 *6 filas*
 
-Resultado esperado: **las 6 filas de `GRUPO`**, porque `GRUPO` está a la izquierda. La fila de 2ASIR se conserva con todas las columnas de `PROFESOR` a `NULL`. Para presentarlo se combina con las funciones de la Tema 6:
+Resultado esperado: **las 6 filas de `GRUPO`**, porque `GRUPO` está a la izquierda. La fila de 2ASIR se conserva con todas las columnas de `PROFESOR` a `NULL`. Para presentarlo se combina con las funciones del tema 6:
 
 ```sql
 SELECT g.cod_grupo,
@@ -1336,7 +1336,7 @@ WHERE  id_profesor NOT IN (SELECT id_tutor FROM grupo);
 
 *1 fila*
 
-Cero filas, cuando sabemos que hay siete profesores sin tutoría. **No es un error de Oracle**: es la lógica de tres valores de la Tema 6. La subconsulta devuelve seis valores, y uno de ellos es `NULL` (2ASIR no tiene tutor). Entonces:
+Cero filas, cuando sabemos que hay siete profesores sin tutoría. **No es un error de Oracle**: es la lógica de tres valores del tema 6. La subconsulta devuelve seis valores, y uno de ellos es `NULL` (2ASIR no tiene tutor). Entonces:
 
 ```text
 id_profesor NOT IN (105, 103, 106, NULL, 104, 107)
@@ -1554,7 +1554,7 @@ ORDER  BY ma.media DESC;
 
 ### 7.1 De la consulta útil a la vista
 
-En la Tema 5 creaste vistas sobre una sola tabla. Su verdadero valor aparece ahora: una vista puede **encapsular una composición de varias tablas** y ofrecerla al resto del centro como si fuera una tabla sencilla.
+En el tema 5 creaste vistas sobre una sola tabla. Su verdadero valor aparece ahora: una vista puede **encapsular una composición de varias tablas** y ofrecerla al resto del centro como si fuera una tabla sencilla.
 
 | Ventaja | En la práctica |
 |---|---|
@@ -2259,7 +2259,7 @@ Probar el modelo con otros tamaños:
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 7" >}}
+{{< tarjetas titulo="Repasa los términos del tema 7" >}}
 - t: "INNER JOIN"
   d: "Devuelve solo las filas que tienen pareja en ambas tablas."
 - t: "LEFT JOIN"

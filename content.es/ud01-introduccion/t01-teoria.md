@@ -49,7 +49,7 @@ Al terminar esta unidad serás capaz de:
 - Identificar la legislación de protección de datos que afecta al diseño de una base de datos.
 
 > [!NOTE]
-> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir de la Tema 5 trabajaremos con Oracle.
+> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir del tema 5 trabajaremos con Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visión general de un SGBD" >}}
 
@@ -538,7 +538,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en la Tema 8.
+> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en el tema 8.
 
 > [!IMPORTANT]
 > Antes de ejecutar `COMMIT`, la aplicación debe comprobar que **las dos actualizaciones** han afectado a una fila. Si alguna falla, hay que ejecutar `ROLLBACK`: abrir una transacción no valida por sí mismo el resultado de las operaciones.
@@ -619,7 +619,7 @@ graph TD
   - *Orientados a grafos:* Representan de forma nativa los nodos y las relaciones (Neo4j).
   - *Columnares:* Agrupan los datos en familias de columnas para leerlos y escribirlos a gran escala (Cassandra).
 
-La Tema 11 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
+El tema 11 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
 
 > [!WARNING]
 > **NoSQL no significa necesariamente «sin ACID»**: las garantías transaccionales varían según el producto y la configuración. Antes de elegir un sistema, comprueba qué propiedades ofrece.
@@ -667,7 +667,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en la Tema 5.
+> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en el tema 5.
 
 #### 2. DML (*Data Manipulation Language* - lenguaje de manipulación de datos)
 
@@ -830,7 +830,7 @@ flowchart LR
 | **Ejemplo en EduGest** | Registrar una falta de asistencia | Evolución de la tasa de abandono por ciclo durante los últimos 10 años |
 
 > [!TIP]
-> Las consultas de resumen con `GROUP BY` que harás en la Tema 7 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
+> Las consultas de resumen con `GROUP BY` que harás en el tema 7 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
 
 ---
 
@@ -875,7 +875,7 @@ El sistema debe permitir atender los derechos de **acceso**, **rectificación**,
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 1" >}}
+{{< tarjetas titulo="Repasa los términos del tema 1" >}}
 - t: "Dato"
   d: "Representación simbólica de un hecho, sin contexto."
 - t: "Información"
@@ -966,7 +966,7 @@ Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye 
 - q: "¿Qué módulo del SGBD decide **cómo** se ejecuta una consulta, por ejemplo, si utiliza un índice o recorre toda la tabla?"
   options: ["El gestor de transacciones", "El optimizador de consultas", "El diccionario de datos", "El gestor de copias de seguridad"]
   answer: 1
-  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en la Tema 7."
+  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en el tema 7."
 - q: "Una cadena de clínicas guarda en el servidor de cada ciudad solo los pacientes de esa ciudad. ¿Qué política se aplica?"
   options: ["Fragmentación vertical", "Replicación total", "Fragmentación horizontal", "Normalización"]
   answer: 2

@@ -314,7 +314,7 @@ Normalizar es **descomponer** una tabla en varias. Una descomposición correcta 
 | ALUMNO(nia, alumno, cod_grupo) + GRUPO(cod_grupo, tutor, cod_ciclo...) | cod_grupo | Sí, de GRUPO | ✅ |
 | A(nia, alumno, tutor) + B(alumno, cod_grupo) | alumno | No | ❌ Si dos alumnos se llaman igual, el `JOIN` mezcla sus grupos y genera filas falsas |
 
-Cuando lleguemos a la Tema 7 podrás comprobarlo en Oracle: la consulta que reconstruye la hoja original es un `JOIN` de todas las tablas normalizadas.
+Cuando lleguemos a el tema 7 podrás comprobarlo en Oracle: la consulta que reconstruye la hoja original es un `JOIN` de todas las tablas normalizadas.
 
 ---
 
@@ -363,7 +363,7 @@ La normalización elimina las redundancias, pero **no** resuelve todas las regla
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 4" >}}
+{{< tarjetas titulo="Repasa los términos del tema 4" >}}
 - t: "Anomalía"
   d: "Problema de inserción, borrado o modificación causado por datos repetidos."
 - t: "Dependencia funcional"

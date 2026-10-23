@@ -262,7 +262,7 @@ RESERVA(id_reserva, id_cliente*, num_hab*, fecha_entrada, fecha_salida, num_pers
 
 #### Enunciado
 
-Clasifica cada regla en una de estas categorías: **PK / clave alternativa**, **FK**, **atributo obligatorio**, **regla de fila** o **no representable** (documentar e implementar en la Tema 9). En el último caso, usa el formato de documentación de la teoría.
+Clasifica cada regla en una de estas categorías: **PK / clave alternativa**, **FK**, **atributo obligatorio**, **regla de fila** o **no representable** (documentar e implementar en el tema 9). En el último caso, usa el formato de documentación de la teoría.
 
 1. Dos clientes no pueden tener el mismo DNI.
 2. La fecha de salida es posterior a la de entrada.
@@ -309,7 +309,7 @@ Transforma **tu** modelo E/R de EduGest (práctica EduGest-2) en un modelo relac
 
 ## Tareas de transformación: del E/R al modelo relacional
 
-Las tareas de este apartado parten de un **diagrama EER ya hecho**, dibujado con la misma notación que el [banco de ejercicios de la Tema 2](/ud02-diseno-logico/t02-practicas#banco-de-ejercicios). Hay que obtener el **esquema relacional** y anotar las **pérdidas semánticas**: lo que el diagrama dice y las tablas no pueden garantizar por sí solas.
+Las tareas de este apartado parten de un **diagrama EER ya hecho**, dibujado con la misma notación que el [banco de ejercicios del tema 2](/ud02-diseno-logico/t02-practicas#banco-de-ejercicios). Hay que obtener el **esquema relacional** y anotar las **pérdidas semánticas**: lo que el diagrama dice y las tablas no pueden garantizar por sí solas.
 
 A diferencia del diagrama E/R, donde caben varias soluciones, la transformación de un diagrama dado es casi única. Los nombres de las claves ajenas pueden variar (`cod_emp`, `codigo_empleado`…), pero las **PK, FK, UK y VNN** tienen que ser las mismas.
 
@@ -335,7 +335,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 \* Salvo que la columna forme parte también de una PK o UK, o tenga VNN.
 
 > [!TIP]
-> Es la misma información que la notación `TABLA(`<u>clave</u>`, columna, `*clave_ajena*`)` de las prácticas anteriores, pero en forma de lista. Con ella es más fácil revisar que no falta ninguna restricción y, en la Tema 5, cada línea se convierte casi directamente en una tabla de la base de datos.
+> Es la misma información que la notación `TABLA(`<u>clave</u>`, columna, `*clave_ajena*`)` de las prácticas anteriores, pero en forma de lista. Con ella es más fácil revisar que no falta ninguna restricción y, en el tema 5, cada línea se convierte casi directamente en una tabla de la base de datos.
 
 ### Reglas de transformación (resumen)
 
@@ -434,7 +434,7 @@ Transformar relaciones 1:N con participación obligatoria y una N:M que guarda u
 
 #### Contexto
 
-Es el diagrama del [ejercicio 4 de la Tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-4--naviera-capitanes-contenedores-puertos-y-barcos).
+Es el diagrama del [ejercicio 4 del tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-4--naviera-capitanes-contenedores-puertos-y-barcos).
 
 {{< figura src="ud02/ej04.svg" alt="CAPITÁN transporta CONTENEDOR (1:N), CONTENEDOR llega a PUERTO (N:1), CAPITÁN gobierna BARCO (N:M con fecha_inicio y fecha_fin)" caption="Diagrama de partida: naviera" >}}
 
@@ -481,7 +481,7 @@ Transformar dos relaciones reflexivas (1:N y N:M) y una 1:1 con mínimos 0 en lo
 
 #### Contexto
 
-Es el diagrama del [ejercicio 6 de la Tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-6--instituto-módulos-matrículas-delegados-y-casilleros).
+Es el diagrama del [ejercicio 6 del tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-6--instituto-módulos-matrículas-delegados-y-casilleros).
 
 {{< figura src="ud02/ej06.svg" alt="PROFESOR imparte MÓDULO; MÓDULO es requisito de MÓDULO; ALUMNO se matricula en MÓDULO; ALUMNO es delegado de ALUMNO; ALUMNO tiene CASILLERO" caption="Diagrama de partida: instituto" >}}
 
@@ -528,7 +528,7 @@ Transformar una entidad débil por identificación, una reflexiva 1:N y claves a
 
 #### Contexto
 
-Es el diagrama del [ejercicio 10 de la Tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-10--concesionario-ventas-revisiones-y-mecánicos).
+Es el diagrama del [ejercicio 10 del tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-10--concesionario-ventas-revisiones-y-mecánicos).
 
 {{< figura src="ud02/ej10.svg" alt="CLIENTE compra COCHE (1:N), COCHE pasa REVISIÓN (débil, identificadora), MECÁNICO realiza REVISIÓN, MECÁNICO supervisa a MECÁNICO" caption="Diagrama de partida: concesionario" >}}
 
@@ -568,7 +568,7 @@ Transformar una cadena de entidades débiles con **claves ajenas compuestas** y 
 
 #### Contexto
 
-El primer diagrama es el del [ejercicio 11 de la Tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-11--casas-rurales-provincias-ciudades-y-habitaciones). El segundo es la variante de su ampliación.
+El primer diagrama es el del [ejercicio 11 del tema 2](/ud02-diseno-logico/t02-practicas#ejercicio-11--casas-rurales-provincias-ciudades-y-habitaciones). El segundo es la variante de su ampliación.
 
 {{< figura src="ud02/ej11.svg" alt="PROVINCIA tiene CIUDAD (débil). CASA_RURAL está en CIUDAD. CASA_RURAL dispone de HABITACIÓN (débil). CLIENTE se aloja en HABITACIÓN." caption="Diagrama 4.1: casas rurales" >}}
 

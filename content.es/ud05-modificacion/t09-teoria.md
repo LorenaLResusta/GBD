@@ -8,7 +8,7 @@ bookToc: true
 
 ## Resumen del tema
 
-Hasta ahora, la lógica de nuestras tareas vivía **fuera** de la base de datos: en un guion `.sql` que lanzábamos a mano o en la aplicación que consulta Oracle. Eso funciona mientras la tarea sea una secuencia de sentencias. Deja de funcionar cuando hace falta **decidir** (¿tiene el alumno faltas suficientes para perder la evaluación continua?), **repetir** (recorrer todos los alumnos de un grupo), **reaccionar a un error** (¿qué hago si el módulo no existe?) o **garantizar una regla** que nadie pueda saltarse, entre ellas las que en la Tema 3 llamamos *restricciones que el modelo lógico no puede expresar*.
+Hasta ahora, la lógica de nuestras tareas vivía **fuera** de la base de datos: en un guion `.sql` que lanzábamos a mano o en la aplicación que consulta Oracle. Eso funciona mientras la tarea sea una secuencia de sentencias. Deja de funcionar cuando hace falta **decidir** (¿tiene el alumno faltas suficientes para perder la evaluación continua?), **repetir** (recorrer todos los alumnos de un grupo), **reaccionar a un error** (¿qué hago si el módulo no existe?) o **garantizar una regla** que nadie pueda saltarse, entre ellas las que en el tema 3 llamamos *restricciones que el modelo lógico no puede expresar*.
 
 La solución es programar **dentro del servidor**. Oracle incorpora para ello el lenguaje **PL/SQL** (*Procedural Language / SQL*): SQL más variables, condiciones, bucles, cursores y excepciones, organizado en **bloques**. Con él se construyen los objetos que guarda la propia base de datos: **funciones**, **procedimientos**, **paquetes** y **disparadores**, y con el planificador `DBMS_SCHEDULER` se ejecutan solos a la hora que se indique.
 
@@ -34,7 +34,7 @@ Al terminar esta unidad serás capaz de:
 
 ### Temporalización
 
-El tema ocupa **15 horas de aula** (9 de teoría y 6 de práctica). Es la unidad con más código del curso y, junto con la Tema 8, desarrolla el RA5: conviene escribirlo a mano y recompilarlo, no copiarlo y pegarlo. Las prácticas largas (la tabla mutante, las tareas programadas, el paquete de secretaría y el proyecto) se completan fuera del horario de aula.
+El tema ocupa **15 horas de aula** (9 de teoría y 6 de práctica). Es la unidad con más código del curso y, junto con el tema 8, desarrolla el RA5: conviene escribirlo a mano y recompilarlo, no copiarlo y pegarlo. Las prácticas largas (la tabla mutante, las tareas programadas, el paquete de secretaría y el proyecto) se completan fuera del horario de aula.
 
 {{< sesiones unidad="T09" horas="15" >}}
 items:
@@ -74,7 +74,7 @@ SQL es un lenguaje **declarativo**: dices *qué* quieres, no *cómo* obtenerlo. 
 
 Piensa en la matrícula de un alumno en EduGest. Antes de insertar la fila hay que comprobar que el alumno existe y tiene grupo, que el módulo es de su ciclo, que no está ya matriculado ese curso y que no ha agotado las cuatro convocatorias. Son cuatro consultas, tres decisiones y un `INSERT`, y esas reglas deben cumplirse **siempre**, venga la matrícula de la aplicación web, de un script de la secretaría o de una herramienta gráfica.
 
-La Tema 3 ya identificó las reglas de negocio de EduGest que el modelo lógico no puede expresar. Esta unidad las implementa:
+El tema 3 ya identificó las reglas de negocio de EduGest que el modelo lógico no puede expresar. Esta unidad las implementa:
 
 | Código | Regla de negocio | Por qué no basta una restricción declarativa | Dónde se implementa |
 |---|---|---|---|
@@ -3070,7 +3070,7 @@ END;
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 9" >}}
+{{< tarjetas titulo="Repasa los términos del tema 9" >}}
 - t: "Bloque anónimo"
   d: "Código PL/SQL sin nombre: DECLARE, BEGIN, EXCEPTION, END."
 - t: "Procedimiento"

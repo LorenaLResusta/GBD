@@ -432,7 +432,7 @@ Para cada caso, recomienda el modelo (o la combinación de modelos) y justifíca
     ```
 
 2. **Validación.** Añade a la colección un validador `$jsonSchema` coherente con las restricciones de Oracle (NIA de 8 dígitos, nota entre 0 y 10, convocatoria de 1 a 4).
-3. **Consultas.** Reescribe en MongoDB cinco de tus informes de la Tema 7 y compara resultados.
+3. **Consultas.** Reescribe en MongoDB cinco de tus informes del tema 7 y compara resultados.
 4. **Índices.** Crea los índices necesarios y muestra los planes (`explain`).
 5. **Informe final** (`11-nosql.md`): ventajas e inconvenientes del modelo documental para EduGest, qué partes del sistema tendrían sentido en MongoDB y cuáles deben seguir en Oracle, y cómo se mantendrían sincronizadas.
 

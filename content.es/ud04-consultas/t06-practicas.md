@@ -211,7 +211,7 @@ Datos de partida: `ALUMNO` tiene 32 filas; 3 sin grupo, 4 sin DNI, 3 sin email y
 {{< solucion id="ud06-017" title="Resultados reales y explicación" />}}
 
 > [!CAUTION]
-> El caso 10 es una trampa clásica que aparecerá de nuevo en la Tema 7 con las subconsultas: `WHERE id NOT IN (SELECT ...)` no devuelve nada si la subconsulta devuelve algún `NULL`.
+> El caso 10 es una trampa clásica que aparecerá de nuevo en el tema 7 con las subconsultas: `WHERE id NOT IN (SELECT ...)` no devuelve nada si la subconsulta devuelve algún `NULL`.
 
 ---
 

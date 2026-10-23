@@ -8,7 +8,7 @@ bookToc: true
 
 ## Resumen del tema
 
-Consultar es la operación más frecuente en cualquier base de datos. En esta unidad aprenderás la sentencia `SELECT` aplicada a **una sola tabla**: elegir columnas (proyección), filtrar filas (selección), ordenar, eliminar duplicados, tratar los valores nulos y transformar los datos con las **funciones** que proporciona Oracle. En la Tema 7 combinaremos varias tablas y agruparemos resultados.
+Consultar es la operación más frecuente en cualquier base de datos. En esta unidad aprenderás la sentencia `SELECT` aplicada a **una sola tabla**: elegir columnas (proyección), filtrar filas (selección), ordenar, eliminar duplicados, tratar los valores nulos y transformar los datos con las **funciones** que proporciona Oracle. En el tema 7 combinaremos varias tablas y agruparemos resultados.
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargado con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables), y muestran el resultado que debes obtener.
 
@@ -273,7 +273,7 @@ Calcula las expresiones y los alias de las columnas que se muestran: `SELECT nom
 Ordena el resultado. Es la **única** cláusula que puede usar los alias del SELECT.
 {{% /etapa %}}
 {{% etapa titulo="5. Límite de filas" %}}
-Por último se recorta con `FETCH FIRST n ROWS ONLY`. En la Tema 7 se añadirán `GROUP BY` y `HAVING` entre el WHERE y el SELECT.
+Por último se recorta con `FETCH FIRST n ROWS ONLY`. En el tema 7 se añadirán `GROUP BY` y `HAVING` entre el WHERE y el SELECT.
 {{% /etapa %}}
 {{% /paso-a-paso %}}
 
@@ -530,7 +530,7 @@ FETCH FIRST 5 ROWS ONLY;
 
 ## 7. Funciones de fila
 
-Las **funciones de fila** se aplican a cada fila y devuelven un valor por fila. Forman parte de las funciones que proporciona el sistema gestor (RA5.e). Las **funciones de grupo** (`COUNT`, `SUM`, `AVG`...), que resumen varias filas, se estudian en la Tema 7.
+Las **funciones de fila** se aplican a cada fila y devuelven un valor por fila. Forman parte de las funciones que proporciona el sistema gestor (RA5.e). Las **funciones de grupo** (`COUNT`, `SUM`, `AVG`...), que resumen varias filas, se estudian en el tema 7.
 
 ### 7.1 Funciones de texto
 
@@ -770,7 +770,7 @@ SELECT nombre, dni FROM profesor WHERE REGEXP_LIKE(dni, '^2[0-9]{7}[CE]$') ORDER
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 6" >}}
+{{< tarjetas titulo="Repasa los términos del tema 6" >}}
 - t: "Proyección"
   d: "Elegir columnas: la lista del SELECT."
 - t: "Selección"

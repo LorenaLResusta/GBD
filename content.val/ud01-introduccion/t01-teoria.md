@@ -49,7 +49,7 @@ En acabar aquesta unitat, seràs capaç de:
 - Identificar la legislació de protecció de dades que afecta el disseny d'una base de dades.
 
 > [!NOTE]
-> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir de la Tema 5 treballarem amb Oracle.
+> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir del tema 5 treballarem amb Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visió general d'un SGBD" >}}
 
@@ -538,7 +538,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en la Tema 8.
+> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en el tema 8.
 
 > [!IMPORTANT]
 > Abans d'executar `COMMIT`, l'aplicació ha de comprovar que **les dues actualitzacions** han afectat una fila. Si alguna falla, cal executar `ROLLBACK`: obrir una transacció no valida per si mateix el resultat de les operacions.
@@ -619,7 +619,7 @@ graph TD
   - *Orientats a grafs:* Representen de manera nativa els nodes i les relacions (Neo4j).
   - *Columnars:* Agrupen les dades en famílies de columnes per a llegir-les i escriure-les a gran escala (Cassandra).
 
-La Tema 11 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
+El tema 11 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
 
 > [!WARNING]
 > **NoSQL no vol dir necessàriament «sense ACID»**: les garanties transaccionals varien segons el producte i la configuració. Abans de triar un sistema, comprova quines propietats oferix.
@@ -667,7 +667,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en la Tema 5.
+> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en el tema 5.
 
 #### 2. DML (*Data Manipulation Language* - llenguatge de manipulació de dades)
 
@@ -830,7 +830,7 @@ flowchart LR
 | **Exemple en EduGest** | Registrar una falta d'assistència | Evolució de la taxa d'abandonament per cicle durant els últims 10 anys |
 
 > [!TIP]
-> Les consultes de resum amb `GROUP BY` que faràs en la Tema 7 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
+> Les consultes de resum amb `GROUP BY` que faràs en el tema 7 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
 
 ---
 
@@ -875,7 +875,7 @@ El sistema ha de permetre atendre els drets d'**accés**, **rectificació**, **s
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 1" >}}
+{{< tarjetas titulo="Repassa els termes del tema 1" >}}
 - t: "Dada"
   d: "Representació simbòlica d'un fet, sense context."
 - t: "Informació"
@@ -966,7 +966,7 @@ Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una expl
 - q: "Quin mòdul del SGBD decidix **com** s'executa una consulta, per exemple, si utilitza un índex o recorre tota la taula?"
   options: ["El gestor de transaccions", "L'optimitzador de consultes", "El diccionari de dades", "El gestor de còpies de seguretat"]
   answer: 1
-  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en la Tema 7."
+  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en el tema 7."
 - q: "Una cadena de clíniques guarda en el servidor de cada ciutat només els pacients d'eixa ciutat. Quina política s'hi aplica?"
   options: ["Fragmentació vertical", "Replicació total", "Fragmentació horitzontal", "Normalització"]
   answer: 2

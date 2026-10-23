@@ -40,7 +40,7 @@ autonomo:
 {{< /sesiones >}}
 
 > [!IMPORTANT]
-> Esta unidad es el **puente** entre el diseño y la implementación: lo que decidas aquí (claves, nulos, políticas de borrado) determina la creación de las tablas en la Tema 5. Un error de diseño que no detectes ahora se paga después con datos incorrectos.
+> Esta unidad es el **puente** entre el diseño y la implementación: lo que decidas aquí (claves, nulos, políticas de borrado) determina la creación de las tablas en el tema 5. Un error de diseño que no detectes ahora se paga después con datos incorrectos.
 
 ### Objetivos de aprendizaje
 
@@ -175,7 +175,7 @@ Son reglas estructurales impuestas automáticamente por la propia definición ma
 
 ### 3.2 Restricciones Semánticas o de Usuario (PK, UK, obligatoriedad, reglas de fila)
 
-Son reglas de negocio definidas explícitamente por el diseñador de la base de datos (más adelante, en la Tema 5, aprenderás a declararlas en un gestor):
+Son reglas de negocio definidas explícitamente por el diseñador de la base de datos (más adelante, en el tema 5, aprenderás a declararlas en un gestor):
 
 - **Clave primaria (PK):** identifica cada fila (garantiza unicidad y no nulidad).
 - **Clave alternativa (UK):** garantiza que no haya valores duplicados (admite nulos salvo que se indique lo contrario).
@@ -205,7 +205,7 @@ Cuando se intenta eliminar o actualizar una fila en la tabla padre (la tabla que
 ---
 
 > [!WARNING]
-> **No todos los gestores ofrecen todas las políticas.** Casi todos permiten el borrado en cascada y la puesta a nulos, pero muchos no permiten propagar el cambio de una clave primaria. Por eso conviene diseñar claves primarias **estables**. En la Tema 5 comprobarás qué ofrece el gestor que usaremos.
+> **No todos los gestores ofrecen todas las políticas.** Casi todos permiten el borrado en cascada y la puesta a nulos, pero muchos no permiten propagar el cambio de una clave primaria. Por eso conviene diseñar claves primarias **estables**. En el tema 5 comprobarás qué ofrece el gestor que usaremos.
 
 > [!TIP]
 > **¿Qué política elijo?** Hazte esta pregunta sobre la fila hija: *¿tiene sentido que siga existiendo sin la fila padre?*
@@ -234,7 +234,7 @@ Cambia la política de la clave ajena, intenta borrar, cambiar y insertar filas,
 
 {{< sesion n="3" h="1" tipo="p" practica="3.2" >}}Simulador de integridad referencial{{< /sesion >}}
 
-La práctica 3.2 se hace en la [página de prácticas](/ud02-diseno-logico/t03-practicas), con lápiz y papel, y se implementará en la Tema 5.
+La práctica 3.2 se hace en la [página de prácticas](/ud02-diseno-logico/t03-practicas), con lápiz y papel, y se implementará en el tema 5.
 
 ---
 
@@ -562,7 +562,7 @@ El modelo relacional expresa muy bien las restricciones **de una fila** (atribut
 | Un alumno solo se matricula en módulos del ciclo de su grupo | Implica `ALUMNO`, `GRUPO` y `MODULO` | Trigger o procedimiento de matrícula (Tema 9) |
 | Un profesor no supera 20 horas lectivas semanales | Es una **suma** sobre varias filas de `IMPARTE` | Trigger compuesto o procedimiento (Tema 9) |
 | No hay faltas anteriores a la fecha de matrícula | Compara dos tablas | Trigger (Tema 9) |
-| La nota final se pone en múltiplos de 0,25 | Es una regla de **una fila** | Regla de fila: `nota_final` múltiplo de 0,25 (se declara en la Tema 5) |
+| La nota final se pone en múltiplos de 0,25 | Es una regla de **una fila** | Regla de fila: `nota_final` múltiplo de 0,25 (se declara en el tema 5) |
 | Un grupo no supera 30 alumnos | Es un **recuento** sobre varias filas | Procedimiento de matrícula o trigger (Tema 9) |
 
 Cada restricción se documenta con un formato fijo:
@@ -593,7 +593,7 @@ El diseño lógico se representa con un **diagrama relacional**: un rectángulo 
 | **Mermaid** | Diagramas `erDiagram` en Markdown, ideales para documentar en el repositorio |
 
 > [!TIP]
-> Cuando termines el proyecto en la Tema 5, dibuja el diagrama de las tablas que hayas creado y compáralo con tu diseño lógico. Si no coinciden, hay un error en uno de los dos.
+> Cuando termines el proyecto en el tema 5, dibuja el diagrama de las tablas que hayas creado y compáralo con tu diseño lógico. Si no coinciden, hay un error en uno de los dos.
 
 {{% details title="Pista: ¿dónde se comprueba una regla de negocio?" %}}
 Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → regla de fila (se declara en el propio esquema). ¿Compara una columna con la **clave de otra tabla**? → clave ajena. ¿Necesita **sumar, contar o comparar varias filas** o tablas? → trigger o procedimiento en el servidor (Tema 9). Solo si ninguna de las tres sirve debe vivir en la aplicación.
@@ -607,7 +607,7 @@ Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → 
 
 ## 8. Caso Guiado: EduGest del Modelo E/R al Relacional
 
-Aplicamos las reglas del apartado 4 al diagrama de la Tema 2. Cada paso cita la regla aplicada.
+Aplicamos las reglas del apartado 4 al diagrama del tema 2. Cada paso cita la regla aplicada.
 
 | Elemento del modelo E/R | Regla | Resultado en el modelo relacional |
 |---|---|---|
@@ -645,7 +645,7 @@ erDiagram
 
 {{< sesion n="10" h="2" tipo="p" practica="EduGest-3" >}}Modelo lógico de EduGest{{< /sesion >}}
 
-{{< tarjetas titulo="Repasa los términos de la Tema 3" >}}
+{{< tarjetas titulo="Repasa los términos del tema 3" >}}
 - t: "Relación"
   d: "Tabla del modelo relacional: conjunto de tuplas con los mismos atributos."
 - t: "Tupla"

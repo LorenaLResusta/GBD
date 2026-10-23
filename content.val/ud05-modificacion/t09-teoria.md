@@ -8,7 +8,7 @@ bookToc: true
 
 ## Resum del tema
 
-Fins ara, la lògica de les nostres tasques vivia **fora** de la base de dades: en un guió `.sql` que llançàvem a mà o en l'aplicació que consulta Oracle. Això funciona mentre la tasca siga una seqüència de sentències. Deixa de funcionar quan cal **decidir** (té l'alumne faltes suficients per a perdre l'avaluació contínua?), **repetir** (recórrer tots els alumnes d'un grup), **reaccionar a un error** (què faig si el mòdul no existix?) o **garantir una regla** que ningú puga saltar-se, entre elles les que a la Tema 3 vam anomenar *restriccions que el model lògic no pot expressar*.
+Fins ara, la lògica de les nostres tasques vivia **fora** de la base de dades: en un guió `.sql` que llançàvem a mà o en l'aplicació que consulta Oracle. Això funciona mentre la tasca siga una seqüència de sentències. Deixa de funcionar quan cal **decidir** (té l'alumne faltes suficients per a perdre l'avaluació contínua?), **repetir** (recórrer tots els alumnes d'un grup), **reaccionar a un error** (què faig si el mòdul no existix?) o **garantir una regla** que ningú puga saltar-se, entre elles les que a el tema 3 vam anomenar *restriccions que el model lògic no pot expressar*.
 
 La solució és programar **dins del servidor**. Oracle incorpora per a això el llenguatge **PL/SQL** (*Procedural Language / SQL*): SQL més variables, condicions, bucles, cursors i excepcions, organitzat en **blocs**. Amb ell es construïxen els objectes que guarda la pròpia base de dades: **funcions**, **procediments**, **paquets** i **disparadors**, i amb el planificador `DBMS_SCHEDULER` s'executen sols a l'hora que s'indique.
 
@@ -34,7 +34,7 @@ En acabar esta unitat seràs capaç de:
 
 ### Temporalització
 
-El tema ocupa **15 hores d'aula** (9 de teoria i 6 de pràctica). És la unitat amb més codi del curs i, junt amb la Tema 8, desenvolupa el RA5: convé escriure'l a mà i recompilar-lo, no copiar-lo i apegar-lo. Les pràctiques llargues (la taula mutant, les tasques programades, el paquet de secretaria i el projecte) es completen fora de l'horari d'aula.
+El tema ocupa **15 hores d'aula** (9 de teoria i 6 de pràctica). És la unitat amb més codi del curs i, junt amb el tema 8, desenvolupa el RA5: convé escriure'l a mà i recompilar-lo, no copiar-lo i apegar-lo. Les pràctiques llargues (la taula mutant, les tasques programades, el paquet de secretaria i el projecte) es completen fora de l'horari d'aula.
 
 {{< sesiones unidad="T09" horas="15" >}}
 items:
@@ -74,7 +74,7 @@ SQL és un llenguatge **declaratiu**: dius *què* vols, no *com* obtindre-ho. É
 
 Pensa en la matrícula d'un alumne a EduGest. Abans d'inserir la fila cal comprovar que l'alumne existix i té grup, que el mòdul és del seu cicle, que no està ja matriculat eixe curs i que no ha esgotat les quatre convocatòries. Són quatre consultes, tres decisions i un `INSERT`, i eixes regles s'han de complir **sempre**, vinga la matrícula de l'aplicació web, d'un script de la secretaria o d'una eina gràfica.
 
-La Tema 3 ja va identificar les regles de negoci d'EduGest que el model lògic no pot expressar. Esta unitat les implementa:
+El tema 3 ja va identificar les regles de negoci d'EduGest que el model lògic no pot expressar. Esta unitat les implementa:
 
 | Codi | Regla de negoci | Per què no basta una restricció declarativa | On s'implementa |
 |---|---|---|---|
@@ -3070,7 +3070,7 @@ END;
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 9" >}}
+{{< tarjetas titulo="Repassa els termes del tema 9" >}}
 - t: "Bloc anònim"
   d: "Codi PL/SQL sense nom: DECLARE, BEGIN, EXCEPTION, END."
 - t: "Procediment"

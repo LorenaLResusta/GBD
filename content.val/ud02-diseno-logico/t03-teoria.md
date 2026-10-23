@@ -40,7 +40,7 @@ autonomo:
 {{< /sesiones >}}
 
 > [!IMPORTANT]
-> Aquesta unitat és el **pont** entre el disseny i la implementació: allò que decidisques ací (claus, nuls, polítiques d'esborrat) determina la creació de les taules a la Tema 5. Un error de disseny que no detectes ara es paga després amb dades incorrectes.
+> Aquesta unitat és el **pont** entre el disseny i la implementació: allò que decidisques ací (claus, nuls, polítiques d'esborrat) determina la creació de les taules a el tema 5. Un error de disseny que no detectes ara es paga després amb dades incorrectes.
 
 ### Objectius d'aprenentatge
 
@@ -175,7 +175,7 @@ Són regles estructurals imposades automàticament per la pròpia definició mat
 
 ### 3.2 Restriccions semàntiques o d'usuari (PK, UK, obligatorietat, regles de fila)
 
-Són regles de negoci definides explícitament pel dissenyador de la base de dades (més endavant, a la Tema 5, aprendràs a declarar-les en un gestor):
+Són regles de negoci definides explícitament pel dissenyador de la base de dades (més endavant, a el tema 5, aprendràs a declarar-les en un gestor):
 
 - **Clau primària (PK):** identifica cada fila (garanteix unicitat i no nul·litat).
 - **Clau alternativa (UK):** garanteix que no hi haja valors duplicats (admet nuls tret que s'indique el contrari).
@@ -205,7 +205,7 @@ Quan s'intenta eliminar o actualitzar una fila de la taula pare (la taula que co
 ---
 
 > [!WARNING]
-> **No tots els gestors oferixen totes les polítiques.** Quasi tots permeten l'esborrat en cascada i la posada a nuls, però molts no permeten propagar el canvi d'una clau primària. Per això convé dissenyar claus primàries **estables**. A la Tema 5 comprovaràs què oferix el gestor que usarem.
+> **No tots els gestors oferixen totes les polítiques.** Quasi tots permeten l'esborrat en cascada i la posada a nuls, però molts no permeten propagar el canvi d'una clau primària. Per això convé dissenyar claus primàries **estables**. A el tema 5 comprovaràs què oferix el gestor que usarem.
 
 > [!TIP]
 > **Quina política trie?** Fes-te aquesta pregunta sobre la fila filla: *té sentit que continue existint sense la fila pare?*
@@ -234,7 +234,7 @@ Canvia la política de la clau aliena, intenta esborrar, canviar i inserir files
 
 {{< sesion n="3" h="1" tipo="p" practica="3.2" >}}Simulador d'integritat referencial{{< /sesion >}}
 
-La pràctica 3.2 es fa a la [pàgina de pràctiques](/ud02-diseno-logico/t03-practicas), amb llapis i paper, i s'implementarà a la Tema 5.
+La pràctica 3.2 es fa a la [pàgina de pràctiques](/ud02-diseno-logico/t03-practicas), amb llapis i paper, i s'implementarà a el tema 5.
 
 ---
 
@@ -562,7 +562,7 @@ El model relacional expressa molt bé les restriccions **d'una fila** (atribut o
 | Un alumne només es matricula en mòduls del cicle del seu grup | Implica `ALUMNO`, `GRUPO` i `MODULO` | Trigger o procediment de matrícula (Tema 9) |
 | Un professor no supera 20 hores lectives setmanals | És una **suma** sobre diverses files d'`IMPARTE` | Trigger compost o procediment (Tema 9) |
 | No hi ha faltes anteriors a la data de matrícula | Compara dues taules | Trigger (Tema 9) |
-| La nota final es posa en múltiples de 0,25 | És una regla d'**una fila** | Regla de fila: `nota_final` múltiple de 0,25 (es declara a la Tema 5) |
+| La nota final es posa en múltiples de 0,25 | És una regla d'**una fila** | Regla de fila: `nota_final` múltiple de 0,25 (es declara a el tema 5) |
 | Un grup no supera 30 alumnes | És un **recompte** sobre diverses files | Procediment de matrícula o trigger (Tema 9) |
 
 Cada restricció es documenta amb un format fix:
@@ -593,7 +593,7 @@ El disseny lògic es representa amb un **diagrama relacional**: un rectangle per
 | **Mermaid** | Diagrames `erDiagram` en Markdown, ideals per a documentar al repositori |
 
 > [!TIP]
-> Quan acabes el projecte a la Tema 5, dibuixa el diagrama de les taules que hages creat i compara'l amb el teu disseny lògic. Si no coincidixen, hi ha un error en un dels dos.
+> Quan acabes el projecte a el tema 5, dibuixa el diagrama de les taules que hages creat i compara'l amb el teu disseny lògic. Si no coincidixen, hi ha un error en un dels dos.
 
 {{% details title="Pista: on es comprova una regla de negoci?" %}}
 Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → regla de fila (es declara en el mateix esquema). Compara una columna amb la **clau d'una altra taula**? → clau aliena. Necessita **sumar, comptar o comparar diverses files** o taules? → trigger o procediment al servidor (Tema 9). Només si cap de les tres servix ha de viure en l'aplicació.
@@ -607,7 +607,7 @@ Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → r
 
 ## 8. Cas guiat: EduGest del model E/R al relacional
 
-Apliquem les regles de l'apartat 4 al diagrama de la Tema 2. Cada pas cita la regla aplicada.
+Apliquem les regles de l'apartat 4 al diagrama del tema 2. Cada pas cita la regla aplicada.
 
 | Element del model E/R | Regla | Resultat en el model relacional |
 |---|---|---|
@@ -645,7 +645,7 @@ erDiagram
 
 {{< sesion n="10" h="2" tipo="p" practica="EduGest-3" >}}Model lògic d'EduGest{{< /sesion >}}
 
-{{< tarjetas titulo="Repassa els termes de la Tema 3" >}}
+{{< tarjetas titulo="Repassa els termes del tema 3" >}}
 - t: "Relació"
   d: "Taula del model relacional: conjunt de tuples amb els mateixos atributs."
 - t: "Tupla"

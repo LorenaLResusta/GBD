@@ -94,7 +94,7 @@ Una tienda online necesita guardar sus **clientes** y sus **pedidos**. Un client
     ORDER  BY table_name, constraint_type;
     ```
 
-5. **Inserta datos correctos** (en la Tema 8 estudiarás `INSERT` en detalle):
+5. **Inserta datos correctos** (en el tema 8 estudiarás `INSERT` en detalle):
 
     ```sql
     INSERT INTO cliente (id_cliente, nombre, email) VALUES (1, 'Ana Ruiz', 'ana@mail.com');
@@ -166,7 +166,7 @@ Cambia `fk_pedido_cliente` para que al borrar un cliente se borren sus pedidos. 
 
 #### Objetivo
 
-Implementar en Oracle los patrones de transformación de la Tema 3 (1:N, N:M, entidad débil, 1:1 y jerarquía) y reconocer las diferencias con otros SGBD.
+Implementar en Oracle los patrones de transformación del tema 3 (1:N, N:M, entidad débil, 1:1 y jerarquía) y reconocer las diferencias con otros SGBD.
 
 #### Contexto
 
@@ -612,7 +612,7 @@ Carga el esquema de referencia: ejecuta [los scripts del proyecto](/guia/proyect
         WITH READ ONLY;
     ```
 
-4. **Vista de matrículas legibles**, que oculta los identificadores internos (adelanto de la Tema 7):
+4. **Vista de matrículas legibles**, que oculta los identificadores internos (adelanto del tema 7):
 
     ```sql
     CREATE OR REPLACE VIEW v_matricula_detalle AS
@@ -663,7 +663,7 @@ Carga el esquema de referencia: ejecuta [los scripts del proyecto](/guia/proyect
 
 #### Ampliación
 
-Crea una vista `v_resumen_grupo` con el código de grupo, el ciclo, el turno y el nombre completo del tutor (los grupos sin tutor también deben aparecer). Necesitarás un `LEFT JOIN`, que verás en la Tema 7.
+Crea una vista `v_resumen_grupo` con el código de grupo, el ciclo, el turno y el nombre completo del tutor (los grupos sin tutor también deben aparecer). Necesitarás un `LEFT JOIN`, que verás en el tema 7.
 
 ---
 
@@ -846,7 +846,7 @@ Sintaxis de otro SGBD (2), orden de creación (1), coma olvidada (1), `CHECK` no
 
 1. **Tu script de esquema.** Implementa en Oracle **tu** modelo relacional normalizado (EduGest-4) en un script relanzable, con todas las restricciones con nombre, índices sobre las claves ajenas y comentarios en las tablas.
 2. **Comparación.** Ejecuta tu script en un usuario `EDUGEST_MIO` y el de referencia en `EDUGEST`. Usa el diccionario (`USER_TAB_COLUMNS`, `USER_CONSTRAINTS`) para listar las diferencias y justifica las tuyas en `05-implementacion.md`.
-3. **Restricciones implementables con DDL.** De tu catálogo de restricciones (Tema 3-Tema 4), implementa todas las que se puedan expresar con `CHECK` o índices únicos basados en función. Marca las que quedan para la Tema 9.
+3. **Restricciones implementables con DDL.** De tu catálogo de restricciones (Tema 3-Tema 4), implementa todas las que se puedan expresar con `CHECK` o índices únicos basados en función. Marca las que quedan para el tema 9.
 4. **Seguridad.** Entrega `03_seguridad.sql` (práctica 5.7 completa, con perfiles) y la matriz de pruebas.
 5. **Vistas e índices.** Entrega `04_vistas_indices.sql` (práctica 5.6 y su ampliación).
 6. **Diagrama.** Genera con SQL Developer Data Modeler el diagrama relacional del esquema `EDUGEST` por ingeniería inversa e inclúyelo en la documentación.
@@ -859,5 +859,5 @@ Sintaxis de otro SGBD (2), orden de creación (1), coma olvidada (1), `CHECK` no
 - [ ] La matriz de seguridad está completa y coincide con lo esperado.
 
 > [!TIP]
-> A partir de la Tema 6, **todo el grupo** trabaja sobre el esquema de referencia `EDUGEST` cargado con los scripts 01 y 02, para que los resultados de las consultas coincidan con los de los apuntes.
+> A partir del tema 6, **todo el grupo** trabaja sobre el esquema de referencia `EDUGEST` cargado con los scripts 01 y 02, para que los resultados de las consultas coincidan con los de los apuntes.
 {{% /comprobacion %}}

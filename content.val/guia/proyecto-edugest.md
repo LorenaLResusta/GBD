@@ -46,9 +46,9 @@ weight: 2
 
 ## 3. Model de referència
 
-El diagrama següent és la **solució de referència** que es publica quan acaba la Tema 4. Fins llavors, cada estudiant treballa amb el seu propi disseny.
+El diagrama següent és la **solució de referència** que es publica quan acaba el tema 4. Fins llavors, cada estudiant treballa amb el seu propi disseny.
 
-{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar la Tema 3)" %}}
+{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar el tema 3)" %}}
 
 ```mermaid
 erDiagram
@@ -135,7 +135,7 @@ erDiagram
 
 ### Restriccions que no arreplega el diagrama
 
-Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en la Tema 4 (RA2.i) i s'implementen en la Tema 9 amb PL/SQL:
+Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en el tema 4 (RA2.i) i s'implementen en el tema 9 amb PL/SQL:
 
 1. El cap d'un departament ha de **pertànyer** a eixe departament.
 2. Un alumne només es pot matricular en mòduls del **cicle del seu grup**, excepte autorització.

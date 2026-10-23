@@ -124,7 +124,7 @@ Esta flexibilidad resuelve el problema 2 del apartado anterior, pero tiene conse
 
 ### 1.4 La desnormalización como decisión de diseño
 
-En la Tema 4 aprendiste a eliminar la redundancia porque provoca **anomalías**: el mismo dato guardado en dos sitios acaba siendo distinto en los dos sitios. Esa conclusión era correcta **para el modelo relacional**, donde recomponer la información con `JOIN` es barato.
+En el tema 4 aprendiste a eliminar la redundancia porque provoca **anomalías**: el mismo dato guardado en dos sitios acaba siendo distinto en los dos sitios. Esa conclusión era correcta **para el modelo relacional**, donde recomponer la información con `JOIN` es barato.
 
 En un sistema distribuido la situación cambia: un `JOIN` entre tablas repartidas en máquinas diferentes exige tráfico de red y coordinación. Por eso el modelado documental **incrusta** (duplica) información deliberadamente, de modo que lo que se lee junto se guarde junto y cada lectura toque un solo documento y una sola máquina.
 
@@ -145,10 +145,10 @@ En un sistema distribuido la situación cambia: un `JOIN` entre tablas repartida
 | **Escalado vertical** (*scale up*) | Poner más CPU, más memoria o discos más rápidos en el **mismo** servidor | Hay un tope físico y el precio crece más rápido que la potencia; sigue habiendo un punto único de fallo |
 | **Escalado horizontal** (*scale out*) | Repartir carga y datos entre **más** servidores (nodos) | Exige coordinación entre nodos; aparecen los problemas del §2 |
 
-Sobre el escalado horizontal se construyen dos mecanismos que ya viste en la Tema 1 con otros nombres:
+Sobre el escalado horizontal se construyen dos mecanismos que ya viste en el tema 1 con otros nombres:
 
 - **Réplica** (*replica set* en MongoDB): varios nodos guardan **una copia completa** de los datos. Uno es el **primario** y recibe las escrituras; los **secundarios** las replican. Mejora la disponibilidad (si cae el primario, se elige otro) y permite repartir lecturas.
-- **Particionado** (*sharding*): los datos se **reparten** entre varios conjuntos de réplica según una **clave de partición** (*shard key*). Es la fragmentación horizontal de la Tema 1. Permite crecer sin límite teórico, pero elegir mal la clave concentra la carga en un solo nodo.
+- **Particionado** (*sharding*): los datos se **reparten** entre varios conjuntos de réplica según una **clave de partición** (*shard key*). Es la fragmentación horizontal del tema 1. Permite crecer sin límite teórico, pero elegir mal la clave concentra la carga en un solo nodo.
 
 ```mermaid
 flowchart LR
@@ -195,7 +195,7 @@ Carlo Strozzi lo usó en 1998 para una base de datos relacional ligera que no us
 
 ### 2.1 Recordatorio: ACID
 
-En la Tema 8 definiste una transacción como una unidad de trabajo que cumple cuatro propiedades: **A**tomicidad (todo o nada), **C**onsistencia (se pasa de un estado válido a otro válido), **A**islamiento (las transacciones concurrentes no se estorban) y **D**urabilidad (lo confirmado sobrevive a una caída). Oracle las garantiza en un servidor sin que haya que pedirlo.
+En el tema 8 definiste una transacción como una unidad de trabajo que cumple cuatro propiedades: **A**tomicidad (todo o nada), **C**onsistencia (se pasa de un estado válido a otro válido), **A**islamiento (las transacciones concurrentes no se estorban) y **D**urabilidad (lo confirmado sobrevive a una caída). Oracle las garantiza en un servidor sin que haya que pedirlo.
 
 Mantener ACID **entre varias máquinas** es mucho más caro: cada confirmación exige que todos los nodos implicados se pongan de acuerdo (protocolos de consenso o de confirmación en dos fases), lo que añade latencia y, si un nodo no responde, bloquea la operación.
 
@@ -448,7 +448,7 @@ flowchart LR
 | Clave primaria | Campo **`_id`** | Obligatorio, único, indexado y **no modificable**; si no lo pones, lo genera el servidor |
 | Clave ajena | Referencia manual (`_id` de otro documento) | **No existe** la integridad referencial declarativa |
 | `JOIN` | `$lookup` o **documento embebido** | Lo normal es evitar el cruce incrustando los datos |
-| Índice | Índice | Mismo concepto y utilidad que en la Tema 5 y la Tema 7 |
+| Índice | Índice | Mismo concepto y utilidad que en el tema 5 y el tema 7 |
 | Vista | Vista (`db.createView`) | De solo lectura, definida con una tubería de agregación |
 
 ### 4.3 BSON y los tipos de datos
@@ -671,7 +671,7 @@ db.expedientes.insertMany([
 }
 ```
 
-**Resultado esperado.** `db.expedientes.countDocuments()` devuelve ahora 35. Observa que el segundo documento recibió un `ObjectId` generado por el servidor: una clave primaria artificial, como la columna identidad de la Tema 5, pero generada **en el cliente o en el servidor** sin necesidad de secuencia.
+**Resultado esperado.** `db.expedientes.countDocuments()` devuelve ahora 35. Observa que el segundo documento recibió un `ObjectId` generado por el servidor: una clave primaria artificial, como la columna identidad del tema 5, pero generada **en el cliente o en el servidor** sin necesidad de secuencia.
 
 **Errores habituales.**
 
@@ -804,7 +804,7 @@ SELECT id_alumno, apellidos FROM alumno WHERE apellidos LIKE 'Iborra%';
 ```
 
 > [!TIP]
-> Una expresión regular **anclada al principio** (`/^Iborra/`) puede aprovechar un índice, igual que `LIKE 'Iborra%'` en Oracle. Si empieza por comodín (`/Iborra/` o `LIKE '%Iborra%'`), los dos sistemas tienen que recorrer toda la colección o tabla. El criterio de la Tema 7 sobre índices y comodines se aplica aquí sin cambios.
+> Una expresión regular **anclada al principio** (`/^Iborra/`) puede aprovechar un índice, igual que `LIKE 'Iborra%'` en Oracle. Si empieza por comodín (`/Iborra/` o `LIKE '%Iborra%'`), los dos sistemas tienen que recorrer toda la colección o tabla. El criterio del tema 7 sobre índices y comodines se aplica aquí sin cambios.
 
 #### Ordenar, limitar, saltar y contar
 
@@ -1151,7 +1151,7 @@ WHERE  EXISTS (SELECT 1
 *2 filas*
 
 > [!TIP]
-> `$elemMatch` es el **`EXISTS` correlacionado** de la Tema 7, y la coincidencia implícita sobre el array es el `IN` con subconsulta. Si dominas esa pareja de la Tema 7, esta sección es una traducción.
+> `$elemMatch` es el **`EXISTS` correlacionado** del tema 7, y la coincidencia implícita sobre el array es el `IN` con subconsulta. Si dominas esa pareja del tema 7, esta sección es una traducción.
 
 #### El operador posicional `$`
 
@@ -1207,7 +1207,7 @@ db.expedientes.updateOne(
 
 ### 7.1 El concepto de tubería
 
-Los `GROUP BY`, `HAVING` y funciones de grupo de la Tema 7 se resuelven en MongoDB con el **marco de agregación** (*aggregation framework*): una **tubería** (*pipeline*) de **etapas** por las que van pasando los documentos, transformándose en cada paso.
+Los `GROUP BY`, `HAVING` y funciones de grupo del tema 7 se resuelven en MongoDB con el **marco de agregación** (*aggregation framework*): una **tubería** (*pipeline*) de **etapas** por las que van pasando los documentos, transformándose en cada paso.
 
 ```mermaid
 flowchart LR
@@ -1238,7 +1238,7 @@ La idea es la misma que el orden de evaluación de un `SELECT` (Tema 6), con una
 Acumuladores de `$group` más usados: `$sum`, `$avg`, `$min`, `$max`, `$count`, `$first`, `$last`, `$push` (recoge todos los valores en un array) y `$addToSet` (sin repetidos). Los cuatro primeros se corresponden con `SUM`, `AVG`, `MIN` y `MAX`, y como ellos **ignoran los valores ausentes o no numéricos**.
 
 > [!IMPORTANT]
-> El orden de las etapas importa. `$match` **al principio** reduce los documentos que recorren el resto de la tubería y puede usar índices; detrás de un `$group` ya no hay índices que usar y actúa como un `HAVING`. Pon siempre `$match` y `$project` lo antes posible: es el mismo criterio de la Tema 7 sobre filtrar antes de agrupar.
+> El orden de las etapas importa. `$match` **al principio** reduce los documentos que recorren el resto de la tubería y puede usar índices; detrás de un `$group` ya no hay índices que usar y actúa como un `HAVING`. Pon siempre `$match` y `$project` lo antes posible: es el mismo criterio del tema 7 sobre filtrar antes de agrupar.
 
 ### 7.3 El mismo informe en Oracle y en MongoDB
 
@@ -1479,7 +1479,7 @@ En nuestra versión documental se tomaron estas decisiones:
 
 ### 8.5 La integridad que ahora es tu responsabilidad
 
-Al pasar del esquema de la Tema 3 al modelo documental, estas restricciones **dejan de estar garantizadas por el gestor**:
+Al pasar del esquema del tema 3 al modelo documental, estas restricciones **dejan de estar garantizadas por el gestor**:
 
 | Restricción de EduGest | Cómo la garantiza Oracle | Qué hay que hacer en MongoDB |
 |---|---|---|
@@ -1499,7 +1499,7 @@ Al pasar del esquema de la Tema 3 al modelo documental, estas restricciones **de
 
 ### 9.1 Validadores con `$jsonSchema`
 
-Que MongoDB no exija un esquema no significa que no se pueda **declarar** uno. Un **validador** se asocia a la colección y el servidor lo comprueba en cada escritura, igual que las restricciones de la Tema 5. {{< sgbd "MongoDB 8.0" >}}
+Que MongoDB no exija un esquema no significa que no se pueda **declarar** uno. Un **validador** se asocia a la colección y el servidor lo comprueba en cada escritura, igual que las restricciones del tema 5. {{< sgbd "MongoDB 8.0" >}}
 
 ```javascript
 db.createCollection("expedientes", {
@@ -1571,7 +1571,7 @@ Dos parámetros controlan el rigor:
 
 ### 9.2 Índices
 
-Los índices de MongoDB son la misma idea de la Tema 5 y la Tema 7: una estructura auxiliar (árbol B) que evita recorrer todos los documentos, a cambio de ocupar espacio y encarecer las escrituras.
+Los índices de MongoDB son la misma idea del tema 5 y el tema 7: una estructura auxiliar (árbol B) que evita recorrer todos los documentos, a cambio de ocupar espacio y encarecer las escrituras.
 
 ```javascript
 db.expedientes.createIndex({ nia: 1 }, { unique: true, name: "ux_nia" })  // único, como UNIQUE
@@ -1657,7 +1657,7 @@ db.getUsers()
 | `dbOwner` | `readWrite` + `dbAdmin` + `userAdmin` | Propietario del esquema |
 | `clusterAdmin`, `root` | Administración del clúster; todo | `SYSDBA` |
 
-El **principio de mínimo privilegio** es idéntico al de la Tema 5: la aplicación web se conecta con `readWrite` sobre `edugest` y nada más; el panel de informes, con `read`; nadie trabaja a diario con `root`. Y, como allí, los roles personalizados (`db.createRole`) permiten ajustar permisos por colección y por acción.
+El **principio de mínimo privilegio** es idéntico al del tema 5: la aplicación web se conecta con `readWrite` sobre `edugest` y nada más; el panel de informes, con `read`; nadie trabaja a diario con `root`. Y, como allí, los roles personalizados (`db.createRole`) permiten ajustar permisos por colección y por acción.
 
 ### 10.3 Cifrado, copias y datos personales
 
@@ -1791,7 +1791,7 @@ Y a la vez hay partes de un centro educativo donde el modelo documental encaja m
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la Tema 11" >}}
+{{< tarjetas titulo="Repasa los términos del tema 11" >}}
 - t: "Documento"
   d: "Registro JSON/BSON con campos y valores, que puede anidar otros documentos."
 - t: "Colección"

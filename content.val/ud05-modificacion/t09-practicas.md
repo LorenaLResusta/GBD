@@ -280,7 +280,7 @@ Pistes: `RPAD(nombre, 45)` alinea columnes; `TO_CHAR(nota, '90.00')` formata la 
 
 #### Objectiu
 
-Implementar amb disparadors l'auditoria de canvis i les restriccions d'EduGest que no van poder declarar-se en el model lògic (catàleg de la Tema 3).
+Implementar amb disparadors l'auditoria de canvis i les restriccions d'EduGest que no van poder declarar-se en el model lògic (catàleg del tema 3).
 
 #### Desenvolupament
 
@@ -361,7 +361,7 @@ Cal implementar la restricció R4: «un professor no pot superar 20 hores lectiv
     - `UPDATE imparte SET horas_semanales = horas_semanales + 1 WHERE id_profesor = 102;` → correcte (Javier passa de 16 a 20 hores).
     - Repetix la sentència → `ORA-20030` (24 hores: la sentència suma 1 hora a cadascuna de les seues 4 assignacions).
     - `INSERT` d'una assignació de 6 hores a Marta (101, 15 hores) en el curs 2026-27 → correcte (és un altre curs).
-5. Què passaria amb dues sessions que, alhora, afigen hores al mateix professor sense confirmar? Garantix el disparador la regla en eixe cas? Relaciona-ho amb la Tema 8 i proposa una solució.
+5. Què passaria amb dues sessions que, alhora, afigen hores al mateix professor sense confirmar? Garantix el disparador la regla en eixe cas? Relaciona-ho amb el tema 8 i proposa una solució.
 
 {{% details title="Pista per a l'apartat 5" %}}
 Cada sessió veu només els seus propis canvis sense confirmar (consistència de lectura). Les dues poden sumar 19 hores i confirmar, deixant 22. Una solució és serialitzar les modificacions de cada professor bloquejant la seua fila en `PROFESOR` amb `SELECT ... FOR UPDATE` dins del disparador, abans de sumar.
@@ -439,7 +439,7 @@ END pkg_secretaria;
 #### Comprovació
 
 {{% comprobacion %}}
-- [ ] La promoció torna 12 alumnes promoguts i 18 matrícules de pendents, igual que el guió de la Tema 8.
+- [ ] La promoció torna 12 alumnes promoguts i 18 matrícules de pendents, igual que el guió del tema 8.
 - [ ] Una segona crida llança l'error propi.
 - [ ] El cos del paquet no té `COMMIT`.
 {{% /comprobacion %}}

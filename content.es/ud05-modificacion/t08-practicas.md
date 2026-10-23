@@ -299,7 +299,7 @@ Ejecuta cada experimento y **predice** los saldos finales antes de consultar `SE
 
 #### Ampliación: la transferencia segura
 
-Escribe la transferencia de 500 € de A a C como una transacción que **no** confirme nada si alguna de las dos actualizaciones no afecta exactamente a una fila. Usa `SQL%ROWCOUNT` en un bloque anónimo (adelanto de la Tema 9):
+Escribe la transferencia de 500 € de A a C como una transacción que **no** confirme nada si alguna de las dos actualizaciones no afecta exactamente a una fila. Usa `SQL%ROWCOUNT` en un bloque anónimo (adelanto del tema 9):
 
 ```sql
 BEGIN
@@ -554,9 +554,9 @@ Con `WHENEVER SQLERROR EXIT`, el error termina el guion.
 #### Enunciado
 
 1. **Datos de 2026-27.** Ejecuta tu guion de promoción (práctica 8.7) y añade un guion `alta_nuevo_alumnado.sql` que dé de alta a **diez** alumnos nuevos de primero con sus matrículas, en una sola transacción.
-2. **Baja lógica.** Añade a `ALUMNO` una columna `fecha_baja` y escribe el guion que da de baja a un alumno **sin borrar** su expediente. Modifica las vistas de la Tema 5 para que no muestren al alumnado dado de baja.
+2. **Baja lógica.** Añade a `ALUMNO` una columna `fecha_baja` y escribe el guion que da de baja a un alumno **sin borrar** su expediente. Modifica las vistas del tema 5 para que no muestren al alumnado dado de baja.
 3. **Política de concurrencia.** En `08-transacciones.md`, decide y justifica la estrategia de bloqueo (pesimista u optimista) para tres operaciones de la aplicación: poner notas, matricular y registrar faltas.
-4. **Integridad.** Revisa tu catálogo de restricciones (Tema 3-Tema 5): ¿alguna puede implementarse con una restricción diferida o con un guion transaccional? Documenta qué queda para la Tema 9.
+4. **Integridad.** Revisa tu catálogo de restricciones (Tema 3-Tema 5): ¿alguna puede implementarse con una restricción diferida o con un guion transaccional? Documenta qué queda para el tema 9.
 
 #### Comprobación
 

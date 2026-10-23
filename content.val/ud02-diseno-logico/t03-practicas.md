@@ -262,7 +262,7 @@ RESERVA(id_reserva, id_cliente*, num_hab*, fecha_entrada, fecha_salida, num_pers
 
 #### Enunciat
 
-Classifica cada regla en una d'estes categories: **PK / clau alternativa**, **FK**, **atribut obligatori**, **regla de fila** o **no representable** (documentar i implementar a la Tema 9). En l'últim cas, usa el format de documentació de la teoria.
+Classifica cada regla en una d'estes categories: **PK / clau alternativa**, **FK**, **atribut obligatori**, **regla de fila** o **no representable** (documentar i implementar a el tema 9). En l'últim cas, usa el format de documentació de la teoria.
 
 1. Dos clients no poden tindre el mateix DNI.
 2. La data d'eixida és posterior a la d'entrada.
@@ -309,7 +309,7 @@ Transforma **el teu** model E/R d'EduGest (pràctica EduGest-2) en un model rela
 
 ## Tasques de transformació: de l'E/R al model relacional
 
-Les tasques d'este apartat parteixen d'un **diagrama EER ja fet**, dibuixat amb la mateixa notació que el [banc d'exercicis de la Tema 2](/ud02-diseno-logico/t02-practicas#banc-dexercicis). Cal obtindre l'**esquema relacional** i anotar les **pèrdues semàntiques**: allò que el diagrama diu i les taules no poden garantir per si soles.
+Les tasques d'este apartat parteixen d'un **diagrama EER ja fet**, dibuixat amb la mateixa notació que el [banc d'exercicis del tema 2](/ud02-diseno-logico/t02-practicas#banc-dexercicis). Cal obtindre l'**esquema relacional** i anotar les **pèrdues semàntiques**: allò que el diagrama diu i les taules no poden garantir per si soles.
 
 A diferència del diagrama E/R, on caben diverses solucions, la transformació d'un diagrama donat és quasi única. Els noms de les claus alienes poden variar (`cod_emp`, `codigo_empleado`…), però les **PK, FK, UK i VNN** han de ser les mateixes.
 
@@ -335,7 +335,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 \* Tret que la columna forme part també d'una PK o UK, o tinga VNN.
 
 > [!TIP]
-> És la mateixa informació que la notació `TABLA(`<u>clave</u>`, columna, `*clave_ajena*`)` de les pràctiques anteriors, però en forma de llista. Amb ella és més fàcil revisar que no falta cap restricció i, a la Tema 5, cada línia es convertix quasi directament en una taula de la base de dades.
+> És la mateixa informació que la notació `TABLA(`<u>clave</u>`, columna, `*clave_ajena*`)` de les pràctiques anteriors, però en forma de llista. Amb ella és més fàcil revisar que no falta cap restricció i, a el tema 5, cada línia es convertix quasi directament en una taula de la base de dades.
 
 ### Regles de transformació (resum)
 
@@ -434,7 +434,7 @@ Transformar relacions 1:N amb participació obligatòria i una N:M que guarda un
 
 #### Context
 
-És el diagrama de l'[exercici 4 de la Tema 2](/ud02-diseno-logico/t02-practicas#exercici-4--naviliera-capitans-contenidors-ports-i-vaixells).
+És el diagrama de l'[exercici 4 del tema 2](/ud02-diseno-logico/t02-practicas#exercici-4--naviliera-capitans-contenidors-ports-i-vaixells).
 
 {{< figura src="ud02/ej04.svg" alt="CAPITÀ transporta CONTENIDOR (1:N), CONTENIDOR arriba a PORT (N:1), CAPITÀ governa VAIXELL (N:M amb fecha_inicio i fecha_fin)" caption="Diagrama de partida: naviera" >}}
 
@@ -481,7 +481,7 @@ Transformar dues relacions reflexives (1:N i N:M) i una 1:1 amb mínims 0 als do
 
 #### Context
 
-És el diagrama de l'[exercici 6 de la Tema 2](/ud02-diseno-logico/t02-practicas#exercici-6--institut-mòduls-matrícules-delegats-i-armariets).
+És el diagrama de l'[exercici 6 del tema 2](/ud02-diseno-logico/t02-practicas#exercici-6--institut-mòduls-matrícules-delegats-i-armariets).
 
 {{< figura src="ud02/ej06.svg" alt="PROFESSOR imparteix MÒDUL; MÒDUL és requisit de MÒDUL; ALUMNE es matricula en MÒDUL; ALUMNE és delegat d'ALUMNE; ALUMNE té CASELLER" caption="Diagrama de partida: institut" >}}
 
@@ -528,7 +528,7 @@ Transformar una entitat feble per identificació, una reflexiva 1:N i claus alte
 
 #### Context
 
-És el diagrama de l'[exercici 10 de la Tema 2](/ud02-diseno-logico/t02-practicas#exercici-10--concessionari-vendes-revisions-i-mecànics).
+És el diagrama de l'[exercici 10 del tema 2](/ud02-diseno-logico/t02-practicas#exercici-10--concessionari-vendes-revisions-i-mecànics).
 
 {{< figura src="ud02/ej10.svg" alt="CLIENT compra COTXE (1:N), COTXE passa REVISIÓ (feble, identificadora), MECÀNIC realitza REVISIÓ, MECÀNIC supervisa MECÀNIC" caption="Diagrama de partida: concessionari" >}}
 
@@ -568,7 +568,7 @@ Transformar una cadena d'entitats febles amb **claus alienes compostes** i disti
 
 #### Context
 
-El primer diagrama és el de l'[exercici 11 de la Tema 2](/ud02-diseno-logico/t02-practicas#exercici-11--cases-rurals-províncies-ciutats-i-habitacions). El segon és la variant de la seua ampliació.
+El primer diagrama és el de l'[exercici 11 del tema 2](/ud02-diseno-logico/t02-practicas#exercici-11--cases-rurals-províncies-ciutats-i-habitacions). El segon és la variant de la seua ampliació.
 
 {{< figura src="ud02/ej11.svg" alt="PROVÍNCIA té CIUTAT (feble). CASA_RURAL està en CIUTAT. CASA_RURAL disposa d'HABITACIÓ (feble). CLIENT s'allotja en HABITACIÓ." caption="Diagrama 4.1: cases rurals" >}}
 

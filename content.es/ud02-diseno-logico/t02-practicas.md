@@ -1514,7 +1514,7 @@ Lee la [entrevista con la jefatura de estudios](/guia/proyecto-edugest#1-enuncia
 
 
 > [!IMPORTANT]
-> No consultes todavía la solución de referencia del proyecto. Tu diseño se revisará en clase y lo usarás en la Tema 3. Las diferencias con la referencia se discutirán en la Tema 4.
+> No consultes todavía la solución de referencia del proyecto. Tu diseño se revisará en clase y lo usarás en el tema 3. Las diferencias con la referencia se discutirán en el tema 4.
 
 ---
 
@@ -3451,7 +3451,7 @@ Se organiza una muestra de platos típicos de España con información de las lo
 2. Identifica las tres entidades débiles y escribe sus identificadores completos. Explica por qué `LOCALIDAD` es débil de `PROVINCIA`.
 3. Clasifica la jerarquía de visitas y justifica la clasificación con una frase del enunciado.
 4. Elabora el **diccionario de datos** de `LOCALIDAD`, `RESTAURANTE` y de la relación plato-localidad.
-5. Escribe cuatro restricciones y propón qué lista de tablas saldría al pasar al modelo relacional (adelanto de la Tema 3).
+5. Escribe cuatro restricciones y propón qué lista de tablas saldría al pasar al modelo relacional (adelanto del tema 3).
 
 {{% /details %}}
 

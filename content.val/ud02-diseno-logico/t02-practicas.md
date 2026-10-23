@@ -1514,7 +1514,7 @@ Llig l'[entrevista amb la direcció d'estudis](/guia/proyecto-edugest#1-enunciat
 
 
 > [!IMPORTANT]
-> No consultes encara la solució de referència del projecte. El teu disseny es revisarà a classe i l'usaràs en la Tema 3. Les diferències amb la referència es discutiran en la Tema 4.
+> No consultes encara la solució de referència del projecte. El teu disseny es revisarà a classe i l'usaràs en el tema 3. Les diferències amb la referència es discutiran en el tema 4.
 
 ---
 
@@ -3451,7 +3451,7 @@ S'organitza una mostra de plats típics d'Espanya amb informació de les localit
 2. Identifica les tres entitats febles i escriu els seus identificadors complets. Explica per què `LOCALIDAD` és feble de `PROVINCIA`.
 3. Classifica la jerarquia de visites i justifica la classificació amb una frase de l'enunciat.
 4. Elabora el **diccionari de dades** de `LOCALIDAD`, `RESTAURANTE` i de la relació plat-localitat.
-5. Escriu quatre restriccions i proposa quina llista de taules eixiria en passar al model relacional (avanç de la Tema 3).
+5. Escriu quatre restriccions i proposa quina llista de taules eixiria en passar al model relacional (avanç del tema 3).
 
 {{% /details %}}
 

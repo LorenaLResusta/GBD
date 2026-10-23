@@ -88,7 +88,7 @@ Fer una còpia lògica de l'esquema `EDUGEST`, traure-la del contenidor i restau
     SELECT * FROM edugest.alumno MINUS SELECT * FROM edugest_copia.alumno;
     ```
 
-7. **Obtín només l'estructura.** Executa `impdp` amb `sqlfile=estructura.sql` (sense `remap_schema` i sense importar). Obri el fitxer generat: reconeixes les sentències `CREATE TABLE` de la Tema 3?
+7. **Obtín només l'estructura.** Executa `impdp` amb `sqlfile=estructura.sql` (sense `remap_schema` i sense importar). Obri el fitxer generat: reconeixes les sentències `CREATE TABLE` del tema 3?
 
 {{% /steps %}}
 

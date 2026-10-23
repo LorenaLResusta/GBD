@@ -88,7 +88,7 @@ Hacer una copia lógica del esquema `EDUGEST`, sacarla del contenedor y restaura
     SELECT * FROM edugest.alumno MINUS SELECT * FROM edugest_copia.alumno;
     ```
 
-7. **Obtén solo la estructura.** Ejecuta `impdp` con `sqlfile=estructura.sql` (sin `remap_schema` y sin importar). Abre el fichero generado: ¿reconoces las sentencias `CREATE TABLE` de la Tema 3?
+7. **Obtén solo la estructura.** Ejecuta `impdp` con `sqlfile=estructura.sql` (sin `remap_schema` y sin importar). Abre el fichero generado: ¿reconoces las sentencias `CREATE TABLE` del tema 3?
 
 {{% /steps %}}
 

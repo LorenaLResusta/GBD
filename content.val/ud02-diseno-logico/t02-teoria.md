@@ -630,7 +630,7 @@ erDiagram
 | Posar en una entitat un atribut de la relació (`nota` en `ALUMNO`) | L'atribut depén de les dues entitats alhora | Si el valor canvia segons la parella, va en la relació |
 | Usar el nom com a identificador | Els noms es repetixen i canvien | Usa codis estables o identificadors artificials |
 | Relacions redundants (cicles en el diagrama) | Generen dades duplicades i inconsistents | Comprova si la relació es deduïx d'altres |
-| Cardinalitats «a ull» | Produïxen taules mal dissenyades en la Tema 3 | Formula sempre les dos preguntes (mínim i màxim) en els dos sentits |
+| Cardinalitats «a ull» | Produïxen taules mal dissenyades en el tema 3 | Formula sempre les dos preguntes (mínim i màxim) en els dos sentits |
 | Atributs calculats (`edad`) guardats com a atributs normals | Queden desactualitzats | Guarda `fecha_nacimiento` i calcula l'edat |
 | Inventar requisits | El disseny deixa de respondre al client | Anota els dubtes com a **supòsits** i valida'ls amb el client |
 
@@ -638,7 +638,7 @@ erDiagram
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la Tema 2" >}}
+{{< tarjetas titulo="Repassa els termes del tema 2" >}}
 - t: "Entitat"
   d: "Objecte del món real sobre el qual es guarda informació."
 - t: "Entitat feble"

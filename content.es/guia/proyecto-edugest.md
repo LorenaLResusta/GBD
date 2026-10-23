@@ -46,9 +46,9 @@ weight: 2
 
 ## 3. Modelo de referencia
 
-El diagrama siguiente es la **solución de referencia** que se publica cuando termina la Tema 4. Hasta entonces, cada estudiante trabaja con su propio diseño.
+El diagrama siguiente es la **solución de referencia** que se publica cuando termina el tema 4. Hasta entonces, cada estudiante trabaja con su propio diseño.
 
-{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar la Tema 3)" %}}
+{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar el tema 3)" %}}
 
 ```mermaid
 erDiagram
@@ -135,7 +135,7 @@ erDiagram
 
 ### Restricciones que no recoge el diagrama
 
-Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en la Tema 4 (RA2.i) y se implementan en la Tema 9 con PL/SQL:
+Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en el tema 4 (RA2.i) y se implementan en el tema 9 con PL/SQL:
 
 1. El jefe de un departamento debe **pertenecer** a ese departamento.
 2. Un alumno solo puede matricularse en módulos del **ciclo de su grupo**, salvo autorización.
