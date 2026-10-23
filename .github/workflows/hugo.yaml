@@ -121,6 +121,17 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/" \
             --cacheDir "${{ runner.temp }}/.cache/hugo"
 
+      - name: Cifrar la web con contraseña
+        env:
+          WEB_CLAVE: ${{ secrets.WEB_CLAVE }}
+        run: |
+          if [[ -z "${WEB_CLAVE}" ]]; then
+            echo "::error::Falta el secreto WEB_CLAVE (Settings > Secrets and variables > Actions)"
+            exit 1
+          fi
+          pip install --quiet cryptography
+          python3 tools/cifrar_web.py public
+
       - name: Cache save
         uses: actions/cache/save@v6
         with:
