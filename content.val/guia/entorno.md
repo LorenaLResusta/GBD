@@ -7,7 +7,7 @@ weight: 3
 
 Durant el curs usarem dos sistemes gestors:
 
-| | Relacional (UD05 a UD10) | No relacional (UD10 i UD11) |
+| | Relacional (Tema 5 a Tema 10) | No relacional (Tema 10 i Tema 11) |
 |---|---|---|
 | **SGBD** | Oracle AI Database 26ai Free | MongoDB Community Server 8.0 |
 | **Versió de referència** | 23.26.x | 8.0.x |
@@ -118,7 +118,7 @@ Ordres útils de SQLcl i SQL\*Plus (no són SQL, són ordres del client):
 |---|---|
 | `DESC tabla` | Mostra l'estructura d'una taula |
 | `@fichero.sql` | Executa un script |
-| `SET SERVEROUTPUT ON` | Mostra l'eixida de `DBMS_OUTPUT` (UD09) |
+| `SET SERVEROUTPUT ON` | Mostra l'eixida de `DBMS_OUTPUT` (Tema 9) |
 | `SPOOL salida.txt` / `SPOOL OFF` | Guarda l'eixida en un fitxer (evidències) |
 | `SET SQLFORMAT ansiconsole` | Taules més llegibles (només SQLcl) |
 | `HISTORY` | Historial d'ordres (només SQLcl) |
@@ -138,7 +138,7 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` d'`USER_TABLES` mostra les **estadístiques** de l'optimitzador. Pot valdre `NULL` fins que Oracle les recopile. Per a comptar files de veritat usa `COUNT(*)`.
 
-## 5. MongoDB Community Server 8.0 (UD10 i UD11)
+## 5. MongoDB Community Server 8.0 (Tema 10 i Tema 11)
 
 ```bash
 docker run -d --name mongo8 -p 27017:27017 \
@@ -158,7 +158,7 @@ show dbs
 Com a client gràfic usa **MongoDB Compass** amb la cadena de connexió `mongodb://localhost:27017`.
 
 > [!CAUTION]
-> Estes instal·lacions són **per a l'aula**. MongoDB arranca sense autenticació i les contrasenyes d'Oracle són d'exemple. En la UD05 i en la UD11 vorem per què un servidor de bases de dades mai no ha d'exposar-se així en producció.
+> Estes instal·lacions són **per a l'aula**. MongoDB arranca sense autenticació i les contrasenyes d'Oracle són d'exemple. En la Tema 5 i en la Tema 11 vorem per què un servidor de bases de dades mai no ha d'exposar-se així en producció.
 
 ## 6. Problemes freqüents
 

@@ -32,23 +32,23 @@ weight: 2
 
 | Unidad | Lo que se añade a EduGest | Entregable |
 |---|---|---|
-| UD01 | Análisis del sistema actual (hojas de cálculo) y justificación de un SGBD. Datos personales y RGPD. | Informe de análisis |
-| UD02 | Modelo conceptual: diagrama E/R a partir del enunciado. | Diagrama E/R + diccionario de datos |
-| UD03 | Modelo lógico: transformación al modelo relacional. | Esquema relacional con PK, FK y restricciones |
-| UD04 | Normalización del esquema y de la hoja heredada de matrículas. | Informe de normalización hasta 3FN |
-| UD05 | Implementación en Oracle: tablas, restricciones, índices, vistas, usuarios y roles. | Scripts `01_esquema.sql` y `03_seguridad.sql` |
-| UD06 | Consultas sobre una tabla para el día a día de secretaría. | Script de consultas comentado |
-| UD07 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
-| UD08 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
-| UD09 | Lógica en el servidor: funciones, procedimientos, triggers de auditoría y tarea programada. | Paquete PL/SQL + pruebas |
-| UD10 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
-| UD11 | Ampliación: versión documental del expediente del alumnado en MongoDB y comparación con el modelo relacional. | Colección + consultas + informe comparativo |
+| Tema 1 | Análisis del sistema actual (hojas de cálculo) y justificación de un SGBD. Datos personales y RGPD. | Informe de análisis |
+| Tema 2 | Modelo conceptual: diagrama E/R a partir del enunciado. | Diagrama E/R + diccionario de datos |
+| Tema 3 | Modelo lógico: transformación al modelo relacional. | Esquema relacional con PK, FK y restricciones |
+| Tema 4 | Normalización del esquema y de la hoja heredada de matrículas. | Informe de normalización hasta 3FN |
+| Tema 5 | Implementación en Oracle: tablas, restricciones, índices, vistas, usuarios y roles. | Scripts `01_esquema.sql` y `03_seguridad.sql` |
+| Tema 6 | Consultas sobre una tabla para el día a día de secretaría. | Script de consultas comentado |
+| Tema 7 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
+| Tema 8 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
+| Tema 9 | Lógica en el servidor: funciones, procedimientos, triggers de auditoría y tarea programada. | Paquete PL/SQL + pruebas |
+| Tema 10 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
+| Tema 11 | Ampliación: versión documental del expediente del alumnado en MongoDB y comparación con el modelo relacional. | Colección + consultas + informe comparativo |
 
 ## 3. Modelo de referencia
 
-El diagrama siguiente es la **solución de referencia** que se publica cuando termina la UD04. Hasta entonces, cada estudiante trabaja con su propio diseño.
+El diagrama siguiente es la **solución de referencia** que se publica cuando termina la Tema 4. Hasta entonces, cada estudiante trabaja con su propio diseño.
 
-{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar la UD03)" %}}
+{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar la Tema 3)" %}}
 
 ```mermaid
 erDiagram
@@ -135,7 +135,7 @@ erDiagram
 
 ### Restricciones que no recoge el diagrama
 
-Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en la UD04 (RA2.i) y se implementan en la UD09 con PL/SQL:
+Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en la Tema 4 (RA2.i) y se implementan en la Tema 9 con PL/SQL:
 
 1. El jefe de un departamento debe **pertenecer** a ese departamento.
 2. Un alumno solo puede matricularse en módulos del **ciclo de su grupo**, salvo autorización.
@@ -178,4 +178,4 @@ Al final del script 02 se muestra un recuento de filas. Si todo ha ido bien debe
 > Los datos están preparados para que las consultas den resultados interesantes. Hay un departamento sin profesorado (Matemáticas), un ciclo sin módulos ni grupos (SMR), un grupo sin alumnado ni tutor (2ASIR), un profesor que no imparte clase, alumnado sin grupo, sin DNI, sin correo o sin teléfono, y notas sin calificar (`NULL`). Así se pueden practicar las composiciones externas y el tratamiento de los valores nulos.
 
 > [!WARNING]
-> Todos los datos personales de EduGest son **ficticios**. En un proyecto real, los datos del alumnado son datos personales protegidos por el RGPD y la LOPDGDD (UD01). Nunca uses datos reales en entornos de prueba.
+> Todos los datos personales de EduGest son **ficticios**. En un proyecto real, los datos del alumnado son datos personales protegidos por el RGPD y la LOPDGDD (Tema 1). Nunca uses datos reales en entornos de prueba.

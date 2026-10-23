@@ -32,23 +32,23 @@ weight: 2
 
 | Unitat | El que s'afig a EduGest | Lliurable |
 |---|---|---|
-| UD01 | Anàlisi del sistema actual (fulls de càlcul) i justificació d'un SGBD. Dades personals i RGPD. | Informe d'anàlisi |
-| UD02 | Model conceptual: diagrama E/R a partir de l'enunciat. | Diagrama E/R + diccionari de dades |
-| UD03 | Model lògic: transformació al model relacional. | Esquema relacional amb PK, FK i restriccions |
-| UD04 | Normalització de l'esquema i del full heretat de matrícules. | Informe de normalització fins a 3FN |
-| UD05 | Implementació en Oracle: taules, restriccions, índexs, vistes, usuaris i rols. | Scripts `01_esquema.sql` i `03_seguridad.sql` |
-| UD06 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
-| UD07 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
-| UD08 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
-| UD09 | Lògica en el servidor: funcions, procediments, triggers d'auditoria i tasca programada. | Paquet PL/SQL + proves |
-| UD10 | Seguretat: còpia lògica de l'esquema, exportació a CSV/JSON/SQL, importació amb SQL*Loader i pla de còpies. | Carpeta `10_seguridad/` amb scripts, registres i pla |
-| UD11 | Ampliació: versió documental de l'expedient de l'alumnat en MongoDB i comparació amb el model relacional. | Col·lecció + consultes + informe comparatiu |
+| Tema 1 | Anàlisi del sistema actual (fulls de càlcul) i justificació d'un SGBD. Dades personals i RGPD. | Informe d'anàlisi |
+| Tema 2 | Model conceptual: diagrama E/R a partir de l'enunciat. | Diagrama E/R + diccionari de dades |
+| Tema 3 | Model lògic: transformació al model relacional. | Esquema relacional amb PK, FK i restriccions |
+| Tema 4 | Normalització de l'esquema i del full heretat de matrícules. | Informe de normalització fins a 3FN |
+| Tema 5 | Implementació en Oracle: taules, restriccions, índexs, vistes, usuaris i rols. | Scripts `01_esquema.sql` i `03_seguridad.sql` |
+| Tema 6 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
+| Tema 7 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
+| Tema 8 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
+| Tema 9 | Lògica en el servidor: funcions, procediments, triggers d'auditoria i tasca programada. | Paquet PL/SQL + proves |
+| Tema 10 | Seguretat: còpia lògica de l'esquema, exportació a CSV/JSON/SQL, importació amb SQL*Loader i pla de còpies. | Carpeta `10_seguridad/` amb scripts, registres i pla |
+| Tema 11 | Ampliació: versió documental de l'expedient de l'alumnat en MongoDB i comparació amb el model relacional. | Col·lecció + consultes + informe comparatiu |
 
 ## 3. Model de referència
 
-El diagrama següent és la **solució de referència** que es publica quan acaba la UD04. Fins llavors, cada estudiant treballa amb el seu propi disseny.
+El diagrama següent és la **solució de referència** que es publica quan acaba la Tema 4. Fins llavors, cada estudiant treballa amb el seu propi disseny.
 
-{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar la UD03)" %}}
+{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar la Tema 3)" %}}
 
 ```mermaid
 erDiagram
@@ -135,7 +135,7 @@ erDiagram
 
 ### Restriccions que no arreplega el diagrama
 
-Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en la UD04 (RA2.i) i s'implementen en la UD09 amb PL/SQL:
+Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en la Tema 4 (RA2.i) i s'implementen en la Tema 9 amb PL/SQL:
 
 1. El cap d'un departament ha de **pertànyer** a eixe departament.
 2. Un alumne només es pot matricular en mòduls del **cicle del seu grup**, excepte autorització.
@@ -178,4 +178,4 @@ Al final de l'script 02 es mostra un recompte de files. Si tot ha anat bé has d
 > Les dades estan preparades perquè les consultes donen resultats interessants. Hi ha un departament sense professorat (Matemàtiques), un cicle sense mòduls ni grups (SMR), un grup sense alumnat ni tutor (2ASIR), un professor que no imparteix classe, alumnat sense grup, sense DNI, sense correu o sense telèfon, i notes sense qualificar (`NULL`). Així es poden practicar les composicions externes i el tractament dels valors nuls.
 
 > [!WARNING]
-> Totes les dades personals d'EduGest són **fictícies**. En un projecte real, les dades de l'alumnat són dades personals protegides pel RGPD i la LOPDGDD (UD01). Mai no uses dades reals en entorns de prova.
+> Totes les dades personals d'EduGest són **fictícies**. En un projecte real, les dades de l'alumnat són dades personals protegides pel RGPD i la LOPDGDD (Tema 1). Mai no uses dades reals en entorns de prova.

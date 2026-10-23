@@ -12,20 +12,21 @@ content.es/
 │   ├── proyecto-edugest.md        Proyecto transversal (centro educativo) y scripts
 │   ├── entorno.md                 Oracle AI Database 26ai Free y MongoDB 8.0 en Docker
 │   └── practicas.md               Tipos de práctica, normas de entrega y rúbrica
-├── ud01-introduccion/             RA1 · Sistemas de almacenamiento y SGBD (10 h)
-├── ud02-modelo-er/                RA2 · Modelo Entidad/Relación (EER) (16 h)
-├── ud03-modelo-relacional/        RA2 · Modelo relacional (12 h)
-├── ud04-normalizacion/            RA2 · Normalización (10 h)
-├── ud05-ddl-dcl/                  RA3 · Diseño físico: DDL y DCL en Oracle (22 h)
-├── ud06-consultas-basicas/        RA4 · Consultas sobre una tabla y funciones (14 h)
-├── ud07-consultas-avanzadas/      RA4 · JOIN, agrupamiento, subconsultas, optimización (18 h)
-├── ud08-dml-transacciones/        RA5 · DML, transacciones y concurrencia (16 h)
-├── ud09-plsql/                    RA5 · Guiones PL/SQL: procedimientos, cursores, triggers, jobs (15 h)
-├── ud10-seguridad/                RA6 · Copias de seguridad, importación y exportación (12 h)
-└── ud11-nosql/                    Ampliación · Bases de datos NoSQL con MongoDB (6 h, sin RA)
+├── ud01-introduccion/             UD01 · RA1 · Sistemas de almacenamiento y SGBD (10 h)
+│   └── t01-teoria.md, t01-practicas.md
+├── ud02-diseno-logico/            UD02 · RA2 · Diseño lógico (38 h)
+│   └── tema 2 (E/R, 16 h), tema 3 (relacional, 12 h), tema 4 (normalización, 10 h)
+├── ud03-diseno-fisico/            UD03 · RA3 · Diseño físico: DDL y DCL en Oracle (22 h)
+│   └── tema 5
+├── ud04-consultas/                UD04 · RA4 · Consultas (32 h)
+│   └── tema 6 (una tabla y funciones, 14 h), tema 7 (JOIN, agrupamiento, subconsultas, optimización, 18 h)
+├── ud05-modificacion/             UD05 · RA5 · Modificación de la información (31 h)
+│   └── tema 8 (DML, transacciones y concurrencia, 16 h), tema 9 (guiones PL/SQL, 15 h)
+└── ud06-aseguramiento/            UD06 · RA6 · Aseguramiento de la información (18 h)
+    └── tema 10 (copias, importación y exportación, 12 h), tema 11 (ampliación NoSQL con MongoDB, 6 h, sin RA)
 ```
 
-Cada unidad tiene `_index.md` (presentación y RA/CE), `udXX-teoria.md` y `udXX-practicas.md`.
+Cada unidad (una por RA) tiene un `_index.md` con la presentación de sus temas; cada tema tiene `tNN-teoria.md` y `tNN-practicas.md`. Las prácticas conservan la numeración del tema (práctica 5.1 = tema 5).
 
 
 ## Recursos

@@ -1,6 +1,6 @@
 {{- /*
   Temporalización de una unidad. El contenido es YAML:
-  {{< sesiones unidad="UD02" horas="19" >}}
+  {{< sesiones unidad="T02" horas="19" >}}
   items:
     - {h: 2, tipo: T, t: "Contenido", ref: "§1, §2.1"}
   autonomo:
@@ -21,7 +21,7 @@
 {{- if and $u (ne (int $u.h) $tot) }}{{ errorf "sesiones %s: planificacion.json asigna %d h y la página declara %d h" $uni (int $u.h) $tot }}{{ end -}}
 <div class="bd-temp">
   <div class="bd-temp-head">
-    <strong>{{ $uni }} · {{ $tot }} {{ if eq site.Language.Lang "val" }}hores d'aula{{ else }}horas de aula{{ end }}</strong>
+    <strong>{{ if hasPrefix $uni "T" }}Tema {{ strings.TrimLeft "T0" $uni }}{{ else }}{{ $uni }}{{ end }} · {{ $tot }} {{ if eq site.Language.Lang "val" }}hores d'aula{{ else }}horas de aula{{ end }}</strong>
     <span>{{ i18n "ses_teoria" }} {{ $T }} h · {{ i18n "practica" }} {{ $P }} h{{ if $E }} · {{ i18n "ses_eval" }} {{ $E }} h{{ end }}</span>
     {{- with $u }}<span>Del {{ time.AsTime .ini | time.Format "02/01/2006" }} al {{ time.AsTime .fin | time.Format "02/01/2006" }}</span>{{ end }}
   </div>
