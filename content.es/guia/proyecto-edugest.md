@@ -148,9 +148,9 @@ Los scripts están escritos para **Oracle AI Database 26ai Free**. También func
 
 | Script | Contenido | Se ejecuta como |
 |---|---|---|
-| [edugest_00_usuario.sql](recursos/sql/edugest_00_usuario.sql) | Crea el usuario/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
-| [edugest_01_esquema.sql](recursos/sql/edugest_01_esquema.sql) | Tablas, restricciones, índices y comentarios | `EDUGEST` |
-| [edugest_02_datos.sql](recursos/sql/edugest_02_datos.sql) | Datos de ejemplo del curso 2025-26 | `EDUGEST` |
+| {{< recurso "sql/edugest_00_usuario.sql" >}} | Crea el usuario/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
+| {{< recurso "sql/edugest_01_esquema.sql" >}} | Tablas, restricciones, índices y comentarios | `EDUGEST` |
+| {{< recurso "sql/edugest_02_datos.sql" >}} | Datos de ejemplo del curso 2025-26 | `EDUGEST` |
 
 ```bash
 # Desde la carpeta donde hayas descargado los scripts (SQLcl)

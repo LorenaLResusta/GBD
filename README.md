@@ -27,10 +27,10 @@ Cada unidad tiene `_index.md` (presentación y RA/CE) y páginas `udXX-teoria*.m
 
 | Ruta | Contenido |
 |---|---|
-| `assets/recursos/sql/edugest_00_usuario.sql` | Crea el usuario EDUGEST (ejecutar como SYSTEM en FREEPDB1) |
-| `assets/recursos/sql/edugest_01_esquema.sql` | Esquema relacional de referencia |
-| `assets/recursos/sql/edugest_02_datos.sql` | Datos de ejemplo (curso 2025-26) |
-| `assets/recursos/nosql/edugest_mongo.js` | Versión documental para MongoDB |
+| `static/recursos/sql/edugest_00_usuario.sql` | Crea el usuario EDUGEST (ejecutar como SYSTEM en FREEPDB1) |
+| `static/recursos/sql/edugest_01_esquema.sql` | Esquema relacional de referencia |
+| `static/recursos/sql/edugest_02_datos.sql` | Datos de ejemplo (curso 2025-26) |
+| `static/recursos/nosql/edugest_mongo.js` | Versión documental para MongoDB |
 | `assets/images/` | Diagramas SVG usados en las páginas (`![...](images/x.svg)`) |
 | `data/curriculo.yaml` | Texto oficial de los RA y CE (lo usa el shortcode `ra`) |
 

@@ -1,0 +1,1 @@
+{{- $p := .Get 0 -}}<a href="{{ (printf "recursos/%s" $p) | relURL }}" download>{{ path.Base $p }}</a>

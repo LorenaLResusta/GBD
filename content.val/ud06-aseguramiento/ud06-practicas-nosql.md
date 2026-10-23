@@ -20,7 +20,7 @@ bookToc: true
 | [Projecte EduGest · UD06](#projecte-edugest--ud06-lexpedient-documental) | Projecte | ●●● | RA7 complet |
 
 > [!IMPORTANT]
-> Usarem **MongoDB Community Server 8.0** en Docker, `mongosh` i **MongoDB Compass**. Els resultats indicats suposen que has carregat [edugest_mongo.js](recursos/nosql/edugest_mongo.js) i no has modificat les dades (repetix la càrrega abans de cada pràctica: l'script esborra i recrea les col·leccions).
+> Usarem **MongoDB Community Server 8.0** en Docker, `mongosh` i **MongoDB Compass**. Els resultats indicats suposen que has carregat {{< recurso "nosql/edugest_mongo.js" >}} i no has modificat les dades (repetix la càrrega abans de cada pràctica: l'script esborra i recrea les col·leccions).
 
 ---
 

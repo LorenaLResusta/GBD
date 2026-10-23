@@ -510,7 +510,7 @@ No hi ha una norma oficial, però l'ecosistema seguix convenis molt estables que
 
 ### 4.6 La col·lecció `expedientes` d'EduGest
 
-Tota la unitat treballa sobre la versió documental d'EduGest que carrega l'script [edugest_mongo.js](../ud06-practicas-nosql): tres col·leccions (`expedientes`, `profesores` i `ciclos`) obtingudes de les mateixes taules d'Oracle. Este és el document de l'alumne 1, complet: {{< sgbd "MongoDB 8.0" >}}
+Tota la unitat treballa sobre la versió documental d'EduGest que carrega l'script {{< recurso "nosql/edugest_mongo.js" >}}: tres col·leccions (`expedientes`, `profesores` i `ciclos`) obtingudes de les mateixes taules d'Oracle. Este és el document de l'alumne 1, complet: {{< sgbd "MongoDB 8.0" >}}
 
 ```javascript
 db.expedientes.findOne({ _id: 1 })
