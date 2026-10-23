@@ -1,0 +1,6 @@
+{{- /* Etiqueta que indica el SGBD/versión de un ejemplo.  Uso: {{< sgbd "Oracle 26ai" >}} */ -}}
+{{- $v := .Get 0 | default "Oracle 26ai" -}}
+{{- $c := "oracle" -}}
+{{- if in (lower $v) "mongo" }}{{ $c = "mongo" }}{{ else if in (lower $v) "estándar" }}{{ $c = "std" }}{{ else if in (lower $v) "mysql" }}{{ $c = "mysql" }}{{ else if in (lower $v) "postgre" }}{{ $c = "pg" }}{{ end -}}
+<span class="bd-sgbd bd-sgbd--{{ $c }}">{{ $v }}</span>
+{{- /**/ -}}

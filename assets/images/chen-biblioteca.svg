@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400" width="1180" height="400" role="img" aria-labelledby="t d" font-family='system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'>
+<title id="t">Modelo E/R de biblioteca en notación Chen</title><desc id="d">AUTOR N:M LIBRO; LIBRO 1:N EJEMPLAR (entidad débil)</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e293b"/></linearGradient></defs>
+<style>.hot{cursor:pointer;transition:filter .15s}.hot:hover,.hot:focus,.hot.on{filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,255,255,.35));outline:none}</style>
+<rect width="1180" height="400" rx="12" fill="url(#bg)"/>
+<rect x="50.0" y="162.0" width="160.0" height="56.0" rx="2" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="130.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">AUTOR</text>
+<rect x="470.0" y="162.0" width="160.0" height="56.0" rx="2" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="550.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">LIBRO</text>
+<rect x="930.0" y="162.0" width="160.0" height="56.0" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+<text x="1010.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">EJEMPLAR</text>
+<rect x="936.0" y="168.0" width="148.0" height="44.0" rx="0" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+<line x1="210.0" y1="190.0" x2="270.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<line x1="410.0" y1="190.0" x2="470.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<line x1="630.0" y1="190.0" x2="690.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<line x1="850.0" y1="190.0" x2="930.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="N:M: un autor escribe varios libros y un libro puede tener varios autores. orden_autoria indica quién firma primero.">
+<polygon points="340,153.0 410.0,190 340,227.0 270.0,190" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<text x="340.0" y="194.6" font-size="13" fill="#fff" text-anchor="middle" font-weight="700">ESCRIBE</text>
+</g>
+<g class="hot" tabindex="0" data-tip="Relación identificadora: el ejemplar no existe sin su libro; su clave es (isbn, num_ejemplar).">
+<polygon points="770,153.0 850.0,190 770,227.0 690.0,190" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<polygon points="770,160.4 834.0,190 770,219.6 706.0,190" fill="none" stroke="#34d399" stroke-width="1.4"/>
+<text x="770.0" y="194.6" font-size="13" fill="#fff" text-anchor="middle" font-weight="700">IDENTIFICA</text>
+</g>
+<text x="240.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">N</text>
+<text x="440.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">M</text>
+<text x="658.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">1</text>
+<text x="902.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">N</text>
+<line x1="130.0" y1="162.0" x2="130.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="130.0" cy="80.0" rx="38.7" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="130.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">id_autor</text>
+<line x1="130.0" y1="218.0" x2="130.0" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="130.0" cy="300.0" rx="37.4" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="130.0" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">nombre</text>
+<line x1="340.0" y1="227.0" x2="340.0" y2="280.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="340.0" cy="297.0" rx="55.3" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="340.0" y="301.4" font-size="12.5" fill="#fff" text-anchor="middle">orden_autoria</text>
+<line x1="550.0" y1="162.0" x2="550.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="550.0" cy="80.0" rx="27.0" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="550.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">isbn</text>
+<line x1="550.0" y1="218.0" x2="550.0" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="550.0" cy="300.0" rx="30.0" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="550.0" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">titulo</text>
+<line x1="1010.0" y1="162.0" x2="1010.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="1010.0" cy="80.0" rx="56.6" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8" stroke-dasharray="4 3"/>
+<text x="1010.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">num_ejemplar</text>
+<line x1="1010.0" y1="218.0" x2="1010.0" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="1010.0" cy="300.0" rx="34.7" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="1010.0" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">estado</text>
+</svg>

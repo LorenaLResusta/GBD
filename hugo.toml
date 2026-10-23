@@ -1,0 +1,86 @@
+baseURL = "https://lorenalresusta.github.io/GBD/"
+locale = "es-es"
+title = "Gestión de Bases de Datos · 1º ASIR"
+theme = "hugo-book"
+
+# Configuración multilingüe
+defaultContentLanguage = "es"
+
+[languages]
+  [languages.es]
+    label = "Castellano"
+    weight = 1
+    contentDir = "content.es"
+    title = "Gestión de Bases de Datos · 1º ASIR"
+    locale = "es-es"
+    copyright = "Apuntes del módulo 0372 Gestión de Bases de Datos · Curso 2026/27"
+
+  [languages.val]
+    label = "Valencià"
+    weight = 2
+    contentDir = "content.val"
+    title = "Gestió de Bases de dades · 1r ASIR"
+    locale = "ca-valencia"
+    copyright = "Apunts del mòdul 0372 Gestió de Bases de dades · Curs 2026/27"
+
+[markup]
+  [markup.goldmark.renderer]
+    # Necesario para los bloques HTML de los shortcodes interactivos
+    unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    # Fórmulas matemáticas con KaTeX ($...$ en línea y $$...$$ en bloque)
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [['$$', '$$']]
+      inline = [['$', '$']]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+  [markup.highlight]
+    style = "github"
+    noClasses = true
+
+[params]
+  # Origen de los ficheros a renderizar (todo el contenido)
+  BookSection = '/'
+  # light | dark | auto (sigue el tema del sistema operativo)
+  BookTheme = 'auto'
+  BookToC = true
+  BookSearch = true
+  BookComments = false
+  # Resuelve las imágenes "images/x.svg" desde assets/images
+  BookPortableLinks = 'warning'
+  BookDateFormat = '02/01/2006'
+  BookRepo = 'https://github.com/lorenalresusta/GBD'
+
+[languages.es.menus]
+  [[languages.es.menus.after]]
+    name = "RD 1629/2009 (BOE)"
+    url = "https://www.boe.es/eli/es/rd/2009/10/30/1629"
+    weight = 20
+  [[languages.es.menus.after]]
+    name = "Documentación Oracle 26ai"
+    url = "https://docs.oracle.com/en/database/oracle/oracle-database/26/"
+    weight = 30
+  [[languages.es.menus.after]]
+    name = "Documentación MongoDB"
+    url = "https://www.mongodb.com/docs/manual/"
+    weight = 40
+
+[languages.val.menus]
+  [[languages.val.menus.after]]
+    name = "RD 1629/2009 (BOE)"
+    url = "https://www.boe.es/eli/es/rd/2009/10/30/1629"
+    weight = 20
+  [[languages.val.menus.after]]
+    name = "Documentació d'Oracle 26ai"
+    url = "https://docs.oracle.com/en/database/oracle/oracle-database/26/"
+    weight = 30
+  [[languages.val.menus.after]]
+    name = "Documentació de MongoDB"
+    url = "https://www.mongodb.com/docs/manual/"
+    weight = 40
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

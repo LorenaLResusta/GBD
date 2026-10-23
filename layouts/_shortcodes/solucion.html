@@ -1,0 +1,30 @@
+{{- /*
+  Solución protegida.
+  Modo público:  {{< solucion id="ud02-001" title="Solución" />}}  -> candado que pide la clave y descifra en el navegador.
+  Modo privado:  {{% solucion id="ud02-001" title="Solución" %}} ... {{% /solucion %}} -> HTML en claro entre marcas,
+                 que tools/soluciones.py extrae y cifra. Solo existe en la carpeta privada.
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- $title := .Get "title" -}}
+{{- if .Inner -}}
+
+<div hidden data-sol-start="{{ $id }}"></div>
+<details class="sol-plain"><summary>{{ $title }}</summary><div class="markdown-inner">
+{{ .Inner | safeHTML }}
+</div></details>
+<div hidden data-sol-end="{{ $id }}"></div>
+
+{{- else -}}
+<details class="sol-lock" data-sol="{{ $id }}" data-src="{{ printf "soluciones/%s/%s.json" .Page.Language.Lang $id | relURL }}" data-base="{{ "" | relURL }}" data-msg-load="{{ i18n "sol_cargando" }}" data-msg-err="{{ i18n "sol_error" }}" data-msg-none="{{ i18n "sol_noenc" }}">
+<summary>🔒 {{ $title }}</summary>
+<div class="sol-body">
+<form class="sol-form" autocomplete="off">
+<p class="sol-note">{{ i18n "sol_nota" }}</p>
+<label>{{ i18n "sol_clave" }} <input type="password" class="sol-pw" autocomplete="off" required></label>
+<button type="submit">{{ i18n "sol_abrir" }}</button>
+</form>
+<p class="sol-msg" role="status" aria-live="polite"></p>
+<div class="sol-out markdown-inner"></div>
+</div>
+</details>
+{{- end -}}

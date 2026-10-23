@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 555" width="880" height="555" role="img" aria-labelledby="t d" font-family='system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'>
+<title id="t">Jerarquías EER: generalización y especialización</title><desc id="d">PERSONA como supertipo de ALUMNO, PROFESOR y PAS, con restricciones disjunta/solapada y total/parcial.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e293b"/></linearGradient></defs>
+<style>.hot{cursor:pointer;transition:filter .15s}.hot:hover,.hot:focus,.hot.on{filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,255,255,.35));outline:none}</style>
+<rect width="880" height="555" rx="12" fill="url(#bg)"/>
+<text x="440.0" y="40.0" font-size="21" fill="#f1f5f9" text-anchor="middle" font-weight="700">Generalización y especialización</text>
+<g class="hot" tabindex="0" data-tip="Supertipo: atributos comunes (dni, nombre, email).">
+<rect x="340.0" y="70.0" width="200.0" height="56.0" rx="8" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="440.0" y="103.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">PERSONA</text>
+</g>
+<line x1="437.0" y1="126.0" x2="437.0" y2="150.0" stroke="#38bdf8" stroke-width="2"/>
+<line x1="443.0" y1="126.0" x2="443.0" y2="150.0" stroke="#38bdf8" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="Círculo con d = disjunta (un solo subtipo). La línea doble hasta el supertipo indica participación total (todo supertipo está en algún subtipo)."><circle cx="440" cy="168" r="18" fill="#fff" stroke="#fbbf24" stroke-width="2"/>
+<text x="440.0" y="173.0" font-size="14" fill="#0f172a" text-anchor="middle" font-weight="700">d</text>
+</g>
+<line x1="440.0" y1="186.0" x2="440.0" y2="212.0" stroke="#fbbf24" stroke-width="2"/>
+<line x1="150.0" y1="212.0" x2="730.0" y2="212.0" stroke="#fbbf24" stroke-width="2"/>
+<line x1="150.0" y1="212.0" x2="150.0" y2="240.0" stroke="#fbbf24" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="Subtipo con atributos propios: nº de expediente, ciclo.">
+<rect x="60.0" y="240.0" width="180.0" height="52.0" rx="8" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<text x="150.0" y="270.9" font-size="14" fill="#fff" text-anchor="middle" font-weight="700">ALUMNO</text>
+</g>
+<line x1="440.0" y1="212.0" x2="440.0" y2="240.0" stroke="#fbbf24" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="Subtipo: especialidad, departamento.">
+<rect x="350.0" y="240.0" width="180.0" height="52.0" rx="8" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<text x="440.0" y="270.9" font-size="14" fill="#fff" text-anchor="middle" font-weight="700">PROFESOR</text>
+</g>
+<line x1="730.0" y1="212.0" x2="730.0" y2="240.0" stroke="#fbbf24" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="Personal de administración y servicios: puesto, unidad.">
+<rect x="640.0" y="240.0" width="180.0" height="52.0" rx="8" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<text x="730.0" y="270.9" font-size="14" fill="#fff" text-anchor="middle" font-weight="700">PAS</text>
+</g>
+<rect x="34.0" y="320.0" width="812.0" height="210.0" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+<text x="440.0" y="348.0" font-size="16" fill="#38bdf8" text-anchor="middle" font-weight="700">Restricciones de la jerarquía</text>
+<text x="54.0" y="380.0" font-size="14" fill="#fbbf24" text-anchor="start" font-weight="700">Disjunta (D)</text>
+<text x="54.0" y="400.0" font-size="13" fill="#f1f5f9" text-anchor="start">Una instancia del supertipo pertenece a UN solo subtipo.</text>
+<text x="454.0" y="380.0" font-size="14" fill="#fbbf24" text-anchor="start" font-weight="700">Solapada (S)</text>
+<text x="454.0" y="400.0" font-size="13" fill="#f1f5f9" text-anchor="start">Una instancia puede pertenecer a VARIOS subtipos a la</text>
+<text x="454.0" y="417.0" font-size="13" fill="#f1f5f9" text-anchor="start">vez.</text>
+<text x="54.0" y="456.0" font-size="14" fill="#34d399" text-anchor="start" font-weight="700">Total (T)</text>
+<text x="54.0" y="476.0" font-size="13" fill="#f1f5f9" text-anchor="start">Toda instancia del supertipo pertenece al menos a un</text>
+<text x="54.0" y="493.0" font-size="13" fill="#f1f5f9" text-anchor="start">subtipo.</text>
+<text x="454.0" y="456.0" font-size="14" fill="#34d399" text-anchor="start" font-weight="700">Parcial (P)</text>
+<text x="454.0" y="476.0" font-size="13" fill="#f1f5f9" text-anchor="start">Puede haber instancias que no estén en ningún subtipo.</text>
+</svg>

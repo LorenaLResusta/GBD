@@ -1,0 +1,135 @@
+{{- /* Widget UD06: laboratorio de SELECT sobre los 32 alumnos de EduGest. */ -}}
+{{- $id := printf "sel-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-note)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Laboratorio de SELECT <span class="bd-w-sub">Tabla ALUMNO de EduGest (32 filas) · simulación didáctica, no es un SGBD</span></div>
+  <div class="bd-w-body">
+    <p style="margin:0 0 .3rem"><strong>1 · SELECT</strong> (columnas)</p>
+    <div class="bd-chips" data-s="chips" role="group" aria-label="Columnas a proyectar"></div>
+    <label><input type="checkbox" data-s="dist"> DISTINCT</label>
+    <p style="margin:.7rem 0 .3rem"><strong>2 · WHERE</strong> (hasta tres condiciones)</p>
+    <div data-s="conds"></div>
+    <div class="bd-w-row">
+      <label class="bd-f">Agrupación de las condiciones 2 y 3
+        <select data-s="par"><option value="0">Sin paréntesis (AND se evalúa antes que OR)</option><option value="1">Con paréntesis: c1 conector (c2 conector c3)</option></select></label>
+    </div>
+    <p style="margin:.4rem 0 .3rem"><strong>3 · ORDER BY y FETCH FIRST</strong></p>
+    <div class="bd-w-row">
+      <label class="bd-f">Ordenar por <select data-s="ob"></select></label>
+      <label class="bd-f">Sentido <select data-s="dir"><option>ASC</option><option>DESC</option></select></label>
+      <label class="bd-f">Máximo de filas (0 = todas) <input type="number" data-s="lim" value="0" min="0" max="32"></label>
+      <button type="button" class="ghost" data-s="reset">Reiniciar</button>
+    </div>
+    <pre data-s="sql"></pre>
+    <div class="bd-pipe" data-s="pipe" aria-label="Orden de evaluación"></div>
+    <div class="bd-w-out" data-s="msg" aria-live="polite"></div>
+    <div style="overflow-x:auto;max-height:22rem;overflow-y:auto"><table data-s="res"></table></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-s="' + n + '"]'); };
+  var COLS = ['id_alumno', 'nia', 'nombre', 'apellidos', 'fecha_nacimiento', 'email', 'telefono', 'localidad', 'cod_grupo'];
+  var DATA = [[1,"10450037","Adrián","Ferri Baeza","2006-10-18","adrianferri1@alu.edugest.es","610608088","Alicante","1DAM"],[2,"10450074","Rubén","Iborra Ferri","2005-11-01","rubeniborra2@alu.edugest.es","699695434","Elche","1DAM"],[3,"10450111","Noelia","Verdú Espí","2004-06-25","noeliaverdu3@alu.edugest.es","660587809","Sant Joan d'Alacant","1DAM"],[4,"10450148","Paula","Ferri Baeza","2005-01-10","paulaferri4@alu.edugest.es",null,"Alicante","1DAM"],[5,"10450185","Andrea","Brotons Soriano","2006-02-19","andreabrotons5@alu.edugest.es","639572864","Alicante","1DAM"],[6,"10450222","Tomás","Cerdá Pérez","2006-04-03","tomascerda6@alu.edugest.es","659376353","Alicante","1DAM"],[7,"10450259","Valeria","Quiles Marco","2004-01-20","valeriaquiles7@alu.edugest.es","661054227","Sant Joan d'Alacant","1DAM"],[8,"10450296","Iván","Ripoll Agulló","2003-05-01",null,"645665668","Sant Joan d'Alacant","2DAM"],[9,"10450333","Martina","Alemany Vidal","2005-04-18","martinaalemany9@alu.edugest.es","686052214","Mutxamel","2DAM"],[10,"10450370","Nerea","Cerdá Tomás","2005-08-04","nereacerda10@alu.edugest.es",null,"San Vicente del Raspeig","2DAM"],[11,"10450407","Hugo","Brotons Iborra","2005-12-17","hugobrotons11@alu.edugest.es","678897218","Mutxamel","2DAM"],[12,"10450444","Lucía","Belda Quiles","2003-11-07","luciabelda12@alu.edugest.es","630313272","San Vicente del Raspeig","2DAM"],[13,"10450481","María","Domènech Quiles","2005-01-25","mariadomenech13@alu.edugest.es","675664399","Alicante","2DAM"],[14,"10450518","Carla","Valero Cerdá","2004-07-08","carlavalero14@alu.edugest.es","676159146","Alicante","1DAW"],[15,"10450555","Manuel","Soriano Domènech","2006-12-25","manuelsoriano15@alu.edugest.es","621760503","Alicante","1DAW"],[16,"10450592","Julia","Espí Marco","2006-12-01","juliaespi16@alu.edugest.es",null,"Alicante","1DAW"],[17,"10450629","Jorge","Iborra Alemany","2001-06-01","jorgeiborra17@alu.edugest.es","674289054","El Campello","1DAW"],[18,"10450666","Daniel","Alemany Pérez","2001-08-22","danielalemany18@alu.edugest.es","664181554","El Campello","1DAW"],[19,"10450703","Alba","Torregrosa Planelles","2006-12-21",null,"618940629","Mutxamel","1DAW"],[20,"10450740","Mateo","Sala Brotons","2003-04-09","mateosala20@alu.edugest.es","628385636","Alicante","2DAW"],[21,"10450777","Elena","Carbonell Soriano","2005-06-21","elenacarbonell21@alu.edugest.es","633510324","El Campello","2DAW"],[22,"10450814","Sofía","Planelles Marco","2004-07-13","sofiaplanelles22@alu.edugest.es",null,"Elche","2DAW"],[23,"10450851","Sara","Amorós Guillem","2000-08-07","saraamoros23@alu.edugest.es","631556041","Mutxamel","2DAW"],[24,"10450888","Nicolás","Verdú Castelló","2005-05-11","nicolasverdu24@alu.edugest.es","622738887","Alicante","2DAW"],[25,"10450925","Diego","Iborra Torregrosa","2005-09-04","diegoiborra25@alu.edugest.es","646908920","San Vicente del Raspeig","1ASIR"],[26,"10450962","Víctor","Tomás Guillem","2006-12-06","victortomas26@alu.edugest.es","627804543","Elche","1ASIR"],[27,"10450999","Álex","Tomás Vidal","2006-09-20","alextomas27@alu.edugest.es","657158423","Mutxamel","1ASIR"],[28,"10451036","Pablo","Amorós Carbonell","2006-10-21","pabloamoros28@alu.edugest.es",null,"Alicante","1ASIR"],[29,"10451073","Aitana","Pascual Brotons","2006-07-10","aitanapascual29@alu.edugest.es","686824567","Alicante","1ASIR"],[30,"10451110","Zoe","Iborra Valero","2006-06-22",null,"639706969","Sant Joan d'Alacant",null],[31,"10451147","Lucas","Agulló Cerdá","2006-04-18","lucasagullo31@alu.edugest.es","627202308","Alicante",null],[32,"10451184","Irene","Belda Iborra","2006-07-28","irenebelda32@alu.edugest.es","642961184","Mutxamel",null]];
+  var OPS = ['=', '<>', '<', '>', '<=', '>=', 'LIKE', 'IS NULL', 'IS NOT NULL'];
+  var sel = { 2: 1, 3: 1, 7: 1 }, conds = [];
+  var chips = q('chips');
+  COLS.forEach(function (c, i) { var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip' + (sel[i] ? ' on' : ''); b.textContent = c; b.setAttribute('aria-pressed', String(!!sel[i]));
+    b.addEventListener('click', function () { sel[i] = !sel[i]; b.classList.toggle('on', !!sel[i]); b.setAttribute('aria-pressed', String(!!sel[i])); run(); }); chips.appendChild(b); });
+  var ob = q('ob'); var o0 = document.createElement('option'); o0.value = '-1'; o0.textContent = '(sin ORDER BY)'; ob.appendChild(o0);
+  COLS.forEach(function (c, i) { var o = document.createElement('option'); o.value = i; o.textContent = c; ob.appendChild(o); });
+  function defaults() { return [{ on: true, col: 7, op: '=', val: 'Mutxamel', con: 'AND' }, { on: false, col: 8, op: '=', val: '2DAM', con: 'AND' }, { on: false, col: 5, op: 'IS NULL', val: '', con: 'OR' }]; }
+  function buildConds() {
+    var box = q('conds'); while (box.firstChild) box.removeChild(box.firstChild);
+    conds.forEach(function (c, i) {
+      var r = document.createElement('div'); r.className = 'bd-w-row'; r.style.marginBottom = '.3rem';
+      if (i > 0) { var cn = document.createElement('select'); ['AND', 'OR'].forEach(function (x) { var o = document.createElement('option'); o.textContent = x; if (x === c.con) o.selected = true; cn.appendChild(o); }); cn.addEventListener('change', function () { c.con = cn.value; run(); }); r.appendChild(cn); }
+      var on = document.createElement('input'); on.type = 'checkbox'; on.checked = c.on; on.setAttribute('aria-label', 'Activar condición ' + (i + 1)); on.addEventListener('change', function () { c.on = on.checked; run(); }); r.appendChild(on);
+      var cs = document.createElement('select'); COLS.forEach(function (x, k) { var o = document.createElement('option'); o.value = k; o.textContent = x; if (k === c.col) o.selected = true; cs.appendChild(o); }); cs.addEventListener('change', function () { c.col = +cs.value; run(); }); r.appendChild(cs);
+      var os = document.createElement('select'); OPS.forEach(function (x) { var o = document.createElement('option'); o.textContent = x; if (x === c.op) o.selected = true; os.appendChild(o); }); os.addEventListener('change', function () { c.op = os.value; vi.disabled = /NULL$/.test(c.op); run(); }); r.appendChild(os);
+      var vi = document.createElement('input'); vi.type = 'text'; vi.value = c.val; vi.size = 14; vi.placeholder = 'valor (prueba también NULL)'; vi.disabled = /NULL$/.test(c.op); vi.addEventListener('input', function () { c.val = vi.value; run(); }); r.appendChild(vi);
+      box.appendChild(r);
+    });
+  }
+  function like(v, pat) { var re = '^' + pat.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/%/g, '.*').replace(/_/g, '.') + '$'; return new RegExp(re, 's').test(v); }
+  function cmp(c, row) {
+    var v = row[c.col];
+    if (c.op === 'IS NULL') return v === null;
+    if (c.op === 'IS NOT NULL') return v !== null;
+    if (v === null || c.val.trim().toUpperCase() === 'NULL') return null;
+    var x = c.val, a = v;
+    if (c.col === 0) { a = Number(v); x = Number(x); if (isNaN(x)) return null; }
+    switch (c.op) { case '=': return a === x; case '<>': return a !== x; case '<': return a < x; case '>': return a > x; case '<=': return a <= x; case '>=': return a >= x; case 'LIKE': return like(String(v), x); }
+    return null;
+  }
+  function and3(a, b) { if (a === false || b === false) return false; if (a === null || b === null) return null; return true; }
+  function or3(a, b) { if (a === true || b === true) return true; if (a === null || b === null) return null; return false; }
+  function combine(vals, ops, par) {
+    if (vals.length === 1) return vals[0];
+    if (par && vals.length === 3) { var inner = ops[1] === 'AND' ? and3(vals[1], vals[2]) : or3(vals[1], vals[2]); return ops[0] === 'AND' ? and3(vals[0], inner) : or3(vals[0], inner); }
+    var res = null, grp = vals[0], first = true, groups = [];
+    for (var i = 1; i < vals.length; i++) { if (ops[i - 1] === 'AND') grp = and3(grp, vals[i]); else { groups.push(grp); grp = vals[i]; } }
+    groups.push(grp); res = groups[0]; for (var k = 1; k < groups.length; k++) res = or3(res, groups[k]); return res;
+  }
+  function lit(c) {
+    if (/NULL$/.test(c.op)) return '';
+    var v = c.val.trim(); if (v.toUpperCase() === 'NULL') return 'NULL';
+    if (c.col === 0 && v !== '' && !isNaN(Number(v))) return v;
+    if (c.col === 4 && /^\d{4}-\d{2}-\d{2}$/.test(v)) return "DATE '" + v + "'";
+    return "'" + c.val.replace(/'/g, "''") + "'";
+  }
+  function cs(c) { return COLS[c.col] + ' ' + c.op + (/NULL$/.test(c.op) ? '' : ' ' + lit(c)); }
+  function run() {
+    var act = conds.filter(function (c) { return c.on; }), par = q('par').value === '1' && act.length === 3;
+    var proj = []; COLS.forEach(function (c, i) { if (sel[i]) proj.push(i); });
+    // SQL
+    var all = proj.length === COLS.length, sql = 'SELECT ' + (q('dist').checked ? 'DISTINCT ' : '') + (!proj.length ? '…' : all ? '*' : proj.map(function (i) { return COLS[i]; }).join(', ')) + '\nFROM   alumno';
+    if (act.length) { var w = cs(act[0]); if (par) w += '\n' + act[1].con.padStart(5) + ' (' + cs(act[1]) + ' ' + act[2].con + ' ' + cs(act[2]) + ')'; else for (var i = 1; i < act.length; i++) w += '\n' + act[i].con.padStart(5) + ' ' + cs(act[i]); sql += '\nWHERE  ' + w; }
+    var obi = +ob.value; if (obi >= 0) sql += '\nORDER  BY ' + COLS[obi] + ' ' + q('dir').value;
+    var lim = parseInt(q('lim').value, 10) || 0; if (lim > 0) sql += '\nFETCH FIRST ' + lim + ' ROWS ONLY';
+    q('sql').textContent = sql + ';';
+    // Evaluación en el orden lógico
+    var rows = DATA.slice(), unk = 0, n0 = rows.length, pendErr = null;
+    function ev(row, p) { var vals = act.map(function (c) { return cmp(c, row); }); return combine(vals, act.slice(1).map(function (c) { return c.con; }), p); }
+    if (act.length) { rows = rows.filter(function (r) { var v = ev(r, par); if (v === null) unk++; return v === true; }); }
+    var n1 = rows.length, alt = null;
+    if (act.length === 3) { var other = DATA.filter(function (r) { return ev(r, !par) === true; }).length; if (other !== n1) alt = other; }
+    var pr = proj.length ? proj : []; var data = rows.map(function (r) { return pr.map(function (i) { return r[i]; }); });
+    var n2 = data.length;
+    if (q('dist').checked) { var seen = {}; data = data.filter(function (r) { var k = JSON.stringify(r); if (seen[k]) return false; seen[k] = 1; return true; }); }
+    var n3 = data.length;
+    if (obi >= 0) {
+      var pos = pr.indexOf(obi), desc = q('dir').value === 'DESC';
+      if (pos < 0) { /* ORDER BY de una columna no proyectada: se ordena antes */ }
+      var src = rows.map(function (r, k) { return { r: r, d: data[k] }; });
+      if (!q('dist').checked) {
+        src.sort(function (x, y) { var a = x.r[obi], b = y.r[obi]; if (a === b) return 0; if (a === null) return desc ? -1 : 1; if (b === null) return desc ? 1 : -1; var c = (typeof a === 'number' ? a - b : (a < b ? -1 : 1)); return desc ? -c : c; });
+        data = src.map(function (x) { return x.d; });
+      } else if (pos < 0) {
+        pendErr = 'ORA-01791: not a SELECTed expression. Con DISTINCT, ORDER BY solo puede usar columnas del SELECT.';
+      } else if (pos >= 0) {
+        data.sort(function (x, y) { var a = x[pos], b = y[pos]; if (a === b) return 0; if (a === null) return desc ? -1 : 1; if (b === null) return desc ? 1 : -1; var c = (typeof a === 'number' ? a - b : (a < b ? -1 : 1)); return desc ? -c : c; });
+      }
+    }
+    var n4 = data.length; if (lim > 0) data = data.slice(0, lim);
+    // pipeline
+    var pipe = q('pipe'); while (pipe.firstChild) pipe.removeChild(pipe.firstChild);
+    [['1 FROM', n0 + ' filas'], ['2 WHERE', act.length ? n1 + ' filas' : 'sin filtro'], ['3 SELECT', pr.length + ' columnas'], ['4 DISTINCT', q('dist').checked ? n3 + ' filas' : '—'], ['5 ORDER BY', obi >= 0 ? 'ordenado' : '—'], ['6 FETCH FIRST', lim > 0 ? Math.min(lim, n4) + ' filas' : '—']].forEach(function (s) { var sp = document.createElement('span'); sp.className = 'done'; sp.textContent = s[0] + ' → ' + s[1]; pipe.appendChild(sp); });
+    var msg = q('msg'); while (msg.firstChild) msg.removeChild(msg.firstChild);
+    function P(cls, t) { var e = document.createElement('p'); if (cls) e.className = cls; e.textContent = t; msg.appendChild(e); }
+    P('', 'El resultado tiene ' + data.length + ' fila(s).' + (lim > 0 && n4 > lim ? ' (Hay ' + n4 + ' antes de FETCH FIRST.)' : ''));
+    if (unk) P('warn', unk + ' fila(s) no han salido porque la condición se evalúa como UNKNOWN (hay un NULL o comparas con NULL). WHERE solo deja pasar las filas TRUE.');
+    if (alt !== null) P('warn', 'Fíjate: ' + (par ? 'sin' : 'con') + ' paréntesis el resultado sería de ' + alt + ' filas. AND se evalúa antes que OR.');
+    if (pendErr) P('ko', pendErr);
+    if (!pr.length) P('ko', 'Selecciona al menos una columna para ver el resultado.');
+    if (obi >= 0) P('bd-w-note', 'Orden binario (NLS_SORT=BINARY): «Álex» va después de «Zoe». Los NULL van al final con ASC y al principio con DESC. Los empates salen en un orden no garantizado.');
+    var t = q('res'); while (t.firstChild) t.removeChild(t.firstChild);
+    var h = document.createElement('tr'); pr.forEach(function (i) { var th = document.createElement('th'); th.textContent = COLS[i].toUpperCase(); h.appendChild(th); }); t.appendChild(h);
+    data.forEach(function (r) { var tr = document.createElement('tr'); r.forEach(function (v) { var td = document.createElement('td'); if (v === null) { td.textContent = '(null)'; td.className = 'null'; } else td.textContent = v; tr.appendChild(td); }); t.appendChild(tr); });
+  }
+  function reset() { conds = defaults(); q('par').value = '0'; q('dist').checked = false; ob.value = '-1'; q('lim').value = '0'; buildConds(); run(); }
+  ['par', 'dist', 'ob', 'dir', 'lim'].forEach(function (n) { q(n).addEventListener('change', run); });
+  q('lim').addEventListener('input', run); q('reset').addEventListener('click', reset);
+  reset();
+})();
+</script>

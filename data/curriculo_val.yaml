@@ -1,0 +1,69 @@
+# Resultats d'Aprenentatge i Criteris d'Avaluació
+# Mòdul professional 0372. Gestió de bases de dades (1r ASIX/ASIR)
+# Font: Reial decret 1629/2009, de 30 d'octubre (títol de Tècnic Superior en Administració de Sistemes Informàtics en Xarxa).
+# Text de les ensenyances mínimes, en valencià (traducció; el text oficial és el del BOE).
+RA1:
+  titulo: "Reconeix els elements de les bases de dades analitzant-ne les funcions i valorant la utilitat dels sistemes gestors."
+  ce:
+    a: "S'han analitzat els diferents sistemes lògics d'emmagatzematge i les seues funcions."
+    b: "S'han identificat els diferents tipus de bases de dades segons el model de dades utilitzat."
+    c: "S'han identificat els diferents tipus de bases de dades en funció de la ubicació de la informació."
+    d: "S'ha reconegut la utilitat d'un sistema gestor de bases de dades."
+    e: "S'ha descrit la funció de cada un dels elements d'un sistema gestor de bases de dades."
+    f: "S'han classificat els sistemes gestors de bases de dades."
+RA2:
+  titulo: "Dissenya models lògics normalitzats interpretant diagrames entitat/relació."
+  ce:
+    a: "S'ha identificat el significat de la simbologia pròpia dels diagrames entitat/relació."
+    b: "S'han utilitzat ferramentes gràfiques per a representar el disseny lògic."
+    c: "S'han identificat les taules del disseny lògic."
+    d: "S'han identificat els camps que formen part de les taules del disseny lògic."
+    e: "S'han identificat les relacions entre les taules del disseny lògic."
+    f: "S'han definit els camps clau."
+    g: "S'han aplicat les regles d'integritat."
+    h: "S'han aplicat les regles de normalització fins a un nivell adequat."
+    i: "S'han identificat i documentat les restriccions que no poden plasmar-se en el disseny lògic."
+RA3:
+  titulo: "Realitza el disseny físic de bases de dades utilitzant assistents, ferramentes gràfiques i el llenguatge de definició de dades."
+  ce:
+    a: "S'han definit les estructures físiques d'emmagatzematge."
+    b: "S'han creat taules."
+    c: "S'han seleccionat els tipus de dades adequats."
+    d: "S'han definit els camps clau en les taules."
+    e: "S'han implantat totes les restriccions reflectides en el disseny lògic."
+    f: "S'ha verificat mitjançant un conjunt de dades de prova que la implementació s'ajusta al model."
+    g: "S'han utilitzat assistents i ferramentes gràfiques."
+    h: "S'ha utilitzat el llenguatge de definició de dades."
+    i: "S'ha definit i documentat el diccionari de dades."
+RA4:
+  titulo: "Consulta la informació emmagatzemada manejant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades."
+  ce:
+    a: "S'han identificat les ferramentes i sentències per a realitzar consultes."
+    b: "S'han realitzat consultes simples sobre una taula."
+    c: "S'han realitzat consultes que generen valors de resum."
+    d: "S'han realitzat consultes sobre el contingut de diverses taules mitjançant composicions internes."
+    e: "S'han realitzat consultes sobre el contingut de diverses taules mitjançant composicions externes."
+    f: "S'han realitzat consultes amb subconsultes."
+    g: "S'han valorat els avantatges i inconvenients de les diferents opcions vàlides per a dur a terme una consulta determinada."
+RA5:
+  titulo: "Modifica la informació emmagatzemada utilitzant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades."
+  ce:
+    a: "S'han identificat les ferramentes i sentències per a modificar el contingut de la base de dades."
+    b: "S'han inserit, esborrat i actualitzat dades en les taules."
+    c: "S'ha inclòs en una taula la informació resultant de l'execució d'una consulta."
+    d: "S'han adoptat mesures per a mantindre la integritat i consistència de la informació."
+    e: "S'han dissenyat guions de sentències per a dur a terme tasques complexes."
+    f: "S'ha reconegut el funcionament de les transaccions."
+    g: "S'han anul·lat parcial o totalment els canvis produïts per una transacció."
+    h: "S'han identificat els efectes de les diferents polítiques de bloqueig de registres."
+RA6:
+  titulo: "Executa tasques d'assegurament de la informació, analitzant-les i aplicant mecanismes de salvaguarda i transferència."
+  ce:
+    a: "S'han identificat ferramentes gràfiques i en línia d'ordres per a l'administració de còpies de seguretat."
+    b: "S'han realitzat còpies de seguretat."
+    c: "S'han restaurat còpies de seguretat."
+    d: "S'han identificat les ferramentes per a importar i exportar dades."
+    e: "S'han exportat dades a diversos formats."
+    f: "S'han importat dades amb diferents formats."
+    g: "S'ha interpretat correctament la informació subministrada pels missatges d'error i els fitxers de registre."
+    h: "S'ha transferit informació entre sistemes gestors."

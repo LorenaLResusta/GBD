@@ -1,0 +1,34 @@
+{{- /* Widget UD05: NUMBER(p, s) en Oracle. */ -}}
+{{- $id := printf "num-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-warning)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Calculadora de NUMBER(p, s) <span class="bd-w-sub">{{ "Oracle 26ai" }}</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Precisión p (dígitos en total) <input type="number" data-n="p" value="4" min="1" max="38"></label>
+      <label class="bd-f">Escala s (decimales) <input type="number" data-n="s" value="2" min="0" max="38"></label>
+      <label class="bd-f">Valor que se inserta <input type="text" data-n="v" value="7.256" size="12"></label>
+    </div>
+    <div class="bd-w-out" data-n="out" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-n="' + n + '"]'); };
+  function render() {
+    var p = Math.max(1, Math.min(38, parseInt(q('p').value, 10) || 1)), s = Math.max(0, Math.min(p, parseInt(q('s').value, 10) || 0));
+    var raw = q('v').value.trim().replace(',', '.'), v = Number(raw), out = q('out');
+    while (out.firstChild) out.removeChild(out.firstChild);
+    function P(cls, t) { var e = document.createElement('p'); if (cls) e.className = cls; e.textContent = t; out.appendChild(e); }
+    var lim = Math.pow(10, p - s), max = (lim - Math.pow(10, -s)).toFixed(s);
+    P('', 'NUMBER(' + p + ',' + s + ') admite ' + (p - s) + ' dígito(s) enteros y ' + s + ' decimal(es): de -' + max + ' a ' + max + '.');
+    if (raw === '' || !isFinite(v)) { P('warn', 'Escribe un número, por ejemplo 7.256.'); return; }
+    var f = Math.pow(10, s), r = Math.sign(v) * Math.round(Math.abs(v) * f + 1e-9) / f;
+    if (Math.abs(r) >= lim) P('ko', 'ORA-01438: valor mayor que el que permite la precisión especificada para esta columna. Tras redondear a ' + s + ' decimal(es) sería ' + r.toFixed(s) + ', que necesita más de ' + (p - s) + ' dígito(s) enteros.');
+    else P('ok', 'Se guarda ' + r.toFixed(s) + (r !== v ? ' (Oracle redondea al insertar; no da error)' : '') + '.');
+    P('bd-w-note', 'Regla: primero se redondea a s decimales y después se comprueba que quepan p − s dígitos enteros.');
+  }
+  ['p', 's', 'v'].forEach(function (n) { q(n).addEventListener('input', render); });
+  render();
+})();
+</script>

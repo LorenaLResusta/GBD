@@ -1,0 +1,55 @@
+{{- /*
+  Explicación interactiva en etapas (una etapa visible cada vez, con navegación).
+  {{% paso-a-paso titulo="Cómo se ejecuta una consulta" %}}
+  {{% etapa titulo="1. Parser" %}}Texto…{{% /etapa %}}
+  {{% etapa titulo="2. Optimizador" %}}Texto…{{% /etapa %}}
+  {{% /paso-a-paso %}}
+  Sin JavaScript se muestran todas las etapas seguidas.
+*/ -}}
+<div class="bd-pasos" data-titulo="{{ .Get "titulo" }}">
+
+{{ .Inner }}
+
+</div>
+{{- if not (.Page.Store.Get "bdPasosJS") -}}
+{{- .Page.Store.Set "bdPasosJS" true -}}
+<script>
+(function () {
+  function build(box) {
+    var et = Array.prototype.slice.call(box.querySelectorAll(':scope > .bd-etapa'));
+    if (et.length < 2) return;
+    box.classList.add('is-js');
+    var nav = document.createElement('div'); nav.className = 'bd-pasos-nav';
+    var head = document.createElement('div'); head.className = 'bd-pasos-head';
+    head.innerHTML = '<span class="bd-pasos-badge">Paso a paso</span> <strong>' + (box.dataset.titulo || '') + '</strong>';
+    var bar = document.createElement('div'); bar.className = 'bd-pasos-bar'; var fill = document.createElement('i'); bar.appendChild(fill);
+    var dots = document.createElement('div'); dots.className = 'bd-pasos-dots';
+    var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'bd-btn bd-btn--ghost'; prev.textContent = '← Anterior';
+    var next = document.createElement('button'); next.type = 'button'; next.className = 'bd-btn'; next.textContent = 'Siguiente →';
+    var cnt = document.createElement('span'); cnt.className = 'bd-pasos-count';
+    et.forEach(function (e, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-pasos-dot'; b.title = e.dataset.titulo || ('Paso ' + (i + 1)); b.textContent = i + 1;
+      b.addEventListener('click', function () { show(i); }); dots.appendChild(b);
+    });
+    var foot = document.createElement('div'); foot.className = 'bd-pasos-foot'; foot.appendChild(prev); foot.appendChild(cnt); foot.appendChild(next);
+    box.insertBefore(bar, box.firstChild); box.insertBefore(dots, box.firstChild); box.insertBefore(head, box.firstChild); box.appendChild(foot);
+    var cur = 0;
+    function show(i) {
+      cur = Math.max(0, Math.min(et.length - 1, i));
+      et.forEach(function (e, k) { e.hidden = k !== cur; });
+      Array.prototype.forEach.call(dots.children, function (d, k) { d.classList.toggle('on', k === cur); d.classList.toggle('done', k < cur); });
+      fill.style.width = ((cur + 1) / et.length * 100) + '%';
+      prev.disabled = cur === 0; next.disabled = cur === et.length - 1;
+      cnt.textContent = (cur + 1) + ' / ' + et.length + ' · ' + (et[cur].dataset.titulo || '');
+    }
+    prev.addEventListener('click', function () { show(cur - 1); });
+    next.addEventListener('click', function () { show(cur + 1); });
+    box.addEventListener('keydown', function (ev) { if (ev.key === 'ArrowRight') show(cur + 1); if (ev.key === 'ArrowLeft') show(cur - 1); });
+    box.tabIndex = 0;
+    show(0);
+  }
+  function init() { document.querySelectorAll('.bd-pasos').forEach(build); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+{{- end -}}

@@ -1,0 +1,78 @@
+{{- /* Widget UD03: probar qué conjuntos de columnas son claves (con datos reales de EduGest). */ -}}
+{{- $id := printf "clv-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-tip)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> ¿Es una clave? <span class="bd-w-sub">Datos reales de la tabla ALUMNO de EduGest (muestra de 14 filas)</span></div>
+  <div class="bd-w-body">
+    <p class="bd-w-note" style="margin-top:0">Pulsa una o varias columnas para formar un conjunto y comprueba si identifica a cada fila. Las filas repetidas se marcan en rojo.</p>
+    <div class="bd-chips" data-k="chips" role="group" aria-label="Columnas"></div>
+    <div style="overflow-x:auto"><table data-k="tab"></table></div>
+    <div class="bd-w-out" data-k="out" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-k="' + n + '"]'); };
+  var cols = ['id_alumno', 'nia', 'dni', 'nombre', 'apellidos', 'localidad', 'cod_grupo'];
+  var data = [
+    [1, '10450037', '55568986C', 'Adrián', 'Ferri Baeza', 'Alicante', '1DAM'],
+    [2, '10450074', '44154098D', 'Rubén', 'Iborra Ferri', 'Elche', '1DAM'],
+    [3, '10450111', '50814806D', 'Noelia', 'Verdú Espí', "Sant Joan d'Alacant", '1DAM'],
+    [4, '10450148', '36608302F', 'Paula', 'Ferri Baeza', 'Alicante', '1DAM'],
+    [5, '10450185', null, 'Andrea', 'Brotons Soriano', 'Alicante', '1DAM'],
+    [6, '10450222', '76096799B', 'Tomás', 'Cerdá Pérez', 'Alicante', '1DAM'],
+    [7, '10450259', '63874840E', 'Valeria', 'Quiles Marco', "Sant Joan d'Alacant", '1DAM'],
+    [8, '10450296', '75326361G', 'Iván', 'Ripoll Agulló', "Sant Joan d'Alacant", '2DAM'],
+    [9, '10450333', '73361397E', 'Martina', 'Alemany Vidal', 'Mutxamel', '2DAM'],
+    [10, '10450370', '72926056W', 'Nerea', 'Cerdá Tomás', 'San Vicente del Raspeig', '2DAM'],
+    [11, '10450407', '35988837R', 'Hugo', 'Brotons Iborra', 'Mutxamel', '2DAM'],
+    [12, '10450444', '76691674Z', 'Lucía', 'Belda Quiles', 'San Vicente del Raspeig', '2DAM'],
+    [14, '10450518', null, 'Carla', 'Valero Cerdá', 'Alicante', '1DAW'],
+    [30, '10451110', '24667071P', 'Zoe', 'Iborra Valero', "Sant Joan d'Alacant", null]
+  ];
+  var sel = {};
+  var chips = q('chips');
+  cols.forEach(function (c, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip'; b.textContent = c; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', function () { sel[i] = !sel[i]; b.classList.toggle('on', !!sel[i]); b.setAttribute('aria-pressed', String(!!sel[i])); render(); });
+    chips.appendChild(b);
+  });
+  var tab = q('tab');
+  function key(row, idx) { return idx.map(function (i) { return row[i] === null ? '\u0000NULL' : String(row[i]); }).join('\u0001'); }
+  function dupRows(idx) {
+    var seen = {}, dup = {};
+    data.forEach(function (r, n) { var k = key(r, idx); (seen[k] = seen[k] || []).push(n); });
+    Object.keys(seen).forEach(function (k) { if (seen[k].length > 1) seen[k].forEach(function (n) { dup[n] = true; }); });
+    return dup;
+  }
+  function subsets(idx) { var out = []; for (var m = 1; m < (1 << idx.length) - 1; m++) { var s = []; idx.forEach(function (v, j) { if (m & (1 << j)) s.push(v); }); out.push(s); } return out; }
+  function nm(idx) { return '(' + idx.map(function (i) { return cols[i]; }).join(', ') + ')'; }
+  function render() {
+    var idx = []; cols.forEach(function (c, i) { if (sel[i]) idx.push(i); });
+    var dup = idx.length ? dupRows(idx) : {};
+    while (tab.firstChild) tab.removeChild(tab.firstChild);
+    var th = document.createElement('tr'); cols.forEach(function (c, i) { var h = document.createElement('th'); h.textContent = c; if (sel[i]) h.style.textDecoration = 'underline'; th.appendChild(h); }); tab.appendChild(th);
+    data.forEach(function (r, n) {
+      var tr = document.createElement('tr'); if (dup[n]) tr.className = 'dup'; else if (idx.length) tr.className = 'sel';
+      r.forEach(function (v, i) { var td = document.createElement('td'); if (v === null) { td.textContent = 'NULL'; td.className = 'null'; } else td.textContent = v; if (sel[i]) td.style.fontWeight = '700'; tr.appendChild(td); });
+      tab.appendChild(tr);
+    });
+    var out = q('out'); while (out.firstChild) out.removeChild(out.firstChild);
+    function P(cls, t) { var p = document.createElement('p'); if (cls) p.className = cls; p.textContent = t; out.appendChild(p); return p; }
+    if (!idx.length) { P('', 'Selecciona al menos una columna.'); return; }
+    var hasNull = data.some(function (r) { return idx.some(function (i) { return r[i] === null; }); });
+    var nd = Object.keys(dup).length;
+    if (nd) {
+      P('ko', nm(idx) + ' NO identifica las filas: ' + nd + ' filas comparten valores. No puede ser clave.');
+    } else {
+      var smaller = subsets(idx).filter(function (s) { return !Object.keys(dupRows(s)).length; });
+      if (hasNull) P('warn', nm(idx) + ' no repite valores en esta muestra, pero contiene NULL: no puede ser clave primaria (sí podría ser UNIQUE).');
+      else if (smaller.length) P('warn', nm(idx) + ' identifica las filas, pero NO es mínima: ya basta con ' + nm(smaller[0]) + '. Es una superclave.');
+      else P('ok', nm(idx) + ' identifica todas las filas, sin NULL y sin columnas sobrantes: cumple lo que se exige a una clave candidata.');
+    }
+    var p = P('', ''); p.className = 'bd-w-note';
+    p.textContent = 'Atención: esto solo comprueba los datos de hoy. Una clave es una propiedad del significado del problema, no de la muestra: «nombre» no se repite aquí y, aun así, jamás será una clave válida. Antes de elegir la clave primaria pregúntate si el valor puede repetirse, cambiar o faltar en el futuro.';
+  }
+  render();
+})();
+</script>

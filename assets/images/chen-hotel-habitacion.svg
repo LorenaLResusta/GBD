@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 390" width="1000" height="390" role="img" aria-labelledby="t d" font-family='system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'>
+<title id="t">HOTEL contiene HABITACION (entidad débil)</title><desc id="d">HOTEL contiene HABITACION (entidad débil)</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e293b"/></linearGradient></defs>
+<style>.hot{cursor:pointer;transition:filter .15s}.hot:hover,.hot:focus,.hot.on{filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,255,255,.35));outline:none}</style>
+<rect width="1000" height="390" rx="12" fill="url(#bg)"/>
+<rect x="65.0" y="162.0" width="170.0" height="56.0" rx="2" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="150.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">HOTEL</text>
+<rect x="765.0" y="162.0" width="170.0" height="56.0" rx="2" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+<text x="850.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">HABITACION</text>
+<rect x="771.0" y="168.0" width="158.0" height="44.0" rx="0" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+<line x1="235.0" y1="190.0" x2="415.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<line x1="585.0" y1="190.0" x2="765.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="La habitación 101 existe en muchos hoteles: solo se identifica junto a su hotel (clave parcial + PK del hotel).">
+<polygon points="500,149.0 585.0,190 500,231.0 415.0,190" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<polygon points="500,157.2 568.0,190 500,222.8 432.0,190" fill="none" stroke="#34d399" stroke-width="1.4"/>
+<text x="500.0" y="194.9" font-size="14" fill="#fff" text-anchor="middle" font-weight="700">CONTIENE</text>
+</g>
+<text x="271.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">1</text>
+<text x="729.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">N</text>
+<line x1="150.0" y1="162.0" x2="150.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="150.0" cy="80.0" rx="37.9" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="150.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">id_hotel</text>
+<line x1="150.0" y1="218.0" x2="150.0" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="150.0" cy="300.0" rx="37.4" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="150.0" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">nombre</text>
+<line x1="850.0" y1="162.0" x2="850.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="850.0" cy="80.0" rx="61.4" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8" stroke-dasharray="4 3"/>
+<text x="850.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">num_habitacion</text>
+<line x1="828.8" y1="218.0" x2="789.5" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="789.5" cy="300.0" rx="44.8" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="789.5" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">capacidad</text>
+<line x1="868.1" y1="218.0" x2="901.8" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="901.8" cy="300.0" rx="53.5" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="901.8" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">precio_noche</text>
+</svg>

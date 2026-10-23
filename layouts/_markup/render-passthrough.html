@@ -1,0 +1,9 @@
+{{- /* Fórmulas LaTeX ($...$ y $$...$$) renderizadas en el servidor con KaTeX */ -}}
+{{- $opts := dict "output" "htmlAndMathml" "displayMode" (eq .Type "block") "strict" "ignore" -}}
+{{- with try (transform.ToMath .Inner $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "No se pudo renderizar la fórmula %q: %s (%s)" $.Inner . $.Position -}}
+  {{- else -}}
+    {{- .Value -}}
+  {{- end -}}
+{{- end -}}

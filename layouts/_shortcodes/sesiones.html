@@ -1,0 +1,44 @@
+{{- /*
+  Temporalización de una unidad. El contenido es YAML:
+  {{< sesiones unidad="UD02" horas="19" >}}
+  items:
+    - {h: 2, tipo: T, t: "Contenido", ref: "§1, §2.1"}
+  autonomo:
+    - "Práctica 2.3 (2 sesiones)"
+  {{< /sesiones >}}
+  Comprueba en la compilación que la suma de horas coincide con las de la unidad.
+*/ -}}
+{{- $o := .Inner | transform.Unmarshal -}}
+{{- $uni := .Get "unidad" -}}
+{{- $tot := int (.Get "horas") -}}
+{{- $sc := newScratch -}}
+{{- range $o.items }}{{ $sc.Add (upper .tipo) (int .h) }}{{ end -}}
+{{- $T := default 0 ($sc.Get "T") -}}{{- $P := default 0 ($sc.Get "P") -}}{{- $E := default 0 ($sc.Get "E") -}}
+{{- $sum := add (add $T $P) $E -}}
+{{- if ne $sum $tot }}{{ errorf "sesiones %s: las sesiones suman %d h y la unidad tiene %d h" $uni $sum $tot }}{{ end -}}
+{{- $u := dict -}}
+{{- range site.Data.planificacion.unidades }}{{ if eq .c $uni }}{{ $u = . }}{{ end }}{{ end -}}
+{{- if and $u (ne (int $u.h) $tot) }}{{ errorf "sesiones %s: planificacion.json asigna %d h y la página declara %d h" $uni (int $u.h) $tot }}{{ end -}}
+<div class="bd-temp">
+  <div class="bd-temp-head">
+    <strong>{{ $uni }} · {{ $tot }} {{ if eq site.Language.Lang "val" }}hores d'aula{{ else }}horas de aula{{ end }}</strong>
+    <span>{{ i18n "ses_teoria" }} {{ $T }} h · {{ i18n "practica" }} {{ $P }} h{{ if $E }} · {{ i18n "ses_eval" }} {{ $E }} h{{ end }}</span>
+    {{- with $u }}<span>Del {{ time.AsTime .ini | time.Format "02/01/2006" }} al {{ time.AsTime .fin | time.Format "02/01/2006" }}</span>{{ end }}
+  </div>
+  <div class="bd-temp-bar" role="img" aria-label="{{ if eq site.Language.Lang "val" }}Repartiment d'hores{{ else }}Reparto de horas{{ end }}">
+    <i class="t" style="width:{{ div (mul $T 100.0) $tot }}%"></i><i class="p" style="width:{{ div (mul $P 100.0) $tot }}%"></i><i class="e" style="width:{{ div (mul $E 100.0) $tot }}%"></i>
+  </div>
+  <table>
+    <thead><tr>{{ if eq site.Language.Lang "val" }}<th>Sessió</th><th>Hores</th><th>Tipus</th><th>Contingut</th>{{ else }}<th>Sesión</th><th>Horas</th><th>Tipo</th><th>Contenido</th>{{ end }}</tr></thead>
+    <tbody>
+    {{- range $i, $it := $o.items }}
+    <tr><td>{{ add $i 1 }}</td><td>{{ $it.h }}</td>
+      <td><span class="bd-pilltp {{ lower $it.tipo }}">{{ index (dict "T" (i18n "ses_teoria") "P" (i18n "practica") "E" (i18n "ses_eval")) (upper $it.tipo) }}</span></td>
+      <td>{{ $it.t | markdownify }}</td></tr>
+    {{- end }}
+    </tbody>
+  </table>
+  {{- with $o.autonomo }}
+  <div class="bd-w-note" style="padding:0 .9rem .6rem"><strong>{{ if eq site.Language.Lang "val" }}Treball autònom (fora de l'horari d'aula):{{ else }}Trabajo autónomo (fuera del horario de aula):{{ end }}</strong> {{ delimit . " · " | markdownify }}</div>
+  {{- end }}
+</div>

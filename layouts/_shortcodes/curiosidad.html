@@ -1,0 +1,12 @@
+{{- /*
+  Curiosidad desplegable. Uso:
+  {{% curiosidad titulo="¿Por qué se llama SQL «sikuel»?" %}}Texto con **markdown**.{{% /curiosidad %}}
+*/ -}}
+<details class="bd-curio">
+  <summary><span class="bd-curio-ico" aria-hidden="true">💡</span> <span class="bd-curio-label">{{ i18n "curiosidad" }}</span> <span class="bd-curio-q">{{ .Get "titulo" | default (i18n "sabias") }}</span></summary>
+  <div class="bd-curio-body">
+
+{{ .Inner }}
+
+  </div>
+</details>

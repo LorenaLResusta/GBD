@@ -1,0 +1,98 @@
+{{- /* Widget UD05: generador de CREATE TABLE con restricciones con nombre. */ -}}
+{{- $id := printf "ddl-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-tip)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Constructor de CREATE TABLE <span class="bd-w-sub">Oracle 26ai · restricciones siempre con nombre</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Tabla <input type="text" data-d="tabla" value="ciclo" size="14"></label>
+      <button type="button" class="ghost" data-d="p1">Ejemplo: CICLO</button>
+      <button type="button" class="ghost" data-d="p2">Ejemplo: MATRICULA</button>
+      <button type="button" class="ghost" data-d="add">+ columna</button>
+    </div>
+    <div style="overflow-x:auto"><table data-d="cols"></table></div>
+    <p class="bd-w-note">PK: marca varias columnas para una clave primaria compuesta. FK: escribe <code>tabla(columna)</code>. CHECK: la condición sin la palabra CHECK.</p>
+    <div data-d="avisos" aria-live="polite"></div>
+    <pre data-d="sql"></pre>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-d="' + n + '"]'); };
+  var TIPOS = ['VARCHAR2', 'CHAR', 'NUMBER', 'DATE', 'TIMESTAMP', 'BOOLEAN', 'CLOB'];
+  var RESERV = ['DATE', 'NUMBER', 'USER', 'LEVEL', 'SIZE', 'COMMENT', 'ORDER', 'GROUP', 'SELECT', 'TABLE', 'INDEX', 'MODE', 'ROW', 'ROWID', 'SESSION', 'START', 'UID', 'VIEW', 'FILE', 'VALUE'];
+  var cols = [];
+  var tb = q('cols');
+  function nueva(o) { return Object.assign({ n: '', t: 'VARCHAR2', a: '50', b: '', pk: false, nn: false, uq: false, def: '', ck: '', fk: '', od: '' }, o || {}); }
+  function cell(tr, el) { var td = document.createElement('td'); td.appendChild(el); tr.appendChild(td); return el; }
+  function inp(c, k, size, ph) { var i = document.createElement('input'); i.type = 'text'; i.size = size; i.value = c[k]; i.placeholder = ph || ''; i.style.minWidth = '3rem'; i.addEventListener('input', function () { c[k] = i.value; out(); }); return i; }
+  function chk(c, k, lab) { var i = document.createElement('input'); i.type = 'checkbox'; i.checked = c[k]; i.setAttribute('aria-label', lab); i.addEventListener('change', function () { c[k] = i.checked; out(); }); return i; }
+  function build() {
+    while (tb.firstChild) tb.removeChild(tb.firstChild);
+    var h = document.createElement('tr'); ['Columna', 'Tipo', 'Tamaño', 'PK', 'NOT NULL', 'UNIQUE', 'DEFAULT', 'CHECK', 'FK → tabla(col)', 'ON DELETE', ''].forEach(function (t) { var th = document.createElement('th'); th.textContent = t; h.appendChild(th); }); tb.appendChild(h);
+    cols.forEach(function (c, idx) {
+      var tr = document.createElement('tr');
+      cell(tr, inp(c, 'n', 12, 'nombre'));
+      var s = document.createElement('select'); TIPOS.forEach(function (t) { var o = document.createElement('option'); o.value = o.textContent = t; if (t === c.t) o.selected = true; s.appendChild(o); });
+      s.addEventListener('change', function () { c.t = s.value; if (s.value === 'NUMBER') { c.a = '6'; c.b = ''; } else if (s.value === 'VARCHAR2' || s.value === 'CHAR') { c.a = c.a || '50'; } build(); out(); }); cell(tr, s);
+      var sz = document.createElement('span'); sz.style.whiteSpace = 'nowrap';
+      var usa = c.t === 'VARCHAR2' || c.t === 'CHAR' || c.t === 'NUMBER';
+      if (usa) { var a = inp(c, 'a', 3, c.t === 'NUMBER' ? 'p' : 'n'); sz.appendChild(a); if (c.t === 'NUMBER') { var b = inp(c, 'b', 2, 's'); sz.appendChild(document.createTextNode(',')); sz.appendChild(b); } } else sz.textContent = '—';
+      cell(tr, sz);
+      cell(tr, chk(c, 'pk', 'Clave primaria')); cell(tr, chk(c, 'nn', 'No nulo')); cell(tr, chk(c, 'uq', 'Única'));
+      cell(tr, inp(c, 'def', 8, "'SUPERIOR'")); cell(tr, inp(c, 'ck', 14, "turno IN ('M','T')")); cell(tr, inp(c, 'fk', 12, 'grupo(cod_grupo)'));
+      var od = document.createElement('select'); [['', '(rechazar)'], ['CASCADE', 'CASCADE'], ['SET NULL', 'SET NULL']].forEach(function (p) { var o = document.createElement('option'); o.value = p[0]; o.textContent = p[1]; if (c.od === p[0]) o.selected = true; od.appendChild(o); });
+      od.addEventListener('change', function () { c.od = od.value; out(); }); cell(tr, od);
+      var del = document.createElement('button'); del.type = 'button'; del.className = 'ghost'; del.textContent = '✕'; del.setAttribute('aria-label', 'Quitar columna'); del.addEventListener('click', function () { cols.splice(idx, 1); build(); out(); }); cell(tr, del);
+      tb.appendChild(tr);
+    });
+  }
+  function ident(s) { return (s || '').trim().toLowerCase(); }
+  function tipoSql(c) {
+    if (c.t === 'VARCHAR2' || c.t === 'CHAR') return c.t + '(' + (c.a || '?') + ')';
+    if (c.t === 'NUMBER') return c.a ? 'NUMBER(' + c.a + (c.b !== '' ? ',' + c.b : '') + ')' : 'NUMBER';
+    return c.t;
+  }
+  function out() {
+    var t = ident(q('tabla').value) || 'tabla', av = [], lines = [], cons = [];
+    var pk = cols.filter(function (c) { return c.pk && ident(c.n); });
+    cols.forEach(function (c) {
+      var n = ident(c.n); if (!n) return;
+      var l = n + ' ' + tipoSql(c);
+      if (c.def.trim()) l += ' DEFAULT ' + c.def.trim();
+      if (c.nn && !c.pk) l += ' CONSTRAINT nn_' + t + '_' + n + ' NOT NULL';
+      lines.push(l);
+      if (c.uq && !c.pk) cons.push('CONSTRAINT uq_' + t + '_' + n + ' UNIQUE (' + n + ')');
+      if (c.ck.trim()) cons.push('CONSTRAINT ck_' + t + '_' + n + ' CHECK (' + c.ck.trim() + ')');
+      var m = /^\s*([a-z0-9_]+)\s*\(\s*([a-z0-9_]+)\s*\)\s*$/i.exec(c.fk);
+      if (c.fk.trim() && !m) av.push(['warn', 'La clave ajena de «' + n + '» debe escribirse como tabla(columna).']);
+      if (m) { cons.push('CONSTRAINT fk_' + t + '_' + n + ' FOREIGN KEY (' + n + ') REFERENCES ' + m[1].toLowerCase() + ' (' + m[2].toLowerCase() + ')' + (c.od ? ' ON DELETE ' + c.od : '')); if (c.od === 'SET NULL' && (c.nn || c.pk)) av.push(['ko', '«' + n + '» es NOT NULL/PK y tiene ON DELETE SET NULL: Oracle fallará con ORA-01407 al borrar el padre.']); }
+      if (!/^[a-z][a-z0-9_$#]*$/.test(n)) av.push(['ko', '«' + n + '» no es un identificador válido: empieza por letra y usa letras, números y _ $ #.']);
+      if (RESERV.indexOf(n.toUpperCase()) >= 0) av.push(['ko', '«' + n + '» es una palabra reservada de Oracle: elige otro nombre (ORA-00904 / ORA-00903).']);
+      if (c.t === 'BOOLEAN') av.push(['warn', 'BOOLEAN solo existe desde Oracle 23ai. En 19c se usaría NUMBER(1) con CHECK (col IN (0,1)).']);
+      if (c.t === 'NUMBER' && !c.a) av.push(['warn', '«' + n + '»: NUMBER sin precisión admite cualquier número; define NUMBER(p,s) para validar.']);
+      if ((c.t === 'VARCHAR2' || c.t === 'CHAR') && !(parseInt(c.a, 10) > 0)) av.push(['ko', '«' + n + '»: indica el tamaño del texto.']);
+      if (c.t === 'CHAR' && !/dni|cod|iso|nif|cp/.test(n)) av.push(['warn', '«' + n + '» es CHAR: ¿su longitud es siempre la misma? Si no, usa VARCHAR2.']);
+      if (c.t === 'NUMBER' && /telefono|dni|cod_?postal|cp$/.test(n)) av.push(['warn', '«' + n + '»: no se opera con él y puede empezar por 0; mejor texto.']);
+    });
+    if (pk.length === 1) { var k = ident(pk[0].n); cons.unshift('CONSTRAINT pk_' + t + ' PRIMARY KEY (' + k + ')'); }
+    else if (pk.length > 1) cons.unshift('CONSTRAINT pk_' + t + ' PRIMARY KEY (' + pk.map(function (c) { return ident(c.n); }).join(', ') + ')');
+    else av.push(['warn', 'La tabla no tiene clave primaria: nada identifica cada fila.']);
+    var names = cols.map(function (c) { return ident(c.n); }).filter(Boolean);
+    names.forEach(function (n, i) { if (names.indexOf(n) !== i) av.push(['ko', 'Columna repetida: ' + n + ' (ORA-00957).']); });
+    q('sql').textContent = lines.length ? 'CREATE TABLE ' + t + ' (\n' + lines.concat(cons).map(function (x) { return '    ' + x; }).join(',\n') + '\n);' : '-- Añade al menos una columna';
+    var box = q('avisos'); while (box.firstChild) box.removeChild(box.firstChild);
+    var seen = {}; av.forEach(function (a) { if (seen[a[1]]) return; seen[a[1]] = 1; var p = document.createElement('p'); p.className = a[0]; p.style.margin = '.15rem 0'; p.textContent = (a[0] === 'ko' ? '✕ ' : '⚠ ') + a[1]; box.appendChild(p); });
+    if (!av.length && lines.length) { var ok = document.createElement('p'); ok.className = 'ok'; ok.textContent = '✓ Sin avisos.'; box.appendChild(ok); }
+  }
+  function ejemplo(n) {
+    if (n === 1) { q('tabla').value = 'ciclo'; cols = [nueva({ n: 'cod_ciclo', t: 'VARCHAR2', a: '5', pk: true }), nueva({ n: 'nombre', a: '100', nn: true }), nueva({ n: 'grado', a: '8', nn: true, def: "'SUPERIOR'", ck: "grado IN ('MEDIO','SUPERIOR')" }), nueva({ n: 'horas_totales', t: 'NUMBER', a: '4' })]; }
+    else { q('tabla').value = 'matricula'; cols = [nueva({ n: 'id_alumno', t: 'NUMBER', a: '6', pk: true, fk: 'alumno(id_alumno)', od: 'CASCADE' }), nueva({ n: 'id_modulo', t: 'NUMBER', a: '5', pk: true, fk: 'modulo(id_modulo)' }), nueva({ n: 'curso_academico', t: 'CHAR', a: '7', pk: true, ck: "REGEXP_LIKE(curso_academico, '^[0-9]{4}-[0-9]{2}$')" }), nueva({ n: 'nota_final', t: 'NUMBER', a: '4', b: '2', ck: 'nota_final BETWEEN 0 AND 10' })]; }
+    build(); out();
+  }
+  q('p1').addEventListener('click', function () { ejemplo(1); }); q('p2').addEventListener('click', function () { ejemplo(2); });
+  q('add').addEventListener('click', function () { cols.push(nueva()); build(); out(); });
+  q('tabla').addEventListener('input', out);
+  ejemplo(1);
+})();
+</script>

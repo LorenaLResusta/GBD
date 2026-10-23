@@ -1,0 +1,79 @@
+{{- /*
+  Gráfico interactivo sin dependencias (SVG generado en el navegador).
+  {{< grafico tipo="barras" titulo="Lecturas de bloque" datos="Sin índice=10000;Con índice=4" unidad="bloques" log="true" nota="Modelo simplificado." >}}
+  tipo: barras | lineas · datos: «etiqueta=valor» separados por «;»
+  log="true" añade un conmutador lineal/logarítmico. horizontal="true" para barras horizontales.
+*/ -}}
+<figure class="bd-grafico" data-tipo="{{ .Get "tipo" | default "barras" }}" data-datos="{{ .Get "datos" }}" data-unidad="{{ .Get "unidad" }}" data-log="{{ .Get "log" }}" data-h="{{ .Get "horizontal" }}">
+  {{- with .Get "titulo" }}<div class="bd-grafico-t">{{ . }}</div>{{ end }}
+  <div class="bd-grafico-canvas"></div>
+  <output class="bd-grafico-tip" aria-live="polite">Pasa el ratón o pulsa una barra para ver su valor.</output>
+  {{- with .Get "nota" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- if not (.Page.Store.Get "bdGraficoJS") -}}
+{{- .Page.Store.Set "bdGraficoJS" true -}}
+<script>
+(function () {
+  var COL = ['#38bdf8', '#34d399', '#fbbf24', '#f472b6', '#a78bfa', '#f87171', '#22d3ee', '#fb923c'];
+  function fmt(v) { return v.toLocaleString('es-ES', { maximumFractionDigits: 2 }); }
+  function draw(fig, log) {
+    var data = fig.dataset.datos.split(';').map(function (p) { var q = p.split('='); return { l: q[0].trim(), v: parseFloat(q[1]) }; });
+    var tipo = fig.dataset.tipo, u = fig.dataset.unidad || '', horiz = fig.dataset.h === 'true';
+    var W = 640, H = horiz ? 60 + data.length * 44 : 300, L = horiz ? 150 : 84, R = 24, T = 20, B = horiz ? 30 : 56;
+    var max = Math.max.apply(null, data.map(function (d) { return d.v; }));
+    function sc(v) { if (log) return Math.log10(Math.max(v, 1)) / Math.log10(Math.max(max, 10)); return v / max; }
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" class="bd-gsvg">';
+    var plotW = W - L - R, plotH = H - T - B;
+    for (var i = 0; i <= 4; i++) {
+      var f = i / 4, val = log ? Math.pow(Math.max(max, 10), f) : max * f;
+      if (horiz) { var x = L + plotW * f; s += '<line x1="' + x + '" y1="' + T + '" x2="' + x + '" y2="' + (H - B) + '" class="g"/><text x="' + x + '" y="' + (H - B + 16) + '" text-anchor="middle" class="ax">' + fmt(Math.round(val)) + '</text>'; }
+      else { var y = T + plotH * (1 - f); s += '<line x1="' + L + '" y1="' + y + '" x2="' + (W - R) + '" y2="' + y + '" class="g"/><text x="' + (L - 8) + '" y="' + (y + 4) + '" text-anchor="end" class="ax">' + fmt(Math.round(val)) + '</text>'; }
+    }
+    var n = data.length, pts = [];
+    data.forEach(function (d, i) {
+      var c = COL[i % COL.length], k = Math.max(sc(d.v), 0.004);
+      var tt = d.l + ': ' + fmt(d.v) + (u ? ' ' + u : '');
+      if (tipo === 'lineas') {
+        var x = L + (n === 1 ? plotW / 2 : plotW * i / (n - 1)), y = T + plotH * (1 - k);
+        pts.push([x, y]);
+        s += '<text x="' + x + '" y="' + (H - B + 18) + '" text-anchor="middle" class="ax">' + d.l + '</text>';
+        d.x = x; d.y = y; d.c = c; d.t = tt;
+      } else if (horiz) {
+        var bh = 28, y = T + 8 + i * 44, w = plotW * k;
+        s += '<text x="' + (L - 8) + '" y="' + (y + 19) + '" text-anchor="end" class="ax">' + d.l + '</text>' +
+          '<rect class="bar" data-t="' + tt + '" x="' + L + '" y="' + y + '" height="' + bh + '" width="' + w + '" rx="4" fill="' + c + '" tabindex="0"/>' +
+          '<text x="' + (L + w + 6) + '" y="' + (y + 19) + '" class="val">' + fmt(d.v) + '</text>';
+      } else {
+        var bw = Math.min(70, plotW / n * 0.62), x = L + plotW / n * (i + 0.5) - bw / 2, h = plotH * k;
+        s += '<rect class="bar" data-t="' + tt + '" x="' + x + '" y="' + (T + plotH - h) + '" width="' + bw + '" height="' + h + '" rx="4" fill="' + c + '" tabindex="0"/>' +
+          '<text x="' + (x + bw / 2) + '" y="' + (T + plotH - h - 6) + '" text-anchor="middle" class="val">' + fmt(d.v) + '</text>' +
+          '<text x="' + (x + bw / 2) + '" y="' + (H - B + 18) + '" text-anchor="middle" class="ax">' + d.l + '</text>';
+      }
+    });
+    if (tipo === 'lineas') {
+      s += '<polyline fill="none" stroke="#38bdf8" stroke-width="3" points="' + pts.map(function (p) { return p.join(','); }).join(' ') + '"/>';
+      data.forEach(function (d) { s += '<circle class="bar" data-t="' + d.t + '" cx="' + d.x + '" cy="' + d.y + '" r="7" fill="' + d.c + '" tabindex="0"/>'; });
+    }
+    s += '</svg>';
+    fig.querySelector('.bd-grafico-canvas').innerHTML = s;
+  }
+  function init() {
+    document.querySelectorAll('.bd-grafico').forEach(function (fig) {
+      if (fig.dataset.log === 'true') {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-btn bd-btn--ghost bd-grafico-sw'; b.textContent = 'Escala: lineal';
+        var log = false;
+        b.addEventListener('click', function () { log = !log; b.textContent = 'Escala: ' + (log ? 'logarítmica' : 'lineal'); draw(fig, log); });
+        fig.insertBefore(b, fig.querySelector('.bd-grafico-canvas'));
+      }
+      draw(fig, false);
+    });
+  }
+  function tip(ev) {
+    var b = ev.target.closest && ev.target.closest('.bar'); if (!b) return;
+    var o = b.closest('.bd-grafico').querySelector('.bd-grafico-tip'); o.textContent = b.getAttribute('data-t'); o.classList.add('has');
+  }
+  ['mouseover', 'click', 'focusin'].forEach(function (t) { document.addEventListener(t, tip); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+{{- end -}}

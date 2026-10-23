@@ -1,0 +1,30 @@
+{{- /*
+  Tarjetas para repasar vocabulario (se giran al pulsarlas). El contenido es YAML:
+  {{< tarjetas titulo="Vocabulario" >}}
+  - t: "Tupla"
+    d: "Fila de una relación."
+  {{< /tarjetas >}}
+*/ -}}
+{{- $items := .Inner | transform.Unmarshal -}}
+<div class="bd-cartas">
+  <div class="bd-cartas-head">{{ .Get "titulo" | default (i18n "repasa") }} <span>{{ i18n "gira" }}</span></div>
+  <div class="bd-cartas-grid">
+  {{- range $items }}
+    <button type="button" class="bd-carta" aria-pressed="false">
+      <span class="bd-carta-in">
+        <span class="bd-carta-f bd-carta-front">{{ .t }}</span>
+        <span class="bd-carta-f bd-carta-back">{{ .d }}</span>
+      </span>
+    </button>
+  {{- end }}
+  </div>
+</div>
+{{- if not (.Page.Store.Get "bdCartasJS") -}}
+{{- .Page.Store.Set "bdCartasJS" true -}}
+<script>
+document.addEventListener('click', function (ev) {
+  var c = ev.target.closest('.bd-carta'); if (!c) return;
+  var on = c.classList.toggle('flip'); c.setAttribute('aria-pressed', on);
+});
+</script>
+{{- end -}}

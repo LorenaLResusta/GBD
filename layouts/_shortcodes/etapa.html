@@ -1,0 +1,6 @@
+<section class="bd-etapa" data-titulo="{{ .Get "titulo" }}">
+{{ if .Get "titulo" }}<h4 class="bd-etapa-t">{{ .Get "titulo" }}</h4>{{ end }}
+
+{{ .Inner }}
+
+</section>

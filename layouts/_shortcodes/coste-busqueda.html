@@ -1,0 +1,43 @@
+{{- /*
+  Laboratorio interactivo: cuántos bloques lee una búsqueda con y sin índice.
+  {{< coste-busqueda >}}  (modelo simplificado: filas por bloque y fan-out del B-tree configurables)
+*/ -}}
+<div class="bd-lab bd-coste" data-rpb="{{ .Get "filas_bloque" | default 100 }}" data-fan="{{ .Get "fanout" | default 200 }}">
+  <div class="bd-lab-head">Laboratorio · ¿Cuánto cuesta buscar una fila?</div>
+  <label class="bd-coste-row">Filas de la tabla: <strong class="bd-coste-n"></strong>
+    <input type="range" min="2" max="9" step="0.05" value="5" class="bd-coste-r" aria-label="Número de filas (escala logarítmica)">
+  </label>
+  <div class="bd-coste-bars">
+    <div class="bd-coste-line"><span>Recorrido completo (sin índice)</span><div class="bd-coste-track"><i class="a"></i></div><b class="bd-coste-va"></b></div>
+    <div class="bd-coste-line"><span>Búsqueda con índice B-tree</span><div class="bd-coste-track"><i class="b"></i></div><b class="bd-coste-vb"></b></div>
+  </div>
+  <p class="bd-coste-txt" aria-live="polite"></p>
+  <p class="bd-lab-note">Modelo simplificado: {{ .Get "filas_bloque" | default 100 }} filas por bloque, un B-tree con ~{{ .Get "fanout" | default 200 }} claves por nodo y acceso a una sola fila por clave única. La barra usa escala logarítmica.</p>
+</div>
+{{- if not (.Page.Store.Get "bdCosteJS") -}}
+{{- .Page.Store.Set "bdCosteJS" true -}}
+<script>
+(function () {
+  function f(v) { return Math.round(v).toLocaleString('es-ES'); }
+  function init() {
+    document.querySelectorAll('.bd-coste').forEach(function (box) {
+      var rpb = +box.dataset.rpb, fan = +box.dataset.fan;
+      var r = box.querySelector('.bd-coste-r');
+      function upd() {
+        var n = Math.round(Math.pow(10, +r.value)), blocks = Math.ceil(n / rpb);
+        var h = Math.max(1, Math.ceil(Math.log(n) / Math.log(fan))) + 1;
+        var max = Math.log10(blocks + 1);
+        box.querySelector('.bd-coste-n').textContent = f(n);
+        box.querySelector('.bd-coste-va').textContent = f(blocks) + ' bloques';
+        box.querySelector('.bd-coste-vb').textContent = h + ' bloques';
+        box.querySelector('.bd-coste-track .a').style.width = '100%';
+        box.querySelector('.bd-coste-track .b').style.width = Math.max(3, Math.log10(h + 1) / max * 100) + '%';
+        box.querySelector('.bd-coste-txt').textContent = 'Sin índice el SGBD lee todos los bloques (' + f(blocks) + '). Con índice baja por el árbol: ' + h + ' lecturas, unas ' + f(blocks / h) + ' veces menos.';
+      }
+      r.addEventListener('input', upd); upd();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+{{- end -}}

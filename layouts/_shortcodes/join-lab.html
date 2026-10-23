@@ -1,0 +1,124 @@
+{{- /* Widget UD06: laboratorio de composiciones sobre GRUPO y PROFESOR de EduGest. */ -}}
+{{- $id := printf "joi-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-note)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Laboratorio de composiciones <span class="bd-w-sub">GRUPO (6 filas) y PROFESOR (7 filas) de EduGest · simulación didáctica, no es un SGBD</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-cols">
+      <div>
+        <p style="margin:0 0 .3rem"><strong>GRUPO</strong> (<code>id_tutor</code> es clave ajena opcional)</p>
+        <table data-j="tg"></table>
+      </div>
+      <div>
+        <p style="margin:0 0 .3rem"><strong>PROFESOR</strong> (muestra de 7)</p>
+        <table data-j="tp"></table>
+      </div>
+    </div>
+    <p style="margin:.7rem 0 .3rem"><strong>0 · Predicción</strong></p>
+    <div class="bd-w-row">
+      <label class="bd-f">¿Cuántas filas crees que saldrán con el ajuste actual? <input type="number" data-j="pred" min="0" max="99" placeholder="nº de filas"></label>
+      <button type="button" data-j="check">Comprobar</button>
+    </div>
+    <div class="bd-w-out" data-j="fb" aria-live="polite">Escribe tu predicción y pulsa «Comprobar» para ver el resultado.</div>
+    <p style="margin:.7rem 0 .3rem"><strong>1 · Tipo de composición</strong></p>
+    <div class="bd-w-row">
+      <label class="bd-f">Composición
+        <select data-j="type"><option>INNER JOIN</option><option>LEFT JOIN</option><option>RIGHT JOIN</option><option>FULL JOIN</option><option>CROSS JOIN</option></select></label>
+    </div>
+    <p style="margin:.3rem 0 .3rem"><strong>2 · Las dos trampas</strong></p>
+    <div><label><input type="checkbox" data-j="fil"> (a) añadir un filtro en el <code>WHERE</code> sobre la tabla opcional <span data-j="filtxt"></span></label></div>
+    <div><label><input type="checkbox" data-j="on" disabled> (b) mover ese filtro al <code>ON</code> en lugar del <code>WHERE</code></label></div>
+    <pre data-j="sql"></pre>
+    <div class="bd-w-out" data-j="msg" aria-live="polite"></div>
+    <div data-j="resbox" hidden>
+      <div style="overflow-x:auto;max-height:22rem;overflow-y:auto"><table data-j="res"></table></div>
+      <p class="bd-w-note" data-j="legend"></p>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-j="' + n + '"]'); };
+  var G = [['1DAM','M',103],['2DAM','M',104],['1DAW','T',106],['2DAW','T',107],['1ASIR','M',105],['2ASIR','M',null]];
+  var P = [[101,'Marta','Informática'],[102,'Javier','Sistemas y Aplicaciones Informáticas'],[103,'Lucía','Informática'],[104,'Andrés','Informática'],[105,'Elena','Sistemas y Aplicaciones Informáticas'],[106,'Raúl','Informática'],[107,'Nuria','Informática']];
+  var revealed = false, predicted = false;
+  function clear(e) { while (e.firstChild) e.removeChild(e.firstChild); }
+  function fill(t, head, rows) {
+    clear(t); var h = document.createElement('tr'); head.forEach(function (x) { var th = document.createElement('th'); th.textContent = x; h.appendChild(th); }); t.appendChild(h);
+    rows.forEach(function (r) { var tr = document.createElement('tr'); r.forEach(function (v) { var td = document.createElement('td'); if (v === null) { td.textContent = '(null)'; td.className = 'null'; } else td.textContent = v; tr.appendChild(td); }); t.appendChild(tr); });
+  }
+  fill(q('tg'), ['COD_GRUPO', 'TURNO', 'ID_TUTOR'], G);
+  fill(q('tp'), ['ID_PROFESOR', 'NOMBRE', 'ESPECIALIDAD'], P);
+  function model() {
+    var type = q('type').value, fil = q('fil').checked, onm = fil && q('on').checked;
+    var filG = type === 'RIGHT JOIN'; // tabla opcional: GRUPO en RIGHT, PROFESOR en el resto
+    var ftxt = filG ? "g.turno = 'M'" : "p.especialidad = 'Informática'";
+    function f(g, p) { var v = filG ? (g ? g[1] : null) : (p ? p[2] : null); return v === null ? null : (filG ? v === 'M' : v === 'Informática'); }
+    var cross = type === 'CROSS JOIN', keep = { l: type === 'LEFT JOIN' || type === 'FULL JOIN', r: type === 'RIGHT JOIN' || type === 'FULL JOIN' };
+    function key(g, p) { return g[2] !== null && g[2] === p[0]; }
+    var out = [], usedP = {};
+    if (cross) { G.forEach(function (g) { P.forEach(function (p) { out.push({ g: g, p: p, t: key(g, p) ? 'm' : 'x' }); }); }); }
+    else {
+      G.forEach(function (g) { var any = false; P.forEach(function (p) { if (key(g, p) && (!onm || f(g, p) === true)) { out.push({ g: g, p: p, t: 'm' }); any = true; usedP[p[0]] = 1; } }); if (!any && keep.l) out.push({ g: g, p: null, t: 'l' }); });
+      if (keep.r) P.forEach(function (p) { if (!usedP[p[0]]) out.push({ g: null, p: p, t: 'r' }); });
+    }
+    var filtered = out; if (fil && !onm) filtered = out.filter(function (r) { return f(r.g, r.p) === true; });
+    filtered = filtered.slice().sort(function (a, b) { var x = a.g ? a.g[0] : '~', y = b.g ? b.g[0] : '~'; if (x !== y) return x < y ? -1 : 1; return (a.p ? a.p[0] : 0) - (b.p ? b.p[0] : 0); });
+    var cnt = { m: 0, l: 0, r: 0 }; filtered.forEach(function (r) { if (cnt[r.t] !== undefined) cnt[r.t]++; });
+    var noFil = out.filter(function (r) { return true; }).length;
+    return { type: type, fil: fil, onm: onm, ftxt: ftxt, filG: filG, cross: cross, rows: filtered, before: out, cnt: cnt, f: f };
+  }
+  function baseCount(type) { return { 'INNER JOIN': 5, 'LEFT JOIN': 6, 'RIGHT JOIN': 7, 'FULL JOIN': 8, 'CROSS JOIN': 42 }[type]; }
+  function run() {
+    var m = model(), fil = q('fil'), on = q('on');
+    q('filtxt').textContent = m.cross ? '' : '(' + m.ftxt + ')';
+    fil.disabled = false; on.disabled = !m.fil; if (!m.fil) on.checked = false;
+    var sql = 'SELECT g.cod_grupo, g.turno, g.id_tutor, p.id_profesor, p.nombre, p.especialidad\nFROM   grupo g\n';
+    if (m.cross) { sql += '       CROSS JOIN profesor p'; if (m.fil) sql += '\nWHERE  ' + m.ftxt; }
+    else { sql += '       ' + m.type + ' profesor p\n         ON g.id_tutor = p.id_profesor' + (m.onm ? '\n        AND ' + m.ftxt : ''); if (m.fil && !m.onm) sql += '\nWHERE  ' + m.ftxt; }
+    sql += '\nORDER  BY g.cod_grupo, p.id_profesor;';
+    q('sql').textContent = sql;
+    var msg = q('msg'); clear(msg);
+    function Pp(cls, t) { var e = document.createElement('p'); if (cls) e.className = cls; e.textContent = t; msg.appendChild(e); }
+    var n = m.rows.length, c = m.cnt;
+    if (m.cross) {
+      Pp('', 'CROSS JOIN no lleva ON: cada grupo se combina con cada profesor, 6 × 7 = 42 filas' + (m.fil ? '; el WHERE deja ' + n + '.' : '.'));
+    } else {
+      Pp('', 'Resultado: ' + n + ' fila(s) = ' + c.m + ' emparejada(s)' + (c.l ? ' + ' + c.l + ' grupo(s) conservado(s) sin profesor' : '') + (c.r ? ' + ' + c.r + ' profesor(es) conservado(s) sin grupo' : '') + '.');
+      if (m.fil && !m.onm && m.type !== 'INNER JOIN') {
+        var lost = (m.type === 'LEFT JOIN' || m.type === 'FULL JOIN') ? m.before.filter(function (r) { return r.t === 'l'; }).length : m.before.filter(function (r) { return r.t === 'r'; }).length;
+        var lostWhere = m.rows.filter(function (r) { return r.t !== 'm'; }).length;
+        if (m.type === 'FULL JOIN') Pp('ko', 'El filtro sobre p.especialidad descarta las filas conservadas sin profesor (su valor es NULL, y NULL = … es UNKNOWN): el grupo sin tutor desaparece. Quedan los profesores sin grupo que cumplen el filtro. La externa se ha degradado.');
+        else if (lostWhere === 0) Pp('ko', 'El WHERE ha eliminado todas las filas conservadas con NULL: la composición externa se comporta como una INNER JOIN (' + n + ' filas). Era la trampa: el filtro sobre la tabla opcional anula la composición externa.');
+        else Pp('warn', 'El filtro ha eliminado parte de las filas conservadas.');
+      }
+      if (m.onm) Pp('ok', m.type === 'INNER JOIN' ? 'En una composición interna da igual poner el filtro en el ON o en el WHERE: el resultado es el mismo.' : 'Con el filtro en el ON la composición externa sigue conservando todas las filas del lado preservado; lo que no cumple el filtro se queda con NULL en vez de desaparecer.');
+      if (m.fil && !m.onm && m.type === 'INNER JOIN') Pp('bd-w-note', 'Con INNER JOIN el filtro en el WHERE o en el ON da el mismo resultado. Prueba con LEFT JOIN.');
+    }
+    // predicción
+    var fb = q('fb');
+    if (predicted) {
+      var v = parseInt(q('pred').value, 10); clear(fb);
+      var e = document.createElement('p'), exp = document.createElement('p'); exp.className = 'bd-w-note';
+      if (v === n) { e.className = 'ok'; e.textContent = 'Correcto: ' + n + ' filas.'; }
+      else { e.className = 'ko'; e.textContent = 'Tu predicción (' + v + ') no coincide con el ajuste actual, que da ' + n + ' filas.'; }
+      exp.textContent = m.cross ? 'Producto cartesiano: filas de GRUPO × filas de PROFESOR.' : 'Los 5 grupos con tutor emparejan con 5 profesores; hay 1 grupo sin tutor (2ASIR) y 2 profesores que no tutorizan (101 y 102). INNER 5 · LEFT 6 (+1) · RIGHT 7 (+2) · FULL 8 (+1 +2).';
+      fb.appendChild(e); fb.appendChild(exp);
+    }
+    // resultado
+    q('resbox').hidden = !revealed;
+    msg.hidden = !revealed;
+    var rows = m.rows.map(function (r) { return [r.g ? r.g[0] : null, r.g ? r.g[1] : null, r.g ? r.g[2] : null, r.p ? r.p[0] : null, r.p ? r.p[1] : null, r.p ? r.p[2] : null]; });
+    fill(q('res'), ['COD_GRUPO', 'TURNO', 'ID_TUTOR', 'ID_PROFESOR', 'NOMBRE', 'ESPECIALIDAD'], rows);
+    Array.prototype.forEach.call(q('res').querySelectorAll('tr'), function (tr, i) { if (i > 0) { var t = m.rows[i - 1].t; if (t === 'm') tr.className = 'sel'; else if (t === 'l' || t === 'r') tr.className = 'chg'; } });
+    q('legend').textContent = 'Filas: ' + n + '. Fondo azul: fila emparejada por el ON. Fondo ámbar: fila conservada con NULL en la otra tabla.';
+  }
+  q('check').addEventListener('click', function () {
+    var v = parseInt(q('pred').value, 10);
+    if (isNaN(v)) { var fb = q('fb'); clear(fb); var e = document.createElement('p'); e.className = 'warn'; e.textContent = 'Escribe primero un número.'; fb.appendChild(e); return; }
+    predicted = true; revealed = true; run();
+  });
+  ['type', 'fil', 'on'].forEach(function (nm) { q(nm).addEventListener('change', run); });
+  run();
+})();
+</script>

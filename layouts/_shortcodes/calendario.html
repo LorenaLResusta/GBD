@@ -1,0 +1,87 @@
+{{- /* Calendario interactivo del curso 2026/27. Lee data/planificacion.json (generado por el reparto de horas). */ -}}
+{{- $id := printf "cal-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-important)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Calendario del curso 2026/27 <span class="bd-w-sub">Pulsa un día o una unidad</span></div>
+  <div class="bd-w-body">
+    <div class="bd-cal-tabs" data-c="tabs" role="tablist"></div>
+    <div class="bd-cal-legend" data-c="legend"></div>
+    <div class="bd-cal-grid" data-c="grid"></div>
+    <div class="bd-w-out bd-cal-info" data-c="info" aria-live="polite">Pulsa un día coloreado para ver qué toca ese día.</div>
+    <div class="bd-cal-legend" data-c="kinds"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-c="' + n + '"]'); };
+  var PLAN = {{ site.Data.planificacion | jsonify | safeJS }};
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  var DIAS = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
+  var byDate = {}, ord = {}, colorOf = {}, units = PLAN.unidades;
+  units.forEach(function (u, i) { colorOf[u.c] = u.c === 'REF' ? 'hsl(200 15% 45%)' : /^EV/.test(u.c) ? 'hsl(0 65% 48%)' : 'hsl(' + ((i * 47 + 205) % 360) + ' 55% 42%)'; });
+  var cnt = {};
+  PLAN.dias.forEach(function (d) { byDate[d.d] = d; if (d.k === 'lectivo') { cnt[d.u] = (cnt[d.u] || 0) + 1; d.n = cnt[d.u]; } });
+  var hitos = {}; PLAN.hitos.forEach(function (h) { hitos[h.d] = h.n; });
+  var uinfo = {}; units.forEach(function (u) { uinfo[u.c] = u; });
+  var TABS = [['Curso completo', [8, 9, 10, 11, 0, 1, 2, 3, 4, 5], 0], ['1ª evaluación', [8, 9, 10, 11], 1], ['2ª evaluación', [11, 0, 1], 2], ['3ª evaluación', [2, 3, 4, 5], 3]];
+  var tab = 0, focus = null, selDay = null;
+  function fmt(iso) { var p = iso.split('-'); return +p[2] + '/' + +p[1] + '/' + p[0]; }
+  function drawTabs() {
+    var t = q('tabs'); while (t.firstChild) t.removeChild(t.firstChild);
+    TABS.forEach(function (x, i) { var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip' + (i === tab ? ' on' : ''); b.textContent = x[0]; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', String(i === tab)); b.addEventListener('click', function () { tab = i; drawTabs(); drawGrid(); }); t.appendChild(b); });
+  }
+  function drawLegend() {
+    var l = q('legend'); while (l.firstChild) l.removeChild(l.firstChild);
+    units.forEach(function (u) { var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip' + (focus === u.c ? ' on' : ''); b.style.borderColor = colorOf[u.c]; if (focus === u.c) b.style.background = colorOf[u.c]; else b.style.color = colorOf[u.c];
+      b.textContent = u.c + ' · ' + u.h + ' h'; b.title = u.n; b.addEventListener('click', function () { focus = focus === u.c ? null : u.c; drawLegend(); drawGrid(); showUnit(u); }); l.appendChild(b); });
+    var k = q('kinds'); while (k.firstChild) k.removeChild(k.firstChild);
+    [['var(--color-accent-caution)', 'Festivo'], ['var(--color-accent-warning)', 'Vacaciones'], ['var(--color-accent-default)', 'Sin sesiones en la planificación provisional (mayo-junio)'], ['#facc15', 'Sesiones de evaluación (borde amarillo)']].forEach(function (x) { var s = document.createElement('span'); var i = document.createElement('i'); i.style.background = x[0]; s.appendChild(i); s.appendChild(document.createTextNode(x[1])); k.appendChild(s); });
+  }
+  function showUnit(u) {
+    var o = q('info'); while (o.firstChild) o.removeChild(o.firstChild);
+    var p = document.createElement('p'); p.innerHTML = '<strong></strong>'; p.firstChild.textContent = u.c + ' · ' + u.n; o.appendChild(p);
+    var p2 = document.createElement('p'); p2.textContent = u.h + ' h de aula · del ' + fmt(u.ini) + ' al ' + fmt(u.fin) + (focus === u.c ? '' : ' (selección quitada)'); o.appendChild(p2);
+  }
+  function weekOf(iso) {
+    var d = new Date(iso + 'T00:00:00'); var dow = (d.getDay() + 6) % 7; var m = new Date(d); m.setDate(d.getDate() - dow);
+    var res = {}, tot = 0;
+    for (var i = 0; i < 5; i++) { var x = new Date(m); x.setDate(m.getDate() + i); var k = x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); var e = byDate[k]; if (e && e.k === 'lectivo') { res[e.u] = (res[e.u] || 0) + 1; tot++; } }
+    return { res: res, tot: tot };
+  }
+  function showDay(iso) {
+    selDay = iso; var d = byDate[iso], o = q('info'); while (o.firstChild) o.removeChild(o.firstChild);
+    var dt = new Date(iso + 'T00:00:00'), nm = DIAS[(dt.getDay() + 6) % 7] + ' ' + dt.getDate() + ' de ' + MESES[dt.getMonth()] + ' de ' + dt.getFullYear();
+    var p = document.createElement('p'); var s = document.createElement('strong'); s.textContent = nm; p.appendChild(s); o.appendChild(p);
+    function P(t, c) { var e = document.createElement('p'); if (c) e.className = c; e.textContent = t; o.appendChild(e); }
+    if (d.k === 'lectivo') { var u = uinfo[d.u]; P(d.u + ' · ' + u.n + ' — hora ' + d.n + ' de ' + u.h + ' de la unidad.');
+      var w = weekOf(iso); P('Semana: ' + Object.keys(w.res).map(function (k) { return k + ' (' + w.res[k] + ' h)'; }).join(' · ') + ' · ' + w.tot + ' h lectivas.', 'bd-w-note'); }
+    else P(d.n, d.k === 'festivo' ? 'ko' : 'warn');
+    if (hitos[iso]) P('★ ' + hitos[iso], 'ok');
+  }
+  function drawGrid() {
+    var g = q('grid'); while (g.firstChild) g.removeChild(g.firstChild);
+    var T = TABS[tab];
+    T[1].forEach(function (mi) {
+      var yr = mi >= 8 ? 2026 : 2027, box = document.createElement('div'); box.className = 'bd-month';
+      var h = document.createElement('h4'); h.textContent = MESES[mi] + ' ' + yr; box.appendChild(h);
+      var grid = document.createElement('div'); grid.className = 'bd-month-g';
+      ['L', 'M', 'X', 'J', 'V', 'S', 'D'].forEach(function (x) { var b = document.createElement('b'); b.textContent = x; grid.appendChild(b); });
+      var first = new Date(yr, mi, 1), lead = (first.getDay() + 6) % 7, nd = new Date(yr, mi + 1, 0).getDate();
+      for (var i = 0; i < lead; i++) grid.appendChild(document.createElement('span'));
+      for (var day = 1; day <= nd; day++) {
+        var iso = yr + '-' + String(mi + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0'), d = byDate[iso];
+        var cell = document.createElement(d ? 'button' : 'span'); cell.className = 'bd-day'; cell.textContent = day;
+        if (d) {
+          cell.type = 'button'; cell.setAttribute('data-k', d.k); cell.style.setProperty('--u', d.k === 'lectivo' ? colorOf[d.u] : ''); if (d.k === 'lectivo') cell.title = d.u; else cell.title = d.n;
+          if (hitos[iso]) cell.classList.add('hito'); if (selDay === iso) cell.classList.add('sel');
+          var off = (T[2] && d.t !== T[2]) || (focus && !(d.k === 'lectivo' && d.u === focus)); if (off) cell.style.opacity = '.25';
+          (function (key) { cell.addEventListener('click', function () { showDay(key); drawGrid(); }); })(iso);
+        } else { cell.style.opacity = (new Date(yr, mi, day).getDay() % 6 === 0) ? '.35' : '.6'; }
+        grid.appendChild(cell);
+      }
+      box.appendChild(grid); g.appendChild(box);
+    });
+  }
+  drawTabs(); drawLegend(); drawGrid();
+})();
+</script>

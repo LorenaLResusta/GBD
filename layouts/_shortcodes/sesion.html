@@ -1,0 +1,13 @@
+{{- /*
+  Marca el inicio de una sesión de clase dentro de la teoría.
+  {{< sesion n="1" h="2" tipo="t" practica="2.2" >}}Título{{< /sesion >}}
+  tipo: t (teoría), p (práctica en el aula), e (evaluación)
+*/ -}}
+{{- $t := lower (default "t" (.Get "tipo")) -}}
+{{- $lab := dict "t" (i18n "ses_teoria") "p" (i18n "ses_practica_aula") "e" (i18n "ses_eval") -}}
+<div class="bd-ses bd-ses--{{ $t }}">
+  <span class="bd-ses-n">{{ i18n "sesion" }} {{ .Get "n" }}</span>
+  <span class="bd-ses-h">{{ .Get "h" }} h</span>
+  <span class="bd-ses-t">{{ index $lab $t }}{{ with .Inner | strings.TrimSpace }} · {{ . | markdownify }}{{ end }}</span>
+  {{- with .Get "practica" }}<span class="bd-ses-x">{{ i18n "practica_en_pagina" (dict "n" .) }}</span>{{ end -}}
+</div>

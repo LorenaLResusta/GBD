@@ -1,0 +1,63 @@
+{{- /* Widget UD02: clasificar una jerarquía de generalización/especialización. */ -}}
+{{- $id := printf "jer-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-important)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> ¿Qué jerarquía es? <span class="bd-w-sub">Define las reglas y comprueba si los datos las cumplen</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Cobertura
+        <select data-j="cob"><option value="T">Total (todo supertipo está en algún subtipo)</option><option value="P">Parcial (puede no estar en ninguno)</option></select></label>
+      <label class="bd-f">Solapamiento
+        <select data-j="sol"><option value="D">Disjunta (como máximo un subtipo)</option><option value="S">Solapada (varios a la vez)</option></select></label>
+    </div>
+    <p class="bd-w-note" style="margin-top:0">Supertipo <strong>EMPLEADO</strong>, subtipos <strong>PROGRAMADOR</strong> y <strong>DIRECTOR</strong>. Marca a qué subtipos pertenece cada empleado y mira qué reglas se incumplen.</p>
+    <table data-j="tab"></table>
+    <div class="bd-w-out" data-j="out" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-j="' + n + '"]'); };
+  var emp = [['Ana', 1, 0], ['Berto', 0, 1], ['Carla', 1, 1], ['Dídac', 0, 0], ['Eva', 1, 0]];
+  var tab = q('tab');
+  var thead = document.createElement('thead'), hr = document.createElement('tr');
+  ['Empleado', 'PROGRAMADOR', 'DIRECTOR', 'Comprobación'].forEach(function (t) { var th = document.createElement('th'); th.textContent = t; hr.appendChild(th); });
+  thead.appendChild(hr); tab.appendChild(thead);
+  var tb = document.createElement('tbody'); tab.appendChild(tb);
+  var rows = emp.map(function (e) {
+    var tr = document.createElement('tr'), c = [];
+    var td0 = document.createElement('td'); td0.textContent = e[0]; tr.appendChild(td0);
+    [1, 2].forEach(function (i) {
+      var td = document.createElement('td'), cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!e[i];
+      cb.setAttribute('aria-label', e[0] + ' es ' + (i === 1 ? 'programador' : 'director'));
+      cb.addEventListener('change', render); td.appendChild(cb); tr.appendChild(td); c.push(cb);
+    });
+    var tdm = document.createElement('td'); tr.appendChild(tdm); tb.appendChild(tr);
+    return { c: c, msg: tdm, tr: tr };
+  });
+  function render() {
+    var cob = q('cob').value, sol = q('sol').value, bad = 0;
+    rows.forEach(function (r) {
+      var n = r.c.filter(function (x) { return x.checked; }).length, m = [];
+      if (cob === 'T' && n === 0) m.push('Falta: la cobertura es total');
+      if (sol === 'D' && n > 1) m.push('Sobra: la jerarquía es disjunta');
+      r.msg.textContent = m.length ? m.join('. ') : 'Correcto'; r.msg.className = m.length ? 'ko' : 'ok';
+      r.tr.className = m.length ? 'dup' : ''; if (m.length) bad++;
+    });
+    var out = q('out'); while (out.firstChild) out.removeChild(out.firstChild);
+    var code = '(' + cob + ', ' + sol + ')';
+    var names = { 'T,D': 'Total y disjunta: todo supertipo pertenece a un único subtipo', 'P,D': 'Parcial y disjunta: como máximo un subtipo, y puede no haber ninguno', 'P,S': 'Parcial y solapada: ninguno, uno o varios subtipos', 'T,S': 'Total y solapada: al menos un subtipo, posiblemente varios' };
+    var p1 = document.createElement('p'); p1.innerHTML = '<strong>Clasificación:</strong> '; p1.appendChild(document.createTextNode(code + ' · ' + names[cob + ',' + sol])); out.appendChild(p1);
+    var p2 = document.createElement('p');
+    p2.className = bad ? 'ko' : 'ok'; p2.textContent = bad ? bad + ' empleado(s) incumplen las reglas de esta jerarquía.' : 'Los datos cumplen las reglas de la jerarquía.'; out.appendChild(p2);
+    var est = document.createElement('p'); est.innerHTML = '<strong>Estrategias de transformación válidas (UD03, 4.9):</strong>'; out.appendChild(est);
+    var ul = document.createElement('ul');
+    [['B · Tabla del supertipo y una tabla por subtipo', true, 'Siempre válida y la más flexible.'],
+     ['A · Tabla única con columna discriminadora', sol === 'D', sol === 'D' ? 'Válida porque es disjunta: una sola columna «tipo» basta.' : 'Con solapamiento una sola columna «tipo» no puede expresar varios subtipos (haría falta una marca por subtipo).'],
+     ['C · Solo tablas de los subtipos', cob === 'T' && sol === 'D', cob === 'T' && sol === 'D' ? 'Válida porque es total y disjunta: ninguna instancia queda sin tabla.' : 'No válida: habría instancias del supertipo sin tabla donde guardarse (parcial) o duplicadas (solapada).']
+    ].forEach(function (e) { var li = document.createElement('li'); var sp = document.createElement('span'); sp.className = e[1] ? 'ok' : 'ko'; sp.textContent = e[1] ? 'Sí ' : 'No '; li.appendChild(sp); li.appendChild(document.createTextNode(e[0] + '. ' + e[2])); ul.appendChild(li); });
+    out.appendChild(ul);
+  }
+  q('cob').addEventListener('change', render); q('sol').addEventListener('change', render); render();
+})();
+</script>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="455 -988 499 444" width="499" height="444" role="img" aria-labelledby="t d" font-family="DejaVu Sans, Verdana, Arial, sans-serif">
+<title id="t">Propuesta A del club de pádel</title><desc id="d">RESERVA con atributos numerados jugador1..4 y pago1..4.</desc>
+<rect x="455" y="-988" width="499" height="444" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<g stroke="#1f2937" stroke-width="1.4" fill="none"><line x1="643.8" y1="-901.7" x2="618.5" y2="-929.5"/><line x1="677.7" y1="-901.7" x2="692.6" y2="-923.0"/><line x1="525.6" y1="-910.2" x2="527.8" y2="-936.1"/><line x1="713.0" y1="-696.0" x2="732.0" y2="-684.0"/><line x1="690.0" y1="-696.0" x2="719.8" y2="-634.3"/><line x1="678.1" y1="-696.0" x2="669.3" y2="-596.4"/><line x1="670.4" y1="-696.0" x2="650.0" y2="-650.6"/><line x1="649.9" y1="-696.0" x2="586.0" y2="-651.3"/><line x1="629.7" y1="-708.2" x2="582.4" y2="-699.8"/><line x1="665.2" y1="-738.0" x2="620.4" y2="-801.9"/><line x1="681.7" y1="-738.0" x2="686.8" y2="-795.8"/><line x1="700.9" y1="-738.0" x2="719.3" y2="-756.4"/><line x1="859.9" y1="-763.6" x2="698.0" y2="-857.7"/><line x1="862.2" y1="-767.6" x2="700.3" y2="-861.7"/><line x1="861.0" y1="-697.6" x2="730.1" y2="-711.6"/><line x1="506.0" y1="-799.0" x2="517.9" y2="-868.6"/><line x1="510.5" y1="-798.3" x2="522.4" y2="-867.9"/><line x1="508.2" y1="-730.6" x2="629.7" y2="-721.0"/></g>
+<rect x="621.0" y="-901.7" width="84.0" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<rect x="481.7" y="-910.2" width="84.0" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<rect x="629.7" y="-738.0" width="100.4" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<polygon points="861.0,-765.6 840.0,-731.6 861.0,-697.6 882.0,-731.6" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="508.2,-798.6 487.2,-764.6 508.2,-730.6 529.2,-764.6" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<ellipse cx="606.4" cy="-942.7" rx="36.1" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="702.1" cy="-936.5" rx="34.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="529.1" cy="-950.1" rx="35.3" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="751.0" cy="-671.9" rx="37.7" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="726.4" cy="-620.6" rx="29.8" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="668.1" cy="-582.4" rx="29.8" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="643.8" cy="-636.9" rx="29.8" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="568.3" cy="-638.9" rx="37.7" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="543.8" cy="-693.0" rx="44.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="611.0" cy="-815.5" rx="37.7" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="688.0" cy="-809.8" rx="29.8" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="732.4" cy="-769.5" rx="37.7" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<rect x="705.1" y="-854.6" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="723.3" y="-841.1" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,1)</text>
+<text x="871.0" y="-770.6" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<rect x="739.0" y="-717.7" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="757.9" y="-704.2" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="851.0" y="-684.6" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<rect x="497.2" y="-849.6" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="515.4" y="-836.1" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,1)</text>
+<text x="518.2" y="-803.6" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<rect x="582.9" y="-732.2" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="601.8" y="-718.7" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="498.2" y="-717.6" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<text x="663.0" y="-875.7" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">SOCIO</text>
+<text x="523.7" y="-884.2" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">PISTA</text>
+<text x="679.9" y="-712.0" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">RESERVA</text>
+<text x="908.3" y="-727.1" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">hace</text>
+<text x="587.8" y="-760.1" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">se reserva en</text>
+<text x="606.4" y="-938.7" font-size="12" text-anchor="middle" fill="#111111">nº_socio</text>
+<line x1="581.3" y1="-934.7" x2="631.5" y2="-934.7" stroke="#111111" stroke-width="1.3"/>
+<text x="702.1" y="-932.5" font-size="12" text-anchor="middle" fill="#111111">nombre</text>
+<text x="529.1" y="-946.1" font-size="12" text-anchor="middle" fill="#111111">nº_pista</text>
+<line x1="504.8" y1="-942.1" x2="553.3" y2="-942.1" stroke="#111111" stroke-width="1.3"/>
+<text x="751.0" y="-667.9" font-size="12" text-anchor="middle" fill="#111111">jugador2</text>
+<text x="726.4" y="-616.6" font-size="12" text-anchor="middle" fill="#111111">pago2</text>
+<text x="668.1" y="-578.4" font-size="12" text-anchor="middle" fill="#111111">pago3</text>
+<text x="643.8" y="-632.9" font-size="12" text-anchor="middle" fill="#111111">pago1</text>
+<text x="568.3" y="-634.9" font-size="12" text-anchor="middle" fill="#111111">jugador1</text>
+<text x="543.8" y="-689.0" font-size="12" text-anchor="middle" fill="#111111">fecha_hora</text>
+<line x1="510.6" y1="-685.0" x2="577.0" y2="-685.0" stroke="#111111" stroke-width="1.3"/>
+<text x="611.0" y="-811.5" font-size="12" text-anchor="middle" fill="#111111">jugador4</text>
+<text x="688.0" y="-805.8" font-size="12" text-anchor="middle" fill="#111111">pago4</text>
+<text x="732.4" y="-765.5" font-size="12" text-anchor="middle" fill="#111111">jugador3</text>
+</svg>

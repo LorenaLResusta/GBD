@@ -1,0 +1,48 @@
+{{- /*
+  Convierte una lista de comprobación en una lista interactiva (casillas + barra de progreso).
+  {{% comprobacion %}}
+  - [ ] ...  (o una lista normal con guiones)
+  {{% /comprobacion %}}
+  El progreso se recuerda en el navegador del alumno (localStorage), sin enviar nada a ningún servidor.
+*/ -}}
+<div class="bd-check" data-id="{{ .Page.RelPermalink }}#{{ .Ordinal }}">
+  <div class="bd-check-head"><span class="bd-check-badge">Comprobación</span> <output class="bd-check-n" aria-live="polite"></output></div>
+  <div class="bd-check-bar"><i></i></div>
+
+{{ .Inner }}
+
+  <button type="button" class="bd-btn bd-btn--ghost bd-check-reset">Reiniciar</button>
+</div>
+{{- if not (.Page.Store.Get "bdCheckJS") -}}
+{{- .Page.Store.Set "bdCheckJS" true -}}
+<script>
+(function () {
+  function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || '[]'); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return []; } }
+  function build(box) {
+    var lis = box.querySelectorAll(':scope > ul > li, :scope > ol > li');
+    if (!lis.length) return;
+    var key = 'bd-check:' + box.dataset.id, saved = store(key) || [];
+    lis.forEach(function (li, i) {
+      var cb = li.querySelector('input[type=checkbox]');
+      if (!cb) { cb = document.createElement('input'); cb.type = 'checkbox'; li.insertBefore(cb, li.firstChild); }
+      cb.disabled = false; cb.checked = saved.indexOf(i) > -1; cb.setAttribute('aria-label', 'Hecho');
+      li.classList.add('bd-check-li');
+      cb.addEventListener('change', update);
+    });
+    box.querySelectorAll(':scope > ul, :scope > ol').forEach(function (l) { l.style.listStyle = 'none'; l.style.paddingLeft = '.25rem'; });
+    function update() {
+      var done = [], n = lis.length;
+      lis.forEach(function (li, i) { var c = li.querySelector('input[type=checkbox]').checked; li.classList.toggle('done', c); if (c) done.push(i); });
+      store(key, done);
+      box.querySelector('.bd-check-bar i').style.width = (done.length / n * 100) + '%';
+      box.querySelector('.bd-check-n').textContent = done.length + ' de ' + n + (done.length === n ? ' · ¡todo comprobado!' : '');
+      box.classList.toggle('all', done.length === n);
+    }
+    box.querySelector('.bd-check-reset').addEventListener('click', function () { lis.forEach(function (li) { li.querySelector('input[type=checkbox]').checked = false; }); update(); });
+    update();
+  }
+  function init() { document.querySelectorAll('.bd-check').forEach(build); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+{{- end -}}

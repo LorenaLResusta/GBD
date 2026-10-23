@@ -1,0 +1,121 @@
+{{- /* Widget UD06: laboratorio de GROUP BY / HAVING sobre las 143 matrículas de EduGest. */ -}}
+{{- $id := printf "grp-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-tip)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Laboratorio de GROUP BY y HAVING <span class="bd-w-sub">Tabla MATRICULA de EduGest (143 filas) · simulación didáctica, no es un SGBD</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">1 · GROUP BY (columna de agrupación)
+        <select data-g="col"><option value="1">id_modulo</option><option value="2">convocatoria</option><option value="3">id_alumno</option></select></label>
+    </div>
+    <p style="margin:0 0 .3rem"><strong>2 · Funciones de agregado en el SELECT</strong></p>
+    <div class="bd-chips" data-g="fns" role="group" aria-label="Funciones de agregado"></div>
+    <label><input type="checkbox" data-g="bad"> añadir <code>id_alumno</code> al SELECT (sin ponerlo en el GROUP BY)</label>
+    <p style="margin:.7rem 0 .3rem"><strong>3 · WHERE</strong> (filtra filas <em>antes</em> de agrupar)</p>
+    <div class="bd-w-row">
+      <label class="bd-f"><span><input type="checkbox" data-g="won"> Activar condición sobre <code>nota_final</code></span>
+        <span><select data-g="wop" aria-label="Operador del WHERE"><option>&gt;=</option><option>&lt;</option><option>=</option></select>
+        <input type="number" data-g="wval" value="5" min="0" max="10" step="0.25" aria-label="Valor del WHERE"></span></label>
+    </div>
+    <p style="margin:.4rem 0 .3rem"><strong>4 · HAVING</strong> (filtra grupos <em>después</em> de agrupar)</p>
+    <div class="bd-w-row">
+      <label class="bd-f"><span><input type="checkbox" data-g="hon"> Activar condición sobre un agregado</span>
+        <span><select data-g="hfn" aria-label="Función del HAVING"></select>
+        <select data-g="hop" aria-label="Operador del HAVING"><option>&gt;=</option><option>&gt;</option><option>&lt;</option><option>&lt;=</option><option>=</option></select>
+        <input type="number" data-g="hval" value="5" step="0.25" aria-label="Valor del HAVING"></span></label>
+      <button type="button" class="ghost" data-g="reset">Reiniciar</button>
+    </div>
+    <pre data-g="sql"></pre>
+    <div class="bd-pipe" data-g="pipe" aria-label="Orden lógico de evaluación"></div>
+    <div class="bd-w-out" data-g="msg" aria-live="polite"></div>
+    <div style="overflow-x:auto;max-height:22rem;overflow-y:auto"><table data-g="res"></table></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-g="' + n + '"]'); };
+  // [id_matricula, id_alumno, id_modulo, curso_academico, convocatoria, nota_final]
+  var DATA = [[10001,1,1,"2025-26",1,8.75],[10002,1,2,"2025-26",1,4.75],[10003,1,3,"2025-26",1,7.25],[10004,1,4,"2025-26",1,4.75],[10005,1,5,"2025-26",1,6.75],[10006,2,1,"2025-26",1,6.25],[10007,2,2,"2025-26",1,4.75],[10008,2,3,"2025-26",1,4.5],[10009,2,4,"2025-26",1,5.75],[10010,2,5,"2025-26",1,6.25],[10011,3,1,"2025-26",1,3.25],[10012,3,2,"2025-26",1,8.0],[10013,3,3,"2025-26",1,6.75],[10014,3,4,"2025-26",1,7.25],[10015,3,5,"2025-26",1,null],[10016,4,1,"2025-26",1,5.5],[10017,4,2,"2025-26",1,6.5],[10018,4,3,"2025-26",1,3.25],[10019,4,4,"2025-26",1,7.25],[10020,4,5,"2025-26",1,9.5],[10021,5,1,"2025-26",1,8.0],[10022,5,2,"2025-26",1,5.75],[10023,5,3,"2025-26",1,4.75],[10024,5,4,"2025-26",1,6.5],[10025,5,5,"2025-26",1,8.5],[10026,6,1,"2025-26",1,5.75],[10027,6,2,"2025-26",1,5.25],[10028,6,3,"2025-26",1,7.25],[10029,6,4,"2025-26",1,8.0],[10030,6,5,"2025-26",1,8.5],[10031,7,1,"2025-26",1,6.25],[10032,7,2,"2025-26",1,6.5],[10033,7,3,"2025-26",1,8.0],[10034,7,4,"2025-26",1,6.5],[10035,7,5,"2025-26",1,5.25],[10036,8,6,"2025-26",1,7.75],[10037,8,7,"2025-26",1,5.5],[10038,8,8,"2025-26",1,4.0],[10039,8,9,"2025-26",1,null],[10040,8,10,"2025-26",1,6.5],[10041,9,6,"2025-26",1,9.0],[10042,9,7,"2025-26",1,8.75],[10043,9,8,"2025-26",1,8.0],[10044,9,9,"2025-26",1,6.5],[10045,9,10,"2025-26",1,9.75],[10046,10,6,"2025-26",1,9.0],[10047,10,7,"2025-26",1,2.25],[10048,10,8,"2025-26",1,9.25],[10049,10,9,"2025-26",1,7.25],[10050,10,10,"2025-26",1,3.5],[10051,10,1,"2025-26",2,7.25],[10052,11,6,"2025-26",1,4.75],[10053,11,7,"2025-26",1,7.5],[10054,11,8,"2025-26",1,7.5],[10055,11,9,"2025-26",1,null],[10056,11,10,"2025-26",1,3.5],[10057,11,5,"2025-26",2,5.75],[10058,12,6,"2025-26",1,5.5],[10059,12,7,"2025-26",1,5.75],[10060,12,8,"2025-26",1,5.5],[10061,12,9,"2025-26",1,5.5],[10062,12,10,"2025-26",1,7.25],[10063,12,3,"2025-26",2,2.75],[10064,13,6,"2025-26",1,2.75],[10065,13,7,"2025-26",1,2.75],[10066,13,8,"2025-26",1,5.25],[10067,13,9,"2025-26",1,7.25],[10068,13,10,"2025-26",1,7.75],[10069,14,11,"2025-26",1,3.5],[10070,14,12,"2025-26",1,5.0],[10071,14,13,"2025-26",1,4.25],[10072,14,14,"2025-26",1,8.5],[10073,14,15,"2025-26",1,4.0],[10074,15,11,"2025-26",1,3.0],[10075,15,12,"2025-26",1,6.0],[10076,15,13,"2025-26",1,6.0],[10077,15,14,"2025-26",1,5.5],[10078,15,15,"2025-26",1,8.0],[10079,16,11,"2025-26",1,8.0],[10080,16,12,"2025-26",1,5.5],[10081,16,13,"2025-26",1,7.25],[10082,16,14,"2025-26",1,8.25],[10083,16,15,"2025-26",1,6.25],[10084,17,11,"2025-26",1,5.75],[10085,17,12,"2025-26",1,6.0],[10086,17,13,"2025-26",1,4.0],[10087,17,14,"2025-26",1,null],[10088,17,15,"2025-26",1,8.25],[10089,18,11,"2025-26",1,6.0],[10090,18,12,"2025-26",1,7.25],[10091,18,13,"2025-26",1,7.25],[10092,18,14,"2025-26",1,6.25],[10093,18,15,"2025-26",1,5.5],[10094,19,11,"2025-26",1,8.0],[10095,19,12,"2025-26",1,5.75],[10096,19,13,"2025-26",1,7.25],[10097,19,14,"2025-26",1,5.25],[10098,19,15,"2025-26",1,8.0],[10099,20,16,"2025-26",1,6.5],[10100,20,17,"2025-26",1,5.25],[10101,20,18,"2025-26",1,7.5],[10102,20,19,"2025-26",1,9.25],[10103,21,16,"2025-26",1,8.75],[10104,21,17,"2025-26",1,7.25],[10105,21,18,"2025-26",1,1.5],[10106,21,19,"2025-26",1,4.25],[10107,22,16,"2025-26",1,5.25],[10108,22,17,"2025-26",1,5.5],[10109,22,18,"2025-26",1,4.5],[10110,22,19,"2025-26",1,7.0],[10111,23,16,"2025-26",1,null],[10112,23,17,"2025-26",1,6.0],[10113,23,18,"2025-26",1,3.0],[10114,23,19,"2025-26",1,7.25],[10115,24,16,"2025-26",1,5.0],[10116,24,17,"2025-26",1,5.0],[10117,24,18,"2025-26",1,8.0],[10118,24,19,"2025-26",1,6.0],[10119,25,20,"2025-26",1,7.25],[10120,25,21,"2025-26",1,8.75],[10121,25,22,"2025-26",1,6.5],[10122,25,23,"2025-26",1,6.25],[10123,25,24,"2025-26",1,3.0],[10124,26,20,"2025-26",1,8.5],[10125,26,21,"2025-26",1,7.5],[10126,26,22,"2025-26",1,8.25],[10127,26,23,"2025-26",1,6.75],[10128,26,24,"2025-26",1,8.25],[10129,27,20,"2025-26",1,8.0],[10130,27,21,"2025-26",1,6.5],[10131,27,22,"2025-26",1,4.5],[10132,27,23,"2025-26",1,9.75],[10133,27,24,"2025-26",1,6.25],[10134,28,20,"2025-26",1,6.0],[10135,28,21,"2025-26",1,null],[10136,28,22,"2025-26",1,7.25],[10137,28,23,"2025-26",1,1.75],[10138,28,24,"2025-26",1,6.75],[10139,29,20,"2025-26",1,7.25],[10140,29,21,"2025-26",1,9.25],[10141,29,22,"2025-26",1,7.5],[10142,29,23,"2025-26",1,8.0],[10143,29,24,"2025-26",1,10.0]];
+  var COLN = ['', 'id_modulo', 'convocatoria', 'id_alumno'], COLI = [0, 2, 4, 1];
+  var FN = [
+    { k: 'cs', sql: 'COUNT(*)', al: 'matriculas', f: function (v) { return v.length; } },
+    { k: 'cn', sql: 'COUNT(nota_final)', al: 'calificadas', f: function (v) { return nn(v).length; } },
+    { k: 'su', sql: 'SUM(nota_final)', al: 'suma', f: function (v) { var a = nn(v); return a.length ? a.reduce(function (x, y) { return x + y; }, 0) : null; } },
+    { k: 'av', sql: 'ROUND(AVG(nota_final), 2)', al: 'media', f: function (v) { var a = nn(v); return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : null; }, r: 2 },
+    { k: 'mi', sql: 'MIN(nota_final)', al: 'minima', f: function (v) { var a = nn(v); return a.length ? Math.min.apply(null, a) : null; } },
+    { k: 'ma', sql: 'MAX(nota_final)', al: 'maxima', f: function (v) { var a = nn(v); return a.length ? Math.max.apply(null, a) : null; } }
+  ];
+  function nn(rows) { return rows.filter(function (r) { return r[5] !== null; }).map(function (r) { return r[5]; }); }
+  var on = { cs: true, cn: true, av: true };
+  var chips = q('fns');
+  FN.forEach(function (fn) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip' + (on[fn.k] ? ' on' : ''); b.textContent = fn.sql.replace('ROUND(AVG(nota_final), 2)', 'AVG(nota_final)');
+    b.setAttribute('aria-pressed', String(!!on[fn.k]));
+    b.addEventListener('click', function () { on[fn.k] = !on[fn.k]; b.classList.toggle('on', !!on[fn.k]); b.setAttribute('aria-pressed', String(!!on[fn.k])); run(); });
+    chips.appendChild(b);
+    var o = document.createElement('option'); o.value = fn.k; o.textContent = fn.sql.replace('ROUND(AVG(nota_final), 2)', 'AVG(nota_final)'); q('hfn').appendChild(o);
+  });
+  function fnBy(k) { return FN.filter(function (f) { return f.k === k; })[0]; }
+  function cmp(a, op, b) { if (a === null) return false; switch (op) { case '>=': return a >= b; case '>': return a > b; case '<': return a < b; case '<=': return a <= b; case '=': return a === b; } return false; }
+  function fmt(v) { return v === null ? null : (Math.round(v * 100) / 100); }
+  function clear(e) { while (e.firstChild) e.removeChild(e.firstChild); }
+  function run() {
+    var ci = +q('col').value, cn = COLN[ci], bad = q('bad').checked;
+    var wOn = q('won').checked, wop = q('wop').value, wv = parseFloat(q('wval').value);
+    var hOn = q('hon').checked, hk = q('hfn').value, hop = q('hop').value, hv = parseFloat(q('hval').value);
+    var fns = FN.filter(function (f) { return on[f.k]; });
+    // SQL
+    var cols = [cn]; if (bad) cols.push('id_alumno');
+    var sel = cols.concat(fns.map(function (f) { return f.sql + ' AS ' + f.al; }));
+    var sql = 'SELECT ' + sel.join(',\n       ') + '\nFROM   matricula';
+    if (wOn) sql += '\nWHERE  nota_final ' + wop + ' ' + (isNaN(wv) ? '?' : wv);
+    sql += '\nGROUP  BY ' + cn;
+    var hf = fnBy(hk), hexpr = hf.sql.replace('ROUND(AVG(nota_final), 2)', 'AVG(nota_final)');
+    if (hOn) sql += '\nHAVING ' + hexpr + ' ' + hop + ' ' + (isNaN(hv) ? '?' : hv);
+    sql += '\nORDER  BY ' + cn + ';';
+    q('sql').textContent = sql;
+    // Evaluación en el orden lógico
+    var n0 = DATA.length, rows = DATA;
+    if (wOn && !isNaN(wv)) rows = DATA.filter(function (r) { return cmp(r[5], wop, wv); });
+    var n1 = rows.length, map = {}, keys = [];
+    rows.forEach(function (r) { var k = r[COLI[ci]]; if (!(k in map)) { map[k] = []; keys.push(k); } map[k].push(r); });
+    keys.sort(function (a, b) { return typeof a === 'number' ? a - b : (a < b ? -1 : 1); });
+    var n2 = keys.length;
+    if (hOn && !isNaN(hv)) keys = keys.filter(function (k) { return cmp(hf.f(map[k]), hop, hv); });
+    var n3 = keys.length;
+    var pipe = q('pipe'); clear(pipe);
+    [['1 FROM', n0 + ' filas'], ['2 WHERE', wOn ? n1 + ' filas' : 'sin filtro'], ['3 GROUP BY', n2 + ' grupos'], ['4 HAVING', hOn ? n3 + ' grupos' : 'sin filtro'], ['5 SELECT', bad ? 'error' : fns.length + ' agregados'], ['6 ORDER BY', bad ? '—' : n3 + ' filas']].forEach(function (s, i) {
+      var sp = document.createElement('span'); sp.className = (bad && i >= 4) ? 'ko' : 'done'; sp.textContent = s[0] + ' → ' + s[1]; pipe.appendChild(sp); });
+    var msg = q('msg'); clear(msg);
+    function P(cls, t) { var e = document.createElement('p'); if (cls) e.className = cls; e.textContent = t; msg.appendChild(e); }
+    var t = q('res'); clear(t);
+    if (bad) {
+      P('ko', 'ORA-00979: no es una expresión GROUP BY');
+      P('', 'Oracle forma los grupos antes de evaluar el SELECT. En cada grupo de «' + cn + '» hay muchos valores distintos de id_alumno y no puede elegir uno. Solución: añadirlo al GROUP BY (cambia el grupo), quitarlo del SELECT, o resumirlo con MIN, MAX o COUNT.');
+      return;
+    }
+    P('', 'FROM aporta ' + n0 + ' filas' + (wOn ? '; el WHERE deja ' + n1 + ' (' + (n0 - n1) + ' descartadas, entre ellas las que tienen nota NULL porque la condición es UNKNOWN)' : '') + '; GROUP BY las reparte en ' + n2 + ' grupo(s)' + (hOn ? '; el HAVING conserva ' + n3 : '') + '. El resultado tiene ' + n3 + ' fila(s).');
+    if (on.cs && on.cn) {
+      var diff = keys.filter(function (k) { return map[k].length !== nn(map[k]).length; });
+      if (diff.length) P('warn', 'COUNT(*) y COUNT(nota_final) difieren en ' + diff.map(function (k) { return cn + ' ' + k + ': ' + map[k].length + ' frente a ' + nn(map[k]).length; }).join('; ') + '. COUNT(columna) ignora los NULL.');
+    }
+    if (hOn && !fns.length) P('bd-w-note', 'Puedes filtrar con HAVING por un agregado que no aparece en el SELECT.');
+    if (ci === 3 && n2 > 40) P('bd-w-note', 'Agrupar por id_alumno genera un grupo por alumno con matrículas.');
+    var h = document.createElement('tr');
+    cols.slice(0, 1).concat(fns.map(function (f) { return f.al; })).forEach(function (x) { var th = document.createElement('th'); th.textContent = x.toUpperCase(); h.appendChild(th); }); t.appendChild(h);
+    keys.forEach(function (k) {
+      var tr = document.createElement('tr'), vals = [k].concat(fns.map(function (f) { var v = f.f(map[k]); return f.r ? fmt(v) : v; }));
+      var nulls = map[k].length !== nn(map[k]).length;
+      if (nulls && on.cn) tr.className = 'chg';
+      vals.forEach(function (v) { var td = document.createElement('td'); if (v === null) { td.textContent = '(null)'; td.className = 'null'; } else td.textContent = v; tr.appendChild(td); });
+      t.appendChild(tr);
+    });
+    if (!keys.length) { var e = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 1 + fns.length; td.textContent = 'ninguna fila seleccionada'; e.appendChild(td); t.appendChild(e); }
+  }
+  function reset() { on = { cs: true, cn: true, av: true }; Array.prototype.forEach.call(chips.children, function (b, i) { var k = FN[i].k; b.classList.toggle('on', !!on[k]); b.setAttribute('aria-pressed', String(!!on[k])); });
+    q('col').value = '1'; q('bad').checked = false; q('won').checked = false; q('wop').value = '>='; q('wval').value = '5'; q('hon').checked = false; q('hfn').value = 'av'; q('hop').value = '>='; q('hval').value = '5'; run(); }
+  ['col', 'bad', 'won', 'wop', 'wval', 'hon', 'hfn', 'hop', 'hval'].forEach(function (n) { q(n).addEventListener('change', run); q(n).addEventListener('input', run); });
+  q('reset').addEventListener('click', reset);
+  reset();
+})();
+</script>

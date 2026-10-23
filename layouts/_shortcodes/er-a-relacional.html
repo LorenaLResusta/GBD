@@ -1,0 +1,111 @@
+{{- /* Widget UD03: del modelo E/R al modelo relacional, sin SQL. */ -}}
+{{- $id := printf "era-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-important)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Del E/R a las tablas <span class="bd-w-sub">Elige el caso y obtén la regla y el esquema relacional</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Caso
+        <select data-t="caso">
+          <option value="bin">Relación binaria (según cardinalidades)</option>
+          <option value="debil">Entidad débil por identificación</option>
+          <option value="refl1n">Reflexiva 1:N</option>
+          <option value="reflnm">Reflexiva N:M</option>
+          <option value="multi">Atributo multivaluado</option>
+          <option value="tern">Ternaria N:M:P</option>
+        </select></label>
+      <label class="bd-f">Entidad A <input type="text" data-t="a" value="alumno" size="12"></label>
+      <label class="bd-f" data-t="wb">Entidad B <input type="text" data-t="b" value="grupo" size="12"></label>
+      <label class="bd-f" data-t="wc">Entidad C <input type="text" data-t="c" value="modulo" size="12"></label>
+    </div>
+    <div class="bd-w-row" data-t="cards">
+      <label class="bd-f">Cada A se asocia con… (mín.)
+        <select data-t="abmin"><option value="0">0 B</option><option value="1">1 B</option></select></label>
+      <label class="bd-f">(máx.)
+        <select data-t="abmax"><option value="1">1 B</option><option value="N">N B</option></select></label>
+      <label class="bd-f">Cada B se asocia con… (mín.)
+        <select data-t="bamin"><option value="0">0 A</option><option value="1">1 A</option></select></label>
+      <label class="bd-f">(máx.)
+        <select data-t="bamax"><option value="N">N A</option><option value="1">1 A</option></select></label>
+      <label class="bd-f">Al borrar el padre
+        <select data-t="pol"><option value="">Rechazar (por defecto)</option><option value="CASCADE">Borrado en cascada</option><option value="SET NULL">Puesta a nulos</option></select></label>
+    </div>
+    <div class="bd-w-out" data-t="out" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-t="' + n + '"]'); };
+  function id(s) { return (s || 'x').trim().toLowerCase().replace(/[^a-z0-9_]/g, '_').replace(/^([0-9])/, '_$1') || 'x'; }
+  function gen() {
+    var caso = q('caso').value, a = id(q('a').value), b = id(q('b').value), c = id(q('c').value), pol = q('pol').value;
+    var ab = [+q('abmin').value, q('abmax').value], ba = [+q('bamin').value, q('bamax').value];
+    var r = { regla: '', formal: '', notas: [] };
+    if (caso === 'bin') {
+      if (ab[1] === 'N' && ba[1] === 'N') {
+        r.regla = '4.5 · Relación N:M → tabla intermedia con las dos claves, que forman la clave primaria compuesta.';
+        r.formal = a.toUpperCase() + '(id_' + a + ', …)\n' + b.toUpperCase() + '(id_' + b + ', …)\n' + (a + '_' + b).toUpperCase() + '(id_' + a + '*, id_' + b + '*, atributos de la relación)';
+        r.notas.push('Si el mismo par puede repetirse (por ejemplo, varias matrículas en distintos cursos), la clave primaria debe incluir el atributo que los distingue (curso académico) o usar una clave artificial con UNIQUE sobre la clave natural.');
+      } else if (ab[1] === '1' && ba[1] === '1') {
+        var nnA = ab[0] === 1, nnB = ba[0] === 1;
+        r.regla = '4.6 · Relación 1:1 → depende de las participaciones mínimas.';
+        if (nnA && nnB) {
+          r.formal = 'Las dos participaciones son obligatorias: lo habitual es una única tabla ' + a.toUpperCase() + '_' + b.toUpperCase() + '(id, atributos de A, atributos de B).';
+          r.notas.push('Solo se fusionan si describen siempre el mismo objeto. Si no, es preferible mantener dos tablas, con la clave ajena NOT NULL UNIQUE en una de ellas.');
+        } else if (nnA || nnB) {
+          var fk = nnA ? a : b, ot = nnA ? b : a;
+          r.formal = fk.toUpperCase() + '(id_' + fk + ', …, id_' + ot + '*)  con id_' + ot + ' NOT NULL y UNIQUE';
+          r.notas.push('La clave ajena va en la tabla de la entidad con participación obligatoria (' + fk + '): así no necesita admitir NULL. UNIQUE garantiza el «1» del otro lado.');
+        } else {
+          r.formal = a.toUpperCase() + '(id_' + a + ', …, id_' + b + '*)  con id_' + b + ' UNIQUE y admite NULL';
+          r.notas.push('Ambas participaciones son opcionales. Opción simple (la mostrada, como en la tutoría de EduGest): clave ajena UNIQUE que admite NULL. Alternativa sin NULL: una tabla intermedia ' + a + '_' + b + '(id_' + a + ' PK, id_' + b + ' UNIQUE NOT NULL).');
+        }
+        r.notas.push('La clave ajena única admite valores nulos, por eso funciona la participación opcional (varias filas sin pareja).');
+      } else {
+        // 1:N: lado N guarda la clave ajena
+        var nSide = ab[1] === '1' ? a : b, oneSide = ab[1] === '1' ? b : a, mn = ab[1] === '1' ? ab[0] : ba[0];
+        r.regla = '4.4 · Relación 1:N → la clave primaria del lado «1» (' + oneSide + ') se propaga como clave ajena al lado «N» (' + nSide + ').';
+        r.formal = oneSide.toUpperCase() + '(id_' + oneSide + ', …)\n' + nSide.toUpperCase() + '(id_' + nSide + ', …, id_' + oneSide + '*)' + (mn === 1 ? '  · id_' + oneSide + ' NOT NULL (participación obligatoria)' : '  · id_' + oneSide + ' admite NULL (participación opcional)');
+        if (pol === 'SET NULL' && mn === 1) r.notas.push('⚠ La puesta a nulos es incompatible con una clave ajena obligatoria (mínimo 1): el SGBD no podría cumplir las dos reglas. Elige cascada o rechazar.');
+        r.notas.push('Si la relación tuviera atributos propios, pasarían a la tabla del lado N.');
+        r.notas.push('Recuerda que las claves ajenas se consultan mucho: en la UD05 verás cómo se indexan.');
+      }
+    } else if (caso === 'debil') {
+      r.regla = '4.2 · Entidad débil por identificación → su clave primaria incluye la clave de la entidad propietaria (que además es clave ajena).';
+      r.formal = b.toUpperCase() + '(id_' + b + ', …)\n' + a.toUpperCase() + '(id_' + b + '*, num_' + a + ', …)  ·  PK (id_' + b + ', num_' + a + ')  ·  FK id_' + b + ' ON DELETE CASCADE';
+      r.notas.push('Aquí A es la entidad débil y B la propietaria. El número de A solo es único dentro de cada B (aula 101 del edificio 1 y del edificio 2).');
+    } else if (caso === 'refl1n') {
+      r.regla = '4.7 · Reflexiva 1:N → clave ajena en la propia tabla, que apunta a su clave primaria.';
+      r.formal = a.toUpperCase() + '(id_' + a + ', …, id_jefe*)  ·  FK id_jefe → ' + a.toUpperCase() + '(id_' + a + ')';
+      r.notas.push('La clave ajena admite NULL: quien está en la cima no tiene jefe. Este esquema no impide ciclos (A es jefe de B y B de A); eso es una restricción no representable (apartado 6).');
+    } else if (caso === 'reflnm') {
+      r.regla = '4.7 · Reflexiva N:M → tabla intermedia con dos claves ajenas hacia la misma tabla (uno por rol).';
+      r.formal = a.toUpperCase() + '(id_' + a + ', …)\n' + (a + '_rel').toUpperCase() + '(id_origen*, id_destino*)  ·  PK (id_origen, id_destino)';
+      r.notas.push('El CHECK impide que una instancia se relacione consigo misma, si el enunciado así lo exige.');
+    } else if (caso === 'multi') {
+      r.regla = '4.3 · Atributo multivaluado → tabla nueva con la clave de la entidad y el propio atributo.';
+      r.formal = a.toUpperCase() + '(id_' + a + ', …)\n' + a.toUpperCase() + '_TELEFONO(id_' + a + '*, telefono)  ·  PK (id_' + a + ', telefono)';
+      r.notas.push('Una celda guarda un único valor atómico (1FN): nunca una lista «600111222, 965000000».');
+    } else {
+      r.regla = '4.8 · Ternaria N:M:P → tabla intermedia con las tres claves ajenas, que forman la clave primaria.';
+      r.formal = (a + '_' + b + '_' + c).toUpperCase() + '(id_' + a + '*, id_' + b + '*, id_' + c + '*, atributos)  ·  PK (id_' + a + ', id_' + b + ', id_' + c + ')';
+      r.notas.push('Si la conectividad no es N:M:P (por ejemplo, una pareja A–B solo puede estar con un C), la clave primaria se reduce: quita la columna del lado «1». Es el método de «fijar un par» de la UD02 (4.4).');
+      r.notas.push('Las tablas A, B y C se crean antes con su propia clave primaria (como en los casos anteriores).');
+    }
+    return r;
+  }
+  function render() {
+    var caso = q('caso').value;
+    q('wb').style.display = (caso === 'bin' || caso === 'debil' || caso === 'tern') ? '' : 'none';
+    q('wc').style.display = caso === 'tern' ? '' : 'none';
+    q('cards').style.display = caso === 'bin' ? '' : 'none';
+    var r = gen(), out = q('out'); while (out.firstChild) out.removeChild(out.firstChild);
+    var p = document.createElement('p'); var s = document.createElement('strong'); s.textContent = 'Regla aplicada: '; p.appendChild(s); p.appendChild(document.createTextNode(r.regla)); out.appendChild(p);
+    var h = document.createElement('p'); h.innerHTML = '<strong>Esquema relacional</strong> (* = clave ajena):'; out.appendChild(h);
+    var f = document.createElement('pre'); f.textContent = r.formal; out.appendChild(f);
+    r.notas.forEach(function (n) { var e = document.createElement('p'); e.className = 'bd-w-note'; e.textContent = n; out.appendChild(e); });
+  }
+  ['caso', 'a', 'b', 'c', 'abmin', 'abmax', 'bamin', 'bamax', 'pol'].forEach(function (n) { q(n).addEventListener('input', render); q(n).addEventListener('change', render); });
+  render();
+})();
+</script>

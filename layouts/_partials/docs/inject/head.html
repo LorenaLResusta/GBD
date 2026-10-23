@@ -1,0 +1,4 @@
+{{- /* Hoja de estilos de KaTeX solo en las páginas con fórmulas (math: true) */ -}}
+{{- if .Params.math -}}
+<link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL }}">
+{{- end -}}

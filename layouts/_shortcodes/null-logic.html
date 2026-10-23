@@ -1,0 +1,70 @@
+{{- /* Widget UD06: lógica de tres valores y filtrado de WHERE. */ -}}
+{{- $id := printf "nul-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-warning)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Lógica de tres valores <span class="bd-w-sub">TRUE · FALSE · UNKNOWN (NULL)</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-cols">
+      <div>
+        <p style="margin:0 0 .3rem"><strong>A · Tablas de verdad</strong></p>
+        <div class="bd-w-row">
+          <label class="bd-f">A <select data-u="a"><option>TRUE</option><option>FALSE</option><option>UNKNOWN</option></select></label>
+          <label class="bd-f">B <select data-u="b"><option>TRUE</option><option>FALSE</option><option>UNKNOWN</option></select></label>
+        </div>
+        <table data-u="tt"></table>
+      </div>
+      <div>
+        <p style="margin:0 0 .3rem"><strong>B · ¿Qué filas deja pasar WHERE?</strong></p>
+        <div class="bd-w-row">
+          <label class="bd-f">Condición sobre <code>nota_final</code>
+            <select data-u="cond"></select></label>
+        </div>
+        <table data-u="rows"></table>
+      </div>
+    </div>
+    <div class="bd-w-out" data-u="out" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-u="' + n + '"]'); };
+  var V = { TRUE: true, FALSE: false, UNKNOWN: null };
+  function show(v) { return v === true ? 'TRUE' : v === false ? 'FALSE' : 'UNKNOWN'; }
+  function cls(v) { return v === true ? 'ok' : v === false ? 'ko' : 'warn'; }
+  function and3(a, b) { if (a === false || b === false) return false; if (a === null || b === null) return null; return true; }
+  function or3(a, b) { if (a === true || b === true) return true; if (a === null || b === null) return null; return false; }
+  function not3(a) { return a === null ? null : !a; }
+  function tt() {
+    var a = V[q('a').value], b = V[q('b').value], t = q('tt'); while (t.firstChild) t.removeChild(t.firstChild);
+    [['A AND B', and3(a, b)], ['A OR B', or3(a, b)], ['NOT A', not3(a)], ['NOT B', not3(b)]].forEach(function (r) {
+      var tr = document.createElement('tr'), c1 = document.createElement('td'), c2 = document.createElement('td'); c1.textContent = r[0]; c2.textContent = show(r[1]); c2.className = cls(r[1]); tr.appendChild(c1); tr.appendChild(c2); t.appendChild(tr); });
+  }
+  var notas = [8, 4.75, null, 6, null, 3.5];
+  var conds = [
+    ['nota_final >= 5', function (n) { return n === null ? null : n >= 5; }],
+    ['nota_final < 5', function (n) { return n === null ? null : n < 5; }],
+    ['NOT (nota_final >= 5)', function (n) { return n === null ? null : !(n >= 5); }],
+    ['nota_final = NULL', function () { return null; }],
+    ['nota_final IS NULL', function (n) { return n === null; }],
+    ['nota_final >= 5 OR nota_final IS NULL', function (n) { return or3(n === null ? null : n >= 5, n === null); }]
+  ];
+  conds.forEach(function (c, i) { var o = document.createElement('option'); o.value = i; o.textContent = c[0]; q('cond').appendChild(o); });
+  function rows() {
+    var c = conds[+q('cond').value], t = q('rows'); while (t.firstChild) t.removeChild(t.firstChild);
+    var h = document.createElement('tr'); ['matrícula', 'nota_final', 'condición', 'WHERE'].forEach(function (x) { var th = document.createElement('th'); th.textContent = x; h.appendChild(th); }); t.appendChild(h);
+    var pass = 0, unk = 0;
+    notas.forEach(function (n, i) {
+      var v = c[1](n), tr = document.createElement('tr');
+      [i + 1, n === null ? 'NULL' : n, show(v), v === true ? 'sale' : 'no sale'].forEach(function (x, k) { var td = document.createElement('td'); td.textContent = x; if (k === 1 && n === null) td.className = 'null'; if (k === 2) td.className = cls(v); tr.appendChild(td); });
+      if (v === true) pass++; if (v === null) unk++; t.appendChild(tr);
+    });
+    var out = q('out'); while (out.firstChild) out.removeChild(out.firstChild);
+    var p = document.createElement('p'); p.textContent = 'Devuelve ' + pass + ' de ' + notas.length + ' filas; ' + unk + ' se evalúan como UNKNOWN y se descartan.'; out.appendChild(p);
+    var cmp = document.createElement('p'); cmp.className = 'bd-w-note';
+    cmp.textContent = (+q('cond').value === 3) ? 'Cualquier comparación con NULL (incluida «= NULL») es UNKNOWN: nunca devuelve filas. Para detectar nulos se usa IS NULL.' : (+q('cond').value === 2) ? 'NOT (UNKNOWN) sigue siendo UNKNOWN: las notas nulas no aparecen ni con «>= 5» ni con su negación. Compáralo con la condición «< 5».' : 'Observa que las condiciones «>= 5» y «< 5» juntas no cubren las filas con NULL.';
+    out.appendChild(cmp);
+  }
+  ['a', 'b'].forEach(function (n) { q(n).addEventListener('change', tt); }); q('cond').addEventListener('change', rows);
+  q('a').value = 'TRUE'; q('b').value = 'UNKNOWN'; tt(); rows();
+})();
+</script>

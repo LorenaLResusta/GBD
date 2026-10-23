@@ -1,0 +1,1545 @@
+{
+ "unidades": [
+  {
+   "c": "UD01",
+   "n": "Sistemas de almacenamiento y SGBD",
+   "h": 3,
+   "ini": "2026-09-09",
+   "fin": "2026-09-11"
+  },
+  {
+   "c": "UD02",
+   "n": "Modelo Entidad/Relación",
+   "h": 26,
+   "ini": "2026-09-14",
+   "fin": "2026-10-21"
+  },
+  {
+   "c": "UD03",
+   "n": "Modelo relacional",
+   "h": 20,
+   "ini": "2026-10-22",
+   "fin": "2026-11-18"
+  },
+  {
+   "c": "UD04",
+   "n": "Normalización",
+   "h": 2,
+   "ini": "2026-11-19",
+   "fin": "2026-11-20"
+  },
+  {
+   "c": "UD05",
+   "n": "DDL: definición de datos",
+   "h": 35,
+   "ini": "2026-11-23",
+   "fin": "2027-01-27"
+  },
+  {
+   "c": "EV1",
+   "n": "Prueba y revisión de la 1ª evaluación",
+   "h": 3,
+   "ini": "2026-12-09",
+   "fin": "2026-12-11"
+  },
+  {
+   "c": "UD06",
+   "n": "Consultas (DML)",
+   "h": 40,
+   "ini": "2027-01-28",
+   "fin": "2027-04-06"
+  },
+  {
+   "c": "EV2",
+   "n": "Prueba y revisión de la 2ª evaluación",
+   "h": 3,
+   "ini": "2027-02-24",
+   "fin": "2027-02-26"
+  },
+  {
+   "c": "UD07",
+   "n": "DML, transacciones y concurrencia",
+   "h": 3,
+   "ini": "2027-04-07",
+   "fin": "2027-04-09"
+  },
+  {
+   "c": "UD08",
+   "n": "Programación con PL/SQL",
+   "h": 35,
+   "ini": "2027-04-12",
+   "fin": "2027-04-30"
+  },
+  {
+   "c": "EV3",
+   "n": "Prueba y revisión de la 3ª evaluación y final",
+   "h": 3,
+   "ini": "2027-04-28",
+   "fin": "2027-04-30"
+  },
+  {
+   "c": "UD09",
+   "n": "Bases de datos NoSQL",
+   "h": 2,
+   "ini": "2027-06-29",
+   "fin": "2027-06-30"
+  },
+  {
+   "c": "REF",
+   "n": "Final de PL/SQL y NoSQL (junio, provisional)",
+   "h": 22,
+   "ini": "2027-06-21",
+   "fin": "2027-06-30"
+  }
+ ],
+ "dias": [
+  {
+   "d": "2026-09-09",
+   "k": "lectivo",
+   "u": "UD01",
+   "t": 1,
+   "g": "UD01"
+  },
+  {
+   "d": "2026-09-10",
+   "k": "lectivo",
+   "u": "UD01",
+   "t": 1,
+   "g": "UD01"
+  },
+  {
+   "d": "2026-09-11",
+   "k": "lectivo",
+   "u": "UD01",
+   "t": 1,
+   "g": "UD01"
+  },
+  {
+   "d": "2026-09-14",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-15",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-16",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-17",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-18",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-21",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-22",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-23",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-24",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-25",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-28",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-29",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-09-30",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-01",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-02",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-05",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-06",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-07",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-08",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-09",
+   "k": "festivo",
+   "n": "Día de la Comunitat Valenciana",
+   "t": 1
+  },
+  {
+   "d": "2026-10-12",
+   "k": "festivo",
+   "n": "Fiesta Nacional de España",
+   "t": 1
+  },
+  {
+   "d": "2026-10-13",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-14",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-15",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-16",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-19",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-20",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-21",
+   "k": "lectivo",
+   "u": "UD02",
+   "t": 1,
+   "g": "UD02"
+  },
+  {
+   "d": "2026-10-22",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-23",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-26",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-27",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-28",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-29",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-10-30",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-02",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-03",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-04",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-05",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-06",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-09",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-10",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-11",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-12",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-13",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-16",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-17",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-18",
+   "k": "lectivo",
+   "u": "UD03",
+   "t": 1,
+   "g": "UD03"
+  },
+  {
+   "d": "2026-11-19",
+   "k": "lectivo",
+   "u": "UD04",
+   "t": 1,
+   "g": "UD04"
+  },
+  {
+   "d": "2026-11-20",
+   "k": "lectivo",
+   "u": "UD04",
+   "t": 1,
+   "g": "UD04"
+  },
+  {
+   "d": "2026-11-23",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-11-24",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-11-25",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-11-26",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-11-27",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-11-30",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-01",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-02",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-03",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-04",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-07",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-08",
+   "k": "festivo",
+   "n": "Inmaculada Concepción",
+   "t": 1
+  },
+  {
+   "d": "2026-12-09",
+   "k": "lectivo",
+   "u": "EV1",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-10",
+   "k": "lectivo",
+   "u": "EV1",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-11",
+   "k": "lectivo",
+   "u": "EV1",
+   "t": 1,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-14",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-15",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-16",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-17",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-18",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-21",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-22",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2026-12-23",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-24",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-25",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-28",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-29",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-30",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2026-12-31",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-01",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-04",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-05",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-06",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-07",
+   "k": "vacaciones",
+   "n": "Vacaciones de Navidad",
+   "t": 2
+  },
+  {
+   "d": "2027-01-08",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-11",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-12",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-13",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-14",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-15",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-18",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-19",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-20",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-21",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-22",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-25",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-26",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-27",
+   "k": "lectivo",
+   "u": "UD05",
+   "t": 2,
+   "g": "UD05"
+  },
+  {
+   "d": "2027-01-28",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-01-29",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-01",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-02",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-03",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-04",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-05",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-08",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-09",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-10",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-11",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-12",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-15",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-16",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-17",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-18",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-19",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-22",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-23",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-24",
+   "k": "lectivo",
+   "u": "EV2",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-25",
+   "k": "lectivo",
+   "u": "EV2",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-02-26",
+   "k": "lectivo",
+   "u": "EV2",
+   "t": 2,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-01",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-02",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-03",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-04",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-05",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-08",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-09",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-10",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-11",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-12",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-15",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-16",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-17",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-18",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-19",
+   "k": "festivo",
+   "n": "San José",
+   "t": 3
+  },
+  {
+   "d": "2027-03-22",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-23",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-24",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-03-25",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-03-26",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-03-29",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-03-30",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-03-31",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-04-01",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-04-02",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-04-05",
+   "k": "vacaciones",
+   "n": "Vacaciones de Pascua",
+   "t": 3
+  },
+  {
+   "d": "2027-04-06",
+   "k": "lectivo",
+   "u": "UD06",
+   "t": 3,
+   "g": "UD06"
+  },
+  {
+   "d": "2027-04-07",
+   "k": "lectivo",
+   "u": "UD07",
+   "t": 3,
+   "g": "UD07"
+  },
+  {
+   "d": "2027-04-08",
+   "k": "lectivo",
+   "u": "UD07",
+   "t": 3,
+   "g": "UD07"
+  },
+  {
+   "d": "2027-04-09",
+   "k": "lectivo",
+   "u": "UD07",
+   "t": 3,
+   "g": "UD07"
+  },
+  {
+   "d": "2027-04-12",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-13",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-14",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-15",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-16",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-19",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-20",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-21",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-22",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-23",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-26",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-27",
+   "k": "lectivo",
+   "u": "UD08",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-28",
+   "k": "lectivo",
+   "u": "EV3",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-29",
+   "k": "lectivo",
+   "u": "EV3",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-04-30",
+   "k": "lectivo",
+   "u": "EV3",
+   "t": 3,
+   "g": "UD08"
+  },
+  {
+   "d": "2027-05-03",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-04",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-05",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-06",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-07",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-10",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-11",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-12",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-13",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-14",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-17",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-18",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-19",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-20",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-21",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-24",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-25",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-26",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-27",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-28",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-05-31",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-01",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-02",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-03",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-04",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-07",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-08",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-09",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-10",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-11",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-14",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-15",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-16",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-17",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-18",
+   "k": "fe",
+   "n": "Sin sesiones en la planificación provisional (mayo-junio)",
+   "t": 3
+  },
+  {
+   "d": "2027-06-21",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-22",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-23",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-24",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-25",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-28",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-29",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  },
+  {
+   "d": "2027-06-30",
+   "k": "lectivo",
+   "u": "REF",
+   "t": 3,
+   "g": "UD08/UD09"
+  }
+ ],
+ "hitos": [
+  {
+   "d": "2026-09-09",
+   "n": "Inicio del curso"
+  },
+  {
+   "d": "2026-12-09",
+   "n": "Prueba de la 1ª evaluación (9 a 11 de diciembre)"
+  },
+  {
+   "d": "2027-02-24",
+   "n": "Prueba de la 2ª evaluación (24 a 26 de febrero)"
+  },
+  {
+   "d": "2027-04-28",
+   "n": "Prueba de la 3ª evaluación y final (28 a 30 de abril)"
+  },
+  {
+   "d": "2027-05-03",
+   "n": "Comienza la Formación en Empresa"
+  },
+  {
+   "d": "2027-06-21",
+   "n": "Final de PL/SQL y NoSQL (22 h, fechas por concretar con el centro)"
+  },
+  {
+   "d": "2027-06-21",
+   "n": "Final de PL/SQL y NoSQL (22 h, fechas por concretar con el centro)"
+  }
+ ]
+}

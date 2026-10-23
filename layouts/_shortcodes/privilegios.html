@@ -1,0 +1,110 @@
+{{- /* Widget UD05: roles, privilegios y mínimo privilegio, con errores de Oracle. */ -}}
+{{- $id := printf "prv-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-caution)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Taller de roles y privilegios <span class="bd-w-sub">Diseña el rol y comprueba qué puede hacer cada usuario</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">1 · Rol que editas
+        <select data-p="rol"></select></label>
+      <label class="bd-f"><span>&nbsp;</span><span><input type="checkbox" data-p="cs" checked> CREATE SESSION</span></label>
+      <label class="bd-f"><span>&nbsp;</span><span><input type="checkbox" data-p="any"> SELECT ANY TABLE <span class="ko">(¡no lo hagas!)</span></span></label>
+    </div>
+    <div style="overflow-x:auto"><table data-p="tab"></table></div>
+    <pre data-p="sql"></pre>
+    <div class="bd-w-row">
+      <label class="bd-f">2 · Prueba como usuario
+        <select data-p="user"></select></label>
+      <label class="bd-f">Acción
+        <select data-p="act"></select></label>
+      <button type="button" data-p="go">Ejecutar</button>
+    </div>
+    <div class="bd-w-out" data-p="res" aria-live="polite">Resultado de la prueba…</div>
+    <div class="bd-w-note" data-p="min"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-p="' + n + '"]'); };
+  var objs = [['alumno', 'tabla'], ['v_alumno_listado', 'vista'], ['matricula', 'tabla'], ['falta_asistencia', 'tabla']];
+  var PRIVS = ['SELECT', 'INSERT', 'UPDATE', 'DELETE'];
+  var roles = {
+    rol_profesorado: { cs: true, any: false, g: { 'v_alumno_listado': { SELECT: 1 }, 'matricula': { SELECT: 1, 'UPDATE(nota_final)': 1 }, 'falta_asistencia': { SELECT: 1, INSERT: 1, UPDATE: 1 } } },
+    rol_secretaria: { cs: true, any: false, g: { alumno: { SELECT: 1, INSERT: 1, UPDATE: 1 }, 'v_alumno_listado': { SELECT: 1 }, matricula: { SELECT: 1, INSERT: 1, UPDATE: 1 }, falta_asistencia: { SELECT: 1 } } },
+    rol_consulta: { cs: true, any: false, g: { 'v_alumno_listado': { SELECT: 1 } } }
+  };
+  var users = { prof_marta: 'rol_profesorado', sec_ana: 'rol_secretaria', dir_jefatura: 'rol_consulta' };
+  var acts = [
+    ['SELECT * FROM edugest.alumno', 'alumno', 'SELECT'],
+    ['SELECT * FROM edugest.v_alumno_listado', 'v_alumno_listado', 'SELECT'],
+    ['UPDATE edugest.matricula SET nota_final = 7 …', 'matricula', 'UPDATE(nota_final)'],
+    ['UPDATE edugest.matricula SET id_modulo = 3 …', 'matricula', 'UPDATE'],
+    ['INSERT INTO edugest.falta_asistencia …', 'falta_asistencia', 'INSERT'],
+    ['DELETE FROM edugest.alumno WHERE …', 'alumno', 'DELETE'],
+    ['DROP TABLE edugest.alumno', 'alumno', 'DROP']
+  ];
+  Object.keys(roles).forEach(function (r) { var o = document.createElement('option'); o.value = o.textContent = r; q('rol').appendChild(o); });
+  Object.keys(users).forEach(function (u) { var o = document.createElement('option'); o.value = u; o.textContent = u + ' (' + users[u] + ')'; q('user').appendChild(o); });
+  acts.forEach(function (a, i) { var o = document.createElement('option'); o.value = i; o.textContent = a[0]; q('act').appendChild(o); });
+  function cur() { return roles[q('rol').value]; }
+  function has(role, obj, p) {
+    var r = roles[role], g = r.g[obj] || {};
+    if (p === 'UPDATE(nota_final)') return !!(g.UPDATE || g['UPDATE(nota_final)']);
+    if (p === 'SELECT' && r.any) return true;
+    return !!g[p];
+  }
+  function anyOn(role, obj) { var r = roles[role], g = r.g[obj] || {}; return r.any || Object.keys(g).some(function (k) { return g[k]; }); }
+  function table() {
+    var t = q('tab'); while (t.firstChild) t.removeChild(t.firstChild);
+    var h = document.createElement('tr'); ['Objeto'].concat(PRIVS).concat(['UPDATE (nota_final)']).forEach(function (x) { var th = document.createElement('th'); th.textContent = x; h.appendChild(th); }); t.appendChild(h);
+    var r = cur();
+    objs.forEach(function (o) {
+      var tr = document.createElement('tr'), td = document.createElement('td'); td.textContent = o[0] + ' (' + o[1] + ')'; tr.appendChild(td);
+      PRIVS.concat(['UPDATE(nota_final)']).forEach(function (p) {
+        var c = document.createElement('td');
+        var ok = !(o[1] === 'vista' && p !== 'SELECT') && !(p === 'UPDATE(nota_final)' && o[0] !== 'matricula');
+        if (ok) { var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!((r.g[o[0]] || {})[p]); cb.setAttribute('aria-label', p + ' sobre ' + o[0]);
+          cb.addEventListener('change', function () { r.g[o[0]] = r.g[o[0]] || {}; r.g[o[0]][p] = cb.checked ? 1 : 0; sql(); minimo(); }); c.appendChild(cb); } else c.textContent = '·';
+        tr.appendChild(c);
+      });
+      t.appendChild(tr);
+    });
+  }
+  function sql() {
+    var role = q('rol').value, r = cur(), l = ['CREATE ROLE ' + role + ';'];
+    if (r.cs) l.push('GRANT CREATE SESSION TO ' + role + ';');
+    if (r.any) l.push('GRANT SELECT ANY TABLE TO ' + role + ';  -- ¡afecta a TODOS los esquemas!');
+    objs.forEach(function (o) {
+      var g = r.g[o[0]] || {}, ps = PRIVS.filter(function (p) { return g[p]; });
+      var colUp = g['UPDATE(nota_final)'] && !g.UPDATE;
+      var list = ps.slice(); if (colUp) list.push('UPDATE (nota_final)');
+      if (list.length) l.push('GRANT ' + list.join(', ') + ' ON edugest.' + o[0] + ' TO ' + role + ';');
+    });
+    q('sql').textContent = l.join('\n');
+  }
+  function minimo() {
+    var r = cur(), n = 0; objs.forEach(function (o) { var g = r.g[o[0]] || {}; Object.keys(g).forEach(function (k) { if (g[k]) n++; }); });
+    var m = q('min'); m.textContent = ''; var s = document.createElement('span');
+    if (r.any) { s.className = 'ko'; s.textContent = '✕ SELECT ANY TABLE rompe el mínimo privilegio: el rol vería datos de cualquier esquema. Mejor concede SELECT sobre las vistas necesarias.'; }
+    else if ((r.g.alumno || {}).DELETE) { s.className = 'warn'; s.textContent = '⚠ DELETE sobre ALUMNO: ¿de verdad necesita este rol borrar alumnado? Plantéate una baja lógica.'; }
+    else { s.className = 'ok'; s.textContent = n + ' privilegio(s) de objeto concedido(s).'; }
+    m.appendChild(s);
+  }
+  function probar() {
+    var u = q('user').value, role = users[u], a = acts[+q('act').value], res = q('res'), r = roles[role];
+    while (res.firstChild) res.removeChild(res.firstChild);
+    function P(cls, t) { var e = document.createElement('p'); if (cls) e.className = cls; e.textContent = t; res.appendChild(e); }
+    P('', 'Conectado como ' + u + ' (rol ' + role + ')');
+    if (!r.cs) { P('ko', 'ORA-01045: user ' + u.toUpperCase() + ' lacks CREATE SESSION privilege; logon denied. Sin CREATE SESSION ni siquiera puede conectarse.'); return; }
+    if (a[2] === 'DROP') { P('ko', anyOn(role, a[1]) ? 'ORA-01031: insufficient privileges. Solo el propietario (o quien tenga DROP ANY TABLE) puede borrar la tabla.' : 'ORA-00942: table or view does not exist. Sin ningún privilegio, el objeto es invisible para el usuario.'); return; }
+    if (has(role, a[1], a[2])) P('ok', '✓ ' + a[0] + ' → permitido.');
+    else if (anyOn(role, a[1])) P('ko', '✕ ' + a[0] + ' → ORA-01031: insufficient privileges. Tiene algún privilegio sobre ' + a[1] + ', pero no ' + a[2] + '.');
+    else P('ko', '✕ ' + a[0] + ' → ORA-00942: table or view does not exist. Sin ningún privilegio, Oracle ni siquiera revela que el objeto existe.');
+  }
+  q('rol').addEventListener('change', function () { q('cs').checked = cur().cs; q('any').checked = cur().any; table(); sql(); minimo(); });
+  q('cs').addEventListener('change', function () { cur().cs = q('cs').checked; sql(); });
+  q('any').addEventListener('change', function () { cur().any = q('any').checked; sql(); minimo(); });
+  q('go').addEventListener('click', probar);
+  q('rol').value = 'rol_profesorado'; q('rol').dispatchEvent(new Event('change'));
+})();
+</script>

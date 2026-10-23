@@ -1,0 +1,22 @@
+{{- /*
+  Ficha de cabecera de una práctica.
+  Uso: {{< practica etiqueta="Ejercicio" (opcional, por defecto «Práctica») num="5.1" tipo="Guiada" duracion="2 h" nivel="1" ra="RA2:b,c,d" sgbd="Oracle 26ai Free" entrega="Script .sql + capturas" >}}
+  tipo: Guiada | Autónoma | Reto | Proyecto
+  nivel: 1 (básico) · 2 (intermedio) · 3 (avanzado)
+*/ -}}
+{{- $tipo := .Get "tipo" | default "Guiada" -}}
+{{- $nivel := int (.Get "nivel" | default "1") -}}
+{{- $clase := lower (replace (replace $tipo "ó" "o") " " "-") -}}
+<div class="bd-practica bd-practica--{{ $clase }}">
+  <div class="bd-practica-top">
+    <span class="bd-practica-num">{{ .Get "etiqueta" | default (i18n "practica") }} {{ .Get "num" }}</span>
+    <span class="bd-pill bd-pill--{{ $clase }}">{{ i18n (printf "t_%s" $clase) | default $tipo }}</span>
+  </div>
+  <dl class="bd-practica-meta">
+    {{- with .Get "duracion" }}<div><dt>{{ i18n "duracion" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+    <div><dt>{{ i18n "dificultad" }}</dt><dd><span class="bd-nivel" aria-label="{{ i18n "nivel_de" (dict "n" $nivel) }}">{{ range seq 3 }}<i class="{{ if le . $nivel }}on{{ end }}"></i>{{ end }}</span></dd></div>
+    {{- with .Get "ra" }}<div><dt>{{ i18n "ra_ce" }}</dt><dd>{{ replace . ";" " · " }}</dd></div>{{ end -}}
+    {{- with .Get "sgbd" }}<div><dt>{{ i18n "software" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+    {{- with .Get "entrega" }}<div><dt>{{ i18n "entrega" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+  </dl>
+</div>

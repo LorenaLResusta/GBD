@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-696 -771 967 708" width="967" height="708" role="img" aria-labelledby="t d" font-family="DejaVu Sans, Verdana, Arial, sans-serif">
+<title id="t">Instituto: módulos, matrículas, delegados y casilleros</title><desc id="d">PROFESOR imparte MÓDULO (1:N); MÓDULO es requisito de MÓDULO (N:M reflexiva); ALUMNO se matricula en MÓDULO (N:M con fecha); ALUMNO es delegado de ALUMNO (1:N reflexiva); ALUMNO tiene CASILLERO (1:1).</desc>
+<rect x="-696" y="-771" width="967" height="708" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<g stroke="#1f2937" stroke-width="1.4" fill="none"><line x1="-508.0" y1="-650.7" x2="-501.3" y2="-626.8"/><line x1="-538.9" y1="-650.7" x2="-558.8" y2="-634.0"/><line x1="-570.2" y1="-676.7" x2="-596.1" y2="-678.9"/><line x1="-512.0" y1="-692.7" x2="-509.7" y2="-718.6"/><line x1="-122.0" y1="-665.2" x2="-135.3" y2="-679.7"/><line x1="-92.8" y1="-665.2" x2="-81.9" y2="-688.8"/><line x1="142.8" y1="-191.5" x2="169.6" y2="-177.7"/><line x1="113.2" y1="-191.5" x2="140.6" y2="-139.1"/><line x1="96.9" y1="-191.5" x2="77.4" y2="-114.9"/><line x1="72.2" y1="-191.5" x2="50.9" y2="-176.6"/><line x1="138.6" y1="-233.5" x2="161.1" y2="-246.5"/><line x1="-434.0" y1="-269.1" x2="-445.0" y2="-245.6"/><line x1="-469.3" y1="-311.1" x2="-492.8" y2="-322.1"/><line x1="40.9" y1="-496.8" x2="10.9" y2="-496.8"/><line x1="-395.5" y1="-658.5" x2="-457.7" y2="-664.3"/><line x1="-395.0" y1="-663.1" x2="-457.2" y2="-668.8"/><line x1="-327.1" y1="-663.1" x2="-151.6" y2="-650.1"/><line x1="-327.4" y1="-658.5" x2="-151.9" y2="-645.5"/><path d="M-177.2 -504.3 Q-131.2 -514.3 -107.3 -623.2" fill="none"/><path d="M-245.2 -504.3 Q-291.2 -514.3 -133.1 -623.2" fill="none"/><line x1="61.9" y1="-462.8" x2="98.8" y2="-233.5"/><line x1="60.6" y1="-528.9" x2="-73.5" y2="-621.3"/><line x1="63.2" y1="-532.7" x2="-70.8" y2="-625.1"/><path d="M-61.2 -268.2 Q-51.2 -222.2 53.6 -215.6" fill="none"/><path d="M-61.2 -336.2 Q-51.2 -382.2 83.2 -233.5" fill="none"/><line x1="-261.8" y1="-233.5" x2="53.6" y2="-215.3"/><line x1="-329.8" y1="-233.5" x2="-389.2" y2="-269.1"/></g>
+<rect x="-570.2" y="-692.7" width="112.8" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<rect x="-151.7" y="-665.2" width="98.2" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<rect x="53.6" y="-233.5" width="97.3" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<rect x="-481.4" y="-311.1" width="114.3" height="42.0" fill="#ffffff" stroke="#111111" stroke-width="1.8"/>
+<polygon points="-395.2,-660.8 -361.2,-639.8 -327.2,-660.8 -361.2,-681.8" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="-177.2,-504.3 -211.2,-525.3 -245.2,-504.3 -211.2,-483.3" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="61.9,-462.8 82.9,-496.8 61.9,-530.8 40.9,-496.8" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="-61.2,-268.2 -40.2,-302.2 -61.2,-336.2 -82.2,-302.2" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="-261.8,-233.5 -295.8,-254.5 -329.8,-233.5 -295.8,-212.5" fill="#ffffff" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"/>
+<ellipse cx="-497.4" cy="-612.9" rx="34.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-573.9" cy="-621.3" rx="35.7" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-633.3" cy="-682.2" rx="38.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-508.5" cy="-732.6" rx="27.0" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-147.3" cy="-692.8" rx="34.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-75.5" cy="-702.5" rx="30.9" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="191.5" cy="-166.3" rx="37.8" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="147.7" cy="-125.6" rx="27.4" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="73.9" cy="-101.0" rx="34.2" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="32.2" cy="-163.5" rx="54.3" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="183.8" cy="-259.6" rx="64.1" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-451.5" cy="-231.7" rx="42.9" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-517.9" cy="-333.8" rx="45.4" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="-48.1" cy="-496.8" rx="59.0" ry="14.0" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+<rect x="-449.6" y="-673.2" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-431.3" y="-659.7" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,1)</text>
+<text x="-404.2" y="-666.8" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<rect x="-198.6" y="-658.9" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-179.7" y="-645.4" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,N)</text>
+<text x="-318.2" y="-646.8" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<rect x="-143.2" y="-574.0" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-124.3" y="-560.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="-168.2" y="-490.3" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<text x="-89.9" y="-554.6" font-size="11" fill="#475569" text-anchor="middle" font-style="italic">previo</text>
+<rect x="-230.7" y="-574.0" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-211.8" y="-560.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="-254.2" y="-510.3" font-size="11" fill="#111111" text-anchor="middle">M</text>
+<text x="-234.0" y="-572.8" font-size="11" fill="#475569" text-anchor="middle" font-style="italic">posterior</text>
+<rect x="75.5" y="-270.2" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="94.4" y="-256.7" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="51.9" y="-449.8" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<rect x="-68.0" y="-616.3" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-49.1" y="-602.8" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,N)</text>
+<text x="71.9" y="-535.8" font-size="11" fill="#111111" text-anchor="middle">M</text>
+<rect x="-20.7" y="-232.5" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-2.5" y="-219.0" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,1)</text>
+<text x="-71.2" y="-255.2" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<text x="-7.8" y="-203.5" font-size="11" fill="#475569" text-anchor="middle" font-style="italic">delegado</text>
+<rect x="-7.3" y="-316.2" width="37.8" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="11.6" y="-302.7" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="-51.2" y="-341.2" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<text x="42.2" y="-314.5" font-size="11" fill="#475569" text-anchor="middle" font-style="italic">representado</text>
+<rect x="7.4" y="-225.9" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="25.6" y="-212.4" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,1)</text>
+<text x="-252.8" y="-219.5" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<rect x="-383.5" y="-263.7" width="36.5" height="17" rx="3" fill="#ffffff" opacity="0.94"/><text x="-365.2" y="-250.2" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,1)</text>
+<text x="-338.8" y="-239.5" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<text x="-513.8" y="-666.7" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">PROFESOR</text>
+<text x="-102.6" y="-639.2" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">MÓDULO</text>
+<text x="102.2" y="-207.5" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">ALUMNO</text>
+<text x="-424.2" y="-285.1" font-size="13" font-weight="700" text-anchor="middle" fill="#111111">CASILLERO</text>
+<text x="-361.2" y="-690.3" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">imparte</text>
+<text x="-211.2" y="-465.8" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">es requisito de</text>
+<text x="137.3" y="-492.3" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">se matricula</text>
+<text x="-146.9" y="-297.7" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">es delegado de</text>
+<text x="-295.8" y="-263.0" font-size="12.5" font-weight="700" font-style="italic" text-anchor="middle" fill="#111111">tiene</text>
+<text x="-497.4" y="-608.9" font-size="12" text-anchor="middle" fill="#111111">nombre</text>
+<text x="-573.9" y="-617.3" font-size="12" text-anchor="middle" fill="#111111">teléfono</text>
+<text x="-633.3" y="-678.2" font-size="12" text-anchor="middle" fill="#111111">dirección</text>
+<text x="-508.5" y="-728.6" font-size="12" text-anchor="middle" fill="#111111">dni</text>
+<line x1="-517.8" y1="-724.6" x2="-499.2" y2="-724.6" stroke="#111111" stroke-width="1.3"/>
+<text x="-147.3" y="-688.8" font-size="12" text-anchor="middle" fill="#111111">nombre</text>
+<text x="-75.5" y="-698.5" font-size="12" text-anchor="middle" fill="#111111">código</text>
+<line x1="-95.4" y1="-694.5" x2="-55.5" y2="-694.5" stroke="#111111" stroke-width="1.3"/>
+<text x="191.5" y="-162.3" font-size="12" text-anchor="middle" fill="#111111">apellidos</text>
+<text x="147.7" y="-121.6" font-size="12" text-anchor="middle" fill="#111111">curso</text>
+<text x="73.9" y="-97.0" font-size="12" text-anchor="middle" fill="#111111">nombre</text>
+<text x="32.2" y="-159.5" font-size="12" text-anchor="middle" fill="#111111">nº_expediente</text>
+<line x1="-11.1" y1="-155.5" x2="75.5" y2="-155.5" stroke="#111111" stroke-width="1.3"/>
+<text x="183.8" y="-255.6" font-size="12" text-anchor="middle" fill="#111111">fecha_nacimiento</text>
+<text x="-451.5" y="-227.7" font-size="12" text-anchor="middle" fill="#111111">tamaño_m</text>
+<text x="-517.9" y="-329.8" font-size="12" text-anchor="middle" fill="#111111">nº_casillero</text>
+<line x1="-552.3" y1="-325.8" x2="-483.5" y2="-325.8" stroke="#111111" stroke-width="1.3"/>
+<text x="-48.1" y="-492.8" font-size="12" text-anchor="middle" fill="#111111">fecha_matrícula</text>
+</svg>

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 600" width="980" height="600" role="img" aria-labelledby="t d" font-family="DejaVu Sans, Verdana, Arial, sans-serif">
+<title id="t">Leyenda de la notación de Chen extendida (EER)</title>
+<desc id="d">Entidad, entidad débil con relación identificadora (rombo doble), relaciones binarias y ternaria con participación parcial (línea sencilla) y total (línea doble), atributos (clave, clave alternativa, discriminador, multivaluado, derivado, compuesto), especialización con círculo d u o, y agregación.</desc>
+<rect width="980" height="600" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="30" y="34" font-size="13" fill="#1e3a8a" text-anchor="start" font-weight="700">RELACIONES Y CARDINALIDADES</text>
+<rect x="45.0" y="61.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="80" y="84.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<rect x="365.0" y="61.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="400" y="84.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<line x1="115" y1="80" x2="206" y2="80" stroke="#111111" stroke-width="1.4"/>
+<line x1="274" y1="80" x2="365" y2="80" stroke="#111111" stroke-width="1.4"/>
+<polygon points="206,80 240,59 274,80 240,101" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="240" y="52" font-size="12" fill="#111111" text-anchor="middle" font-weight="700" font-style="italic">1:1</text>
+<text x="198" y="72" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<text x="282" y="72" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<rect x="131.765625" y="71" width="36.46875" height="17" rx="3" fill="#fff"/>
+<text x="150" y="84.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,1)</text>
+<rect x="311.765625" y="71" width="36.46875" height="17" rx="3" fill="#fff"/>
+<text x="330" y="84.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,1)</text>
+<text x="240" y="118" font-size="11.5" fill="#334155" text-anchor="middle">Rombo blanco; 1 o N junto al rombo, (mín,máx) junto a la entidad</text>
+<rect x="45.0" y="151.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="80" y="174.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<rect x="365.0" y="151.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="400" y="174.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<line x1="115" y1="170" x2="206" y2="170" stroke="#111111" stroke-width="1.4"/>
+<line x1="274" y1="170" x2="365" y2="170" stroke="#111111" stroke-width="1.4"/>
+<polygon points="206,170 240,149 274,170 240,191" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="240" y="142" font-size="12" fill="#111111" text-anchor="middle" font-weight="700" font-style="italic">1:N</text>
+<text x="198" y="162" font-size="11" fill="#111111" text-anchor="middle">1</text>
+<text x="282" y="162" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<rect x="131.765625" y="161" width="36.46875" height="17" rx="3" fill="#fff"/>
+<text x="150" y="174.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,1)</text>
+<rect x="311.09375" y="161" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="330" y="174.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="240" y="208" font-size="11.5" fill="#334155" text-anchor="middle">Línea sencilla: participación parcial (mínimo 0)</text>
+<rect x="45.0" y="241.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="80" y="264.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<rect x="365.0" y="241.0" width="70" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="400" y="264.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<line x1="115.0" y1="262.3" x2="206.0" y2="262.3" stroke="#111111" stroke-width="1.4"/>
+<line x1="115.0" y1="257.7" x2="206.0" y2="257.7" stroke="#111111" stroke-width="1.4"/>
+<line x1="274.0" y1="262.3" x2="365.0" y2="262.3" stroke="#111111" stroke-width="1.4"/>
+<line x1="274.0" y1="257.7" x2="365.0" y2="257.7" stroke="#111111" stroke-width="1.4"/>
+<polygon points="206,260 240,239 274,260 240,281" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="240" y="232" font-size="12" fill="#111111" text-anchor="middle" font-weight="700" font-style="italic">N:M</text>
+<text x="198" y="252" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<text x="282" y="252" font-size="11" fill="#111111" text-anchor="middle">M</text>
+<rect x="131.09375" y="251" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="150" y="264.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,N)</text>
+<rect x="311.09375" y="251" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="330" y="264.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,N)</text>
+<text x="240" y="298" font-size="11.5" fill="#334155" text-anchor="middle">Línea doble: participación total (mínimo 1)</text>
+<rect x="60.0" y="361.0" width="60" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="90" y="384.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<rect x="360.0" y="361.0" width="60" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="390" y="384.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<rect x="210.0" y="451.0" width="60" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="240" y="474.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">C</text>
+<polygon points="194,388 240,356 286,388 240,420" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<line x1="120" y1="380" x2="194" y2="386" stroke="#111111" stroke-width="1.4"/>
+<line x1="360" y1="380" x2="286" y2="386" stroke="#111111" stroke-width="1.4"/>
+<line x1="240" y1="451" x2="240" y2="420" stroke="#111111" stroke-width="1.4"/>
+<text x="240" y="336" font-size="12" fill="#111111" text-anchor="middle" font-weight="700" font-style="italic">ternaria N:M:P</text>
+<rect x="131.09375" y="369" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="150" y="382.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<rect x="311.09375" y="369" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="330" y="382.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<rect x="243.09375" y="431" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="262" y="444.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(0,N)</text>
+<text x="176" y="376" font-size="11" fill="#111111" text-anchor="middle">N</text>
+<text x="304" y="376" font-size="11" fill="#111111" text-anchor="middle">M</text>
+<text x="252" y="426" font-size="11" fill="#111111" text-anchor="middle">P</text>
+<text x="240" y="510" font-size="11.5" fill="#334155" text-anchor="middle">Un rombo con tres líneas; las N se rotulan N, M, P</text>
+<rect x="40.0" y="541.0" width="80" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="80" y="564.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">FUERTE</text>
+<rect x="360.0" y="541.0" width="80" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<rect x="364.0" y="545.0" width="72" height="30" fill="none" stroke="#111111" stroke-width="1.4"/>
+<text x="400" y="564.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">DÉBIL</text>
+<line x1="120" y1="560" x2="206" y2="560" stroke="#111111" stroke-width="1.4"/>
+<line x1="274.0" y1="562.3" x2="360.0" y2="562.3" stroke="#111111" stroke-width="1.4"/>
+<line x1="274.0" y1="557.7" x2="360.0" y2="557.7" stroke="#111111" stroke-width="1.4"/>
+<polygon points="206,560 240,539 274,560 240,581" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<polygon points="212.8,560.0 240.0,543.2 267.2,560.0 240.0,576.8" fill="none" stroke="#111111" stroke-width="1.3"/>
+<rect x="131.765625" y="551" width="36.46875" height="17" rx="3" fill="#fff"/>
+<text x="150" y="564.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,1)</text>
+<rect x="309.09375" y="551" width="37.8125" height="17" rx="3" fill="#fff"/>
+<text x="328" y="564.5" font-size="12" fill="#1e3a8a" text-anchor="middle" font-weight="700">(1,N)</text>
+<text x="240" y="592" font-size="11.5" fill="#334155" text-anchor="middle">Entidad débil: rectángulo doble · relación identificadora: rombo doble</text>
+<text x="520" y="34" font-size="13" fill="#1e3a8a" text-anchor="start" font-weight="700">ATRIBUTOS</text>
+<ellipse cx="580" cy="80" rx="34.8046875" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="580" y="84" font-size="12" fill="#111111" text-anchor="middle">atributo</text>
+<text x="580" y="112" font-size="11.5" fill="#334155" text-anchor="middle">Simple</text>
+<ellipse cx="700" cy="80" rx="30.0" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="700" y="84" font-size="12" fill="#111111" text-anchor="middle">clave</text>
+<line x1="684.109375" y1="88" x2="715.890625" y2="88" stroke="#111111" stroke-width="1.3"/>
+<text x="700" y="112" font-size="11.5" fill="#334155" text-anchor="middle">Identificador</text>
+<ellipse cx="830" cy="80" rx="30.0" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="830" y="84" font-size="12" fill="#111111" text-anchor="middle">nif</text>
+<line x1="822.421875" y1="88" x2="837.578125" y2="88" stroke="#111111" stroke-width="1.8" stroke-dasharray="1.5 2.5"/>
+<text x="830" y="112" font-size="11.5" fill="#334155" text-anchor="middle">Clave alternativa</text>
+<ellipse cx="580" cy="150" rx="35.140625" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="580" y="154" font-size="12" fill="#111111" text-anchor="middle">nº_línea</text>
+<line x1="555.859375" y1="158" x2="604.140625" y2="158" stroke="#111111" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="580" y="182" font-size="11.5" fill="#334155" text-anchor="middle">Discriminador</text>
+<ellipse cx="700" cy="150" rx="35.6640625" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<ellipse cx="700" cy="150" rx="31.6640625" ry="10" fill="none" stroke="#111111" stroke-width="1.2"/>
+<text x="700" y="154" font-size="12" fill="#111111" text-anchor="middle">teléfono</text>
+<text x="700" y="182" font-size="11.5" fill="#334155" text-anchor="middle">Multivaluado</text>
+<ellipse cx="830" cy="150" rx="30.0" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4" stroke-dasharray="5 3"/>
+<text x="830" y="154" font-size="12" fill="#111111" text-anchor="middle">edad</text>
+<text x="830" y="182" font-size="11.5" fill="#334155" text-anchor="middle">Derivado</text>
+<ellipse cx="905" cy="225" rx="38.2421875" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="905" y="229" font-size="12" fill="#111111" text-anchor="middle">dirección</text>
+<ellipse cx="860" cy="270" rx="29.0" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="860" y="274" font-size="12" fill="#111111" text-anchor="middle">calle</text>
+<ellipse cx="950" cy="270" rx="23.0" ry="14" fill="#fff" stroke="#111111" stroke-width="1.4"/>
+<text x="950" y="274" font-size="12" fill="#111111" text-anchor="middle">cp</text>
+<line x1="890" y1="238" x2="868" y2="256" stroke="#111111" stroke-width="1.4"/>
+<line x1="920" y1="238" x2="942" y2="256" stroke="#111111" stroke-width="1.4"/>
+<text x="905" y="300" font-size="11.5" fill="#334155" text-anchor="middle">Compuesto</text>
+<text x="520" y="230" font-size="13" fill="#1e3a8a" text-anchor="start" font-weight="700">ESPECIALIZACIÓN (EER)</text>
+<rect x="582.0" y="251.0" width="116" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="640" y="274.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">SUPERCLASE</text>
+<line x1="637.7" y1="289.0" x2="637.7" y2="322.0" stroke="#111111" stroke-width="1.4"/>
+<line x1="642.3" y1="289.0" x2="642.3" y2="322.0" stroke="#111111" stroke-width="1.4"/>
+<circle cx="640" cy="334" r="11.5" fill="#fff" stroke="#111111" stroke-width="1.6"/>
+<text x="640" y="338.5" font-size="13" fill="#111111" text-anchor="middle" font-weight="700">d</text>
+<line x1="634" y1="344" x2="575" y2="370" stroke="#111111" stroke-width="1.4"/>
+<line x1="646" y1="344" x2="705" y2="370" stroke="#111111" stroke-width="1.4"/>
+<path d="M614.8 363.3 A6 6 0 0 1 609.2 352.7" fill="#fff" stroke="#111111" stroke-width="1.5"/>
+<path d="M670.8 352.7 A6 6 0 0 1 665.2 363.3" fill="#fff" stroke="#111111" stroke-width="1.5"/>
+<rect x="535.0" y="369.0" width="80" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="575" y="392.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">SUB_1</text>
+<rect x="665.0" y="369.0" width="80" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="705" y="392.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">SUB_2</text>
+<text x="640" y="428" font-size="11.5" fill="#334155" text-anchor="middle">d disjunta · o solapada · línea doble = total · ⊂ subclase</text>
+<text x="520" y="470" font-size="13" fill="#1e3a8a" text-anchor="start" font-weight="700">AGREGACIÓN</text>
+<rect x="520" y="486" width="300" height="74" fill="none" stroke="#15803d" stroke-width="2"/><rect x="525" y="491" width="290" height="64" fill="none" stroke="#15803d" stroke-width="1.2"/>
+<rect x="545.0" y="504.0" width="50" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="570" y="527.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<rect x="745.0" y="504.0" width="50" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="770" y="527.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<line x1="595" y1="523" x2="636" y2="523" stroke="#111111" stroke-width="1.4"/>
+<line x1="704" y1="523" x2="745" y2="523" stroke="#111111" stroke-width="1.4"/>
+<polygon points="636,523 670,502 704,523 670,544" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<line x1="820" y1="523" x2="885" y2="523" stroke="#111111" stroke-width="1.4"/>
+<rect x="885.0" y="504.0" width="60" height="38" fill="#fff" stroke="#111111" stroke-width="1.8"/>
+<text x="915" y="527.5" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">C</text>
+<text x="700" y="584" font-size="11.5" fill="#334155" text-anchor="middle">La relación A–B se trata como una entidad</text>
+</svg>

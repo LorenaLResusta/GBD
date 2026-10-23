@@ -1,0 +1,31 @@
+{{- /*
+  Diagrama SVG incrustado e interactivo: al pasar el ratón o pulsar sobre un elemento
+  con class="hot" se muestra su explicación (data-tip) bajo el dibujo.
+  {{< diagrama src="acid-transactions.svg" caption="Propiedades ACID" >}}
+  src: ruta dentro de assets/images
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- with resources.Get (printf "images/%s" $src) -}}
+<figure class="bd-diagrama">
+  <div class="bd-diagrama-svg">{{ .Content | safeHTML }}</div>
+  <output class="bd-diagrama-tip" aria-live="polite">Pasa el ratón o pulsa sobre un elemento del diagrama para ver su explicación.</output>
+  {{- with $.Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- else -}}
+{{- errorf "diagrama: no existe assets/images/%s" $src -}}
+{{- end -}}
+{{- if not (.Page.Store.Get "bdDiagramaJS") -}}
+{{- .Page.Store.Set "bdDiagramaJS" true -}}
+<script>
+(function () {
+  function tip(ev) {
+    var h = ev.target.closest && ev.target.closest('.hot'); if (!h) return;
+    var fig = h.closest('.bd-diagrama'); if (!fig) return;
+    fig.querySelectorAll('.hot.on').forEach(function (n) { n.classList.remove('on'); });
+    if (ev.type === 'click' || ev.type === 'focusin') h.classList.add('on');
+    var o = fig.querySelector('.bd-diagrama-tip'); o.textContent = h.getAttribute('data-tip'); o.classList.add('has');
+  }
+  ['mouseover', 'click', 'focusin'].forEach(function (t) { document.addEventListener(t, tip); });
+})();
+</script>
+{{- end -}}

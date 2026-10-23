@@ -1,0 +1,88 @@
+{{- /* Widget UD03: simulador de integridad referencial conceptual. */ -}}
+{{- $id := printf "int-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-caution)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Simulador de integridad referencial <span class="bd-w-sub">GRUPO (padre) ← ALUMNO (hija)</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Política de la clave ajena
+        <select data-i="pol">
+          <option value="none">Restringido (rechazar el borrado)</option>
+          <option value="cascade">En cascada</option>
+          <option value="setnull">Puesta a nulos</option>
+        </select></label>
+      <label class="bd-f">Atributo cod_grupo
+        <select data-i="nn"><option value="null">Opcional (admite nulos)</option><option value="nn">Obligatorio (no admite nulos)</option></select></label>
+      <button type="button" class="ghost" data-i="reset">Reiniciar datos</button>
+    </div>
+    <pre data-i="ddl"></pre>
+    <div class="bd-w-cols">
+      <div><strong>GRUPO</strong> (tabla padre)<table data-i="tg"></table></div>
+      <div><strong>ALUMNO</strong> (tabla hija)<table data-i="ta"></table></div>
+    </div>
+    <div class="bd-w-row">
+      <label class="bd-f">Borrar la fila del grupo <select data-i="delg"></select></label>
+      <button type="button" data-i="bdel">Borrar</button>
+      <label class="bd-f">Cambiar la clave del grupo <select data-i="updg"></select></label>
+      <button type="button" data-i="bupd">Cambiar</button>
+    </div>
+    <div class="bd-w-row">
+      <label class="bd-f">Añadir un alumno al grupo <select data-i="insg"></select></label>
+      <button type="button" data-i="bins">Añadir</button>
+    </div>
+    <div class="bd-w-out bd-w-log" data-i="log" aria-live="polite"><div>Resultado de las operaciones…</div></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-i="' + n + '"]'); };
+  var G0 = ['1DAM', '2DAM', '1DAW'];
+  var A0 = [[1, 'Adrián', '1DAM'], [2, 'Rubén', '1DAM'], [8, 'Iván', '2DAM'], [9, 'Martina', '2DAM'], [14, 'Carla', '1DAW']];
+  var G, A, nextId, changed = {};
+  function reset() { G = G0.slice(); A = A0.map(function (r) { return r.slice(); }); nextId = 1001; changed = {}; log(null); draw(); fill(); }
+  function log(msg, cls) { var l = q('log'); if (msg === null) { l.textContent = ''; var d = document.createElement('div'); d.textContent = 'Datos reiniciados.'; l.appendChild(d); return; }
+    var d = document.createElement('div'); if (cls) d.className = cls; d.textContent = msg; l.insertBefore(d, l.firstChild); }
+  function ddl() {
+    var pol = q('pol').value, nn = q('nn').value === 'nn';
+    q('ddl').textContent = 'Regla declarada: cod_grupo de ALUMNO es clave ajena hacia GRUPO\n· ' + (nn ? 'Obligatorio: todo alumno debe tener grupo.' : 'Opcional: un alumno puede quedar sin grupo.') + '\n· Política de borrado: ' + (pol === 'cascade' ? 'en cascada.' : pol === 'setnull' ? 'puesta a nulos.' : 'restringido.');
+  }
+  function tbl(t, head, rows, hl) {
+    while (t.firstChild) t.removeChild(t.firstChild);
+    var tr = document.createElement('tr'); head.forEach(function (h) { var th = document.createElement('th'); th.textContent = h; tr.appendChild(th); }); t.appendChild(tr);
+    rows.forEach(function (r, n) { var x = document.createElement('tr'); if (hl && hl[n]) x.className = hl[n];
+      r.forEach(function (v) { var td = document.createElement('td'); if (v === null) { td.textContent = 'NULL'; td.className = 'null'; } else td.textContent = v; x.appendChild(td); }); t.appendChild(x); });
+  }
+  function draw() { tbl(q('tg'), ['cod_grupo (PK)'], G.map(function (g) { return [g]; }), changed.g); tbl(q('ta'), ['id_alumno', 'nombre', 'cod_grupo (FK)'], A, changed.a); ddl(); }
+  function opts(sel, vals) { while (sel.firstChild) sel.removeChild(sel.firstChild); vals.forEach(function (v) { var o = document.createElement('option'); o.value = v === null ? '' : v; o.textContent = v === null ? 'NULL' : v; sel.appendChild(o); }); }
+  function fill() { opts(q('delg'), G); opts(q('updg'), G); opts(q('insg'), G.concat(['3XYZ', null])); }
+  q('bdel').addEventListener('click', function () {
+    var g = q('delg').value, pol = q('pol').value, nn = q('nn').value === 'nn', kids = A.filter(function (a) { return a[2] === g; });
+    var sql = "Borrar el grupo " + g; changed = {};
+    if (kids.length && pol === 'none') { log(sql + '\n→ RECHAZADO: hay ' + kids.length + ' alumnos que usan este grupo (la clave ajena quedaría apuntando a una fila inexistente)', 'ko'); draw(); return; }
+    if (kids.length && pol === 'setnull' && nn) { log(sql + '\n→ RECHAZADO: la puesta a nulos contradice el atributo obligatorio; no pueden cumplirse las dos reglas a la vez', 'ko'); draw(); return; }
+    var ca = {};
+    if (kids.length && pol === 'cascade') { var keep = []; A.forEach(function (a) { if (a[2] !== g) keep.push(a); }); A = keep; }
+    if (kids.length && pol === 'setnull') { A.forEach(function (a, n) { if (a[2] === g) { a[2] = null; ca[n] = 'chg'; } }); }
+    G = G.filter(function (x) { return x !== g; }); changed.a = ca; fill(); draw();
+    log(sql + '\n→ Fila borrada' + (kids.length ? (pol === 'cascade' ? ' · y ' + kids.length + ' alumno(s) borrados en cascada' : ' · ' + kids.length + ' alumno(s) con cod_grupo = NULL') : ''), 'ok');
+  });
+  q('bupd').addEventListener('click', function () {
+    var g = q('updg').value, kids = A.filter(function (a) { return a[2] === g; }); changed = {};
+    var sql = "Cambiar la clave de " + g + " por " + g + "_B";
+    if (kids.length) log(sql + '\n→ RECHAZADO: el grupo tiene alumnos y el cambio de clave no se propaga. Por eso las claves primarias deben ser estables.', 'ko');
+    else { G = G.map(function (x) { return x === g ? g + '_B' : x; }); changed.g = {}; changed.g[G.indexOf(g + '_B')] = 'chg'; fill(); log(sql + '\n→ Clave cambiada (el grupo no tenía alumnos)', 'ok'); }
+    draw();
+  });
+  q('bins').addEventListener('click', function () {
+    var g = q('insg').value, nn = q('nn').value === 'nn'; changed = {};
+    var shown = g === '' ? 'sin grupo (nulo)' : g, sql = 'Añadir el alumno ' + nextId + ' al grupo: ' + shown;
+    if (g === '' && nn) { log(sql + '\n→ RECHAZADO: el grupo es obligatorio y no puede quedar vacío', 'ko'); draw(); return; }
+    if (g !== '' && G.indexOf(g) < 0) { log(sql + '\n→ RECHAZADO: el grupo indicado no existe (integridad referencial)', 'ko'); draw(); return; }
+    A.push([nextId++, 'Nuevo', g === '' ? null : g]); changed.a = {}; changed.a[A.length - 1] = 'chg'; draw();
+    log(sql + '\n→ Alumno añadido' + (g === '' ? ' (una clave ajena nula no se comprueba)' : ''), 'ok');
+  });
+  q('pol').addEventListener('change', function () { reset(); }); q('nn').addEventListener('change', function () { reset(); });
+  q('reset').addEventListener('click', reset);
+  reset();
+})();
+</script>

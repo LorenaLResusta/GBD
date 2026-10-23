@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 390" width="1000" height="390" role="img" aria-labelledby="t d" font-family='system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'>
+<title id="t">PACIENTE realiza CONSULTA (1:N)</title><desc id="d">PACIENTE realiza CONSULTA (1:N)</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#1e293b"/></linearGradient></defs>
+<style>.hot{cursor:pointer;transition:filter .15s}.hot:hover,.hot:focus,.hot.on{filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,255,255,.35));outline:none}</style>
+<rect width="1000" height="390" rx="12" fill="url(#bg)"/>
+<rect x="65.0" y="162.0" width="170.0" height="56.0" rx="2" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="150.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">PACIENTE</text>
+<rect x="765.0" y="162.0" width="170.0" height="56.0" rx="2" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+<text x="850.0" y="195.6" font-size="16" fill="#fff" text-anchor="middle" font-weight="700">CONSULTA</text>
+<line x1="235.0" y1="190.0" x2="415.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<line x1="585.0" y1="190.0" x2="765.0" y2="190.0" stroke="#94a3b8" stroke-width="2"/>
+<g class="hot" tabindex="0" data-tip="1:N: un paciente tiene muchas consultas; cada consulta es de un paciente.">
+<polygon points="500,149.0 585.0,190 500,231.0 415.0,190" fill="#047857" stroke="#34d399" stroke-width="2"/>
+<text x="500.0" y="194.9" font-size="14" fill="#fff" text-anchor="middle" font-weight="700">REALIZA</text>
+</g>
+<text x="271.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">1</text>
+<text x="729.0" y="178.0" font-size="15" fill="#fbbf24" text-anchor="middle" font-weight="700">N</text>
+<line x1="150.0" y1="162.0" x2="150.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="150.0" cy="80.0" rx="48.4" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="150.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">id_paciente</text>
+<line x1="150.0" y1="218.0" x2="150.0" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="150.0" cy="300.0" rx="24.0" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="150.0" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">dni</text>
+<line x1="850.0" y1="162.0" x2="850.0" y2="97.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="850.0" cy="80.0" rx="47.8" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="850.0" y="84.4" font-size="12.5" fill="#fff" text-anchor="middle" text-decoration="underline">id_consulta</text>
+<line x1="834.3" y1="218.0" x2="805.2" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="805.2" cy="300.0" rx="31.1" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="805.2" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">fecha</text>
+<line x1="863.3" y1="218.0" x2="888.1" y2="283.0" stroke="#94a3b8" stroke-width="1.6"/>
+<ellipse cx="888.1" cy="300.0" rx="37.8" ry="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.8"/>
+<text x="888.1" y="304.4" font-size="12.5" fill="#fff" text-anchor="middle">importe</text>
+</svg>

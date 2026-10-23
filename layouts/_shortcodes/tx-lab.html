@@ -1,0 +1,486 @@
+{{- /* Widget UD07: laboratorio de transacciones y concurrencia. Dos sesiones de Oracle
+       sobre dos filas de MATRICULA de EduGest. Reproduce la consistencia de lectura
+       multiversión, el bloqueo de fila, la espera, el interbloqueo (ORA-00060) y
+       el alcance de ROLLBACK TO SAVEPOINT. */ -}}
+{{- $id := printf "tx-%d" .Ordinal -}}
+<div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-warning)">
+  <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Laboratorio de transacciones y concurrencia <span class="bd-w-sub">{{ "Oracle 26ai" }} · dos sesiones sobre MATRICULA · simulación didáctica, no es un SGBD</span></div>
+  <div class="bd-w-body">
+    <div class="bd-w-row">
+      <label class="bd-f">Escenario guiado
+        <select data-t="scen"></select></label>
+      <button type="button" data-t="step">Ejecutar el paso siguiente</button>
+      <button type="button" class="ghost" data-t="reset">Reiniciar</button>
+    </div>
+    <div class="bd-w-out" data-t="guide" aria-live="polite"></div>
+    <p style="margin:.7rem 0 .2rem"><strong>1 · Valores comprometidos</strong> (lo que vería una tercera sesión recién conectada)</p>
+    <table data-t="db"></table>
+    <p style="margin:.7rem 0 .2rem"><strong>2 · Las dos sesiones</strong></p>
+    <div class="bd-w-cols" data-t="cols"></div>
+    <p style="margin:.7rem 0 .2rem"><strong>3 · Registro cronológico</strong></p>
+    <div class="bd-w-out bd-w-log" data-t="log" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById({{ $id }});
+  var q = function (n) { return root.querySelector('[data-t="' + n + '"]'); };
+
+  /* ---- datos de partida: dos matrículas reales de EduGest ---- */
+  var ROWS = [
+    { id: 10110, who: 'Sofía Planelles · 0615 Diseño de interfaces web', base: 7 },
+    { id: 10109, who: 'Sofía Planelles · 0614 Despliegue de aplicaciones web', base: 4.5 }
+  ];
+  var OPS = {
+    select: 'SELECT', update: 'UPDATE', savepoint: 'SAVEPOINT',
+    rbsp: 'ROLLBACK TO SAVEPOINT', rollback: 'ROLLBACK', commit: 'COMMIT'
+  };
+
+  /* ---- escenarios guiados ---- */
+  var SCEN = [
+    { k: 'libre', t: 'Libre (sin guion)', d: 'Pulsa los botones en el orden que quieras.', steps: [] },
+    { k: 'lectura', t: 'Lectura consistente', d: 'Las lecturas nunca se bloquean ni ven datos no comprometidos.', steps: [
+      { s: 'A', op: 'update', row: 0, mode: 'set', val: 9 },
+      { s: 'B', op: 'select', row: 0 },
+      { s: 'A', op: 'commit' },
+      { s: 'B', op: 'select', row: 0 }
+    ] },
+    { k: 'bloqueo', t: 'Sesión bloqueada', d: 'Dos escrituras sobre la misma fila: la segunda espera.', steps: [
+      { s: 'A', op: 'update', row: 0, mode: 'add', val: 1 },
+      { s: 'B', op: 'update', row: 0, mode: 'add', val: 2 },
+      { s: 'A', op: 'commit' },
+      { s: 'B', op: 'commit' }
+    ] },
+    { k: 'perdida', t: 'Actualización perdida', d: 'Las dos leen, calculan fuera de la base de datos y escriben: un cambio se pierde.', steps: [
+      { s: 'A', op: 'select', row: 0 },
+      { s: 'B', op: 'select', row: 0 },
+      { s: 'A', op: 'update', row: 0, mode: 'set', val: 8 },
+      { s: 'A', op: 'commit' },
+      { s: 'B', op: 'update', row: 0, mode: 'set', val: 9 },
+      { s: 'B', op: 'commit' }
+    ] },
+    { k: 'deadlock', t: 'Interbloqueo (ORA-00060)', d: 'Cada sesión bloquea una fila y pide después la de la otra.', steps: [
+      { s: 'A', op: 'update', row: 0, mode: 'add', val: 1 },
+      { s: 'B', op: 'update', row: 1, mode: 'add', val: 1 },
+      { s: 'A', op: 'update', row: 1, mode: 'add', val: 1 },
+      { s: 'B', op: 'update', row: 0, mode: 'add', val: 1 },
+      { s: 'A', op: 'rollback' },
+      { s: 'B', op: 'commit' }
+    ] },
+    { k: 'savepoint', t: 'SAVEPOINT y ROLLBACK parcial', d: 'Se deshace solo lo posterior al punto de guardado.', steps: [
+      { s: 'A', op: 'update', row: 0, mode: 'set', val: 8 },
+      { s: 'A', op: 'savepoint' },
+      { s: 'A', op: 'update', row: 1, mode: 'set', val: 10 },
+      { s: 'A', op: 'rbsp' },
+      { s: 'A', op: 'commit' }
+    ] }
+  ];
+
+  var st = null, ui = { A: null, B: null };
+
+  /* ---- utilidades ---- */
+  function fmt(v) {
+    if (v === null || v === undefined) return '(null)';
+    var s = (Math.round(v * 100) / 100).toFixed(2);
+    s = s.replace(/0+$/, '').replace(/\.$/, '');
+    return s;
+  }
+  function r2(v) { return Math.round(v * 100) / 100; }
+  function other(n) { return n === 'A' ? 'B' : 'A'; }
+  function rowOf(id) { for (var i = 0; i < ROWS.length; i++) if (ROWS[i].id === id) return ROWS[i]; return null; }
+
+  function mkSess(n) {
+    return { n: n, open: false, pend: {}, undo: [], sps: [], spn: 0, wait: null, since: 0, sql: '', msgs: [], read: {} };
+  }
+  function reset() {
+    st = { t: 0, wseq: 0, committed: {}, locks: {}, log: [], s: { A: mkSess('A'), B: mkSess('B') }, step: 0 };
+    ROWS.forEach(function (r) { st.committed[r.id] = r.base; });
+    render();
+  }
+
+  function log(sess, sql, eff, cls) {
+    st.t += 1;
+    st.log.push({ t: st.t, s: sess, sql: sql, eff: eff, cls: cls || '' });
+  }
+  /* valor que ve una sesión: su propio cambio no comprometido o el último comprometido */
+  function visible(s, id) { return s.pend[id] !== undefined ? s.pend[id] : st.committed[id]; }
+
+  /* ---- operaciones ---- */
+  function doSelect(s, ix) {
+    var r = ROWS[ix];
+    var sql = 'SELECT nota_final FROM matricula WHERE id_matricula = ' + r.id + ';';
+    var v = visible(s, r.id);
+    s.read[r.id] = v;
+    s.sql = sql;
+    var propio = s.pend[r.id] !== undefined;
+    var nota = propio
+      ? 'devuelve ' + fmt(v) + ' (su propio cambio, aún sin confirmar)'
+      : 'devuelve ' + fmt(v) + ' (último valor comprometido; no espera a la otra sesión)';
+    s.msgs = [['ok', 'SELECT → nota_final = ' + fmt(v)]];
+    log(s.n, sql, nota, 'ok');
+  }
+
+  function updSql(r, mode, val) {
+    return 'UPDATE matricula SET nota_final = ' + (mode === 'add' ? 'nota_final + ' + fmt(val) : fmt(val)) +
+      ' WHERE id_matricula = ' + r.id + ';';
+  }
+
+  function apply(s, ix, mode, val, reread) {
+    var r = ROWS[ix];
+    var cur = visible(s, r.id);
+    var nv = mode === 'add' ? r2(cur + val) : val;
+    if (nv < 0 || nv > 10) {
+      s.msgs = [['ko', 'ORA-02290: restricción de comprobación (EDUGEST.CK_MATRICULA_NOTA) violada']];
+      log(s.n, updSql(r, mode, val), 'ORA-02290: CK_MATRICULA_NOTA. La sentencia se deshace; la transacción sigue abierta', 'ko');
+      return;
+    }
+    var acq = st.locks[r.id] !== s.n;
+    s.undo.push({ row: r.id, prev: s.pend[r.id], acq: acq });
+    s.pend[r.id] = nv;
+    st.locks[r.id] = s.n;
+    s.open = true;
+    s.sql = updSql(r, mode, val);
+    var eff = '1 fila actualizada: ' + fmt(cur) + ' → ' + fmt(nv) + '. Bloqueo exclusivo de la fila ' + r.id + ' para ' + s.n;
+    if (reread) eff = 'se desbloquea, «relee» nota_final = ' + fmt(cur) + ' y aplica el cambio: ' + fmt(cur) + ' → ' + fmt(nv);
+    s.msgs = [['ok', '1 fila actualizada (' + fmt(cur) + ' → ' + fmt(nv) + ')']];
+    log(s.n, s.sql, eff, 'ok');
+  }
+
+  function doUpdate(s, ix, mode, val) {
+    var r = ROWS[ix], o = st.s[other(s.n)];
+    var holder = st.locks[r.id];
+    if (holder && holder !== s.n) {
+      /* ¿interbloqueo? la otra sesión ya espera por una fila que esta tiene bloqueada */
+      if (o.wait && st.locks[ROWS[o.wait.ix].id] === s.n) {
+        var vw = o.wait;
+        o.wait = null;
+        s.wait = { ix: ix, mode: mode, val: val };
+        s.since = ++st.wseq;
+        s.sql = updSql(r, mode, val);
+        s.msgs = [['warn', 'sesión ' + s.n + ' en espera… (enq: TX - row lock contention)']];
+        log(s.n, s.sql, s.n + ' pide la fila ' + r.id + ', bloqueada por ' + o.n + ': se cierra el ciclo de espera y Oracle detecta un interbloqueo', 'warn');
+        o.msgs = [['ko', 'ORA-00060: deadlock detected while waiting for resource'],
+                  ['warn', 'Oracle ha deshecho SOLO esta sentencia. La transacción sigue abierta y conserva los bloqueos anteriores: hay que decidir COMMIT o ROLLBACK.']];
+        log(o.n, updSql(ROWS[vw.ix], vw.mode, vw.val),
+          'ORA-00060: deadlock detected while waiting for resource. Oracle rompe el ciclo deshaciendo esta sentencia de ' + o.n + ' (no su transacción); ' + o.n + ' conserva los bloqueos que ya tenía y ' + s.n + ' sigue esperando', 'ko');
+        return;
+      }
+      s.wait = { ix: ix, mode: mode, val: val };
+      s.since = ++st.wseq;
+      s.sql = updSql(r, mode, val);
+      s.msgs = [['warn', 'sesión ' + s.n + ' en espera… (enq: TX - row lock contention)']];
+      log(s.n, s.sql, 'sesión ' + s.n + ' en espera: la fila ' + r.id + ' está bloqueada por ' + holder + ' desde un UPDATE sin confirmar', 'warn');
+      return;
+    }
+    apply(s, ix, mode, val, false);
+  }
+
+  function doSavepoint(s) {
+    s.spn += 1;
+    var nm = 's' + s.spn;
+    s.sps.push({ name: nm, mark: s.undo.length });
+    s.open = true;
+    s.sql = 'SAVEPOINT ' + nm + ';';
+    s.msgs = [['ok', 'Punto de guardado ' + nm + ' creado']];
+    log(s.n, s.sql, 'marca un punto intermedio; no confirma nada ni libera bloqueos', 'ok');
+  }
+
+  function doRbsp(s) {
+    if (!s.sps.length) {
+      s.sql = 'ROLLBACK TO SAVEPOINT s1;';
+      s.msgs = [['ko', "ORA-01086: savepoint 's1' never established in this session or is invalid"]];
+      log(s.n, s.sql, "ORA-01086: savepoint 's1' never established in this session or is invalid", 'ko');
+      return;
+    }
+    var sp = s.sps[s.sps.length - 1], libres = [];
+    while (s.undo.length > sp.mark) {
+      var e = s.undo.pop();
+      if (e.prev === undefined) delete s.pend[e.row]; else s.pend[e.row] = e.prev;
+      if (e.acq && st.locks[e.row] === s.n) { delete st.locks[e.row]; libres.push(e.row); }
+    }
+    s.sps = s.sps.filter(function (x) { return x.mark <= sp.mark; });
+    s.sql = 'ROLLBACK TO SAVEPOINT ' + sp.name + ';';
+    var eff = 'deshace solo lo posterior a ' + sp.name + '; mantiene los bloqueos anteriores y la transacción abierta';
+    if (libres.length) eff += '. Libera el bloqueo de ' + libres.join(', ');
+    s.msgs = [['ok', 'Deshecho lo posterior a ' + sp.name + '. La transacción sigue abierta.']];
+    var esp = st.s[other(s.n)];
+    if (esp.wait && libres.indexOf(ROWS[esp.wait.ix].id) >= 0) {
+      eff += ', pero ' + esp.n + ' ya estaba en espera y sigue esperando hasta el final de la transacción';
+    }
+    log(s.n, s.sql, eff, 'ok');
+  }
+
+  function endTx(s, commit) {
+    var cambios = [], id;
+    for (id in s.pend) {
+      if (!s.pend.hasOwnProperty(id)) continue;
+      cambios.push(id + ' = ' + fmt(s.pend[id]));
+      if (commit) st.committed[id] = s.pend[id];
+    }
+    for (id in st.locks) { if (st.locks.hasOwnProperty(id) && st.locks[id] === s.n) delete st.locks[id]; }
+    s.pend = {}; s.undo = []; s.sps = []; s.spn = 0; s.open = false; s.read = {};
+    s.sql = commit ? 'COMMIT;' : 'ROLLBACK;';
+    var eff;
+    if (!cambios.length) eff = 'no había cambios pendientes; la transacción se cierra';
+    else if (commit) eff = 'cambios permanentes y visibles para todas las sesiones (' + cambios.join(' · ') + '); se liberan los bloqueos';
+    else eff = 'se descartan los cambios (' + cambios.join(' · ') + ') y se liberan los bloqueos';
+    s.msgs = [[commit ? 'ok' : 'warn', commit ? 'COMMIT: cambios confirmados' : 'ROLLBACK: cambios descartados']];
+    log(s.n, s.sql, eff, 'ok');
+    wake();
+  }
+
+  /* al terminar una transacción, la sesión en espera reanuda su sentencia y relee */
+  function wake() {
+    var list = ['A', 'B'].map(function (k) { return st.s[k]; })
+      .filter(function (x) { return x.wait; })
+      .sort(function (a, b) { return a.since - b.since; });
+    list.forEach(function (w) {
+      var r = ROWS[w.wait.ix];
+      if (!st.locks[r.id]) {
+        var p = w.wait;
+        w.wait = null;
+        apply(w, p.ix, p.mode, p.val, true);
+      }
+    });
+  }
+
+  /* ---- interfaz ---- */
+  function btn(parent, label, cls, fn) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    if (cls) b.className = cls;
+    b.textContent = label;
+    b.addEventListener('click', fn);
+    parent.appendChild(b);
+    return b;
+  }
+
+  function buildPanel(name) {
+    var box = document.createElement('div');
+    box.style.border = '1px solid var(--gray-200)';
+    box.style.borderRadius = 'var(--border-radius)';
+    box.style.padding = '.5rem .6rem';
+
+    var h = document.createElement('p');
+    h.style.margin = '0 0 .4rem';
+    var strong = document.createElement('strong');
+    strong.textContent = 'Sesión ' + name;
+    h.appendChild(strong);
+    var badge = document.createElement('span');
+    badge.style.marginLeft = '.5rem';
+    h.appendChild(badge);
+    box.appendChild(h);
+
+    var r1 = document.createElement('div');
+    r1.className = 'bd-w-row';
+    var lr = document.createElement('label'); lr.className = 'bd-f'; lr.textContent = 'Fila (id_matricula)';
+    var selRow = document.createElement('select');
+    ROWS.forEach(function (r, i) { var o = document.createElement('option'); o.value = i; o.textContent = String(r.id); selRow.appendChild(o); });
+    lr.appendChild(selRow); r1.appendChild(lr);
+
+    var lm = document.createElement('label'); lm.className = 'bd-f'; lm.textContent = 'Forma del UPDATE';
+    var selMode = document.createElement('select');
+    [['set', 'nota_final = valor'], ['add', 'nota_final = nota_final + valor']].forEach(function (p) {
+      var o = document.createElement('option'); o.value = p[0]; o.textContent = p[1]; selMode.appendChild(o);
+    });
+    lm.appendChild(selMode); r1.appendChild(lm);
+
+    var lv = document.createElement('label'); lv.className = 'bd-f'; lv.textContent = 'Valor';
+    var inVal = document.createElement('input');
+    inVal.type = 'number'; inVal.step = '0.25'; inVal.value = '9'; inVal.min = '-10'; inVal.max = '10';
+    inVal.style.width = '5.5rem';
+    lv.appendChild(inVal); r1.appendChild(lv);
+    box.appendChild(r1);
+
+    var r2b = document.createElement('div');
+    r2b.className = 'bd-w-row';
+    var s = function () { return st.s[name]; };
+    var bSel = btn(r2b, 'SELECT', 'ghost', function () { act(name, 'select', { row: +selRow.value }); });
+    var bUpd = btn(r2b, 'UPDATE', '', function () { act(name, 'update', { row: +selRow.value, mode: selMode.value, val: Number(inVal.value) }); });
+    var bSp = btn(r2b, 'SAVEPOINT', 'ghost', function () { act(name, 'savepoint', {}); });
+    var bRb = btn(r2b, 'ROLLBACK TO s1', 'ghost', function () { act(name, 'rbsp', {}); });
+    var bRo = btn(r2b, 'ROLLBACK', 'ghost', function () { act(name, 'rollback', {}); });
+    var bCo = btn(r2b, 'COMMIT', '', function () { act(name, 'commit', {}); });
+    box.appendChild(r2b);
+
+    var pre = document.createElement('pre');
+    box.appendChild(pre);
+    var tbl = document.createElement('table');
+    box.appendChild(tbl);
+    var out = document.createElement('div');
+    out.className = 'bd-w-out';
+    out.setAttribute('aria-live', 'polite');
+    box.appendChild(out);
+
+    /* cada <label> envuelve su control: la asociación es implícita y accesible */
+    return { box: box, badge: badge, selRow: selRow, selMode: selMode, inVal: inVal, pre: pre, tbl: tbl, out: out,
+      btns: [bSel, bUpd, bSp, bRb, bRo, bCo], bRb: bRb, sess: s };
+  }
+
+  function act(name, op, p) {
+    var s = st.s[name];
+    if (s.wait) return;                        /* una sesión en espera no acepta órdenes */
+    if (op === 'select') doSelect(s, p.row);
+    else if (op === 'update') doUpdate(s, p.row, p.mode, p.val);
+    else if (op === 'savepoint') doSavepoint(s);
+    else if (op === 'rbsp') doRbsp(s);
+    else if (op === 'rollback') endTx(s, false);
+    else if (op === 'commit') endTx(s, true);
+    advance(name, op);
+    render();
+  }
+
+  function scen() { return SCEN[q('scen').selectedIndex]; }
+
+  function advance(name, op) {
+    var sc = scen();
+    if (!sc.steps.length || st.step >= sc.steps.length) return;
+    var nx = sc.steps[st.step];
+    if (nx.s === name && nx.op === op) st.step += 1;
+  }
+
+  function runStep() {
+    var sc = scen();
+    if (!sc.steps.length || st.step >= sc.steps.length) return;
+    var nx = sc.steps[st.step], u = ui[nx.s];
+    if (nx.row !== undefined) u.selRow.value = String(nx.row);
+    if (nx.mode) u.selMode.value = nx.mode;
+    if (nx.val !== undefined) u.inVal.value = String(nx.val);
+    act(nx.s, nx.op, { row: nx.row || 0, mode: nx.mode || 'set', val: nx.val });
+  }
+
+  function stepText(x) {
+    var t = 'Sesión ' + x.s + ' · ' + OPS[x.op];
+    if (x.op === 'select') t += ' nota_final de la fila ' + ROWS[x.row].id;
+    if (x.op === 'update') t += ' fila ' + ROWS[x.row].id + ' · ' + (x.mode === 'add' ? 'nota_final + ' + fmt(x.val) : 'nota_final = ' + fmt(x.val));
+    return t;
+  }
+
+  function render() {
+    /* tabla de valores comprometidos */
+    var t = q('db');
+    while (t.firstChild) t.removeChild(t.firstChild);
+    var hr = document.createElement('tr');
+    ['ID_MATRICULA', 'ALUMNA · MÓDULO', 'NOTA_FINAL', 'BLOQUEO DE FILA'].forEach(function (x) {
+      var th = document.createElement('th'); th.textContent = x; hr.appendChild(th);
+    });
+    t.appendChild(hr);
+    ROWS.forEach(function (r) {
+      var tr = document.createElement('tr');
+      if (st.locks[r.id]) tr.className = 'chg';
+      [String(r.id), r.who, fmt(st.committed[r.id]),
+        st.locks[r.id] ? 'sesión ' + st.locks[r.id] : '—'].forEach(function (v, i) {
+        var td = document.createElement('td');
+        td.textContent = v;
+        if (i === 2 && (st.committed[r.id] === null)) td.className = 'null';
+        tr.appendChild(td);
+      });
+      t.appendChild(tr);
+    });
+
+    /* panel de cada sesión */
+    ['A', 'B'].forEach(function (n) {
+      var s = st.s[n], u = ui[n];
+      u.badge.className = s.wait ? 'warn' : (s.open ? 'ok' : '');
+      u.badge.textContent = s.wait
+        ? 'EN ESPERA de la sesión ' + st.locks[ROWS[s.wait.ix].id]
+        : (s.open ? 'transacción abierta' + (s.sps.length ? ' · puntos: ' + s.sps.map(function (x) { return x.name; }).join(', ') : '') : 'sin transacción');
+      u.pre.textContent = s.sql || '-- sin sentencias todavía';
+      u.bRb.textContent = 'ROLLBACK TO ' + (s.sps.length ? s.sps[s.sps.length - 1].name : 's1');
+      u.btns.forEach(function (b) { b.disabled = !!s.wait; });
+
+      var tb = u.tbl;
+      while (tb.firstChild) tb.removeChild(tb.firstChild);
+      var h2 = document.createElement('tr');
+      ['FILA', 'VE AHORA', 'ÚLTIMA LECTURA', 'SU ESTADO'].forEach(function (x) {
+        var th = document.createElement('th'); th.textContent = x; h2.appendChild(th);
+      });
+      tb.appendChild(h2);
+      ROWS.forEach(function (r) {
+        var tr = document.createElement('tr');
+        var ve = visible(s, r.id), leido = s.read[r.id];
+        var estado = s.pend[r.id] !== undefined ? 'modificada sin confirmar'
+          : (st.locks[r.id] === other(n) ? 'bloqueada por ' + other(n) : 'sin cambios');
+        if (s.pend[r.id] !== undefined) tr.className = 'chg';
+        [String(r.id), fmt(ve), leido === undefined ? '—' : fmt(leido), estado].forEach(function (v, i) {
+          var td = document.createElement('td');
+          td.textContent = v;
+          if (i === 2 && leido !== undefined && leido !== ve) { td.className = 'null'; td.textContent = fmt(leido) + ' (obsoleta)'; }
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+
+      var out = u.out;
+      while (out.firstChild) out.removeChild(out.firstChild);
+      s.msgs.forEach(function (m) {
+        var p = document.createElement('p');
+        p.className = m[0];
+        p.textContent = m[1];
+        out.appendChild(p);
+      });
+      ROWS.forEach(function (r) {
+        var leido = s.read[r.id];
+        if (leido !== undefined && leido !== visible(s, r.id)) {
+          var p = document.createElement('p');
+          p.className = 'warn';
+          p.textContent = 'Lectura no repetible en la fila ' + r.id + ': leyó ' + fmt(leido) + ' y ahora vería ' + fmt(visible(s, r.id)) + '. Si calculó el nuevo valor con la lectura antigua, pisará el cambio ajeno.';
+          out.appendChild(p);
+        }
+      });
+    });
+
+    /* guion del escenario */
+    var g = q('guide'), sc = scen();
+    while (g.firstChild) g.removeChild(g.firstChild);
+    var pd = document.createElement('p');
+    pd.textContent = sc.d;
+    g.appendChild(pd);
+    if (sc.steps.length) {
+      var ol = document.createElement('ol');
+      ol.style.margin = '.2rem 0 0 1.1rem';
+      sc.steps.forEach(function (x, i) {
+        var li = document.createElement('li');
+        li.textContent = stepText(x) + (i < st.step ? ' ✓' : (i === st.step ? '  ← siguiente' : ''));
+        if (i === st.step) li.className = 'warn';
+        if (i < st.step) li.style.opacity = '.55';
+        ol.appendChild(li);
+      });
+      g.appendChild(ol);
+      if (st.step >= sc.steps.length) {
+        var fin = document.createElement('p');
+        fin.className = 'ok';
+        fin.textContent = 'Escenario completado. Lee el registro cronológico de abajo y explica con tus palabras qué ha pasado en cada instante.';
+        g.appendChild(fin);
+      }
+    }
+    q('step').disabled = !sc.steps.length || st.step >= sc.steps.length;
+
+    /* registro */
+    var lg = q('log');
+    while (lg.firstChild) lg.removeChild(lg.firstChild);
+    if (!st.log.length) {
+      var e = document.createElement('div');
+      e.textContent = 'Todavía no se ha ejecutado ninguna sentencia.';
+      lg.appendChild(e);
+    }
+    st.log.forEach(function (l) {
+      var d = document.createElement('div');
+      if (l.cls) d.className = l.cls;
+      d.textContent = 't' + l.t + ' · ' + l.s + ' · ' + l.sql + '   → ' + l.eff;
+      lg.appendChild(d);
+    });
+    lg.scrollTop = lg.scrollHeight;
+  }
+
+  /* ---- montaje ---- */
+  var selScen = q('scen');
+  SCEN.forEach(function (x) { var o = document.createElement('option'); o.textContent = x.t; selScen.appendChild(o); });
+  var cols = q('cols');
+  ['A', 'B'].forEach(function (n) { ui[n] = buildPanel(n); cols.appendChild(ui[n].box); });
+  selScen.addEventListener('change', function () { reset(); });
+  q('step').addEventListener('click', function () { runStep(); });
+  q('reset').addEventListener('click', function () { reset(); });
+  reset();
+})();
+</script>
