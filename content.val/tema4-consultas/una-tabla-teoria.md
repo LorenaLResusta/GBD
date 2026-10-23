@@ -16,9 +16,9 @@ Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** carregat
 
 ### Temporalització
 
-Esta part del tema ocupa **10 hores d'aula** (5 de teoria i 5 de pràctica). És la primera part del RA4: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
+Esta part del tema ocupa **9 hores d'aula** (5 de teoria i 4 de pràctica). És la primera part del RA4: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
 
-{{< sesiones unidad="T4" horas="10" parte="Consultes sobre una taula" >}}
+{{< sesiones unidad="T4" horas="9" parte="Consultes sobre una taula" >}}
 items:
   - {h: 1, tipo: T, t: "Eines i sentència SELECT. Projecció, àlies, concatenació i DISTINCT", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Primeres consultes i eines", ref: "Pràctica 4.1"}
@@ -26,7 +26,7 @@ items:
   - {h: 1, tipo: P, t: "Consultes per a secretaria", ref: "Pràctica 4.2"}
   - {h: 1, tipo: T, t: "El valor NULL i limitar el nombre de files", ref: "§5 i §6 · simulador de lògica trivalent"}
   - {h: 2, tipo: T, t: "Funcions de fila: text, numèriques, data, conversió, CASE i DECODE", ref: "§7"}
-  - {h: 2, tipo: P, t: "Funcions per a informes", ref: "Pràctica 4.4"}
+  - {h: 1, tipo: P, t: "Funcions per a informes", ref: "Pràctica 4.4"}
   - {h: 1, tipo: P, t: "Consultes del dia a dia en EduGest", ref: "Projecte EduGest-4"}
 autonomo:
   - "Acabar les consultes de la pràctica 4.2 que no hagen donat temps a l'aula"

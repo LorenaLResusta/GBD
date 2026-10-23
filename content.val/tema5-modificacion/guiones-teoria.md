@@ -31,20 +31,20 @@ En acabar este tema seràs capaç de:
 
 ### Temporalització
 
-Esta part del tema ocupa **16 hores d'aula** (8 de teoria i 8 de pràctica). Desenvolupa el criteri RA5.e (*dissenyar guions de sentències per a dur a terme tasques complexes*) i s'hi apoya en el que s'ha vist al tema 5. Les pràctiques llargues i el projecte es completen fora de l'horari d'aula.
+Esta part del tema ocupa **8 hores d'aula** (5 de teoria i 3 de pràctica). Desenvolupa el criteri RA5.e (*dissenyar guions de sentències per a dur a terme tasques complexes*) i s'hi apoya en el que s'ha vist al tema 5. Les pràctiques llargues i el projecte es completen fora de l'horari d'aula.
 
-{{< sesiones unidad="T5" horas="16" parte="Guions de sentències" >}}
+{{< sesiones unidad="T5" horas="8" parte="Guions de sentències" >}}
 items:
-  - {h: 2, tipo: T, t: "Formes d'automatitzar, eines i execució de guions", ref: "§1 i §2"}
-  - {h: 2, tipo: T, t: "Bloc PL/SQL, variables i tipus", ref: "§3 i §4"}
-  - {h: 2, tipo: P, t: "Primers blocs: l'expedient d'un alumne", ref: "Pràctica 5.7"}
+  - {h: 1, tipo: T, t: "Formes d'automatitzar, eines i execució de guions", ref: "§1 i §2"}
+  - {h: 1, tipo: T, t: "Bloc PL/SQL, variables i tipus", ref: "§3 i §4"}
   - {h: 1, tipo: T, t: "Estructures de control de flux", ref: "§5"}
   - {h: 1, tipo: T, t: "Excepcions", ref: "§6"}
-  - {h: 2, tipo: P, t: "Matrícula amb excepcions", ref: "Pràctica 5.8"}
-  - {h: 2, tipo: T, t: "Guions de manteniment: estructura, idempotència i proves", ref: "§7"}
-  - {h: 3, tipo: P, t: "Repte: guió de promoció de curs", ref: "Pràctica 5.9"}
+  - {h: 1, tipo: P, t: "Matrícula amb excepcions", ref: "Pràctica 5.8"}
+  - {h: 1, tipo: T, t: "Guions de manteniment: estructura, idempotència i proves", ref: "§7"}
+  - {h: 1, tipo: P, t: "Repte: guió de promoció de curs", ref: "Pràctica 5.9"}
   - {h: 1, tipo: P, t: "Guions de manteniment d'EduGest", ref: "Projecte EduGest-5"}
 autonomo:
+  - "Primers blocs: l'expedient d'un alumne (Pràctica 5.7)"
   - "Acabar a casa el que no haja donat temps de les pràctiques 5.7 i 5.8"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
@@ -60,7 +60,7 @@ autonomo:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Formes d'automatitzar, eines i execució de guions{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Formes d'automatitzar, eines i execució de guions{{< /sesion >}}
 
 ## 1. Programar dins del servidor
 
@@ -238,7 +238,7 @@ PL/SQL: Statement ignored
 La sintaxi de PL/SQL (`BEGIN … END;`, `:=`, `IF … THEN … END IF;`, les excepcions) està inspirada en el llenguatge **Ada**. Va aparéixer a finals dels anys huitanta, per a poder ficar lògica de programa dins del servidor i no només sentències soltes.
 {{% /curiosidad %}}
 
-{{< sesion n="2" h="2" tipo="t" >}}Bloc PL/SQL, variables i tipus{{< /sesion >}}
+{{< sesion n="2" h="1" tipo="t" >}}Bloc PL/SQL, variables i tipus{{< /sesion >}}
 
 ## 3. Estructura d'un bloc PL/SQL
 
@@ -559,7 +559,7 @@ Estes funcions són les que permeten registrar **qui** ha fet un canvi i **des d
 ---
 
 
-{{< sesion n="4" h="1" tipo="t" >}}Estructures de control de flux{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Estructures de control de flux{{< /sesion >}}
 
 ## 5. Estructures de control de flux
 
@@ -796,7 +796,7 @@ El `CASE` és una **expressió**: torna el prefix que es concatena al text.
 
 ---
 
-{{< sesion n="5" h="1" tipo="t" >}}Excepcions{{< /sesion >}}
+{{< sesion n="4" h="1" tipo="t" >}}Excepcions{{< /sesion >}}
 
 ## 6. Excepcions
 
@@ -1228,7 +1228,7 @@ Els números de línia d'`ORA-06512` compten des de la línia `DECLARE` i et por
 
 ---
 
-{{< sesion n="7" h="2" tipo="t" >}}Guions de manteniment: estructura, idempotència i proves{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Guions de manteniment: estructura, idempotència i proves{{< /sesion >}}
 
 ## 7. Guions de manteniment
 

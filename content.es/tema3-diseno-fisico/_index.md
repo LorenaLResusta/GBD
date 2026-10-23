@@ -17,4 +17,4 @@ Es el momento de pasar del papel al servidor. En este tema implementas en **Orac
 | [Teoría](/tema3-diseno-fisico/teoria) | Almacenamiento, tipos de datos, `CREATE`/`ALTER`/`DROP`, restricciones, secuencias, índices y diccionario de datos |
 | [Prácticas](/tema3-diseno-fisico/practicas) | Siete prácticas (de Chen a Oracle, batería de pruebas, `ALTER`, índices, depuración) e implementación de EduGest |
 
-**Duración:** 24 horas de aula, del 06/11/2026 al 10/12/2026. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.
+**Duración:** 29 horas de aula, del 18/11/2026 al 19/01/2027. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.

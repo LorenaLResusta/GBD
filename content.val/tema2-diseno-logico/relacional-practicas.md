@@ -74,7 +74,7 @@ Partim del diagrama de la biblioteca municipal de la [pràctica 2.1](/tema2-dise
 
 {{% /steps %}}
 
-{{< solucion id="ud03-001" title="Diagrama relacional resultant" />}}
+{{< solucion id="tema2-052" title="Diagrama relacional resultant" />}}
 
 #### Comprovació
 
@@ -149,7 +149,7 @@ Per a cada escenari, indica si l'operació **s'executa o es rebutja** i, si s'ex
 | E | qualsevol | qualsevol | Esborrar el grup 2ASIR |
 | F | qualsevol | qualsevol | Afegir l'alumne 40, Eva, al grup 3DAM |
 
-{{< solucion id="ud03-002" title="Solucions" />}}
+{{< solucion id="tema2-053" title="Solucions" />}}
 
 #### Ampliació
 
@@ -402,7 +402,7 @@ Ara, la relació entre alumnes i assignatures («els alumnes es matriculen d'ass
 | E | Igual que D, però amb **PK: dni** en `MATRICULA` |
 | F | `ASIGNATURA (codigo, nombre, curso, dni, nombre_alumno)` PK: codigo · UK: dni · VNN: dni (no hi ha taula `ALUMNO`) |
 
-{{< solucion id="ud03-003" title="Solució (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-054" title="Solució (intenta-ho abans d'obrir-la)" />}}
 
 #### Comprovació
 
@@ -435,7 +435,7 @@ Transformar relacions 1:N amb participació obligatòria i una N:M que guarda un
 
 És el diagrama de l'[exercici 4 del tema 2](/tema2-diseno-logico/er-practicas#exercici-4--naviliera-capitans-contenidors-ports-i-vaixells).
 
-{{< figura src="ud02/ej04.svg" alt="CAPITÀ transporta CONTENIDOR (1:N), CONTENIDOR arriba a PORT (N:1), CAPITÀ governa VAIXELL (N:M amb fecha_inicio i fecha_fin)" caption="Diagrama de partida: naviera" >}}
+{{< figura src="tema2/ej04.svg" alt="CAPITÀ transporta CONTENIDOR (1:N), CONTENIDOR arriba a PORT (N:1), CAPITÀ governa VAIXELL (N:M amb fecha_inicio i fecha_fin)" caption="Diagrama de partida: naviera" >}}
 
 #### Enunciat
 
@@ -462,7 +462,7 @@ Obtín l'esquema relacional del diagrama, indicant per a cada taula la seua PK, 
 > - Crear una taula per a cada relació 1:N. Només les N:M (i algunes 1:1) generen taula nova.
 > - Deixar la PK de `GOBIERNA` en (dni, matrícula): impediria que un capità torne a governar el mateix vaixell.
 
-{{< solucion id="ud03-004" title="Solució" />}}
+{{< solucion id="tema2-055" title="Solució" />}}
 
 #### Ampliació
 
@@ -482,7 +482,7 @@ Transformar dues relacions reflexives (1:N i N:M) i una 1:1 amb mínims 0 als do
 
 És el diagrama de l'[exercici 6 del tema 2](/tema2-diseno-logico/er-practicas#exercici-6--institut-mòduls-matrícules-delegats-i-armariets).
 
-{{< figura src="ud02/ej06.svg" alt="PROFESSOR imparteix MÒDUL; MÒDUL és requisit de MÒDUL; ALUMNE es matricula en MÒDUL; ALUMNE és delegat d'ALUMNE; ALUMNE té CASELLER" caption="Diagrama de partida: institut" >}}
+{{< figura src="tema2/ej06.svg" alt="PROFESSOR imparteix MÒDUL; MÒDUL és requisit de MÒDUL; ALUMNE es matricula en MÒDUL; ALUMNE és delegat d'ALUMNE; ALUMNE té CASELLER" caption="Diagrama de partida: institut" >}}
 
 #### Enunciat
 
@@ -509,7 +509,7 @@ Obtín l'esquema relacional complet amb PK, FK, UK i VNN, i anota les pèrdues s
 > - Posar `fecha_matricula` en `ALUMNO` (en la solució antiga apareixia a les dues taules). Només va en `MATRICULA`.
 > - Usar el mateix nom de columna per als dos mòduls d'`ES_REQUISITO`.
 
-{{< solucion id="ud03-005" title="Solució" />}}
+{{< solucion id="tema2-056" title="Solució" />}}
 
 #### Ampliació
 
@@ -529,7 +529,7 @@ Transformar una entitat feble per identificació, una reflexiva 1:N i claus alte
 
 És el diagrama de l'[exercici 10 del tema 2](/tema2-diseno-logico/er-practicas#exercici-10--concessionari-vendes-revisions-i-mecànics).
 
-{{< figura src="ud02/ej10.svg" alt="CLIENT compra COTXE (1:N), COTXE passa REVISIÓ (feble, identificadora), MECÀNIC realitza REVISIÓ, MECÀNIC supervisa MECÀNIC" caption="Diagrama de partida: concessionari" >}}
+{{< figura src="tema2/ej10.svg" alt="CLIENT compra COTXE (1:N), COTXE passa REVISIÓ (feble, identificadora), MECÀNIC realitza REVISIÓ, MECÀNIC supervisa MECÀNIC" caption="Diagrama de partida: concessionari" >}}
 
 #### Enunciat
 
@@ -549,7 +549,7 @@ Obtín l'esquema relacional amb PK, FK, UK i VNN. Indica quines columnes de `REV
 > - Escriure `PK (codigo, matricula)` sense marcar `matricula` com a FK.
 > - Posar VNN en `cod_cliente` de `COCHE`: el diagrama diu (0,1), un cotxe pot estar sense vendre.
 
-{{< solucion id="ud03-006" title="Solució" />}}
+{{< solucion id="tema2-057" title="Solució" />}}
 
 #### Ampliació
 
@@ -569,9 +569,9 @@ Transformar una cadena d'entitats febles amb **claus alienes compostes** i disti
 
 El primer diagrama és el de l'[exercici 11 del tema 2](/tema2-diseno-logico/er-practicas#exercici-11--cases-rurals-províncies-ciutats-i-habitacions). El segon és la variant de la seua ampliació.
 
-{{< figura src="ud02/ej11.svg" alt="PROVÍNCIA té CIUTAT (feble). CASA_RURAL està en CIUTAT. CASA_RURAL disposa d'HABITACIÓ (feble). CLIENT s'allotja en HABITACIÓ." caption="Diagrama 4.1: cases rurals" >}}
+{{< figura src="tema2/ej11.svg" alt="PROVÍNCIA té CIUTAT (feble). CASA_RURAL està en CIUTAT. CASA_RURAL disposa d'HABITACIÓ (feble). CLIENT s'allotja en HABITACIÓ." caption="Diagrama 4.1: cases rurals" >}}
 
-{{< figura src="ud03/tarea-rurales-b.svg" alt="PROVÍNCIA té CIUTAT (feble, identificadora). CASA depén en existència de CIUTAT (E). PERSONA viu en CASA. PERSONA posseïx CASA amb data de compra." caption="Diagrama 4.2: variant amb residents i propietaris" >}}
+{{< figura src="tema2/tarea-rurales-b.svg" alt="PROVÍNCIA té CIUTAT (feble, identificadora). CASA depén en existència de CIUTAT (E). PERSONA viu en CASA. PERSONA posseïx CASA amb data de compra." caption="Diagrama 4.2: variant amb residents i propietaris" >}}
 
 #### Enunciat
 
@@ -597,7 +597,7 @@ Obtín l'esquema relacional dels dos diagrames.
 > - Escriure `FK: nombre_ciudad → CIUDAD` amb una sola columna. La FK ha d'apuntar a la PK **completa** (era l'error de la solució antiga).
 > - Incloure la ciutat en la PK de `CASA` en el diagrama 4.2: la dependència és d'existència, no d'identificació.
 
-{{< solucion id="ud03-007" title="Solució" />}}
+{{< solucion id="tema2-058" title="Solució" />}}
 
 #### Ampliació
 
@@ -617,7 +617,7 @@ Aplicar les regles a un esquema sense significat (lletres), on només compten l'
 
 Els esquemes abstractes obliguen a aplicar les regles sense apoiar-se en el sentit comú de l'enunciat. Els atributs subratllats són identificadors; `a0` és el discriminador de l'entitat feble `A`.
 
-{{< figura src="ud03/tarea-abstracto-1.svg" alt="A feble de C per R1 (identificadora), reflexiva R3 sobre A, F i G especialitzen A (parcial, disjunta), ternària R2 entre A, D i E (1:1:N), agregació de C-R4-B relacionada amb D per R5" caption="Esquema abstracte 1" >}}
+{{< figura src="tema2/tarea-abstracto-1.svg" alt="A feble de C per R1 (identificadora), reflexiva R3 sobre A, F i G especialitzen A (parcial, disjunta), ternària R2 entre A, D i E (1:1:N), agregació de C-R4-B relacionada amb D per R5" caption="Esquema abstracte 1" >}}
 
 #### Enunciat
 
@@ -636,7 +636,7 @@ Obtín l'esquema lògic relacional i enuncia les **pèrdues semàntiques**.
 - [ ] `R2` té PK i UK distintes.
 - [ ] Has anotat que no es capta que la generalització siga disjunta.
 
-{{< solucion id="ud03-008" title="Solució" />}}
+{{< solucion id="tema2-059" title="Solució" />}}
 
 ---
 
@@ -648,7 +648,7 @@ Obtín l'esquema lògic relacional i enuncia les **pèrdues semàntiques**.
 
 Transformar una agregació d'una N:M, una 1:1 amb atribut i dependència en existència, una ternària 1:N:N i una reflexiva sobre una subclasse.
 
-{{< figura src="ud03/tarea-abstracto-2.svg" alt="A feble de C (R1, identificadora); F i E especialitzen A (parcial, disjunta); R2 reflexiva 1:N sobre F; R3 N:M entre F i E; agregació de C-R4-D (N:M, D depén en existència de R4) relacionada 1:1 amb A per R5 (atribut m, E); ternària R6 entre C, D i B (1:N:N)" caption="Esquema abstracte 2" >}}
+{{< figura src="tema2/tarea-abstracto-2.svg" alt="A feble de C (R1, identificadora); F i E especialitzen A (parcial, disjunta); R2 reflexiva 1:N sobre F; R3 N:M entre F i E; agregació de C-R4-D (N:M, D depén en existència de R4) relacionada 1:1 amb A per R5 (atribut m, E); ternària R6 entre C, D i B (1:N:N)" caption="Esquema abstracte 2" >}}
 
 #### Enunciat
 
@@ -665,7 +665,7 @@ Obtín l'esquema lògic relacional i enuncia les pèrdues semàntiques.
 - [ ] La taula `R4` porta la clau d'`A`, l'atribut `m`, una UK i VNN.
 - [ ] `R6` té PK de dues columnes i la tercera amb VNN.
 
-{{< solucion id="ud03-009" title="Solució" />}}
+{{< solucion id="tema2-060" title="Solució" />}}
 
 ---
 
@@ -677,7 +677,7 @@ Obtín l'esquema lògic relacional i enuncia les pèrdues semàntiques.
 
 Transformar una ternària en què una entitat participa dues vegades, una 1:1 amb (0,1) als dos costats i una generalització total i solapada.
 
-{{< figura src="ud03/tarea-abstracto-3.svg" alt="G feble de B (R5, identificadora); R6 1:1 G-H; agregació C-R4-D (C N, D 1) relacionada amb G per R3 (atribut m, E) i N:M amb F per R2; F i E especialitzen A (T,S); R1 ternària F-F-E" caption="Esquema abstracte 3" >}}
+{{< figura src="tema2/tarea-abstracto-3.svg" alt="G feble de B (R5, identificadora); R6 1:1 G-H; agregació C-R4-D (C N, D 1) relacionada amb G per R3 (atribut m, E) i N:M amb F per R2; F i E especialitzen A (T,S); R1 ternària F-F-E" caption="Esquema abstracte 3" >}}
 
 #### Enunciat
 
@@ -696,7 +696,7 @@ Obtín l'esquema lògic relacional i enuncia les pèrdues semàntiques. En *R1*,
 - [ ] `R6` té PK d'una columna i UK de dues.
 - [ ] `R1` té PK (F1, F2) i UK (F1, E).
 
-{{< solucion id="ud03-010" title="Solució" />}}
+{{< solucion id="tema2-061" title="Solució" />}}
 
 ---
 

@@ -17,4 +17,4 @@ Abans d'escriure una sola línia de SQL cal entendre **quin problema resol una b
 | [Teoria](/tema1-introduccion/teoria) | Dades i informació, fitxers, SGBD, ANSI/SPARC, components, integritat, concurrència, seguretat, models, llenguatges i classificació |
 | [Pràctiques](/tema1-introduccion/practicas) | Anàlisi d'anomalies d'un full de càlcul, primer contacte amb Oracle, elecció de SGBD i tasca EduGest |
 
-**Durada:** 8 hores d'aula, del 09/09/2026 al 18/09/2026. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.
+**Durada:** 19 hores d'aula, del 09/09/2026 al 05/10/2026. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.

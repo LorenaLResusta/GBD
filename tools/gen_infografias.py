@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera los diagramas explicativos de las UD01-UD04 (assets/images/*.svg).
+"""Genera los diagramas explicativos de los temas 1 y 2 (assets/images/*.svg).
 
 Todos comparten estilo, tipografía del sistema y ajuste automático del texto a la
 anchura de cada caja, de modo que nada se desborda ni se corta. Los elementos
@@ -158,7 +158,7 @@ def bullets(s, x, y, w, items, color, mark="✓", size=13):
     return y
 
 
-# =====================================================================  UD01
+# =====================================================================  Tema 1
 def acid():
     s = Svg("acid-transactions", 820, 455, "Propiedades ACID de las transacciones",
             "Cuatro tarjetas: Atomicidad, Consistencia, Aislamiento y Durabilidad, con su significado.")
@@ -377,7 +377,7 @@ def db_arch():
     s.save()
 
 
-# =====================================================================  UD02
+# =====================================================================  Tema 2 (E/R)
 def er_components():
     s = Svg("er-components", 880, 505, "Componentes del modelo entidad-relación",
             "Entidad fuerte y débil, relación con cardinalidades y tipos de atributos.")
@@ -509,7 +509,7 @@ def pava():
     s.save()
 
 
-# =====================================================================  UD03
+# =====================================================================  Tema 2 (relacional)
 def anatomia():
     s = Svg("relational-table-anatomy", 900, 515, "Anatomía de una relación (tabla)", "Tabla EMPLEADO con atributos, tuplas, grado y cardinalidad.")
     s.title("Anatomía de una tabla relacional")
@@ -568,7 +568,7 @@ def reglas():
     s.save()
 
 
-# =====================================================================  Chen (ejemplos de UD04 / UD02)
+# =====================================================================  Chen (ejemplos del tema 2)
 def _attr_row(s, cx, cy_ent, ent_h, attrs, side, gap=82):
     """Coloca atributos (lista de (texto, estilo)) encima/debajo de una forma centrada en cx."""
     if not attrs:

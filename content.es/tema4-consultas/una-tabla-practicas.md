@@ -93,71 +93,71 @@ Secretaría necesita respuestas rápidas a preguntas del día a día. Escribe un
 
 **A1.** Código, nombre y horas de todos los módulos de ASIR, de más a menos horas.
 
-{{< solucion id="ud06-001" title="Solución A1" />}}
+{{< solucion id="tema4-001" title="Solución A1" />}}
 
 **A2.** Nombre completo del profesorado en el formato «Apellidos, Nombre», ordenado alfabéticamente, con una columna llamada `profesor`.
 
-{{< solucion id="ud06-002" title="Solución A2" />}}
+{{< solucion id="tema4-002" title="Solución A2" />}}
 
 **A3.** Las distintas especialidades del profesorado, sin repetir.
 
-{{< solucion id="ud06-003" title="Solución A3" />}}
+{{< solucion id="tema4-003" title="Solución A3" />}}
 
 **A4.** Los distintos pares (ciclo, curso) que existen en la tabla de módulos.
 
-{{< solucion id="ud06-004" title="Solución A4" />}}
+{{< solucion id="tema4-004" title="Solución A4" />}}
 
 **Bloque B · Selección**
 
 **B1.** Alumnado que vive en Elche o en El Campello (nombre, apellidos y localidad).
 
-{{< solucion id="ud06-005" title="Solución B1" />}}
+{{< solucion id="tema4-005" title="Solución B1" />}}
 
 **B2.** Módulos que tienen entre 96 y 128 horas, ambas incluidas.
 
-{{< solucion id="ud06-006" title="Solución B2" />}}
+{{< solucion id="tema4-006" title="Solución B2" />}}
 
 **B3.** Alumnado nacido antes de 2005, del mayor al menor.
 
-{{< solucion id="ud06-007" title="Solución B3" />}}
+{{< solucion id="tema4-007" title="Solución B3" />}}
 
 **B4.** Profesorado del departamento 1 que **no** tiene la especialidad «Informática».
 
-{{< solucion id="ud06-008" title="Solución B4" />}}
+{{< solucion id="tema4-008" title="Solución B4" />}}
 
 **B5.** Módulos cuyo nombre contiene la palabra «web» (en cualquier combinación de mayúsculas).
 
-{{< solucion id="ud06-009" title="Solución B5" />}}
+{{< solucion id="tema4-009" title="Solución B5" />}}
 
 **B6.** Matrículas en segunda convocatoria o posterior (id de matrícula, alumno, módulo, convocatoria y nota).
 
-{{< solucion id="ud06-010" title="Solución B6" />}}
+{{< solucion id="tema4-010" title="Solución B6" />}}
 
 **B7.** Faltas **justificadas** de 3 horas.
 
-{{< solucion id="ud06-011" title="Solución B7" />}}
+{{< solucion id="tema4-011" title="Solución B7" />}}
 
 **B8.** Faltas registradas en diciembre de 2025.
 
-{{< solucion id="ud06-012" title="Solución B8" />}}
+{{< solucion id="tema4-012" title="Solución B8" />}}
 
 **Bloque C · Valores nulos y límites**
 
 **C1.** Matrículas **sin calificar**.
 
-{{< solucion id="ud06-013" title="Solución C1" />}}
+{{< solucion id="tema4-013" title="Solución C1" />}}
 
 **C2.** Grupos sin tutor asignado.
 
-{{< solucion id="ud06-014" title="Solución C2" />}}
+{{< solucion id="tema4-014" title="Solución C2" />}}
 
 **C3.** Las tres matrículas con peor nota (entre las calificadas), con desempate por `id_matricula`.
 
-{{< solucion id="ud06-015" title="Solución C3" />}}
+{{< solucion id="tema4-015" title="Solución C3" />}}
 
 **C4.** Los dos profesores con más antigüedad en el centro.
 
-{{< solucion id="ud06-016" title="Solución C4" />}}
+{{< solucion id="tema4-016" title="Solución C4" />}}
 
 #### Comprobación
 
@@ -207,7 +207,7 @@ Datos de partida: `ALUMNO` tiene 32 filas; 3 sin grupo, 4 sin DNI, 3 sin email y
 | 9 | `SELECT COUNT(*) FROM alumno WHERE cod_grupo NOT IN ('1DAM', '2DAM');` | | |
 | 10 | `SELECT COUNT(*) FROM alumno WHERE cod_grupo NOT IN ('1DAM', NULL);` | | |
 
-{{< solucion id="ud06-017" title="Resultados reales y explicación" />}}
+{{< solucion id="tema4-017" title="Resultados reales y explicación" />}}
 
 > [!CAUTION]
 > El caso 10 es una trampa clásica que aparecerá de nuevo en el tema 4 con las subconsultas: `WHERE id NOT IN (SELECT ...)` no devuelve nada si la subconsulta devuelve algún `NULL`.
@@ -226,27 +226,27 @@ Usar las funciones de fila de Oracle para transformar y presentar los datos.
 
 **F1.** Genera la **etiqueta del casillero** de cada alumno de 1DAM: inicial del nombre, punto, primer apellido en mayúsculas y el NIA entre corchetes. Ejemplo: `A. FERRI [10450037]`.
 
-{{< solucion id="ud06-018" title="Solución F1" />}}
+{{< solucion id="tema4-018" title="Solución F1" />}}
 
 **F2.** Para cada módulo de DAW, muestra el código, el nombre y una columna `duracion` con el texto «Corto» (menos de 100 horas), «Medio» (de 100 a 159) o «Largo» (160 o más).
 
-{{< solucion id="ud06-019" title="Solución F2" />}}
+{{< solucion id="tema4-019" title="Solución F2" />}}
 
 **F3.** Para el profesorado, muestra el nombre, la fecha de alta con el formato «01/09/2009» y el número de **años completos** de antigüedad a fecha 1 de septiembre de 2026.
 
-{{< solucion id="ud06-020" title="Solución F3" />}}
+{{< solucion id="tema4-020" title="Solución F3" />}}
 
 **F4.** Muestra el teléfono del alumnado de 2DAM de forma que, si no tiene, aparezca «Sin teléfono», y una columna `contacto` que muestre el email si existe y, si no, el teléfono.
 
-{{< solucion id="ud06-021" title="Solución F4" />}}
+{{< solucion id="tema4-021" title="Solución F4" />}}
 
 **F5.** Nombre del día de la semana (en castellano) de cada falta de asistencia de la matrícula 10044.
 
-{{< solucion id="ud06-022" title="Solución F5" />}}
+{{< solucion id="tema4-022" title="Solución F5" />}}
 
 **F6.** Para las matrículas del alumno 9, muestra la nota con **dos decimales** como texto (`TO_CHAR`), la nota redondeada y una columna `estado` con «Aprobado», «Suspenso» o «Pendiente».
 
-{{< solucion id="ud06-023" title="Solución F6" />}}
+{{< solucion id="tema4-023" title="Solución F6" />}}
 
 #### Comprobación
 

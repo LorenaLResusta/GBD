@@ -19,12 +19,12 @@ El seu objectiu prioritari és modelar i estructurar la semàntica de la informa
 
 ### Temporalització
 
-Esta part del tema ocupa **12 hores d'aula** (8 de teoria i 4 de pràctica). Cada sessió apareix assenyalada en la pàgina amb una franja de color.
+Esta part del tema ocupa **11 hores d'aula** (7 de teoria i 4 de pràctica). Cada sessió apareix assenyalada en la pàgina amb una franja de color.
 
-{{< sesiones unidad="T2" horas="12" parte="Model Entitat/Relació" >}}
+{{< sesiones unidad="T2" horas="11" parte="Model Entitat/Relació" >}}
 items:
   - {h: 2, tipo: T, t: "Cicle de vida del disseny. Entitats fortes i febles", ref: "§1 i §2.1"}
-  - {h: 2, tipo: T, t: "Atributs i relacions: grau i rols", ref: "§2.2 i §2.3"}
+  - {h: 1, tipo: T, t: "Atributs i relacions: grau i rols", ref: "§2.2 i §2.3"}
   - {h: 1, tipo: T, t: "Cardinalitats mínima i màxima", ref: "§2.4 · laboratori interactiu"}
   - {h: 1, tipo: P, t: "Llegir i escriure cardinalitats", ref: "Pràctica 2.2"}
   - {h: 1, tipo: P, t: "Biblioteca municipal: de l'enunciat al diagrama", ref: "Pràctica 2.1"}
@@ -133,7 +133,7 @@ Una **entitat** és qualsevol objecte, persona, lloc, concepte abstracte o esdev
 
 ---
 
-{{< sesion n="2" h="2" tipo="t" >}}Atributs i relacions{{< /sesion >}}
+{{< sesion n="2" h="1" tipo="t" >}}Atributs i relacions{{< /sesion >}}
 
 ### 2.2 Atributs: Classificació, Estructura i Domini
 
@@ -182,7 +182,7 @@ El **grau** indica el nombre d'entitats distintes que participen en l'associaci�
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Cardinalitats mínima i màxima{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Cardinalitats mínima i màxima{{< /sesion >}}
 
 ### 2.4 Restriccions de Cardinalitat (Mínima i Màxima)
 

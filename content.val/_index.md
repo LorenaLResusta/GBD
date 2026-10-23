@@ -37,14 +37,14 @@ El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanal
 
 | Tema | RA | Resultat d'aprenentatge (resum) | Hores | Del | Al |
 |---|---|---|:-:|---|---|
-| [Tema 1](/tema1-introduccion) · Sistemes d'emmagatzematge i SGBD | **RA1** | Elements de les bases de dades i utilitat dels sistemes gestors | 8 | 09/09/2026 | 18/09/2026 |
-| [Tema 2](/tema2-diseno-logico) · Disseny lògic de bases de dades | **RA2** | Disseny de models lògics normalitzats a partir de diagrames E/R | 32 | 21/09/2026 | 05/11/2026 |
-| [Tema 3](/tema3-diseno-fisico) · Disseny físic (DDL) | **RA3** | Disseny físic amb assistents, ferramentes gràfiques i DDL | 24 | 06/11/2026 | 10/12/2026 |
+| [Tema 1](/tema1-introduccion) · Sistemes d'emmagatzematge i SGBD | **RA1** | Elements de les bases de dades i utilitat dels sistemes gestors | 19 | 09/09/2026 | 05/10/2026 |
+| [Tema 2](/tema2-diseno-logico) · Disseny lògic de bases de dades | **RA2** | Disseny de models lògics normalitzats a partir de diagrames E/R | 29 | 06/10/2026 | 17/11/2026 |
+| [Tema 3](/tema3-diseno-fisico) · Disseny físic (DDL) | **RA3** | Disseny físic amb assistents, ferramentes gràfiques i DDL | 29 | 18/11/2026 | 19/01/2027 |
 | | | *Prova i revisió de la 1a avaluació* | 3 | 11/12/2026 | 15/12/2026 |
-| [Tema 4](/tema4-consultas) · Consultes | **RA4** | Consulta de la informació amb SQL | 26 | 16/12/2026 | 05/02/2027 |
+| [Tema 4](/tema4-consultas) · Consultes | **RA4** | Consulta de la informació amb SQL | 23 | 20/01/2027 | 24/02/2027 |
 | | | *Prova i revisió de la 2a avaluació* | 3 | 08/02/2027 | 10/02/2027 |
-| [Tema 5](/tema5-modificacion) · Modificació de la informació | **RA5** | Modificació de la informació, transaccions i guions | 52 | 11/02/2027 | 06/05/2027 |
-| [Tema 6](/tema6-aseguramiento) · Assegurament de la informació | **RA6** | Còpies de seguretat, importació, exportació i transferència de dades | 9 | 07/05/2027 | 19/05/2027 |
+| [Tema 5](/tema5-modificacion) · Modificació de la informació | **RA5** | Modificació de la informació, transaccions i guions | 26 | 25/02/2027 | 14/04/2027 |
+| [Tema 6](/tema6-aseguramiento) · Assegurament de la informació | **RA6** | Còpies de seguretat, importació, exportació i transferència de dades | 25 | 15/04/2027 | 19/05/2027 |
 | | | *Prova i revisió de la 3a avaluació i final* | 3 | 20/05/2027 | 24/05/2027 |
 | | | **Total** | **160** | | |
 
@@ -55,8 +55,8 @@ El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanal
 
 ### Criteris de la planificació
 
-- **Un tema per RA.** Cada resultat d'aprenentatge té el seu propi tema, de manera que cada RA s'avalua en acabar el seu tema. El pes de les hores seguix el nombre de criteris d'avaluació de cada RA: el disseny lògic (RA2), les consultes (RA4) i la modificació de dades (RA5) concentren la major part de la càrrega.
-- **Avaluacions.** La 1a avaluació tanca els RA1, RA2 i RA3; la 2a, el RA4; la 3a, els RA5 i RA6.
+- **Un tema per RA.** Cada resultat d'aprenentatge té el seu propi tema, de manera que cada RA s'avalua en acabar el seu tema. Les hores de cada tema són proporcionals al nombre de criteris d'avaluació del seu RA (151 hores de classe per a 47 CE, unes 3,2 hores per criteri).
+- **Avaluacions.** En arribar a la 1a avaluació s'han acabat els RA1 i RA2; en la 2a, RA3; en la 3a, RA4, RA5 i RA6. Cada RA s'avalua en acabar el seu tema.
 - **Teoria i pràctica en el mateix tema.** Cada pàgina de teoria inclou una *temporalització* amb el repartiment de sessions entre teoria (T) i pràctica (P). En els temes amb diverses parts, la suma de les parts coincidix amb les hores del tema.
 - **Pràctica guiada a l'aula, pràctica autònoma fora d'ella.** Les pràctiques guiades i la tasca del projecte EduGest es fan a classe. Les pràctiques autònomes i els reptes són treball personal, i els dubtes es treballen en les sessions de pràctica.
 - **Proves d'avaluació.** Cada avaluació reserva 3 hores a la prova i a la seua revisió.

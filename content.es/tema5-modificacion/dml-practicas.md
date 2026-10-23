@@ -236,7 +236,7 @@ Ejecuta las tareas **en orden** sobre los datos originales. Para cada una escrib
 - **M10:** las faltas desaparecen porque `fk_falta_matricula` también tiene `ON DELETE CASCADE`.
 {{% /details %}}
 
-{{< solucion id="ud08-001" title="Solución (M3, M5 y M10)" />}}
+{{< solucion id="tema5-001" title="Solución (M3, M5 y M10)" />}}
 
 #### Comprobación
 
@@ -286,7 +286,7 @@ Ejecuta cada experimento y **predice** los saldos finales antes de consultar `SE
 | 5 | `UPDATE cuenta SET saldo = saldo + 1000 WHERE id_cuenta = 'A';` `CREATE TABLE prueba (x NUMBER);` `ROLLBACK;` | | | |
 | 6 | `UPDATE cuenta SET saldo = saldo - 10;` y cierra la sesión **de forma anómala** (cierra la ventana de la terminal o mata el proceso). Vuelve a conectar | | | |
 
-{{< solucion id="ud08-002" title="Resultados esperados" />}}
+{{< solucion id="tema5-002" title="Resultados esperados" />}}
 
 #### Comprobación
 

@@ -17,4 +17,4 @@ Antes de escribir una sola línea de SQL hay que entender **qué problema resuel
 | [Teoría](/tema1-introduccion/teoria) | Datos e información, ficheros, SGBD, ANSI/SPARC, componentes, integridad, concurrencia, seguridad, modelos, lenguajes y clasificación |
 | [Prácticas](/tema1-introduccion/practicas) | Análisis de anomalías de una hoja de cálculo, primer contacto con Oracle, elección de SGBD y tarea EduGest |
 
-**Duración:** 8 horas de aula, del 09/09/2026 al 18/09/2026. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.
+**Duración:** 19 horas de aula, del 09/09/2026 al 05/10/2026. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.

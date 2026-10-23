@@ -75,7 +75,7 @@ Reglas del negocio (confirmadas con el taller):
 
 {{% /steps %}}
 
-{{< solucion id="ud04-001" title="Solución: esquema en 3FN" />}}
+{{< solucion id="tema2-062" title="Solución: esquema en 3FN" />}}
 
 #### Comprobación
 
@@ -117,7 +117,7 @@ Para cada relación, calcula las claves candidatas indicando los cierres que has
 | c | R(A, B, C, D, E) | A → BC, CD → E, B → D, E → A |
 | d | CURSO(cod_curso, aula, hora, profesor) | cod_curso → profesor; aula, hora → cod_curso; profesor, hora → aula |
 
-{{< solucion id="ud04-002" title="Soluciones" />}}
+{{< solucion id="tema2-063" title="Soluciones" />}}
 
 ---
 

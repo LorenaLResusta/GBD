@@ -19,16 +19,16 @@ En este tema se estudian minuciosamente los conceptos matemáticos y pragmático
 
 ### Temporalización
 
-Esta parte del tema ocupa **12 horas de aula** (6 de teoría y 6 de práctica).
+Esta parte del tema ocupa **11 horas de aula** (6 de teoría y 5 de práctica).
 
-{{< sesiones unidad="T2" horas="12" parte="Modelo relacional" >}}
+{{< sesiones unidad="T2" horas="11" parte="Modelo relacional" >}}
 items:
   - {h: 1, tipo: T, t: "Relación, atributo, dominio, tupla, grado y cardinalidad. Claves", ref: "§1 y §2 · laboratorio de claves"}
   - {h: 2, tipo: T, t: "Restricciones e integridad referencial", ref: "§3 · simulador de integridad"}
   - {h: 1, tipo: P, t: "Simulador de integridad referencial", ref: "Práctica 2.16"}
   - {h: 1, tipo: T, t: "Reglas de transformación (I): entidades, débiles y atributos", ref: "§4.1 a §4.3 · transformador"}
   - {h: 1, tipo: T, t: "Reglas de transformación (II): relaciones y jerarquías. Ejemplos", ref: "§4.4 a §4.9 y §5"}
-  - {h: 2, tipo: P, t: "Biblioteca: del E/R a las tablas", ref: "Práctica 2.15"}
+  - {h: 1, tipo: P, t: "Biblioteca: del E/R a las tablas", ref: "Práctica 2.15"}
   - {h: 1, tipo: T, t: "Restricciones no representables y herramientas", ref: "§6 y §7"}
   - {h: 1, tipo: P, t: "Tres formas de transformar una jerarquía", ref: "Práctica 2.17"}
   - {h: 1, tipo: P, t: "Catálogo de restricciones de un hotel", ref: "Práctica 2.19"}
@@ -57,7 +57,7 @@ Al terminar este tema serás capaz de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Elementos del modelo y claves{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Elementos del modelo y claves{{< /sesion >}}
 
 ## 1. Conceptos Fundamentales del Modelo Relacional
 
@@ -238,7 +238,7 @@ La práctica 2.16 se hace en la [página de prácticas](/tema2-diseno-logico/rel
 
 ---
 
-{{< sesion n="4" h="2" tipo="t" >}}Reglas de transformación (I){{< /sesion >}}
+{{< sesion n="4" h="1" tipo="t" >}}Reglas de transformación (I){{< /sesion >}}
 
 ## 4. Reglas de Transformación del Modelo EER al Modelo Relacional
 
@@ -290,7 +290,7 @@ Este transformador aplica las reglas del apartado 4 y produce el esquema relacio
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}Reglas de transformación (II): relaciones y jerarquías{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Reglas de transformación (II): relaciones y jerarquías{{< /sesion >}}
 
 ### 4.4 Transformación de Relaciones Binarias 1:N
 
@@ -548,7 +548,7 @@ Un concesionario vende `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`i
 
 ---
 
-{{< sesion n="6" h="2" tipo="p" practica="2.15" >}}Biblioteca: del E/R a las tablas{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="p" practica="2.15" >}}Biblioteca: del E/R a las tablas{{< /sesion >}}
 
 {{< sesion n="7" h="1" tipo="t" >}}Restricciones no representables y herramientas{{< /sesion >}}
 
@@ -601,7 +601,7 @@ Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → 
 
 ---
 
-{{< sesion n="8" h="2" tipo="p" practica="2.17" >}}Tres formas de transformar una jerarquía{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="p" practica="2.17" >}}Tres formas de transformar una jerarquía{{< /sesion >}}
 
 {{< sesion n="9" h="1" tipo="p" practica="2.19" >}}Catálogo de restricciones de un hotel{{< /sesion >}}
 
@@ -643,7 +643,7 @@ erDiagram
 
 ---
 
-{{< sesion n="10" h="2" tipo="p" practica="EduGest-2" >}}Modelo lógico de EduGest{{< /sesion >}}
+{{< sesion n="10" h="1" tipo="p" practica="EduGest-2" >}}Modelo lógico de EduGest{{< /sesion >}}
 
 {{< tarjetas titulo="Repasa los términos del tema 2" >}}
 - t: "Relación"

@@ -33,23 +33,23 @@ Al terminar este tema serás capaz de:
 
 ### Temporalización
 
-Esta parte del tema ocupa **36 horas de aula** (17 de teoría y 19 de práctica). Es la base del RA5 (el de mayor peso del módulo): aprovecha las sesiones
+Esta parte del tema ocupa **18 horas de aula** (9 de teoría y 9 de práctica). Es la base del RA5 (el de mayor peso del módulo): aprovecha las sesiones
 prácticas, que requieren **dos sesiones de Oracle abiertas a la vez**.
 
-{{< sesiones unidad="T5" horas="36" parte="Modificación de datos y transacciones" >}}
+{{< sesiones unidad="T5" horas="18" parte="Modificación de datos y transacciones" >}}
 items:
-  - {h: 3, tipo: T, t: "Modificar datos: herramientas, INSERT", ref: "§1 y §2"}
-  - {h: 3, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 5.1"}
-  - {h: 3, tipo: T, t: "UPDATE, DELETE y TRUNCATE", ref: "§3 y §4"}
-  - {h: 3, tipo: P, t: "Modificaciones con subconsultas", ref: "Práctica 5.3"}
-  - {h: 3, tipo: T, t: "INSERT … SELECT, CTAS y MERGE", ref: "§5"}
-  - {h: 3, tipo: P, t: "Copias, históricos y carga de notas con MERGE", ref: "Prácticas 5.2 y 5.6"}
-  - {h: 3, tipo: T, t: "Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT", ref: "§6 y §7 · laboratorio de transacciones"}
-  - {h: 3, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 5.4"}
-  - {h: 3, tipo: T, t: "Concurrencia, bloqueos e interbloqueos", ref: "§8 y §9"}
-  - {h: 3, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 5.5"}
-  - {h: 2, tipo: T, t: "Integridad referencial y restricciones diferidas", ref: "§10"}
-  - {h: 4, tipo: P, t: "Modificaciones en EduGest", ref: "Proyecto EduGest-5"}
+  - {h: 2, tipo: T, t: "Modificar datos: herramientas, INSERT", ref: "§1 y §2"}
+  - {h: 2, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 5.1"}
+  - {h: 2, tipo: T, t: "UPDATE, DELETE y TRUNCATE", ref: "§3 y §4"}
+  - {h: 2, tipo: P, t: "Modificaciones con subconsultas", ref: "Práctica 5.3"}
+  - {h: 2, tipo: T, t: "INSERT … SELECT, CTAS y MERGE", ref: "§5"}
+  - {h: 1, tipo: P, t: "Copias, históricos y carga de notas con MERGE", ref: "Prácticas 5.2 y 5.6"}
+  - {h: 1, tipo: T, t: "Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT", ref: "§6 y §7 · laboratorio de transacciones"}
+  - {h: 1, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 5.4"}
+  - {h: 1, tipo: T, t: "Concurrencia, bloqueos e interbloqueos", ref: "§8 y §9"}
+  - {h: 1, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 5.5"}
+  - {h: 1, tipo: T, t: "Integridad referencial y restricciones diferidas", ref: "§10"}
+  - {h: 2, tipo: P, t: "Modificaciones en EduGest", ref: "Proyecto EduGest-5"}
 autonomo:
   - "Terminar en casa las modificaciones de la práctica 5.3 que no hayan dado tiempo"
   - "Ejercicios resueltos y autoevaluación"
@@ -61,7 +61,7 @@ autonomo:
 ---
 
 
-{{< sesion n="1" h="3" tipo="t" >}}Modificar datos: herramientas, INSERT{{< /sesion >}}
+{{< sesion n="1" h="2" tipo="t" >}}Modificar datos: herramientas, INSERT{{< /sesion >}}
 
 ## 1. Modificar datos: herramientas y responsabilidad
 
@@ -368,7 +368,7 @@ La alternativa artesanal (`SELECT MAX(id_alumno) FROM alumno`) **es incorrecta**
 
 ---
 
-{{< sesion n="3" h="3" tipo="t" >}}UPDATE, DELETE y TRUNCATE{{< /sesion >}}
+{{< sesion n="3" h="2" tipo="t" >}}UPDATE, DELETE y TRUNCATE{{< /sesion >}}
 
 ## 3. Modificar filas: `UPDATE`
 
@@ -767,7 +767,7 @@ La clave ajena de `IMPARTE` **no** tiene regla de borrado, así que protege al p
 ---
 
 
-{{< sesion n="5" h="3" tipo="t" >}}INSERT … SELECT, CTAS y MERGE{{< /sesion >}}
+{{< sesion n="5" h="2" tipo="t" >}}INSERT … SELECT, CTAS y MERGE{{< /sesion >}}
 
 ## 5. Insertar desde consultas y `MERGE`
 
@@ -1027,7 +1027,7 @@ WHEN NOT MATCHED THEN
 ---
 
 
-{{< sesion n="7" h="3" tipo="t" >}}Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT{{< /sesion >}}
 
 ## 6. Transacciones y propiedades ACID
 
@@ -1308,7 +1308,7 @@ Una consulta que lleva minutos ejecutándose necesita ver los datos **tal como e
 ---
 
 
-{{< sesion n="9" h="3" tipo="t" >}}Concurrencia, bloqueos e interbloqueos{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="t" >}}Concurrencia, bloqueos e interbloqueos{{< /sesion >}}
 
 ## 8. Concurrencia y bloqueos
 
@@ -1539,7 +1539,7 @@ Repite el escenario **«Interbloqueo (ORA-00060)»** del [laboratorio de transac
 
 ---
 
-{{< sesion n="11" h="2" tipo="t" >}}Integridad referencial y restricciones diferidas{{< /sesion >}}
+{{< sesion n="11" h="1" tipo="t" >}}Integridad referencial y restricciones diferidas{{< /sesion >}}
 
 ## 10. Integridad referencial y restricciones diferidas
 

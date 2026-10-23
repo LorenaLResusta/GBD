@@ -31,20 +31,20 @@ Al terminar este tema serás capaz de:
 
 ### Temporalización
 
-Esta parte del tema ocupa **16 horas de aula** (8 de teoría y 8 de práctica). Desarrolla el criterio RA5.e (*diseñar guiones de sentencias para llevar a cabo tareas complejas*) y se apoya en lo visto en el tema 5. Las prácticas largas y el proyecto se completan fuera del horario de aula.
+Esta parte del tema ocupa **8 horas de aula** (5 de teoría y 3 de práctica). Desarrolla el criterio RA5.e (*diseñar guiones de sentencias para llevar a cabo tareas complejas*) y se apoya en lo visto en el tema 5. Las prácticas largas y el proyecto se completan fuera del horario de aula.
 
-{{< sesiones unidad="T5" horas="16" parte="Guiones de sentencias" >}}
+{{< sesiones unidad="T5" horas="8" parte="Guiones de sentencias" >}}
 items:
-  - {h: 2, tipo: T, t: "Formas de automatizar, herramientas y ejecución de guiones", ref: "§1 y §2"}
-  - {h: 2, tipo: T, t: "Bloque PL/SQL, variables y tipos", ref: "§3 y §4"}
-  - {h: 2, tipo: P, t: "Primeros bloques: el expediente de un alumno", ref: "Práctica 5.7"}
+  - {h: 1, tipo: T, t: "Formas de automatizar, herramientas y ejecución de guiones", ref: "§1 y §2"}
+  - {h: 1, tipo: T, t: "Bloque PL/SQL, variables y tipos", ref: "§3 y §4"}
   - {h: 1, tipo: T, t: "Estructuras de control de flujo", ref: "§5"}
   - {h: 1, tipo: T, t: "Excepciones", ref: "§6"}
-  - {h: 2, tipo: P, t: "Matrícula con excepciones", ref: "Práctica 5.8"}
-  - {h: 2, tipo: T, t: "Guiones de mantenimiento: estructura, idempotencia y pruebas", ref: "§7"}
-  - {h: 3, tipo: P, t: "Reto: guion de promoción de curso", ref: "Práctica 5.9"}
+  - {h: 1, tipo: P, t: "Matrícula con excepciones", ref: "Práctica 5.8"}
+  - {h: 1, tipo: T, t: "Guiones de mantenimiento: estructura, idempotencia y pruebas", ref: "§7"}
+  - {h: 1, tipo: P, t: "Reto: guion de promoción de curso", ref: "Práctica 5.9"}
   - {h: 1, tipo: P, t: "Guiones de mantenimiento de EduGest", ref: "Proyecto EduGest-5"}
 autonomo:
+  - "Primeros bloques: el expediente de un alumno (Práctica 5.7)"
   - "Terminar en casa lo que no haya dado tiempo de las prácticas 5.7 y 5.8"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
@@ -60,7 +60,7 @@ autonomo:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Formas de automatizar, herramientas y ejecución de guiones{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Formas de automatizar, herramientas y ejecución de guiones{{< /sesion >}}
 
 ## 1. Programar dentro del servidor
 
@@ -238,7 +238,7 @@ PL/SQL: Statement ignored
 La sintaxis de PL/SQL (`BEGIN … END;`, `:=`, `IF … THEN … END IF;`, las excepciones) está inspirada en el lenguaje **Ada**. Apareció a finales de los años ochenta, para poder meter lógica de programa dentro del servidor y no solo sentencias sueltas.
 {{% /curiosidad %}}
 
-{{< sesion n="2" h="2" tipo="t" >}}Bloque PL/SQL, variables y tipos{{< /sesion >}}
+{{< sesion n="2" h="1" tipo="t" >}}Bloque PL/SQL, variables y tipos{{< /sesion >}}
 
 ## 3. Estructura de un bloque PL/SQL
 
@@ -559,7 +559,7 @@ Estas funciones son las que permiten registrar **quién** hizo un cambio y **des
 ---
 
 
-{{< sesion n="4" h="1" tipo="t" >}}Estructuras de control de flujo{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Estructuras de control de flujo{{< /sesion >}}
 
 ## 5. Estructuras de control de flujo
 
@@ -796,7 +796,7 @@ El `CASE` es una **expresión**: devuelve el prefijo que se concatena al texto.
 
 ---
 
-{{< sesion n="5" h="1" tipo="t" >}}Excepciones{{< /sesion >}}
+{{< sesion n="4" h="1" tipo="t" >}}Excepciones{{< /sesion >}}
 
 ## 6. Excepciones
 
@@ -1228,7 +1228,7 @@ Los números de línea de `ORA-06512` cuentan desde la línea `DECLARE` y te lle
 
 ---
 
-{{< sesion n="7" h="2" tipo="t" >}}Guiones de mantenimiento: estructura, idempotencia y pruebas{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Guiones de mantenimiento: estructura, idempotencia y pruebas{{< /sesion >}}
 
 ## 7. Guiones de mantenimiento
 

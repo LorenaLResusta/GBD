@@ -16,9 +16,9 @@ Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargad
 
 ### Temporalización
 
-Esta parte del tema ocupa **10 horas de aula** (5 de teoría y 5 de práctica). Es la primera parte del RA4: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
+Esta parte del tema ocupa **9 horas de aula** (5 de teoría y 4 de práctica). Es la primera parte del RA4: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
 
-{{< sesiones unidad="T4" horas="10" parte="Consultas sobre una tabla" >}}
+{{< sesiones unidad="T4" horas="9" parte="Consultas sobre una tabla" >}}
 items:
   - {h: 1, tipo: T, t: "Herramientas y sentencia SELECT. Proyección, alias, concatenación y DISTINCT", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Primeras consultas y herramientas", ref: "Práctica 4.1"}
@@ -26,7 +26,7 @@ items:
   - {h: 1, tipo: P, t: "Consultas para secretaría", ref: "Práctica 4.2"}
   - {h: 1, tipo: T, t: "El valor NULL y limitar el número de filas", ref: "§5 y §6 · simulador de lógica trivalente"}
   - {h: 2, tipo: T, t: "Funciones de fila: texto, numéricas, fecha, conversión, CASE y DECODE", ref: "§7"}
-  - {h: 2, tipo: P, t: "Funciones para informes", ref: "Práctica 4.4"}
+  - {h: 1, tipo: P, t: "Funciones para informes", ref: "Práctica 4.4"}
   - {h: 1, tipo: P, t: "Consultas del día a día en EduGest", ref: "Proyecto EduGest-4"}
 autonomo:
   - "Terminar las consultas de la práctica 4.2 que no hayan dado tiempo en el aula"

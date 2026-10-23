@@ -29,9 +29,9 @@ CIERRA = re.compile(r'^\{\{% /details %\}\}\s*$')
 def separar():
     total = {}
     for lang in ('es', 'val'):
-        for f in sorted(glob.glob(os.path.join(RAIZ, f'content.{lang}', '*', '*-practicas.md'))):
+        for f in sorted(glob.glob(os.path.join(RAIZ, f'content.{lang}', '*', '*practicas.md'))):
             rel = os.path.relpath(f, os.path.join(RAIZ, f'content.{lang}'))
-            ud = 'ud' + re.search(r't(\d+)-', os.path.basename(rel)).group(1)
+            ud = re.search(r'(tema\d+)', rel).group(1)
             L = open(f, encoding='utf-8').read().split('\n')
             pub, priv, pila, n, i = [], [], [], 0, 0
             while i < len(L):

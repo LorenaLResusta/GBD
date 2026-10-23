@@ -27,18 +27,18 @@ En acabar esta part seràs capaç de:
 
 ### Temporalització
 
-El tema ocupa **9 hores d'aula** (4 de teoria i 5 de pràctica).
+El tema ocupa **25 hores d'aula** (12 de teoria i 13 de pràctica).
 
-{{< sesiones unidad="T6" horas="9" >}}
+{{< sesiones unidad="T6" horas="25" >}}
 items:
-  - {h: 1, tipo: T, t: "Còpies de seguretat: tipus, estratègia i eines", ref: "§1 i §2"}
-  - {h: 1, tipo: T, t: "Còpia lògica amb Data Pump", ref: "§3"}
-  - {h: 2, tipo: P, t: "Còpia lògica d'EduGest i restauració", ref: "Pràctica 6.1"}
-  - {h: 1, tipo: T, t: "Importar i exportar dades", ref: "§4"}
-  - {h: 1, tipo: P, t: "Exportar dades a CSV, JSON i SQL", ref: "Pràctica 6.2"}
-  - {h: 1, tipo: P, t: "Importar amb SQL*Loader i llegir els errors", ref: "Pràctica 6.3"}
-  - {h: 1, tipo: T, t: "Transferència entre gestors i registres d'error", ref: "§5 i §6"}
-  - {h: 1, tipo: P, t: "D'Oracle a PostgreSQL", ref: "Pràctica 6.4"}
+  - {h: 3, tipo: T, t: "Còpies de seguretat: tipus, estratègia i eines", ref: "§1 i §2"}
+  - {h: 3, tipo: T, t: "Còpia lògica amb Data Pump", ref: "§3"}
+  - {h: 5, tipo: P, t: "Còpia lògica d'EduGest i restauració", ref: "Pràctica 6.1"}
+  - {h: 3, tipo: T, t: "Importar i exportar dades", ref: "§4"}
+  - {h: 3, tipo: P, t: "Exportar dades a CSV, JSON i SQL", ref: "Pràctica 6.2"}
+  - {h: 3, tipo: P, t: "Importar amb SQL*Loader i llegir els errors", ref: "Pràctica 6.3"}
+  - {h: 3, tipo: T, t: "Transferència entre gestors i registres d'error", ref: "§5 i §6"}
+  - {h: 2, tipo: P, t: "D'Oracle a PostgreSQL", ref: "Pràctica 6.4"}
 autonomo:
   - "Repte 6.5 (pla de còpies i simulacre de desastre)"
   - "Projecte EduGest · Tema 6 (assegurament de la informació)"
@@ -50,7 +50,7 @@ autonomo:
 
 ---
 
-{{< sesion n="1" h="1" tipo="t" >}}Còpies de seguretat: tipus, estratègia i eines{{< /sesion >}}
+{{< sesion n="1" h="3" tipo="t" >}}Còpies de seguretat: tipus, estratègia i eines{{< /sesion >}}
 
 ## 1. Per què i com es fan còpies
 
@@ -112,7 +112,7 @@ docker start oracle26ai
 
 {{< sgbd "Docker" >}} El volum `oracle-data` es munta en un contenidor auxiliar que el comprimix en la carpeta actual. Per a restaurar es fa l'operació inversa sobre un volum buit. Desavantatge: el servei queda **parat** mentre es copia.
 
-{{< sesion n="2" h="1" tipo="t" >}}Còpia lògica amb Data Pump{{< /sesion >}}
+{{< sesion n="2" h="3" tipo="t" >}}Còpia lògica amb Data Pump{{< /sesion >}}
 
 ## 3. Còpia lògica amb Data Pump (Oracle)
 
@@ -202,7 +202,7 @@ MINUS
 SELECT * FROM edugest_copia.alumno;
 ```
 
-{{< sesion n="4" h="1" tipo="t" >}}Importar i exportar dades{{< /sesion >}}
+{{< sesion n="4" h="3" tipo="t" >}}Importar i exportar dades{{< /sesion >}}
 
 ## 4. Importar i exportar dades
 
@@ -265,7 +265,7 @@ sqlldr userid=edugest/Edugest_2026@//localhost:1521/FREEPDB1 \
 > [!NOTE]
 > A classe usarem també l'**assistent d'importació** de SQL Developer (clic dret sobre la taula → *Importar dades*), que genera el mateix tipus de càrrega sense escriure el fitxer de control. Els assistents ajuden, però cal entendre què fan: cal saber llegir els seus missatges.
 
-{{< sesion n="7" h="1" tipo="t" >}}Transferència entre gestors i registres d'error{{< /sesion >}}
+{{< sesion n="7" h="3" tipo="t" >}}Transferència entre gestors i registres d'error{{< /sesion >}}
 
 ## 5. Transferir informació entre gestors
 

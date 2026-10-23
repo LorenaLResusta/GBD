@@ -52,7 +52,7 @@ Hay un tema por RA. Cada tema tiene un `_index.md` con su presentación y págin
 | `> [!TIP]`, `> [!NOTE]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]` | Avisos de colores (alertas de Markdown del tema) |
 | `{{%/* details title="Solución" */%}} … {{%/* /details */%}}` | Bloque desplegable (pistas y soluciones) |
 | `{{</* tabs */>}}{{%/* tab "Oracle" */%}} … {{%/* /tab */%}}{{</* /tabs */>}}` | Pestañas (por ejemplo, Oracle / MySQL / PostgreSQL) |
-| `{{</* figura src="ud02/ej01.svg" alt="Descripción" caption="Pie" */>}}` | Imagen de `assets/images` que se abre a tamaño completo al pulsarla (diagramas grandes) |
+| `{{</* figura src="tema2/ej01.svg" alt="Descripción" caption="Pie" */>}}` | Imagen de `assets/images` que se abre a tamaño completo al pulsarla (diagramas grandes) |
 | `{{</* diagrama src="acid-transactions.svg" caption="Pie" */>}}` | Diagrama SVG de `assets/images` incrustado e **interactivo**: al pasar el ratón o pulsar un elemento (`class="hot"` + `data-tip`) aparece su explicación |
 | `{{%/* curiosidad titulo="¿Sabías que…?" */%}} … {{%/* /curiosidad */%}}` | Curiosidad desplegable |
 | `{{%/* paso-a-paso titulo="…" */%}}{{%/* etapa titulo="1. …" */%}} … {{%/* /etapa */%}}{{%/* /paso-a-paso */%}}` | Explicación interactiva por etapas, con navegación y barra de progreso |

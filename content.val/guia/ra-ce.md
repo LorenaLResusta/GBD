@@ -16,12 +16,12 @@ El mòdul s'organitza en **6 temes, un per cada RA** (el tema 1 desenvolupa el R
 
 | RA | Resultat d'aprenentatge | Tema | Hores |
 |---|---|---|:-:|
-| **RA1** | Reconeix els elements de les bases de dades analitzant-ne les funcions i valorant la utilitat dels sistemes gestors. | [Tema 1](/tema1-introduccion) | 8 |
-| **RA2** | Dissenya models lògics normalitzats interpretant diagrames entitat/relació. | [Tema 2](/tema2-diseno-logico) | 32 |
-| **RA3** | Realitza el disseny físic de bases de dades utilitzant assistents, ferramentes gràfiques i el llenguatge de definició de dades. | [Tema 3](/tema3-diseno-fisico) | 24 |
-| **RA4** | Consulta la informació emmagatzemada manejant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades. | [Tema 4](/tema4-consultas) | 26 |
-| **RA5** | Modifica la informació emmagatzemada utilitzant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades. | [Tema 5](/tema5-modificacion) | 52 |
-| **RA6** | Executa tasques d'assegurament de la informació, analitzant-les i aplicant mecanismes de salvaguarda i transferència. | [Tema 6](/tema6-aseguramiento) | 9 |
+| **RA1** | Reconeix els elements de les bases de dades analitzant-ne les funcions i valorant la utilitat dels sistemes gestors. | [Tema 1](/tema1-introduccion) | 19 |
+| **RA2** | Dissenya models lògics normalitzats interpretant diagrames entitat/relació. | [Tema 2](/tema2-diseno-logico) | 29 |
+| **RA3** | Realitza el disseny físic de bases de dades utilitzant assistents, ferramentes gràfiques i el llenguatge de definició de dades. | [Tema 3](/tema3-diseno-fisico) | 29 |
+| **RA4** | Consulta la informació emmagatzemada manejant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades. | [Tema 4](/tema4-consultas) | 23 |
+| **RA5** | Modifica la informació emmagatzemada utilitzant assistents, ferramentes gràfiques i el llenguatge de manipulació de dades. | [Tema 5](/tema5-modificacion) | 26 |
+| **RA6** | Executa tasques d'assegurament de la informació, analitzant-les i aplicant mecanismes de salvaguarda i transferència. | [Tema 6](/tema6-aseguramiento) | 25 |
 | | *Proves d'avaluació (3 × 3 h)* | | 9 |
 | | **Total** | | **160** |
 

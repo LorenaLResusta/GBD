@@ -18,22 +18,22 @@ Tots els exemples usen **Oracle AI Database 26ai Free**. Quan una característic
 
 ### Temporalització
 
-El tema ocupa **24 hores d'aula** (11 de teoria i 13 de pràctica).
+El tema ocupa **29 hores d'aula** (13 de teoria i 16 de pràctica).
 
-{{< sesiones unidad="T3" horas="24" >}}
+{{< sesiones unidad="T3" horas="29" >}}
 items:
-  - {h: 2, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
-  - {h: 2, tipo: T, t: "Tipus de dades d'Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
+  - {h: 3, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
+  - {h: 3, tipo: T, t: "Tipus de dades d'Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE i restriccions d'integritat", ref: "§4 i §5 · constructor de CREATE TABLE"}
-  - {h: 3, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 3.1"}
+  - {h: 4, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 3.1"}
   - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Pràctica 3.2"}
   - {h: 1, tipo: T, t: "Modificar i eliminar l'estructura (ALTER, DROP)", ref: "§6"}
   - {h: 1, tipo: P, t: "Evolució de l'esquema amb ALTER", ref: "Pràctica 3.5"}
   - {h: 2, tipo: T, t: "Seqüències, identitat i índexs", ref: "§7 i §8"}
   - {h: 1, tipo: P, t: "Índexs i seqüències en EduGest", ref: "Pràctica 3.6"}
   - {h: 2, tipo: T, t: "Diccionari de dades i eines gràfiques", ref: "§9 i §10"}
-  - {h: 3, tipo: P, t: "Biblioteca: script complet i bateria de proves", ref: "Pràctica 3.3"}
-  - {h: 3, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-3"}
+  - {h: 4, tipo: P, t: "Biblioteca: script complet i bateria de proves", ref: "Pràctica 3.3"}
+  - {h: 4, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-3"}
 autonomo:
   - "Pràctica 3.4 (sis casos per a implementar)"
   - "Pràctica 3.7 (depurar un script defectuós)"
@@ -62,7 +62,7 @@ En acabar este tema seràs capaç de:
 Abans de ser una empresa de bases de dades, Larry Ellison, Bob Miner i Ed Oates van treballar en un projecte per a la CIA amb el nom en clau **Oracle**. Quan van fundar la seua pròpia companyia el 1977 (aleshores Software Development Laboratories) van reutilitzar el nom per al producte.
 {{% /curiosidad %}}
 
-{{< sesion n="1" h="2" tipo="t" >}}SQL i Oracle. Emmagatzematge de la informació{{< /sesion >}}
+{{< sesion n="1" h="3" tipo="t" >}}SQL i Oracle. Emmagatzematge de la informació{{< /sesion >}}
 
 ## 1. SQL i Oracle
 
@@ -175,7 +175,7 @@ SELECT ROWID, nombre FROM alumno FETCH FIRST 3 ROWS ONLY;
 A diferència de l'estàndard SQL, Oracle tracta `''` (cadena de longitud zero) com a `NULL`. Per això `WHERE nombre = ''` mai no torna files i cal escriure `WHERE nombre IS NULL`.
 {{% /curiosidad %}}
 
-{{< sesion n="2" h="2" tipo="t" >}}Tipus de dades d'Oracle{{< /sesion >}}
+{{< sesion n="2" h="3" tipo="t" >}}Tipus de dades d'Oracle{{< /sesion >}}
 
 ## 3. Tipus de dades
 

@@ -32,19 +32,19 @@ Al terminar este tema serás capaz de:
 
 ### Temporalización
 
-Esta parte del tema ocupa **16 horas de aula** (9 de teoría y 7 de práctica). Las composiciones
+Esta parte del tema ocupa **14 horas de aula** (7 de teoría y 7 de práctica). Las composiciones
 y las subconsultas son el núcleo del RA4: conviene no avanzar hasta que cada consulta
 se pueda escribir sin consultar los apuntes.
 
-{{< sesiones unidad="T4" horas="16" parte="Resumen, composiciones y subconsultas" >}}
+{{< sesiones unidad="T4" horas="14" parte="Resumen, composiciones y subconsultas" >}}
 items:
   - {h: 2, tipo: T, t: "Funciones de agregado, GROUP BY y HAVING", ref: "§1 y §2 · laboratorio de agrupamiento"}
   - {h: 1, tipo: P, t: "Consultas resumen", ref: "Práctica 4.6"}
   - {h: 2, tipo: T, t: "Composiciones internas: INNER JOIN y varias tablas", ref: "§3 · laboratorio de composiciones"}
   - {h: 2, tipo: P, t: "Composiciones paso a paso", ref: "Práctica 4.7"}
-  - {h: 2, tipo: T, t: "Composiciones externas y autocomposición", ref: "§4 y §5"}
+  - {h: 1, tipo: T, t: "Composiciones externas y autocomposición", ref: "§4 y §5"}
   - {h: 1, tipo: P, t: "Informes para jefatura", ref: "Práctica 4.8"}
-  - {h: 2, tipo: T, t: "Subconsultas y EXISTS", ref: "§6"}
+  - {h: 1, tipo: T, t: "Subconsultas y EXISTS", ref: "§6"}
   - {h: 1, tipo: P, t: "Subconsultas", ref: "Práctica 4.9"}
   - {h: 1, tipo: T, t: "Optimización de consultas: plan de ejecución", ref: "§7"}
   - {h: 1, tipo: P, t: "Optimización: medir antes y después", ref: "Práctica 4.10"}
@@ -767,7 +767,7 @@ Antes de tocar nada, predice los números: ¿cuántas filas debería devolver ca
 ---
 
 
-{{< sesion n="5" h="2" tipo="t" >}}Composiciones externas y autocomposición{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Composiciones externas y autocomposición{{< /sesion >}}
 
 ## 4. Composiciones externas: LEFT, RIGHT y FULL JOIN
 
@@ -1021,7 +1021,7 @@ Dos detalles imprescindibles:
 - La condición `b.id_alumno > a.id_alumno` evita que un alumno se empareje **consigo mismo** y que cada pareja salga **dos veces** (A-B y B-A). Si la quitas, las 7 filas se convierten en 22.
 - En 1DAM hay dos alumnos distintos que se apellidan «Ferri Baeza» (Adrián y Paula), lo que explica las filas aparentemente repetidas: son parejas diferentes con apellidos iguales. Es un buen recordatorio de que **el apellido no identifica a una persona**: por eso la clave primaria es `id_alumno`.
 
-{{< sesion n="7" h="2" tipo="t" >}}Subconsultas y EXISTS{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Subconsultas y EXISTS{{< /sesion >}}
 
 ## 6. Subconsultas
 

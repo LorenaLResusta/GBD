@@ -75,7 +75,7 @@ Regles del negoci (confirmades amb el taller):
 
 {{% /steps %}}
 
-{{< solucion id="ud04-001" title="Solució: esquema en 3FN" />}}
+{{< solucion id="tema2-062" title="Solució: esquema en 3FN" />}}
 
 #### Comprovació
 
@@ -117,7 +117,7 @@ Per a cada relació, calcula les claus candidates indicant els tancaments que ha
 | c | R(A, B, C, D, E) | A → BC, CD → E, B → D, E → A |
 | d | CURSO(cod_curso, aula, hora, profesor) | cod_curso → profesor; aula, hora → cod_curso; profesor, hora → aula |
 
-{{< solucion id="ud04-002" title="Solucions" />}}
+{{< solucion id="tema2-063" title="Solucions" />}}
 
 ---
 

@@ -19,16 +19,16 @@ En este tema s'estudien minuciosament els conceptes matemàtics i pragmàtics qu
 
 ### Temporalització
 
-Esta part del tema ocupa **12 hores d'aula** (6 de teoria i 6 de pràctica).
+Esta part del tema ocupa **11 hores d'aula** (6 de teoria i 5 de pràctica).
 
-{{< sesiones unidad="T2" horas="12" parte="Model relacional" >}}
+{{< sesiones unidad="T2" horas="11" parte="Model relacional" >}}
 items:
   - {h: 1, tipo: T, t: "Relació, atribut, domini, tupla, grau i cardinalitat. Claus", ref: "§1 i §2 · laboratori de claus"}
   - {h: 2, tipo: T, t: "Restriccions i integritat referencial", ref: "§3 · simulador d'integritat"}
   - {h: 1, tipo: P, t: "Simulador d'integritat referencial", ref: "Pràctica 2.16"}
   - {h: 1, tipo: T, t: "Regles de transformació (I): entitats, febles i atributs", ref: "§4.1 a §4.3 · transformador"}
   - {h: 1, tipo: T, t: "Regles de transformació (II): relacions i jerarquies. Exemples", ref: "§4.4 a §4.9 i §5"}
-  - {h: 2, tipo: P, t: "Biblioteca: de l'E/R a les taules", ref: "Pràctica 2.15"}
+  - {h: 1, tipo: P, t: "Biblioteca: de l'E/R a les taules", ref: "Pràctica 2.15"}
   - {h: 1, tipo: T, t: "Restriccions no representables i eines", ref: "§6 i §7"}
   - {h: 1, tipo: P, t: "Tres formes de transformar una jerarquia", ref: "Pràctica 2.17"}
   - {h: 1, tipo: P, t: "Catàleg de restriccions d'un hotel", ref: "Pràctica 2.19"}
@@ -57,7 +57,7 @@ En acabar este tema seràs capaç de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Elements del model i claus{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Elements del model i claus{{< /sesion >}}
 
 ## 1. Conceptes fonamentals del model relacional
 
@@ -238,7 +238,7 @@ La pràctica 2.16 es fa a la [pàgina de pràctiques](/tema2-diseno-logico/relac
 
 ---
 
-{{< sesion n="4" h="2" tipo="t" >}}Regles de transformació (I){{< /sesion >}}
+{{< sesion n="4" h="1" tipo="t" >}}Regles de transformació (I){{< /sesion >}}
 
 ## 4. Regles de transformació del model EER al model relacional
 
@@ -290,7 +290,7 @@ Aquest transformador aplica les regles de l'apartat 4 i produïx l'esquema relac
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}Regles de transformació (II): relacions i jerarquies{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Regles de transformació (II): relacions i jerarquies{{< /sesion >}}
 
 ### 4.4 Transformació de relacions binàries 1:N
 
@@ -548,7 +548,7 @@ Un concessionari ven `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`id_
 
 ---
 
-{{< sesion n="6" h="2" tipo="p" practica="2.15" >}}Biblioteca: de l'E/R a les taules{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="p" practica="2.15" >}}Biblioteca: de l'E/R a les taules{{< /sesion >}}
 
 {{< sesion n="7" h="1" tipo="t" >}}Restriccions no representables i eines{{< /sesion >}}
 
@@ -601,7 +601,7 @@ Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → r
 
 ---
 
-{{< sesion n="8" h="2" tipo="p" practica="2.17" >}}Tres formes de transformar una jerarquia{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="p" practica="2.17" >}}Tres formes de transformar una jerarquia{{< /sesion >}}
 
 {{< sesion n="9" h="1" tipo="p" practica="2.19" >}}Catàleg de restriccions d'un hotel{{< /sesion >}}
 
@@ -643,7 +643,7 @@ erDiagram
 
 ---
 
-{{< sesion n="10" h="2" tipo="p" practica="EduGest-2" >}}Model lògic d'EduGest{{< /sesion >}}
+{{< sesion n="10" h="1" tipo="p" practica="EduGest-2" >}}Model lògic d'EduGest{{< /sesion >}}
 
 {{< tarjetas titulo="Repassa els termes del tema 2" >}}
 - t: "Relació"

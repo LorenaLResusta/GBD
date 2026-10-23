@@ -85,7 +85,7 @@ La teua resposta és completa si:
 - [ ] Les tres anomalies s'expliquen amb un exemple del full, no amb una definició genèrica.
 - [ ] El paràgraf final menciona concurrència, integritat, seguretat, independència de les dades i còpies de seguretat.
 
-{{< solucion id="ud01-001" title="Solució orientativa" />}}
+{{< solucion id="tema1-001" title="Solució orientativa" />}}
 {{% /comprobacion %}}
 
 #### Errors habituals
@@ -227,7 +227,7 @@ T'incorpores al departament de sistemes d'EduGest. Abans de començar a desenvol
 - [ ] El fitxer `p1_2_salida.txt` conté l'eixida de totes les consultes.
 - [ ] En obrir la segona connexió apareix una sessió més en `v$session`.
 
-{{< solucion id="ud01-002" title="Solució de les preguntes" />}}
+{{< solucion id="tema1-002" title="Solució de les preguntes" />}}
 {{% /comprobacion %}}
 
 #### Errors habituals

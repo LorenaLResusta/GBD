@@ -74,7 +74,7 @@ Partimos del diagrama de la biblioteca municipal de la [práctica 2.1](/tema2-di
 
 {{% /steps %}}
 
-{{< solucion id="ud03-001" title="Diagrama relacional resultante" />}}
+{{< solucion id="tema2-052" title="Diagrama relacional resultante" />}}
 
 #### Comprobación
 
@@ -149,7 +149,7 @@ Para cada escenario, indica si la operación **se ejecuta o se rechaza** y, si s
 | E | cualquiera | cualquiera | Borrar el grupo 2ASIR |
 | F | cualquiera | cualquiera | Añadir el alumno 40, Eva, al grupo 3DAM |
 
-{{< solucion id="ud03-002" title="Soluciones" />}}
+{{< solucion id="tema2-053" title="Soluciones" />}}
 
 #### Ampliación
 
@@ -402,7 +402,7 @@ Ahora, la relación entre alumnos y asignaturas («los alumnos se matriculan de 
 | E | Igual que D, pero con **PK: dni** en `MATRICULA` |
 | F | `ASIGNATURA (codigo, nombre, curso, dni, nombre_alumno)` PK: codigo · UK: dni · VNN: dni (no hay tabla `ALUMNO`) |
 
-{{< solucion id="ud03-003" title="Solución (inténtalo antes de abrirla)" />}}
+{{< solucion id="tema2-054" title="Solución (inténtalo antes de abrirla)" />}}
 
 #### Comprobación
 
@@ -435,7 +435,7 @@ Transformar relaciones 1:N con participación obligatoria y una N:M que guarda u
 
 Es el diagrama del [ejercicio 4 del tema 2](/tema2-diseno-logico/er-practicas#ejercicio-4--naviera-capitanes-contenedores-puertos-y-barcos).
 
-{{< figura src="ud02/ej04.svg" alt="CAPITÁN transporta CONTENEDOR (1:N), CONTENEDOR llega a PUERTO (N:1), CAPITÁN gobierna BARCO (N:M con fecha_inicio y fecha_fin)" caption="Diagrama de partida: naviera" >}}
+{{< figura src="tema2/ej04.svg" alt="CAPITÁN transporta CONTENEDOR (1:N), CONTENEDOR llega a PUERTO (N:1), CAPITÁN gobierna BARCO (N:M con fecha_inicio y fecha_fin)" caption="Diagrama de partida: naviera" >}}
 
 #### Enunciado
 
@@ -462,7 +462,7 @@ Obtén el esquema relacional del diagrama, indicando para cada tabla su PK, sus 
 > - Crear una tabla para cada relación 1:N. Solo las N:M (y algunas 1:1) generan tabla nueva.
 > - Dejar la PK de `GOBIERNA` en (dni, matrícula): impediría que un capitán vuelva a gobernar el mismo barco.
 
-{{< solucion id="ud03-004" title="Solución" />}}
+{{< solucion id="tema2-055" title="Solución" />}}
 
 #### Ampliación
 
@@ -482,7 +482,7 @@ Transformar dos relaciones reflexivas (1:N y N:M) y una 1:1 con mínimos 0 en lo
 
 Es el diagrama del [ejercicio 6 del tema 2](/tema2-diseno-logico/er-practicas#ejercicio-6--instituto-módulos-matrículas-delegados-y-casilleros).
 
-{{< figura src="ud02/ej06.svg" alt="PROFESOR imparte MÓDULO; MÓDULO es requisito de MÓDULO; ALUMNO se matricula en MÓDULO; ALUMNO es delegado de ALUMNO; ALUMNO tiene CASILLERO" caption="Diagrama de partida: instituto" >}}
+{{< figura src="tema2/ej06.svg" alt="PROFESOR imparte MÓDULO; MÓDULO es requisito de MÓDULO; ALUMNO se matricula en MÓDULO; ALUMNO es delegado de ALUMNO; ALUMNO tiene CASILLERO" caption="Diagrama de partida: instituto" >}}
 
 #### Enunciado
 
@@ -509,7 +509,7 @@ Obtén el esquema relacional completo con PK, FK, UK y VNN, y anota las pérdida
 > - Poner `fecha_matricula` en `ALUMNO` (en la solución antigua aparecía en las dos tablas). Solo va en `MATRICULA`.
 > - Usar el mismo nombre de columna para los dos módulos de `ES_REQUISITO`.
 
-{{< solucion id="ud03-005" title="Solución" />}}
+{{< solucion id="tema2-056" title="Solución" />}}
 
 #### Ampliación
 
@@ -529,7 +529,7 @@ Transformar una entidad débil por identificación, una reflexiva 1:N y claves a
 
 Es el diagrama del [ejercicio 10 del tema 2](/tema2-diseno-logico/er-practicas#ejercicio-10--concesionario-ventas-revisiones-y-mecánicos).
 
-{{< figura src="ud02/ej10.svg" alt="CLIENTE compra COCHE (1:N), COCHE pasa REVISIÓN (débil, identificadora), MECÁNICO realiza REVISIÓN, MECÁNICO supervisa a MECÁNICO" caption="Diagrama de partida: concesionario" >}}
+{{< figura src="tema2/ej10.svg" alt="CLIENTE compra COCHE (1:N), COCHE pasa REVISIÓN (débil, identificadora), MECÁNICO realiza REVISIÓN, MECÁNICO supervisa a MECÁNICO" caption="Diagrama de partida: concesionario" >}}
 
 #### Enunciado
 
@@ -549,7 +549,7 @@ Obtén el esquema relacional con PK, FK, UK y VNN. Indica qué columnas de `REVI
 > - Escribir `PK (codigo, matricula)` sin marcar `matricula` como FK.
 > - Poner VNN en `cod_cliente` de `COCHE`: el diagrama dice (0,1), un coche puede estar sin vender.
 
-{{< solucion id="ud03-006" title="Solución" />}}
+{{< solucion id="tema2-057" title="Solución" />}}
 
 #### Ampliación
 
@@ -569,9 +569,9 @@ Transformar una cadena de entidades débiles con **claves ajenas compuestas** y 
 
 El primer diagrama es el del [ejercicio 11 del tema 2](/tema2-diseno-logico/er-practicas#ejercicio-11--casas-rurales-provincias-ciudades-y-habitaciones). El segundo es la variante de su ampliación.
 
-{{< figura src="ud02/ej11.svg" alt="PROVINCIA tiene CIUDAD (débil). CASA_RURAL está en CIUDAD. CASA_RURAL dispone de HABITACIÓN (débil). CLIENTE se aloja en HABITACIÓN." caption="Diagrama 4.1: casas rurales" >}}
+{{< figura src="tema2/ej11.svg" alt="PROVINCIA tiene CIUDAD (débil). CASA_RURAL está en CIUDAD. CASA_RURAL dispone de HABITACIÓN (débil). CLIENTE se aloja en HABITACIÓN." caption="Diagrama 4.1: casas rurales" >}}
 
-{{< figura src="ud03/tarea-rurales-b.svg" alt="PROVINCIA tiene CIUDAD (débil, identificadora). CASA depende en existencia de CIUDAD (E). PERSONA vive en CASA. PERSONA posee CASA con fecha de compra." caption="Diagrama 4.2: variante con residentes y propietarios" >}}
+{{< figura src="tema2/tarea-rurales-b.svg" alt="PROVINCIA tiene CIUDAD (débil, identificadora). CASA depende en existencia de CIUDAD (E). PERSONA vive en CASA. PERSONA posee CASA con fecha de compra." caption="Diagrama 4.2: variante con residentes y propietarios" >}}
 
 #### Enunciado
 
@@ -597,7 +597,7 @@ Obtén el esquema relacional de los dos diagramas.
 > - Escribir `FK: nombre_ciudad → CIUDAD` con una sola columna. La FK debe apuntar a la PK **completa** (era el error de la solución antigua).
 > - Incluir la ciudad en la PK de `CASA` en el diagrama 4.2: la dependencia es de existencia, no de identificación.
 
-{{< solucion id="ud03-007" title="Solución" />}}
+{{< solucion id="tema2-058" title="Solución" />}}
 
 #### Ampliación
 
@@ -617,7 +617,7 @@ Aplicar las reglas a un esquema sin significado (letras), donde solo cuentan la 
 
 Los esquemas abstractos obligan a aplicar las reglas sin apoyarse en el sentido común del enunciado. Los atributos subrayados son identificadores; `a0` es el discriminador de la entidad débil `A`.
 
-{{< figura src="ud03/tarea-abstracto-1.svg" alt="A débil de C por R1 (identificadora), reflexiva R3 sobre A, F y G especializan A (parcial, disjunta), ternaria R2 entre A, D y E (1:1:N), agregación de C-R4-B relacionada con D por R5" caption="Esquema abstracto 1" >}}
+{{< figura src="tema2/tarea-abstracto-1.svg" alt="A débil de C por R1 (identificadora), reflexiva R3 sobre A, F y G especializan A (parcial, disjunta), ternaria R2 entre A, D y E (1:1:N), agregación de C-R4-B relacionada con D por R5" caption="Esquema abstracto 1" >}}
 
 #### Enunciado
 
@@ -636,7 +636,7 @@ Obtén el esquema lógico relacional y enuncia las **pérdidas semánticas**.
 - [ ] `R2` tiene PK y UK distintas.
 - [ ] Has anotado que no se capta que la generalización sea disjunta.
 
-{{< solucion id="ud03-008" title="Solución" />}}
+{{< solucion id="tema2-059" title="Solución" />}}
 
 ---
 
@@ -648,7 +648,7 @@ Obtén el esquema lógico relacional y enuncia las **pérdidas semánticas**.
 
 Transformar una agregación de una N:M, una 1:1 con atributo y dependencia en existencia, una ternaria 1:N:N y una reflexiva sobre una subclase.
 
-{{< figura src="ud03/tarea-abstracto-2.svg" alt="A débil de C (R1, identificadora); F y E especializan A (parcial, disjunta); R2 reflexiva 1:N sobre F; R3 N:M entre F y E; agregación de C-R4-D (N:M, D depende en existencia de R4) relacionada 1:1 con A por R5 (atributo m, E); ternaria R6 entre C, D y B (1:N:N)" caption="Esquema abstracto 2" >}}
+{{< figura src="tema2/tarea-abstracto-2.svg" alt="A débil de C (R1, identificadora); F y E especializan A (parcial, disjunta); R2 reflexiva 1:N sobre F; R3 N:M entre F y E; agregación de C-R4-D (N:M, D depende en existencia de R4) relacionada 1:1 con A por R5 (atributo m, E); ternaria R6 entre C, D y B (1:N:N)" caption="Esquema abstracto 2" >}}
 
 #### Enunciado
 
@@ -665,7 +665,7 @@ Obtén el esquema lógico relacional y enuncia las pérdidas semánticas.
 - [ ] La tabla `R4` lleva la clave de `A`, el atributo `m`, una UK y VNN.
 - [ ] `R6` tiene PK de dos columnas y la tercera con VNN.
 
-{{< solucion id="ud03-009" title="Solución" />}}
+{{< solucion id="tema2-060" title="Solución" />}}
 
 ---
 
@@ -677,7 +677,7 @@ Obtén el esquema lógico relacional y enuncia las pérdidas semánticas.
 
 Transformar una ternaria en la que una entidad participa dos veces, una 1:1 con (0,1) en los dos lados y una generalización total y solapada.
 
-{{< figura src="ud03/tarea-abstracto-3.svg" alt="G débil de B (R5, identificadora); R6 1:1 G-H; agregación C-R4-D (C N, D 1) relacionada con G por R3 (atributo m, E) y N:M con F por R2; F y E especializan A (T,S); R1 ternaria F-F-E" caption="Esquema abstracto 3" >}}
+{{< figura src="tema2/tarea-abstracto-3.svg" alt="G débil de B (R5, identificadora); R6 1:1 G-H; agregación C-R4-D (C N, D 1) relacionada con G por R3 (atributo m, E) y N:M con F por R2; F y E especializan A (T,S); R1 ternaria F-F-E" caption="Esquema abstracto 3" >}}
 
 #### Enunciado
 
@@ -696,7 +696,7 @@ Obtén el esquema lógico relacional y enuncia las pérdidas semánticas. En *R1
 - [ ] `R6` tiene PK de una columna y UK de dos.
 - [ ] `R1` tiene PK (F1, F2) y UK (F1, E).
 
-{{< solucion id="ud03-010" title="Solución" />}}
+{{< solucion id="tema2-061" title="Solución" />}}
 
 ---
 

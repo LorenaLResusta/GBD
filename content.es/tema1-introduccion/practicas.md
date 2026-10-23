@@ -85,7 +85,7 @@ Tu respuesta es completa si:
 - [ ] Las tres anomalías se explican con un ejemplo de la hoja, no con una definición genérica.
 - [ ] El párrafo final menciona concurrencia, integridad, seguridad, independencia de los datos y copias de seguridad.
 
-{{< solucion id="ud01-001" title="Solución orientativa" />}}
+{{< solucion id="tema1-001" title="Solución orientativa" />}}
 {{% /comprobacion %}}
 
 #### Errores habituales
@@ -227,7 +227,7 @@ Te incorporas al departamento de sistemas de EduGest. Antes de empezar a desarro
 - [ ] El fichero `p1_2_salida.txt` contiene la salida de todas las consultas.
 - [ ] Al abrir la segunda conexión aparece una sesión más en `v$session`.
 
-{{< solucion id="ud01-002" title="Solución de las preguntas" />}}
+{{< solucion id="tema1-002" title="Solución de las preguntas" />}}
 {{% /comprobacion %}}
 
 #### Errores habituales

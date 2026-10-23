@@ -18,22 +18,22 @@ Todos los ejemplos usan **Oracle AI Database 26ai Free**. Cuando una caracterís
 
 ### Temporalización
 
-El tema ocupa **24 horas de aula** (11 de teoría y 13 de práctica).
+El tema ocupa **29 horas de aula** (13 de teoría y 16 de práctica).
 
-{{< sesiones unidad="T3" horas="24" >}}
+{{< sesiones unidad="T3" horas="29" >}}
 items:
-  - {h: 2, tipo: T, t: "SQL y Oracle. Almacenamiento de la información", ref: "§1 y §2"}
-  - {h: 2, tipo: T, t: "Tipos de datos de Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
+  - {h: 3, tipo: T, t: "SQL y Oracle. Almacenamiento de la información", ref: "§1 y §2"}
+  - {h: 3, tipo: T, t: "Tipos de datos de Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE y restricciones de integridad", ref: "§4 y §5 · constructor de CREATE TABLE"}
-  - {h: 3, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 3.1"}
+  - {h: 4, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 3.1"}
   - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Práctica 3.2"}
   - {h: 1, tipo: T, t: "Modificar y eliminar la estructura (ALTER, DROP)", ref: "§6"}
   - {h: 1, tipo: P, t: "Evolución del esquema con ALTER", ref: "Práctica 3.5"}
   - {h: 2, tipo: T, t: "Secuencias, identidad e índices", ref: "§7 y §8"}
   - {h: 1, tipo: P, t: "Índices y secuencias en EduGest", ref: "Práctica 3.6"}
   - {h: 2, tipo: T, t: "Diccionario de datos y herramientas gráficas", ref: "§9 y §10"}
-  - {h: 3, tipo: P, t: "Biblioteca: script completo y batería de pruebas", ref: "Práctica 3.3"}
-  - {h: 3, tipo: P, t: "Implementación de EduGest", ref: "Proyecto EduGest-3"}
+  - {h: 4, tipo: P, t: "Biblioteca: script completo y batería de pruebas", ref: "Práctica 3.3"}
+  - {h: 4, tipo: P, t: "Implementación de EduGest", ref: "Proyecto EduGest-3"}
 autonomo:
   - "Práctica 3.4 (seis casos para implementar)"
   - "Práctica 3.7 (depurar un script defectuoso)"
@@ -62,7 +62,7 @@ Al terminar este tema serás capaz de:
 Antes de ser una empresa de bases de datos, Larry Ellison, Bob Miner y Ed Oates trabajaron en un proyecto para la CIA con el nombre en clave **Oracle**. Cuando fundaron su propia compañía en 1977 (entonces Software Development Laboratories) reutilizaron el nombre para el producto.
 {{% /curiosidad %}}
 
-{{< sesion n="1" h="2" tipo="t" >}}SQL y Oracle. Almacenamiento de la información{{< /sesion >}}
+{{< sesion n="1" h="3" tipo="t" >}}SQL y Oracle. Almacenamiento de la información{{< /sesion >}}
 
 ## 1. SQL y Oracle
 
@@ -175,7 +175,7 @@ SELECT ROWID, nombre FROM alumno FETCH FIRST 3 ROWS ONLY;
 A diferencia del estándar SQL, Oracle trata `''` (cadena de longitud cero) como `NULL`. Por eso `WHERE nombre = ''` nunca devuelve filas y hay que escribir `WHERE nombre IS NULL`.
 {{% /curiosidad %}}
 
-{{< sesion n="2" h="2" tipo="t" >}}Tipos de datos de Oracle{{< /sesion >}}
+{{< sesion n="2" h="3" tipo="t" >}}Tipos de datos de Oracle{{< /sesion >}}
 
 ## 3. Tipos de datos
 

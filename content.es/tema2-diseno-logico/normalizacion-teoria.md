@@ -16,13 +16,13 @@ En este tema aprenderás a reconocer las anomalías de un mal diseño, a identif
 {{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalización
 
-Esta parte del tema ocupa **8 horas de aula** (4 de teoría y 4 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
+Esta parte del tema ocupa **7 horas de aula** (3 de teoría y 4 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
 
-{{< sesiones unidad="T2" horas="8" parte="Normalización" >}}
+{{< sesiones unidad="T2" horas="7" parte="Normalización" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalías y dependencias funcionales", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Dependencias, cierres y claves", ref: "Práctica 2.22"}
-  - {h: 2, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
+  - {h: 1, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
   - {h: 1, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 2.21"}
   - {h: 1, tipo: T, t: "Descomposición, desnormalización y procedimiento completo", ref: "§4 a §7"}
   - {h: 1, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 2.24"}
@@ -50,7 +50,7 @@ Al terminar este tema serás capaz de:
 
 ---
 
-{{< sesion n="1" h="2" tipo="t" >}}Anomalías y dependencias funcionales{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Anomalías y dependencias funcionales{{< /sesion >}}
 
 ## 1. Por qué normalizar: las anomalías
 
@@ -163,7 +163,7 @@ De ellas se derivan la **unión** (si $X \rightarrow Y$ y $X \rightarrow Z$, ent
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Formas normales{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Formas normales{{< /sesion >}}
 
 {{% curiosidad titulo="«La clave, toda la clave y nada más que la clave»" %}}
 Es la frase que se usa para recordar la 3FN: cada atributo depende de **la clave** (1FN), **toda la clave** (2FN) y **nada más que la clave** (3FN). A menudo se completa con «…, así me ayude Codd».

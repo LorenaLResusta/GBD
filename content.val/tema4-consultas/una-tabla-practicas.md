@@ -93,71 +93,71 @@ Secretaria necessita respostes ràpides a preguntes del dia a dia. Escriu una co
 
 **A1.** Codi, nom i hores de tots els mòduls d'ASIR, de més a menys hores.
 
-{{< solucion id="ud06-001" title="Solució A1" />}}
+{{< solucion id="tema4-001" title="Solució A1" />}}
 
 **A2.** Nom complet del professorat en el format «Cognoms, Nom», ordenat alfabèticament, amb una columna anomenada `profesor`.
 
-{{< solucion id="ud06-002" title="Solució A2" />}}
+{{< solucion id="tema4-002" title="Solució A2" />}}
 
 **A3.** Les distintes especialitats del professorat, sense repetir.
 
-{{< solucion id="ud06-003" title="Solució A3" />}}
+{{< solucion id="tema4-003" title="Solució A3" />}}
 
 **A4.** Els distints parells (cicle, curs) que existixen en la taula de mòduls.
 
-{{< solucion id="ud06-004" title="Solució A4" />}}
+{{< solucion id="tema4-004" title="Solució A4" />}}
 
 **Bloc B · Selecció**
 
 **B1.** Alumnat que viu a Elx o a El Campello (nom, cognoms i localitat).
 
-{{< solucion id="ud06-005" title="Solució B1" />}}
+{{< solucion id="tema4-005" title="Solució B1" />}}
 
 **B2.** Mòduls que tenen entre 96 i 128 hores, ambdues incloses.
 
-{{< solucion id="ud06-006" title="Solució B2" />}}
+{{< solucion id="tema4-006" title="Solució B2" />}}
 
 **B3.** Alumnat nascut abans de 2005, del major al menor.
 
-{{< solucion id="ud06-007" title="Solució B3" />}}
+{{< solucion id="tema4-007" title="Solució B3" />}}
 
 **B4.** Professorat del departament 1 que **no** té l'especialitat «Informática».
 
-{{< solucion id="ud06-008" title="Solució B4" />}}
+{{< solucion id="tema4-008" title="Solució B4" />}}
 
 **B5.** Mòduls el nom dels quals conté la paraula «web» (en qualsevol combinació de majúscules).
 
-{{< solucion id="ud06-009" title="Solució B5" />}}
+{{< solucion id="tema4-009" title="Solució B5" />}}
 
 **B6.** Matrícules en segona convocatòria o posterior (id de matrícula, alumne, mòdul, convocatòria i nota).
 
-{{< solucion id="ud06-010" title="Solució B6" />}}
+{{< solucion id="tema4-010" title="Solució B6" />}}
 
 **B7.** Faltes **justificades** de 3 hores.
 
-{{< solucion id="ud06-011" title="Solució B7" />}}
+{{< solucion id="tema4-011" title="Solució B7" />}}
 
 **B8.** Faltes registrades al desembre de 2025.
 
-{{< solucion id="ud06-012" title="Solució B8" />}}
+{{< solucion id="tema4-012" title="Solució B8" />}}
 
 **Bloc C · Valors nuls i límits**
 
 **C1.** Matrícules **sense qualificar**.
 
-{{< solucion id="ud06-013" title="Solució C1" />}}
+{{< solucion id="tema4-013" title="Solució C1" />}}
 
 **C2.** Grups sense tutor assignat.
 
-{{< solucion id="ud06-014" title="Solució C2" />}}
+{{< solucion id="tema4-014" title="Solució C2" />}}
 
 **C3.** Les tres matrícules amb pitjor nota (entre les qualificades), amb desempat per `id_matricula`.
 
-{{< solucion id="ud06-015" title="Solució C3" />}}
+{{< solucion id="tema4-015" title="Solució C3" />}}
 
 **C4.** Els dos professors amb més antiguitat al centre.
 
-{{< solucion id="ud06-016" title="Solució C4" />}}
+{{< solucion id="tema4-016" title="Solució C4" />}}
 
 #### Comprovació
 
@@ -207,7 +207,7 @@ Dades de partida: `ALUMNO` té 32 files; 3 sense grup, 4 sense DNI, 3 sense emai
 | 9 | `SELECT COUNT(*) FROM alumno WHERE cod_grupo NOT IN ('1DAM', '2DAM');` | | |
 | 10 | `SELECT COUNT(*) FROM alumno WHERE cod_grupo NOT IN ('1DAM', NULL);` | | |
 
-{{< solucion id="ud06-017" title="Resultats reals i explicació" />}}
+{{< solucion id="tema4-017" title="Resultats reals i explicació" />}}
 
 > [!CAUTION]
 > El cas 10 és una trampa clàssica que apareixerà de nou a el tema 4 amb les subconsultes: `WHERE id NOT IN (SELECT ...)` no torna res si la subconsulta torna algun `NULL`.
@@ -226,27 +226,27 @@ Usar les funcions de fila d'Oracle per a transformar i presentar les dades.
 
 **F1.** Genera l'**etiqueta del caseller** de cada alumne d'1DAM: inicial del nom, punt, primer cognom en majúscules i el NIA entre claudàtors. Exemple: `A. FERRI [10450037]`.
 
-{{< solucion id="ud06-018" title="Solució F1" />}}
+{{< solucion id="tema4-018" title="Solució F1" />}}
 
 **F2.** Per a cada mòdul de DAW, mostra el codi, el nom i una columna `duracion` amb el text «Corto» (menys de 100 hores), «Medio» (de 100 a 159) o «Largo» (160 o més).
 
-{{< solucion id="ud06-019" title="Solució F2" />}}
+{{< solucion id="tema4-019" title="Solució F2" />}}
 
 **F3.** Per al professorat, mostra el nom, la data d'alta amb el format «01/09/2009» i el nombre d'**anys complets** d'antiguitat a data 1 de setembre de 2026.
 
-{{< solucion id="ud06-020" title="Solució F3" />}}
+{{< solucion id="tema4-020" title="Solució F3" />}}
 
 **F4.** Mostra el telèfon de l'alumnat de 2DAM de manera que, si no en té, aparega «Sin teléfono», i una columna `contacto` que mostre l'email si existix i, si no, el telèfon.
 
-{{< solucion id="ud06-021" title="Solució F4" />}}
+{{< solucion id="tema4-021" title="Solució F4" />}}
 
 **F5.** Nom del dia de la setmana (en castellà) de cada falta d'assistència de la matrícula 10044.
 
-{{< solucion id="ud06-022" title="Solució F5" />}}
+{{< solucion id="tema4-022" title="Solució F5" />}}
 
 **F6.** Per a les matrícules de l'alumne 9, mostra la nota amb **dos decimals** com a text (`TO_CHAR`), la nota arredonida i una columna `estado` amb «Aprobado», «Suspenso» o «Pendiente».
 
-{{< solucion id="ud06-023" title="Solució F6" />}}
+{{< solucion id="tema4-023" title="Solució F6" />}}
 
 #### Comprovació
 

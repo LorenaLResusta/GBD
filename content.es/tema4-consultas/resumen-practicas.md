@@ -314,35 +314,35 @@ Resolver de forma autónoma consultas de varias tablas, decidiendo el tipo de co
 
 **J1.** Listado de módulos con el nombre completo de su ciclo, solo de 2º curso.
 
-{{< solucion id="ud07-001" title="Solución J1" />}}
+{{< solucion id="tema4-024" title="Solución J1" />}}
 
 **J2.** Profesorado con el nombre de su departamento y, si es jefe de algún departamento, el nombre de ese departamento (si no, vacío).
 
-{{< solucion id="ud07-002" title="Solución J2" />}}
+{{< solucion id="tema4-025" title="Solución J2" />}}
 
 **J3.** Carga docente: para cada profesor que imparte clase, número de módulos, número de grupos distintos y horas semanales totales, de más a menos horas.
 
-{{< solucion id="ud07-003" title="Solución J3" />}}
+{{< solucion id="tema4-026" title="Solución J3" />}}
 
 **J4.** Todos los grupos con su número de alumnos y su tutor; deben aparecer los grupos sin alumnos y sin tutor.
 
-{{< solucion id="ud07-004" title="Solución J4" />}}
+{{< solucion id="tema4-027" title="Solución J4" />}}
 
 **J5.** Porcentaje de aprobados por módulo de DAM (código, nombre, matrículas calificadas y porcentaje con un decimal), del peor al mejor porcentaje.
 
-{{< solucion id="ud07-005" title="Solución J5" />}}
+{{< solucion id="tema4-028" title="Solución J5" />}}
 
 **J6.** Alumnado con más de 3 horas de faltas **no justificadas** en total (nombre, grupo y horas).
 
-{{< solucion id="ud07-006" title="Solución J6" />}}
+{{< solucion id="tema4-029" title="Solución J6" />}}
 
 **J7.** Profesorado del departamento de Informática y Comunicaciones que **no** es tutor de ningún grupo.
 
-{{< solucion id="ud07-007" title="Solución J7" />}}
+{{< solucion id="tema4-030" title="Solución J7" />}}
 
 **J8.** Para cada alumno de 1DAM, su nota en *Bases de datos* (0484) y en *Programación* (0485) en la misma fila.
 
-{{< solucion id="ud07-008" title="Solución J8" />}}
+{{< solucion id="tema4-031" title="Solución J8" />}}
 
 #### Comprobación
 
@@ -362,27 +362,27 @@ Resolver de forma autónoma consultas de varias tablas, decidiendo el tipo de co
 
 **S1.** Alumnado de mayor edad (puede haber empates).
 
-{{< solucion id="ud07-009" title="Solución S1" />}}
+{{< solucion id="tema4-032" title="Solución S1" />}}
 
 **S2.** Módulos de DAW con más horas que **cualquier** módulo de 2º de DAM.
 
-{{< solucion id="ud07-010" title="Solución S2" />}}
+{{< solucion id="tema4-033" title="Solución S2" />}}
 
 **S3.** Alumnos que tienen **alguna** falta de asistencia (usa `EXISTS`).
 
-{{< solucion id="ud07-011" title="Solución S3" />}}
+{{< solucion id="tema4-034" title="Solución S3" />}}
 
 **S4.** Alumnos con grupo que **no** tienen ninguna falta.
 
-{{< solucion id="ud07-012" title="Solución S4" />}}
+{{< solucion id="tema4-035" title="Solución S4" />}}
 
 **S5.** Para cada alumno de 2DAW, su nota media y la diferencia con la media de **su grupo** (subconsulta correlacionada).
 
-{{< solucion id="ud07-013" title="Solución S5" />}}
+{{< solucion id="tema4-036" title="Solución S5" />}}
 
 **S6.** El grupo (o grupos) con más alumnos. Resuélvelo con una subconsulta en el `HAVING`.
 
-{{< solucion id="ud07-014" title="Solución S6" />}}
+{{< solucion id="tema4-037" title="Solución S6" />}}
 
 **S7.** Explica por qué esta consulta no devuelve filas y corrígela de dos formas:
 
@@ -390,7 +390,7 @@ Resolver de forma autónoma consultas de varias tablas, decidiendo el tipo de co
 SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo);
 ```
 
-{{< solucion id="ud07-015" title="Solución S7" />}}
+{{< solucion id="tema4-038" title="Solución S7" />}}
 
 ---
 

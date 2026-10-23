@@ -18,16 +18,16 @@ Este tema trata en profundidad la transición histórica desde los soportes fís
 {{< ra "RA1" >}}
 ### Temporalización
 
-El tema ocupa **8 horas de aula** (4 de teoría y 4 de práctica).
+El tema ocupa **19 horas de aula** (14 de teoría y 5 de práctica).
 
-{{< sesiones unidad="T1" horas="8" >}}
+{{< sesiones unidad="T1" horas="19" >}}
 items:
-  - {h: 2, tipo: T, t: "Datos e información. Historia. Sistemas basados en ficheros", ref: "§1 a §3"}
-  - {h: 1, tipo: P, t: "De la hoja de cálculo al SGBD", ref: "Práctica 1.1"}
-  - {h: 2, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
-  - {h: 1, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
-  - {h: 1, tipo: T, t: "Integridad, concurrencia, seguridad, modelos de datos y lenguajes", ref: "§6 a §8"}
-  - {h: 1, tipo: T, t: "Clasificación de los SGBD y ubicación de la información", ref: "§9 y §10"}
+  - {h: 5, tipo: T, t: "Datos e información. Historia. Sistemas basados en ficheros", ref: "§1 a §3"}
+  - {h: 3, tipo: P, t: "De la hoja de cálculo al SGBD", ref: "Práctica 1.1"}
+  - {h: 5, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
+  - {h: 2, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
+  - {h: 2, tipo: T, t: "Integridad, concurrencia, seguridad, modelos de datos y lenguajes", ref: "§6 a §8"}
+  - {h: 2, tipo: T, t: "Clasificación de los SGBD y ubicación de la información", ref: "§9 y §10"}
 autonomo:
   - "Prácticas 1.2 (resto), 1.3 (elegir un SGBD) y proyecto EduGest-1"
   - "Ejercicios resueltos y autoevaluación"
@@ -51,7 +51,7 @@ Al terminar este tema serás capaz de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Datos e información. Historia. Sistemas basados en ficheros{{< /sesion >}}
+{{< sesion n="1" h="5" tipo="t" >}}Datos e información. Historia. Sistemas basados en ficheros{{< /sesion >}}
 
 ## 1. Datos, información y representación
 
@@ -253,7 +253,7 @@ Cuando cada aplicación informática gestiona sus ficheros sin un SGBD centraliz
 ---
 
 
-{{< sesion n="3" h="2" tipo="t" >}}Bases de datos y SGBD. Arquitectura y componentes{{< /sesion >}}
+{{< sesion n="3" h="5" tipo="t" >}}Bases de datos y SGBD. Arquitectura y componentes{{< /sesion >}}
 
 ## 4. Bases de datos y sistemas gestores (SGBD)
 
@@ -426,7 +426,7 @@ En la gestión de bases de datos participan profesionales con perfiles y respons
 ---
 
 
-{{< sesion n="5" h="1" tipo="t" >}}Integridad, concurrencia, seguridad, modelos de datos y lenguajes{{< /sesion >}}
+{{< sesion n="5" h="2" tipo="t" >}}Integridad, concurrencia, seguridad, modelos de datos y lenguajes{{< /sesion >}}
 
 ## 6. Integridad, concurrencia y transacciones
 
@@ -674,7 +674,7 @@ REVOKE DELETE ON producto FROM usuario_ventas;
 ---
 
 
-{{< sesion n="6" h="1" tipo="t" >}}Clasificación de los SGBD y ubicación de la información{{< /sesion >}}
+{{< sesion n="6" h="2" tipo="t" >}}Clasificación de los SGBD y ubicación de la información{{< /sesion >}}
 
 ## 9. Clasificación de los sistemas gestores de bases de datos
 

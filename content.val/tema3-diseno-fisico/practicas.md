@@ -288,7 +288,7 @@ CREATE TABLE vehiculo (
 ) ENGINE = InnoDB;
 ```
 
-{{< solucion id="ud05-001" title="Solució en Oracle" />}}
+{{< solucion id="tema3-001" title="Solució en Oracle" />}}
 
 ### Cas D · Jerarquia (taula per a la superclasse i per a cada subclasse)
 
@@ -562,7 +562,7 @@ Per a cada canvi, escriu la sentència i comprova el resultat amb `DESC` o amb e
 | 6 | L'email deixa de ser únic (diversos comptes d'una empresa) | `DROP CONSTRAINT` |
 | 7 | Esborrar per error la taula `pedido` i recuperar-la | `DROP` sense `PURGE` + `FLASHBACK TABLE` |
 
-{{< solucion id="ud05-002" title="Solució" />}}
+{{< solucion id="tema3-002" title="Solució" />}}
 
 #### Errors habituals
 

@@ -16,13 +16,13 @@ En este tema aprendràs a reconéixer les anomalies d'un mal disseny, a identifi
 {{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalització
 
-Esta part del tema ocupa **8 hores d'aula** (4 de teoria i 4 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
+Esta part del tema ocupa **7 hores d'aula** (3 de teoria i 4 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
 
-{{< sesiones unidad="T2" horas="8" parte="Normalització" >}}
+{{< sesiones unidad="T2" horas="7" parte="Normalització" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalies i dependències funcionals", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Dependències, tancaments i claus", ref: "Pràctica 2.22"}
-  - {h: 2, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
+  - {h: 1, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
   - {h: 1, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 2.21"}
   - {h: 1, tipo: T, t: "Descomposició, desnormalització i procediment complet", ref: "§4 a §7"}
   - {h: 1, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 2.24"}
@@ -50,7 +50,7 @@ En acabar este tema seràs capaç de:
 
 ---
 
-{{< sesion n="1" h="2" tipo="t" >}}Anomalies i dependències funcionals{{< /sesion >}}
+{{< sesion n="1" h="1" tipo="t" >}}Anomalies i dependències funcionals{{< /sesion >}}
 
 ## 1. Per què normalitzar: les anomalies
 
@@ -163,7 +163,7 @@ D'elles es deriven la **unió** (si $X \rightarrow Y$ i $X \rightarrow Z$, llavo
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Formes normals{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Formes normals{{< /sesion >}}
 
 {{% curiosidad titulo="«La clau, tota la clau i res més que la clau»" %}}
 És la frase que s'usa per a recordar la 3FN: cada atribut depén de **la clau** (1FN), **tota la clau** (2FN) i **res més que la clau** (3FN). Sovint es completa amb «…, així m'ajude Codd».

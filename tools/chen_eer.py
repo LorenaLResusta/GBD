@@ -19,7 +19,7 @@ en blanco y negro, con la misma notación que se usa en clase (draw.io):
                        doble si la especialización es total
     Agregación         recuadro doble alrededor de la relación agregada
 
-Convenio de cardinalidades (el de la teoría de la UD02):
+Convenio de cardinalidades (el de la teoría del tema 2):
     la pareja (mín,máx) escrita JUNTO A UNA ENTIDAD indica con cuántas
     instancias de esa entidad se relaciona una instancia de la otra. Junto a
     cada punta del rombo se repite el máximo (1 o N).

@@ -32,19 +32,19 @@ En acabar este tema seràs capaç de:
 
 ### Temporalització
 
-Esta part del tema ocupa **16 hores d'aula** (9 de teoria i 7 de pràctica). Les composicions
+Esta part del tema ocupa **14 hores d'aula** (7 de teoria i 7 de pràctica). Les composicions
 i les subconsultes són el nucli del RA4: convé no avançar fins que cada consulta
 es puga escriure sense consultar els apunts.
 
-{{< sesiones unidad="T4" horas="16" parte="Resum, composicions i subconsultes" >}}
+{{< sesiones unidad="T4" horas="14" parte="Resum, composicions i subconsultes" >}}
 items:
   - {h: 2, tipo: T, t: "Funcions d'agregat, GROUP BY i HAVING", ref: "§1 i §2 · laboratori d'agrupament"}
   - {h: 1, tipo: P, t: "Consultes resum", ref: "Pràctica 4.6"}
   - {h: 2, tipo: T, t: "Composicions internes: INNER JOIN i diverses taules", ref: "§3 · laboratori de composicions"}
   - {h: 2, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 4.7"}
-  - {h: 2, tipo: T, t: "Composicions externes i autocomposició", ref: "§4 i §5"}
+  - {h: 1, tipo: T, t: "Composicions externes i autocomposició", ref: "§4 i §5"}
   - {h: 1, tipo: P, t: "Informes per a prefectura", ref: "Pràctica 4.8"}
-  - {h: 2, tipo: T, t: "Subconsultes i EXISTS", ref: "§6"}
+  - {h: 1, tipo: T, t: "Subconsultes i EXISTS", ref: "§6"}
   - {h: 1, tipo: P, t: "Subconsultes", ref: "Pràctica 4.9"}
   - {h: 1, tipo: T, t: "Optimització de consultes: pla d'execució", ref: "§7"}
   - {h: 1, tipo: P, t: "Optimització: mesurar abans i després", ref: "Pràctica 4.10"}
@@ -759,7 +759,7 @@ Abans de tocar res, prediu els números: quantes files hauria de tornar cada tip
 ---
 
 
-{{< sesion n="5" h="2" tipo="t" >}}Composicions externes i autocomposició{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Composicions externes i autocomposició{{< /sesion >}}
 
 ## 4. Composicions externes: LEFT, RIGHT i FULL JOIN
 
@@ -1013,7 +1013,7 @@ Dos detalls imprescindibles:
 - La condició `b.id_alumno > a.id_alumno` evita que un alumne s'emparelle **amb si mateix** i que cada parella isca **dues voltes** (A-B i B-A). Si la lleves, les 7 files es convertixen en 22.
 - A 1DAM hi ha dos alumnes distints que tenen per cognom «Ferri Baeza» (Adrián i Paula), cosa que explica les files aparentment repetides: són parelles diferents amb cognoms iguals. És un bon recordatori que **el cognom no identifica una persona**: per això la clau primària és `id_alumno`.
 
-{{< sesion n="7" h="2" tipo="t" >}}Subconsultes i EXISTS{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Subconsultes i EXISTS{{< /sesion >}}
 
 ## 6. Subconsultes
 
@@ -1268,7 +1268,7 @@ FETCH FIRST 6 ROWS ONLY;
 > [!NOTE]
 > Una composició pot **duplicar** files si l'altra taula té diverses coincidències; `EXISTS` mai ho fa, perquè només pregunta si n'hi ha alguna. Si una consulta amb `JOIN` et torna files repetides i el que volies era només filtrar, canvia-la per `EXISTS` en lloc d'afegir un `DISTINCT`.
 
-{{< sesion n="9" h="2" tipo="t" >}}Optimització de consultes: pla d'execució{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="t" >}}Optimització de consultes: pla d'execució{{< /sesion >}}
 
 ## 7. Optimització de consultes i pla d'execució
 

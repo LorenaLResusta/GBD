@@ -27,18 +27,18 @@ Al terminar esta parte serás capaz de:
 
 ### Temporalización
 
-El tema ocupa **9 horas de aula** (4 de teoría y 5 de práctica).
+El tema ocupa **25 horas de aula** (12 de teoría y 13 de práctica).
 
-{{< sesiones unidad="T6" horas="9" >}}
+{{< sesiones unidad="T6" horas="25" >}}
 items:
-  - {h: 1, tipo: T, t: "Copias de seguridad: tipos, estrategia y herramientas", ref: "§1 y §2"}
-  - {h: 1, tipo: T, t: "Copia lógica con Data Pump", ref: "§3"}
-  - {h: 2, tipo: P, t: "Copia lógica de EduGest y restauración", ref: "Práctica 6.1"}
-  - {h: 1, tipo: T, t: "Importar y exportar datos", ref: "§4"}
-  - {h: 1, tipo: P, t: "Exportar datos a CSV, JSON y SQL", ref: "Práctica 6.2"}
-  - {h: 1, tipo: P, t: "Importar con SQL*Loader y leer los errores", ref: "Práctica 6.3"}
-  - {h: 1, tipo: T, t: "Transferencia entre gestores y registros de error", ref: "§5 y §6"}
-  - {h: 1, tipo: P, t: "De Oracle a PostgreSQL", ref: "Práctica 6.4"}
+  - {h: 3, tipo: T, t: "Copias de seguridad: tipos, estrategia y herramientas", ref: "§1 y §2"}
+  - {h: 3, tipo: T, t: "Copia lógica con Data Pump", ref: "§3"}
+  - {h: 5, tipo: P, t: "Copia lógica de EduGest y restauración", ref: "Práctica 6.1"}
+  - {h: 3, tipo: T, t: "Importar y exportar datos", ref: "§4"}
+  - {h: 3, tipo: P, t: "Exportar datos a CSV, JSON y SQL", ref: "Práctica 6.2"}
+  - {h: 3, tipo: P, t: "Importar con SQL*Loader y leer los errores", ref: "Práctica 6.3"}
+  - {h: 3, tipo: T, t: "Transferencia entre gestores y registros de error", ref: "§5 y §6"}
+  - {h: 2, tipo: P, t: "De Oracle a PostgreSQL", ref: "Práctica 6.4"}
 autonomo:
   - "Reto 6.5 (plan de copias y simulacro de desastre)"
   - "Proyecto EduGest · Tema 6 (aseguramiento de la información)"
@@ -50,7 +50,7 @@ autonomo:
 
 ---
 
-{{< sesion n="1" h="1" tipo="t" >}}Copias de seguridad: tipos, estrategia y herramientas{{< /sesion >}}
+{{< sesion n="1" h="3" tipo="t" >}}Copias de seguridad: tipos, estrategia y herramientas{{< /sesion >}}
 
 ## 1. Por qué y cómo se hacen copias
 
@@ -112,7 +112,7 @@ docker start oracle26ai
 
 {{< sgbd "Docker" >}} El volumen `oracle-data` se monta en un contenedor auxiliar que lo comprime en la carpeta actual. Para restaurar se hace la operación inversa sobre un volumen vacío. Desventaja: el servicio queda **parado** mientras se copia.
 
-{{< sesion n="2" h="1" tipo="t" >}}Copia lógica con Data Pump{{< /sesion >}}
+{{< sesion n="2" h="3" tipo="t" >}}Copia lógica con Data Pump{{< /sesion >}}
 
 ## 3. Copia lógica con Data Pump (Oracle)
 
@@ -202,7 +202,7 @@ MINUS
 SELECT * FROM edugest_copia.alumno;
 ```
 
-{{< sesion n="4" h="1" tipo="t" >}}Importar y exportar datos{{< /sesion >}}
+{{< sesion n="4" h="3" tipo="t" >}}Importar y exportar datos{{< /sesion >}}
 
 ## 4. Importar y exportar datos
 
@@ -265,7 +265,7 @@ sqlldr userid=edugest/Edugest_2026@//localhost:1521/FREEPDB1 \
 > [!NOTE]
 > En clase usaremos también el **asistente de importación** de SQL Developer (clic derecho sobre la tabla → *Importar datos*), que genera el mismo tipo de carga sin escribir el fichero de control. Los asistentes ayudan, pero hay que entender qué hacen: se necesita saber leer sus mensajes.
 
-{{< sesion n="7" h="1" tipo="t" >}}Transferencia entre gestores y registros de error{{< /sesion >}}
+{{< sesion n="7" h="3" tipo="t" >}}Transferencia entre gestores y registros de error{{< /sesion >}}
 
 ## 5. Transferir información entre gestores
 

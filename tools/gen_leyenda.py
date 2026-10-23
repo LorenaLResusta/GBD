@@ -6,7 +6,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from chen_eer import BG, FRAME, INK, AGG_S, CARD, tw
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "assets", "images", "ud02", "chen-eer-leyenda.svg")
+OUT = os.path.join(os.path.dirname(__file__), "..", "assets", "images", "tema2", "chen-eer-leyenda.svg")
 W, H = 980, 600
 o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-labelledby="t d" font-family="DejaVu Sans, Verdana, Arial, sans-serif">',
      '<title id="t">Leyenda de la notación de Chen extendida (EER)</title>',

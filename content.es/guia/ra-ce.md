@@ -16,12 +16,12 @@ El módulo se organiza en **6 temas, uno por cada RA** (el tema 1 desarrolla el 
 
 | RA | Resultado de aprendizaje | Tema | Horas |
 |---|---|---|:-:|
-| **RA1** | Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores. | [Tema 1](/tema1-introduccion) | 8 |
-| **RA2** | Diseña modelos lógicos normalizados interpretando diagramas entidad/relación. | [Tema 2](/tema2-diseno-logico) | 32 |
-| **RA3** | Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos. | [Tema 3](/tema3-diseno-fisico) | 24 |
-| **RA4** | Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [Tema 4](/tema4-consultas) | 26 |
-| **RA5** | Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [Tema 5](/tema5-modificacion) | 52 |
-| **RA6** | Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia. | [Tema 6](/tema6-aseguramiento) | 9 |
+| **RA1** | Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores. | [Tema 1](/tema1-introduccion) | 19 |
+| **RA2** | Diseña modelos lógicos normalizados interpretando diagramas entidad/relación. | [Tema 2](/tema2-diseno-logico) | 29 |
+| **RA3** | Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos. | [Tema 3](/tema3-diseno-fisico) | 29 |
+| **RA4** | Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [Tema 4](/tema4-consultas) | 23 |
+| **RA5** | Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [Tema 5](/tema5-modificacion) | 26 |
+| **RA6** | Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia. | [Tema 6](/tema6-aseguramiento) | 25 |
 | | *Pruebas de evaluación (3 × 3 h)* | | 9 |
 | | **Total** | | **160** |
 

@@ -37,14 +37,14 @@ El módulo se imparte con una carga de **160 horas de aula** (5 horas semanales,
 
 | Tema | RA | Resultado de aprendizaje (resumen) | Horas | Del | Al |
 |---|---|---|:-:|---|---|
-| [Tema 1](/tema1-introduccion) · Sistemas de almacenamiento y SGBD | **RA1** | Elementos de las bases de datos y utilidad de los sistemas gestores | 8 | 09/09/2026 | 18/09/2026 |
-| [Tema 2](/tema2-diseno-logico) · Diseño lógico de bases de datos | **RA2** | Diseño de modelos lógicos normalizados a partir de diagramas E/R | 32 | 21/09/2026 | 05/11/2026 |
-| [Tema 3](/tema3-diseno-fisico) · Diseño físico (DDL) | **RA3** | Diseño físico con asistentes, herramientas gráficas y DDL | 24 | 06/11/2026 | 10/12/2026 |
+| [Tema 1](/tema1-introduccion) · Sistemas de almacenamiento y SGBD | **RA1** | Elementos de las bases de datos y utilidad de los sistemas gestores | 19 | 09/09/2026 | 05/10/2026 |
+| [Tema 2](/tema2-diseno-logico) · Diseño lógico de bases de datos | **RA2** | Diseño de modelos lógicos normalizados a partir de diagramas E/R | 29 | 06/10/2026 | 17/11/2026 |
+| [Tema 3](/tema3-diseno-fisico) · Diseño físico (DDL) | **RA3** | Diseño físico con asistentes, herramientas gráficas y DDL | 29 | 18/11/2026 | 19/01/2027 |
 | | | *Prueba y revisión de la 1ª evaluación* | 3 | 11/12/2026 | 15/12/2026 |
-| [Tema 4](/tema4-consultas) · Consultas | **RA4** | Consulta de la información con SQL | 26 | 16/12/2026 | 05/02/2027 |
+| [Tema 4](/tema4-consultas) · Consultas | **RA4** | Consulta de la información con SQL | 23 | 20/01/2027 | 24/02/2027 |
 | | | *Prueba y revisión de la 2ª evaluación* | 3 | 08/02/2027 | 10/02/2027 |
-| [Tema 5](/tema5-modificacion) · Modificación de la información | **RA5** | Modificación de la información, transacciones y guiones | 52 | 11/02/2027 | 06/05/2027 |
-| [Tema 6](/tema6-aseguramiento) · Aseguramiento de la información | **RA6** | Copias de seguridad, importación, exportación y transferencia de datos | 9 | 07/05/2027 | 19/05/2027 |
+| [Tema 5](/tema5-modificacion) · Modificación de la información | **RA5** | Modificación de la información, transacciones y guiones | 26 | 25/02/2027 | 14/04/2027 |
+| [Tema 6](/tema6-aseguramiento) · Aseguramiento de la información | **RA6** | Copias de seguridad, importación, exportación y transferencia de datos | 25 | 15/04/2027 | 19/05/2027 |
 | | | *Prueba y revisión de la 3ª evaluación y final* | 3 | 20/05/2027 | 24/05/2027 |
 | | | **Total** | **160** | | |
 
@@ -55,8 +55,8 @@ El módulo se imparte con una carga de **160 horas de aula** (5 horas semanales,
 
 ### Criterios de la planificación
 
-- **Un tema por RA.** Cada resultado de aprendizaje tiene su propio tema, de modo que cada RA se evalúa al terminar su tema. El peso de las horas sigue el número de criterios de evaluación de cada RA: el diseño lógico (RA2), las consultas (RA4) y la modificación de datos (RA5) concentran la mayor parte de la carga.
-- **Evaluaciones.** La 1ª evaluación cierra los RA1, RA2 y RA3; la 2ª, el RA4; la 3ª, los RA5 y RA6.
+- **Un tema por RA.** Cada resultado de aprendizaje tiene su propio tema, de modo que cada RA se evalúa al terminar su tema. Las horas de cada tema son proporcionales al número de criterios de evaluación de su RA (151 horas de clase para 47 CE, unas 3,2 horas por criterio).
+- **Evaluaciones.** Al llegar a la 1ª evaluación se han terminado los RA1 y RA2; en la 2ª, RA3; en la 3ª, RA4, RA5 y RA6. Cada RA se evalúa al terminar su tema.
 - **Teoría y práctica en el mismo tema.** Cada página de teoría incluye una *temporalización* con el reparto de sesiones entre teoría (T) y práctica (P). En los temas con varias partes, la suma de sus partes coincide con las horas del tema.
 - **Práctica guiada en el aula, práctica autónoma fuera de ella.** Las prácticas guiadas y la tarea del proyecto EduGest se hacen en clase. Las prácticas autónomas y los retos son trabajo personal, y las dudas se trabajan en las sesiones de práctica.
 - **Pruebas de evaluación.** Cada evaluación reserva 3 horas a la prueba y a su revisión.

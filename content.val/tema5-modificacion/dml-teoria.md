@@ -33,23 +33,23 @@ En acabar este tema seràs capaç de:
 
 ### Temporalització
 
-Esta part del tema ocupa **36 hores d'aula** (17 de teoria i 19 de pràctica). És la base del RA5 (el de més pes del mòdul): aprofita les sessions
+Esta part del tema ocupa **18 hores d'aula** (9 de teoria i 9 de pràctica). És la base del RA5 (el de més pes del mòdul): aprofita les sessions
 pràctiques, que requerixen **dues sessions d'Oracle obertes alhora**.
 
-{{< sesiones unidad="T5" horas="36" parte="Modificació de dades i transaccions" >}}
+{{< sesiones unidad="T5" horas="18" parte="Modificació de dades i transaccions" >}}
 items:
-  - {h: 3, tipo: T, t: "Modificar dades: eines, INSERT", ref: "§1 i §2"}
-  - {h: 3, tipo: P, t: "Altes, canvis i baixes en EduGest", ref: "Pràctica 5.1"}
-  - {h: 3, tipo: T, t: "UPDATE, DELETE i TRUNCATE", ref: "§3 i §4"}
-  - {h: 3, tipo: P, t: "Modificacions amb subconsultes", ref: "Pràctica 5.3"}
-  - {h: 3, tipo: T, t: "INSERT … SELECT, CTAS i MERGE", ref: "§5"}
-  - {h: 3, tipo: P, t: "Còpies, històrics i càrrega de notes amb MERGE", ref: "Pràctiques 5.2 i 5.6"}
-  - {h: 3, tipo: T, t: "Transaccions, ACID, COMMIT, ROLLBACK i SAVEPOINT", ref: "§6 i §7 · laboratori de transaccions"}
-  - {h: 3, tipo: P, t: "Laboratori de transaccions", ref: "Pràctica 5.4"}
-  - {h: 3, tipo: T, t: "Concurrència, bloquejos i interbloquejos", ref: "§8 i §9"}
-  - {h: 3, tipo: P, t: "Dues sessions, una dada: concurrència i bloquejos", ref: "Pràctica 5.5"}
-  - {h: 2, tipo: T, t: "Integritat referencial i restriccions diferides", ref: "§10"}
-  - {h: 4, tipo: P, t: "Modificacions en EduGest", ref: "Projecte EduGest-5"}
+  - {h: 2, tipo: T, t: "Modificar dades: eines, INSERT", ref: "§1 i §2"}
+  - {h: 2, tipo: P, t: "Altes, canvis i baixes en EduGest", ref: "Pràctica 5.1"}
+  - {h: 2, tipo: T, t: "UPDATE, DELETE i TRUNCATE", ref: "§3 i §4"}
+  - {h: 2, tipo: P, t: "Modificacions amb subconsultes", ref: "Pràctica 5.3"}
+  - {h: 2, tipo: T, t: "INSERT … SELECT, CTAS i MERGE", ref: "§5"}
+  - {h: 1, tipo: P, t: "Còpies, històrics i càrrega de notes amb MERGE", ref: "Pràctiques 5.2 i 5.6"}
+  - {h: 1, tipo: T, t: "Transaccions, ACID, COMMIT, ROLLBACK i SAVEPOINT", ref: "§6 i §7 · laboratori de transaccions"}
+  - {h: 1, tipo: P, t: "Laboratori de transaccions", ref: "Pràctica 5.4"}
+  - {h: 1, tipo: T, t: "Concurrència, bloquejos i interbloquejos", ref: "§8 i §9"}
+  - {h: 1, tipo: P, t: "Dues sessions, una dada: concurrència i bloquejos", ref: "Pràctica 5.5"}
+  - {h: 1, tipo: T, t: "Integritat referencial i restriccions diferides", ref: "§10"}
+  - {h: 2, tipo: P, t: "Modificacions en EduGest", ref: "Projecte EduGest-5"}
 autonomo:
   - "Acabar a casa les modificacions de la pràctica 5.3 que no hagen donat temps"
   - "Exercicis resolts i autoavaluació"
@@ -61,7 +61,7 @@ autonomo:
 ---
 
 
-{{< sesion n="1" h="3" tipo="t" >}}Modificar dades: eines, INSERT{{< /sesion >}}
+{{< sesion n="1" h="2" tipo="t" >}}Modificar dades: eines, INSERT{{< /sesion >}}
 
 ## 1. Modificar dades: eines i responsabilitat
 
@@ -368,7 +368,7 @@ L'alternativa artesanal (`SELECT MAX(id_alumno) FROM alumno`) **és incorrecta**
 
 ---
 
-{{< sesion n="3" h="3" tipo="t" >}}UPDATE, DELETE i TRUNCATE{{< /sesion >}}
+{{< sesion n="3" h="2" tipo="t" >}}UPDATE, DELETE i TRUNCATE{{< /sesion >}}
 
 ## 3. Modificar files: `UPDATE`
 
@@ -767,7 +767,7 @@ La clau aliena d'`IMPARTE` **no** té regla d'esborrat, així que protegix el pr
 ---
 
 
-{{< sesion n="5" h="3" tipo="t" >}}INSERT … SELECT, CTAS i MERGE{{< /sesion >}}
+{{< sesion n="5" h="2" tipo="t" >}}INSERT … SELECT, CTAS i MERGE{{< /sesion >}}
 
 ## 5. Inserir des de consultes i `MERGE`
 
@@ -1027,7 +1027,7 @@ WHEN NOT MATCHED THEN
 ---
 
 
-{{< sesion n="7" h="3" tipo="t" >}}Transaccions, ACID, COMMIT, ROLLBACK i SAVEPOINT{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Transaccions, ACID, COMMIT, ROLLBACK i SAVEPOINT{{< /sesion >}}
 
 ## 6. Transaccions i propietats ACID
 
@@ -1308,7 +1308,7 @@ Una consulta que porta minuts executant-se necessita veure les dades **tal com e
 ---
 
 
-{{< sesion n="9" h="3" tipo="t" >}}Concurrència, bloquejos i interbloquejos{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="t" >}}Concurrència, bloquejos i interbloquejos{{< /sesion >}}
 
 ## 8. Concurrència i bloquejos
 
@@ -1539,7 +1539,7 @@ Repeteix l'escenari **«Interbloqueig (ORA-00060)»** del [laboratori de transac
 
 ---
 
-{{< sesion n="11" h="2" tipo="t" >}}Integritat referencial i restriccions diferides{{< /sesion >}}
+{{< sesion n="11" h="1" tipo="t" >}}Integritat referencial i restriccions diferides{{< /sesion >}}
 
 ## 10. Integritat referencial i restriccions diferides
 

@@ -80,9 +80,9 @@ Seguix els cinc passos i respon a les preguntes abans d'obrir les respostes.
 
 {{% /steps %}}
 
-{{< solucion id="ud02-001" title="Respostes guiades als cinc passos" />}}
+{{< solucion id="tema2-001" title="Respostes guiades als cinc passos" />}}
 
-{{< solucion id="ud02-002" title="Solució en notació de Chen" />}}
+{{< solucion id="tema2-002" title="Solució en notació de Chen" />}}
 
 {{% details title="Comprovació (usa-la en acabar el teu diagrama)" %}}
 
@@ -130,7 +130,7 @@ Per a cada frase, escriu la relació en notació (mín, màx) en els **dos senti
 | d | Un empleat pot supervisar diversos empleats; tot empleat llevat del director té un supervisor. |
 | e | Un vehicle d'empresa pot estar assignat a un empleat com a màxim; un empleat pot no tindre vehicle i mai no en té més d'un. |
 
-{{< solucion id="ud02-003" title="Solucions" />}}
+{{< solucion id="tema2-003" title="Solucions" />}}
 
 #### Segona part: del diagrama a la frase
 
@@ -143,7 +143,7 @@ erDiagram
     MEDICO }o--|| ESPECIALIDAD : "té"
 ```
 
-{{< solucion id="ud02-004" title="Solució" />}}
+{{< solucion id="tema2-004" title="Solució" />}}
 
 ---
 
@@ -237,7 +237,7 @@ Una clínica veterinària de grandària mitjana estrena sistema de gestió. La g
 
 {{% /details %}}
 
-{{< solucion id="ud02-005" title="Solució i criteris" />}}
+{{< solucion id="tema2-005" title="Solució i criteris" />}}
 
 #### Ampliació
 
@@ -253,7 +253,7 @@ Com canviaria el model si un empleat poguera ser alhora auxiliar i administratiu
 
 Un company ha dissenyat el model d'un **gimnàs** i et demana que el revises abans de passar a taules. L'enunciat és: *«Els socis s'apunten a activitats (spinning, ioga...) que s'imparteixen en sales. Cada sessió d'una activitat té dia, hora, sala i monitor. Un soci reserva plaça en sessions concretes. Cada soci té una quota mensual»*.
 
-{{< figura src="ud02/p2_5.svg" alt="Diagrama EER en notació de Chen: Disseny defectuós del gimnàs (per a revisar)" caption="Diagrama EER en notació de Chen: Disseny defectuós del gimnàs (per a revisar)" >}}
+{{< figura src="tema2/p2_5.svg" alt="Diagrama EER en notació de Chen: Disseny defectuós del gimnàs (per a revisar)" caption="Diagrama EER en notació de Chen: Disseny defectuós del gimnàs (per a revisar)" >}}
 
 #### Enunciat
 
@@ -263,7 +263,7 @@ Fes la revisió com la faria un company sènior: no saps quants problemes hi ha.
 Identificadors inestables, atributs derivats, atributs multivaluats amagats en un text, atributs col·locats en l'entitat equivocada, entitats que no tenen identificador, conceptes que haurien de ser entitats (monitor, sessió), relacions redundants.
 {{% /details %}}
 
-{{< solucion id="ud02-006" title="Solució" />}}
+{{< solucion id="tema2-006" title="Solució" />}}
 
 ---
 
@@ -296,7 +296,7 @@ Identificadors inestables, atributs derivats, atributs multivaluats amagats en u
 
 {{% /details %}}
 
-{{< solucion id="ud02-007" title="Solució" />}}
+{{< solucion id="tema2-007" title="Solució" />}}
 
 
 ---
@@ -351,9 +351,9 @@ Una cooperativa d'oli vol registrar la traçabilitat de la seua producció. Esta
 
 {{% /details %}}
 
-{{< solucion id="ud02-008" title="Preguntes al client i decisions associades" />}}
+{{< solucion id="tema2-008" title="Preguntes al client i decisions associades" />}}
 
-{{< solucion id="ud02-009" title="Solució de referència" />}}
+{{< solucion id="tema2-009" title="Solució de referència" />}}
 
 
 ---
@@ -400,7 +400,7 @@ Un disseny que només guarda «el que és veritat ara» oblida el que ja ha pass
 
 {{% /details %}}
 
-{{< solucion id="ud02-010" title="Solució i criteris" />}}
+{{< solucion id="tema2-010" title="Solució i criteris" />}}
 
 
 ---
@@ -464,7 +464,7 @@ Base imposable: 267,60 € · IVA 10 % sobre 23,40 €: 2,34 € · IVA 21 % sob
 
 {{% /details %}}
 
-{{< solucion id="ud02-011" title="Solució i criteris" />}}
+{{< solucion id="tema2-011" title="Solució i criteris" />}}
 
 
 ---
@@ -485,11 +485,11 @@ Un club de pàdel ha rebut dos propostes de model i no sap quina triar. El club 
 
 **Proposta A**
 
-{{< figura src="ud02/p2_10a.svg" alt="Diagrama EER en notació de Chen: Proposta A" caption="Diagrama EER en notació de Chen: Proposta A" >}}
+{{< figura src="tema2/p2_10a.svg" alt="Diagrama EER en notació de Chen: Proposta A" caption="Diagrama EER en notació de Chen: Proposta A" >}}
 
 **Proposta B**
 
-{{< figura src="ud02/p2_10b.svg" alt="Diagrama EER en notació de Chen: Proposta B" caption="Diagrama EER en notació de Chen: Proposta B" >}}
+{{< figura src="tema2/p2_10b.svg" alt="Diagrama EER en notació de Chen: Proposta B" caption="Diagrama EER en notació de Chen: Proposta B" >}}
 
 {{% details title="Tasques (desplega-les després de llegir l'enunciat)" %}}
 
@@ -511,7 +511,7 @@ Un club de pàdel ha rebut dos propostes de model i no sap quina triar. El club 
 
 {{% /details %}}
 
-{{< solucion id="ud02-012" title="Solució i criteris" />}}
+{{< solucion id="tema2-012" title="Solució i criteris" />}}
 
 
 ---
@@ -578,7 +578,7 @@ Una associació cultural organitza diversos festivals a l'any i du la programaci
 
 L'associació vol una **llista d'espera de voluntaris** per edició i que un voluntari puga recomanar-ne un altre. És una relació reflexiva? Quina cardinalitat té i quina restricció necessites per a evitar que algú es recomane a si mateix?
 
-{{< solucion id="ud02-013" title="Solució de referència" />}}
+{{< solucion id="tema2-013" title="Solució de referència" />}}
 
 
 ---
@@ -645,7 +645,7 @@ Una editorial independent publica novel·la, poesia i còmic, tradueix obres d'a
 
 Algunes obres tenen **coautoria**. Canvia alguna cosa en el model? Afig ara que els drets d'una persona sobre una obra passen als seus hereus quan mor: quina relació necessites i quin problema apareix amb les dates?
 
-{{< solucion id="ud02-014" title="Solució de referència" />}}
+{{< solucion id="tema2-014" title="Solució de referència" />}}
 
 
 ---
@@ -715,7 +715,7 @@ Un taller de manteniment aeronàutic treballa sota una normativa estricta: **cad
 
 L'autoritat aeronàutica exigeix que cada **certificació d'ordre** quede signada per un tècnic de categoria C, amb la data i un número de certificat únic. Modela la certificació i decideix si és una entitat, una relació amb atributs o una agregació. Després afig la possibilitat que una certificació siga **anul·lada** i substituïda per una altra.
 
-{{< solucion id="ud02-015" title="Solució de referència" />}}
+{{< solucion id="tema2-015" title="Solució de referència" />}}
 
 
 ---
@@ -786,7 +786,7 @@ Un administrador de finques gestiona desenes de comunitats de propietaris amb fu
 
 Una comunitat pot tindre **subcomunitats** (per exemple, un garatge comú a diversos portals amb les seues pròpies quotes). Decideix si es modela com una reflexiva de `COMUNIDAD` o com una entitat nova, i explica què ocorre amb els coeficients.
 
-{{< solucion id="ud02-016" title="Solució de referència" />}}
+{{< solucion id="tema2-016" title="Solució de referència" />}}
 
 
 ---
@@ -843,7 +843,7 @@ Llig l'[entrevista amb la direcció d'estudis](/guia/proyecto-edugest#1-enunciat
 | Intermedi: EER ●●○ | 24-30 | Diverses especialitzacions en un mateix model, cadenes d'entitats febles, ternàries amb atributs i casos d'integració complets. | Diccionari de dades, restriccions i taules previstes |
 | Consolidació ●●● | 31-35 | Casos llargs que barregen cadenes de febles, ternàries, agregació, reflexives i especialitzacions. | Diagrama, diccionari de dades, restriccions i taules previstes |
 
-{{< figura src="ud02/chen-eer-leyenda.svg" alt="Llegenda de la notació de Chen estesa: entitat, entitat feble, relació, relació identificadora (rombe doble), participació parcial i total, ternària, atributs, especialització amb cercle d o o, i agregació" caption="Llegenda de la notació de Chen estesa (EER) usada en les solucions" >}}
+{{< figura src="tema2/chen-eer-leyenda.svg" alt="Llegenda de la notació de Chen estesa: entitat, entitat feble, relació, relació identificadora (rombe doble), participació parcial i total, ternària, atributs, especialització amb cercle d o o, i agregació" caption="Llegenda de la notació de Chen estesa (EER) usada en les solucions" >}}
 
 > [!IMPORTANT]
 > **Notació de Chen estesa.** Les entitats són rectangles i les relacions, rombes; l'entitat feble porta rectangle doble i la seua relació identificadora, rombe doble. Una **línia doble** uneix una entitat amb una relació quan la participació és total (mínim 1) i una línia senzilla quan és parcial (mínim 0). Junt al rombe es rotula la cardinalitat màxima (1, N, M, P) i junt a l'entitat el parell (mín, màx). Les especialitzacions es dibuixen amb un cercle amb **d** (disjunta) o **o** (solapada); cada subclasse s'uneix amb el símbol de subconjunt ⊂ i la línia fins a la superclasse és doble si l'especialització és total.
@@ -918,7 +918,7 @@ Una xicoteta empresa de distribució vol informatitzar les seues vendes i les se
 
 L'empresa vol guardar la **data** i la **quantitat** de cada compra. On col·loques eixos atributs? Quin problema apareix si un client compra el mateix producte en dos dies distints?
 
-{{< solucion id="ud02-017" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-017" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -981,7 +981,7 @@ Una plataforma de cinema sota demanda vol recomanar pel·lícules i avisar el cl
 
 Una pel·lícula pot pertànyer a **diversos gèneres** (comèdia romàntica, terror psicològic…). Què canvia en la relació *pertany a*? I en el color del rombe?
 
-{{< solucion id="ud02-018" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-018" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1041,7 +1041,7 @@ Un ajuntament vol gestionar les infraccions de trànsit i les multes associades.
 
 La multa pot **recórrer-se** diverses vegades (data del recurs i resolució). Continua sent adequada una relació amb atributs? Raona per què la multa passaria a ser entitat.
 
-{{< solucion id="ud02-019" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-019" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1107,7 +1107,7 @@ Si el mateix capità pot tornar a governar el mateix vaixell, la parella (capit�
 
 La naviliera vol saber en quin **vaixell** viatja cada contenidor. Com es modifica el model? Continua sent necessària la relació entre capità i contenidor?
 
-{{< solucion id="ud02-020" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-020" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1170,7 +1170,7 @@ Si totes les persones han de tindre progenitor registrat i la base de dades és 
 
 Es vol distingir la filiació **biològica** de l'**adoptiva** i registrar la data d'adopció. On col·loques eixos atributs? Continua sent 2 el màxim del rol *progenitor*?
 
-{{< solucion id="ud02-021" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-021" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1244,7 +1244,7 @@ Quan una entitat es relaciona amb si mateixa s'usa una **relació reflexiva**. U
 
 El centre decidix guardar els **grups** com a entitat (codi, curs, aula). Redissenya la part del delegat: quines relacions apareixen entre `ALUMNO` i `GRUPO`? Per què no poden fusionar-se en una sola?
 
-{{< solucion id="ud02-022" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-022" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1304,7 +1304,7 @@ Una clínica vol controlar els ingressos dels seus pacients i els metges que els
 
 Un ingrés pot ser atés per **diversos metges** que fan torns. Com canvia *atén*? Quin atribut caldria guardar en la relació?
 
-{{< solucion id="ud02-023" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-023" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1367,7 +1367,7 @@ Una clínica veterinària vol avisar els amos de les vacunes pendents dels seus 
 
 Algunes vacunes es posen **durant una visita**. Com relacionaries l'administració de la vacuna amb la visita? Quin problema apareix si una visita inclou dos vacunes?
 
-{{< solucion id="ud02-024" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-024" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1429,7 +1429,7 @@ Una botiga de roba en línia vol substituir el seu full de càlcul per una base 
 
 Un producte pot pertànyer a **diverses categories** alhora. Canvia la cardinalitat? Quina taula apareixerà en passar al model relacional?
 
-{{< solucion id="ud02-025" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-025" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1489,7 +1489,7 @@ Un concessionari gestiona la venda de cotxes i les revisions del seu taller.
 
 El taller vol guardar **quines peces** es van canviar en cada revisió i quantes. Quina entitat i quina relació afigs? Quin atribut porta la relació?
 
-{{< solucion id="ud02-026" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-026" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1552,7 +1552,7 @@ Una central de reserves de turisme rural vol gestionar la seua oferta d'allotjam
 
 Variant: a més de llogar, es vol saber quines **persones viuen** en cada casa (cada persona viu en una sola) i quines persones **són propietàries** (una casa pot tindre diversos propietaris i es guarda la data de compra). Les cases tenen ara un identificador propi i **no poden existir sense la seua ciutat** (dependència en existència, etiqueta E). Dibuixa el diagrama d'esta variant.
 
-{{< solucion id="ud02-027" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-027" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1614,7 +1614,7 @@ Una consultora tecnològica vol controlar els seus projectes i les hores del seu
 
 Es vol que cada desenvolupador tinga **un únic rol** per projecte (cap de projecte, analista, programador…). On es guarda esta dada? És un atribut de la relació o cal afegir una entitat?
 
-{{< solucion id="ud02-028" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-028" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1676,7 +1676,7 @@ Una cadena hotelera estructura el sistema central de reserves dels seus establim
 
 Una reserva pot incloure **diverses habitacions** (una família en reserva dos). Quina entitat intermèdia s'introduïx i què canvia en la relació amb les habitacions?
 
-{{< solucion id="ud02-029" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-029" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1736,7 +1736,7 @@ Una universitat pública organitza la seua estructura acadèmica i investigadora
 
 Els **catedràtics** tenen dades pròpies (any d'oposició, sexennis). Converteix esta situació en una **especialització** de `PROFESOR` i raona quina restricció desapareix del text.
 
-{{< solucion id="ud02-030" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-030" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1798,7 +1798,7 @@ Un centre d'acolliment de menors necessita un registre informatitzat de resident
 
 Un menor pot ser **traslladat** a un altre centre i tornar anys després. Com canviaria l'identificador del menor i quina entitat nova faries aparéixer per a conservar l'historial?
 
-{{< solucion id="ud02-031" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-031" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1871,7 +1871,7 @@ Si el fet «el conductor C condueix l'autobús A en la línia L en el torn T» n
 
 El transbordament es produïx realment **entre parades**, no entre línies. Redibuixa la relació entre `PARADA` i `PARADA` i raona com s'identifica ara.
 
-{{< solucion id="ud02-032" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-032" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1931,7 +1931,7 @@ Una federació esportiva informatitza el control de les seues competicions ofici
 
 La federació vol guardar els **jugadors convocats** en cada partit i els minuts que juga cadascun. Quina relació afigs i amb quins atributs? Com es relaciona amb la incidència?
 
-{{< solucion id="ud02-033" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-033" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -1993,7 +1993,7 @@ Una cadena de gimnasos gestiona els seus centres, els seus socis i els entrename
 
 Les reserves de classe **tenen un entrenador** responsable. La reserva passa a ser una ternària o pot resoldre's amb una binària addicional? Raona amb l'aforament i la sessió.
 
-{{< solucion id="ud02-034" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-034" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2057,7 +2057,7 @@ Una gran empresa de dolços necessita una base de dades centralitzada per a la s
 
 El **preu** de cada format canvia amb el temps i es vol conservar l'històric. Quina entitat o atribut afegiries? On es guardaria el preu amb què es va vendre cada comanda?
 
-{{< solucion id="ud02-035" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-035" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2119,7 +2119,7 @@ Una planta de maquinària pesada gestiona el seu procés de producció i els seu
 
 Algunes peces es **compren a proveïdors** en lloc de fabricar-se. Com modelaries esta distinció? Planteja una especialització de `PIEZA` i decidix si és total o parcial, disjunta o solapada.
 
-{{< solucion id="ud02-036" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-036" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2183,7 +2183,7 @@ La comandància de la força de defensa vol registrar la seua operativa interna.
 
 Cada trooper té una **especialitat** (pilot, agent, metge…) amb dades pròpies. Planteja una **especialització** de `TROOPER`, decidix si és total o parcial, disjunta o solapada, i redibuixa la part afectada.
 
-{{< solucion id="ud02-037" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-037" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2257,7 +2257,7 @@ En el model E/R una relació només uneix entitats. Quan necessites relacionar u
 
 Un castell pot ser fruit de **diversos mecenatges** (per exemple, començat amb un mecenes i acabat amb un altre). Com canvia la cardinalitat de *resulta de*? I el color del rombe?
 
-{{< solucion id="ud02-038" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-038" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2342,7 +2342,7 @@ Quan el nombre de participants és fix s'escriu el nombre en la cardinalitat: (2
 
 Es vol distingir l'equip **local** del **visitant**. Proposa dues alternatives (dues relacions 1:N o una relació amb un atribut `papel`) i explica quina restricció textual necessita cadascuna.
 
-{{< solucion id="ud02-039" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-039" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2411,7 +2411,7 @@ La Policia i l'associació d'entitats bancàries volen una base de dades sobre s
 
 Un detingut pot pertànyer a **diverses bandes** al llarg del temps. Quin atribut necessita ara la relació i com canvia la reflexiva de subordinació?
 
-{{< solucion id="ud02-040" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-040" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2473,7 +2473,7 @@ Un club hípic gestiona la seua quadra, els seus socis, els seus instructors i l
 
 Un cavall canvia de box amb el temps i es vol conservar l'**historial d'ubicacions**. Quina relació passa a ser N:M i amb quins atributs?
 
-{{< solucion id="ud02-041" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-041" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2535,7 +2535,7 @@ Un hotel-balneari termal automatitza la gestió de hostes, instal·lacions i tra
 
 Una suite pot **reformar-se** i passar a estàndard. És compatible amb una especialització disjunta? Quina decisió de disseny caldria prendre?
 
-{{< solucion id="ud02-042" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-042" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2597,7 +2597,7 @@ El Ministeri vol un sistema per a controlar la producció, el transport i el sub
 
 Les centrals renovables es divideixen al seu torn en **solars** i **eòliques** amb atributs propis. Afegeix una segona jerarquia davall `RENOVABLE` i raona com es classificaria.
 
-{{< solucion id="ud02-043" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-043" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2659,7 +2659,7 @@ Un promotor organitza un festival que es repeteix cada any i vol guardar tot el 
 
 Els festivals tenen **patrocinadors** que aporten un import per edició. Afig aquesta relació i decideix amb quina entitat s'estableix. Quins atributs porta?
 
-{{< solucion id="ud02-044" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-044" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2725,7 +2725,7 @@ Any 2050: després d'una invasió zombi, els supervivents s'organitzen en grups 
 
 Un integrant pot pertànyer a **diversos grups** amb una quota diferent en cadascun. Què canvia en la relació *forma part de*? On van ara `fecha_alta`, `cuota_mensual` i `aportación_anual`?
 
-{{< solucion id="ud02-045" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-045" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2792,7 +2792,7 @@ S'organitza una mostra de plats típics d'Espanya amb informació de les localit
 
 Els experts aconsellen un vi **distint segons la temporada** (hivern o estiu). Com canvia la relació entre `PLATO` i `VINO`? Es converteix en ternària?
 
-{{< solucion id="ud02-046" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-046" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 ---
 
@@ -2867,7 +2867,7 @@ Pensa en la pregunta «quants X hi ha per a cada parella de Y i Z?» per a cada 
 
 L'aerolínia ofereix vols en codi compartit: el mateix vol es ven amb el número d'una altra companyia. Com canvia l'identificador de `VUELO` i quina relació nova necessites?
 
-{{< solucion id="ud02-047" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-047" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -2939,7 +2939,7 @@ La prescripció necessita dues coses alhora: *qui va atendre qui* i *quin medica
 
 Cal registrar quines proves diagnòstiques se sol·liciten en cada atenció i el seu resultat. Reutilitzes l'agregació? Quina cardinalitat té `PRUEBA`?
 
-{{< solucion id="ud02-048" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-048" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -3011,7 +3011,7 @@ En una llista de materials, la relació enllaça l'article amb ell mateix; els r
 
 Algunes peces es fabriquen en diverses versions (v1, v2) i la llista de materials canvia segons la versió. Converteix la versió en entitat feble d'`ARTÍCULO`? Com queda *es compon de*?
 
-{{< solucion id="ud02-049" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-049" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -3083,7 +3083,7 @@ Per a cada nivell feble pregunta't què fa falta per a assenyalar **un sol** ele
 
 La federació vol guardar els moviments de cada partida en ordre. Quina entitat nova necessites i de qui és feble? Quin identificador complet té?
 
-{{< solucion id="ud02-050" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-050" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
 
 
 ---
@@ -3155,4 +3155,4 @@ Fixa el personatge i l'episodi i pregunta't quants actors l'interpreten; la resp
 
 Els actors poden interpretar diversos personatges en el mateix episodi (doble paper). Què canvia en les cardinalitats d'*interpreta*?
 
-{{< solucion id="ud02-051" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}
+{{< solucion id="tema2-051" title="Solució: diagrama EER en notació de Chen (intenta-ho abans d'obrir-la)" />}}

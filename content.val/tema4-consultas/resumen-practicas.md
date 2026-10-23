@@ -314,35 +314,35 @@ Resoldre de forma autònoma consultes de diverses taules, decidint el tipus de c
 
 **J1.** Llistat de mòduls amb el nom complet del seu cicle, només de 2n curs.
 
-{{< solucion id="ud07-001" title="Solució J1" />}}
+{{< solucion id="tema4-024" title="Solució J1" />}}
 
 **J2.** Professorat amb el nom del seu departament i, si és cap d'algun departament, el nom d'eixe departament (si no, buit).
 
-{{< solucion id="ud07-002" title="Solució J2" />}}
+{{< solucion id="tema4-025" title="Solució J2" />}}
 
 **J3.** Càrrega docent: per a cada professor que impartix classe, nombre de mòduls, nombre de grups distints i hores setmanals totals, de més a menys hores.
 
-{{< solucion id="ud07-003" title="Solució J3" />}}
+{{< solucion id="tema4-026" title="Solució J3" />}}
 
 **J4.** Tots els grups amb el seu nombre d'alumnes i el seu tutor; han d'aparéixer els grups sense alumnes i sense tutor.
 
-{{< solucion id="ud07-004" title="Solució J4" />}}
+{{< solucion id="tema4-027" title="Solució J4" />}}
 
 **J5.** Percentatge d'aprovats per mòdul de DAM (codi, nom, matrícules qualificades i percentatge amb un decimal), del pitjor al millor percentatge.
 
-{{< solucion id="ud07-005" title="Solució J5" />}}
+{{< solucion id="tema4-028" title="Solució J5" />}}
 
 **J6.** Alumnat amb més de 3 hores de faltes **no justificades** en total (nom, grup i hores).
 
-{{< solucion id="ud07-006" title="Solució J6" />}}
+{{< solucion id="tema4-029" title="Solució J6" />}}
 
 **J7.** Professorat del departament d'Informàtica i Comunicacions que **no** és tutor de cap grup.
 
-{{< solucion id="ud07-007" title="Solució J7" />}}
+{{< solucion id="tema4-030" title="Solució J7" />}}
 
 **J8.** Per a cada alumne de 1DAM, la seua nota en *Bases de dades* (0484) i en *Programació* (0485) en la mateixa fila.
 
-{{< solucion id="ud07-008" title="Solució J8" />}}
+{{< solucion id="tema4-031" title="Solució J8" />}}
 
 #### Comprovació
 
@@ -362,27 +362,27 @@ Resoldre de forma autònoma consultes de diverses taules, decidint el tipus de c
 
 **S1.** Alumnat de major edat (pot haver-hi empats).
 
-{{< solucion id="ud07-009" title="Solució S1" />}}
+{{< solucion id="tema4-032" title="Solució S1" />}}
 
 **S2.** Mòduls de DAW amb més hores que **qualsevol** mòdul de 2n de DAM.
 
-{{< solucion id="ud07-010" title="Solució S2" />}}
+{{< solucion id="tema4-033" title="Solució S2" />}}
 
 **S3.** Alumnes que tenen **alguna** falta d'assistència (usa `EXISTS`).
 
-{{< solucion id="ud07-011" title="Solució S3" />}}
+{{< solucion id="tema4-034" title="Solució S3" />}}
 
 **S4.** Alumnes amb grup que **no** tenen cap falta.
 
-{{< solucion id="ud07-012" title="Solució S4" />}}
+{{< solucion id="tema4-035" title="Solució S4" />}}
 
 **S5.** Per a cada alumne de 2DAW, la seua nota mitjana i la diferència amb la mitjana del **seu grup** (subconsulta correlacionada).
 
-{{< solucion id="ud07-013" title="Solució S5" />}}
+{{< solucion id="tema4-036" title="Solució S5" />}}
 
 **S6.** El grup (o grups) amb més alumnes. Resol-ho amb una subconsulta al `HAVING`.
 
-{{< solucion id="ud07-014" title="Solució S6" />}}
+{{< solucion id="tema4-037" title="Solució S6" />}}
 
 **S7.** Explica per què esta consulta no torna files i corregix-la de dues formes:
 
@@ -390,7 +390,7 @@ Resoldre de forma autònoma consultes de diverses taules, decidint el tipus de c
 SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo);
 ```
 
-{{< solucion id="ud07-015" title="Solució S7" />}}
+{{< solucion id="tema4-038" title="Solució S7" />}}
 
 ---
 

@@ -17,4 +17,4 @@ Este tema desenvolupa el **RA3** del mòdul.
 | [Teoria](/tema3-diseno-fisico/teoria) | Emmagatzematge, tipus de dades, `CREATE`/`ALTER`/`DROP`, restriccions, seqüències, índexs i diccionari de dades |
 | [Pràctiques](/tema3-diseno-fisico/practicas) | Set pràctiques (de Chen a Oracle, bateria de proves, `ALTER`, índexs, depuració) i implementació d'EduGest |
 
-**Durada:** 24 hores d'aula, del 06/11/2026 al 10/12/2026. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.
+**Durada:** 29 hores d'aula, del 18/11/2026 al 19/01/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.

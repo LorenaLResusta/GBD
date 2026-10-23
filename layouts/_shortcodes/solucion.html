@@ -1,7 +1,7 @@
 {{- /*
   Solución protegida.
-  Modo público:  {{< solucion id="ud02-001" title="Solución" />}}  -> candado que pide la clave y descifra en el navegador.
-  Modo privado:  {{% solucion id="ud02-001" title="Solución" %}} ... {{% /solucion %}} -> HTML en claro entre marcas,
+  Modo público:  {{< solucion id="tema2-001" title="Solución" />}}  -> candado que pide la clave y descifra en el navegador.
+  Modo privado:  {{% solucion id="tema2-001" title="Solución" %}} ... {{% /solucion %}} -> HTML en claro entre marcas,
                  que tools/soluciones.py extrae y cifra. Solo existe en la carpeta privada.
 */ -}}
 {{- $id := .Get "id" -}}

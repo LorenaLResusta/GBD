@@ -19,12 +19,12 @@ Su objetivo prioritario es modelar y estructurar la semántica de la informació
 
 ### Temporalización
 
-Esta parte del tema ocupa **16 horas de aula** (9 de teoría y 7 de práctica). Cada sesión aparece señalada en la página con una franja de color.
+Esta parte del tema ocupa **11 horas de aula** (7 de teoría y 4 de práctica). Cada sesión aparece señalada en la página con una franja de color.
 
-{{< sesiones unidad="T2" horas="12" parte="Modelo Entidad/Relación" >}}
+{{< sesiones unidad="T2" horas="11" parte="Modelo Entidad/Relación" >}}
 items:
   - {h: 2, tipo: T, t: "Ciclo de vida del diseño. Entidades fuertes y débiles", ref: "§1 y §2.1"}
-  - {h: 2, tipo: T, t: "Atributos y relaciones: grado y roles", ref: "§2.2 y §2.3"}
+  - {h: 1, tipo: T, t: "Atributos y relaciones: grado y roles", ref: "§2.2 y §2.3"}
   - {h: 1, tipo: T, t: "Cardinalidades mínima y máxima", ref: "§2.4 · laboratorio interactivo"}
   - {h: 1, tipo: P, t: "Leer y escribir cardinalidades", ref: "Práctica 2.2"}
   - {h: 1, tipo: P, t: "Biblioteca municipal: del enunciado al diagrama", ref: "Práctica 2.1"}
@@ -133,7 +133,7 @@ Una **entidad** es cualquier objeto, persona, lugar, concepto abstracto o evento
 
 ---
 
-{{< sesion n="2" h="2" tipo="t" >}}Atributos y relaciones{{< /sesion >}}
+{{< sesion n="2" h="1" tipo="t" >}}Atributos y relaciones{{< /sesion >}}
 
 ### 2.2 Atributos: Clasificación, Estructura y Dominio
 
@@ -182,7 +182,7 @@ El **grado** indica el número de entidades distintas que participan en la asoci
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Cardinalidades mínima y máxima{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="t" >}}Cardinalidades mínima y máxima{{< /sesion >}}
 
 ### 2.4 Restricciones de Cardinalidad (Mínima y Máxima)
 

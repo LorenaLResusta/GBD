@@ -18,16 +18,16 @@ Aqueste tema tracta en profunditat la transició històrica des dels suports fí
 {{< ra "RA1" >}}
 ### Temporalització
 
-El tema ocupa **8 hores d'aula** (4 de teoria i 4 de pràctica).
+El tema ocupa **19 hores d'aula** (14 de teoria i 5 de pràctica).
 
-{{< sesiones unidad="T1" horas="8" >}}
+{{< sesiones unidad="T1" horas="19" >}}
 items:
-  - {h: 2, tipo: T, t: "Dades i informació. Història. Sistemes basats en fitxers", ref: "§1 a §3"}
-  - {h: 1, tipo: P, t: "Del full de càlcul al SGBD", ref: "Pràctica 1.1"}
-  - {h: 2, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
-  - {h: 1, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
-  - {h: 1, tipo: T, t: "Integritat, concurrència, seguretat, models de dades i llenguatges", ref: "§6 a §8"}
-  - {h: 1, tipo: T, t: "Classificació dels SGBD i ubicació de la informació", ref: "§9 i §10"}
+  - {h: 5, tipo: T, t: "Dades i informació. Història. Sistemes basats en fitxers", ref: "§1 a §3"}
+  - {h: 3, tipo: P, t: "Del full de càlcul al SGBD", ref: "Pràctica 1.1"}
+  - {h: 5, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
+  - {h: 2, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
+  - {h: 2, tipo: T, t: "Integritat, concurrència, seguretat, models de dades i llenguatges", ref: "§6 a §8"}
+  - {h: 2, tipo: T, t: "Classificació dels SGBD i ubicació de la informació", ref: "§9 i §10"}
 autonomo:
   - "Pràctiques 1.2 (resta), 1.3 (triar un SGBD) i projecte EduGest-1"
   - "Exercicis resolts i autoavaluació"
@@ -51,7 +51,7 @@ En acabar este tema, seràs capaç de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Dades i informació. Història. Sistemes basats en fitxers{{< /sesion >}}
+{{< sesion n="1" h="5" tipo="t" >}}Dades i informació. Història. Sistemes basats en fitxers{{< /sesion >}}
 
 ## 1. Dades, informació i representació
 
@@ -253,7 +253,7 @@ Quan cada aplicació informàtica gestiona els seus fitxers sense un SGBD centra
 ---
 
 
-{{< sesion n="3" h="2" tipo="t" >}}Bases de dades i SGBD. Arquitectura i components{{< /sesion >}}
+{{< sesion n="3" h="5" tipo="t" >}}Bases de dades i SGBD. Arquitectura i components{{< /sesion >}}
 
 ## 4. Bases de dades i sistemes gestors (SGBD)
 
@@ -426,7 +426,7 @@ En la gestió de bases de dades participen professionals amb perfils i responsab
 ---
 
 
-{{< sesion n="5" h="1" tipo="t" >}}Integritat, concurrència, seguretat, models de dades i llenguatges{{< /sesion >}}
+{{< sesion n="5" h="2" tipo="t" >}}Integritat, concurrència, seguretat, models de dades i llenguatges{{< /sesion >}}
 
 ## 6. Integritat, concurrència i transaccions
 
@@ -674,7 +674,7 @@ REVOKE DELETE ON producto FROM usuario_ventas;
 ---
 
 
-{{< sesion n="6" h="1" tipo="t" >}}Classificació dels SGBD i ubicació de la informació{{< /sesion >}}
+{{< sesion n="6" h="2" tipo="t" >}}Classificació dels SGBD i ubicació de la informació{{< /sesion >}}
 
 ## 9. Classificació dels sistemes gestors de bases de dades
 
