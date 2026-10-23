@@ -48,7 +48,7 @@ bbdd-<tu-usuario>/
 ├── ud02/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud05/
+├── ud03/
 │   ├── p5.1-tienda.sql
 │   └── evidencias/p5.1-salida.txt
 ├── ...
@@ -65,7 +65,7 @@ Un script lliurat ha de poder **executar-se de principi a fi** en una base de da
 
 ```sql
 -- =============================================================
--- Pràctica 5.2 · Botiga en línia · Script de creació
+-- Pràctica 3.2 · Botiga en línia · Script de creació
 -- Autor/a: Nom Cognoms (1DAM)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Data: 2026-11-10

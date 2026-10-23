@@ -12,20 +12,16 @@ content.es/
 │   ├── proyecto-edugest.md        Proyecto transversal (centro educativo) y scripts
 │   ├── entorno.md                 Oracle AI Database 26ai Free y MongoDB 8.0 en Docker
 │   └── practicas.md               Tipos de práctica, normas de entrega y rúbrica
-├── ud01-introduccion/             RA1 · Sistemas de almacenamiento y SGBD
-├── ud02-modelo-er/                RA2 · Modelo Entidad/Relación (EER)
-├── ud03-modelo-relacional/        RA2, RA3 · Modelo relacional
-├── ud04-normalizacion/            RA2 · Normalización
-├── ud05-ddl-dcl/                  RA3 · DDL y DCL en Oracle
-├── ud06-consultas/                RA4 · Consultas (Parte I: una tabla; Parte II: JOIN, agrupamiento, subconsultas, optimización)
-├── ud07-dml-transacciones/        RA5 · DML, transacciones y concurrencia
-├── ud08-plsql/                    RA5, RA6 · PL/SQL y copias de seguridad, importación y exportación
-└── ud09-nosql/                    RA1, RA6 · Bases de datos NoSQL con MongoDB
+├── ud01-introduccion/             RA1 · Sistemas de almacenamiento y SGBD (8 h)
+├── ud02-diseno-logico/            RA2 · Modelo E/R, modelo relacional y normalización (40 h)
+├── ud03-ddl-dcl/                  RA3 · DDL y DCL en Oracle (30 h)
+├── ud04-consultas/                RA4 · Consultas (Parte I: una tabla; Parte II: JOIN, agrupamiento, subconsultas, optimización) (40 h)
+├── ud05-dml-plsql/                RA5 · DML, transacciones, concurrencia y PL/SQL (24 h)
+└── ud06-aseguramiento/            RA6 · Copias de seguridad, importación y exportación, y NoSQL con MongoDB (18 h)
 ```
 
-Cada unidad tiene `_index.md` (presentación y RA/CE), `udXX-teoria.md` y `udXX-practicas.md`.
+Cada unidad tiene `_index.md` (presentación y RA/CE) y páginas `udXX-teoria*.md` y `udXX-practicas*.md`. En total, 160 horas.
 
-> Las carpetas antiguas `content.es/UD01` … `UD06` y `content.val/U01` se conservan, pero su `_index.md` impide que Hugo las publique (`build.render: never`). Su contenido ya está migrado a las nuevas carpetas: se pueden borrar.
 
 ## Recursos
 
@@ -43,7 +39,7 @@ Cada unidad tiene `_index.md` (presentación y RA/CE), `udXX-teoria.md` y `udXX-
 | Uso | Resultado |
 |---|---|
 | `{{</* ra "RA3:a,b,c" "RA2:f" */>}}` | Cuadro desplegable con los RA y CE oficiales |
-| `{{</* practica num="5.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: b, c" sgbd="Oracle 26ai" entrega="script.sql" */>}}` | Ficha de cabecera de una práctica (tipos: Guiada, Autónoma, Reto, Proyecto) |
+| `{{</* practica num="3.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: b, c" sgbd="Oracle 26ai" entrega="script.sql" */>}}` | Ficha de cabecera de una práctica (tipos: Guiada, Autónoma, Reto, Proyecto) |
 | `{{</* quiz */>}} … YAML … {{</* /quiz */>}}` | Test de autoevaluación con corrección y explicaciones |
 | `{{</* sgbd "Oracle 26ai" */>}}` | Etiqueta del SGBD de un ejemplo |
 | `> [!TIP]`, `> [!NOTE]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]` | Avisos de colores (alertas de Markdown del tema) |
@@ -67,7 +63,7 @@ hugo new --kind teoria   content.es/ud11-ejemplo/ud11-teoria.md
 hugo new --kind practicas content.es/ud11-ejemplo/ud11-practicas.md
 ```
 
-## Diagramas explicativos (UD01-UD04)
+## Diagramas explicativos (UD01-UD02)
 
 Los diagramas de `assets/images/*.svg` (arquitectura, ACID, E/R, relacional, ejemplos de Chen…) se generan con `tools/gen_infografias.py` (necesita `Pillow`). El generador ajusta el texto al ancho de cada caja, así que no se desborda ni se corta. Para cambiar uno, edita su función y ejecuta `python3 tools/gen_infografias.py <nombre>`. Los elementos con `data-tip` se vuelven interactivos con el shortcode `diagrama`.
 

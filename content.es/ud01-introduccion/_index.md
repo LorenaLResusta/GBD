@@ -15,4 +15,4 @@ Antes de escribir una sola línea de SQL hay que entender **qué problema resuel
 | [Teoría](/ud01-introduccion/ud01-teoria) | Datos e información, ficheros, SGBD, ANSI/SPARC, componentes, clasificación, BD distribuidas, Big Data, BI y RGPD |
 | [Prácticas](/ud01-introduccion/ud01-practicas) | Análisis de anomalías, primer contacto con Oracle, elección de SGBD, fragmentación, auditoría RGPD y tarea EduGest |
 
-**Duración:** 3 horas de aula, del 09/09/2026 al 11/09/2026. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.
+**Duración:** 8 horas de aula, del 09/09/2026 al 18/09/2026. Consulta la [guía didáctica](/) para ver su lugar en el calendario del curso.

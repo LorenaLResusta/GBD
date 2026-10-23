@@ -50,7 +50,7 @@
     var p1 = document.createElement('p'); p1.innerHTML = '<strong>Clasificación:</strong> '; p1.appendChild(document.createTextNode(code + ' · ' + names[cob + ',' + sol])); out.appendChild(p1);
     var p2 = document.createElement('p');
     p2.className = bad ? 'ko' : 'ok'; p2.textContent = bad ? bad + ' empleado(s) incumplen las reglas de esta jerarquía.' : 'Los datos cumplen las reglas de la jerarquía.'; out.appendChild(p2);
-    var est = document.createElement('p'); est.innerHTML = '<strong>Estrategias de transformación válidas (UD03, 4.9):</strong>'; out.appendChild(est);
+    var est = document.createElement('p'); est.innerHTML = '<strong>Estrategias de transformación válidas (UD02, 4.9):</strong>'; out.appendChild(est);
     var ul = document.createElement('ul');
     [['B · Tabla del supertipo y una tabla por subtipo', true, 'Siempre válida y la más flexible.'],
      ['A · Tabla única con columna discriminadora', sol === 'D', sol === 'D' ? 'Válida porque es disjunta: una sola columna «tipo» basta.' : 'Con solapamiento una sola columna «tipo» no puede expresar varios subtipos (haría falta una marca por subtipo).'],

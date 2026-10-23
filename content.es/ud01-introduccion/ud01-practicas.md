@@ -99,7 +99,7 @@ Tu respuesta es completa si:
 
 #### Ampliación
 
-Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparezca una sola vez. No hace falta usar la notación formal: basta con indicar qué columnas iría en cada tabla y cómo se relacionan. Guarda la propuesta: la revisaremos en la UD04 (normalización).
+Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparezca una sola vez. No hace falta usar la notación formal: basta con indicar qué columnas iría en cada tabla y cómo se relacionan. Guarda la propuesta: la revisaremos en la UD02 (normalización).
 
 ---
 
@@ -373,7 +373,7 @@ Elabora un informe con:
 1. **Inventario de datos personales** de EduGest: tabla con el dato, la persona interesada, si es una categoría especial y su finalidad.
 2. Un **registro simplificado de la actividad de tratamiento** (art. 30 RGPD): responsable, finalidades, categorías de datos e interesados, destinatarios, plazos de conservación y medidas de seguridad.
 3. Para cada nueva petición, indica si es lícita, qué condiciones exigiría y qué cambios implicaría en la base de datos.
-4. Al menos **seis medidas técnicas** que aplicarás en las unidades siguientes, indicando la unidad (por ejemplo: «vista sin datos de contacto para el profesorado, UD05»).
+4. Al menos **seis medidas técnicas** que aplicarás en las unidades siguientes, indicando la unidad (por ejemplo: «vista sin datos de contacto para el profesorado, UD03»).
 5. El procedimiento que seguiría el centro ante una **brecha de seguridad**.
 
 #### Comprobación
@@ -424,7 +424,7 @@ La jefatura de estudios quiere saber si el porcentaje de aprobados en *Bases de 
 - [ ] La respuesta del punto 5 menciona el impacto en el rendimiento y los datos históricos.
 
 > [!TIP]
-> Lo que acabas de hacer con la tabla dinámica es una **consulta resumen**. En la UD06 la escribirás en SQL con `GROUP BY` y `AVG`.
+> Lo que acabas de hacer con la tabla dinámica es una **consulta resumen**. En la UD04 la escribirás en SQL con `GROUP BY` y `AVG`.
 {{% /comprobacion %}}
 
 ---

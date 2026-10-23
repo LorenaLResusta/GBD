@@ -14,12 +14,12 @@ El módulo **0372. Gestión de bases de datos** (1º de Administración de Siste
 
 ```mermaid
 flowchart TB
-    RA1["RA1 · Elementos de las BD y SGBD"] --- U1[UD01] & U9[UD09]
-    RA2["RA2 · Diseño lógico normalizado"] --- U2[UD02] & U3[UD03] & U4[UD04] & U5[UD05] & U7[UD07] & U8[UD08]
-    RA3["RA3 · Diseño físico (DDL)"] --- U1[UD01] & U3[UD03] & U5[UD05] & U6[UD06]
-    RA4["RA4 · Consultas"] --- U6[UD06]
-    RA5["RA5 · Modificación y transacciones"] --- U7[UD07] & U8[UD08]
-    RA6["RA6 · Seguridad: copias, importación y exportación"] --- U8[UD08] & U9[UD09]
+    RA1["RA1 · Elementos de las BD y SGBD"] --- U1[UD01] & U6[UD06]
+    RA2["RA2 · Diseño lógico normalizado"] --- U2[UD02] & U3[UD03] & U5[UD05]
+    RA3["RA3 · Diseño físico (DDL)"] --- U1[UD01] & U2[UD02] & U3[UD03] & U4[UD04]
+    RA4["RA4 · Consultas"] --- U4[UD04]
+    RA5["RA5 · Modificación y transacciones"] --- U5[UD05]
+    RA6["RA6 · Seguridad: copias, importación y exportación"] --- U5[UD05] & U6[UD06]
 ```
 
 > [!NOTE]
@@ -34,7 +34,7 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
 | RA1.a | Se han analizado los distintos sistemas lógicos de almacenamiento y sus funciones. | [UD01](/ud01-introduccion) |
-| RA1.b | Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado. | [UD01](/ud01-introduccion), [UD09](/ud09-nosql) |
+| RA1.b | Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado. | [UD01](/ud01-introduccion), [UD06](/ud06-aseguramiento) |
 | RA1.c | Se han identificado los distintos tipos de bases de datos en función de la ubicación de la información. | [UD01](/ud01-introduccion) |
 | RA1.d | Se ha reconocido la utilidad de un sistema gestor de bases de datos. | [UD01](/ud01-introduccion) |
 | RA1.e | Se ha descrito la función de cada uno de los elementos de un sistema gestor de bases de datos. | [UD01](/ud01-introduccion) |
@@ -44,67 +44,67 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
-| RA2.a | Se ha identificado el significado de la simbología propia de los diagramas entidad/relación. | [UD02](/ud02-modelo-er) |
-| RA2.b | Se han utilizado herramientas gráficas para representar el diseño lógico. | [UD02](/ud02-modelo-er), [UD03](/ud03-modelo-relacional), [UD05](/ud05-ddl-dcl) |
-| RA2.c | Se han identificado las tablas del diseño lógico. | [UD03](/ud03-modelo-relacional), [UD04](/ud04-normalizacion) |
-| RA2.d | Se han identificado los campos que forman parte de las tablas del diseño lógico. | [UD03](/ud03-modelo-relacional), [UD04](/ud04-normalizacion) |
-| RA2.e | Se han identificado las relaciones entre las tablas del diseño lógico. | [UD02](/ud02-modelo-er), [UD03](/ud03-modelo-relacional) |
-| RA2.f | Se han definido los campos clave. | [UD02](/ud02-modelo-er), [UD03](/ud03-modelo-relacional), [UD04](/ud04-normalizacion), [UD05](/ud05-ddl-dcl) |
-| RA2.g | Se han aplicado las reglas de integridad. | [UD03](/ud03-modelo-relacional), [UD05](/ud05-ddl-dcl), [UD07](/ud07-dml-transacciones) |
-| RA2.h | Se han aplicado las reglas de normalización hasta un nivel adecuado. | [UD04](/ud04-normalizacion) |
-| RA2.i | Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico. | [UD02](/ud02-modelo-er), [UD03](/ud03-modelo-relacional), [UD04](/ud04-normalizacion), [UD08](/ud08-plsql) |
+| RA2.a | Se ha identificado el significado de la simbología propia de los diagramas entidad/relación. | [UD02](/ud02-diseno-logico) |
+| RA2.b | Se han utilizado herramientas gráficas para representar el diseño lógico. | [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl) |
+| RA2.c | Se han identificado las tablas del diseño lógico. | [UD02](/ud02-diseno-logico) |
+| RA2.d | Se han identificado los campos que forman parte de las tablas del diseño lógico. | [UD02](/ud02-diseno-logico) |
+| RA2.e | Se han identificado las relaciones entre las tablas del diseño lógico. | [UD02](/ud02-diseno-logico) |
+| RA2.f | Se han definido los campos clave. | [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl) |
+| RA2.g | Se han aplicado las reglas de integridad. | [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl), [UD05](/ud05-dml-plsql) |
+| RA2.h | Se han aplicado las reglas de normalización hasta un nivel adecuado. | [UD02](/ud02-diseno-logico) |
+| RA2.i | Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico. | [UD02](/ud02-diseno-logico), [UD05](/ud05-dml-plsql) |
 
 ## RA3. Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos.
 
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
-| RA3.a | Se han definido las estructuras físicas de almacenamiento. | [UD01](/ud01-introduccion), [UD03](/ud03-modelo-relacional), [UD05](/ud05-ddl-dcl) |
-| RA3.b | Se han creado tablas. | [UD05](/ud05-ddl-dcl) |
-| RA3.c | Se han seleccionado los tipos de datos adecuados. | [UD05](/ud05-ddl-dcl) |
-| RA3.d | Se han definido los campos clave en las tablas. | [UD03](/ud03-modelo-relacional), [UD05](/ud05-ddl-dcl) |
-| RA3.e | Se han implantado todas las restricciones reflejadas en el diseño lógico. | [UD03](/ud03-modelo-relacional), [UD05](/ud05-ddl-dcl) |
-| RA3.f | Se ha verificado mediante un conjunto de datos de prueba que la implementación se ajusta al modelo. | [UD05](/ud05-ddl-dcl) |
-| RA3.g | Se han utilizado asistentes y herramientas gráficas. | [UD05](/ud05-ddl-dcl) |
-| RA3.h | Se ha utilizado el lenguaje de definición de datos. | [UD05](/ud05-ddl-dcl), [UD06](/ud06-consultas) |
-| RA3.i | Se ha definido y documentado el diccionario de datos. | [UD05](/ud05-ddl-dcl) |
+| RA3.a | Se han definido las estructuras físicas de almacenamiento. | [UD01](/ud01-introduccion), [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl) |
+| RA3.b | Se han creado tablas. | [UD03](/ud03-ddl-dcl) |
+| RA3.c | Se han seleccionado los tipos de datos adecuados. | [UD03](/ud03-ddl-dcl) |
+| RA3.d | Se han definido los campos clave en las tablas. | [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl) |
+| RA3.e | Se han implantado todas las restricciones reflejadas en el diseño lógico. | [UD02](/ud02-diseno-logico), [UD03](/ud03-ddl-dcl) |
+| RA3.f | Se ha verificado mediante un conjunto de datos de prueba que la implementación se ajusta al modelo. | [UD03](/ud03-ddl-dcl) |
+| RA3.g | Se han utilizado asistentes y herramientas gráficas. | [UD03](/ud03-ddl-dcl) |
+| RA3.h | Se ha utilizado el lenguaje de definición de datos. | [UD03](/ud03-ddl-dcl), [UD04](/ud04-consultas) |
+| RA3.i | Se ha definido y documentado el diccionario de datos. | [UD03](/ud03-ddl-dcl) |
 
 ## RA4. Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
 
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
-| RA4.a | Se han identificado las herramientas y sentencias para realizar consultas. | [UD06](/ud06-consultas) |
-| RA4.b | Se han realizado consultas simples sobre una tabla. | [UD06](/ud06-consultas) |
-| RA4.c | Se han realizado consultas que generan valores de resumen. | [UD06](/ud06-consultas) |
-| RA4.d | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas. | [UD06](/ud06-consultas) |
-| RA4.e | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas. | [UD06](/ud06-consultas) |
-| RA4.f | Se han realizado consultas con subconsultas. | [UD06](/ud06-consultas) |
-| RA4.g | Se han valorado las ventajas e inconvenientes de las distintas opciones válidas para llevar a cabo una consulta determinada. | [UD06](/ud06-consultas) |
+| RA4.a | Se han identificado las herramientas y sentencias para realizar consultas. | [UD04](/ud04-consultas) |
+| RA4.b | Se han realizado consultas simples sobre una tabla. | [UD04](/ud04-consultas) |
+| RA4.c | Se han realizado consultas que generan valores de resumen. | [UD04](/ud04-consultas) |
+| RA4.d | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas. | [UD04](/ud04-consultas) |
+| RA4.e | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas. | [UD04](/ud04-consultas) |
+| RA4.f | Se han realizado consultas con subconsultas. | [UD04](/ud04-consultas) |
+| RA4.g | Se han valorado las ventajas e inconvenientes de las distintas opciones válidas para llevar a cabo una consulta determinada. | [UD04](/ud04-consultas) |
 
 ## RA5. Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
 
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
-| RA5.a | Se han identificado las herramientas y sentencias para modificar el contenido de la base de datos. | [UD07](/ud07-dml-transacciones) |
-| RA5.b | Se han insertado, borrado y actualizado datos en las tablas. | [UD07](/ud07-dml-transacciones) |
-| RA5.c | Se ha incluido en una tabla la información resultante de la ejecución de una consulta. | [UD07](/ud07-dml-transacciones) |
-| RA5.d | Se han adoptado medidas para mantener la integridad y consistencia de la información. | [UD07](/ud07-dml-transacciones), [UD08](/ud08-plsql) |
-| RA5.e | Se han diseñado guiones de sentencias para llevar a cabo tareas complejas. | [UD07](/ud07-dml-transacciones), [UD08](/ud08-plsql) |
-| RA5.f | Se ha reconocido el funcionamiento de las transacciones. | [UD07](/ud07-dml-transacciones) |
-| RA5.g | Se han anulado parcial o totalmente los cambios producidos por una transacción. | [UD07](/ud07-dml-transacciones) |
-| RA5.h | Se han identificado los efectos de las distintas políticas de bloqueo de registros. | [UD07](/ud07-dml-transacciones) |
+| RA5.a | Se han identificado las herramientas y sentencias para modificar el contenido de la base de datos. | [UD05](/ud05-dml-plsql) |
+| RA5.b | Se han insertado, borrado y actualizado datos en las tablas. | [UD05](/ud05-dml-plsql) |
+| RA5.c | Se ha incluido en una tabla la información resultante de la ejecución de una consulta. | [UD05](/ud05-dml-plsql) |
+| RA5.d | Se han adoptado medidas para mantener la integridad y consistencia de la información. | [UD05](/ud05-dml-plsql) |
+| RA5.e | Se han diseñado guiones de sentencias para llevar a cabo tareas complejas. | [UD05](/ud05-dml-plsql) |
+| RA5.f | Se ha reconocido el funcionamiento de las transacciones. | [UD05](/ud05-dml-plsql) |
+| RA5.g | Se han anulado parcial o totalmente los cambios producidos por una transacción. | [UD05](/ud05-dml-plsql) |
+| RA5.h | Se han identificado los efectos de las distintas políticas de bloqueo de registros. | [UD05](/ud05-dml-plsql) |
 
 ## RA6. Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia.
 
 | CE | Criterio de evaluación | Unidades |
 |---|---|---|
-| RA6.a | Se han identificado herramientas gráficas y en línea de comandos para la administración de copias de seguridad. | [UD08](/ud08-plsql) |
-| RA6.b | Se han realizado copias de seguridad. | [UD08](/ud08-plsql) |
-| RA6.c | Se han restaurado copias de seguridad. | [UD08](/ud08-plsql) |
-| RA6.d | Se han identificado las herramientas para importar y exportar datos. | [UD08](/ud08-plsql) |
-| RA6.e | Se han exportado datos a diversos formatos. | [UD08](/ud08-plsql) |
-| RA6.f | Se han importado datos con distintos formatos. | [UD08](/ud08-plsql) |
-| RA6.g | Se ha interpretado correctamente la información suministrada por los mensajes de error y los ficheros de registro. | [UD08](/ud08-plsql) |
-| RA6.h | Se ha transferido información entre sistemas gestores. | [UD08](/ud08-plsql), [UD09](/ud09-nosql) |
+| RA6.a | Se han identificado herramientas gráficas y en línea de comandos para la administración de copias de seguridad. | [UD06](/ud06-aseguramiento) |
+| RA6.b | Se han realizado copias de seguridad. | [UD06](/ud06-aseguramiento) |
+| RA6.c | Se han restaurado copias de seguridad. | [UD06](/ud06-aseguramiento) |
+| RA6.d | Se han identificado las herramientas para importar y exportar datos. | [UD06](/ud06-aseguramiento) |
+| RA6.e | Se han exportado datos a diversos formatos. | [UD06](/ud06-aseguramiento) |
+| RA6.f | Se han importado datos con distintos formatos. | [UD06](/ud06-aseguramiento) |
+| RA6.g | Se ha interpretado correctamente la información suministrada por los mensajes de error y los ficheros de registro. | [UD05](/ud05-dml-plsql), [UD06](/ud06-aseguramiento) |
+| RA6.h | Se ha transferido información entre sistemas gestores. | [UD06](/ud06-aseguramiento) |
 
 ## Evidencias de aprendizaje
 
@@ -121,4 +121,4 @@ Para cada criterio de evaluación se recogen evidencias de distintos tipos:
 
 ## Fuente
 
-- [Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de Técnico Superior en Administración de Sistemas Informáticos en Red (ELI es/rd/2009/10/30/1629)](https://www.boe.es/eli/es/rd/2009/10/30/1629).
+- [Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de Técnico Superior en Administración de Sistemas Informáticos en Red (BOE-A-2009-17588)](https://www.boe.es/buscar/act.php?id=BOE-A-2009-17588).

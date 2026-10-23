@@ -18,12 +18,12 @@ Esta unidad trata en profundidad la transición histórica desde los soportes f�
 {{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
 ### Temporalización
 
-La unidad ocupa **3 horas de aula** (2 de teoría y 1 de práctica).
+La unidad ocupa **8 horas de aula** (2 de teoría y 6 de práctica).
 
-{{< sesiones unidad="UD01" horas="3" >}}
+{{< sesiones unidad="UD01" horas="8" >}}
 items:
   - {h: 2, tipo: T, t: "Datos, ficheros frente a bases de datos, SGBD y arquitectura", ref: "§1 a §5"}
-  - {h: 1, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
+  - {h: 6, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
 autonomo:
   - "Teoría §6 a §13 (integridad, seguridad, modelos, clasificación, distribución, Big Data y protección de datos)"
   - "Práctica 1.1 (de la hoja de cálculo al SGBD)"
@@ -46,7 +46,7 @@ Al terminar esta unidad serás capaz de:
 - Identificar la legislación de protección de datos que afecta al diseño de una base de datos.
 
 > [!NOTE]
-> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir de la UD05 trabajaremos con Oracle.
+> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir de la UD03 trabajaremos con Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visión general de un SGBD" >}}
 
@@ -535,7 +535,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en la UD07.
+> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en la UD05.
 
 > [!IMPORTANT]
 > Antes de ejecutar `COMMIT`, la aplicación debe comprobar que **las dos actualizaciones** han afectado a una fila. Si alguna falla, hay que ejecutar `ROLLBACK`: abrir una transacción no valida por sí mismo el resultado de las operaciones.
@@ -616,7 +616,7 @@ graph TD
   - *Orientados a grafos:* Representan de forma nativa los nodos y las relaciones (Neo4j).
   - *Columnares:* Agrupan los datos en familias de columnas para leerlos y escribirlos a gran escala (Cassandra).
 
-La UD09 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
+La UD06 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
 
 > [!WARNING]
 > **NoSQL no significa necesariamente «sin ACID»**: las garantías transaccionales varían según el producto y la configuración. Antes de elegir un sistema, comprueba qué propiedades ofrece.
@@ -664,7 +664,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en la UD05.
+> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en la UD03.
 
 #### 2. DML (*Data Manipulation Language* - lenguaje de manipulación de datos)
 
@@ -745,7 +745,7 @@ Una base de datos distribuida es útil cuando (RA1.c):
 A cambio, el sistema es más complejo: hay que coordinar las transacciones entre nodos (por ejemplo, con el protocolo de **confirmación en dos fases**, *two-phase commit*), mantener la coherencia de las copias y tolerar los fallos de red.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD09).
+> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD06).
 
 ### 10.3 Políticas de fragmentación
 
@@ -822,12 +822,12 @@ flowchart LR
 |---|---|---|
 | **Uso** | Operaciones del día a día: matricular, facturar | Análisis y toma de decisiones |
 | **Operaciones** | Muchas inserciones y modificaciones pequeñas | Consultas complejas de lectura sobre muchos datos |
-| **Diseño** | Normalizado (UD04) para evitar redundancias | Desnormalizado (esquemas en estrella) para consultar más rápido |
+| **Diseño** | Normalizado (UD02) para evitar redundancias | Desnormalizado (esquemas en estrella) para consultar más rápido |
 | **Datos** | Actuales | Históricos e integrados de varias fuentes |
 | **Ejemplo en EduGest** | Registrar una falta de asistencia | Evolución de la tasa de abandono por ciclo durante los últimos 10 años |
 
 > [!TIP]
-> Las consultas de resumen con `GROUP BY` que harás en la UD06 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
+> Las consultas de resumen con `GROUP BY` que harás en la UD04 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
 
 ---
 
@@ -854,10 +854,10 @@ Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo el
 | Principio (art. 5 RGPD) | Qué significa | Cómo se refleja en la base de datos |
 |---|---|---|
 | Licitud, lealtad y transparencia | Tratar los datos con una base legal e informar de ello a la persona interesada | Registrar el consentimiento o la base legal |
-| Limitación de la finalidad | Utilizar los datos solo para la finalidad para la que se han recogido | Vistas y privilegios según el perfil de usuario (UD05) |
+| Limitación de la finalidad | Utilizar los datos solo para la finalidad para la que se han recogido | Vistas y privilegios según el perfil de usuario (UD03) |
 | **Minimización de datos** | Recoger solo los datos necesarios | No crear columnas «por si acaso» en el diseño (UD02) |
 | Exactitud | Mantener los datos correctos y actualizados | Restricciones `CHECK`, validaciones y procesos de actualización |
-| Limitación del plazo de conservación | No guardar los datos más tiempo del necesario | Procedimientos de borrado o anonimización periódica (UD08) |
+| Limitación del plazo de conservación | No guardar los datos más tiempo del necesario | Procedimientos de borrado o anonimización periódica (UD05) |
 | Integridad y confidencialidad | Proteger los datos frente a accesos no autorizados y pérdidas | Usuarios, roles, cifrado, copias de seguridad, auditoría |
 | Responsabilidad proactiva | Poder demostrar que se cumple la normativa | Documentación del diseño, registro de accesos |
 
@@ -963,7 +963,7 @@ Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye 
 - q: "¿Qué módulo del SGBD decide **cómo** se ejecuta una consulta, por ejemplo, si utiliza un índice o recorre toda la tabla?"
   options: ["El gestor de transacciones", "El optimizador de consultas", "El diccionario de datos", "El gestor de copias de seguridad"]
   answer: 1
-  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en la UD06."
+  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en la UD04."
 - q: "Una cadena de clínicas guarda en el servidor de cada ciudad solo los pacientes de esa ciudad. ¿Qué política se aplica?"
   options: ["Fragmentación vertical", "Replicación total", "Fragmentación horizontal", "Normalización"]
   answer: 2

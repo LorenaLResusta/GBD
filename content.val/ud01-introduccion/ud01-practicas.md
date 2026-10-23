@@ -99,7 +99,7 @@ La teua resposta és completa si:
 
 #### Ampliació
 
-Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en la UD04 (normalització).
+Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en la UD02 (normalització).
 
 ---
 
@@ -373,7 +373,7 @@ Elabora un informe amb:
 1. **Inventari de dades personals** d'EduGest: taula amb la dada, la persona interessada, si és una categoria especial i la seua finalitat.
 2. Un **registre simplificat de l'activitat de tractament** (art. 30 RGPD): responsable, finalitats, categories de dades i interessats, destinataris, terminis de conservació i mesures de seguretat.
 3. Per a cada nova petició, indica si és lícita, quines condicions exigiria i quins canvis implicaria en la base de dades.
-4. Almenys **sis mesures tècniques** que aplicaràs en les unitats següents, indicant la unitat (per exemple: «vista sense dades de contacte per al professorat, UD05»).
+4. Almenys **sis mesures tècniques** que aplicaràs en les unitats següents, indicant la unitat (per exemple: «vista sense dades de contacte per al professorat, UD03»).
 5. El procediment que seguiria el centre davant d'una **bretxa de seguretat**.
 
 #### Comprovació
@@ -424,7 +424,7 @@ La direcció d'estudis vol saber si el percentatge d'aprovats en *Bases de dades
 - [ ] La resposta del punt 5 menciona l'impacte en el rendiment i les dades històriques.
 
 > [!TIP]
-> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En la UD06 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
+> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En la UD04 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
 {{% /comprobacion %}}
 
 ---

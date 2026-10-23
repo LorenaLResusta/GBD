@@ -48,7 +48,7 @@ bbdd-<tu-usuario>/
 ├── ud02/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud05/
+├── ud03/
 │   ├── p5.1-tienda.sql
 │   └── evidencias/p5.1-salida.txt
 ├── ...
@@ -65,7 +65,7 @@ Un script entregado debe poder **ejecutarse de principio a fin** en una base de 
 
 ```sql
 -- =============================================================
--- Práctica 5.2 · Tienda online · Script de creación
+-- Práctica 3.2 · Tienda online · Script de creación
 -- Autor/a: Nombre Apellidos (1DAM)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Fecha: 2026-11-10

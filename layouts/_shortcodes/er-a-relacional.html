@@ -1,4 +1,4 @@
-{{- /* Widget UD03: del modelo E/R al modelo relacional, sin SQL. */ -}}
+{{- /* Widget UD02: del modelo E/R al modelo relacional, sin SQL. */ -}}
 {{- $id := printf "era-%d" .Ordinal -}}
 <div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-important)">
   <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Del E/R a las tablas <span class="bd-w-sub">Elige el caso y obtén la regla y el esquema relacional</span></div>
@@ -68,7 +68,7 @@
         r.formal = oneSide.toUpperCase() + '(id_' + oneSide + ', …)\n' + nSide.toUpperCase() + '(id_' + nSide + ', …, id_' + oneSide + '*)' + (mn === 1 ? '  · id_' + oneSide + ' NOT NULL (participación obligatoria)' : '  · id_' + oneSide + ' admite NULL (participación opcional)');
         if (pol === 'SET NULL' && mn === 1) r.notas.push('⚠ La puesta a nulos es incompatible con una clave ajena obligatoria (mínimo 1): el SGBD no podría cumplir las dos reglas. Elige cascada o rechazar.');
         r.notas.push('Si la relación tuviera atributos propios, pasarían a la tabla del lado N.');
-        r.notas.push('Recuerda que las claves ajenas se consultan mucho: en la UD05 verás cómo se indexan.');
+        r.notas.push('Recuerda que las claves ajenas se consultan mucho: en la UD03 verás cómo se indexan.');
       }
     } else if (caso === 'debil') {
       r.regla = '4.2 · Entidad débil por identificación → su clave primaria incluye la clave de la entidad propietaria (que además es clave ajena).';

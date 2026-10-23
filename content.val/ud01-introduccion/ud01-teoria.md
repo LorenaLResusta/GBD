@@ -18,12 +18,12 @@ Aquesta unitat tracta en profunditat la transició històrica des dels suports f
 {{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
 ### Temporalització
 
-La unitat ocupa **3 hores d'aula** (2 de teoria i 1 de pràctica).
+La unitat ocupa **8 hores d'aula** (2 de teoria i 6 de pràctica).
 
-{{< sesiones unidad="UD01" horas="3" >}}
+{{< sesiones unidad="UD01" horas="8" >}}
 items:
   - {h: 2, tipo: T, t: "Dades, fitxers enfront de bases de dades, SGBD i arquitectura", ref: "§1 a §5"}
-  - {h: 1, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
+  - {h: 6, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
 autonomo:
   - "Teoria §6 a §13 (integritat, seguretat, models, classificació, distribució, Big Data i protecció de dades)"
   - "Pràctica 1.1 (del full de càlcul al SGBD)"
@@ -46,7 +46,7 @@ En acabar aquesta unitat, seràs capaç de:
 - Identificar la legislació de protecció de dades que afecta el disseny d'una base de dades.
 
 > [!NOTE]
-> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir de la UD05 treballarem amb Oracle.
+> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir de la UD03 treballarem amb Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visió general d'un SGBD" >}}
 
@@ -535,7 +535,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en la UD07.
+> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en la UD05.
 
 > [!IMPORTANT]
 > Abans d'executar `COMMIT`, l'aplicació ha de comprovar que **les dues actualitzacions** han afectat una fila. Si alguna falla, cal executar `ROLLBACK`: obrir una transacció no valida per si mateix el resultat de les operacions.
@@ -616,7 +616,7 @@ graph TD
   - *Orientats a grafs:* Representen de manera nativa els nodes i les relacions (Neo4j).
   - *Columnars:* Agrupen les dades en famílies de columnes per a llegir-les i escriure-les a gran escala (Cassandra).
 
-La UD09 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
+La UD06 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
 
 > [!WARNING]
 > **NoSQL no vol dir necessàriament «sense ACID»**: les garanties transaccionals varien segons el producte i la configuració. Abans de triar un sistema, comprova quines propietats oferix.
@@ -664,7 +664,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en la UD05.
+> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en la UD03.
 
 #### 2. DML (*Data Manipulation Language* - llenguatge de manipulació de dades)
 
@@ -745,7 +745,7 @@ Una base de dades distribuïda és útil quan (RA1.c):
 A canvi, el sistema és més complex: cal coordinar les transaccions entre nodes (per exemple, amb el protocol de **confirmació en dues fases**, *two-phase commit*), mantindre la coherència de les còpies i tolerar les fallades de xarxa.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD09).
+> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD06).
 
 ### 10.3 Polítiques de fragmentació
 
@@ -822,12 +822,12 @@ flowchart LR
 |---|---|---|
 | **Ús** | Operacions del dia a dia: matricular, facturar | Anàlisi i presa de decisions |
 | **Operacions** | Moltes insercions i modificacions menudes | Consultes complexes de lectura sobre moltes dades |
-| **Disseny** | Normalitzat (UD04) per a evitar redundàncies | Desnormalitzat (esquemes en estrela) per a consultar més de pressa |
+| **Disseny** | Normalitzat (UD02) per a evitar redundàncies | Desnormalitzat (esquemes en estrela) per a consultar més de pressa |
 | **Dades** | Actuals | Històriques i integrades de diverses fonts |
 | **Exemple en EduGest** | Registrar una falta d'assistència | Evolució de la taxa d'abandonament per cicle durant els últims 10 anys |
 
 > [!TIP]
-> Les consultes de resum amb `GROUP BY` que faràs en la UD06 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
+> Les consultes de resum amb `GROUP BY` que faràs en la UD04 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
 
 ---
 
@@ -854,10 +854,10 @@ Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu ele
 | Principi (art. 5 RGPD) | Què significa | Com es reflectix en la base de dades |
 |---|---|---|
 | Licitud, lleialtat i transparència | Tractar les dades amb una base legal i informar-ne la persona interessada | Registrar el consentiment o la base legal |
-| Limitació de la finalitat | Utilitzar les dades només per a la finalitat per a la qual s'han recollit | Vistes i privilegis segons el perfil d'usuari (UD05) |
+| Limitació de la finalitat | Utilitzar les dades només per a la finalitat per a la qual s'han recollit | Vistes i privilegis segons el perfil d'usuari (UD03) |
 | **Minimització de dades** | Recollir només les dades necessàries | No crear columnes «per si de cas» en el disseny (UD02) |
 | Exactitud | Mantindre les dades correctes i actualitzades | Restriccions `CHECK`, validacions i processos d'actualització |
-| Limitació del termini de conservació | No guardar les dades més temps del necessari | Procediments d'esborrament o anonimització periòdica (UD08) |
+| Limitació del termini de conservació | No guardar les dades més temps del necessari | Procediments d'esborrament o anonimització periòdica (UD05) |
 | Integritat i confidencialitat | Protegir les dades davant d'accessos no autoritzats i pèrdues | Usuaris, rols, xifratge, còpies de seguretat, auditoria |
 | Responsabilitat proactiva | Poder demostrar que es complix la normativa | Documentació del disseny, registre d'accessos |
 
@@ -963,7 +963,7 @@ Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una expl
 - q: "Quin mòdul del SGBD decidix **com** s'executa una consulta, per exemple, si utilitza un índex o recorre tota la taula?"
   options: ["El gestor de transaccions", "L'optimitzador de consultes", "El diccionari de dades", "El gestor de còpies de seguretat"]
   answer: 1
-  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en la UD06."
+  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en la UD04."
 - q: "Una cadena de clíniques guarda en el servidor de cada ciutat només els pacients d'eixa ciutat. Quina política s'hi aplica?"
   options: ["Fragmentació vertical", "Replicació total", "Fragmentació horitzontal", "Normalització"]
   answer: 2
