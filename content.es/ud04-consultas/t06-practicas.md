@@ -6,15 +6,15 @@ bookToc: true
 
 # Tema 6 · Prácticas
 
-{{< ra "RA4:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
 | [6.1 Primeras consultas y herramientas](#práctica-61--primeras-consultas-y-herramientas) | Guiada | ●○○ | RA4.a, RA4.b |
 | [6.2 Consultas para secretaría](#práctica-62--consultas-para-secretaría) | Autónoma | ●●○ | RA4.b |
 | [6.3 Laboratorio de valores nulos](#práctica-63--laboratorio-de-valores-nulos) | Guiada | ●●○ | RA4.b |
-| [6.4 Funciones para informes](#práctica-64--funciones-para-informes) | Autónoma | ●●○ | RA4.b, RA5.e |
-| [6.5 Validar datos con SQL](#práctica-65--validar-datos-con-sql) | Reto | ●●● | RA4.b, RA5.e |
+| [6.4 Funciones para informes](#práctica-64--funciones-para-informes) | Autónoma | ●●○ | RA4.b |
+| [6.5 Validar datos con SQL](#práctica-65--validar-datos-con-sql) | Reto | ●●● | RA4.b |
 | [Proyecto EduGest · Tema 6](#proyecto-edugest--tema-6-consultas-del-día-a-día) | Proyecto | ●●○ | RA4.a, RA4.b |
 
 > [!IMPORTANT]
@@ -177,7 +177,7 @@ Secretaría necesita respuestas rápidas a preguntas del día a día. Escribe un
 
 #### Ampliación
 
-Escribe B5 de tres formas distintas (con `UPPER`, con `LOWER` y con `REGEXP_LIKE(nombre, 'web', 'i')`) y comprueba que dan el mismo resultado.
+Escribe B5 de dos formas distintas (con `UPPER` y con `LOWER`) y comprueba que dan el mismo resultado.
 
 ---
 
@@ -217,7 +217,7 @@ Datos de partida: `ALUMNO` tiene 32 filas; 3 sin grupo, 4 sin DNI, 3 sin email y
 
 ## Práctica 6.4 · Funciones para informes
 
-{{< practica num="6.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentado" >}}
+{{< practica num="6.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentado" >}}
 
 #### Objetivo
 
@@ -261,7 +261,7 @@ Usar las funciones de fila de Oracle para transformar y presentar los datos.
 
 ## Práctica 6.5 · Validar datos con SQL
 
-{{< practica num="6.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de calidad de datos" >}}
+{{< practica num="6.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de calidad de datos" >}}
 
 #### Objetivo
 
@@ -278,7 +278,7 @@ Jefatura sospecha que hay datos mal introducidos. Te pide un informe de calidad.
 3. **NIA.** Comprueba que todos los NIA tienen exactamente 8 dígitos numéricos.
 4. **Coherencia de edades.** ¿Hay alumnado menor de 16 años a fecha 15/09/2025? ¿Y mayor de 30?
 5. **Fechas de faltas.** ¿Hay faltas registradas en sábado o domingo?
-6. Redacta un **informe** con los problemas encontrados y propón, para cada uno, una restricción (Tema 5) o un trigger (Tema 9) que lo habría evitado.
+6. Redacta un **informe** con los problemas encontrados y propón, para cada uno, una restricción (Tema 5) o una comprobación en un guion (Tema 9) que lo habría evitado.
 
 {{% details title="Pista para el apartado 1" %}}
 ```sql

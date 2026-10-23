@@ -25,7 +25,7 @@ math: true
 | [2.12 Editorial: obres, traduccions i drets d'autor](#pràctica-212--editorial-obres-traduccions-i-drets-dautor) | Repte | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
 | [2.13 Taller aeronàutic: aeronaus, ordres de treball i habilitacions](#pràctica-213--taller-aeronàutic-aeronaus-ordres-de-treball-i-habilitacions) | Repte | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
 | [2.14 Comunitat de propietaris: immobles, juntes i votacions](#pràctica-214--comunitat-de-propietaris-immobles-juntes-i-votacions) | Repte | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
-| [Projecte EduGest · Tema 2](#projecte-edugest--ud02-model-conceptual) | Projecte | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
+| [Projecte EduGest · Tema 2](#projecte-edugest--tema-2-model-conceptual) | Projecte | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
 | [Banc · Fonaments (exercicis 1-5)](#bloc-1--fonaments) | Autònoma | ●○○ | RA2.b, RA2.e, RA2.f, RA2.i |
 | [Banc · Intermedi (exercicis 6-15)](#bloc-2--intermedi) | Autònoma | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
 | [Banc · Intermedi: integració (exercicis 16-23)](#bloc-3--intermedi-integració) | Autònoma | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
@@ -2457,7 +2457,7 @@ Un centre d'acolliment de menors necessita un registre informatitzat de resident
 1. Dibuixa el diagrama EER en notació de Chen.
 2. Explica què significa «s'eliminen tots els seus informes» en el model i on es documenta.
 3. Classifica `datos_tutores`: atribut compost o entitat? Raona la decisió.
-4. Redacta una nota sobre quines dades serien **especialment sensibles** i quines mesures demanaries (RGPD i LOPDGDD).
+4. Redacta una nota sobre quines dades serien **especialment sensibles** i quines mesures demanaries.
 
 {{% /details %}}
 

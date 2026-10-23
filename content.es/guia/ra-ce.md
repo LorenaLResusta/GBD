@@ -12,17 +12,16 @@ El módulo **0372. Gestión de bases de datos** (1º de Administración de Siste
 
 ## Horas y unidades por resultado de aprendizaje
 
-Cada RA se corresponde con **una unidad didáctica** (UD01 a UD06), dividida en uno o varios *temas* numerados del 1 al 11. Así se puede evaluar un RA al terminar su unidad.
+Cada RA se corresponde con **una unidad didáctica** (UD01 a UD06), dividida en uno o varios *temas* numerados del 1 al 10. Así se puede evaluar un RA al terminar su unidad.
 
 | RA | Resultado de aprendizaje | Unidad | Temas | Horas |
 |---|---|---|---|:-:|
-| **RA1** | Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores. | [UD01](/ud01-introduccion) | T1 | 10 |
-| **RA2** | Diseña modelos lógicos normalizados interpretando diagramas entidad/relación. | [UD02](/ud02-diseno-logico) | T2, T3, T4 | 38 |
-| **RA3** | Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos. | [UD03](/ud03-diseno-fisico) | T5 | 22 |
-| **RA4** | Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [UD04](/ud04-consultas) | T6, T7 | 32 |
-| **RA5** | Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [UD05](/ud05-modificacion) | T8, T9 | 31 |
-| **RA6** | Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia. | [UD06](/ud06-aseguramiento) | T10 | 12 |
-| | *Ampliación: bases de datos NoSQL* | [UD06](/ud06-aseguramiento) | T11 | 6 |
+| **RA1** | Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores. | [UD01](/ud01-introduccion) | T1 | 8 |
+| **RA2** | Diseña modelos lógicos normalizados interpretando diagramas entidad/relación. | [UD02](/ud02-diseno-logico) | T2, T3, T4 | 32 |
+| **RA3** | Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos. | [UD03](/ud03-diseno-fisico) | T5 | 24 |
+| **RA4** | Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [UD04](/ud04-consultas) | T6, T7 | 26 |
+| **RA5** | Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos. | [UD05](/ud05-modificacion) | T8, T9 | 52 |
+| **RA6** | Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia. | [UD06](/ud06-aseguramiento) | T10 | 9 |
 | | *Pruebas de evaluación (3 × 3 h)* | | | 9 |
 | | **Total** | | | **160** |
 
@@ -37,7 +36,7 @@ flowchart LR
 ```
 
 > [!NOTE]
-> Las unidades siguen el orden de los RA (UD01 es el RA1, UD02 el RA2, y así hasta la UD06 y el RA6). Los apuntes sobre **bases de datos NoSQL** (tema 11, dentro de la UD06) no corresponden a ningún RA del módulo: son una ampliación que se imparte al final del curso. También se marcan como *Ampliación* las actividades sobre protección de datos, bases de datos distribuidas, Big Data y privilegios (DCL), cuyo contenido no figura entre los CE del RD 1629/2009.
+> Las unidades siguen el orden de los RA (UD01 es el RA1, UD02 el RA2, y así hasta la UD06 y el RA6). Todo el contenido de las unidades se corresponde con los criterios de evaluación del RD 1629/2009; las prácticas y los proyectos no añaden contenidos ajenos a ellos.
 
 ## Criterios de evaluación por resultado de aprendizaje
 
@@ -48,7 +47,7 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 | CE | Criterio de evaluación | Temas |
 |---|---|---|
 | RA1.a | Se han analizado los distintos sistemas lógicos de almacenamiento y sus funciones. | [Tema 1](/ud01-introduccion/t01-teoria) |
-| RA1.b | Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado. | [Tema 1](/ud01-introduccion/t01-teoria), [Tema 11](/ud06-aseguramiento/t11-teoria) |
+| RA1.b | Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado. | [Tema 1](/ud01-introduccion/t01-teoria) |
 | RA1.c | Se han identificado los distintos tipos de bases de datos en función de la ubicación de la información. | [Tema 1](/ud01-introduccion/t01-teoria) |
 | RA1.d | Se ha reconocido la utilidad de un sistema gestor de bases de datos. | [Tema 1](/ud01-introduccion/t01-teoria) |
 | RA1.e | Se ha descrito la función de cada uno de los elementos de un sistema gestor de bases de datos. | [Tema 1](/ud01-introduccion/t01-teoria) |
@@ -66,20 +65,20 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 | RA2.f | Se han definido los campos clave. | [Tema 2](/ud02-diseno-logico/t02-teoria), [Tema 3](/ud02-diseno-logico/t03-teoria), [Tema 4](/ud02-diseno-logico/t04-teoria) |
 | RA2.g | Se han aplicado las reglas de integridad. | [Tema 3](/ud02-diseno-logico/t03-teoria), [Tema 5](/ud03-diseno-fisico/t05-teoria), [Tema 8](/ud05-modificacion/t08-teoria) |
 | RA2.h | Se han aplicado las reglas de normalización hasta un nivel adecuado. | [Tema 4](/ud02-diseno-logico/t04-teoria) |
-| RA2.i | Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico. | [Tema 1](/ud01-introduccion/t01-teoria), [Tema 2](/ud02-diseno-logico/t02-teoria), [Tema 3](/ud02-diseno-logico/t03-teoria), [Tema 4](/ud02-diseno-logico/t04-teoria), [Tema 9](/ud05-modificacion/t09-teoria) |
+| RA2.i | Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico. | [Tema 2](/ud02-diseno-logico/t02-teoria), [Tema 3](/ud02-diseno-logico/t03-teoria), [Tema 4](/ud02-diseno-logico/t04-teoria) |
 
 ## RA3. Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos.
 
 | CE | Criterio de evaluación | Temas |
 |---|---|---|
-| RA3.a | Se han definido las estructuras físicas de almacenamiento. | [Tema 1](/ud01-introduccion/t01-teoria), [Tema 5](/ud03-diseno-fisico/t05-teoria) |
+| RA3.a | Se han definido las estructuras físicas de almacenamiento. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.b | Se han creado tablas. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.c | Se han seleccionado los tipos de datos adecuados. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.d | Se han definido los campos clave en las tablas. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.e | Se han implantado todas las restricciones reflejadas en el diseño lógico. | [Tema 3](/ud02-diseno-logico/t03-teoria), [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.f | Se ha verificado mediante un conjunto de datos de prueba que la implementación se ajusta al modelo. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
-| RA3.g | Se han utilizado asistentes y herramientas gráficas. | [Tema 1](/ud01-introduccion/t01-teoria), [Tema 5](/ud03-diseno-fisico/t05-teoria) |
-| RA3.h | Se ha utilizado el lenguaje de definición de datos. | [Tema 1](/ud01-introduccion/t01-teoria), [Tema 5](/ud03-diseno-fisico/t05-teoria), [Tema 7](/ud04-consultas/t07-teoria) |
+| RA3.g | Se han utilizado asistentes y herramientas gráficas. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
+| RA3.h | Se ha utilizado el lenguaje de definición de datos. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 | RA3.i | Se ha definido y documentado el diccionario de datos. | [Tema 5](/ud03-diseno-fisico/t05-teoria) |
 
 ## RA4. Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos.
@@ -87,7 +86,7 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 | CE | Criterio de evaluación | Temas |
 |---|---|---|
 | RA4.a | Se han identificado las herramientas y sentencias para realizar consultas. | [Tema 6](/ud04-consultas/t06-teoria), [Tema 7](/ud04-consultas/t07-teoria) |
-| RA4.b | Se han realizado consultas simples sobre una tabla. | [Tema 6](/ud04-consultas/t06-teoria), [Tema 7](/ud04-consultas/t07-teoria) |
+| RA4.b | Se han realizado consultas simples sobre una tabla. | [Tema 6](/ud04-consultas/t06-teoria) |
 | RA4.c | Se han realizado consultas que generan valores de resumen. | [Tema 7](/ud04-consultas/t07-teoria) |
 | RA4.d | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas. | [Tema 7](/ud04-consultas/t07-teoria) |
 | RA4.e | Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas. | [Tema 7](/ud04-consultas/t07-teoria) |
@@ -102,9 +101,9 @@ Texto literal de las enseñanzas mínimas. La última columna indica en qué uni
 | RA5.b | Se han insertado, borrado y actualizado datos en las tablas. | [Tema 8](/ud05-modificacion/t08-teoria) |
 | RA5.c | Se ha incluido en una tabla la información resultante de la ejecución de una consulta. | [Tema 8](/ud05-modificacion/t08-teoria) |
 | RA5.d | Se han adoptado medidas para mantener la integridad y consistencia de la información. | [Tema 8](/ud05-modificacion/t08-teoria), [Tema 9](/ud05-modificacion/t09-teoria) |
-| RA5.e | Se han diseñado guiones de sentencias para llevar a cabo tareas complejas. | [Tema 6](/ud04-consultas/t06-teoria), [Tema 8](/ud05-modificacion/t08-teoria), [Tema 9](/ud05-modificacion/t09-teoria) |
-| RA5.f | Se ha reconocido el funcionamiento de las transacciones. | [Tema 8](/ud05-modificacion/t08-teoria) |
-| RA5.g | Se han anulado parcial o totalmente los cambios producidos por una transacción. | [Tema 8](/ud05-modificacion/t08-teoria) |
+| RA5.e | Se han diseñado guiones de sentencias para llevar a cabo tareas complejas. | [Tema 9](/ud05-modificacion/t09-teoria) |
+| RA5.f | Se ha reconocido el funcionamiento de las transacciones. | [Tema 8](/ud05-modificacion/t08-teoria), [Tema 9](/ud05-modificacion/t09-teoria) |
+| RA5.g | Se han anulado parcial o totalmente los cambios producidos por una transacción. | [Tema 8](/ud05-modificacion/t08-teoria), [Tema 9](/ud05-modificacion/t09-teoria) |
 | RA5.h | Se han identificado los efectos de las distintas políticas de bloqueo de registros. | [Tema 8](/ud05-modificacion/t08-teoria) |
 
 ## RA6. Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia.
@@ -128,8 +127,8 @@ Para cada criterio de evaluación se recogen evidencias de distintos tipos:
 |---|---|---|
 | Cuestionarios y preguntas de razonamiento | Autoevaluaciones de cada unidad, preguntas de justificación | RA1 |
 | Diagramas y documentos de diseño | Diagrama E/R, esquema relacional, informe de normalización | RA2 |
-| Scripts SQL ejecutables | Scripts DDL y DCL, de consulta y de modificación | RA3, RA4, RA5 |
-| Código PL/SQL con pruebas | Procedimientos, funciones y triggers con su batería de pruebas | RA5.e |
+| Scripts SQL ejecutables | Scripts DDL, de consulta y de modificación | RA3, RA4, RA5 |
+| Guiones PL/SQL con pruebas | Bloques con variables, control de flujo y excepciones con su batería de pruebas | RA5.e |
 | Capturas y registros de ejecución | Planes de ejecución, sesiones concurrentes, ficheros `.log` de Data Pump y SQL*Loader | RA4.g, RA5.h, RA6.g |
 | Entregas del proyecto EduGest | Una tarea de proyecto al final de cada unidad | Todos |
 

@@ -6,7 +6,7 @@ bookToc: true
 
 # Tema 7 · Prácticas
 
-{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
+{{< ra "RA4:a,c,d,e,f,g" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
@@ -14,9 +14,8 @@ bookToc: true
 | [7.2 Composiciones paso a paso](#práctica-72--composiciones-paso-a-paso) | Guiada | ●●○ | RA4.d, RA4.e |
 | [7.3 Informes para jefatura](#práctica-73--informes-para-jefatura) | Autónoma | ●●○ | RA4.c-e |
 | [7.4 Subconsultas](#práctica-74--subconsultas) | Autónoma | ●●○ | RA4.f |
-| [7.5 Múltiples selecciones y vistas](#práctica-75--múltiples-selecciones-y-vistas) | Autónoma | ●●○ | RA3.h, RA4.f |
-| [7.6 Optimización: medir antes y después](#práctica-76--optimización-medir-antes-y-después) | Guiada | ●●● | RA4.g |
-| [7.7 Reto: el cuadro de mando](#práctica-77--reto-el-cuadro-de-mando) | Reto | ●●● | RA4.c-g |
+| [7.5 Optimización: medir antes y después](#práctica-75--optimización-medir-antes-y-después) | Guiada | ●●● | RA4.g |
+| [7.6 Reto: el cuadro de mando](#práctica-76--reto-el-cuadro-de-mando) | Reto | ●●● | RA4.c-g |
 | [Proyecto EduGest · Tema 7](#proyecto-edugest--tema-7-informes) | Proyecto | ●●● | RA4 completo |
 
 > [!IMPORTANT]
@@ -166,11 +165,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 - [ ] Sabes corregir cada uno de los tres errores del paso 6.
 {{% /comprobacion %}}
 
-#### Ampliación
-
-Repite el paso 2 añadiendo `ROLLUP`: `GROUP BY ROLLUP(localidad)`. ¿Qué fila nueva aparece? ¿Qué valor tiene `localidad` en ella?
-
----
 
 ## Práctica 7.2 · Composiciones paso a paso
 
@@ -401,33 +395,9 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ---
 
-## Práctica 7.5 · Múltiples selecciones y vistas
+## Práctica 7.5 · Optimización: medir antes y después
 
-{{< practica num="7.5" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA3: h · RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
-
-#### Enunciado
-
-**U1.** Lista única de todas las **localidades** en las que vive alumnado de DAM o de DAW (sin repetir).
-
-{{< solucion id="ud07-016" title="Solución U1" />}}
-
-**U2.** Localidades con alumnado **tanto** de DAM **como** de DAW.
-
-{{< solucion id="ud07-017" title="Solución U2" />}}
-
-**U3.** Códigos de módulo oficiales que están en DAM pero **no** en DAW.
-
-{{< solucion id="ud07-018" title="Solución U3" />}}
-
-**U4.** Crea la vista `v_acta` de la [teoría](/ud04-consultas/t07-teoria#7-vistas-con-composiciones) y úsala para obtener el número de APTOS, NO APTOS y NC de cada módulo de 1DAW.
-
-{{< solucion id="ud07-019" title="Solución U4" />}}
-
----
-
-## Práctica 7.6 · Optimización: medir antes y después
-
-{{< practica num="7.6" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
+{{< practica num="7.5" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
 
 #### Objetivo
 
@@ -536,29 +506,28 @@ Añade `/*+ FULL(ap) */` justo después de `SELECT` en la consulta 1 con índice
 
 ---
 
-## Práctica 7.7 · Reto: el cuadro de mando
+## Práctica 7.6 · Reto: el cuadro de mando
 
-{{< practica num="7.7" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
+{{< practica num="7.6" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
 
 #### Enunciado
 
 La dirección quiere un **cuadro de mando** con una sola consulta por indicador. Resuelve cada uno con la técnica que consideres más adecuada y justifica la elección:
 
 1. Para cada ciclo (incluido SMR): número de grupos, de alumnos, de matrículas y nota media.
-2. Los **dos** mejores alumnos de cada grupo según su nota media (pista: `RANK()` o `ROW_NUMBER()` con `PARTITION BY`).
-3. Para cada profesor que imparte clase: la nota media de sus alumnos en los módulos que imparte **en los grupos en los que los imparte**. (Cuidado: la composición entre `IMPARTE` y `MATRICULA` debe usar el módulo **y** el grupo del alumno.)
-4. Alumnos que han suspendido **todos** los módulos en los que están calificados.
-5. Porcentaje de horas de falta justificadas sobre el total, por grupo.
-6. Escribe una de las consultas anteriores de dos formas distintas (por ejemplo, subconsulta frente a composición) y compara sus planes de ejecución.
+2. Para cada profesor que imparte clase: la nota media de sus alumnos en los módulos que imparte **en los grupos en los que los imparte**. (Cuidado: la composición entre `IMPARTE` y `MATRICULA` debe usar el módulo **y** el grupo del alumno.)
+3. Alumnos que han suspendido **todos** los módulos en los que están calificados.
+4. Porcentaje de horas de falta justificadas sobre el total, por grupo.
+5. Escribe una de las consultas anteriores de dos formas distintas (por ejemplo, subconsulta frente a composición) y compara sus planes de ejecución.
 
 #### Comprobación
 
 {{% comprobacion %}}
 - [ ] El indicador 1 tiene 4 filas y SMR aparece con ceros.
-- [ ] El indicador 3 no mezcla alumnos de otros grupos con el mismo módulo.
+- [ ] El indicador 2 no mezcla alumnos de otros grupos con el mismo módulo.
 - [ ] Puedes defender cada consulta y explicar su plan de ejecución.
 
-{{% details title="Pista para el indicador 4" %}}
+{{% details title="Pista para el indicador 3" %}}
 «Todos suspendidos» equivale a «no existe ninguno aprobado» y «tiene al menos uno calificado»: `NOT EXISTS (... nota_final >= 5)` y `EXISTS (... nota_final IS NOT NULL)`. Otra forma: `GROUP BY` alumno con `HAVING MAX(nota_final) < 5`.
 {{% /details %}}
 {{% /comprobacion %}}
@@ -567,18 +536,16 @@ La dirección quiere un **cuadro de mando** con una sola consulta por indicador.
 
 ## Proyecto EduGest · Tema 7: informes
 
-{{< practica num="EduGest-7" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA3: h · RA4: a, b, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
+{{< practica num="EduGest-7" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA4: a, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + docs/07-optimizacion.md" >}}
 
 #### Enunciado
 
-1. Escribe **diez informes** para EduGest que en conjunto usen: composiciones internas y externas (al menos tres tablas en alguno), consultas resumen con `HAVING`, subconsultas (una correlacionada y una con `EXISTS`), un operador de conjuntos y una función analítica.
-2. Convierte los tres informes más usados en **vistas** y concede `SELECT` sobre ellas al rol adecuado de la práctica 5.7.
-3. **Optimización:** elige dos de tus informes, obtén su plan de ejecución, propón una mejora (índice o reescritura) y documenta el antes y el después en `07-optimizacion.md`. Si EduGest tiene pocos datos para notar la diferencia, explícalo y apóyate en la práctica 7.6.
+1. Escribe **diez informes** para EduGest que en conjunto usen: composiciones internas y externas (al menos tres tablas en alguno), consultas resumen con `HAVING` y subconsultas (una correlacionada y una con `EXISTS`).
+2. **Optimización:** elige dos de tus informes, obtén su plan de ejecución, propón una mejora (índice o reescritura) y documenta el antes y el después en `07-optimizacion.md`. Si EduGest tiene pocos datos para notar la diferencia, explícalo y apóyate en la práctica 7.5.
 
 #### Comprobación
 
 {{% comprobacion %}}
 - [ ] Cada informe tiene un comentario con el perfil que lo usa, la pregunta que responde y el número de filas.
-- [ ] Las vistas se pueden consultar desde el usuario del rol correspondiente.
 - [ ] El documento de optimización incluye los planes antes y después.
 {{% /comprobacion %}}

@@ -16,21 +16,19 @@ En esta unidad aprenderás a reconocer las anomalías de un mal diseño, a ident
 {{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalización
 
-El tema ocupa **10 horas de aula** (4 de teoría y 6 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
+El tema ocupa **8 horas de aula** (4 de teoría y 4 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
 
-{{< sesiones unidad="T04" horas="10" >}}
+{{< sesiones unidad="T04" horas="8" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalías y dependencias funcionales", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Dependencias, cierres y claves", ref: "Práctica 4.2"}
-  - {h: 1, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
+  - {h: 2, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
   - {h: 1, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 4.1"}
-  - {h: 1, tipo: T, t: "Descomposición sin pérdida y desnormalización controlada", ref: "§4 y §5"}
-  - {h: 1, tipo: T, t: "Restricciones no representables y procedimiento completo", ref: "§6 y §7"}
+  - {h: 1, tipo: T, t: "Descomposición, desnormalización y procedimiento completo", ref: "§4 a §7"}
   - {h: 1, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 4.4"}
-  - {h: 1, tipo: P, t: "¿En qué forma normal está?", ref: "Práctica 4.3"}
-  - {h: 1, tipo: P, t: "FNBC y dependencias perdidas", ref: "Práctica 4.5"}
   - {h: 1, tipo: P, t: "Informe de normalización de EduGest", ref: "Proyecto EduGest-4"}
 autonomo:
+  - "Prácticas 4.3 (¿en qué forma normal está?) y 4.5 (FNBC y dependencias perdidas)"
   - "Práctica 4.6 (¿normalizar o desnormalizar?)"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
@@ -280,7 +278,7 @@ Existen la **cuarta forma normal** (4FN), que trata las *dependencias multivalua
 
 ---
 
-{{< sesion n="5" h="1" tipo="t" >}}Descomposición y desnormalización{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Descomposición, desnormalización y procedimiento{{< /sesion >}}
 
 {{% paso-a-paso titulo="Normalizar un pedido hasta 3FN" %}}
 {{% etapa titulo="0. Punto de partida" %}}
@@ -325,16 +323,14 @@ Cuando lleguemos a el tema 7 podrás comprobarlo en Oracle: la consulta que reco
 | Situación | Ejemplo | Cómo se controla la redundancia |
 |---|---|---|
 | Sistemas analíticos (OLAP) | Tabla de hechos de matrículas con el nombre del ciclo repetido | Se carga por procesos ETL, no la modifica nadie |
-| Valores agregados muy consultados | Guardar `num_alumnos` en GRUPO | Trigger que lo actualiza (Tema 9) |
+| Valores agregados muy consultados | Guardar `num_alumnos` en GRUPO | Recalcularlo con una consulta de resumen cuando se necesita |
 | Valores históricos que **deben** congelarse | Guardar el `precio` en cada línea de factura | No es redundancia: el precio del producto cambia, el de la factura no |
-| Bases de datos documentales | Incrustar los datos del ciclo en el documento del alumno (Tema 11) | El modelo se diseña según las consultas |
+| Bases de datos documentales | Incrustar los datos del ciclo en el documento del alumno | El modelo se diseña según las consultas |
 
 > [!CAUTION]
 > Desnormalizar «porque los JOIN son lentos» sin haberlo medido es un error frecuente. Con índices adecuados (Tema 5 y Tema 7), un esquema normalizado responde rápido en la mayoría de los sistemas transaccionales.
 
 ---
-
-{{< sesion n="6" h="1" tipo="t" >}}Restricciones y procedimiento{{< /sesion >}}
 
 ## 6. Normalización y restricciones no representables
 

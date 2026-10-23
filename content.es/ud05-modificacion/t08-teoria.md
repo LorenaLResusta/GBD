@@ -12,11 +12,11 @@ Hasta aquí hemos **diseñado** (Tema 2 a Tema 4), **implementado** la estructur
 
 Una consulta mal escrita devuelve un resultado incorrecto: se corrige y se vuelve a ejecutar. Una modificación mal escrita **destruye información real**, y el SGBD no pide confirmación. Por eso la segunda mitad de la unidad no trata de sentencias nuevas, sino de la red de seguridad que las rodea: la **transacción**. Una transacción permite agrupar varias modificaciones para que se apliquen **todas o ninguna**, deshacerlas si algo va mal y aislar nuestro trabajo del de las demás personas que están usando la base de datos en ese mismo momento.
 
-La unidad reutiliza intensamente lo aprendido en el tema 7: dentro de un `UPDATE` o de un `DELETE` escribiremos las mismas composiciones y subconsultas que usábamos en el `SELECT`. Y prepara el tema 9: cuando un guion de mantenimiento se repite cada curso, deja de ser un fichero `.sql` y se convierte en un **procedimiento almacenado** con control de errores.
+La unidad reutiliza intensamente lo aprendido en el tema 7: dentro de un `UPDATE` o de un `DELETE` escribiremos las mismas composiciones y subconsultas que usábamos en el `SELECT`. Y prepara el tema 9, donde las modificaciones se agrupan en **guiones** repetibles.
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargado con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables) y sobre sus datos del curso 2025-26 (32 alumnos, 143 matrículas, 46 faltas). Cada ejemplo indica el número de filas afectadas que debes obtener.
 
-{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,f,g,h" >}}
 
 ### Objetivos de aprendizaje
 
@@ -30,26 +30,29 @@ Al terminar esta unidad serás capaz de:
 - Confirmar y deshacer, total o parcialmente, los cambios de una transacción con `COMMIT`, `ROLLBACK` y `SAVEPOINT`.
 - Reconocer los problemas del acceso concurrente y los efectos de las políticas de bloqueo de Oracle.
 - Diagnosticar y prevenir esperas por bloqueo e interbloqueos.
-- Diseñar guiones de mantenimiento transaccionales, verificables y repetibles.
 
 ### Temporalización
 
-El tema ocupa **16 horas de aula** (8 de teoría y 8 de práctica). Es la base del RA5 (el de mayor peso del módulo): aprovecha las sesiones
+El tema ocupa **36 horas de aula** (17 de teoría y 19 de práctica). Es la base del RA5 (el de mayor peso del módulo): aprovecha las sesiones
 prácticas, que requieren **dos sesiones de Oracle abiertas a la vez**.
 
-{{< sesiones unidad="T08" horas="16" >}}
+{{< sesiones unidad="T08" horas="36" >}}
 items:
-  - {h: 2, tipo: T, t: "DML: INSERT, UPDATE, DELETE y TRUNCATE", ref: "§1 a §4"}
-  - {h: 2, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 8.1"}
-  - {h: 3, tipo: T, t: "INSERT … SELECT, MERGE, transacciones, ACID y SAVEPOINT", ref: "§5 a §7 · laboratorio de transacciones"}
+  - {h: 3, tipo: T, t: "Modificar datos: herramientas, INSERT", ref: "§1 y §2"}
+  - {h: 3, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 8.1"}
+  - {h: 3, tipo: T, t: "UPDATE, DELETE y TRUNCATE", ref: "§3 y §4"}
+  - {h: 3, tipo: P, t: "Modificaciones con subconsultas", ref: "Práctica 8.3"}
+  - {h: 3, tipo: T, t: "INSERT … SELECT, CTAS y MERGE", ref: "§5"}
+  - {h: 3, tipo: P, t: "Copias, históricos y carga de notas con MERGE", ref: "Prácticas 8.2 y 8.6"}
+  - {h: 3, tipo: T, t: "Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT", ref: "§6 y §7 · laboratorio de transacciones"}
   - {h: 3, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 8.4"}
-  - {h: 3, tipo: T, t: "Concurrencia, bloqueos, interbloqueos y restricciones diferidas", ref: "§8 a §10"}
+  - {h: 3, tipo: T, t: "Concurrencia, bloqueos e interbloqueos", ref: "§8 y §9"}
   - {h: 3, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 8.5"}
+  - {h: 2, tipo: T, t: "Integridad referencial y restricciones diferidas", ref: "§10"}
+  - {h: 4, tipo: P, t: "Modificaciones en EduGest", ref: "Proyecto EduGest-8"}
 autonomo:
-  - "Prácticas 8.2 y 8.6 (copias, históricos y carga de notas con MERGE)"
-  - "Práctica 8.3 (modificaciones con subconsultas)"
-  - "Práctica 8.7 (reto: guion de promoción de curso)"
-  - "Proyecto EduGest · Tema 8 (guiones de mantenimiento)"
+  - "Terminar en casa las modificaciones de la práctica 8.3 que no hayan dado tiempo"
+  - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -57,7 +60,8 @@ autonomo:
 
 ---
 
-{{< sesion n="1" h="1" tipo="t" >}}DML: INSERT, UPDATE, DELETE y TRUNCATE{{< /sesion >}}
+
+{{< sesion n="1" h="3" tipo="t" >}}Modificar datos: herramientas, INSERT{{< /sesion >}}
 
 ## 1. Modificar datos: herramientas y responsabilidad
 
@@ -153,7 +157,7 @@ El criterio RA5.a pide identificar las **herramientas y sentencias** para modifi
 | **SQLcl / SQL\*Plus** | Guiones `.sql` ejecutados con `@fichero` | `WHENEVER SQLERROR`, `SPOOL` y el `COMMIT` explícito |
 | **Data Pump** (`expdp`, `impdp`) | Carga y descarga masiva de esquemas completos | Es una operación de administración, no de uso diario |
 
-La edición en rejilla es cómoda para corregir un dato puntual, pero **no es trazable**: nadie puede revisarla, repetirla en otro servidor ni ponerla bajo control de versiones. Todo cambio que forme parte de un procedimiento del centro debe estar en un guion `.sql` (§11).
+La edición en rejilla es cómoda para corregir un dato puntual, pero **no es trazable**: nadie puede revisarla, repetirla en otro servidor ni ponerla bajo control de versiones. Todo cambio que forme parte de un procedimiento del centro debe estar en un guion `.sql` (tema 9).
 
 > [!WARNING]
 > **Desactiva la autoconfirmación.** En SQL Developer: *Herramientas → Preferencias → Base de datos → Hoja de Trabajo → Confirmación automática*. Con la autoconfirmación activada, cada sentencia se confirma sola y **`ROLLBACK` deja de servirte de nada**: pierdes la red de seguridad justo cuando más la necesitas. En SQLcl se comprueba con `SHOW AUTOCOMMIT` y se desactiva con `SET AUTOCOMMIT OFF`.
@@ -176,7 +180,7 @@ SELECT * FROM matricula AS OF TIMESTAMP SYSTIMESTAMP - INTERVAL '10' MINUTE
 WHERE  id_alumno = 7;
 ```
 
-Con esa consulta se pueden reinsertar las filas perdidas. También existe `FLASHBACK TABLE matricula TO TIMESTAMP ...`, que requiere `ROW MOVEMENT` activado y privilegios. **No es una copia de seguridad**: depende del tamaño y la retención del *tablespace* de *undo* y, pasado ese tiempo, los datos ya no se pueden recuperar (§7.5).
+Con esa consulta se pueden reinsertar las filas perdidas. También existe `FLASHBACK TABLE matricula TO TIMESTAMP ...`, que requiere `ROW MOVEMENT` activado. **No es una copia de seguridad**: depende del tamaño y la retención del *tablespace* de *undo* y, pasado ese tiempo, los datos ya no se pueden recuperar (§7.5).
 {{% /details %}}
 
 ---
@@ -194,7 +198,7 @@ VALUES (valor1, valor2, ...);
 
 | Componente | Significado |
 |---|---|
-| `INSERT INTO tabla` | Tabla (o vista actualizable) que recibe la fila |
+| `INSERT INTO tabla` | Tabla que recibe la fila |
 | `(columna1, ...)` | **Lista de columnas** que se van a rellenar, en el orden que quieras |
 | `VALUES (...)` | Un valor por cada columna de la lista, en el mismo orden y del tipo adecuado |
 | columnas omitidas | Toman su `DEFAULT` si lo tienen y `NULL` si no |
@@ -363,6 +367,8 @@ La alternativa artesanal (`SELECT MAX(id_alumno) FROM alumno`) **es incorrecta**
 {{< /quiz >}}
 
 ---
+
+{{< sesion n="3" h="3" tipo="t" >}}UPDATE, DELETE y TRUNCATE{{< /sesion >}}
 
 ## 3. Modificar filas: `UPDATE`
 
@@ -646,7 +652,6 @@ WHERE  NOT EXISTS (SELECT 1 FROM imparte i
 | Sublenguaje | **DML** | **DDL** |
 | Filas que borra | Las del `WHERE`, o todas | **Siempre todas** |
 | Transaccional | Sí: `ROLLBACK` lo deshace | **No**: lleva `COMMIT` implícito |
-| Disparadores (Tema 9) | Lanza los `BEFORE/AFTER DELETE` | **No** los lanza |
 | Espacio liberado | Mantiene el espacio asignado a la tabla | Libera las extensiones y baja la *marca de agua* |
 | Velocidad en tablas grandes | Lenta: escribe *undo* y *redo* fila a fila | Muy rápida: no registra fila a fila |
 | Claves ajenas | Respeta `ON DELETE CASCADE` | **Falla** si hay FK activas apuntando a la tabla |
@@ -746,7 +751,7 @@ DELETE FROM profesor WHERE id_profesor = 105;
 La clave ajena de `IMPARTE` **no** tiene regla de borrado, así que protege al profesor: hay que reasignar antes sus tres asignaciones docentes. Si lo hiciéramos y después lo borrásemos, la fila del grupo `1ASIR` del que es tutor **no se borraría**: su `id_tutor` pasaría a `NULL`.
 
 > [!IMPORTANT]
-> **Criterio profesional:** en un sistema de gestión académica no se borra al alumnado. Un expediente es un documento con valor administrativo y plazos legales de conservación. Lo correcto es la **baja lógica**: añadir una columna `fecha_baja` y filtrar por ella en las vistas. El `DELETE` se reserva para corregir errores de grabación recientes.
+> **Criterio profesional:** en un sistema de gestión académica no se borra al alumnado. Un expediente es un documento con valor administrativo y plazos legales de conservación. Lo correcto es la **baja lógica**: añadir una columna `fecha_baja` y filtrar por ella en las consultas. El `DELETE` se reserva para corregir errores de grabación recientes.
 
 {{< quiz >}}
 - q: "Se ejecuta `DELETE FROM alumno WHERE id_alumno = 1;` y el cliente informa de «1 fila suprimida». ¿Cuántas filas han desaparecido realmente de la base de datos?"
@@ -754,14 +759,15 @@ La clave ajena de `IMPARTE` **no** tiene regla de borrado, así que protege al p
   answer: 2
   explain: "`ON DELETE CASCADE` propaga el borrado en dos niveles: 1 alumno + 5 matrículas + 3 faltas. El contador solo cuenta la tabla indicada en el `DELETE`. Los cambios existen desde el `DELETE`, aunque sean reversibles hasta el `COMMIT`."
 - q: "¿Cuál de estas afirmaciones sobre `TRUNCATE` es correcta en Oracle?"
-  options: ["Se puede deshacer con `ROLLBACK` porque borra filas", "Admite una cláusula `WHERE`", "Es DDL: confirma la transacción en curso y no se puede deshacer", "Lanza los disparadores `AFTER DELETE`"]
+  options: ["Se puede deshacer con `ROLLBACK` porque borra filas", "Admite una cláusula `WHERE`", "Es DDL: confirma la transacción en curso y no se puede deshacer", "Solo puede borrar una fila cada vez"]
   answer: 2
-  explain: "`TRUNCATE` es DDL: lleva `COMMIT` implícito, no admite `WHERE` y no dispara *triggers* de fila. Esa es precisamente la razón de que sea rápido y de que sea peligroso."
+  explain: "`TRUNCATE` es DDL: lleva `COMMIT` implícito, no admite `WHERE`. Esa es precisamente la razón de que sea rápido y de que sea peligroso."
 {{< /quiz >}}
 
 ---
 
-{{< sesion n="3" h="1" tipo="t" >}}INSERT … SELECT, MERGE y transacciones{{< /sesion >}}
+
+{{< sesion n="5" h="3" tipo="t" >}}INSERT … SELECT, CTAS y MERGE{{< /sesion >}}
 
 ## 5. Insertar desde consultas y `MERGE`
 
@@ -824,14 +830,14 @@ SELECT COUNT(*) FROM bak_matricula;   -- 143
 |---|---|
 | Nombres, tipos y tamaños de las columnas | Clave primaria, `UNIQUE`, claves ajenas y `CHECK` |
 | Las restricciones `NOT NULL` | Los valores `DEFAULT` |
-| Los datos que devuelve el `SELECT` | Índices, disparadores, comentarios y privilegios |
+| Los datos que devuelve el `SELECT` | Índices y comentarios |
 
 ```sql
 CREATE TABLE bak_matricula_vacia AS SELECT * FROM matricula WHERE 1 = 0;  -- solo estructura
 ```
 
 > [!WARNING]
-> `CREATE TABLE ... AS SELECT` es **DDL**: confirma implícitamente la transacción en curso. Por eso **nunca** debe aparecer en medio de un guion transaccional: haz las copias **antes** de abrir la transacción (§11). Una copia CTAS tampoco es una copia de seguridad del sistema: vive en la misma base de datos y desaparece con ella. Para eso están Data Pump y RMAN (Tema 5).
+> `CREATE TABLE ... AS SELECT` es **DDL**: confirma implícitamente la transacción en curso. Por eso **nunca** debe aparecer en medio de un guion transaccional: haz las copias **antes** de abrir la transacción (tema 9). Una copia CTAS tampoco es una copia de seguridad del sistema: vive en la misma base de datos y desaparece con ella. Para eso están las copias de seguridad (Tema 10).
 
 ### 5.3 Tablas de resumen
 
@@ -869,8 +875,6 @@ SELECT * FROM resumen_modulo WHERE id_modulo BETWEEN 16 AND 19 ORDER BY id_modul
 > [!NOTE]
 > El módulo 16 tiene 5 matrículas pero su media se calcula con **4 notas**: `AVG` ignora los nulos, mientras que `COUNT(*)` los cuenta (Tema 7). La media exacta es 6,375 y `ROUND(..., 2)` la deja en **6,38**, porque Oracle redondea el 5 hacia arriba en valor absoluto. Documenta siempre en el diccionario qué significa cada columna de un resumen:
 > `COMMENT ON COLUMN resumen_modulo.media IS 'Media de las notas no nulas';`
->
-> Una **vista materializada** (`CREATE MATERIALIZED VIEW ... REFRESH ON DEMAND`) hace lo mismo y además sabe refrescarse sola. Las tablas de resumen hechas a mano siguen siendo útiles cuando el cálculo es complejo o debe quedar «congelado».
 
 ### 5.4 `MERGE`: insertar, actualizar o borrar en una sola sentencia
 
@@ -878,7 +882,7 @@ SELECT * FROM resumen_modulo WHERE id_modulo BETWEEN 16 AND 19 ORDER BY id_modul
 
 ```text
 MERGE INTO tabla_destino alias
-USING  origen alias_origen            -- tabla, vista o subconsulta
+USING  origen alias_origen            -- tabla o subconsulta
 ON    (condición de emparejamiento)
 WHEN MATCHED THEN
      UPDATE SET columna = valor, ...
@@ -940,7 +944,7 @@ WHEN MATCHED THEN
 Resultados:
 
 - **3 filas fusionadas**, no 5: el `WHERE` de la cláusula `UPDATE` descarta las dos notas que no han cambiado. Sin ese `WHERE` serían 5 filas, con el mismo resultado final pero más trabajo, más *redo* y más filas bloqueadas.
-- **Ejecutar el `MERGE` por segunda vez fusiona 0 filas.** Esta propiedad se llama **idempotencia** y es lo que permite relanzar una carga interrumpida sin miedo (§11.3).
+- **Ejecutar el `MERGE` por segunda vez fusiona 0 filas.** Esta propiedad se llama **idempotencia** y es lo que permite relanzar una carga interrumpida sin miedo (tema 9).
 - El NIA `10450777` (Elena Carbonell, de 2DAW) **no aparece en el origen**: la composición con `MATRICULA` lo descarta, porque no está matriculada en ese módulo. El `MERGE` no lo inserta ni avisa, así que la incidencia hay que buscarla aparte:
 
 ```sql
@@ -1022,6 +1026,8 @@ WHEN NOT MATCHED THEN
 
 ---
 
+
+{{< sesion n="7" h="3" tipo="t" >}}Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT{{< /sesion >}}
 
 ## 6. Transacciones y propiedades ACID
 
@@ -1287,8 +1293,6 @@ Una consulta que lleva minutos ejecutándose necesita ver los datos **tal como e
 |---|---|
 | Consulta o informe muy largo | Reducir su duración; ejecutarlo en horas de baja actividad |
 | Retención de *undo* insuficiente | Aumentar `UNDO_RETENTION` y el tamaño del *tablespace* de *undo* (administración) |
-| Bucle que lee y escribe la misma tabla | Rediseñarlo: una sola sentencia conjunta en lugar de fila a fila (Tema 9) |
-| `COMMIT` dentro de un bucle que recorre un cursor | Nunca confirmar dentro del bucle que se está leyendo |
 
 {{< quiz >}}
 - q: "Una sesión ejecuta `UPDATE`, después `SAVEPOINT s1`, después otro `UPDATE` y finalmente `ROLLBACK TO SAVEPOINT s1`. ¿Qué queda pendiente de confirmación?"
@@ -1303,7 +1307,8 @@ Una consulta que lleva minutos ejecutándose necesita ver los datos **tal como e
 
 ---
 
-{{< sesion n="5" h="1" tipo="t" >}}Concurrencia, bloqueos, interbloqueos y restricciones diferidas{{< /sesion >}}
+
+{{< sesion n="9" h="3" tipo="t" >}}Concurrencia, bloqueos e interbloqueos{{< /sesion >}}
 
 ## 8. Concurrencia y bloqueos
 
@@ -1386,7 +1391,7 @@ Qué ocurre cuando dos sesiones escriben la misma fila:
 
 Observa lo esencial del paso 4: al desbloquearse, B **no** aplica su cambio sobre el 7 que vio antes, sino que **vuelve a leer** el valor actual. Por eso `SET nota_final = nota_final + 2` **no pierde** el incremento de A: el resultado es 10 y no 9. Compruébalo en el laboratorio de §7.2 con el escenario **«Sesión bloqueada»**.
 
-Para ver quién bloquea a quién hace falta una tercera sesión con privilegios de administración:
+Para ver quién bloquea a quién hace falta una tercera sesión de administración:
 
 ```sql
 -- Sesiones bloqueadas y quién las bloquea
@@ -1534,6 +1539,8 @@ Repite el escenario **«Interbloqueo (ORA-00060)»** del [laboratorio de transac
 
 ---
 
+{{< sesion n="11" h="2" tipo="t" >}}Integridad referencial y restricciones diferidas{{< /sesion >}}
+
 ## 10. Integridad referencial y restricciones diferidas
 
 El criterio RA2.g (*aplicar reglas de integridad*) y el RA5.d (*mantener la integridad y la consistencia*) se cruzan en este apartado: las restricciones que declaramos en el tema 5 actúan **durante** las modificaciones de esta unidad.
@@ -1614,139 +1621,12 @@ COMMIT;
 |---|---|---|
 | Restricciones declarativas | En el esquema (Tema 5) | `UQ_MATRICULA`, `CK_MATRICULA_NOTA`, claves ajenas |
 | Transacciones | En el guion o la aplicación | Matrícula + ajuste de plazas |
-| Reglas que un `CHECK` no puede expresar | Disparadores (Tema 9) | «Un profesor no puede tener más de 20 horas semanales» |
+| Reglas que un `CHECK` no puede expresar | Guion o aplicación (documentada) | «Un profesor no puede tener más de 20 horas semanales» |
 | Validación de entrada | En la aplicación | Formato del NIA antes de llegar a la base de datos |
-| Permisos mínimos | DCL (Tema 5) | El profesorado solo puede actualizar `nota_final` |
-| Comprobaciones periódicas | Guiones de auditoría (§11) | Buscar faltas sin matrícula, notas fuera de rango |
+| Comprobaciones periódicas | Guiones de auditoría (tema 9) | Buscar faltas sin matrícula, notas fuera de rango |
 
 > [!NOTE]
 > Una restricción `DEFERRABLE` de tipo `PRIMARY KEY` o `UNIQUE` usa un índice **no único** (debe admitir duplicados temporales dentro de la transacción). Esto puede cambiar los planes de ejecución de algunas consultas, así que no conviene declarar diferibles todas las restricciones «por si acaso»: hazlo solo donde el diseño lo exija.
-
----
-
-## 11. Guiones de mantenimiento
-
-El criterio RA5.e pide **diseñar guiones de sentencias para llevar a cabo tareas complejas**. Un guion de mantenimiento es un fichero `.sql` que una persona ejecuta en un servidor real: debe poderse **leer, revisar, repetir y auditar**.
-
-### 11.1 Estructura de un guion profesional
-
-```sql
--- =====================================================================
--- Guion    : justificar_faltas_huelga.sql
--- Autor    : Lorena L. Resusta
--- Fecha    : 2027-05-10
--- Entorno  : FREEPDB1 · esquema EDUGEST
--- Objetivo : Justificar las faltas del 12/03/2026 (huelga de transporte)
--- Reversión: ROLLBACK antes del COMMIT final; después, restaurar desde
---            BAK_FALTA_20270510 con el guion deshacer_faltas_huelga.sql
--- Filas esperadas: 1 (según comprobación previa del 09/05/2027)
--- =====================================================================
-
-WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK   -- cualquier error aborta y deshace
-SET ECHO ON FEEDBACK ON TIMING ON
-SPOOL justificar_faltas_huelga.log
-
--- 0. ¿Dónde estoy? (queda en la traza)
-SELECT sys_context('USERENV','DB_NAME') AS bd, user AS esquema, SYSDATE FROM dual;
-
--- 1. Copia de seguridad de las filas afectadas  (DDL: ANTES de la transacción)
-CREATE TABLE bak_falta_20270510 AS
-SELECT * FROM falta_asistencia WHERE fecha = DATE '2026-03-12';
-
--- 2. Comprobación previa: las filas que se van a modificar
-SELECT id_falta, id_matricula, fecha, horas, justificada
-FROM   falta_asistencia
-WHERE  fecha = DATE '2026-03-12' AND justificada = 'N';
-
--- 3. Transacción
-SAVEPOINT antes_de_justificar;
-
-UPDATE falta_asistencia
-SET    justificada = 'S'
-WHERE  fecha = DATE '2026-03-12'
-AND    justificada = 'N';
-
--- 4. Comprobación posterior: no debe quedar ninguna sin justificar
-SELECT COUNT(*) AS pendientes
-FROM   falta_asistencia
-WHERE  fecha = DATE '2026-03-12' AND justificada = 'N';   -- debe ser 0
-
--- 5. Registro de lo hecho
-INSERT INTO log_mantenimiento (guion, filas, observaciones)
-VALUES ('justificar_faltas_huelga.sql', SQL%ROWCOUNT,
-        'Huelga de transporte del 12/03/2026');
-
--- 6. Confirmación
-COMMIT;
-
-SPOOL OFF
-```
-
-| Elemento | Para qué sirve |
-|---|---|
-| Cabecera con autor, fecha, entorno y objetivo | Que quien lo lea en 2029 sepa qué hace y quién responde |
-| `WHENEVER SQLERROR EXIT ... ROLLBACK` | Que un error **detenga** el guion y no deje medias tintas |
-| `SPOOL` | Dejar traza de todo lo ejecutado y de sus resultados: es la evidencia de la intervención |
-| Copia previa con CTAS | Poder volver atrás después del `COMMIT` |
-| `SELECT` de comprobación previa | Verificar las filas antes de tocarlas |
-| `SAVEPOINT` | Poder retroceder un paso sin perder el resto |
-| `SELECT` de comprobación posterior | Confirmar que el resultado es el esperado |
-| Registro en una tabla de auditoría | Saber qué se ejecutó, cuándo y con qué resultado |
-| `COMMIT` **al final y una sola vez** | Que todo el guion sea una única unidad de trabajo |
-
-```sql
--- Tabla de auditoría de los guiones de mantenimiento
-CREATE TABLE log_mantenimiento (
-    id_log         NUMBER(8) GENERATED BY DEFAULT ON NULL AS IDENTITY
-                   CONSTRAINT pk_log_mantenimiento PRIMARY KEY,
-    guion          VARCHAR2(80) CONSTRAINT nn_log_guion NOT NULL,
-    ejecutado      TIMESTAMP DEFAULT SYSTIMESTAMP CONSTRAINT nn_log_fecha NOT NULL,
-    usuario        VARCHAR2(30)  DEFAULT USER CONSTRAINT nn_log_usuario NOT NULL,
-    filas          NUMBER(8),
-    observaciones  VARCHAR2(400)
-);
-```
-
-> [!WARNING]
-> El `CREATE TABLE` del paso 1 es **DDL**: lleva `COMMIT` implícito. Por eso está **antes** de la transacción y nunca en medio. Si lo colocaras entre el `UPDATE` y el `COMMIT`, confirmarías el `UPDATE` sin querer y el `WHENEVER SQLERROR ... ROLLBACK` ya no podría deshacerlo.
-
-### 11.2 Idempotencia
-
-Un guion es **idempotente** si ejecutarlo dos veces produce el mismo resultado que ejecutarlo una. Es una propiedad valiosísima: permite relanzar sin miedo un proceso interrumpido.
-
-| Forma de conseguirla | Ejemplo |
-|---|---|
-| Condición que ya no se cumple tras la primera pasada | `WHERE justificada = 'N'`: la segunda vez afecta a 0 filas |
-| `MERGE` en lugar de `INSERT` | Actualiza lo que ya está y añade lo que falta (§5.4) |
-| `INSERT … WHERE NOT EXISTS` | No duplica las filas ya insertadas |
-| Clave primaria que impide el duplicado | `HISTORICO_NOTA` falla con `ORA-00001` en el segundo archivado |
-| Comprobación de guarda al principio | Si ya existen matrículas de 2026-27, el guion se detiene |
-
-```sql
--- Guarda: detener el guion si ya se ejecutó
-DECLARE
-    v_n NUMBER;
-BEGIN
-    SELECT COUNT(*) INTO v_n FROM matricula WHERE curso_academico = '2026-27';
-    IF v_n > 0 THEN
-        RAISE_APPLICATION_ERROR(-20100, 'Ya existen ' || v_n || ' matrículas de 2026-27');
-    END IF;
-END;
-/
-```
-
-### 11.3 Cómo se prueba un guion antes de ejecutarlo en producción
-
-- [ ] Se ejecuta en un **entorno de pruebas** con una copia reciente de los datos reales.
-- [ ] Se anota el número de filas afectadas de **cada** sentencia y se compara con lo previsto.
-- [ ] Se ejecuta **dos veces** para comprobar la idempotencia.
-- [ ] Se provoca un error a mitad (renombrando una tabla, por ejemplo) y se verifica que **no queda ningún cambio** aplicado.
-- [ ] Se comprueba que existe y funciona el guion de reversión.
-- [ ] Se revisa que no haya DDL dentro de la transacción.
-- [ ] Se ejecuta en producción con `SPOOL` activo, y el `.log` se archiva junto al guion.
-
-> [!TIP]
-> En el tema 9 estos guiones se convertirán en **procedimientos almacenados** con `EXCEPTION ... WHEN OTHERS THEN ROLLBACK`, parámetros y control de errores. La diferencia práctica es grande: un guion lo ejecuta una persona desde su equipo; un procedimiento lo puede invocar la aplicación, un trabajo programado o un disparador, siempre con el mismo comportamiento.
 
 ---
 
@@ -1765,7 +1645,9 @@ END;
   d: "Dos sesiones que se esperan mutuamente: el SGBD aborta una."
 {{< /tarjetas >}}
 
-## 12. Errores frecuentes
+---
+
+## 11. Errores frecuentes
 
 | Síntoma | Causa | Solución |
 |---|---|---|
@@ -1785,7 +1667,7 @@ END;
 
 ---
 
-## 13. Buenas prácticas
+## 12. Buenas prácticas
 
 - **Escribe siempre el `SELECT` antes del `UPDATE` o el `DELETE`**, con la misma condición, y compara el número de filas.
 - **Nunca escribas un `UPDATE` o un `DELETE` sin `WHERE`** si no quieres afectar a toda la tabla; si de verdad lo quieres, déjalo comentado y justificado.
@@ -1797,13 +1679,11 @@ END;
 - **Accede a las tablas y las filas siempre en el mismo orden** en toda la aplicación: es la mejor prevención del interbloqueo.
 - **Deja que la base de datos lea el valor que va a modificar** (`SET x = x - 1`) en lugar de calcularlo fuera.
 - **Copia antes de modificar** (`CREATE TABLE bak_... AS SELECT ...`) y conserva la copia hasta haber verificado el resultado.
-- **Guiones versionados, con cabecera, `SPOOL`, comprobaciones e idempotencia.** Nada de cambios a mano en la rejilla para tareas que se repiten.
 - **No borres información con valor administrativo**: usa la baja lógica y conserva el expediente.
-- **Registra lo que haces** en una tabla de auditoría: fecha, usuario, guion y filas afectadas.
 
 ---
 
-## 14. Resumen
+## 13. Resumen
 
 | Idea clave | Detalle |
 |---|---|
@@ -1822,11 +1702,10 @@ END;
 | Bloqueos | Exclusivos de fila, hasta el `COMMIT`. `FOR UPDATE [NOWAIT \| WAIT n \| SKIP LOCKED]` para el bloqueo pesimista; columna de versión para el optimista |
 | Interbloqueo | `ORA-00060`: Oracle deshace **una sentencia**, no la transacción. Se previene ordenando los accesos y acortando las transacciones |
 | Restricciones diferidas | `DEFERRABLE INITIALLY DEFERRED` comprueba en el `COMMIT`; si falla, se deshace **toda** la transacción (`ORA-02091`) |
-| Guiones | Cabecera, copia previa, comprobaciones, `SAVEPOINT`, `COMMIT` único, `SPOOL` e idempotencia |
 
 ---
 
-## 15. Autoevaluación
+## 14. Autoevaluación
 
 {{< quiz >}}
 - q: "¿Cuál es la comprobación que debe preceder **siempre** a un `DELETE` en una base de datos real?"
@@ -1844,7 +1723,7 @@ END;
 - q: "¿En qué se diferencian `DELETE FROM falta_asistencia;` y `TRUNCATE TABLE falta_asistencia;`?"
   options: ["En nada: las dos vacían la tabla", "`DELETE` es DML y reversible con `ROLLBACK`; `TRUNCATE` es DDL, confirma y no se puede deshacer", "`TRUNCATE` admite `WHERE` y `DELETE` no", "`DELETE` elimina también la estructura de la tabla"]
   answer: 1
-  explain: "`TRUNCATE` es DDL: lleva `COMMIT` implícito, no admite `WHERE`, no lanza disparadores y libera el espacio. `DELETE` escribe *undo* fila a fila y por eso se puede deshacer."
+  explain: "`TRUNCATE` es DDL: lleva `COMMIT` implícito, no admite `WHERE` y libera el espacio. `DELETE` escribe *undo* fila a fila y por eso se puede deshacer."
 - q: "Se ejecuta `DELETE FROM profesor WHERE id_profesor = 105;` y Oracle responde ORA-02292. ¿Qué significa?"
   options: ["El profesor no existe", "Hay filas hijas que lo referencian (en `IMPARTE`) y su clave ajena no permite el borrado", "Falta un `COMMIT`", "La tabla está bloqueada por otra sesión"]
   answer: 1
@@ -1881,4 +1760,4 @@ END;
 - [Oracle AI Database 26ai: Database Concepts, *Transactions*](https://docs.oracle.com/en/database/oracle/oracle-database/26/cncpt/transactions.html).
 - [Oracle AI Database 26ai: Database Concepts, *Data Concurrency and Consistency*](https://docs.oracle.com/en/database/oracle/oracle-database/26/cncpt/data-concurrency-and-consistency.html).
 - [Oracle AI Database 26ai: Database Development Guide, *Maintaining Data Integrity in Database Applications*](https://docs.oracle.com/en/database/oracle/oracle-database/26/adfns/maintaining-data-integrity.html).
-- [Real Decreto 405/2023, de 29 de mayo (módulo profesional 0484 Bases de datos)](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221).
+- [Real Decreto 1629/2009, de 30 de octubre (módulo 0372 Gestión de bases de datos)](https://www.boe.es/eli/es/rd/2009/10/30/1629).

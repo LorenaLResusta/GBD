@@ -558,12 +558,12 @@ El modelo relacional expresa muy bien las restricciones **de una fila** (atribut
 
 | Regla de negocio (EduGest) | ¿Por qué no basta con una restricción declarativa? | Dónde se implementará |
 |---|---|---|
-| El jefe de un departamento debe pertenecer a ese departamento | Compara una fila de `DEPARTAMENTO` con una fila de `PROFESOR` | Trigger (Tema 9) |
-| Un alumno solo se matricula en módulos del ciclo de su grupo | Implica `ALUMNO`, `GRUPO` y `MODULO` | Trigger o procedimiento de matrícula (Tema 9) |
-| Un profesor no supera 20 horas lectivas semanales | Es una **suma** sobre varias filas de `IMPARTE` | Trigger compuesto o procedimiento (Tema 9) |
-| No hay faltas anteriores a la fecha de matrícula | Compara dos tablas | Trigger (Tema 9) |
+| El jefe de un departamento debe pertenecer a ese departamento | Compara una fila de `DEPARTAMENTO` con una fila de `PROFESOR` | Guion de comprobación (Tema 9) |
+| Un alumno solo se matricula en módulos del ciclo de su grupo | Implica `ALUMNO`, `GRUPO` y `MODULO` | Guion de matrícula con comprobación (Tema 9) |
+| Un profesor no supera 20 horas lectivas semanales | Es una **suma** sobre varias filas de `IMPARTE` | Consulta de comprobación (Tema 9) |
+| No hay faltas anteriores a la fecha de matrícula | Compara dos tablas | Guion de comprobación (Tema 9) |
 | La nota final se pone en múltiplos de 0,25 | Es una regla de **una fila** | Regla de fila: `nota_final` múltiplo de 0,25 (se declara en el tema 5) |
-| Un grupo no supera 30 alumnos | Es un **recuento** sobre varias filas | Procedimiento de matrícula o trigger (Tema 9) |
+| Un grupo no supera 30 alumnos | Es un **recuento** sobre varias filas | Guion de matrícula con comprobación (Tema 9) |
 
 Cada restricción se documenta con un formato fijo:
 
@@ -573,7 +573,7 @@ R1. Jefe de departamento
     Tablas: DEPARTAMENTO(id_jefe), PROFESOR(id_profesor, id_departamento)
     Momento de comprobación: al asignar o cambiar el jefe y al cambiar de
                              departamento a un profesor.
-    Implementación prevista: trigger (Tema 9).
+    Implementación prevista: guion de comprobación (Tema 9).
 ```
 
 > [!IMPORTANT]
@@ -596,7 +596,7 @@ El diseño lógico se representa con un **diagrama relacional**: un rectángulo 
 > Cuando termines el proyecto en el tema 5, dibuja el diagrama de las tablas que hayas creado y compáralo con tu diseño lógico. Si no coinciden, hay un error en uno de los dos.
 
 {{% details title="Pista: ¿dónde se comprueba una regla de negocio?" %}}
-Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → regla de fila (se declara en el propio esquema). ¿Compara una columna con la **clave de otra tabla**? → clave ajena. ¿Necesita **sumar, contar o comparar varias filas** o tablas? → trigger o procedimiento en el servidor (Tema 9). Solo si ninguna de las tres sirve debe vivir en la aplicación.
+Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → regla de fila (se declara en el propio esquema). ¿Compara una columna con la **clave de otra tabla**? → clave ajena. ¿Necesita **sumar, contar o comparar varias filas** o tablas? → consulta o guion de comprobación (Tema 9). Solo si ninguna de las tres sirve debe vivir en la aplicación.
 {{% /details %}}
 
 ---
@@ -742,7 +742,7 @@ Responde a las preguntas y pulsa **Corregir**. Cada respuesta incluye una explic
 - q: "La regla «un profesor no puede impartir más de 20 horas semanales» se debe..."
   options: ["Expresar con una regla de fila en la tabla IMPARTE", "Documentar como restricción no representable e implementar con programación en el servidor (Tema 9)", "Ignorar, ya que no forma parte del modelo", "Resolver con una clave ajena"]
   answer: 1
-  explain: "Afecta a la **suma** de varias filas. Una regla de fila solo ve la fila actual. Se documenta (RA2.i) y se implementa con un trigger o un procedimiento (Tema 9)."
+  explain: "Afecta a la **suma** de varias filas. Una regla de fila solo ve la fila actual. Se documenta (RA2.i) y se comprueba con una consulta o un guion (Tema 9)."
 {{< /quiz >}}
 
 ## Referencias

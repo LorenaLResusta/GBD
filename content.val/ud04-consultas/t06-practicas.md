@@ -6,16 +6,16 @@ bookToc: true
 
 # Tema 6 · Pràctiques
 
-{{< ra "RA4:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
 | [6.1 Primeres consultes i eines](#pràctica-61--primeres-consultes-i-eines) | Guiada | ●○○ | RA4.a, RA4.b |
 | [6.2 Consultes per a secretaria](#pràctica-62--consultes-per-a-secretaria) | Autònoma | ●●○ | RA4.b |
 | [6.3 Laboratori de valors nuls](#pràctica-63--laboratori-de-valors-nuls) | Guiada | ●●○ | RA4.b |
-| [6.4 Funcions per a informes](#pràctica-64--funcions-per-a-informes) | Autònoma | ●●○ | RA4.b, RA5.e |
-| [6.5 Validar dades amb SQL](#pràctica-65--validar-dades-amb-sql) | Repte | ●●● | RA4.b, RA5.e |
-| [Projecte EduGest · Tema 6](#projecte-edugest--ud06-consultes-del-dia-a-dia) | Projecte | ●●○ | RA4.a, RA4.b |
+| [6.4 Funcions per a informes](#pràctica-64--funcions-per-a-informes) | Autònoma | ●●○ | RA4.b |
+| [6.5 Validar dades amb SQL](#pràctica-65--validar-dades-amb-sql) | Repte | ●●● | RA4.b |
+| [Projecte EduGest · Tema 6](#projecte-edugest--tema-6-consultes-del-dia-a-dia) | Projecte | ●●○ | RA4.a, RA4.b |
 
 > [!IMPORTANT]
 > Totes les pràctiques usen l'esquema de referència **EDUGEST** amb les dades de l'[script 02](/guia/proyecto-edugest#4-scripts-descarregables). Abans de començar, executa en la teua sessió:
@@ -177,7 +177,7 @@ Secretaria necessita respostes ràpides a preguntes del dia a dia. Escriu una co
 
 #### Ampliació
 
-Escriu B5 de tres formes distintes (amb `UPPER`, amb `LOWER` i amb `REGEXP_LIKE(nombre, 'web', 'i')`) i comprova que donen el mateix resultat.
+Escriu B5 de dues formes distintes (amb `UPPER` i amb `LOWER`) i comprova que donen el mateix resultat.
 
 ---
 
@@ -217,7 +217,7 @@ Dades de partida: `ALUMNO` té 32 files; 3 sense grup, 4 sense DNI, 3 sense emai
 
 ## Pràctica 6.4 · Funcions per a informes
 
-{{< practica num="6.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentat" >}}
+{{< practica num="6.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentat" >}}
 
 #### Objectiu
 
@@ -261,7 +261,7 @@ Usar les funcions de fila d'Oracle per a transformar i presentar les dades.
 
 ## Pràctica 6.5 · Validar dades amb SQL
 
-{{< practica num="6.5" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de qualitat de dades" >}}
+{{< practica num="6.5" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de qualitat de dades" >}}
 
 #### Objectiu
 
@@ -278,7 +278,7 @@ Direcció d'estudis sospita que hi ha dades mal introduïdes. Et demana un infor
 3. **NIA.** Comprova que tots els NIA tenen exactament 8 dígits numèrics.
 4. **Coherència d'edats.** Hi ha alumnat menor de 16 anys a data 15/09/2025? I major de 30?
 5. **Dates de faltes.** Hi ha faltes registrades en dissabte o diumenge?
-6. Redacta un **informe** amb els problemes trobats i proposa, per a cadascun, una restricció (Tema 5) o un trigger (Tema 9) que l'hauria evitat.
+6. Redacta un **informe** amb els problemes trobats i proposa, per a cadascun, una restricció (Tema 5) o una comprovació en un guió (Tema 9) que l'hauria evitat.
 
 {{% details title="Pista per a l'apartat 1" %}}
 ```sql

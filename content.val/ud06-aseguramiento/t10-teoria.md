@@ -10,45 +10,47 @@ bookToc: true
 
 Fins ara hem construït, consultat i programat una base de dades. Falta la pregunta que més s'enrecorda el dia que alguna cosa falla: **què passa si perdem les dades?** Un disc que s'espatlla, un `DELETE` sense `WHERE`, un ransomware o un contenidor esborrat per error tenen el mateix efecte: la informació desapareix. L'única defensa és haver fet **còpies de seguretat** i **haver comprovat que es poden restaurar**.
 
-Esta unitat cobrix el **RA6** del mòdul: *executar tasques d'assegurament de la informació, analitzant-les i aplicant mecanismes de salvaguarda i transferència*. Treballarem sobre EduGest amb les eines d'**Oracle AI Database 26ai Free** (Data Pump, SQL\*Loader, SQLcl, SQL Developer) i amb les de **MongoDB 8.0** (`mongodump`, `mongorestore`, `mongoexport`, `mongoimport`).
+Esta unitat cobrix el **RA6** del mòdul: *executar tasques d'assegurament de la informació, analitzant-les i aplicant mecanismes de salvaguarda i transferència*. Treballarem sobre EduGest amb les eines d'**Oracle AI Database 26ai Free** (Data Pump, SQL\*Loader, SQLcl, SQL Developer). Per a la transferència entre gestors usarem **PostgreSQL 17** com a destinació.
 
 {{< ra "RA6:a,b,c,d,e,f,g,h" >}}
 
 ### Objectius d'aprenentatge
 
-En acabar esta part series capaç de:
+En acabar esta part seràs capaç de:
 
-- Distingir els tipus de còpia de seguretat (lògica i física, completa, incremental i diferencial, en fred i en calent) i triar una estratègia segons el temps de recuperació i la pèrdua de dades admissibles (RA6.a).
+- Distingir els tipus de còpia de seguretat (lògica i física, completa, incremental i diferencial, en fred i en calent) i triar una estratègia segons el temps de recuperació i la pèrdua de dades acceptables (RA6.a).
 - Fer i restaurar una còpia lògica d'un esquema d'Oracle amb Data Pump (RA6.b, RA6.c).
-- Fer i restaurar una còpia d'una base de dades de MongoDB amb `mongodump` i `mongorestore` (RA6.b, RA6.c).
-- Identificar les ferramentes d'importació i exportació de cada gestor (RA6.d).
-- Exportar dades a CSV, JSON i scripts SQL (RA6.e) i importar fitxers amb SQL\*Loader, SQL Developer i `mongoimport` (RA6.f).
+- Identificar les eines d'importació i exportació de cada gestor (RA6.d).
+- Exportar dades a CSV, JSON i scripts SQL (RA6.e) i importar fitxers amb SQL\*Loader i SQL Developer (RA6.f).
 - Llegir els missatges d'error i els fitxers de registre (`.log`, `.bad`) per a localitzar la causa d'un error (RA6.g).
-- Transferir informació entre dos sistemes gestors diferents (Oracle i MongoDB) tenint cura de tipus, dates, nuls i codificació (RA6.h).
+- Transferir informació entre dos sistemes gestors diferents (Oracle i PostgreSQL) tenint cura de tipus, dates, nuls i codificació (RA6.h).
 
 ### Temporalització
 
-El tema ocupa **12 hores d'aula** (4 de teoria i 8 de pràctica).
+El tema ocupa **9 hores d'aula** (4 de teoria i 5 de pràctica).
 
-{{< sesiones unidad="T10" horas="12" >}}
+{{< sesiones unidad="T10" horas="9" >}}
 items:
   - {h: 1, tipo: T, t: "Còpies de seguretat: tipus, estratègia i eines", ref: "§1 i §2"}
-  - {h: 1, tipo: T, t: "Còpia lògica amb Data Pump i còpies en MongoDB", ref: "§3 i §4"}
+  - {h: 1, tipo: T, t: "Còpia lògica amb Data Pump", ref: "§3"}
   - {h: 2, tipo: P, t: "Còpia lògica d'EduGest i restauració", ref: "Pràctica 10.1"}
-  - {h: 1, tipo: T, t: "Importar i exportar dades", ref: "§5"}
-  - {h: 2, tipo: P, t: "Exportar dades a CSV, JSON i SQL", ref: "Pràctica 10.2"}
-  - {h: 2, tipo: P, t: "Importar amb SQL*Loader i llegir els errors", ref: "Pràctica 10.3"}
-  - {h: 1, tipo: T, t: "Transferència entre gestors i registres d'error", ref: "§6 i §7"}
-  - {h: 2, tipo: P, t: "D'Oracle a MongoDB i projecte de seguretat", ref: "Pràctica 10.4 · Projecte EduGest · Tema 10"}
+  - {h: 1, tipo: T, t: "Importar i exportar dades", ref: "§4"}
+  - {h: 1, tipo: P, t: "Exportar dades a CSV, JSON i SQL", ref: "Pràctica 10.2"}
+  - {h: 1, tipo: P, t: "Importar amb SQL*Loader i llegir els errors", ref: "Pràctica 10.3"}
+  - {h: 1, tipo: T, t: "Transferència entre gestors i registres d'error", ref: "§5 i §6"}
+  - {h: 1, tipo: P, t: "D'Oracle a PostgreSQL", ref: "Pràctica 10.4"}
 autonomo:
   - "Repte 10.5 (pla de còpies i simulacre de desastre)"
-  - "Ampliacions de les pràctiques 10.1 a 10.4 i autoavaluació"
+  - "Projecte EduGest · Tema 10 (assegurament de la informació)"
+  - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
 > Una còpia de seguretat **que mai no s'ha restaurat no és una còpia: és una esperança**. En cada pràctica d'esta part hi ha un pas de *restauració i comprovació*. No te'l salts.
 
 ---
+
+{{< sesion n="1" h="1" tipo="t" >}}Còpies de seguretat: tipus, estratègia i eines{{< /sesion >}}
 
 ## 1. Per què i com es fan còpies
 
@@ -93,7 +95,6 @@ Per a restaurar una incremental necessites la completa i **totes** les increment
 | Oracle | **RMAN** (*Recovery Manager*) | Física | Còpies completes i incrementals de tota la base de dades |
 | Oracle | Còpia en fred del volum | Física | Entorns de classe: parar el contenidor i copiar el volum |
 | Oracle | **SQL Developer** (*Ferramentes → Exportació de base de dades*) | Lògica (assistent) | Generar scripts de DDL i dades amb interfície gràfica |
-| MongoDB | **`mongodump` / `mongorestore`** | Lògica (BSON) | Còpia i restauració de bases de dades o col·leccions |
 
 > [!NOTE]
 > **RMAN** és la ferramenta professional de còpia física d'Oracle (`rman target /` i ordres com `BACKUP DATABASE`). Funciona de manera molt diferent segons la base de dades estiga en mode `ARCHIVELOG` o `NOARCHIVELOG`: sense arxivat només permet còpies amb la base de dades muntada però tancada. En el contenidor de classe no la utilitzarem; treballarem amb **Data Pump**, que és lògica i funciona amb la base de dades oberta.
@@ -110,6 +111,8 @@ docker start oracle26ai
 ```
 
 {{< sgbd "Docker" >}} El volum `oracle-data` es munta en un contenidor auxiliar que el comprimix en la carpeta actual. Per a restaurar es fa l'operació inversa sobre un volum buit. Desavantatge: el servei queda **parat** mentre es copia.
+
+{{< sesion n="2" h="1" tipo="t" >}}Còpia lògica amb Data Pump{{< /sesion >}}
 
 ## 3. Còpia lògica amb Data Pump (Oracle)
 
@@ -167,8 +170,7 @@ docker cp oracle26ai:/opt/oracle/admin/FREE/dpdump/<ruta-anotada>/edugest_exp.lo
 -- Com a SYSTEM: usuari de prova per a la restauració
 CREATE USER edugest_copia IDENTIFIED BY "Copia_2026"
   DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
-GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW,
-      CREATE PROCEDURE, CREATE TRIGGER TO edugest_copia;
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO edugest_copia;
 ```
 
 ```bash
@@ -200,37 +202,22 @@ MINUS
 SELECT * FROM edugest_copia.alumno;
 ```
 
-## 4. Còpia i restauració en MongoDB
+{{< sesion n="4" h="1" tipo="t" >}}Importar i exportar dades{{< /sesion >}}
 
-`mongodump` genera fitxers **BSON** (format binari de MongoDB) i `mongorestore` els carrega.
-
-```bash
-docker exec mongo8 mongodump --db=edugest --out=/tmp/copia_mongo
-docker cp mongo8:/tmp/copia_mongo ./copias/mongo
-
-# Restaurar en una base de dades de proves
-docker exec mongo8 mongorestore --nsFrom='edugest.*' --nsTo='edugest_copia.*' /tmp/copia_mongo
-```
-
-> [!WARNING]
-> Estes ferramentes formen part de les *MongoDB Database Tools*. Comprova que estan en la teua imatge amb `docker exec mongo8 mongodump --version`. Si no, instal·la-les des del web de MongoDB i executa-les des del teu equip amb `--uri="mongodb://localhost:27017"`.
-
-Per a comprovar: `db.expedientes.countDocuments()` en `edugest` i en `edugest_copia` ha de donar el mateix nombre.
-
-## 5. Importar i exportar dades
+## 4. Importar i exportar dades
 
 Una còpia servix per a restaurar el **mateix** gestor. L'**exportació** i la **importació** de dades servix per a intercanviar informació amb altres aplicacions i amb altres gestors, usant formats de text.
 
-### 5.1 Formats
+### 4.1 Formats
 
 | Format | Avantatges | Compte amb |
 |---|---|---|
 | **CSV** | Universal; l'obri qualsevol full de càlcul | Separador (`,` o `;`), cometes, salts de línia dins de camps, dates, decimals (`.` o `,`) |
-| **JSON** | Conserva l'estructura aniuada; natural per a MongoDB i APIs | Els tipus són pocs: les dates són text; els `NULL` s'escriuen `null` o s'ometen |
+| **JSON** | Conserva l'estructura aniuada | Els tipus són pocs: les dates són text; els `NULL` s'escriuen `null` o s'ometen |
 | **Script SQL** | S'executa en el mateix gestor o en un de paregut | Dialecte propi de cada gestor |
 | **XML** | Intercanvi entre sistemes empresarials | Verbós |
 
-### 5.2 Exportar en Oracle
+### 4.2 Exportar en Oracle
 
 Amb **SQLcl** o amb la consola de SQL Developer es poden canviar els formats d'eixida d'una consulta:
 
@@ -244,9 +231,9 @@ SET SQLFORMAT default
 
 {{< sgbd "SQLcl" >}} `SQLFORMAT` admet `csv`, `json`, `xml`, `insert` (genera sentències `INSERT`) i altres. `SPOOL` escriu el resultat en un fitxer. Amb l'**assistent gràfic** de SQL Developer: clic dret sobre una taula → *Exportar*, i es tria format, columnes i destinació.
 
-També es pot generar JSON a partir de taules amb les funcions SQL/JSON d'Oracle (`JSON_OBJECT`, `JSON_ARRAYAGG`), útil per a portar les dades a MongoDB.
+També es pot generar JSON a partir de taules amb les funcions SQL/JSON d'Oracle (`JSON_OBJECT`, `JSON_ARRAYAGG`).
 
-### 5.3 Importar en Oracle amb SQL\*Loader
+### 4.3 Importar en Oracle amb SQL\*Loader
 
 **SQL\*Loader** (`sqlldr`) carrega fitxers de text en taules. Necessita un **fitxer de control** que diu on estan les dades i com mapar-les:
 
@@ -278,21 +265,11 @@ sqlldr userid=edugest/Edugest_2026@//localhost:1521/FREEPDB1 \
 > [!NOTE]
 > A classe usarem també l'**assistent d'importació** de SQL Developer (clic dret sobre la taula → *Importar dades*), que genera el mateix tipus de càrrega sense escriure el fitxer de control. Els assistents ajuden, però cal entendre què fan: cal saber llegir els seus missatges.
 
-### 5.4 Importar i exportar en MongoDB
+{{< sesion n="7" h="1" tipo="t" >}}Transferència entre gestors i registres d'error{{< /sesion >}}
 
-```bash
-# Exportar una col·lecció a JSON (un document per línia)
-docker exec mongo8 mongoexport --db=edugest --collection=expedientes --out=/tmp/expedientes.json
+## 5. Transferir informació entre gestors
 
-# Importar un fitxer JSON (si és un array, afig --jsonArray)
-docker exec mongo8 mongoimport --db=edugest_copia --collection=expedientes --file=/tmp/expedientes.json
-```
-
-Per a CSV: `mongoexport --type=csv --fields=nia,nombre,grupo ...` i `mongoimport --type=csv --headerline ...`.
-
-## 6. Transferir informació entre gestors
-
-Passar dades d'Oracle a MongoDB (o a PostgreSQL, o a un full de càlcul) és una tasca habitual. El procés sempre té els mateixos passos:
+Passar dades d'Oracle a un altre gestor (PostgreSQL, MariaDB, SQL Server) o a un full de càlcul és una tasca habitual. El procés sempre té els mateixos passos:
 
 1. **Origen:** definir quines dades es transferixen (consulta).
 2. **Transformació:** adaptar tipus, dates, nuls i estructura a la destinació.
@@ -306,14 +283,14 @@ Passar dades d'Oracle a MongoDB (o a PostgreSQL, o a un full de càlcul) és una
 | **Dates** | `14/03/2007` s'interpreta com `03/14/...` | Usar format ISO 8601: `2007-03-14` |
 | **Decimals** | `4,75` no és un nombre en CSV amb coma com a separador | Usar punt decimal o separador `;` |
 | **Nuls** | Una cadena buida no és el mateix que `NULL` | Decidir com es representen i comprovar en importar |
-| **Estructura** | Una relació 1:N es converteix en un array incrustat | Dissenyar el document abans (Tema 10) |
+| **Tipus de dades** | `NUMBER`, `VARCHAR2` o `DATE` no existixen amb eixe nom en la destinació | Mapar els tipus abans (`NUMBER`→`NUMERIC`, `VARCHAR2`→`VARCHAR`, `DATE`→`DATE` o `TIMESTAMP`) |
 | **Claus alienes** | La destinació no valida la integritat | Validar amb consultes després d'importar |
 
-## 7. Missatges d'error i fitxers de registre
+## 6. Missatges d'error i fitxers de registre
 
 Aprendre a llegir els registres és la diferència entre resoldre una fallada en cinc minuts o en cinc hores.
 
-### 7.1 Mètode
+### 6.1 Mètode
 
 1. **Llig el log complet**, no només l'última línia.
 2. Busca el **primer** error: els següents solen ser conseqüència.
@@ -321,7 +298,7 @@ Aprendre a llegir els registres és la diferència entre resoldre una fallada en
 4. Busca el codi en la documentació oficial ([Oracle Error Help](https://docs.oracle.com/en/error-help/db/)).
 5. Corretgix **una** cosa i repeteix.
 
-### 7.2 Errors freqüents en còpies i importacions
+### 6.2 Errors freqüents en còpies i importacions
 
 | Missatge | Causa habitual | Solució |
 |---|---|---|
@@ -333,44 +310,40 @@ Aprendre a llegir els registres és la diferència entre resoldre una fallada en
 | `ORA-00001: unique constraint ... violated` (en `sqlldr`) | Clau duplicada en el fitxer | Revisar el `.bad` |
 | `ORA-01722: invalid number` | Un text on s'esperava un nombre | Revisar separadors i decimals |
 | `SQL*Loader-350: Syntax error` | Error en el fitxer `.ctl` | Revisar comes, parèntesis i nom de columnes |
-| `mongorestore: ... E11000 duplicate key error` | El document ja existix en la destinació | Usar `--drop` o restaurar en una altra base de dades |
 
-### 7.3 Altres fitxers de registre
+### 6.3 Altres fitxers de registre
 
 - **Alert log** d'Oracle (`alert_FREE.log`): esdeveniments de la instància. En el contenidor, `docker logs oracle26ai` mostra l'arrancada.
-- **Registre de Docker** de MongoDB: `docker logs mongo8`.
 - **Historial de treballs de Data Pump**: `SELECT owner_name, job_name, state FROM dba_datapump_jobs;`
 
-## 8. Errors freqüents
+## 7. Errors freqüents
 
 | Error | Conseqüència | Prevenció |
 |---|---|---|
 | Guardar la còpia en el mateix disc/contenidor | Es perd tot alhora | Regla 3-2-1 |
 | No provar mai la restauració | La còpia no servix quan fa falta | Simulacre periòdic en un altre esquema |
 | Exportar sense `UTF-8` | Caràcters corruptes | Fixar la codificació |
-| Deixar còpies sense xifrar en un USB | Fuga de dades personals (RGPD) | Xifrar i limitar accessos |
+| Deixar còpies sense xifrar en un USB | Fuga de dades | Xifrar i limitar accessos |
 | Restaurar damunt de les dades reals | Es perd el que ha ocorregut des de la còpia | Restaurar primer en un altre esquema |
 | No registrar quina còpia és quina | No se sap quina restaurar | Noms amb data i documentació |
 
-## 9. Bones pràctiques
+## 8. Bones pràctiques
 
 - Automatitza les còpies (un guió programat) i **revisa els logs**.
 - Anomena els fitxers amb data i contingut: `edugest_20271105_completa.dmp`.
-- Defineix qui pot fer i qui pot restaurar còpies (**mínim privilegi**).
 - Documenta el procediment de restauració pas a pas i prova'l.
 - Conserva diverses generacions de còpies, no només l'última.
 
-## 10. Resum
+## 9. Resum
 
 - Una còpia es tria segons l'**RPO** i l'**RTO**; la regla **3-2-1** guia on es guarda.
 - **Data Pump** fa còpies lògiques d'esquemes d'Oracle; **RMAN** fa còpies físiques.
-- **`mongodump` / `mongorestore`** fan el mateix en MongoDB.
 - Importar i exportar usa **CSV**, **JSON** o **SQL**: cuida codificació, dates, decimals i nuls.
 - **SQL\*Loader** carrega fitxers amb un fitxer de control i genera `.log` i `.bad`.
 - Transferir entre gestors = exportar → transformar → importar → **verificar**.
 - Els **logs** diuen la causa: llig el primer error.
 
-## 11. Autoavaluació
+## 10. Autoavaluació
 
 {{< quiz >}}
 - q: "Fas una còpia completa el diumenge i una incremental cada nit. El dijous es perd el servidor. Què necessites per a restaurar?"
@@ -394,7 +367,7 @@ Aprendre a llegir els registres és la diferència entre resoldre una fallada en
   answer: 1
   explain: "És el símptoma típic de llegir un fitxer UTF-8 com si fóra una altra codificació."
 - q: "Quina còpia és **física**?"
-  options: ["Un bolcat `.dmp` de Data Pump", "Un `mongodump`", "Copiar el volum de dades amb el servei parat", "Un CSV exportat"]
+  options: ["Un bolcat `.dmp` de Data Pump", "Una captura de pantalla del esquema", "Copiar el volum de dades amb el servei parat", "Un CSV exportat"]
   answer: 2
   explain: "Una còpia física copia els fitxers de la base de dades; les altres són lògiques (objectes i dades)."
 {{< /quiz >}}
@@ -406,5 +379,4 @@ Aprendre a llegir els registres és la diferència entre resoldre una fallada en
 - [Oracle AI Database 26ai: Backup and Recovery User's Guide](https://docs.oracle.com/en/database/oracle/oracle-database/26/bradv/) — RMAN i estratègies de còpia.
 - [Oracle SQLcl: documentació](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/) — `SET SQLFORMAT`, `SPOOL`.
 - [Oracle Database Error Help](https://docs.oracle.com/en/error-help/db/).
-- [MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/) — `mongodump`, `mongorestore`, `mongoexport` i `mongoimport`.
 - [Reial decret 1629/2009, de 30 d'octubre (mòdul professional 0372 Gestió de bases de dades)](https://www.boe.es/eli/es/rd/2009/10/30/1629).

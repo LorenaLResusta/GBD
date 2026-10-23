@@ -16,7 +16,7 @@ math: true
 | [3.3 Tres formes de transformar una jerarquia](#pràctica-33--tres-formes-de-transformar-una-jerarquia) | Autònoma | ●●○ | RA2.c, RA2.e, RA2.f |
 | [3.4 Enginyeria inversa d'un esquema](#pràctica-34--enginyeria-inversa-dun-esquema) | Repte | ●●● | RA2.b, RA2.e |
 | [3.5 Catàleg de restriccions d'un hotel](#pràctica-35--catàleg-de-restriccions-dun-hotel) | Autònoma | ●●○ | RA2.i |
-| [Projecte EduGest · Tema 3](#projecte-edugest--ud03-model-lògic) | Projecte | ●●○ | RA2.b-g, RA2.i |
+| [Projecte EduGest · Tema 3](#projecte-edugest--tema-3-model-lògic) | Projecte | ●●○ | RA2.b-g, RA2.i |
 | [3.6 Entendre un esquema relacional](#pràctica-36--entendre-un-esquema-relacional) | Guiada | ●○○ | RA2.c-e |
 | [Tasca 1 · Naviera](#tasca-1--naviera-capitans-contenidors-ports-i-vaixells) | Guiada | ●○○ | RA2.c-f |
 | [Tasca 2 · Institut](#tasca-2--institut-mòduls-matrícules-delegats-i-casellers) | Autònoma | ●●○ | RA2.c-f, RA2.i |
@@ -358,7 +358,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 | Atribut multivalorat | Taula nova amb la PK de l'entitat i el valor. |
 
 > [!IMPORTANT]
-> **Pèrdues semàntiques habituals.** Les claus no poden garantir: el mínim 1 del costat 1 d'una relació 1:N («tot professor imparteix almenys un mòdul»), l'existència d'una entitat respecte a una relació quan estan en taules distintes, les generalitzacions totals o disjuntes i les restriccions entre relacions («C només es relaciona amb D si ho està amb B»). S'anoten i es resolen en la implementació amb regles de fila, disparadors (Tema 9) o procediments.
+> **Pèrdues semàntiques habituals.** Les claus no poden garantir: el mínim 1 del costat 1 d'una relació 1:N («tot professor imparteix almenys un mòdul»), l'existència d'una entitat respecte a una relació quan estan en taules distintes, les generalitzacions totals o disjuntes i les restriccions entre relacions («C només es relaciona amb D si ho està amb B»). S'anoten i es resolen en la implementació amb regles de fila, guions de comprovació (Tema 9).
 
 ---
 

@@ -358,7 +358,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 | Atributo multivaluado | Tabla nueva con la PK de la entidad y el valor. |
 
 > [!IMPORTANT]
-> **Pérdidas semánticas habituales.** Las claves no pueden garantizar: el mínimo 1 del lado 1 de una relación 1:N («todo profesor imparte al menos un módulo»), la existencia de una entidad respecto a una relación cuando están en tablas distintas, las generalizaciones totales o disjuntas y las restricciones entre relaciones («C solo se relaciona con D si lo está con B»). Se anotan y se resuelven en la implementación con reglas de fila, disparadores (Tema 9) o procedimientos.
+> **Pérdidas semánticas habituales.** Las claves no pueden garantizar: el mínimo 1 del lado 1 de una relación 1:N («todo profesor imparte al menos un módulo»), la existencia de una entidad respecto a una relación cuando están en tablas distintas, las generalizaciones totales o disjuntas y las restricciones entre relaciones («C solo se relaciona con D si lo está con B»). Se anotan y se resuelven en la implementación con reglas de fila, guiones de comprobación (Tema 9).
 
 ---
 

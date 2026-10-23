@@ -1,5 +1,5 @@
 ---
-title: "T5 · Definició i control de dades - Pràctiques"
+title: "T5 · Definició de dades - Pràctiques"
 weight: 52
 bookToc: true
 ---
@@ -15,10 +15,9 @@ bookToc: true
 | [5.3 Biblioteca: script complet i bateria de proves](#pràctica-53--biblioteca-script-complet-i-bateria-de-proves) | Guiada | ●●○ | RA3.b-e, RA3.g, RA3.h |
 | [5.4 Sis casos per a implementar](#pràctica-54--sis-casos-per-a-implementar) | Autònoma | ●●○ | RA3.b-e |
 | [5.5 Evolució de l'esquema amb ALTER](#pràctica-55--evolució-de-lesquema-amb-alter) | Guiada | ●●○ | RA3.b, RA3.e, RA3.g, RA3.h |
-| [5.6 Índexs, vistes i seqüències en EduGest](#pràctica-56--índexs-vistes-i-seqüències-en-edugest) | Guiada | ●●○ | RA3.g, RA3.h |
-| [5.7 Usuaris, rols i privilegis en EduGest](#pràctica-57--usuaris-rols-i-privilegis-en-edugest) | Guiada | ●●● | RA3.g, RA3.h, Ampliació |
-| [5.8 Depurar un script defectuós](#pràctica-58--depurar-un-script-defectuós) | Repte | ●●● | RA3.b-e |
-| [Projecte EduGest · Tema 5](#projecte-edugest--ud05-implementació) | Projecte | ●●● | RA3 complet |
+| [5.6 Índexs i seqüències en EduGest](#pràctica-56--índexs-i-seqüències-en-edugest) | Guiada | ●●○ | RA3.a, RA3.d, RA3.h |
+| [5.7 Depurar un script defectuós](#pràctica-57--depurar-un-script-defectuós) | Repte | ●●● | RA3.b-e |
+| [Projecte EduGest · Tema 5](#projecte-edugest--tema-5-implementació) | Projecte | ●●● | RA3 complet |
 
 > [!IMPORTANT]
 > **Abans de començar.** Necessites l'entorn de la [guia](/guia/entorno) funcionant. Per a les pràctiques 5.1 a 5.5 crea un usuari de proves propi, així no barreges els exercicis amb el projecte. Connecta't com a `SYSTEM` a `FREEPDB1` i executa:
@@ -573,13 +572,13 @@ Per a cada canvi, escriu la sentència i comprova el resultat amb `DESC` o amb e
 
 ---
 
-## Pràctica 5.6 · Índexs, vistes i seqüències en EduGest
+## Pràctica 5.6 · Índexs i seqüències en EduGest
 
-{{< practica num="5.6" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: g, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_vistas_indices.sql" >}}
+{{< practica num="5.6" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: a, d, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_indices_secuencias.sql" >}}
 
 #### Objectiu
 
-Crear sobre l'esquema de referència d'EduGest els objectes que faciliten i protegixen l'accés a les dades.
+Revisar les estructures d'accés de l'esquema de referència d'EduGest i crear un índex i una seqüència nous.
 
 #### Requisits
 
@@ -603,46 +602,7 @@ Carrega l'esquema de referència: executa [els scripts del projecte](/guia/proye
     CREATE INDEX ix_alumno_apellidos ON alumno (apellidos, nombre);
     ```
 
-3. **Vista de llistat per al professorat**, sense dades de contacte personals (minimització del RGPD):
-
-    ```sql
-    CREATE OR REPLACE VIEW v_alumno_listado AS
-        SELECT id_alumno, nia, apellidos, nombre, cod_grupo
-        FROM   alumno
-        WITH READ ONLY;
-    ```
-
-4. **Vista de matrícules llegibles**, que oculta els identificadors interns (avanç del tema 7):
-
-    ```sql
-    CREATE OR REPLACE VIEW v_matricula_detalle AS
-        SELECT m.id_matricula, m.curso_academico,
-               a.nia, a.apellidos || ', ' || a.nombre AS alumno,
-               mo.codigo AS cod_modulo, mo.nombre AS modulo, mo.cod_ciclo,
-               m.convocatoria, m.nota_final
-        FROM   matricula m
-               JOIN alumno a  ON a.id_alumno  = m.id_alumno
-               JOIN modulo mo ON mo.id_modulo = m.id_modulo;
-
-    SELECT * FROM v_matricula_detalle WHERE nia = '10450037';
-    ```
-
-5. **Vista amb `WITH CHECK OPTION`** perquè tutoria només puga registrar faltes no justificades en una vista concreta:
-
-    ```sql
-    CREATE OR REPLACE VIEW v_falta_pendiente AS
-        SELECT id_falta, id_matricula, fecha, horas, justificada
-        FROM   falta_asistencia
-        WHERE  justificada = 'N'
-        WITH CHECK OPTION;
-
-    -- Prova: ha de fallar amb ORA-01402 (view WITH CHECK OPTION where-clause violation)
-    INSERT INTO v_falta_pendiente (id_matricula, fecha, horas, justificada)
-    VALUES (10001, DATE '2026-03-02', 2, 'S');
-    ROLLBACK;
-    ```
-
-6. **Seqüència** per a numerar els certificats que emet secretaria:
+3. **Seqüència** per a numerar els certificats que emet secretaria:
 
     ```sql
     CREATE SEQUENCE seq_certificado START WITH 1 INCREMENT BY 1 NOCACHE;
@@ -654,142 +614,16 @@ Carrega l'esquema de referència: executa [els scripts del projecte](/guia/proye
 #### Comprovació
 
 {{% comprobacion %}}
-- [ ] `SELECT COUNT(*) FROM v_alumno_listado;` torna **32**.
-- [ ] `SELECT COUNT(*) FROM v_matricula_detalle;` torna **143**.
-- [ ] `UPDATE v_alumno_listado SET nombre = 'X' WHERE id_alumno = 1;` falla amb ORA-42399 (*cannot perform a DML operation on a read-only view*).
-- [ ] La inserció del pas 5 falla amb ORA-01402.
-- [ ] `SELECT view_name FROM user_views;` mostra les tres vistes.
+- [ ] `SELECT index_name FROM user_indexes WHERE table_name = 'ALUMNO';` mostra `IX_ALUMNO_APELLIDOS`.
+- [ ] `SELECT seq_certificado.NEXTVAL FROM dual;` torna un valor major en cada execució.
+- [ ] Pots explicar per a cada índex del pas 1 quina restricció o consulta el justifica.
 {{% /comprobacion %}}
 
-#### Ampliació
-
-Crea una vista `v_resumen_grupo` amb el codi de grup, el cicle, el torn i el nom complet del tutor (els grups sense tutor també han d'aparéixer). Necessitaràs un `LEFT JOIN`, que veuràs a el tema 7.
-
 ---
 
-## Pràctica 5.7 · Usuaris, rols i privilegis en EduGest
+## Pràctica 5.7 · Depurar un script defectuós
 
-{{< practica num="5.7" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA3: g, h · Ampliació" sgbd="Oracle 26ai (connexions com a SYSTEM, EDUGEST i els usuaris creats)" entrega="edugest/03_seguridad.sql + matriu de proves" >}}
-
-#### Objectiu
-
-Dissenyar i implantar el model de seguretat d'EduGest aplicant el principi de mínim privilegi, i demostrar amb proves que funciona.
-
-#### Context
-
-EduGest tindrà estos perfils d'accés:
-
-| Perfil | Necessita |
-|---|---|
-| **Secretaria** | Consultar tot; donar d'alta i modificar alumnat i matrícules. No pot esborrar matrícules ni canviar notes |
-| **Professorat** | Veure el llistat d'alumnat (sense dades de contacte), posar notes i registrar faltes |
-| **Direcció d'estudis** | Consultar tot, sense modificar res |
-| **Aplicació web** | El mateix que secretaria, amb un compte tècnic |
-
-#### Desenvolupament
-
-{{% steps %}}
-
-1. **Com a `SYSTEM`**, crea els rols i els usuaris de prova:
-
-    ```sql
-    CREATE ROLE rol_secretaria;
-    CREATE ROLE rol_profesorado;
-    CREATE ROLE rol_jefatura;
-
-    GRANT CREATE SESSION TO rol_secretaria, rol_profesorado, rol_jefatura;
-
-    CREATE USER sec_ana     IDENTIFIED BY "Sec_Ana_2026"     QUOTA 0 ON users;
-    CREATE USER prof_marta  IDENTIFIED BY "Prof_Marta_2026"  QUOTA 0 ON users;
-    CREATE USER jef_carmen  IDENTIFIED BY "Jef_Carmen_2026"  QUOTA 0 ON users;
-    CREATE USER app_edugest IDENTIFIED BY "App_EduGest_2026" QUOTA 0 ON users;
-
-    GRANT rol_secretaria  TO sec_ana, app_edugest;
-    GRANT rol_profesorado TO prof_marta;
-    GRANT rol_jefatura    TO jef_carmen;
-    ```
-
-2. **Com a `EDUGEST`** (propietari dels objectes), concedix els privilegis d'objecte als rols:
-
-    ```sql
-    -- Secretaria
-    GRANT SELECT ON alumno    TO rol_secretaria;
-    GRANT SELECT ON matricula TO rol_secretaria;
-    GRANT SELECT ON grupo     TO rol_secretaria;
-    GRANT SELECT ON modulo    TO rol_secretaria;
-    GRANT INSERT, UPDATE ON alumno TO rol_secretaria;
-    GRANT INSERT, UPDATE (convocatoria, fecha_matricula) ON matricula TO rol_secretaria;
-
-    -- Professorat
-    GRANT SELECT ON v_alumno_listado    TO rol_profesorado;
-    GRANT SELECT ON v_matricula_detalle TO rol_profesorado;
-    GRANT SELECT, UPDATE (nota_final) ON matricula TO rol_profesorado;
-    GRANT SELECT, INSERT, UPDATE ON falta_asistencia TO rol_profesorado;
-    ```
-
-3. **Com a `SYSTEM`**, dóna a direcció d'estudis lectura sobre tot l'esquema amb un privilegi d'esquema (Oracle 23ai i posteriors):
-
-    ```sql
-    GRANT SELECT ANY TABLE ON SCHEMA edugest TO rol_jefatura;
-    ```
-
-4. **Prova cada perfil.** Connecta't amb cada usuari i executa la matriu de proves. Recorda usar el prefix de l'esquema:
-
-    ```sql
-    -- Connectat com a prof_marta
-    SELECT COUNT(*) FROM edugest.v_alumno_listado;                       -- 32
-    SELECT telefono FROM edugest.alumno;                                 -- ORA-00942
-    UPDATE edugest.matricula SET nota_final = 8 WHERE id_matricula = 10001;   -- 1 fila
-    UPDATE edugest.matricula SET convocatoria = 2 WHERE id_matricula = 10001; -- ORA-01031
-    ROLLBACK;
-    ```
-
-5. **Comprova els privilegis des del diccionari**:
-
-    ```sql
-    -- Com a SYSTEM
-    SELECT grantee, table_name, privilege FROM dba_tab_privs WHERE owner = 'EDUGEST' ORDER BY grantee;
-    SELECT grantee, table_name, column_name, privilege FROM dba_col_privs WHERE owner = 'EDUGEST';
-    SELECT grantee, granted_role FROM dba_role_privs WHERE granted_role LIKE 'ROL\_%' ESCAPE '\';
-    ```
-
-{{% /steps %}}
-
-#### Comprovació: matriu de proves
-
-Completa la matriu amb ✅ (permés) o ❌ (error i codi). Els teus resultats han de coincidir amb els esperats:
-
-| Operació | sec_ana | prof_marta | jef_carmen |
-|---|---|---|---|
-| `SELECT` d'`edugest.alumno` | ✅ | ❌ ORA-00942 | ✅ |
-| `SELECT` de `edugest.v_alumno_listado` | ❌ | ✅ | ✅ |
-| `INSERT` en `edugest.alumno` | ✅ | ❌ | ❌ ORA-01031 |
-| `UPDATE` de `nota_final` en `edugest.matricula` | ❌ ORA-01031 | ✅ | ❌ |
-| `DELETE` de `edugest.matricula` | ❌ | ❌ | ❌ |
-| `INSERT` en `edugest.falta_asistencia` | ❌ | ✅ | ❌ |
-| `CREATE TABLE prueba (x NUMBER)` | ❌ | ❌ | ❌ |
-
-> [!NOTE]
-> Quan un usuari no té **cap** privilegi sobre un objecte, Oracle respon `ORA-00942: table or view does not exist` en lloc de «sense permís». És una mesura de seguretat: així no revela quins objectes existixen. Si té algun privilegi però no el que intenta usar, l'error és `ORA-01031: insufficient privileges`.
-
-#### Errors habituals
-
-| Problema | Causa |
-|---|---|
-| L'usuari rep un rol però continua sense poder fer res | Els rols s'activen en **iniciar sessió**: desconnecta i torna a connectar |
-| `ORA-01045: user lacks CREATE SESSION privilege` | Falta `CREATE SESSION` en el rol o en l'usuari |
-| Un procediment PL/SQL no veu una taula encara que el rol tinga permís (Tema 9) | En els procediments amb drets del definidor, els privilegis rebuts **a través de rols** no compten: cal concedir-los directament a l'usuari |
-
-#### Ampliació
-
-1. Crea un **perfil** de contrasenyes per al personal (5 intents fallits, caducitat de 180 dies) i assigna'l als tres usuaris personals. Per què **no** convé assignar-lo a `app_edugest`?
-2. Revoca `rol_secretaria` a `app_edugest` i crea un rol específic per a l'aplicació. Justifica per què un compte tècnic no hauria de compartir rol amb persones.
-
----
-
-## Pràctica 5.8 · Depurar un script defectuós
-
-{{< practica num="5.8" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregit + informe d'errors" >}}
+{{< practica num="5.7" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregit + informe d'errors" >}}
 
 #### Objectiu
 
@@ -840,23 +674,21 @@ Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` n
 
 ## Projecte EduGest · Tema 5: implementació
 
-{{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h · Ampliació" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 03_seguridad.sql, 04_vistas_indices.sql i docs/05-implementacion.md" >}}
+{{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 04_indices_secuencias.sql i docs/05-implementacion.md" >}}
 
 #### Enunciat
 
 1. **El teu script d'esquema.** Implementa en Oracle **el teu** model relacional normalitzat (EduGest-4) en un script relanzable, amb totes les restriccions amb nom, índexs sobre les claus alienes i comentaris en les taules.
 2. **Comparació.** Executa el teu script en un usuari `EDUGEST_MIO` i el de referència en `EDUGEST`. Usa el diccionari (`USER_TAB_COLUMNS`, `USER_CONSTRAINTS`) per a llistar les diferències i justifica les teues en `05-implementacion.md`.
-3. **Restriccions implementables amb DDL.** Del teu catàleg de restriccions (Tema 3-Tema 4), implementa totes les que es puguen expressar amb `CHECK` o índexs únics basats en funció. Marca les que queden per a el tema 9.
-4. **Seguretat.** Lliura `03_seguridad.sql` (pràctica 5.7 completa, amb perfils) i la matriu de proves.
-5. **Vistes i índexs.** Lliura `04_vistas_indices.sql` (pràctica 5.6 i la seua ampliació).
-6. **Diagrama.** Genera amb SQL Developer Data Modeler el diagrama relacional de l'esquema `EDUGEST` per enginyeria inversa i inclou-lo en la documentació.
+3. **Restriccions implementables amb DDL.** Del teu catàleg de restriccions (Tema 3-Tema 4), implementa totes les que es puguen expressar amb `CHECK` o índexs únics basats en funció. Documenta les que no es poden plasmar amb DDL (RA2.i).
+4. **Índexs i seqüències.** Lliura `04_indices_secuencias.sql` (pràctica 5.6).
+5. **Diagrama.** Genera amb SQL Developer Data Modeler el diagrama relacional de l'esquema `EDUGEST` per enginyeria inversa i inclou-lo en la documentació.
 
 #### Comprovació
 
 {{% comprobacion %}}
 - [ ] Els scripts s'executen de principi a fi en un esquema buit.
 - [ ] `SELECT COUNT(*) FROM user_constraints WHERE constraint_name LIKE 'SYS%';` torna 0 en el teu esquema (totes les restriccions tenen nom).
-- [ ] La matriu de seguretat està completa i coincidix amb l'esperat.
 
 > [!TIP]
 > A partir del tema 6, **tot el grup** treballa sobre l'esquema de referència `EDUGEST` carregat amb els scripts 01 i 02, perquè els resultats de les consultes coincidisquen amb els dels apunts.

@@ -1,5 +1,5 @@
 ---
-title: "T5 · Definición y control de datos - Prácticas"
+title: "T5 · Definición de datos - Prácticas"
 weight: 52
 bookToc: true
 ---
@@ -15,9 +15,8 @@ bookToc: true
 | [5.3 Biblioteca: script completo y batería de pruebas](#práctica-53--biblioteca-script-completo-y-batería-de-pruebas) | Guiada | ●●○ | RA3.b-e, RA3.g, RA3.h |
 | [5.4 Seis casos para implementar](#práctica-54--seis-casos-para-implementar) | Autónoma | ●●○ | RA3.b-e |
 | [5.5 Evolución del esquema con ALTER](#práctica-55--evolución-del-esquema-con-alter) | Guiada | ●●○ | RA3.b, RA3.e, RA3.g, RA3.h |
-| [5.6 Índices, vistas y secuencias en EduGest](#práctica-56--índices-vistas-y-secuencias-en-edugest) | Guiada | ●●○ | RA3.g, RA3.h |
-| [5.7 Usuarios, roles y privilegios en EduGest](#práctica-57--usuarios-roles-y-privilegios-en-edugest) | Guiada | ●●● | RA3.g, RA3.h, Ampliación |
-| [5.8 Depurar un script defectuoso](#práctica-58--depurar-un-script-defectuoso) | Reto | ●●● | RA3.b-e |
+| [5.6 Índices y secuencias en EduGest](#práctica-56--índices-y-secuencias-en-edugest) | Guiada | ●●○ | RA3.a, RA3.d, RA3.h |
+| [5.7 Depurar un script defectuoso](#práctica-57--depurar-un-script-defectuoso) | Reto | ●●● | RA3.b-e |
 | [Proyecto EduGest · Tema 5](#proyecto-edugest--tema-5-implementación) | Proyecto | ●●● | RA3 completo |
 
 > [!IMPORTANT]
@@ -573,13 +572,13 @@ Para cada cambio, escribe la sentencia y comprueba el resultado con `DESC` o con
 
 ---
 
-## Práctica 5.6 · Índices, vistas y secuencias en EduGest
+## Práctica 5.6 · Índices y secuencias en EduGest
 
-{{< practica num="5.6" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA3: g, h" sgbd="Oracle 26ai · esquema EDUGEST con los scripts 01 y 02" entrega="edugest/04_vistas_indices.sql" >}}
+{{< practica num="5.6" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA3: a, d, h" sgbd="Oracle 26ai · esquema EDUGEST con los scripts 01 y 02" entrega="edugest/04_indices_secuencias.sql" >}}
 
 #### Objetivo
 
-Crear sobre el esquema de referencia de EduGest los objetos que facilitan y protegen el acceso a los datos.
+Revisar las estructuras de acceso del esquema de referencia de EduGest y crear un índice y una secuencia nuevos.
 
 #### Requisitos
 
@@ -603,46 +602,7 @@ Carga el esquema de referencia: ejecuta [los scripts del proyecto](/guia/proyect
     CREATE INDEX ix_alumno_apellidos ON alumno (apellidos, nombre);
     ```
 
-3. **Vista de listado para el profesorado**, sin datos de contacto personales (minimización del RGPD):
-
-    ```sql
-    CREATE OR REPLACE VIEW v_alumno_listado AS
-        SELECT id_alumno, nia, apellidos, nombre, cod_grupo
-        FROM   alumno
-        WITH READ ONLY;
-    ```
-
-4. **Vista de matrículas legibles**, que oculta los identificadores internos (adelanto del tema 7):
-
-    ```sql
-    CREATE OR REPLACE VIEW v_matricula_detalle AS
-        SELECT m.id_matricula, m.curso_academico,
-               a.nia, a.apellidos || ', ' || a.nombre AS alumno,
-               mo.codigo AS cod_modulo, mo.nombre AS modulo, mo.cod_ciclo,
-               m.convocatoria, m.nota_final
-        FROM   matricula m
-               JOIN alumno a  ON a.id_alumno  = m.id_alumno
-               JOIN modulo mo ON mo.id_modulo = m.id_modulo;
-
-    SELECT * FROM v_matricula_detalle WHERE nia = '10450037';
-    ```
-
-5. **Vista con `WITH CHECK OPTION`** para que tutoría solo pueda registrar faltas no justificadas en una vista concreta:
-
-    ```sql
-    CREATE OR REPLACE VIEW v_falta_pendiente AS
-        SELECT id_falta, id_matricula, fecha, horas, justificada
-        FROM   falta_asistencia
-        WHERE  justificada = 'N'
-        WITH CHECK OPTION;
-
-    -- Prueba: debe fallar con ORA-01402 (view WITH CHECK OPTION where-clause violation)
-    INSERT INTO v_falta_pendiente (id_matricula, fecha, horas, justificada)
-    VALUES (10001, DATE '2026-03-02', 2, 'S');
-    ROLLBACK;
-    ```
-
-6. **Secuencia** para numerar los certificados que emite secretaría:
+3. **Secuencia** para numerar los certificados que emite secretaría:
 
     ```sql
     CREATE SEQUENCE seq_certificado START WITH 1 INCREMENT BY 1 NOCACHE;
@@ -654,142 +614,16 @@ Carga el esquema de referencia: ejecuta [los scripts del proyecto](/guia/proyect
 #### Comprobación
 
 {{% comprobacion %}}
-- [ ] `SELECT COUNT(*) FROM v_alumno_listado;` devuelve **32**.
-- [ ] `SELECT COUNT(*) FROM v_matricula_detalle;` devuelve **143**.
-- [ ] `UPDATE v_alumno_listado SET nombre = 'X' WHERE id_alumno = 1;` falla con ORA-42399 (*cannot perform a DML operation on a read-only view*).
-- [ ] La inserción del paso 5 falla con ORA-01402.
-- [ ] `SELECT view_name FROM user_views;` muestra las tres vistas.
+- [ ] `SELECT index_name FROM user_indexes WHERE table_name = 'ALUMNO';` muestra `IX_ALUMNO_APELLIDOS`.
+- [ ] `SELECT seq_certificado.NEXTVAL FROM dual;` devuelve un valor mayor en cada ejecución.
+- [ ] Puedes explicar para cada índice del paso 1 qué restricción o consulta lo justifica.
 {{% /comprobacion %}}
 
-#### Ampliación
-
-Crea una vista `v_resumen_grupo` con el código de grupo, el ciclo, el turno y el nombre completo del tutor (los grupos sin tutor también deben aparecer). Necesitarás un `LEFT JOIN`, que verás en el tema 7.
-
 ---
 
-## Práctica 5.7 · Usuarios, roles y privilegios en EduGest
+## Práctica 5.7 · Depurar un script defectuoso
 
-{{< practica num="5.7" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA3: g, h · Ampliación" sgbd="Oracle 26ai (conexiones como SYSTEM, EDUGEST y los usuarios creados)" entrega="edugest/03_seguridad.sql + matriz de pruebas" >}}
-
-#### Objetivo
-
-Diseñar e implantar el modelo de seguridad de EduGest aplicando el principio de mínimo privilegio, y demostrar con pruebas que funciona.
-
-#### Contexto
-
-EduGest tendrá estos perfiles de acceso:
-
-| Perfil | Necesita |
-|---|---|
-| **Secretaría** | Consultar todo; dar de alta y modificar alumnado y matrículas. No puede borrar matrículas ni cambiar notas |
-| **Profesorado** | Ver el listado de alumnado (sin datos de contacto), poner notas y registrar faltas |
-| **Jefatura** | Consultar todo, sin modificar nada |
-| **Aplicación web** | Lo mismo que secretaría, con una cuenta técnica |
-
-#### Desarrollo
-
-{{% steps %}}
-
-1. **Como `SYSTEM`**, crea los roles y los usuarios de prueba:
-
-    ```sql
-    CREATE ROLE rol_secretaria;
-    CREATE ROLE rol_profesorado;
-    CREATE ROLE rol_jefatura;
-
-    GRANT CREATE SESSION TO rol_secretaria, rol_profesorado, rol_jefatura;
-
-    CREATE USER sec_ana     IDENTIFIED BY "Sec_Ana_2026"     QUOTA 0 ON users;
-    CREATE USER prof_marta  IDENTIFIED BY "Prof_Marta_2026"  QUOTA 0 ON users;
-    CREATE USER jef_carmen  IDENTIFIED BY "Jef_Carmen_2026"  QUOTA 0 ON users;
-    CREATE USER app_edugest IDENTIFIED BY "App_EduGest_2026" QUOTA 0 ON users;
-
-    GRANT rol_secretaria  TO sec_ana, app_edugest;
-    GRANT rol_profesorado TO prof_marta;
-    GRANT rol_jefatura    TO jef_carmen;
-    ```
-
-2. **Como `EDUGEST`** (propietario de los objetos), concede los privilegios de objeto a los roles:
-
-    ```sql
-    -- Secretaría
-    GRANT SELECT ON alumno    TO rol_secretaria;
-    GRANT SELECT ON matricula TO rol_secretaria;
-    GRANT SELECT ON grupo     TO rol_secretaria;
-    GRANT SELECT ON modulo    TO rol_secretaria;
-    GRANT INSERT, UPDATE ON alumno TO rol_secretaria;
-    GRANT INSERT, UPDATE (convocatoria, fecha_matricula) ON matricula TO rol_secretaria;
-
-    -- Profesorado
-    GRANT SELECT ON v_alumno_listado    TO rol_profesorado;
-    GRANT SELECT ON v_matricula_detalle TO rol_profesorado;
-    GRANT SELECT, UPDATE (nota_final) ON matricula TO rol_profesorado;
-    GRANT SELECT, INSERT, UPDATE ON falta_asistencia TO rol_profesorado;
-    ```
-
-3. **Como `SYSTEM`**, da a jefatura lectura sobre todo el esquema con un privilegio de esquema (Oracle 23ai y posteriores):
-
-    ```sql
-    GRANT SELECT ANY TABLE ON SCHEMA edugest TO rol_jefatura;
-    ```
-
-4. **Prueba cada perfil.** Conéctate con cada usuario y ejecuta la matriz de pruebas. Recuerda usar el prefijo del esquema:
-
-    ```sql
-    -- Conectado como prof_marta
-    SELECT COUNT(*) FROM edugest.v_alumno_listado;                       -- 32
-    SELECT telefono FROM edugest.alumno;                                 -- ORA-00942
-    UPDATE edugest.matricula SET nota_final = 8 WHERE id_matricula = 10001;   -- 1 fila
-    UPDATE edugest.matricula SET convocatoria = 2 WHERE id_matricula = 10001; -- ORA-01031
-    ROLLBACK;
-    ```
-
-5. **Comprueba los privilegios desde el diccionario**:
-
-    ```sql
-    -- Como SYSTEM
-    SELECT grantee, table_name, privilege FROM dba_tab_privs WHERE owner = 'EDUGEST' ORDER BY grantee;
-    SELECT grantee, table_name, column_name, privilege FROM dba_col_privs WHERE owner = 'EDUGEST';
-    SELECT grantee, granted_role FROM dba_role_privs WHERE granted_role LIKE 'ROL\_%' ESCAPE '\';
-    ```
-
-{{% /steps %}}
-
-#### Comprobación: matriz de pruebas
-
-Completa la matriz con ✅ (permitido) o ❌ (error y código). Tus resultados deben coincidir con los esperados:
-
-| Operación | sec_ana | prof_marta | jef_carmen |
-|---|---|---|---|
-| `SELECT` de `edugest.alumno` | ✅ | ❌ ORA-00942 | ✅ |
-| `SELECT` de `edugest.v_alumno_listado` | ❌ | ✅ | ✅ |
-| `INSERT` en `edugest.alumno` | ✅ | ❌ | ❌ ORA-01031 |
-| `UPDATE` de `nota_final` en `edugest.matricula` | ❌ ORA-01031 | ✅ | ❌ |
-| `DELETE` de `edugest.matricula` | ❌ | ❌ | ❌ |
-| `INSERT` en `edugest.falta_asistencia` | ❌ | ✅ | ❌ |
-| `CREATE TABLE prueba (x NUMBER)` | ❌ | ❌ | ❌ |
-
-> [!NOTE]
-> Cuando un usuario no tiene **ningún** privilegio sobre un objeto, Oracle responde `ORA-00942: table or view does not exist` en lugar de «sin permiso». Es una medida de seguridad: así no revela qué objetos existen. Si tiene algún privilegio pero no el que intenta usar, el error es `ORA-01031: insufficient privileges`.
-
-#### Errores habituales
-
-| Problema | Causa |
-|---|---|
-| El usuario recibe un rol pero sigue sin poder hacer nada | Los roles se activan al **iniciar sesión**: desconecta y vuelve a conectar |
-| `ORA-01045: user lacks CREATE SESSION privilege` | Falta `CREATE SESSION` en el rol o en el usuario |
-| Un procedimiento PL/SQL no ve una tabla aunque el rol tenga permiso (Tema 9) | En los procedimientos con derechos del definidor, los privilegios recibidos **a través de roles** no cuentan: hay que concederlos directamente al usuario |
-
-#### Ampliación
-
-1. Crea un **perfil** de contraseñas para el personal (5 intentos fallidos, caducidad de 180 días) y asígnalo a los tres usuarios personales. ¿Por qué **no** conviene asignarlo a `app_edugest`?
-2. Revoca `rol_secretaria` a `app_edugest` y crea un rol específico para la aplicación. Justifica por qué una cuenta técnica no debería compartir rol con personas.
-
----
-
-## Práctica 5.8 · Depurar un script defectuoso
-
-{{< practica num="5.8" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregido + informe de errores" >}}
+{{< practica num="5.7" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregido + informe de errores" >}}
 
 #### Objetivo
 
@@ -840,23 +674,21 @@ Sintaxis de otro SGBD (2), orden de creación (1), coma olvidada (1), `CHECK` no
 
 ## Proyecto EduGest · Tema 5: implementación
 
-{{< practica num="EduGest-5" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h · Ampliación" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 03_seguridad.sql, 04_vistas_indices.sql y docs/05-implementacion.md" >}}
+{{< practica num="EduGest-5" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 04_indices_secuencias.sql y docs/05-implementacion.md" >}}
 
 #### Enunciado
 
 1. **Tu script de esquema.** Implementa en Oracle **tu** modelo relacional normalizado (EduGest-4) en un script relanzable, con todas las restricciones con nombre, índices sobre las claves ajenas y comentarios en las tablas.
 2. **Comparación.** Ejecuta tu script en un usuario `EDUGEST_MIO` y el de referencia en `EDUGEST`. Usa el diccionario (`USER_TAB_COLUMNS`, `USER_CONSTRAINTS`) para listar las diferencias y justifica las tuyas en `05-implementacion.md`.
-3. **Restricciones implementables con DDL.** De tu catálogo de restricciones (Tema 3-Tema 4), implementa todas las que se puedan expresar con `CHECK` o índices únicos basados en función. Marca las que quedan para el tema 9.
-4. **Seguridad.** Entrega `03_seguridad.sql` (práctica 5.7 completa, con perfiles) y la matriz de pruebas.
-5. **Vistas e índices.** Entrega `04_vistas_indices.sql` (práctica 5.6 y su ampliación).
-6. **Diagrama.** Genera con SQL Developer Data Modeler el diagrama relacional del esquema `EDUGEST` por ingeniería inversa e inclúyelo en la documentación.
+3. **Restricciones implementables con DDL.** De tu catálogo de restricciones (Tema 3-Tema 4), implementa todas las que se puedan expresar con `CHECK` o índices únicos basados en función. Documenta las que no se pueden plasmar con DDL (RA2.i).
+4. **Índices y secuencias.** Entrega `04_indices_secuencias.sql` (práctica 5.6).
+5. **Diagrama.** Genera con SQL Developer Data Modeler el diagrama relacional del esquema `EDUGEST` por ingeniería inversa e inclúyelo en la documentación.
 
 #### Comprobación
 
 {{% comprobacion %}}
 - [ ] Los scripts se ejecutan de principio a fin en un esquema vacío.
 - [ ] `SELECT COUNT(*) FROM user_constraints WHERE constraint_name LIKE 'SYS%';` devuelve 0 en tu esquema (todas las restricciones tienen nombre).
-- [ ] La matriz de seguridad está completa y coincide con lo esperado.
 
 > [!TIP]
 > A partir del tema 6, **todo el grupo** trabaja sobre el esquema de referencia `EDUGEST` cargado con los scripts 01 y 02, para que los resultados de las consultas coincidan con los de los apuntes.

@@ -12,29 +12,26 @@ Consultar es la operación más frecuente en cualquier base de datos. En esta un
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargado con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables), y muestran el resultado que debes obtener.
 
-{{< ra "RA4:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" >}}
 
 ### Temporalización
 
-El tema ocupa **14 horas de aula** (6 de teoría y 8 de práctica). Es la primera unidad del RA4: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
+El tema ocupa **10 horas de aula** (5 de teoría y 5 de práctica). Es la primera unidad del RA4: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
 
-{{< sesiones unidad="T06" horas="14" >}}
+{{< sesiones unidad="T06" horas="10" >}}
 items:
   - {h: 1, tipo: T, t: "Herramientas y sentencia SELECT. Proyección, alias, concatenación y DISTINCT", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Primeras consultas y herramientas", ref: "Práctica 6.1"}
   - {h: 1, tipo: T, t: "Ordenación y selección con WHERE: comparación, LIKE y operadores lógicos", ref: "§3 y §4 · laboratorio de SELECT"}
-  - {h: 2, tipo: P, t: "Consultas para secretaría", ref: "Práctica 6.2"}
-  - {h: 1, tipo: T, t: "El valor NULL y la lógica de tres valores", ref: "§5 · simulador de lógica trivalente"}
-  - {h: 1, tipo: P, t: "Laboratorio de valores nulos", ref: "Práctica 6.3"}
-  - {h: 1, tipo: T, t: "Limitar el número de filas", ref: "§6"}
-  - {h: 1, tipo: T, t: "Funciones de fila (I): texto, numéricas y de fecha", ref: "§7.1 a §7.3"}
-  - {h: 1, tipo: T, t: "Funciones de fila (II): conversión, CASE, DECODE y expresiones regulares", ref: "§7.4 a §7.6"}
+  - {h: 1, tipo: P, t: "Consultas para secretaría", ref: "Práctica 6.2"}
+  - {h: 1, tipo: T, t: "El valor NULL y limitar el número de filas", ref: "§5 y §6 · simulador de lógica trivalente"}
+  - {h: 2, tipo: T, t: "Funciones de fila: texto, numéricas, fecha, conversión, CASE y DECODE", ref: "§7"}
   - {h: 2, tipo: P, t: "Funciones para informes", ref: "Práctica 6.4"}
-  - {h: 1, tipo: P, t: "Validar datos con SQL", ref: "Práctica 6.5"}
   - {h: 1, tipo: P, t: "Consultas del día a día en EduGest", ref: "Proyecto EduGest-6"}
 autonomo:
   - "Terminar las consultas de la práctica 6.2 que no hayan dado tiempo en el aula"
-  - "Ampliaciones de las prácticas 6.3, 6.4 y 6.5"
+  - "Prácticas 6.3 (laboratorio de valores nulos) y 6.5 (validar datos con SQL)"
+  - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -63,7 +60,8 @@ Al terminar esta unidad serás capaz de:
 
 ---
 
-{{< sesion n="1" h="2" tipo="t" >}}Herramientas, SELECT y proyección{{< /sesion >}}
+
+{{< sesion n="1" h="1" tipo="t" >}}Herramientas y sentencia SELECT. Proyección, alias, concatenación y DISTINCT{{< /sesion >}}
 
 ## 1. Herramientas y sentencias para consultar
 
@@ -219,7 +217,8 @@ SELECT SYSDATE, 7 * 24 AS horas_semana, UPPER('edugest') FROM dual;
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Ordenación y selección{{< /sesion >}}
+
+{{< sesion n="3" h="1" tipo="t" >}}Ordenación y selección con WHERE: comparación, LIKE y operadores lógicos{{< /sesion >}}
 
 ## 3. Ordenación: ORDER BY
 
@@ -390,11 +389,12 @@ Construye una consulta sobre la tabla `ALUMNO` eligiendo columnas, condiciones y
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}El valor NULL{{< /sesion >}}
 
 {{% curiosidad titulo="NULL no es cero ni «vacío»" %}}
 `NULL` significa «valor desconocido». Por eso `NULL = NULL` no es verdadero, sino desconocido, y por eso SQL usa una lógica de **tres valores**: verdadero, falso y desconocido.
 {{% /curiosidad %}}
+
+{{< sesion n="5" h="1" tipo="t" >}}El valor NULL y limitar el número de filas{{< /sesion >}}
 
 ## 5. El valor NULL
 
@@ -489,7 +489,6 @@ ORDER  BY id_alumno;
 
 ---
 
-{{< sesion n="7" h="1" tipo="t" >}}Limitar el número de filas{{< /sesion >}}
 
 ## 6. Limitar el número de filas
 
@@ -526,7 +525,8 @@ FETCH FIRST 5 ROWS ONLY;
 
 ---
 
-{{< sesion n="8" h="3" tipo="t" >}}Funciones de fila: texto, numéricas y de fecha{{< /sesion >}}
+
+{{< sesion n="6" h="2" tipo="t" >}}Funciones de fila: texto, numéricas, fecha, conversión, CASE y DECODE{{< /sesion >}}
 
 ## 7. Funciones de fila
 
@@ -644,7 +644,6 @@ WHERE  fecha_matricula >= DATE '2025-09-15'
 AND    fecha_matricula <  DATE '2025-09-16';
 ```
 
-{{< sesion n="9" h="2" tipo="t" >}}Conversión, CASE y expresiones regulares{{< /sesion >}}
 
 ### 7.4 Funciones de conversión
 
@@ -731,22 +730,6 @@ ORDER  BY cod_grupo;
 
 *6 filas*
 
-
-### 7.6 Expresiones regulares
-
-Oracle incluye funciones de expresiones regulares para búsquedas más potentes que `LIKE`: `REGEXP_LIKE`, `REGEXP_SUBSTR`, `REGEXP_REPLACE`, `REGEXP_INSTR`, `REGEXP_COUNT`.
-
-```sql
--- Profesorado con DNI que empieza por 2 y termina en C o E
-SELECT nombre, dni FROM profesor WHERE REGEXP_LIKE(dni, '^2[0-9]{7}[CE]$') ORDER BY nombre;
-```
-
-| NOMBRE | DNI |
-|---|---|
-| Carmen | 21369874E |
-| Marta | 21456789C |
-
----
 
 ## 8. Errores frecuentes
 

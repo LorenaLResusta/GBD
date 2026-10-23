@@ -210,7 +210,7 @@ def sgbd_overview():
 
 def timeline():
     s = Svg("timeline-evolution", 960, 430, "Evolución histórica de las bases de datos",
-            "Línea del tiempo desde las tarjetas Hollerith hasta SQL y NoSQL.")
+            "Línea del tiempo desde las tarjetas Hollerith hasta SQL y la nube.")
     s.title("Evolución histórica de las bases de datos")
     ev = [("1890", "Tarjetas Hollerith", "Censo de EE. UU.", BLUE, "Herman Hollerith patentó la tabuladora en 1884; se usó en el censo de 1890 y su empresa acabó en IBM."),
           ("Años 50", "Cintas magnéticas", "Acceso secuencial", GREEN, "Ficheros secuenciales: para leer el registro 1000 había que pasar por los 999 anteriores."),
@@ -218,7 +218,7 @@ def timeline():
           ("1970", "Modelo relacional", "E. F. Codd (IBM)", RED, "Codd publicó «A Relational Model of Data for Large Shared Data Banks»: datos en tablas y lenguaje declarativo."),
           ("1976", "Modelo E/R", "Peter Chen", PURPLE, "Chen propuso el modelo Entidad-Relación para el diseño conceptual."),
           ("1979–86", "SQL comercial y ANSI", "Oracle · SQL-86", PINK, "Oracle V2 (1979) fue el primer SQL comercial; ANSI estandarizó SQL en 1986."),
-          ("2009+", "NoSQL y la nube", "MongoDB · Cloud", BLUE, "El término NoSQL se popularizó en 2009 ante la necesidad de escalar horizontalmente.")]
+          ("2000+", "Bases de datos en la nube", "SGBD como servicio", BLUE, "Los SGBD pasan a ofrecerse como servicio en la nube: el proveedor gestiona la infraestructura.")]
     n = len(ev)
     x0, x1, ym = 70, 890, 220
     s.line(x0 - 20, ym, x1 + 20, ym, "#475569", 4)

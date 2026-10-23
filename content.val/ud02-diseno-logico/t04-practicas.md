@@ -17,7 +17,7 @@ math: true
 | [4.4 Reserves d'un hotel rural](#pràctica-44--reserves-dun-hotel-rural) | Autònoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
 | [4.5 FNBC i dependències perdudes](#pràctica-45--fnbc-i-dependències-perdudes) | Repte | ●●● | RA2.h, RA2.i |
 | [4.6 Normalitzar o desnormalitzar?](#pràctica-46--normalitzar-o-desnormalitzar) | Repte | ●●● | RA2.h |
-| [Projecte EduGest · Tema 4](#projecte-edugest--ud04-informe-de-normalització) | Projecte | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
+| [Projecte EduGest · Tema 4](#projecte-edugest--tema-4-informe-de-normalització) | Projecte | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
 
 ---
 

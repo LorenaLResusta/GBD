@@ -12,29 +12,26 @@ Consultar és l'operació més freqüent en qualsevol base de dades. En esta uni
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** carregat amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables), i mostren el resultat que has d'obtindre.
 
-{{< ra "RA4:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" >}}
 
 ### Temporalització
 
-El tema ocupa **14 hores d'aula** (6 de teoria i 8 de pràctica). És la primera unitat del RA4: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
+El tema ocupa **10 hores d'aula** (5 de teoria i 5 de pràctica). És la primera unitat del RA4: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
 
-{{< sesiones unidad="T06" horas="14" >}}
+{{< sesiones unidad="T06" horas="10" >}}
 items:
   - {h: 1, tipo: T, t: "Eines i sentència SELECT. Projecció, àlies, concatenació i DISTINCT", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Primeres consultes i eines", ref: "Pràctica 6.1"}
   - {h: 1, tipo: T, t: "Ordenació i selecció amb WHERE: comparació, LIKE i operadors lògics", ref: "§3 i §4 · laboratori de SELECT"}
-  - {h: 2, tipo: P, t: "Consultes per a secretaria", ref: "Pràctica 6.2"}
-  - {h: 1, tipo: T, t: "El valor NULL i la lògica de tres valors", ref: "§5 · simulador de lògica trivalent"}
-  - {h: 1, tipo: P, t: "Laboratori de valors nuls", ref: "Pràctica 6.3"}
-  - {h: 1, tipo: T, t: "Limitar el nombre de files", ref: "§6"}
-  - {h: 1, tipo: T, t: "Funcions de fila (I): text, numèriques i de data", ref: "§7.1 a §7.3"}
-  - {h: 1, tipo: T, t: "Funcions de fila (II): conversió, CASE, DECODE i expressions regulars", ref: "§7.4 a §7.6"}
+  - {h: 1, tipo: P, t: "Consultes per a secretaria", ref: "Pràctica 6.2"}
+  - {h: 1, tipo: T, t: "El valor NULL i limitar el nombre de files", ref: "§5 i §6 · simulador de lògica trivalent"}
+  - {h: 2, tipo: T, t: "Funcions de fila: text, numèriques, data, conversió, CASE i DECODE", ref: "§7"}
   - {h: 2, tipo: P, t: "Funcions per a informes", ref: "Pràctica 6.4"}
-  - {h: 1, tipo: P, t: "Validar dades amb SQL", ref: "Pràctica 6.5"}
   - {h: 1, tipo: P, t: "Consultes del dia a dia en EduGest", ref: "Projecte EduGest-6"}
 autonomo:
   - "Acabar les consultes de la pràctica 6.2 que no hagen donat temps a l'aula"
-  - "Ampliacions de les pràctiques 6.3, 6.4 i 6.5"
+  - "Pràctiques 6.3 (laboratori de valors nuls) i 6.5 (validar dades amb SQL)"
+  - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -63,7 +60,8 @@ En acabar esta unitat seràs capaç de:
 
 ---
 
-{{< sesion n="1" h="2" tipo="t" >}}Eines, SELECT i projecció{{< /sesion >}}
+
+{{< sesion n="1" h="1" tipo="t" >}}Eines i sentència SELECT. Projecció, àlies, concatenació i DISTINCT{{< /sesion >}}
 
 ## 1. Eines i sentències per a consultar
 
@@ -211,15 +209,12 @@ SELECT SYSDATE, 7 * 24 AS horas_semana, UPPER('edugest') FROM dual;
   options: ["Una fila per alumne", "Cada localitat una sola vegada (el `NULL` compta com un valor més)", "Només les localitats sense alumnes", "Un error: falta `GROUP BY`"]
   answer: 1
   explain: "`DISTINCT` elimina files duplicades del resultat. Considera iguals dos `NULL`, de manera que apareix com a màxim una fila nul·la."
-- q: "En Oracle 26ai, com s'avalua una expressió com `1+1` sense consultar cap taula?"
-  options: ["Només és possible amb `FROM dual`", "Amb `FROM dual` (vàlid en totes les versions) o, des de 23ai, sense `FROM`", "No és possible: tota consulta necessita una taula real", "Amb `VALUES (1+1)`"]
-  answer: 1
-  explain: "`DUAL` és una taula d'una fila i una columna. Oracle exigia `FROM` fins a la 21c; des de 23ai s'admet ometre'l, però per a codi portable a versions anteriors s'usa `DUAL`."
 {{< /quiz >}}
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Ordenació i selecció{{< /sesion >}}
+
+{{< sesion n="3" h="1" tipo="t" >}}Ordenació i selecció amb WHERE: comparació, LIKE i operadors lògics{{< /sesion >}}
 
 ## 3. Ordenació: ORDER BY
 
@@ -390,11 +385,12 @@ Construïx una consulta sobre la taula `ALUMNO` triant columnes, condicions i or
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}El valor NULL{{< /sesion >}}
 
 {{% curiosidad titulo="NULL no és zero ni «buit»" %}}
 `NULL` significa «valor desconegut». Per això `NULL = NULL` no és vertader, sinó desconegut, i per això SQL usa una lògica de **tres valors**: vertader, fals i desconegut.
 {{% /curiosidad %}}
+
+{{< sesion n="5" h="1" tipo="t" >}}El valor NULL i limitar el nombre de files{{< /sesion >}}
 
 ## 5. El valor NULL
 
@@ -489,7 +485,6 @@ ORDER  BY id_alumno;
 
 ---
 
-{{< sesion n="7" h="1" tipo="t" >}}Limitar el nombre de files{{< /sesion >}}
 
 ## 6. Limitar el nombre de files
 
@@ -526,7 +521,8 @@ FETCH FIRST 5 ROWS ONLY;
 
 ---
 
-{{< sesion n="8" h="3" tipo="t" >}}Funcions de fila: text, numèriques i de data{{< /sesion >}}
+
+{{< sesion n="6" h="2" tipo="t" >}}Funcions de fila: text, numèriques, data, conversió, CASE i DECODE{{< /sesion >}}
 
 ## 7. Funcions de fila
 
@@ -644,7 +640,6 @@ WHERE  fecha_matricula >= DATE '2025-09-15'
 AND    fecha_matricula <  DATE '2025-09-16';
 ```
 
-{{< sesion n="9" h="2" tipo="t" >}}Conversió, CASE i expressions regulars{{< /sesion >}}
 
 ### 7.4 Funcions de conversió
 
@@ -732,22 +727,6 @@ ORDER  BY cod_grupo;
 *6 files*
 
 
-### 7.6 Expressions regulars
-
-Oracle inclou funcions d'expressions regulars per a cerques més potents que `LIKE`: `REGEXP_LIKE`, `REGEXP_SUBSTR`, `REGEXP_REPLACE`, `REGEXP_INSTR`, `REGEXP_COUNT`.
-
-```sql
--- Professorat amb DNI que comença per 2 i acaba en C o E
-SELECT nombre, dni FROM profesor WHERE REGEXP_LIKE(dni, '^2[0-9]{7}[CE]$') ORDER BY nombre;
-```
-
-| NOMBRE | DNI |
-|---|---|
-| Carmen | 21369874E |
-| Marta | 21456789C |
-
----
-
 ## 8. Errors freqüents
 
 | Error | Exemple | Correcció |
@@ -810,14 +789,6 @@ SELECT nombre, dni FROM profesor WHERE REGEXP_LIKE(dni, '^2[0-9]{7}[CE]$') ORDER
   options: ["'1_'", "'%1'", "'1%'", "'_1%'"]
   answer: 2
   explain: "`'1%'`: comença per 1 i continua qualsevol seqüència. `'1_'` només coincidiria amb codis de dos caràcters."
-- q: "Per què falla `SELECT horas*2 AS doble FROM modulo WHERE doble > 300`?"
-  options: ["Perquè no es pot multiplicar en el SELECT", "Perquè WHERE s'avalua abans que SELECT i l'àlies encara no existix", "Perquè falta ORDER BY", "Perquè els àlies han d'anar entre cometes"]
-  answer: 1
-  explain: "L'ordre lògic és FROM → WHERE → SELECT. En WHERE cal repetir l'expressió: `WHERE horas*2 > 300`."
-- q: "Què torna `NVL2(email, 'Sí', 'No')` per a un alumne sense correu?"
-  options: ["NULL", "'Sí'", "'No'", "Un error"]
-  answer: 2
-  explain: "NVL2 torna el segon argument si l'expressió **no** és nul·la i el tercer si és nul·la."
 - q: "Què torna `ROUND(4.75)` i què torna `TRUNC(4.75)`?"
   options: ["5 y 4", "4 y 5", "5 y 5", "4.8 y 4.7"]
   answer: 0

@@ -13,25 +13,23 @@ math: true
 **Visió general:**
 Un **sistema gestor de bases de dades (SGBD)** és el component de programari essencial que centralitza, organitza, consulta, manté i protegix la informació en les organitzacions modernes. En els inicis de la informàtica, les aplicacions gestionaven les dades directament mitjançant **sistemes de fitxers independents**, cosa que provocava greus problemes de redundància, incoherència, acoblament físic i lògic, i fallades de seguretat.
 
-Aquesta unitat tracta en profunditat la transició històrica des dels suports físics primitius (targetes perforades, cintes magnètiques i discos plans) fins als SGBD relacionals i NoSQL actuals. S'hi analitzen detalladament els mètodes d'organització de fitxers (seqüencials, d'accés aleatori mitjançant el càlcul de l'*offset* i indexats amb arbres B), l'arquitectura estàndard de tres nivells **ANSI/SPARC**, els components interns d'un motor de base de dades, les regles d'integritat referencial i de domini, la gestió de la concurrència mitjançant **transaccions ACID**, les polítiques de seguretat i recuperació, així com les topologies de desplegament i els subconjunts del llenguatge SQL.
+Aquesta unitat tracta en profunditat la transició històrica des dels suports físics primitius (targetes perforades, cintes magnètiques i discos plans) fins als SGBD relacionals actuals. S'hi analitzen detalladament els mètodes d'organització de fitxers (seqüencials, d'accés aleatori mitjançant el càlcul de l'*offset* i indexats amb arbres B), l'arquitectura estàndard de tres nivells **ANSI/SPARC**, els components interns d'un motor de base de dades, les regles d'integritat referencial i de domini, la gestió de la concurrència mitjançant **transaccions ACID**, les polítiques de seguretat i recuperació, així com les topologies de desplegament i els subconjunts del llenguatge SQL.
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1" >}}
 ### Temporalització
 
-El tema ocupa **10 hores d'aula** (6 de teoria i 4 de pràctica).
+El tema ocupa **8 hores d'aula** (4 de teoria i 4 de pràctica).
 
-{{< sesiones unidad="T01" horas="10" >}}
+{{< sesiones unidad="T01" horas="8" >}}
 items:
   - {h: 2, tipo: T, t: "Dades i informació. Història. Sistemes basats en fitxers", ref: "§1 a §3"}
   - {h: 1, tipo: P, t: "Del full de càlcul al SGBD", ref: "Pràctica 1.1"}
-  - {h: 1, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
-  - {h: 2, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
-  - {h: 1, tipo: T, t: "Integritat, concurrència i transaccions. Seguretat. Models de dades i llenguatges", ref: "§6 a §8"}
-  - {h: 1, tipo: T, t: "Classificació dels SGBD. Bases de dades distribuïdes i fragmentació", ref: "§9 i §10"}
-  - {h: 1, tipo: T, t: "Big Data, intel·ligència empresarial i protecció de dades", ref: "§11 i §12"}
-  - {h: 1, tipo: P, t: "Informe d'anàlisi d'EduGest", ref: "Projecte EduGest-1"}
+  - {h: 2, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
+  - {h: 1, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
+  - {h: 1, tipo: T, t: "Integritat, concurrència, seguretat, models de dades i llenguatges", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Classificació dels SGBD i ubicació de la informació", ref: "§9 i §10"}
 autonomo:
-  - "Pràctiques 1.3 (triar un SGBD), 1.4 (distribució de dades), 1.5 (auditoria de protecció de dades) i 1.6"
+  - "Pràctiques 1.2 (resta), 1.3 (triar un SGBD) i projecte EduGest-1"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
@@ -44,9 +42,6 @@ En acabar aquesta unitat, seràs capaç de:
 - Analitzar els problemes dels sistemes basats en fitxers i valorar la utilitat d'un SGBD.
 - Descriure l'arquitectura ANSI/SPARC, els components d'un SGBD i els perfils d'usuari.
 - Classificar els SGBD segons el model de dades, la ubicació de la informació i altres criteris.
-- Reconéixer la utilitat de les bases de dades distribuïdes i les polítiques de fragmentació.
-- Reconéixer els conceptes de Big Data i d'intel·ligència empresarial.
-- Identificar la legislació de protecció de dades que afecta el disseny d'una base de dades.
 
 > [!NOTE]
 > Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir del tema 5 treballarem amb Oracle.
@@ -56,7 +51,7 @@ En acabar aquesta unitat, seràs capaç de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Dades, història i fitxers{{< /sesion >}}
+{{< sesion n="1" h="2" tipo="t" >}}Dades i informació. Història. Sistemes basats en fitxers{{< /sesion >}}
 
 ## 1. Dades, informació i representació
 
@@ -147,15 +142,10 @@ Al juny de 1970, el matemàtic i investigador d'IBM **Edgar Frank Codd** va publ
 
 ---
 
-### 2.4 Consolidació de SQL, NoSQL i el núvol (des dels anys huitanta)
+### 2.4 Consolidació de SQL el núvol (des dels anys huitanta)
 
 - **Anys huitanta — Estandardització i comercialització:** **ANSI (1986)** i **ISO (1987)** van adoptar SQL com a estàndard oficial. Empreses com **Oracle, IBM (DB2), Sybase i Microsoft (SQL Server)** van convertir els SGBD relacionals en l'estàndard indiscutible de la indústria.
 - **Anys noranta i dos mil — Codi obert i web:** Van aparéixer motors relacionals de codi obert, lleugers i d'alt rendiment, com **PostgreSQL, MySQL i SQLite**, que van impulsar l'expansió de la World Wide Web i dels sistemes CMS.
-- **Anys 2010 — L'era de NoSQL i Big Data:** El volum massiu de dades no estructurades (*Big Data*), la necessitat d'escalar horitzontalment entre milers de servidors i la demanda de baixa latència van donar lloc a les bases de dades **NoSQL (Not Only SQL)**:
-  - *Documentals:* MongoDB i CouchDB.
-  - *Clau-valor:* Redis i DynamoDB.
-  - *Orientats a grafs:* Neo4j.
-  - *Columnars:* Apache Cassandra.
 - **Actualment — Bases de dades multimodel i natives del núvol:** Els motors actuals combinen la compatibilitat estricta amb SQL amb tipus semiestructurats (JSONB), extensions vectorials per a la intel·ligència artificial (pgvector) i arquitectures escalables sense servidor (*Serverless/Distributed SQL*), com les de CockroachDB o Amazon Aurora.
 
 ---
@@ -262,7 +252,8 @@ Quan cada aplicació informàtica gestiona els seus fitxers sense un SGBD centra
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}SGBD i arquitectura{{< /sesion >}}
+
+{{< sesion n="3" h="2" tipo="t" >}}Bases de dades i SGBD. Arquitectura i components{{< /sesion >}}
 
 ## 4. Bases de dades i sistemes gestors (SGBD)
 
@@ -434,7 +425,8 @@ En la gestió de bases de dades participen professionals amb perfils i responsab
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}Integritat, seguretat i models{{< /sesion >}}
+
+{{< sesion n="5" h="1" tipo="t" >}}Integritat, concurrència, seguretat, models de dades i llenguatges{{< /sesion >}}
 
 ## 6. Integritat, concurrència i transaccions
 
@@ -597,32 +589,17 @@ Un pla professional d'administració ha de combinar diversos tipus de còpies de
 
 ## 8. Models de dades, arquitectures i llenguatges
 
-### 8.1 Models de dades (relacional i NoSQL)
+### 8.1 Models de dades
 
-```mermaid
-graph TD
-    MD[Models de dades] --> Rel[Model relacional SQL]
-    MD --> NoSQL[Models NoSQL]
+El **model de dades** defineix com es representen les dades i les relacions entre elles (RA1.b). Els principals són:
 
-    Rel --> Rel_Ex[PostgreSQL, MariaDB, Oracle, SQL Server]
+- **Jeràrquic:** les dades formen un arbre de registres pare-fill (per exemple, IMS d'IBM). És ràpid per a recorreguts fixos, però rígid.
+- **En xarxa:** generalitza el jeràrquic: un registre pot tindre diversos pares, enllaçats mitjançant punters (CODASYL).
+- **Relacional:** les dades s'organitzen en **taules** enllaçades per claus i es consulten amb SQL. Complix les propietats ACID i és el model dominant (Oracle, PostgreSQL, MariaDB, SQL Server). És el que s'estudia en aquest mòdul.
+- **Objecte-relacional i orientat a objectes:** afigen a les taules tipus definits per l'usuari, herència i objectes (Oracle i PostgreSQL oferixen extensions objecte-relacionals).
 
-    NoSQL --> Doc[Documentals: MongoDB]
-    NoSQL --> KV[Clau-valor: Redis]
-    NoSQL --> Graph[Grafs: Neo4j]
-    NoSQL --> Col[Columnars: Cassandra]
-```
-
-- **Model relacional (SQL):** Es basa en taules i esquemes estrictes, i complix les propietats ACID. És ideal per a dades estructurades que requerixen molta integritat, com les dels sistemes bancaris, ERP i CRM.
-- **Models NoSQL:** Segons el sistema i el cas d'ús, prioritzen l'escalabilitat horitzontal o la flexibilitat per a gestionar dades semiestructurades, encara que poden oferir garanties transaccionals diferents o no requerir un esquema rígid:
-  - *Documentals:* Emmagatzemen informació en format JSON/BSON (MongoDB).
-  - *Clau-valor:* Utilitzen estructures hash en memòria d'alta velocitat (Redis).
-  - *Orientats a grafs:* Representen de manera nativa els nodes i les relacions (Neo4j).
-  - *Columnars:* Agrupen les dades en famílies de columnes per a llegir-les i escriure-les a gran escala (Cassandra).
-
-El tema 11 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
-
-> [!WARNING]
-> **NoSQL no vol dir necessàriament «sense ACID»**: les garanties transaccionals varien segons el producte i la configuració. Abans de triar un sistema, comprova quines propietats oferix.
+> [!NOTE]
+> El model relacional exigix un **esquema definit per endavant**. Per això les bases de dades relacionals són l'elecció natural per a dades estructurades que requerixen molta integritat, com les de la banca, els ERP o la gestió acadèmica d'EduGest.
 
 ---
 
@@ -696,7 +673,8 @@ REVOKE DELETE ON producto FROM usuario_ventas;
 
 ---
 
-{{< sesion n="6" h="1" tipo="t" >}}Classificació i distribució{{< /sesion >}}
+
+{{< sesion n="6" h="1" tipo="t" >}}Classificació dels SGBD i ubicació de la informació{{< /sesion >}}
 
 ## 9. Classificació dels sistemes gestors de bases de dades
 
@@ -704,12 +682,12 @@ Hi ha centenars de SGBD. Per a triar-ne un, cal saber **classificar-los** segons
 
 | Criteri | Tipus | Exemples |
 |---|---|---|
-| **Model de dades** | Jeràrquic, en xarxa, relacional, objecte-relacional, documental, clau-valor, columnar, grafs, multimodel | IMS (jeràrquic), Oracle i PostgreSQL (objecte-relacionals), MongoDB (documental), Redis (clau-valor), Cassandra (columnar), Neo4j (grafs) |
+| **Model de dades** | Jeràrquic, en xarxa, relacional, objecte-relacional | IMS (jeràrquic), Oracle i PostgreSQL (objecte-relacionals), MySQL i SQL Server (relacionals) |
 | **Nombre d'usuaris** | Monousuari o multiusuari | SQLite (incrustat, una aplicació) davant d'Oracle o SQL Server (milers de sessions) |
 | **Ubicació de les dades** | Centralitzades o distribuïdes | Una instància de MariaDB davant de CockroachDB o Oracle RAC/Sharding |
 | **Arquitectura d'execució** | Incrustada (biblioteca dins de l'aplicació) o client/servidor (procés independent) | SQLite, H2 o DuckDB (incrustats) davant de MySQL o PostgreSQL (servidor) |
 | **Llicència** | Propietària, lliure (*open source*) o doble llicència | Oracle, SQL Server (propietaris, amb edicions gratuïtes); PostgreSQL, MariaDB (lliures); MySQL (doble llicència) |
-| **Model de desplegament** | Local (*on-premise*) o al núvol com a servei (*DBaaS*) | Instal·lació pròpia davant d'Amazon RDS, Azure SQL Database, Oracle Autonomous Database o MongoDB Atlas |
+| **Model de desplegament** | Local (*on-premise*) o al núvol com a servei (*DBaaS*) | Instal·lació pròpia davant d'Amazon RDS, Azure SQL Database, Oracle Autonomous Database |
 | **Propòsit** | Transaccional (OLTP), analític (OLAP), d'ús específic (sèries temporals, cerca, vectors) | Oracle o PostgreSQL (OLTP), Snowflake o ClickHouse (OLAP), InfluxDB (sèries temporals), Elasticsearch (cerca) |
 
 > [!TIP]
@@ -727,172 +705,15 @@ Triar un SGBD és una decisió tècnica **i** econòmica. Estes preguntes ajuden
 
 ---
 
-## 10. Bases de dades distribuïdes i fragmentació
-
-### 10.1 Bases de dades segons la ubicació de la informació
+## 10. Bases de dades segons la ubicació de la informació
 
 Segons **on** s'emmagatzemen les dades (RA1.c), una base de dades pot ser:
 
 - **Centralitzada:** totes les dades estan en un únic servidor o emplaçament. És senzilla d'administrar, però el servidor és un **punt únic de fallada** i la seua capacitat té un límit.
 - **Distribuïda:** les dades estan repartides en diversos **nodes** connectats per xarxa, sovint en ubicacions geogràfiques diferents. Per a l'usuari funciona com **una única base de dades lògica**: no necessita saber en quin node està cada dada. Esta propietat s'anomena **transparència d'ubicació**.
 
-### 10.2 Utilitat de les bases de dades distribuïdes
 
-Una base de dades distribuïda és útil quan:
-
-- L'organització està **repartida geogràficament** (seus, delegacions, països) i cada seu treballa sobretot amb les seues pròpies dades.
-- Es necessita **alta disponibilitat**: si un node falla, els altres continuen donant servei.
-- El **volum** de dades o de peticions supera el que pot atendre un únic servidor (escalabilitat horitzontal).
-- Es vol **reduir la latència** acostant les dades als usuaris.
-
-A canvi, el sistema és més complex: cal coordinar les transaccions entre nodes (per exemple, amb el protocol de **confirmació en dues fases**, *two-phase commit*), mantindre la coherència de les còpies i tolerar les fallades de xarxa.
-
-> [!IMPORTANT]
-> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (Tema 11).
-
-### 10.3 Polítiques de fragmentació
-
-**Fragmentar** és dividir una taula en parts (*fragments*) que s'emmagatzemen en nodes diferents. Tota fragmentació ha de complir tres regles:
-
-1. **Completitud:** cada dada de la taula original està en algun fragment.
-2. **Reconstrucció:** la taula original es pot recompondre a partir dels fragments.
-3. **Disjunció:** una dada no es repetix en diversos fragments (excepte la clau en la fragmentació vertical).
-
-Considerem la taula `ALUMNO` d'una xarxa d'instituts amb seus a Alacant i Elx:
-
-| id_alumno | nombre | sede | expediente_medico | foto |
-|---|---|---|---|---|
-| 1 | Ana | ALC | … | … |
-| 2 | Luis | ELX | … | … |
-| 3 | Marta | ALC | … | … |
-
-```mermaid
-flowchart LR
-    T[(ALUMNO)] --> H{Fragmentació<br/>horitzontal}
-    T --> V{Fragmentació<br/>vertical}
-    H --> H1["Node Alacant<br/>files amb seu = 'ALC'"]
-    H --> H2["Node Elx<br/>files amb seu = 'ELX'"]
-    V --> V1["Node Secretaria<br/>id_alumno, nombre, sede"]
-    V --> V2["Node Orientació<br/>id_alumno, expediente_medico"]
-```
-
-| Política | Com dividix | Com es reconstruïx | Quan s'utilitza |
-|---|---|---|---|
-| **Horitzontal** | Per **files**, segons una condició (`sede = 'ALC'`) | Unió (`UNION ALL`) dels fragments | Cada seu consulta sobretot les seues pròpies files. En NoSQL s'anomena *sharding*. |
-| **Vertical** | Per **columnes**. Cada fragment conté la clau primària | Composició (`JOIN`) per la clau | Grups de columnes amb usos o nivells de confidencialitat diferents |
-| **Mixta** | Primer s'aplica una i després l'altra | Combinació d'unions i composicions | Sistemes grans amb necessitats combinades |
-
-A més de fragmentar, es poden **replicar** les dades: guardar-ne còpies completes o parcials en diversos nodes. La replicació millora la disponibilitat i la velocitat de lectura, però cada escriptura s'ha de propagar a totes les còpies.
-
-> [!NOTE]
-> La **partició** de taules (*partitioning*) és una idea molt semblant que s'aplica **dins d'un únic servidor**: Oracle pot dividir una taula de matrícules per curs acadèmic perquè les consultes d'un curs només lligen la seua partició. És una decisió de disseny físic.
-
----
-
-{{< sesion n="7" h="1" tipo="t" >}}Big Data i protecció de dades{{< /sesion >}}
-
-## 11. Big Data i intel·ligència empresarial
-
-### 11.1 Big Data
-
-**Big Data** és el conjunt de tècniques i tecnologies que permeten emmagatzemar i analitzar volums de dades tan grans, ràpids o variats que no es poden tractar amb les eines tradicionals. Se sol descriure amb les **V**:
-
-| V | Significat | Exemple |
-|---|---|---|
-| **Volum** | Terabytes o petabytes de dades | Historial de totes les compres d'una cadena de supermercats |
-| **Velocitat** | Dades que arriben contínuament i s'han de processar quasi en temps real | Sensors d'una fàbrica, clics en una web |
-| **Varietat** | Dades estructurades, semiestructurades (JSON, XML) i no estructurades (text, imatges) | Tiquets, ressenyes, fotos de productes |
-| **Veracitat** | Qualitat i fiabilitat de les dades | Dades duplicades o errònies que distorsionen l'anàlisi |
-| **Valor** | Utilitat real per a l'organització | Predir la demanda per a reduir l'estoc |
-
-Les tecnologies de Big Data es basen en el **processament distribuït**: sistemes de fitxers distribuïts, motors de processament com Apache Spark, bases de dades NoSQL i emmagatzematge al núvol (*data lakes*).
-
-### 11.2 Intel·ligència empresarial (BI)
-
-La **intel·ligència empresarial** (*Business Intelligence*) és el procés de transformar les dades d'una organització en **informació útil per a prendre decisions**. Un sistema de BI típic té estes parts:
-
-```mermaid
-flowchart LR
-    A[(BD transaccional<br/>OLTP)] --> E[ETL<br/>extraure · transformar · carregar]
-    B[Fulls de càlcul] --> E
-    C[Fitxers CSV / API] --> E
-    E --> DW[(Magatzem de dades<br/>data warehouse · OLAP)]
-    DW --> R[Informes i<br/>quadres de comandament]
-    DW --> M[Anàlisi i<br/>models predictius]
-```
-
-| | Sistemes transaccionals (OLTP) | Sistemes analítics (OLAP) |
-|---|---|---|
-| **Ús** | Operacions del dia a dia: matricular, facturar | Anàlisi i presa de decisions |
-| **Operacions** | Moltes insercions i modificacions menudes | Consultes complexes de lectura sobre moltes dades |
-| **Disseny** | Normalitzat (Tema 4) per a evitar redundàncies | Desnormalitzat (esquemes en estrela) per a consultar més de pressa |
-| **Dades** | Actuals | Històriques i integrades de diverses fonts |
-| **Exemple en EduGest** | Registrar una falta d'assistència | Evolució de la taxa d'abandonament per cicle durant els últims 10 anys |
-
-> [!TIP]
-> Les consultes de resum amb `GROUP BY` que faràs en el tema 7 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
-
----
-
-## 12. Legislació sobre protecció de dades
-
-Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu electrònic, notes, salut... El seu tractament està regulat per llei. Com a desenvolupador o administrador, eres responsable de dissenyar sistemes que complisquen la normativa.
-
-### 12.1 Normativa vigent
-
-| Norma | Àmbit | Idea clau |
-|---|---|---|
-| **Reglamento (UE) 2016/679, Reglamento General de Protección de Datos (RGPD)** | Tota la Unió Europea, des del 25 de maig de 2018 | Regula el tractament de dades de persones físiques i els drets de les persones interessades |
-| **Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD)** | Espanya | Adapta el RGPD a l'ordenament espanyol i incorpora drets digitals |
-| **Agencia Española de Protección de Datos (AEPD)** | Autoritat de control a Espanya | Supervisa el compliment, atén reclamacions i imposa sancions |
-
-### 12.2 Conceptes que afecten el disseny d'una base de dades
-
-- **Dada personal:** qualsevol informació sobre una persona física identificada o identificable (nom, DNI, correu electrònic, adreça IP, fotografia...).
-- **Categories especials de dades:** salut, origen ètnic, religió, dades biomètriques, orientació sexual... Tenen una protecció reforçada. En EduGest, un informe mèdic d'un alumne seria una categoria especial.
-- **Responsable del tractament:** qui decidix per a què i com es tracten les dades (l'institut). **Encarregat del tractament:** qui les tracta per compte del responsable (l'empresa que desenvolupa o allotja EduGest).
-
-### 12.3 Principis del RGPD i la seua aplicació tècnica
-
-| Principi (art. 5 RGPD) | Què significa | Com es reflectix en la base de dades |
-|---|---|---|
-| Licitud, lleialtat i transparència | Tractar les dades amb una base legal i informar-ne la persona interessada | Registrar el consentiment o la base legal |
-| Limitació de la finalitat | Utilitzar les dades només per a la finalitat per a la qual s'han recollit | Vistes i privilegis segons el perfil d'usuari (Tema 5) |
-| **Minimització de dades** | Recollir només les dades necessàries | No crear columnes «per si de cas» en el disseny (Tema 2) |
-| Exactitud | Mantindre les dades correctes i actualitzades | Restriccions `CHECK`, validacions i processos d'actualització |
-| Limitació del termini de conservació | No guardar les dades més temps del necessari | Procediments d'esborrament o anonimització periòdica (Tema 9) |
-| Integritat i confidencialitat | Protegir les dades davant d'accessos no autoritzats i pèrdues | Usuaris, rols, xifratge, còpies de seguretat, auditoria |
-| Responsabilitat proactiva | Poder demostrar que es complix la normativa | Documentació del disseny, registre d'accessos |
-
-**Protecció de dades des del disseny i per defecte** (art. 25 RGPD): la privacitat es té en compte **des del primer diagrama**, no s'afig al final. Algunes tècniques són la **seudonimització** (substituir el DNI per un identificador intern, com fa `id_alumno` en EduGest), el xifratge de columnes sensibles i la separació de les dades sensibles en taules amb accés restringit (fragmentació vertical).
-
-### 12.4 Drets de les persones interessades
-
-El sistema ha de permetre atendre els drets d'**accés**, **rectificació**, **supressió** («dret a l'oblit»), **limitació del tractament**, **portabilitat** i **oposició**. En la pràctica, això significa que la base de dades ha de poder localitzar, exportar, corregir i esborrar totes les dades d'una persona.
-
-> [!CAUTION]
-> Una **bretxa de seguretat** (pèrdua, robatori o accés no autoritzat a dades personals) s'ha de notificar a l'AEPD en un termini màxim de **72 hores** des que se'n té coneixement, llevat que siga improbable que supose un risc per a les persones. Un servidor de bases de dades exposat a Internet sense contrasenya és una de les causes més habituals d'estes bretxes.
-
----
-
-{{< tarjetas titulo="Repassa els termes del tema 1" >}}
-- t: "Dada"
-  d: "Representació simbòlica d'un fet, sense context."
-- t: "Informació"
-  d: "Dades processades i amb context que permeten decidir."
-- t: "SGBD"
-  d: "Programa que gestiona l'emmagatzematge, l'accés, la seguretat i la integritat de les dades."
-- t: "Independència lògica"
-  d: "Canviar l'esquema conceptual sense modificar les aplicacions (vistes externes)."
-- t: "Independència física"
-  d: "Canviar com s'emmagatzemen les dades sense alterar l'esquema conceptual."
-- t: "Transacció"
-  d: "Conjunt d'operacions que s'executa com una unitat: tot o res."
-- t: "Fragmentació"
-  d: "Repartir les dades d'una base de dades distribuïda entre diversos nodes."
-{{< /tarjetas >}}
-
-## 13. Resum i conclusions
+## 11. Resum i conclusions
 
 - Els **SGBD** van substituir amb èxit la gestió tradicional amb fitxers independents en eliminar la redundància descontrolada, garantir la consistència i desacoblar l'estructura física del codi de les aplicacions.
 - Els mètodes d'accés als fitxers han evolucionat des de la lectura **seqüencial** estricta fins a l'**accés directe** mitjançant el càlcul de l'offset ($Posició = N \times L$) i els **fitxers indexats** estructurats amb arbres B.
@@ -900,13 +721,10 @@ El sistema ha de permetre atendre els drets d'**accés**, **rectificació**, **s
 - La integritat de les dades es basa en les regles de **clau primària (PK)**, **clau forana (FK)** i les **restriccions de domini**.
 - Les **transaccions ACID** són la garantia contra les anomalies de concurrència i les fallades d'alimentació en sistemes crítics.
 - Els SGBD es **classifiquen** segons el model de dades, el nombre d'usuaris, la ubicació, l'arquitectura, la llicència, el desplegament i el propòsit. Triar-ne un és una decisió tècnica i econòmica que cal justificar.
-- Les **bases de dades distribuïdes** aporten disponibilitat i escalabilitat a canvi d'una complexitat més gran. Les dades es reparteixen mitjançant **fragmentació** horitzontal, vertical o mixta, i se'n guarden còpies amb la **replicació**.
-- **Big Data** i la **intel·ligència empresarial** aprofiten grans volums de dades per a prendre decisions; els sistemes analítics (OLAP) es dissenyen de manera diferent dels transaccionals (OLTP).
-- El **RGPD** i la **LOPDGDD** obliguen a dissenyar les bases de dades amb la protecció de dades incorporada des del principi: minimització, control d'accés, conservació limitada i seguretat.
 
 ---
 
-## 14. Exercicis resolts
+## 12. Exercicis resolts
 
 ### 1. Pregunta teòrica: justificació dels SGBD davant dels fitxers
 
@@ -950,7 +768,7 @@ El sistema ha de permetre atendre els drets d'**accés**, **rectificació**, **s
 
 ---
 
-## 15. Autoavaluació
+## 13. Autoavaluació
 
 Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una explicació.
 
@@ -967,39 +785,12 @@ Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una expl
   options: ["El gestor de transaccions", "L'optimitzador de consultes", "El diccionari de dades", "El gestor de còpies de seguretat"]
   answer: 1
   explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en el tema 7."
-- q: "Una cadena de clíniques guarda en el servidor de cada ciutat només els pacients d'eixa ciutat. Quina política s'hi aplica?"
-  options: ["Fragmentació vertical", "Replicació total", "Fragmentació horitzontal", "Normalització"]
-  answer: 2
-  explain: "Es repartixen **files** segons una condició (la ciutat). És una fragmentació horitzontal. La taula completa es reconstruïx amb la unió dels fragments."
-- q: "Quina d'estes afirmacions sobre les bases de dades distribuïdes és correcta?"
-  options: ["L'usuari ha de saber en quin node està cada dada", "Eliminen la necessitat de transaccions", "Milloren la disponibilitat, però compliquen la coordinació entre nodes", "Només existixen en les bases de dades NoSQL"]
-  answer: 2
-  explain: "Si un node falla, els altres continuen donant servei. A canvi, cal coordinar les transaccions i les còpies entre nodes. Gràcies a la transparència d'ubicació, l'usuari no necessita saber on està cada dada."
 - q: "SQLite s'integra com una biblioteca dins de l'aplicació i no necessita cap procés servidor. Com es classifica segons la seua arquitectura?"
   options: ["SGBD distribuït", "SGBD incrustat", "SGBD documental", "Magatzem de dades OLAP"]
   answer: 1
   explain: "Un SGBD **incrustat** s'executa dins del procés de l'aplicació. És habitual en aplicacions mòbils i d'escriptori."
-- q: "Un quadre de comandament mostra l'evolució de les matrícules per cicle durant els últims deu anys. A quin tipus de sistema correspon?"
-  options: ["OLTP", "OLAP / intel·ligència empresarial", "Clau-valor", "Fitxer seqüencial"]
-  answer: 1
-  explain: "Analitza dades **històriques** agregades per a prendre decisions: és un ús analític (OLAP), propi de la intel·ligència empresarial."
-- q: "Segons el RGPD, l'institut decidix per a què i com es tracten les dades de l'alumnat. De quina figura es tracta?"
-  options: ["Encarregat del tractament", "Delegat de protecció de dades", "Responsable del tractament", "Autoritat de control"]
-  answer: 2
-  explain: "El **responsable** decidix les finalitats i els mitjans del tractament. L'empresa que desenvolupa o allotja l'aplicació seria l'**encarregada** del tractament."
-- q: "En dissenyar la taula de l'alumnat, algú proposa afegir-hi la religió, el pes i l'alçada «per si de cas algun dia fan falta». Quin principi del RGPD incomplix?"
-  options: ["Minimització de dades", "Portabilitat", "Exactitud", "Durabilitat"]
-  answer: 0
-  explain: "Només s'han de recollir les dades **necessàries** per a la finalitat. A més, la religió és una categoria especial de dades amb protecció reforçada."
-- q: "En quin termini màxim cal notificar a l'AEPD una bretxa de seguretat que comporte un risc per a les persones?"
-  options: ["24 hores", "72 hores", "15 dies", "No és obligatori notificar-la"]
-  answer: 1
-  explain: "L'article 33 del RGPD establix un màxim de **72 hores** des que el responsable té constància de la bretxa."
 {{< /quiz >}}
 
 ## Referències
 
 - Silberschatz, A., Korth, H. F. i Sudarshan, S. *Fundamentos de bases de datos*. McGraw-Hill.
-- [Reglamento (UE) 2016/679 (RGPD)](https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32016R0679).
-- [Ley Orgánica 3/2018 (LOPDGDD)](https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673).
-- [Agencia Española de Protección de Datos](https://www.aepd.es/).

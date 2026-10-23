@@ -6,17 +6,14 @@ bookToc: true
 
 # Tema 1 · Prácticas
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
 | [1.1 De la hoja de cálculo al SGBD](#práctica-11--de-la-hoja-de-cálculo-al-sgbd) | Guiada | ●○○ | RA1.a, RA1.d |
-| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e, RA3.a |
+| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e |
 | [1.3 Elegir un SGBD para cada caso](#práctica-13--elegir-un-sgbd-para-cada-caso) | Autónoma | ●●○ | RA1.b, RA1.f |
-| [1.4 Diseño de la distribución de datos](#práctica-14--diseño-de-la-distribución-de-datos) | Autónoma | ●●○ | RA1.c, Ampliación |
-| [1.5 Auditoría de protección de datos](#práctica-15--auditoría-de-protección-de-datos) | Reto | ●●● | Ampliación |
-| [1.6 De los datos a las decisiones](#práctica-16--de-los-datos-a-las-decisiones) | Autónoma | ●○○ | Ampliación |
-| [Proyecto EduGest · Tema 1](#proyecto-edugest--tema-1-informe-de-análisis) | Proyecto | ●●○ | RA1.d, Ampliación |
+| [Proyecto EduGest · Tema 1](#proyecto-edugest--tema-1-informe-de-análisis) | Proyecto | ●●○ | RA1.d |
 
 ---
 
@@ -105,7 +102,7 @@ Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparez
 
 ## Práctica 1.2 · Primer contacto con Oracle: dentro de un SGBD
 
-{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e · RA3: a, g, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
+{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
 
 #### Objetivo
 
@@ -301,137 +298,9 @@ Añade un caso E propuesto por ti, a partir de una empresa real de tu entorno (p
 
 ---
 
-## Práctica 1.4 · Diseño de la distribución de datos
-
-{{< practica num="1.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA1: c · Ampliación" sgbd="Papel o draw.io (SQL conceptual)" entrega="Documento con el diseño" >}}
-
-#### Objetivo
-
-Decidir cuándo distribuir una base de datos y diseñar una política de fragmentación que cumpla las reglas de completitud, reconstrucción y disyunción.
-
-#### Contexto
-
-**FarmaRed** es una cadena de farmacias con sedes en Valencia, Alicante y Castellón. Cada sede tiene su propio servidor. La tabla central de clientes es:
-
-```text
-CLIENTE(id_cliente, dni, nombre, apellidos, telefono, provincia,
-        historial_dispensaciones, alergias, puntos_fidelidad)
-```
-
-- Cada farmacia atiende sobre todo a clientes de su provincia.
-- El departamento de marketing (en Valencia) necesita `id_cliente`, `nombre`, `provincia` y `puntos_fidelidad` de **todos** los clientes.
-- Solo el personal farmacéutico puede consultar `historial_dispensaciones` y `alergias`.
-
-#### Enunciado
-
-1. Justifica si tiene sentido una base de datos **distribuida** o si basta con una **centralizada**. Considera la disponibilidad si cae la conexión entre sedes.
-2. Diseña una **fragmentación horizontal** de `CLIENTE` por provincia. Escribe la condición de cada fragmento y en qué nodo se guarda.
-3. Diseña una **fragmentación vertical** que separe los datos sanitarios. ¿Qué columna debe repetirse en todos los fragmentos? ¿Por qué?
-4. Combínalas en una **fragmentación mixta** y dibuja el resultado (nodos y fragmentos).
-5. Escribe en SQL **conceptual** cómo se reconstruiría la tabla completa (usa `UNION ALL` y `JOIN`).
-6. Comprueba que tu diseño cumple las tres reglas de la fragmentación.
-7. ¿Replicarías algún fragmento? Justifica la respuesta.
-
-#### Comprobación
-
-- [ ] Cada fragmento horizontal tiene una condición, y entre todas cubren todas las provincias sin solaparse.
-- [ ] Los fragmentos verticales comparten la clave primaria `id_cliente`.
-- [ ] La reconstrucción usa `UNION ALL` para los fragmentos horizontales y `JOIN` para los verticales.
-- [ ] El diseño tiene en cuenta que los datos sanitarios son una **categoría especial** según el RGPD.
-
-{{< solucion id="ud01-003" title="Solución parcial: reconstrucción" />}}
-
-#### Ampliación
-
-Investiga qué es el **sharding** en MongoDB y qué papel tiene la *clave de fragmentación* (*shard key*). ¿Qué campo elegirías como clave en FarmaRed? ¿Qué pasaría si eligieras `dni`?
-
----
-
-## Práctica 1.5 · Auditoría de protección de datos
-
-{{< practica num="1.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA2: i · Ampliación" sgbd="Documentación (RGPD, LOPDGDD, guías de la AEPD)" entrega="Informe de auditoría + defensa oral (5 min)" >}}
-
-#### Objetivo
-
-Identificar la legislación de protección de datos que afecta a una base de datos y traducir sus principios en medidas técnicas concretas.
-
-#### Contexto
-
-El instituto va a sustituir sus hojas de cálculo por EduGest. La dirección te pide una **auditoría previa** que garantice que el diseño cumple el RGPD desde el principio.
-
-#### Enunciado
-
-Usa el [enunciado de EduGest](/guia/proyecto-edugest#1-enunciado-entrevista-con-la-jefatura-de-estudios) y estas nuevas peticiones del centro:
-
-- El departamento de orientación quiere registrar **diagnósticos de necesidades educativas especiales**.
-- Se quiere guardar una **fotografía** del alumnado para el carné.
-- Una empresa de autoescuelas ha ofrecido dinero por los correos y teléfonos del alumnado mayor de edad.
-- Los datos de los antiguos alumnos se guardan «para siempre».
-
-Elabora un informe con:
-
-1. **Inventario de datos personales** de EduGest: tabla con el dato, la persona interesada, si es una categoría especial y su finalidad.
-2. Un **registro simplificado de la actividad de tratamiento** (art. 30 RGPD): responsable, finalidades, categorías de datos e interesados, destinatarios, plazos de conservación y medidas de seguridad.
-3. Para cada nueva petición, indica si es lícita, qué condiciones exigiría y qué cambios implicaría en la base de datos.
-4. Al menos **seis medidas técnicas** que aplicarás en las unidades siguientes, indicando la unidad (por ejemplo: «vista sin datos de contacto para el profesorado, Tema 5»).
-5. El procedimiento que seguiría el centro ante una **brecha de seguridad**.
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] Se citan correctamente el Reglamento (UE) 2016/679 y la Ley Orgánica 3/2018.
-- [ ] Los diagnósticos se identifican como **datos de salud** (categoría especial).
-- [ ] Se rechaza la cesión a la autoescuela y se explica por qué.
-- [ ] Se propone un plazo de conservación y qué hacer cuando termine (supresión o anonimización).
-- [ ] Las medidas técnicas son concretas y verificables.
-
-{{% details title="Pista: dónde encontrar la información" %}}
-La AEPD publica guías prácticas para centros educativos y modelos de registro de actividades de tratamiento. Busca en [aepd.es](https://www.aepd.es/) la sección dedicada a educación. Recuerda que la **base legal** del tratamiento de los datos académicos en un centro público es el cumplimiento de una misión de interés público, no el consentimiento.
-{{% /details %}}
-{{% /comprobacion %}}
-
-#### Ampliación
-
-Diseña cómo **anonimizarías** los datos de los antiguos alumnos para poder seguir haciendo estadísticas (por ejemplo, tasa de aprobados por ciclo y año) sin conservar datos personales.
-
----
-
-## Práctica 1.6 · De los datos a las decisiones
-
-{{< practica num="1.6" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="Ampliación" sgbd="Hoja de cálculo (tablas dinámicas)" entrega="Hoja de cálculo + 3 conclusiones" >}}
-
-#### Objetivo
-
-Reconocer qué es un proceso de inteligencia de negocios y en qué se diferencia un uso analítico (OLAP) de uno transaccional (OLTP).
-
-#### Contexto
-
-La jefatura de estudios quiere saber si el porcentaje de aprobados en *Bases de datos* depende del turno o del ciclo.
-
-#### Enunciado
-
-1. Crea en una hoja de cálculo una tabla con estas columnas y al menos 40 filas inventadas: `curso_academico`, `ciclo`, `turno`, `modulo`, `nota`.
-2. Con una **tabla dinámica**, calcula la nota media y el número de aprobados por ciclo y turno.
-3. Crea un gráfico que lo represente.
-4. Escribe tres conclusiones que podría usar la jefatura de estudios para tomar decisiones.
-5. Responde: ¿por qué no conviene lanzar estos análisis directamente sobre la base de datos con la que secretaría matricula cada día? Relaciónalo con OLTP/OLAP.
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] La tabla dinámica agrupa por dos dimensiones (ciclo y turno).
-- [ ] Las conclusiones se apoyan en los datos y no en opiniones.
-- [ ] La respuesta del punto 5 menciona el impacto en el rendimiento y los datos históricos.
-
-> [!TIP]
-> Lo que acabas de hacer con la tabla dinámica es una **consulta resumen**. En el tema 7 la escribirás en SQL con `GROUP BY` y `AVG`.
-{{% /comprobacion %}}
-
----
-
 ## Proyecto EduGest · Tema 1: informe de análisis
 
-{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f · Ampliación" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
+{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
 
 #### Objetivo
 
@@ -444,8 +313,7 @@ Lee el [enunciado de EduGest](/guia/proyecto-edugest) y redacta `01-analisis.md`
 1. **Situación actual.** El centro usa una hoja de cálculo por ciclo y otra de faltas por cada profesor. Describe tres problemas concretos que provoca.
 2. **Usuarios del sistema.** Identifica los perfiles (secretaría, profesorado, tutoría, jefatura, alumnado, administrador de la base de datos) y qué necesita hacer cada uno. Relaciónalos con los perfiles de usuario de un SGBD.
 3. **Solución propuesta.** Tipo de SGBD (modelo, ubicación, licencia) y justificación. Explica por qué usaremos Oracle para la parte relacional.
-4. **Protección de datos.** Resumen de las conclusiones de la práctica 1.5 aplicadas a EduGest.
-5. **Glosario.** Diez términos de la unidad con tu propia definición.
+4. **Glosario.** Diez términos de la unidad con tu propia definición.
 
 #### Comprobación
 

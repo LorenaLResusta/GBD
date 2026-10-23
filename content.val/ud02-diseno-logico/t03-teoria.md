@@ -558,12 +558,12 @@ El model relacional expressa molt bé les restriccions **d'una fila** (atribut o
 
 | Regla de negoci (EduGest) | Per què no basta amb una restricció declarativa? | On s'implementarà |
 |---|---|---|
-| El cap d'un departament ha de pertànyer a eixe departament | Compara una fila de `DEPARTAMENTO` amb una fila de `PROFESOR` | Trigger (Tema 9) |
-| Un alumne només es matricula en mòduls del cicle del seu grup | Implica `ALUMNO`, `GRUPO` i `MODULO` | Trigger o procediment de matrícula (Tema 9) |
-| Un professor no supera 20 hores lectives setmanals | És una **suma** sobre diverses files d'`IMPARTE` | Trigger compost o procediment (Tema 9) |
-| No hi ha faltes anteriors a la data de matrícula | Compara dues taules | Trigger (Tema 9) |
+| El cap d'un departament ha de pertànyer a eixe departament | Compara una fila de `DEPARTAMENTO` amb una fila de `PROFESOR` | Guió de comprovació (Tema 9) |
+| Un alumne només es matricula en mòduls del cicle del seu grup | Implica `ALUMNO`, `GRUPO` i `MODULO` | Guió de matrícula amb comprovació (Tema 9) |
+| Un professor no supera 20 hores lectives setmanals | És una **suma** sobre diverses files d'`IMPARTE` | Consulta de comprovació (Tema 9) |
+| No hi ha faltes anteriors a la data de matrícula | Compara dues taules | Guió de comprovació (Tema 9) |
 | La nota final es posa en múltiples de 0,25 | És una regla d'**una fila** | Regla de fila: `nota_final` múltiple de 0,25 (es declara a el tema 5) |
-| Un grup no supera 30 alumnes | És un **recompte** sobre diverses files | Procediment de matrícula o trigger (Tema 9) |
+| Un grup no supera 30 alumnes | És un **recompte** sobre diverses files | Guió de matrícula amb comprovació (Tema 9) |
 
 Cada restricció es documenta amb un format fix:
 
@@ -573,7 +573,7 @@ R1. Cap de departament
     Taules: DEPARTAMENTO(id_jefe), PROFESOR(id_profesor, id_departamento)
     Moment de comprovació: en assignar o canviar el cap i en canviar de
                             departament un professor.
-    Implementació prevista: trigger (Tema 9).
+    Implementació prevista: guió de comprovació (Tema 9).
 ```
 
 > [!IMPORTANT]
@@ -596,7 +596,7 @@ El disseny lògic es representa amb un **diagrama relacional**: un rectangle per
 > Quan acabes el projecte a el tema 5, dibuixa el diagrama de les taules que hages creat i compara'l amb el teu disseny lògic. Si no coincidixen, hi ha un error en un dels dos.
 
 {{% details title="Pista: on es comprova una regla de negoci?" %}}
-Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → regla de fila (es declara en el mateix esquema). Compara una columna amb la **clau d'una altra taula**? → clau aliena. Necessita **sumar, comptar o comparar diverses files** o taules? → trigger o procediment al servidor (Tema 9). Només si cap de les tres servix ha de viure en l'aplicació.
+Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → regla de fila (es declara en el mateix esquema). Compara una columna amb la **clau d'una altra taula**? → clau aliena. Necessita **sumar, comptar o comparar diverses files** o taules? → consulta o guió de comprovació (Tema 9). Només si cap de les tres servix ha de viure en l'aplicació.
 {{% /details %}}
 
 ---
@@ -742,7 +742,7 @@ Respon a les preguntes i prem **Corregir**. Cada resposta inclou una explicació
 - q: "La regla «un professor no pot impartir més de 20 hores setmanals» s'ha de..."
   options: ["Expressar amb una regla de fila a la taula IMPARTE", "Documentar com a restricció no representable i implementar amb programació al servidor (Tema 9)", "Ignorar, ja que no forma part del model", "Resoldre amb una clau aliena"]
   answer: 1
-  explain: "Afecta la **suma** de diverses files. Una regla de fila només veu la fila actual. Es documenta (RA2.i) i s'implementa amb un trigger o un procediment (Tema 9)."
+  explain: "Afecta la **suma** de diverses files. Una regla de fila només veu la fila actual. Es documenta (RA2.i) i es comprova amb una consulta o un guió (Tema 9)."
 {{< /quiz >}}
 
 ## Referències

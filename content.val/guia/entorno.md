@@ -5,21 +5,21 @@ weight: 3
 
 # Entorn de treball
 
-Durant el curs usarem dos sistemes gestors:
+Durant el curs s'usa un únic sistema gestor, **Oracle**, i, només en la pràctica 10.4 (transferència entre gestors), un segon gestor relacional, **PostgreSQL**.
 
-| | Relacional (Tema 5 a Tema 10) | No relacional (Tema 10 i Tema 11) |
+| | Oracle (Tema 1 a Tema 10) | PostgreSQL (només pràctica 10.4) |
 |---|---|---|
-| **SGBD** | Oracle AI Database 26ai Free | MongoDB Community Server 8.0 |
-| **Versió de referència** | 23.26.x | 8.0.x |
+| **SGBD** | Oracle AI Database 26ai Free | PostgreSQL 17 |
+| **Versió de referència** | 23.26.x | 17.x |
 | **Instal·lació recomanada** | Contenidor Docker o Podman | Contenidor Docker o Podman |
-| **Client de línia d'ordres** | SQLcl (`sql`) o SQL\*Plus | `mongosh` |
-| **Client gràfic** | Oracle SQL Developer o l'extensió *SQL Developer* per a VS Code | MongoDB Compass o l'extensió de MongoDB per a VS Code |
+| **Client de línia d'ordres** | SQLcl (`sql`) o SQL\*Plus | `psql` |
+| **Client gràfic** | Oracle SQL Developer o l'extensió *SQL Developer* per a VS Code | DBeaver o pgAdmin |
 | **Modelatge** | Oracle SQL Developer Data Modeler, draw.io, Mermaid | — |
 
 > [!NOTE]
-> **Per què Oracle?** És un dels SGBD relacionals més implantats en grans organitzacions. El seu llenguatge procedimental (PL/SQL) és la referència per al RA5. L'edició *Free* no té cost, inclou les funcions de la versió comercial amb límits de grandària (2 CPU, 2 GB de RAM i 12 GB de dades d'usuari).
+> **Per què Oracle?** És un dels SGBD relacionals més implantats en grans organitzacions. L'edició *Free* no té cost i inclou les funcions de la versió comercial amb límits de grandària (2 CPU, 2 GB de RAM i 12 GB de dades), més que suficients per al curs.
 >
-> **Per què MongoDB?** És la base de dades documental més utilitzada en el desenvolupament web i multiplataforma. El seu model de documents JSON permet comparar de forma molt clara amb el model relacional.
+> **Per què PostgreSQL?** Per a practicar la transferència de dades entre gestors cal un segon SGBD; PostgreSQL és lliure i fàcil d'instal·lar.
 
 ## 1. Requisits
 
@@ -138,27 +138,26 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` d'`USER_TABLES` mostra les **estadístiques** de l'optimitzador. Pot valdre `NULL` fins que Oracle les recopile. Per a comptar files de veritat usa `COUNT(*)`.
 
-## 5. MongoDB Community Server 8.0 (Tema 10 i Tema 11)
+## 5. PostgreSQL 17 (només pràctica 10.4)
 
 ```bash
-docker run -d --name mongo8 -p 27017:27017 \
-  -v mongo-data:/data/db \
-  mongodb/mongodb-community-server:8.0-ubi9
+docker run -d --name pg17 -p 5432:5432 \
+  -e POSTGRES_PASSWORD=aula -e POSTGRES_DB=edugest \
+  -v pg-data:/var/lib/postgresql/data \
+  postgres:17
 
-# La imatge inclou mongosh
-docker exec -it mongo8 mongosh
+docker exec -it pg17 psql -U postgres -d edugest
 ```
 
-```javascript
-// Dins de mongosh
-db.version()          // ha de començar per 8.0
-show dbs
+```sql
+-- Dins de psql
+SELECT version();     -- ha de començar per PostgreSQL 17
 ```
 
-Com a client gràfic usa **MongoDB Compass** amb la cadena de connexió `mongodb://localhost:27017`.
+Com a client gràfic pots usar **DBeaver** o **pgAdmin** amb host `localhost`, port `5432`, usuari `postgres` i la contrasenya indicada.
 
 > [!CAUTION]
-> Estes instal·lacions són **per a l'aula**. MongoDB arranca sense autenticació i les contrasenyes d'Oracle són d'exemple. En el tema 5 i en el tema 11 vorem per què un servidor de bases de dades mai no ha d'exposar-se així en producció.
+> Estes instal·lacions són **per a l'aula**: les contrasenyes són d'exemple i no s'han d'usar mai en un servidor real.
 
 ## 6. Problemes freqüents
 
@@ -168,11 +167,11 @@ Com a client gràfic usa **MongoDB Compass** amb la cadena de connexió `mongodb
 | `ORA-01017: invalid username/password` | Contrasenya incorrecta o usuari creat en una altra PDB | Revisa a quin servei et connectes en crear l'usuari |
 | `ORA-65096: invalid common user or role name` | Estàs connectat a la CDB (`FREE`) | Connecta't a `FREEPDB1` |
 | `ORA-01950: no privileges on tablespace 'USERS'` | L'usuari no té quota | `ALTER USER edugest QUOTA UNLIMITED ON users;` |
-| El port 1521 o 27017 està ocupat | Hi ha una altra instància executant-se | `docker ps` i deté l'altra o canvia el port (`-p 1522:1521`) |
+| El port 1521 o 5432 està ocupat | Hi ha una altra instància executant-se | `docker ps` i deté l'altra o canvia el port (`-p 1522:1521`) |
 | El contenidor es deté sol | Falta memòria | Assigna almenys 4 GB a Docker Desktop o WSL 2 |
 
 ## Referències
 
 - [Oracle AI Database Free: guia d'inici](https://www.oracle.com/database/free/get-started/).
 - [Registre de contenidors d'Oracle: imatge `database/free`](https://container-registry.oracle.com/ords/ocr/ba/database/free).
-- [Instal·lar MongoDB Community amb Docker](https://www.mongodb.com/docs/manual/administration/install-community-docker/).
+- [Imatge oficial de PostgreSQL a Docker Hub](https://hub.docker.com/_/postgres).

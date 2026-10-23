@@ -6,17 +6,14 @@ bookToc: true
 
 # Tema 1 · Pràctiques
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
 | [1.1 De la fulla de càlcul al SGBD](#pràctica-11--de-la-fulla-de-càlcul-al-sgbd) | Guiada | ●○○ | RA1.a, RA1.d |
-| [1.2 Primer contacte amb Oracle](#pràctica-12--primer-contacte-amb-oracle-dins-dun-sgbd) | Guiada | ●●○ | RA1.e, RA3.a |
+| [1.2 Primer contacte amb Oracle](#pràctica-12--primer-contacte-amb-oracle-dins-dun-sgbd) | Guiada | ●●○ | RA1.e |
 | [1.3 Triar un SGBD per a cada cas](#pràctica-13--triar-un-sgbd-per-a-cada-cas) | Autònoma | ●●○ | RA1.b, RA1.f |
-| [1.4 Disseny de la distribució de dades](#pràctica-14--disseny-de-la-distribució-de-dades) | Autònoma | ●●○ | RA1.c, Ampliació |
-| [1.5 Auditoria de protecció de dades](#pràctica-15--auditoria-de-protecció-de-dades) | Repte | ●●● | Ampliació |
-| [1.6 De les dades a les decisions](#pràctica-16--de-les-dades-a-les-decisions) | Autònoma | ●○○ | Ampliació |
-| [Projecte EduGest · Tema 1](#projecte-edugest--ud01-informe-danàlisi) | Projecte | ●●○ | RA1.d, Ampliació |
+| [Projecte EduGest · Tema 1](#projecte-edugest--tema-1-informe-danàlisi) | Projecte | ●●○ | RA1.d |
 
 ---
 
@@ -105,7 +102,7 @@ Proposa com dividiries el full en **diverses taules** perquè cada dada aparega 
 
 ## Pràctica 1.2 · Primer contacte amb Oracle: dins d'un SGBD
 
-{{< practica num="1.2" tipo="Guiada" duracion="3 sessions" nivel="2" ra="RA1: e · RA3: a, g, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fitxer d'eixida (SPOOL) + respostes" >}}
+{{< practica num="1.2" tipo="Guiada" duracion="3 sessions" nivel="2" ra="RA1: e" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fitxer d'eixida (SPOOL) + respostes" >}}
 
 #### Objectiu
 
@@ -301,134 +298,6 @@ Afig un cas E proposat per tu, a partir d'una empresa real del teu entorn (per e
 
 ---
 
-## Pràctica 1.4 · Disseny de la distribució de dades
-
-{{< practica num="1.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA1: c · Ampliació" sgbd="Paper o draw.io (SQL conceptual)" entrega="Document amb el disseny" >}}
-
-#### Objectiu
-
-Decidir quan distribuir una base de dades i dissenyar una política de fragmentació que complisca les regles de completesa, reconstrucció i disjunció.
-
-#### Context
-
-**FarmaRed** és una cadena de farmàcies amb seus a València, Alacant i Castelló. Cada seu té el seu propi servidor. La taula central de clients és:
-
-```text
-CLIENTE(id_cliente, dni, nombre, apellidos, telefono, provincia,
-        historial_dispensaciones, alergias, puntos_fidelidad)
-```
-
-- Cada farmàcia atén sobretot clients de la seua província.
-- El departament de màrqueting (a València) necessita `id_cliente`, `nombre`, `provincia` i `puntos_fidelidad` de **tots** els clients.
-- Només el personal farmacèutic pot consultar `historial_dispensaciones` i `alergias`.
-
-#### Enunciat
-
-1. Justifica si té sentit una base de dades **distribuïda** o si basta amb una **centralitzada**. Considera la disponibilitat si cau la connexió entre seus.
-2. Dissenya una **fragmentació horitzontal** de `CLIENTE` per província. Escriu la condició de cada fragment i en quin node es guarda.
-3. Dissenya una **fragmentació vertical** que separe les dades sanitàries. Quina columna ha de repetir-se en tots els fragments? Per què?
-4. Combina-les en una **fragmentació mixta** i dibuixa el resultat (nodes i fragments).
-5. Escriu en SQL **conceptual** com es reconstruiria la taula completa (usa `UNION ALL` i `JOIN`).
-6. Comprova que el teu disseny complix les tres regles de la fragmentació.
-7. Replicaries algun fragment? Justifica la resposta.
-
-#### Comprovació
-
-- [ ] Cada fragment horitzontal té una condició, i entre totes cobrixen totes les províncies sense solapar-se.
-- [ ] Els fragments verticals compartixen la clau primària `id_cliente`.
-- [ ] La reconstrucció usa `UNION ALL` per als fragments horitzontals i `JOIN` per als verticals.
-- [ ] El disseny té en compte que les dades sanitàries són una **categoria especial** segons el RGPD.
-
-{{< solucion id="ud01-003" title="Solució parcial: reconstrucció" />}}
-
-#### Ampliació
-
-Investiga què és el **sharding** en MongoDB i quin paper té la *clau de fragmentació* (*shard key*). Quin camp triaries com a clau en FarmaRed? Què passaria si triares `dni`?
-
----
-
-## Pràctica 1.5 · Auditoria de protecció de dades
-
-{{< practica num="1.5" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA2: i · Ampliació" sgbd="Documentació (RGPD, LOPDGDD, guies de l'AEPD)" entrega="Informe d'auditoria + defensa oral (5 min)" >}}
-
-#### Objectiu
-
-Identificar la legislació de protecció de dades que afecta una base de dades i traduir els seus principis en mesures tècniques concretes.
-
-#### Context
-
-L'institut va a substituir els seus fulls de càlcul per EduGest. La direcció et demana una **auditoria prèvia** que garantisca que el disseny complix el RGPD des del principi.
-
-#### Enunciat
-
-Usa l'[enunciat d'EduGest](/guia/proyecto-edugest#1-enunciat-entrevista-amb-la-direcció-destudis) i estes noves peticions del centre:
-
-- El departament d'orientació vol registrar **diagnòstics de necessitats educatives especials**.
-- Es vol guardar una **fotografia** de l'alumnat per al carnet.
-- Una empresa d'autoescoles ha oferit diners pels correus i telèfons de l'alumnat major d'edat.
-- Les dades dels antics alumnes es guarden «per a sempre».
-
-Elabora un informe amb:
-
-1. **Inventari de dades personals** d'EduGest: taula amb la dada, la persona interessada, si és una categoria especial i la seua finalitat.
-2. Un **registre simplificat de l'activitat de tractament** (art. 30 RGPD): responsable, finalitats, categories de dades i interessats, destinataris, terminis de conservació i mesures de seguretat.
-3. Per a cada nova petició, indica si és lícita, quines condicions exigiria i quins canvis implicaria en la base de dades.
-4. Almenys **sis mesures tècniques** que aplicaràs en les unitats següents, indicant la unitat (per exemple: «vista sense dades de contacte per al professorat, Tema 5»).
-5. El procediment que seguiria el centre davant d'una **bretxa de seguretat**.
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] Es citen correctament el Reglament (UE) 2016/679 i la Llei Orgànica 3/2018.
-- [ ] Els diagnòstics s'identifiquen com a **dades de salut** (categoria especial).
-- [ ] Es rebutja la cessió a l'autoescola i s'explica per què.
-- [ ] Es proposa un termini de conservació i què fer quan acabe (supressió o anonimització).
-- [ ] Les mesures tècniques són concretes i verificables.
-
-{{% details title="Pista: on trobar la informació" %}}
-L'AEPD publica guies pràctiques per a centres educatius i models de registre d'activitats de tractament. Busca en [aepd.es](https://www.aepd.es/) la secció dedicada a educació. Recorda que la **base legal** del tractament de les dades acadèmiques en un centre públic és el compliment d'una missió d'interés públic, no el consentiment.
-{{% /details %}}
-{{% /comprobacion %}}
-
-#### Ampliació
-
-Dissenya com **anonimitzaries** les dades dels antics alumnes per a poder continuar fent estadístiques (per exemple, taxa d'aprovats per cicle i any) sense conservar dades personals.
-
----
-
-## Pràctica 1.6 · De les dades a les decisions
-
-{{< practica num="1.6" tipo="Autónoma" duracion="1 sessió" nivel="1" ra="Ampliació" sgbd="Full de càlcul (taules dinàmiques)" entrega="Full de càlcul + 3 conclusions" >}}
-
-#### Objectiu
-
-Reconéixer què és un procés d'intel·ligència de negocis i en què es diferencia un ús analític (OLAP) d'un de transaccional (OLTP).
-
-#### Context
-
-La direcció d'estudis vol saber si el percentatge d'aprovats en *Bases de dades* depén del torn o del cicle.
-
-#### Enunciat
-
-1. Crea en un full de càlcul una taula amb estes columnes i almenys 40 files inventades: `curso_academico`, `ciclo`, `turno`, `modulo`, `nota`.
-2. Amb una **taula dinàmica**, calcula la nota mitjana i el nombre d'aprovats per cicle i torn.
-3. Crea un gràfic que ho represente.
-4. Escriu tres conclusions que podria usar la direcció d'estudis per a prendre decisions.
-5. Respon: per què no convé llançar estes anàlisis directament sobre la base de dades amb la qual secretaria matricula cada dia? Relaciona-ho amb OLTP/OLAP.
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] La taula dinàmica agrupa per dues dimensions (cicle i torn).
-- [ ] Les conclusions es recolzen en les dades i no en opinions.
-- [ ] La resposta del punt 5 menciona l'impacte en el rendiment i les dades històriques.
-
-> [!TIP]
-> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En el tema 7 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
-{{% /comprobacion %}}
-
----
-
 ## Projecte EduGest · Tema 1: informe d'anàlisi
 
 {{< practica num="EduGest-1" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA1: c, d, f · Ampliació" sgbd="Document Markdown en el repositori" entrega="edugest/docs/01-analisis.md" >}}
@@ -444,8 +313,7 @@ Llig l'[enunciat d'EduGest](/guia/proyecto-edugest) i redacta `01-analisis.md` a
 1. **Situació actual.** El centre usa un full de càlcul per cicle i un altre de faltes per cada professor. Descriu tres problemes concrets que provoca.
 2. **Usuaris del sistema.** Identifica els perfils (secretaria, professorat, tutoria, direcció, alumnat, administrador de la base de dades) i què necessita fer cadascun. Relaciona'ls amb els perfils d'usuari d'un SGBD.
 3. **Solució proposada.** Tipus de SGBD (model, ubicació, llicència) i justificació. Explica per què usarem Oracle per a la part relacional.
-4. **Protecció de dades.** Resum de les conclusions de la pràctica 1.5 aplicades a EduGest.
-5. **Glossari.** Deu termes de la unitat amb la teua pròpia definició.
+4. **Glossari.** Deu termes de la unitat amb la teua pròpia definició.
 
 #### Comprovació
 

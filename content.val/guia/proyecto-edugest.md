@@ -5,7 +5,7 @@ weight: 2
 
 # Projecte transversal: EduGest
 
-**EduGest** és la base de dades de gestió acadèmica d'un institut de Formació Professional fictici, l'*IES Serra Gelada*. És el fil conductor del curs: comença com una entrevista amb el client i acaba com una base de dades relacional completa, programada i amb una versió documental en MongoDB.
+**EduGest** és la base de dades de gestió acadèmica d'un institut de Formació Professional fictici, l'*IES Serra Gelada*. És el fil conductor del curs: comença com una entrevista amb el client i acaba com una base de dades relacional completa, consultada, modificada i amb còpies de seguretat.
 
 > [!IMPORTANT]
 > Dissenyar i administrar una base de dades no és un conjunt de temes aïllats. És un procés continu. Cada unitat afig una capa a EduGest i **usa el que es va fer en l'anterior**. Guarda el teu treball en un repositori Git des del primer dia.
@@ -32,17 +32,16 @@ weight: 2
 
 | Unitat | El que s'afig a EduGest | Lliurable |
 |---|---|---|
-| Tema 1 | Anàlisi del sistema actual (fulls de càlcul) i justificació d'un SGBD. Dades personals i RGPD. | Informe d'anàlisi |
+| Tema 1 | Anàlisi del sistema actual (fulls de càlcul) i justificació d'un SGBD. | Informe d'anàlisi |
 | Tema 2 | Model conceptual: diagrama E/R a partir de l'enunciat. | Diagrama E/R + diccionari de dades |
 | Tema 3 | Model lògic: transformació al model relacional. | Esquema relacional amb PK, FK i restriccions |
 | Tema 4 | Normalització de l'esquema i del full heretat de matrícules. | Informe de normalització fins a 3FN |
-| Tema 5 | Implementació en Oracle: taules, restriccions, índexs, vistes, usuaris i rols. | Scripts `01_esquema.sql` i `03_seguridad.sql` |
+| Tema 5 | Implementació en Oracle: taules, restriccions, seqüències i índexs. | Script `01_esquema.sql` i bateria de proves |
 | Tema 6 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
 | Tema 7 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
 | Tema 8 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
-| Tema 9 | Lògica en el servidor: funcions, procediments, triggers d'auditoria i tasca programada. | Paquet PL/SQL + proves |
+| Tema 9 | Guions de sentències: expedient de l'alumne, matrícula amb control d'errors i promoció de curs. | Guions PL/SQL bàsics + proves |
 | Tema 10 | Seguretat: còpia lògica de l'esquema, exportació a CSV/JSON/SQL, importació amb SQL*Loader i pla de còpies. | Carpeta `10_seguridad/` amb scripts, registres i pla |
-| Tema 11 | Ampliació: versió documental de l'expedient de l'alumnat en MongoDB i comparació amb el model relacional. | Col·lecció + consultes + informe comparatiu |
 
 ## 3. Model de referència
 
@@ -135,7 +134,7 @@ erDiagram
 
 ### Restriccions que no arreplega el diagrama
 
-Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en el tema 4 (RA2.i) i s'implementen en el tema 9 amb PL/SQL:
+Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en el tema 4 (RA2.i) i es comproven en el tema 9 amb guions de sentències:
 
 1. El cap d'un departament ha de **pertànyer** a eixe departament.
 2. Un alumne només es pot matricular en mòduls del **cicle del seu grup**, excepte autorització.
@@ -178,4 +177,4 @@ Al final de l'script 02 es mostra un recompte de files. Si tot ha anat bé has d
 > Les dades estan preparades perquè les consultes donen resultats interessants. Hi ha un departament sense professorat (Matemàtiques), un cicle sense mòduls ni grups (SMR), un grup sense alumnat ni tutor (2ASIR), un professor que no imparteix classe, alumnat sense grup, sense DNI, sense correu o sense telèfon, i notes sense qualificar (`NULL`). Així es poden practicar les composicions externes i el tractament dels valors nuls.
 
 > [!WARNING]
-> Totes les dades personals d'EduGest són **fictícies**. En un projecte real, les dades de l'alumnat són dades personals protegides pel RGPD i la LOPDGDD (Tema 1). Mai no uses dades reals en entorns de prova.
+> Totes les dades personals d'EduGest són **fictícies**. En un projecte real, les dades de l'alumnat són dades personals i s'han de protegir. Mai no uses dades reals en entorns de prova.

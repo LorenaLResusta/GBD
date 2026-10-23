@@ -13,12 +13,12 @@ bookToc: true
 | [10.1 Copia lógica de EduGest y restauración](#práctica-101--copia-lógica-de-edugest-y-restauración) | Guiada | ●●○ | RA6.a, RA6.b, RA6.c |
 | [10.2 Exportar datos a CSV, JSON y SQL](#práctica-102--exportar-datos-a-csv-json-y-sql) | Guiada | ●○○ | RA6.d, RA6.e |
 | [10.3 Importar con SQL\*Loader y leer los errores](#práctica-103--importar-con-sqlloader-y-leer-los-errores) | Autónoma | ●●○ | RA6.f, RA6.g |
-| [10.4 De Oracle a MongoDB](#práctica-104--de-oracle-a-mongodb) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
+| [10.4 De Oracle a PostgreSQL](#práctica-104--de-oracle-a-postgresql) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
 | [10.5 Reto: plan de copias y simulacro de desastre](#práctica-105--reto-plan-de-copias-y-simulacro-de-desastre) | Reto | ●●● | RA6.a, RA6.b, RA6.c, RA6.g |
 | [Proyecto EduGest · Tema 10](#proyecto-edugest--tema-10-seguridad-de-la-información) | Proyecto | ●●● | RA6 completo |
 
 > [!IMPORTANT]
-> Estas prácticas suponen que tienes EduGest cargado y los contenedores `oracle26ai` y `mongo8` en marcha (guía de [entorno](/guia/entorno)). Las comprobaciones de filas suponen los datos originales: 32 alumnos y 143 matrículas.
+> Estas prácticas suponen que tienes EduGest cargado y los contenedores `oracle26ai` en marcha (y, para la práctica 10.4, PostgreSQL) (guía de [entorno](/guia/entorno)). Las comprobaciones de filas suponen los datos originales: 32 alumnos y 143 matrículas.
 
 ---
 
@@ -64,8 +64,7 @@ Hacer una copia lógica del esquema `EDUGEST`, sacarla del contenedor y restaura
     ```sql
     CREATE USER edugest_copia IDENTIFIED BY "Copia_2026"
       DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
-    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW,
-          CREATE PROCEDURE, CREATE TRIGGER TO edugest_copia;
+    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO edugest_copia;
     ```
 
 5. **Restaura en el esquema de pruebas:**
@@ -234,9 +233,9 @@ Necesitas `OPTIONS`, `LOAD DATA`, `CHARACTERSET`, `INFILE`, `APPEND`, `INTO TABL
 
 ---
 
-## Práctica 10.4 · De Oracle a MongoDB
+## Práctica 10.4 · De Oracle a PostgreSQL
 
-{{< practica num="10.4" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA6: e, f, h" sgbd="Oracle 26ai · SQLcl · MongoDB 8.0" entrega="alumnado_mongo.json + capturas de la verificación" >}}
+{{< practica num="10.4" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA6: e, f, h" sgbd="Oracle 26ai · SQLcl · PostgreSQL 17" entrega="alumnado.csv + capturas de la verificación" >}}
 
 #### Objetivo
 
@@ -246,62 +245,68 @@ Transferir información entre dos sistemas gestores distintos y comprobar que no
 
 {{% steps %}}
 
-1. **Genera un JSON por alumno desde Oracle**, con fechas en ISO 8601:
+1. **Exporta el alumnado desde Oracle** a CSV, con las fechas en ISO 8601:
 
     ```sql
-    SET SQLFORMAT default
-    SET PAGESIZE 0
-    SET FEEDBACK OFF
-    SET LINESIZE 4000
-    SPOOL alumnado_mongo.json
-    SELECT JSON_OBJECT(
-             'nia'              VALUE nia,
-             'nombre'           VALUE nombre,
-             'apellidos'        VALUE apellidos,
-             'grupo'            VALUE cod_grupo,
-             'fecha_nacimiento' VALUE TO_CHAR(fecha_nacimiento, 'YYYY-MM-DD'))
+    SET SQLFORMAT csv
+    SPOOL alumnado.csv
+    SELECT nia, nombre, apellidos, cod_grupo,
+           TO_CHAR(fecha_nacimiento, 'YYYY-MM-DD') AS fecha_nacimiento
     FROM   alumno ORDER BY nia;
     SPOOL OFF
     ```
 
-    Abre el fichero: debe haber 32 líneas, cada una un objeto JSON.
+    Abre el fichero: debe tener una cabecera y 32 filas.
 
-2. **Cópialo al contenedor de MongoDB e impórtalo:**
+2. **Arranca PostgreSQL** y crea la tabla de destino. Los tipos de Oracle se **mapean** a los del destino (`VARCHAR2` → `VARCHAR`, `DATE` → `DATE`):
 
     ```bash
-    docker cp alumnado_mongo.json mongo8:/tmp/
-    docker exec mongo8 mongoimport --db=edugest_gbd --collection=alumnado --file=/tmp/alumnado_mongo.json
+    docker run -d --name pg17 -e POSTGRES_PASSWORD=Postgres_2026 -p 5432:5432 postgres:17
+    docker cp alumnado.csv pg17:/tmp/
+    docker exec -it pg17 psql -U postgres
     ```
 
-3. **Verifica** en `mongosh`:
-
-    ```javascript
-    use edugest_gbd
-    db.alumnado.countDocuments()
-    db.alumnado.findOne({ nia: "10450037" })
-    db.alumnado.countDocuments({ grupo: "1DAM" })
+    ```sql
+    CREATE TABLE alumnado (
+        nia              VARCHAR(8)   PRIMARY KEY,
+        nombre           VARCHAR(100) NOT NULL,
+        apellidos        VARCHAR(100) NOT NULL,
+        cod_grupo        VARCHAR(10),
+        fecha_nacimiento DATE
+    );
     ```
 
-    Compara los resultados con `SELECT COUNT(*) FROM alumno` y `... WHERE cod_grupo = '1DAM'` en Oracle.
+3. **Importa el CSV** con `\copy`:
 
-4. **Inspecciona los tipos.** ¿La fecha de nacimiento es en MongoDB un tipo fecha o un texto? Usa `typeof db.alumnado.findOne().fecha_nacimiento` y explica qué habría que hacer para guardarla como fecha.
+    ```sql
+    \copy alumnado FROM '/tmp/alumnado.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+    ```
 
-5. **Exporta de vuelta** una colección con `mongoexport` en CSV (`--type=csv --fields=nia,nombre,grupo`) y ábrela en una hoja de cálculo.
+4. **Verifica** en PostgreSQL y compara con Oracle:
+
+    ```sql
+    SELECT COUNT(*) FROM alumnado;
+    SELECT * FROM alumnado WHERE nia = '10450037';
+    SELECT cod_grupo, COUNT(*) FROM alumnado GROUP BY cod_grupo ORDER BY 1;
+    SELECT pg_typeof(fecha_nacimiento) FROM alumnado LIMIT 1;
+    ```
+
+    En Oracle, `SELECT COUNT(*) FROM alumno;` y `SELECT cod_grupo, COUNT(*) FROM alumno GROUP BY cod_grupo ORDER BY 1;` deben dar los mismos números.
 
 {{% /steps %}}
 
 #### Comprobación
 
 {{% comprobacion %}}
-- [ ] `db.alumnado.countDocuments()` devuelve 32 y coincide con Oracle.
+- [ ] El recuento de PostgreSQL es 32 y coincide con Oracle.
 - [ ] El alumno de NIA 10450037 aparece como «Adrián Ferri Baeza», con la tilde bien.
-- [ ] Explicas por qué la fecha llega como texto y cómo convertirla.
+- [ ] La fecha de nacimiento es de tipo `date` y los alumnos sin grupo tienen `cod_grupo` nulo.
 {{% /comprobacion %}}
 
 #### Errores habituales
 
 > [!WARNING]
-> Si `mongoimport` informa de `0 document(s) imported`, mira si el fichero tiene líneas que no son JSON (cabeceras, líneas en blanco o mensajes de SQLcl). Si falta `mongoimport`, consulta el aviso de la teoría §4.
+> Si `\copy` informa de `invalid byte sequence for encoding "UTF8"`, el fichero no está en UTF-8. Si dice `extra data after last expected column`, el CSV tiene más columnas que la tabla de destino: revisa que la `SELECT` y el `CREATE TABLE` coincidan.
 
 ---
 
@@ -333,14 +338,14 @@ El instituto te pide que protejas EduGest. Tienes que entregar:
 
 ## Proyecto EduGest · Tema 10: seguridad de la información
 
-{{< practica num="EduGest-10" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="3" ra="RA6: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · MongoDB 8.0" entrega="edugest/10_seguridad/ + docs/10-seguridad.md" >}}
+{{< practica num="EduGest-10" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="3" ra="RA6: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · PostgreSQL 17" entrega="edugest/10_seguridad/ + docs/10-seguridad.md" >}}
 
 #### Enunciado
 
-1. **Procedimiento de copia y restauración** de Oracle y de MongoDB, con los comandos exactos, los usuarios necesarios y la ubicación de los ficheros.
+1. **Procedimiento de copia y restauración** de Oracle, con los comandos exactos, los usuarios necesarios y la ubicación de los ficheros.
 2. **Guion de exportación** del listado de alumnado de un grupo en CSV y JSON.
 3. **Guion de importación** de un fichero de alumnado nuevo con control de rechazados y un informe de la carga.
-4. **Transferencia** de los expedientes de EduGest a MongoDB con verificación de recuentos.
+4. **Transferencia** del alumnado de EduGest a PostgreSQL con verificación de recuentos.
 5. **Tabla de errores** con al menos cinco mensajes que hayas obtenido, su causa y su solución.
 
 #### Comprobación

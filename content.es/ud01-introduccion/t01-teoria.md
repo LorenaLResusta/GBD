@@ -13,25 +13,23 @@ math: true
 **Visión general:**
 Un **sistema gestor de bases de datos (SGBD)** es el componente de software esencial que centraliza, organiza, consulta, mantiene y protege la información en las organizaciones modernas. En los inicios de la informática, las aplicaciones gestionaban los datos directamente mediante **sistemas de ficheros independientes**, lo que provocaba graves problemas de redundancia, incoherencia, acoplamiento físico y lógico, y fallos de seguridad.
 
-Esta unidad trata en profundidad la transición histórica desde los soportes físicos primitivos (tarjetas perforadas, cintas magnéticas y discos planos) hasta los SGBD relacionales y NoSQL actuales. Se analizan en detalle los métodos de organización de ficheros (secuenciales, de acceso aleatorio mediante el cálculo del *offset* e indexados con árboles B), la arquitectura estándar de tres niveles **ANSI/SPARC**, los componentes internos de un motor de base de datos, las reglas de integridad referencial y de dominio, la gestión de la concurrencia mediante **transacciones ACID**, las políticas de seguridad y recuperación, así como las topologías de despliegue y los subconjuntos del lenguaje SQL.
+Esta unidad trata en profundidad la transición histórica desde los soportes físicos primitivos (tarjetas perforadas, cintas magnéticas y discos planos) hasta los SGBD relacionales actuales. Se analizan en detalle los métodos de organización de ficheros (secuenciales, de acceso aleatorio mediante el cálculo del *offset* e indexados con árboles B), la arquitectura estándar de tres niveles **ANSI/SPARC**, los componentes internos de un motor de base de datos, las reglas de integridad referencial y de dominio, la gestión de la concurrencia mediante **transacciones ACID**, las políticas de seguridad y recuperación, así como las topologías de despliegue y los subconjuntos del lenguaje SQL.
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1" >}}
 ### Temporalización
 
-El tema ocupa **10 horas de aula** (6 de teoría y 4 de práctica).
+El tema ocupa **8 horas de aula** (4 de teoría y 4 de práctica).
 
-{{< sesiones unidad="T01" horas="10" >}}
+{{< sesiones unidad="T01" horas="8" >}}
 items:
   - {h: 2, tipo: T, t: "Datos e información. Historia. Sistemas basados en ficheros", ref: "§1 a §3"}
   - {h: 1, tipo: P, t: "De la hoja de cálculo al SGBD", ref: "Práctica 1.1"}
-  - {h: 1, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
-  - {h: 2, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
-  - {h: 1, tipo: T, t: "Integridad, concurrencia y transacciones. Seguridad. Modelos de datos y lenguajes", ref: "§6 a §8"}
-  - {h: 1, tipo: T, t: "Clasificación de los SGBD. Bases de datos distribuidas y fragmentación", ref: "§9 y §10"}
-  - {h: 1, tipo: T, t: "Big Data, inteligencia empresarial y protección de datos", ref: "§11 y §12"}
-  - {h: 1, tipo: P, t: "Informe de análisis de EduGest", ref: "Proyecto EduGest-1"}
+  - {h: 2, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
+  - {h: 1, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
+  - {h: 1, tipo: T, t: "Integridad, concurrencia, seguridad, modelos de datos y lenguajes", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Clasificación de los SGBD y ubicación de la información", ref: "§9 y §10"}
 autonomo:
-  - "Prácticas 1.3 (elegir un SGBD), 1.4 (distribución de datos), 1.5 (auditoría de protección de datos) y 1.6"
+  - "Prácticas 1.2 (resto), 1.3 (elegir un SGBD) y proyecto EduGest-1"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -44,9 +42,6 @@ Al terminar esta unidad serás capaz de:
 - Analizar los problemas de los sistemas basados en ficheros y valorar la utilidad de un SGBD.
 - Describir la arquitectura ANSI/SPARC, los componentes de un SGBD y los perfiles de usuario.
 - Clasificar los SGBD según el modelo de datos, la ubicación de la información y otros criterios.
-- Reconocer la utilidad de las bases de datos distribuidas y las políticas de fragmentación.
-- Reconocer los conceptos de Big Data y de inteligencia empresarial.
-- Identificar la legislación de protección de datos que afecta al diseño de una base de datos.
 
 > [!NOTE]
 > Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir del tema 5 trabajaremos con Oracle.
@@ -56,7 +51,7 @@ Al terminar esta unidad serás capaz de:
 ---
 
 
-{{< sesion n="1" h="2" tipo="t" >}}Datos, historia y ficheros{{< /sesion >}}
+{{< sesion n="1" h="2" tipo="t" >}}Datos e información. Historia. Sistemas basados en ficheros{{< /sesion >}}
 
 ## 1. Datos, información y representación
 
@@ -147,15 +142,10 @@ En junio de 1970, el matemático e investigador de IBM **Edgar Frank Codd** publ
 
 ---
 
-### 2.4 Consolidación de SQL, NoSQL y la nube (desde los años ochenta)
+### 2.4 Consolidación de SQL la nube (desde los años ochenta)
 
 - **Años ochenta — Estandarización y comercialización:** **ANSI (1986)** e **ISO (1987)** adoptaron SQL como estándar oficial. Empresas como **Oracle, IBM (DB2), Sybase y Microsoft (SQL Server)** convirtieron los SGBD relacionales en el estándar indiscutible de la industria.
 - **Años noventa y dos mil — Código abierto y web:** Aparecieron motores relacionales de código abierto, ligeros y de alto rendimiento, como **PostgreSQL, MySQL y SQLite**, que impulsaron la expansión de la World Wide Web y de los sistemas CMS.
-- **Años 2010 — La era de NoSQL y Big Data:** El volumen masivo de datos no estructurados (*Big Data*), la necesidad de escalar horizontalmente entre miles de servidores y la demanda de baja latencia dieron lugar a las bases de datos **NoSQL (Not Only SQL)**:
-  - *Documentales:* MongoDB y CouchDB.
-  - *Clave-valor:* Redis y DynamoDB.
-  - *Orientadas a grafos:* Neo4j.
-  - *Columnares:* Apache Cassandra.
 - **Actualmente — Bases de datos multimodelo y nativas de la nube:** Los motores actuales combinan la compatibilidad estricta con SQL con tipos semiestructurados (JSONB), extensiones vectoriales para la inteligencia artificial (pgvector) y arquitecturas escalables sin servidor (*Serverless/Distributed SQL*), como las de CockroachDB o Amazon Aurora.
 
 ---
@@ -262,7 +252,8 @@ Cuando cada aplicación informática gestiona sus ficheros sin un SGBD centraliz
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}SGBD y arquitectura{{< /sesion >}}
+
+{{< sesion n="3" h="2" tipo="t" >}}Bases de datos y SGBD. Arquitectura y componentes{{< /sesion >}}
 
 ## 4. Bases de datos y sistemas gestores (SGBD)
 
@@ -434,7 +425,8 @@ En la gestión de bases de datos participan profesionales con perfiles y respons
 
 ---
 
-{{< sesion n="5" h="2" tipo="t" >}}Integridad, seguridad y modelos{{< /sesion >}}
+
+{{< sesion n="5" h="1" tipo="t" >}}Integridad, concurrencia, seguridad, modelos de datos y lenguajes{{< /sesion >}}
 
 ## 6. Integridad, concurrencia y transacciones
 
@@ -597,32 +589,17 @@ Un plan profesional de administración debe combinar varios tipos de copias de s
 
 ## 8. Modelos de datos, arquitecturas y lenguajes
 
-### 8.1 Modelos de datos (relacional y NoSQL)
+### 8.1 Modelos de datos
 
-```mermaid
-graph TD
-    MD[Modelos de datos] --> Rel[Modelo relacional SQL]
-    MD --> NoSQL[Modelos NoSQL]
+El **modelo de datos** define cómo se representan los datos y las relaciones entre ellos (RA1.b). Los principales son:
 
-    Rel --> Rel_Ex[PostgreSQL, MariaDB, Oracle, SQL Server]
+- **Jerárquico:** los datos forman un árbol de registros padre-hijo (por ejemplo, IMS de IBM). Es rápido para recorridos fijos, pero rígido.
+- **En red:** generaliza el jerárquico: un registro puede tener varios padres, enlazados mediante punteros (CODASYL).
+- **Relacional:** los datos se organizan en **tablas** enlazadas por claves y se consultan con SQL. Cumple las propiedades ACID y es el modelo dominante (Oracle, PostgreSQL, MariaDB, SQL Server). Es el que se estudia en este módulo.
+- **Objeto-relacional y orientado a objetos:** añaden a las tablas tipos definidos por el usuario, herencia y objetos (Oracle y PostgreSQL ofrecen extensiones objeto-relacionales).
 
-    NoSQL --> Doc[Documentales: MongoDB]
-    NoSQL --> KV[Clave-valor: Redis]
-    NoSQL --> Graph[Grafos: Neo4j]
-    NoSQL --> Col[Columnares: Cassandra]
-```
-
-- **Modelo relacional (SQL):** Se basa en tablas y esquemas estrictos, y cumple las propiedades ACID. Es ideal para datos estructurados que requieren mucha integridad, como los de los sistemas bancarios, ERP y CRM.
-- **Modelos NoSQL:** Según el sistema y el caso de uso, priorizan la escalabilidad horizontal o la flexibilidad para gestionar datos semiestructurados, aunque pueden ofrecer garantías transaccionales distintas o no requerir un esquema rígido:
-  - *Documentales:* Almacenan información en formato JSON/BSON (MongoDB).
-  - *Clave-valor:* Utilizan estructuras hash en memoria de alta velocidad (Redis).
-  - *Orientados a grafos:* Representan de forma nativa los nodos y las relaciones (Neo4j).
-  - *Columnares:* Agrupan los datos en familias de columnas para leerlos y escribirlos a gran escala (Cassandra).
-
-El tema 11 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
-
-> [!WARNING]
-> **NoSQL no significa necesariamente «sin ACID»**: las garantías transaccionales varían según el producto y la configuración. Antes de elegir un sistema, comprueba qué propiedades ofrece.
+> [!NOTE]
+> El modelo relacional exige un **esquema definido de antemano**. Por eso las bases de datos relacionales son la elección natural para datos estructurados que requieren mucha integridad, como los de la banca, los ERP o la gestión académica de EduGest.
 
 ---
 
@@ -696,7 +673,8 @@ REVOKE DELETE ON producto FROM usuario_ventas;
 
 ---
 
-{{< sesion n="6" h="1" tipo="t" >}}Clasificación y distribución{{< /sesion >}}
+
+{{< sesion n="6" h="1" tipo="t" >}}Clasificación de los SGBD y ubicación de la información{{< /sesion >}}
 
 ## 9. Clasificación de los sistemas gestores de bases de datos
 
@@ -704,12 +682,12 @@ Existen cientos de SGBD. Para elegir uno, hay que saber **clasificarlos** según
 
 | Criterio | Tipo | Ejemplos |
 |---|---|---|
-| **Modelo de datos** | Jerárquico, en red, relacional, objeto-relacional, documental, clave-valor, columnar, grafos, multimodelo | IMS (jerárquico), Oracle y PostgreSQL (objeto-relacionales), MongoDB (documental), Redis (clave-valor), Cassandra (columnar), Neo4j (grafos) |
+| **Modelo de datos** | Jerárquico, en red, relacional, objeto-relacional | IMS (jerárquico), Oracle y PostgreSQL (objeto-relacionales), MySQL y SQL Server (relacionales) |
 | **Número de usuarios** | Monousuario o multiusuario | SQLite (embebido, una aplicación) frente a Oracle o SQL Server (miles de sesiones) |
 | **Ubicación de los datos** | Centralizadas o distribuidas | Una instancia de MariaDB frente a CockroachDB u Oracle RAC/Sharding |
 | **Arquitectura de ejecución** | Embebida (biblioteca dentro de la aplicación) o cliente/servidor (proceso independiente) | SQLite, H2 o DuckDB (embebidos) frente a MySQL o PostgreSQL (servidor) |
 | **Licencia** | Propietaria, libre (*open source*) o doble licencia | Oracle, SQL Server (propietarios, con ediciones gratuitas); PostgreSQL, MariaDB (libres); MySQL (doble licencia) |
-| **Modelo de despliegue** | Local (*on-premise*) o en la nube como servicio (*DBaaS*) | Instalación propia frente a Amazon RDS, Azure SQL Database, Oracle Autonomous Database o MongoDB Atlas |
+| **Modelo de despliegue** | Local (*on-premise*) o en la nube como servicio (*DBaaS*) | Instalación propia frente a Amazon RDS, Azure SQL Database, Oracle Autonomous Database |
 | **Propósito** | Transaccional (OLTP), analítico (OLAP), de uso específico (series temporales, búsqueda, vectores) | Oracle o PostgreSQL (OLTP), Snowflake o ClickHouse (OLAP), InfluxDB (series temporales), Elasticsearch (búsqueda) |
 
 > [!TIP]
@@ -727,172 +705,15 @@ Elegir un SGBD es una decisión técnica **y** económica. Estas preguntas ayuda
 
 ---
 
-## 10. Bases de datos distribuidas y fragmentación
-
-### 10.1 Bases de datos según la ubicación de la información
+## 10. Bases de datos según la ubicación de la información
 
 Según **dónde** se almacenan los datos (RA1.c), una base de datos puede ser:
 
 - **Centralizada:** todos los datos están en un único servidor o emplazamiento. Es sencilla de administrar, pero el servidor es un **punto único de fallo** y su capacidad tiene un límite.
 - **Distribuida:** los datos están repartidos en varios **nodos** conectados por red, a menudo en ubicaciones geográficas distintas. Para el usuario funciona como **una única base de datos lógica**: no necesita saber en qué nodo está cada dato. Esta propiedad se llama **transparencia de ubicación**.
 
-### 10.2 Utilidad de las bases de datos distribuidas
 
-Una base de datos distribuida es útil cuando:
-
-- La organización está **repartida geográficamente** (sedes, delegaciones, países) y cada sede trabaja sobre todo con sus propios datos.
-- Se necesita **alta disponibilidad**: si un nodo falla, los demás siguen dando servicio.
-- El **volumen** de datos o de peticiones supera lo que puede atender un único servidor (escalabilidad horizontal).
-- Se quiere **reducir la latencia** acercando los datos a los usuarios.
-
-A cambio, el sistema es más complejo: hay que coordinar las transacciones entre nodos (por ejemplo, con el protocolo de **confirmación en dos fases**, *two-phase commit*), mantener la coherencia de las copias y tolerar los fallos de red.
-
-> [!IMPORTANT]
-> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (Tema 11).
-
-### 10.3 Políticas de fragmentación
-
-**Fragmentar** es dividir una tabla en partes (*fragmentos*) que se almacenan en nodos distintos. Toda fragmentación debe cumplir tres reglas:
-
-1. **Completitud:** cada dato de la tabla original está en algún fragmento.
-2. **Reconstrucción:** la tabla original se puede recomponer a partir de los fragmentos.
-3. **Disyunción:** un dato no se repite en varios fragmentos (excepto la clave en la fragmentación vertical).
-
-Consideremos la tabla `ALUMNO` de una red de institutos con sedes en Alicante y Elche:
-
-| id_alumno | nombre | sede | expediente_medico | foto |
-|---|---|---|---|---|
-| 1 | Ana | ALC | … | … |
-| 2 | Luis | ELX | … | … |
-| 3 | Marta | ALC | … | … |
-
-```mermaid
-flowchart LR
-    T[(ALUMNO)] --> H{Fragmentación<br/>horizontal}
-    T --> V{Fragmentación<br/>vertical}
-    H --> H1["Nodo Alicante<br/>filas con sede = 'ALC'"]
-    H --> H2["Nodo Elche<br/>filas con sede = 'ELX'"]
-    V --> V1["Nodo Secretaría<br/>id_alumno, nombre, sede"]
-    V --> V2["Nodo Orientación<br/>id_alumno, expediente_medico"]
-```
-
-| Política | Cómo divide | Cómo se reconstruye | Cuándo se utiliza |
-|---|---|---|---|
-| **Horizontal** | Por **filas**, según una condición (`sede = 'ALC'`) | Unión (`UNION ALL`) de los fragmentos | Cada sede consulta sobre todo sus propias filas. En NoSQL se llama *sharding*. |
-| **Vertical** | Por **columnas**. Cada fragmento contiene la clave primaria | Composición (`JOIN`) por la clave | Grupos de columnas con usos o niveles de confidencialidad distintos |
-| **Mixta** | Primero se aplica una y después la otra | Combinación de uniones y composiciones | Sistemas grandes con necesidades combinadas |
-
-Además de fragmentar, se pueden **replicar** los datos: guardar copias completas o parciales en varios nodos. La replicación mejora la disponibilidad y la velocidad de lectura, pero cada escritura se tiene que propagar a todas las copias.
-
-> [!NOTE]
-> La **partición** de tablas (*partitioning*) es una idea muy parecida que se aplica **dentro de un único servidor**: Oracle puede dividir una tabla de matrículas por curso académico para que las consultas de un curso solo lean su partición. Es una decisión de diseño físico.
-
----
-
-{{< sesion n="7" h="1" tipo="t" >}}Big Data y protección de datos{{< /sesion >}}
-
-## 11. Big Data e inteligencia empresarial
-
-### 11.1 Big Data
-
-**Big Data** es el conjunto de técnicas y tecnologías que permiten almacenar y analizar volúmenes de datos tan grandes, rápidos o variados que no se pueden tratar con las herramientas tradicionales. Se suele describir con las **V**:
-
-| V | Significado | Ejemplo |
-|---|---|---|
-| **Volumen** | Terabytes o petabytes de datos | Historial de todas las compras de una cadena de supermercados |
-| **Velocidad** | Datos que llegan continuamente y hay que procesar casi en tiempo real | Sensores de una fábrica, clics en una web |
-| **Variedad** | Datos estructurados, semiestructurados (JSON, XML) y no estructurados (texto, imágenes) | Tiques, reseñas, fotos de productos |
-| **Veracidad** | Calidad y fiabilidad de los datos | Datos duplicados o erróneos que distorsionan el análisis |
-| **Valor** | Utilidad real para la organización | Predecir la demanda para reducir el stock |
-
-Las tecnologías de Big Data se basan en el **procesamiento distribuido**: sistemas de ficheros distribuidos, motores de procesamiento como Apache Spark, bases de datos NoSQL y almacenamiento en la nube (*data lakes*).
-
-### 11.2 Inteligencia empresarial (BI)
-
-La **inteligencia empresarial** (*Business Intelligence*) es el proceso de transformar los datos de una organización en **información útil para tomar decisiones**. Un sistema de BI típico tiene estas partes:
-
-```mermaid
-flowchart LR
-    A[(BD transaccional<br/>OLTP)] --> E[ETL<br/>extraer · transformar · cargar]
-    B[Hojas de cálculo] --> E
-    C[Ficheros CSV / API] --> E
-    E --> DW[(Almacén de datos<br/>data warehouse · OLAP)]
-    DW --> R[Informes y<br/>cuadros de mando]
-    DW --> M[Análisis y<br/>modelos predictivos]
-```
-
-| | Sistemas transaccionales (OLTP) | Sistemas analíticos (OLAP) |
-|---|---|---|
-| **Uso** | Operaciones del día a día: matricular, facturar | Análisis y toma de decisiones |
-| **Operaciones** | Muchas inserciones y modificaciones pequeñas | Consultas complejas de lectura sobre muchos datos |
-| **Diseño** | Normalizado (Tema 4) para evitar redundancias | Desnormalizado (esquemas en estrella) para consultar más rápido |
-| **Datos** | Actuales | Históricos e integrados de varias fuentes |
-| **Ejemplo en EduGest** | Registrar una falta de asistencia | Evolución de la tasa de abandono por ciclo durante los últimos 10 años |
-
-> [!TIP]
-> Las consultas de resumen con `GROUP BY` que harás en el tema 7 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
-
----
-
-## 12. Legislación sobre protección de datos
-
-Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo electrónico, notas, salud... Su tratamiento está regulado por ley. Como desarrollador o administrador, eres responsable de diseñar sistemas que cumplan la normativa.
-
-### 12.1 Normativa vigente
-
-| Norma | Ámbito | Idea clave |
-|---|---|---|
-| **Reglamento (UE) 2016/679, Reglamento General de Protección de Datos (RGPD)** | Toda la Unión Europea, desde el 25 de mayo de 2018 | Regula el tratamiento de datos de personas físicas y los derechos de las personas interesadas |
-| **Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD)** | España | Adapta el RGPD al ordenamiento español e incorpora derechos digitales |
-| **Agencia Española de Protección de Datos (AEPD)** | Autoridad de control en España | Supervisa el cumplimiento, atiende reclamaciones e impone sanciones |
-
-### 12.2 Conceptos que afectan al diseño de una base de datos
-
-- **Dato personal:** cualquier información sobre una persona física identificada o identificable (nombre, DNI, correo electrónico, dirección IP, fotografía...).
-- **Categorías especiales de datos:** salud, origen étnico, religión, datos biométricos, orientación sexual... Tienen una protección reforzada. En EduGest, un informe médico de un alumno sería una categoría especial.
-- **Responsable del tratamiento:** quien decide para qué y cómo se tratan los datos (el instituto). **Encargado del tratamiento:** quien los trata por cuenta del responsable (la empresa que desarrolla o aloja EduGest).
-
-### 12.3 Principios del RGPD y su aplicación técnica
-
-| Principio (art. 5 RGPD) | Qué significa | Cómo se refleja en la base de datos |
-|---|---|---|
-| Licitud, lealtad y transparencia | Tratar los datos con una base legal e informar de ello a la persona interesada | Registrar el consentimiento o la base legal |
-| Limitación de la finalidad | Utilizar los datos solo para la finalidad para la que se han recogido | Vistas y privilegios según el perfil de usuario (Tema 5) |
-| **Minimización de datos** | Recoger solo los datos necesarios | No crear columnas «por si acaso» en el diseño (Tema 2) |
-| Exactitud | Mantener los datos correctos y actualizados | Restricciones `CHECK`, validaciones y procesos de actualización |
-| Limitación del plazo de conservación | No guardar los datos más tiempo del necesario | Procedimientos de borrado o anonimización periódica (Tema 9) |
-| Integridad y confidencialidad | Proteger los datos frente a accesos no autorizados y pérdidas | Usuarios, roles, cifrado, copias de seguridad, auditoría |
-| Responsabilidad proactiva | Poder demostrar que se cumple la normativa | Documentación del diseño, registro de accesos |
-
-**Protección de datos desde el diseño y por defecto** (art. 25 RGPD): la privacidad se tiene en cuenta **desde el primer diagrama**, no se añade al final. Algunas técnicas son la **seudonimización** (sustituir el DNI por un identificador interno, como hace `id_alumno` en EduGest), el cifrado de columnas sensibles y la separación de los datos sensibles en tablas con acceso restringido (fragmentación vertical).
-
-### 12.4 Derechos de las personas interesadas
-
-El sistema debe permitir atender los derechos de **acceso**, **rectificación**, **supresión** («derecho al olvido»), **limitación del tratamiento**, **portabilidad** y **oposición**. En la práctica, esto significa que la base de datos debe poder localizar, exportar, corregir y borrar todos los datos de una persona.
-
-> [!CAUTION]
-> Una **brecha de seguridad** (pérdida, robo o acceso no autorizado a datos personales) debe notificarse a la AEPD en un plazo máximo de **72 horas** desde que se tiene conocimiento de ella, salvo que sea improbable que suponga un riesgo para las personas. Un servidor de bases de datos expuesto a Internet sin contraseña es una de las causas más habituales de estas brechas.
-
----
-
-{{< tarjetas titulo="Repasa los términos del tema 1" >}}
-- t: "Dato"
-  d: "Representación simbólica de un hecho, sin contexto."
-- t: "Información"
-  d: "Datos procesados y con contexto que permiten decidir."
-- t: "SGBD"
-  d: "Programa que gestiona el almacenamiento, el acceso, la seguridad y la integridad de los datos."
-- t: "Independencia lógica"
-  d: "Cambiar el esquema conceptual sin modificar las aplicaciones (vistas externas)."
-- t: "Independencia física"
-  d: "Cambiar cómo se almacenan los datos sin alterar el esquema conceptual."
-- t: "Transacción"
-  d: "Conjunto de operaciones que se ejecuta como una unidad: todo o nada."
-- t: "Fragmentación"
-  d: "Repartir los datos de una base de datos distribuida entre varios nodos."
-{{< /tarjetas >}}
-
-## 13. Resumen y conclusiones
+## 11. Resumen y conclusiones
 
 - Los **SGBD** sustituyeron con éxito la gestión tradicional con ficheros independientes al eliminar la redundancia descontrolada, garantizar la consistencia y desacoplar la estructura física del código de las aplicaciones.
 - Los métodos de acceso a los ficheros han evolucionado desde la lectura **secuencial** estricta hasta el **acceso directo** mediante el cálculo del offset ($Posición = N \times L$) y los **ficheros indexados** estructurados con árboles B.
@@ -900,13 +721,10 @@ El sistema debe permitir atender los derechos de **acceso**, **rectificación**,
 - La integridad de los datos se basa en las reglas de **clave primaria (PK)**, **clave foránea (FK)** y las **restricciones de dominio**.
 - Las **transacciones ACID** son la garantía frente a las anomalías de concurrencia y los fallos de alimentación en sistemas críticos.
 - Los SGBD se **clasifican** según el modelo de datos, el número de usuarios, la ubicación, la arquitectura, la licencia, el despliegue y el propósito. Elegir uno es una decisión técnica y económica que hay que justificar.
-- Las **bases de datos distribuidas** aportan disponibilidad y escalabilidad a cambio de una mayor complejidad. Los datos se reparten mediante **fragmentación** horizontal, vertical o mixta, y se guardan copias con la **replicación**.
-- **Big Data** y la **inteligencia empresarial** aprovechan grandes volúmenes de datos para tomar decisiones; los sistemas analíticos (OLAP) se diseñan de forma distinta a los transaccionales (OLTP).
-- El **RGPD** y la **LOPDGDD** obligan a diseñar las bases de datos con la protección de datos incorporada desde el principio: minimización, control de acceso, conservación limitada y seguridad.
 
 ---
 
-## 14. Ejercicios resueltos
+## 12. Ejercicios resueltos
 
 ### 1. Pregunta teórica: justificación de los SGBD frente a los ficheros
 
@@ -950,7 +768,7 @@ El sistema debe permitir atender los derechos de **acceso**, **rectificación**,
 
 ---
 
-## 15. Autoevaluación
+## 13. Autoevaluación
 
 Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye una explicación.
 
@@ -967,39 +785,12 @@ Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye 
   options: ["El gestor de transacciones", "El optimizador de consultas", "El diccionario de datos", "El gestor de copias de seguridad"]
   answer: 1
   explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en el tema 7."
-- q: "Una cadena de clínicas guarda en el servidor de cada ciudad solo los pacientes de esa ciudad. ¿Qué política se aplica?"
-  options: ["Fragmentación vertical", "Replicación total", "Fragmentación horizontal", "Normalización"]
-  answer: 2
-  explain: "Se reparten **filas** según una condición (la ciudad). Es una fragmentación horizontal. La tabla completa se reconstruye con la unión de los fragmentos."
-- q: "¿Cuál de estas afirmaciones sobre las bases de datos distribuidas es correcta?"
-  options: ["El usuario tiene que saber en qué nodo está cada dato", "Eliminan la necesidad de transacciones", "Mejoran la disponibilidad, pero complican la coordinación entre nodos", "Solo existen en las bases de datos NoSQL"]
-  answer: 2
-  explain: "Si un nodo falla, los demás siguen dando servicio. A cambio, hay que coordinar las transacciones y las copias entre nodos. Gracias a la transparencia de ubicación, el usuario no necesita saber dónde está cada dato."
 - q: "SQLite se integra como una biblioteca dentro de la aplicación y no necesita ningún proceso servidor. ¿Cómo se clasifica según su arquitectura?"
   options: ["SGBD distribuido", "SGBD embebido", "SGBD documental", "Almacén de datos OLAP"]
   answer: 1
   explain: "Un SGBD **embebido** se ejecuta dentro del proceso de la aplicación. Es habitual en aplicaciones móviles y de escritorio."
-- q: "Un cuadro de mando muestra la evolución de las matrículas por ciclo durante los últimos diez años. ¿A qué tipo de sistema corresponde?"
-  options: ["OLTP", "OLAP / inteligencia empresarial", "Clave-valor", "Fichero secuencial"]
-  answer: 1
-  explain: "Analiza datos **históricos** agregados para tomar decisiones: es un uso analítico (OLAP), propio de la inteligencia empresarial."
-- q: "Según el RGPD, el instituto decide para qué y cómo se tratan los datos del alumnado. ¿De qué figura se trata?"
-  options: ["Encargado del tratamiento", "Delegado de protección de datos", "Responsable del tratamiento", "Autoridad de control"]
-  answer: 2
-  explain: "El **responsable** decide las finalidades y los medios del tratamiento. La empresa que desarrolla o aloja la aplicación sería la **encargada** del tratamiento."
-- q: "Al diseñar la tabla del alumnado, alguien propone añadir la religión, el peso y la altura «por si algún día hacen falta». ¿Qué principio del RGPD incumple?"
-  options: ["Minimización de datos", "Portabilidad", "Exactitud", "Durabilidad"]
-  answer: 0
-  explain: "Solo deben recogerse los datos **necesarios** para la finalidad. Además, la religión es una categoría especial de datos con protección reforzada."
-- q: "¿En qué plazo máximo hay que notificar a la AEPD una brecha de seguridad que conlleve un riesgo para las personas?"
-  options: ["24 horas", "72 horas", "15 días", "No es obligatorio notificarla"]
-  answer: 1
-  explain: "El artículo 33 del RGPD establece un máximo de **72 horas** desde que el responsable tiene constancia de la brecha."
 {{< /quiz >}}
 
 ## Referencias
 
 - Silberschatz, A., Korth, H. F. y Sudarshan, S. *Fundamentos de bases de datos*. McGraw-Hill.
-- [Reglamento (UE) 2016/679 (RGPD)](https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32016R0679).
-- [Ley Orgánica 3/2018 (LOPDGDD)](https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673).
-- [Agencia Española de Protección de Datos](https://www.aepd.es/).

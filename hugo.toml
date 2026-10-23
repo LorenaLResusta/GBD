@@ -63,8 +63,8 @@ defaultContentLanguage = "es"
     url = "https://docs.oracle.com/en/database/oracle/oracle-database/26/"
     weight = 30
   [[languages.es.menus.after]]
-    name = "Documentación MongoDB"
-    url = "https://www.mongodb.com/docs/manual/"
+    name = "Documentación PostgreSQL"
+    url = "https://www.postgresql.org/docs/"
     weight = 40
 
 [languages.val.menus]
@@ -77,8 +77,8 @@ defaultContentLanguage = "es"
     url = "https://docs.oracle.com/en/database/oracle/oracle-database/26/"
     weight = 30
   [[languages.val.menus.after]]
-    name = "Documentació de MongoDB"
-    url = "https://www.mongodb.com/docs/manual/"
+    name = "Documentació de PostgreSQL"
+    url = "https://www.postgresql.org/docs/"
     weight = 40
 
 [caches]

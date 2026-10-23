@@ -6,7 +6,7 @@ bookToc: true
 
 # Tema 7 · Pràctiques
 
-{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
+{{< ra "RA4:a,c,d,e,f,g" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
@@ -14,10 +14,9 @@ bookToc: true
 | [7.2 Composicions pas a pas](#pràctica-72--composicions-pas-a-pas) | Guiada | ●●○ | RA4.d, RA4.e |
 | [7.3 Informes per a cap d'estudis](#pràctica-73--informes-per-a-cap-destudis) | Autònoma | ●●○ | RA4.c-e |
 | [7.4 Subconsultes](#pràctica-74--subconsultes) | Autònoma | ●●○ | RA4.f |
-| [7.5 Múltiples seleccions i vistes](#pràctica-75--múltiples-seleccions-i-vistes) | Autònoma | ●●○ | RA3.h, RA4.f |
-| [7.6 Optimització: mesurar abans i després](#pràctica-76--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA4.g |
-| [7.7 Repte: el quadre de comandament](#pràctica-77--repte-el-quadre-de-comandament) | Repte | ●●● | RA4.c-g |
-| [Projecte EduGest · Tema 7](#projecte-edugest--ud07-informes) | Projecte | ●●● | RA4 complet |
+| [7.5 Optimització: mesurar abans i després](#pràctica-75--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA4.g |
+| [7.6 Repte: el quadre de comandament](#pràctica-76--repte-el-quadre-de-comandament) | Repte | ●●● | RA4.c-g |
+| [Projecte EduGest · Tema 7](#projecte-edugest--tema-7-informes) | Projecte | ●●● | RA4 complet |
 
 > [!IMPORTANT]
 > Treballa sobre **EDUGEST amb les dades originals** (scripts 01 i 02) i amb `ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY';`. Intenta cada consulta abans d'obrir la solució; com a mínim, comprova que obtens el **mateix nombre de files**.
@@ -166,11 +165,6 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 - [ ] Saps corregir cada un dels tres errors del pas 6.
 {{% /comprobacion %}}
 
-#### Ampliació
-
-Repeteix el pas 2 afegint `ROLLUP`: `GROUP BY ROLLUP(localidad)`. Quina fila nova apareix? Quin valor té `localidad` en ella?
-
----
 
 ## Pràctica 7.2 · Composicions pas a pas
 
@@ -401,33 +395,9 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ---
 
-## Pràctica 7.5 · Múltiples seleccions i vistes
+## Pràctica 7.5 · Optimització: mesurar abans i després
 
-{{< practica num="7.5" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA3: h · RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
-
-#### Enunciat
-
-**U1.** Llista única de totes les **localitats** en què viu alumnat de DAM o de DAW (sense repetir).
-
-{{< solucion id="ud07-016" title="Solució U1" />}}
-
-**U2.** Localitats amb alumnat **tant** de DAM **com** de DAW.
-
-{{< solucion id="ud07-017" title="Solució U2" />}}
-
-**U3.** Codis de mòdul oficials que estan en DAM però **no** en DAW.
-
-{{< solucion id="ud07-018" title="Solució U3" />}}
-
-**U4.** Crea la vista `v_acta` de la [teoria](/ud04-consultas/t07-teoria#7-vistes-amb-composicions) i usa-la per a obtindre el nombre d'APTOS, NO APTOS i NC de cada mòdul de 1DAW.
-
-{{< solucion id="ud07-019" title="Solució U4" />}}
-
----
-
-## Pràctica 7.6 · Optimització: mesurar abans i després
-
-{{< practica num="7.6" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
+{{< practica num="7.5" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
 
 #### Objectiu
 
@@ -536,29 +506,28 @@ Afig `/*+ FULL(ap) */` just després de `SELECT` en la consulta 1 amb índex i c
 
 ---
 
-## Pràctica 7.7 · Repte: el quadre de comandament
+## Pràctica 7.6 · Repte: el quadre de comandament
 
-{{< practica num="7.7" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
+{{< practica num="7.6" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
 
 #### Enunciat
 
 La direcció vol un **quadre de comandament** amb una sola consulta per indicador. Resol cadascun amb la tècnica que consideres més adequada i justifica l'elecció:
 
 1. Per a cada cicle (inclòs SMR): nombre de grups, d'alumnes, de matrícules i nota mitjana.
-2. Els **dos** millors alumnes de cada grup segons la seua nota mitjana (pista: `RANK()` o `ROW_NUMBER()` amb `PARTITION BY`).
-3. Per a cada professor que impartix classe: la nota mitjana dels seus alumnes en els mòduls que impartix **en els grups en què els impartix**. (Compte: la composició entre `IMPARTE` i `MATRICULA` ha d'usar el mòdul **i** el grup de l'alumne.)
-4. Alumnes que han suspés **tots** els mòduls en què estan qualificats.
-5. Percentatge d'hores de falta justificades sobre el total, per grup.
-6. Escriu una de les consultes anteriors de dues formes distintes (per exemple, subconsulta enfront de composició) i compara els seus plans d'execució.
+2. Per a cada professor que impartix classe: la nota mitjana dels seus alumnes en els mòduls que impartix **en els grups en què els impartix**. (Compte: la composició entre `IMPARTE` i `MATRICULA` ha d'usar el mòdul **i** el grup de l'alumne.)
+3. Alumnes que han suspés **tots** els mòduls en què estan qualificats.
+4. Percentatge d'hores de falta justificades sobre el total, per grup.
+5. Escriu una de les consultes anteriors de dues formes distintes (per exemple, subconsulta enfront de composició) i compara els seus plans d'execució.
 
 #### Comprovació
 
 {{% comprobacion %}}
 - [ ] L'indicador 1 té 4 files i SMR apareix amb zeros.
-- [ ] L'indicador 3 no barreja alumnes d'altres grups amb el mateix mòdul.
+- [ ] L'indicador 2 no barreja alumnes d'altres grups amb el mateix mòdul.
 - [ ] Pots defendre cada consulta i explicar el seu pla d'execució.
 
-{{% details title="Pista per a l'indicador 4" %}}
+{{% details title="Pista per a l'indicador 3" %}}
 «Tots suspesos» equival a «no n'hi ha cap d'aprovat» i «en té almenys un de qualificat»: `NOT EXISTS (... nota_final >= 5)` i `EXISTS (... nota_final IS NOT NULL)`. Una altra forma: `GROUP BY` alumne amb `HAVING MAX(nota_final) < 5`.
 {{% /details %}}
 {{% /comprobacion %}}
@@ -567,18 +536,16 @@ La direcció vol un **quadre de comandament** amb una sola consulta per indicado
 
 ## Projecte EduGest · Tema 7: informes
 
-{{< practica num="EduGest-7" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA3: h · RA4: a, b, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
+{{< practica num="EduGest-7" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA4: a, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + docs/07-optimizacion.md" >}}
 
 #### Enunciat
 
-1. Escriu **deu informes** per a EduGest que en conjunt usen: composicions internes i externes (almenys tres taules en algun), consultes resum amb `HAVING`, subconsultes (una correlacionada i una amb `EXISTS`), un operador de conjunts i una funció analítica.
-2. Converteix els tres informes més usats en **vistes** i concedix `SELECT` sobre elles al rol adequat de la pràctica 5.7.
-3. **Optimització:** tria dos dels teus informes, obtín el seu pla d'execució, proposa una millora (índex o reescriptura) i documenta l'abans i el després en `07-optimizacion.md`. Si EduGest té poques dades per a notar la diferència, explica-ho i recolza't en la pràctica 7.6.
+1. Escriu **deu informes** per a EduGest que en conjunt usen: composicions internes i externes (almenys tres taules en algun), consultes resum amb `HAVING` i subconsultes (una correlacionada i una amb `EXISTS`).
+2. **Optimització:** tria dos dels teus informes, obtín el seu pla d'execució, proposa una millora (índex o reescriptura) i documenta l'abans i el després en `07-optimizacion.md`. Si EduGest té poques dades per a notar la diferència, explica-ho i recolza't en la pràctica 7.5.
 
 #### Comprovació
 
 {{% comprobacion %}}
 - [ ] Cada informe té un comentari amb el perfil que l'usa, la pregunta que respon i el nombre de files.
-- [ ] Les vistes es poden consultar des de l'usuari del rol corresponent.
 - [ ] El document d'optimització inclou els plans abans i després.
 {{% /comprobacion %}}

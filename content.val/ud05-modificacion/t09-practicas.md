@@ -1,29 +1,24 @@
 ---
-title: "T9 · Programació amb PL/SQL - Pràctiques"
+title: "T9 · Guions de sentències - Pràctiques"
 weight: 92
 bookToc: true
 ---
 
 # Tema 9 · Pràctiques
 
-{{< ra "RA2:i" "RA5:d,e" >}}
+{{< ra "RA5:d,e" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
 | [9.1 Primers blocs: l'expedient d'un alumne](#pràctica-91--primers-blocs-lexpedient-dun-alumne) | Guiada | ●○○ | RA5.e |
-| [9.2 Biblioteca de funcions d'EduGest](#pràctica-92--biblioteca-de-funcions-dedugest) | Guiada | ●●○ | RA5.e |
-| [9.3 Procediment de matrícula amb excepcions](#pràctica-93--procediment-de-matrícula-amb-excepcions) | Guiada | ●●○ | RA5.e |
-| [9.4 Cursors: butlletins i informes](#pràctica-94--cursors-butlletins-i-informes) | Autònoma | ●●○ | RA5.e |
-| [9.5 Disparadors d'integritat i auditoria](#pràctica-95--disparadors-dintegritat-i-auditoria) | Guiada | ●●● | RA2.i, RA5.d, RA5.e |
-| [9.6 Repte: la taula mutant](#pràctica-96--repte-la-taula-mutant) | Repte | ●●● | RA5.e |
-| [9.7 Tasques programades](#pràctica-97--tasques-programades) | Guiada | ●●○ | RA5.e |
-| [9.8 Repte: el paquet de secretaria](#pràctica-98--repte-el-paquet-de-secretaria) | Repte | ●●● | RA5.e |
-| [Projecte EduGest · Tema 9](#projecte-edugest--ud09-lògica-en-el-servidor) | Projecte | ●●● | RA5 complet, RA2.i |
+| [9.2 Matrícula amb excepcions](#pràctica-92--matrícula-amb-excepcions) | Guiada | ●●○ | RA5.e |
+| [9.3 Repte: guió de promoció de curs](#pràctica-93--repte-guió-de-promoció-de-curs) | Repte | ●●● | RA5.d-g |
+| [Projecte EduGest · Tema 9](#projecte-edugest--tema-9-guions-de-manteniment) | Projecte | ●●● | RA5.d, RA5.e |
 
 > [!IMPORTANT]
 > - Treballa com a `EDUGEST` sobre les dades originals (scripts 01 i 02).
 > - Activa l'eixida en cada sessió: `SET SERVEROUTPUT ON` (en SQL Developer, també *Veure → Eixida de DBMS* i el botó **+** per a la connexió).
-> - Guarda **cada** subprograma en el seu propi fitxer `.sql` acabat en `/`. Així podràs recompilar-lo i versionar-lo.
+> - Guarda **cada** guió en el seu propi fitxer `.sql`: així el pots repetir i versionar.
 
 ---
 
@@ -127,85 +122,31 @@ Tiene faltas registradas
 
 ---
 
-## Pràctica 9.2 · Biblioteca de funcions d'EduGest
+## Pràctica 9.2 · Matrícula amb excepcions
 
-{{< practica num="9.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="funcions/*.sql + proves" >}}
-
-#### Objectiu
-
-Crear funcions d'usuari reutilitzables i usar-les tant en PL/SQL com en consultes SQL.
-
-#### Desenvolupament
-
-Crea estes funcions (les dues primeres estan en la [teoria](/ud05-modificacion/t09-teoria#8-funcions-dusuari)):
-
-| Funció | Paràmetres | Torna |
-|---|---|---|
-| `fn_calificacion` | nota | `'NC'`, `'Insuficiente'`... `'Sobresaliente'` |
-| `fn_edad` | data de naixement, data de referència (per defecte `SYSDATE`) | Anys complits |
-| `fn_media_alumno` | id de l'alumne, curs acadèmic (per defecte `'2025-26'`) | Nota mitjana amb 2 decimals, o `NULL` si no té notes |
-| `fn_horas_falta` | id de l'alumne, només no justificades (`'S'`/`'N'`, per defecte `'N'`) | Total d'hores de falta (0 si no en té) |
-| `fn_nombre_completo` | id de l'alumne | `'Apellidos, Nombre'` o `NULL` si no existix (sense llançar error) |
-
-{{< solucion id="ud09-001" title="Solució de fn_media_alumno y fn_nombre_completo" />}}
-
-#### Comprovació
-
-Executa esta consulta. El resultat ha de coincidir:
-
-```sql
-SELECT id_alumno, fn_nombre_completo(id_alumno) AS alumno,
-       fn_media_alumno(id_alumno) AS media,
-       fn_calificacion(fn_media_alumno(id_alumno)) AS calificacion,
-       fn_horas_falta(id_alumno, 'N') + fn_horas_falta(id_alumno, 'S') AS horas_falta
-FROM   alumno
-WHERE  cod_grupo = '2DAW'
-ORDER  BY id_alumno;
-```
-
-| ID_ALUMNO | ALUMNO | MEDIA | CALIFICACION | HORAS_FALTA |
-|---|---|---|---|---|
-| 20 | Sala Brotons, Mateo | 7.13 | Notable | 5 |
-| 21 | Carbonell Soriano, Elena | 5.44 | Suficiente | 1 |
-| 22 | Planelles Marco, Sofía | 5.56 | Suficiente | 4 |
-| 23 | Amorós Guillem, Sara | 5.42 | Suficiente | 3 |
-| 24 | Verdú Castelló, Nicolás | 6 | Bien | 0 |
-
-- [ ] `SELECT fn_nombre_completo(999) FROM dual;` torna `NULL` sense error.
-- [ ] `SELECT fn_media_alumno(30) FROM dual;` torna `NULL` (alumne sense matrícules).
-- [ ] `SELECT object_name, status FROM user_objects WHERE object_type = 'FUNCTION';` mostra les cinc funcions `VALID`.
-
-#### Ampliació
-
-Què passa si intentes usar en un `SELECT` una funció que fa un `INSERT`? Prova-ho i anota l'error (`ORA-14551`). Per què Oracle ho impedix?
-
----
-
-## Pràctica 9.3 · Procediment de matrícula amb excepcions
-
-{{< practica num="9.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_matricular.sql + bateria de proves" >}}
+{{< practica num="9.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="matricula_bloque.sql + bateria de proves" >}}
 
 #### Objectiu
 
-Implementar un procediment emmagatzemat que valida regles de negoci i comunica els errors de forma controlada.
+Escriure un bloc PL/SQL que valida regles de negoci i comunica els errors de forma controlada.
 
 #### Desenvolupament
 
 {{% steps %}}
 
-1. **Crea `pr_matricular`** tal com apareix en la [teoria](/ud05-modificacion/t09-teoria#105-exemple-complet-procediment-de-matrícula).
+1. **Guarda el bloc de matrícula** de la [teoria](/ud05-modificacion/t09-teoria#69-exemple-complet-matrícula-validada-en-un-bloc) en `matricula_bloque.sql`.
 
-2. **Executa la bateria de proves.** Cada prova indica el resultat esperat:
+2. **Executa la bateria de proves** canviant els `DEFINE` i tornant a executar el bloc. Cada prova indica el resultat esperat:
 
-    | # | Crida | Resultat esperat |
+    | # | Dades (`DEFINE`) | Resultat esperat |
     |---|---|---|
-    | P1 | `pr_matricular(1, 2, '2026-27')` | Correcte. Convocatòria 2 |
+    | P1 | alumne `1`, mòdul `2`, curs `2026-27` | Correcte. Convocatòria 2 |
     | P2 | La mateixa crida una altra vegada | `ORA-20013`: ja està matriculat |
-    | P3 | `pr_matricular(1, 12, '2026-27')` | `ORA-20010`: el mòdul és de DAW |
-    | P4 | `pr_matricular(30, 2, '2026-27')` | `ORA-20012`: alumne sense grup |
-    | P5 | `pr_matricular(999, 2, '2026-27')` | `ORA-20012` |
-    | P6 | `pr_matricular(1, 999, '2026-27')` | `ORA-20012` |
-    | P7 | `pr_matricular(1, 3, '2026/27')` | `ORA-02290` (`CK_MATRICULA_CURSO`): ho detecta la restricció, no el procediment |
+    | P3 | alumne `1`, mòdul `12`, curs `2026-27` | `ORA-20010`: el mòdul és de DAW |
+    | P4 | alumne `30`, mòdul `2`, curs `2026-27` | `ORA-20012`: alumne sense grup |
+    | P5 | alumne `999`, mòdul `2`, curs `2026-27` | `ORA-20012` |
+    | P6 | alumne `1`, mòdul `999`, curs `2026-27` | `ORA-20012` |
+    | P7 | alumne `1`, mòdul `3`, curs `2026/27` | `ORA-02290` (`CK_MATRICULA_CURSO`): ho detecta la restricció, no el bloc |
     | P8 | Matricular l'alumne 1 en el mòdul 4 en els cursos `'2026-27'`, `'2027-28'`, `'2028-29'` i `'2029-30'` | Les tres primeres creen les convocatòries 2, 3 i 4; la quarta (convocatòria 5) dona `ORA-20011` |
 
 3. **Comprova l'estat** després de les proves:
@@ -224,244 +165,109 @@ Implementar un procediment emmagatzemat que valida regles de negoci i comunica e
 {{% comprobacion %}}
 - [ ] Les huit proves donen el resultat esperat.
 - [ ] Després de les proves i abans del `ROLLBACK` hi ha 4 matrícules noves de l'alumne 1: mòdul 2 (convocatòria 2) i mòdul 4 (convocatòries 2, 3 i 4).
-- [ ] Pots explicar per què el procediment no fa `COMMIT`.
+- [ ] Pots explicar per què el bloc no fa `COMMIT`.
 
 {{% details title="Per què P8 falla en la quarta crida?" %}}
-L'alumne 1 ja tenia una matrícula del mòdul 4 en 2025-26 (convocatòria 1). El procediment calcula la convocatòria com `MAX(convocatoria) + 1`, així que les crides per a 2026-27, 2027-28 i 2028-29 creen les convocatòries 2, 3 i 4. La cinquena convocatòria no està permesa.
+L'alumne 1 ja tenia una matrícula del mòdul 4 en 2025-26 (convocatòria 1). El bloc calcula la convocatòria com `MAX(convocatoria) + 1`, així que les crides per a 2026-27, 2027-28 i 2028-29 creen les convocatòries 2, 3 i 4. La cinquena convocatòria no està permesa.
 {{% /details %}}
 {{% /comprobacion %}}
 
 #### Ampliació
 
-Afig un paràmetre `p_forzar BOOLEAN DEFAULT FALSE` que permeta saltar-se la regla del cicle (matrícula autoritzada per direcció). Es pot cridar a este procediment des de SQL\*Plus amb un `BOOLEAN`? I des d'Oracle 23ai?
+Afig una variable `v_forzar BOOLEAN := FALSE` que permeta saltar-se la regla del cicle (matrícula autoritzada per prefectura) i comprova que, sense ella, la regla continua aplicant-se.
 
 ---
 
-## Pràctica 9.4 · Cursors: butlletins i informes
 
-{{< practica num="9.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_boletin.sql + pr_alerta_faltas.sql + eixides" >}}
+## Pràctica 9.3 · Repte: guió de promoció de curs
 
-#### Enunciat
-
-**1. Butlletí de notes.** Crea `pr_boletin(p_id_alumno)` que mostre el butlletí d'un alumne usant un **cursor explícit** sobre les seues matrícules. Per a l'alumne 20 l'eixida ha de ser:
-
-```text
-BOLETÍN DE NOTAS · Curso 2025-26
-Alumno: Sala Brotons, Mateo (2DAW)
--------------------------------------------------------------
-0612 Desarrollo web en entorno cliente              6.50  Bien
-0613 Desarrollo web en entorno servidor             5.25  Suficiente
-0614 Despliegue de aplicaciones web                 7.50  Notable
-0615 Diseño de interfaces web                       9.25  Sobresaliente
--------------------------------------------------------------
-Módulos: 4 · Aprobados: 4 · Media: 7.13
-```
-
-Pistes: `RPAD(nombre, 45)` alinea columnes; `TO_CHAR(nota, '90.00')` formata la nota; usa `fn_calificacion` i `fn_media_alumno` de la pràctica 9.2; compta els aprovats dins del bucle.
-
-**2. Butlletins d'un grup.** Crea `pr_boletines_grupo(p_cod_grupo)` que recorrega l'alumnat del grup amb un **cursor `FOR`** i cride a `pr_boletin` per a cadascun.
-
-**3. Alerta de faltes.** Crea `pr_alerta_faltas(p_umbral NUMBER DEFAULT 4)` que, amb un **cursor amb paràmetres**, mostre l'alumnat les hores de falta **no justificades** del qual siguen iguals o superiors al llindar, i que acabe indicant quants alumnes ha trobat.
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] `EXEC pr_alerta_faltas(5);` troba 2 alumnes: Martina Alemany Vidal (6) i Valeria Quiles Marco (5).
-- [ ] `EXEC pr_alerta_faltas;` (llindar per defecte, 4) troba 5 alumnes.
-- [ ] `EXEC pr_boletines_grupo('2ASIR');` no dona error i mostra que el grup no té alumnat.
-- [ ] El cursor explícit es tanca també si es produïx un error (secció `EXCEPTION` que comprova `%ISOPEN`).
-{{% /comprobacion %}}
-
----
-
-## Pràctica 9.5 · Disparadors d'integritat i auditoria
-
-{{< practica num="9.5" tipo="Guiada" duracion="3 sessions" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="triggers/*.sql + matriu de proves" >}}
+{{< practica num="9.3" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: d, e, f, g" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + eixida (SPOOL) + defensa oral" >}}
 
 #### Objectiu
 
-Implementar amb disparadors l'auditoria de canvis i les restriccions d'EduGest que no van poder declarar-se en el model lògic (catàleg del tema 3).
+Dissenyar un guió transaccional que realitze una tasca complexa de forma segura, verificable i repetible.
 
-#### Desenvolupament
+#### Context
 
-{{% steps %}}
+Ha acabat el curs 2025-26 i cap d'estudis ha de preparar el curs 2026-27 per a l'alumnat de **primer curs**. Les regles són:
 
-1. **Auditoria de notes.** Crea la taula `AUDITORIA_NOTA` i el disparador `trg_auditoria_nota` de la [teoria](/ud05-modificacion/t09-teoria#112-auditoria-de-canvis-de-nota). Amplia'l per a registrar també la **IP** de la sessió (`SYS_CONTEXT('USERENV', 'IP_ADDRESS')`) i el **tipus d'operació** (`'U'` en canvis de nota; afig l'esdeveniment `DELETE` i registra `'D'`).
-
-2. **R1 · El cap pertany al departament** (els dos costats de la regla):
-
-    - `trg_jefe_departamento` sobre `DEPARTAMENTO` (teoria, apartat 11.3).
-    - `trg_profesor_cambio_dpto` sobre `PROFESOR`: impedix canviar de departament un professor que és cap del seu departament actual.
-
-    ```sql
-    CREATE OR REPLACE TRIGGER trg_profesor_cambio_dpto
-    BEFORE UPDATE OF id_departamento ON profesor
-    FOR EACH ROW
-    WHEN (NEW.id_departamento <> OLD.id_departamento)
-    DECLARE
-        v_n NUMBER;
-    BEGIN
-        SELECT COUNT(*) INTO v_n FROM departamento
-        WHERE  id_jefe = :OLD.id_profesor AND id_departamento = :OLD.id_departamento;
-        IF v_n > 0 THEN
-            RAISE_APPLICATION_ERROR(-20021,
-                'El profesor ' || :OLD.id_profesor || ' es jefe de su departamento: asigna antes otra jefatura');
-        END IF;
-    END;
-    /
-    ```
-
-3. **R3 · No hi ha faltes anteriors a la matrícula.** Escriu `trg_falta_fecha` (`BEFORE INSERT OR UPDATE OF fecha ON falta_asistencia`) que consulte la `fecha_matricula` i rebutge la falta amb `-20022` si és anterior.
-
-4. **Normalització de dades.** Crea `trg_alumno_normaliza` (teoria, apartat 11.4).
-
-5. **Executa la matriu de proves** i anota el resultat:
-
-    | # | Sentència | Resultat esperat |
-    |---|---|---|
-    | T1 | `UPDATE matricula SET nota_final = 6 WHERE id_matricula = 10002;` | 1 fila; 1 registre en `AUDITORIA_NOTA` (4.75 → 6) |
-    | T2 | `UPDATE matricula SET nota_final = 6 WHERE id_matricula = 10002;` (una altra vegada) | 1 fila; **cap** registre nou (no canvia el valor) |
-    | T3 | `UPDATE departamento SET id_jefe = 111 WHERE id_departamento = 1;` | `ORA-20020` |
-    | T4 | `UPDATE departamento SET id_jefe = 102 WHERE id_departamento = 1;` | Correcte |
-    | T5 | `UPDATE profesor SET id_departamento = 2 WHERE id_profesor = 102;` | `ORA-20021` (després de T4, 102 és cap) |
-    | T6 | `UPDATE profesor SET id_departamento = 2 WHERE id_profesor = 108;` | Correcte (108 no és cap) |
-    | T7 | `INSERT INTO falta_asistencia (id_matricula, fecha, horas) VALUES (10001, DATE '2025-08-01', 2);` | `ORA-20022` |
-    | T8 | `INSERT INTO alumno (nia, nombre, apellidos, fecha_nacimiento, email) VALUES ('10459999', '  marina ', 'lópez ortega', DATE '2007-01-01', ' Marina@Mail.COM ');` | Es guarda «Marina», «López Ortega», «marina@mail.com» |
-    | T9 | `UPDATE matricula SET nota_final = nota_final WHERE id_alumno = 2;` | 5 files; cap registre d'auditoria |
-
-6. Acaba amb `ROLLBACK` i comprova que l'auditoria també s'ha desfet. Per què? Com aconseguiries que el registre d'auditoria es conserve encara que la transacció es desfaça? (Pista: `PRAGMA AUTONOMOUS_TRANSACTION`.)
-
-{{% /steps %}}
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] La matriu completa coincidix amb l'esperat.
-- [ ] `SELECT trigger_name, status FROM user_triggers;` mostra tots els disparadors `ENABLED`.
-- [ ] Cada disparador té un comentari que cita la restricció del catàleg (R1, R3...) que implementa.
-
-> [!WARNING]
-> Si en carregar de nou les dades amb l'script 02 apareixen errors `ORA-200xx`, és que els teus disparadors rebutgen alguna dada d'exemple o l'ordre de càrrega. Desactiva'ls abans d'una càrrega massiva (`ALTER TABLE ... DISABLE ALL TRIGGERS`) i activa'ls després… **comprovant** després les dades amb una consulta.
-{{% /comprobacion %}}
-
----
-
-## Pràctica 9.6 · Repte: la taula mutant
-
-{{< practica num="9.6" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="trg_imparte_max_horas.sql + proves + explicació" >}}
+1. **Promociona** a segon l'alumnat de primer amb **com a màxim un** mòdul pendent. Un mòdul està pendent si la seua nota de 2025-26 és menor que 5 o està sense qualificar.
+2. A l'alumnat que promociona se li canvia el grup al de segon del seu cicle (1DAM → 2DAM...) i se'l matricula en **tots** els mòduls de segon del seu cicle, en primera convocatòria.
+3. **Tot** l'alumnat de primer (promocione o no) es matricula en 2026-27 dels seus mòduls **pendents**, amb la convocatòria següent a la que tenia.
+4. Data de matrícula: 10 de setembre de 2026.
 
 #### Enunciat
 
-Cal implementar la restricció R4: «un professor no pot superar 20 hores lectives setmanals en un curs acadèmic».
+Escriu `promocion_2026_27.sql` amb esta estructura:
 
-1. Escriu primer un disparador **de fila** `AFTER INSERT OR UPDATE ON imparte FOR EACH ROW` que sume les hores del professor en `IMPARTE`. Executa `UPDATE imparte SET horas_semanales = horas_semanales + 1 WHERE id_profesor = 102;` i anota l'error.
-2. Explica per què es produïx `ORA-04091`.
-3. Substituïx-lo per un **disparador compost** que funcione per a **qualsevol** curs acadèmic: guarda en una col·lecció les parelles (professor, curs) modificades i comprova-les en `AFTER STATEMENT`.
-4. Proves:
-    - `UPDATE imparte SET horas_semanales = horas_semanales + 1 WHERE id_profesor = 102;` → correcte (Javier passa de 16 a 20 hores).
-    - Repetix la sentència → `ORA-20030` (24 hores: la sentència suma 1 hora a cadascuna de les seues 4 assignacions).
-    - `INSERT` d'una assignació de 6 hores a Marta (101, 15 hores) en el curs 2026-27 → correcte (és un altre curs).
-5. Què passaria amb dues sessions que, alhora, afigen hores al mateix professor sense confirmar? Garantix el disparador la regla en eixe cas? Relaciona-ho amb el tema 8 i proposa una solució.
+```sql
+WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK
+SPOOL promocion_2026_27.log
 
-{{% details title="Pista per a l'apartat 5" %}}
-Cada sessió veu només els seus propis canvis sense confirmar (consistència de lectura). Les dues poden sumar 19 hores i confirmar, deixant 22. Una solució és serialitzar les modificacions de cada professor bloquejant la seua fila en `PROFESOR` amb `SELECT ... FOR UPDATE` dins del disparador, abans de sumar.
+-- 0. Comprovacions prèvies (no modifiquen res)
+--    · Ja existixen matrícules de 2026-27? Si existixen, el guió no s'ha d'executar.
+--    · Llistat de l'alumnat que promociona i del que no.
+
+-- 1. Matrícules de mòduls pendents (regla 3)
+-- 2. Matrícules de segon curs (regla 2) — abans de canviar el grup!
+-- 3. Canvi de grup (regla 2)
+
+-- 4. Verificacions: recomptes esperats
+-- 5. COMMIT
+SPOOL OFF
+```
+
+#### Comprovació
+
+Amb les dades originals d'EduGest, el teu guió ha d'obtindre exactament:
+
+| Comprovació | Valor esperat |
+|---|---|
+| Alumnat de primer que promociona | 12 (4 de 1DAM, 4 de 1DAW, 4 de 1ASIR) |
+| Matrícules de pendents inserides | 18 |
+| Matrícules de segon inserides | 36 (20 de DAM i 16 de DAW) |
+| Files d'`ALUMNO` amb el grup canviat | 12 |
+| Total de matrícules de 2026-27 | 54 |
+| Alumnat per grup després del guió | 1ASIR 1 · 1DAM 3 · 1DAW 2 · 2ASIR 4 · 2DAM 10 · 2DAW 9 · sense grup 3 |
+
+- [ ] Executar el guió **per segona vegada** no canvia res (s'atura en les comprovacions prèvies).
+- [ ] Si provoques un error a mitat (per exemple, canviant el nom d'una taula), **no** queda cap canvi aplicat.
+- [ ] Expliques per què l'alumnat de 1ASIR que promociona no rep matrícules de segon (pista: consulta quins mòduls d'ASIR existixen) i què hauria de fer el centre.
+
+{{% details title="Pista: l'ordre importa" %}}
+Si canvies el grup **abans** d'inserir les matrícules, ja no sabràs qui estava en primer ni podràs distingir l'alumnat que promociona del que ja estava en segon. Una altra opció professional és calcular primer la llista d'alumnes que promocionen i guardar-la en una **taula temporal global** (`CREATE GLOBAL TEMPORARY TABLE ... ON COMMIT PRESERVE ROWS`) creada **fora** del guió.
+{{% /details %}}
+
+{{% details title="Pista: aturar el guió si ja es va executar" %}}
+```sql
+DECLARE
+    v_n NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO v_n FROM matricula WHERE curso_academico = '2026-27';
+    IF v_n > 0 THEN
+        RAISE_APPLICATION_ERROR(-20100, 'Ya existen ' || v_n || ' matrículas de 2026-27');
+    END IF;
+END;
+/
+```
+Amb `WHENEVER SQLERROR EXIT`, l'error acaba el guió.
 {{% /details %}}
 
 ---
+## Projecte EduGest · Tema 9: guions de manteniment
 
-## Pràctica 9.7 · Tasques programades
-
-{{< practica num="9.7" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: e" sgbd="Oracle 26ai · DBMS_SCHEDULER" entrega="jobs.sql + captura de l'historial" >}}
-
-#### Objectiu
-
-Automatitzar tasques periòdiques en el servidor i comprovar-ne l'execució.
-
-#### Desenvolupament
-
-{{% steps %}}
-
-1. Crea la taula `RESUMEN_GRUPO` i el procediment `pr_recalcular_resumen` de la [teoria](/ud05-modificacion/t09-teoria#12-eventos-tareas-programadas).
-2. Crea una taula `LOG_TAREA(momento TIMESTAMP, tarea VARCHAR2(50), mensaje VARCHAR2(200))` i modifica el procediment perquè escriga una fila en acabar, amb el nombre de grups processats.
-3. Crea la tasca `JOB_RESUMEN_PRUEBA` que s'execute **cada minut** (`FREQ=MINUTELY; INTERVAL=1`).
-4. Espera tres minuts i comprova:
-
-    ```sql
-    SELECT * FROM log_tarea ORDER BY momento;
-    SELECT log_date, status FROM user_scheduler_job_run_details
-    WHERE  job_name = 'JOB_RESUMEN_PRUEBA' ORDER BY log_date;
-    ```
-
-5. Provoca un error (per exemple, canvia el nom de la taula `RESUMEN_GRUPO`) i observa l'estat `FAILED` i el codi d'error en l'historial. Restaura la taula.
-6. Canvia el calendari a «de dilluns a divendres a les 7:30» amb `DBMS_SCHEDULER.SET_ATTRIBUTE` i desactiva la tasca.
-
-{{% /steps %}}
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] `LOG_TAREA` té una fila per minut mentre la tasca està activa.
-- [ ] L'historial mostra almenys una execució `SUCCEEDED` i una `FAILED`.
-- [ ] El calendari final és `FREQ=WEEKLY; BYDAY=MON,TUE,WED,THU,FRI; BYHOUR=7; BYMINUTE=30`.
-
-> [!TIP]
-> Les tasques que no faces desaparéixer continuen executant-se al teu contenidor. En acabar: `EXEC DBMS_SCHEDULER.DROP_JOB('JOB_RESUMEN_PRUEBA');`
-{{% /comprobacion %}}
-
----
-
-## Pràctica 9.8 · Repte: el paquet de secretaria
-
-{{< practica num="9.8" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="pkg_secretaria.sql (especificació i cos) + proves + defensa" >}}
+{{< practica num="EduGest-9" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: d, e" sgbd="Oracle 26ai · SQLcl" entrega="edugest/09_guiones/*.sql + docs/09-guiones.md" >}}
 
 #### Enunciat
 
-Agrupa la lògica de secretaria en un **paquet** `pkg_secretaria`:
-
-```sql
-CREATE OR REPLACE PACKAGE pkg_secretaria AS
-    c_curso_actual CONSTANT matricula.curso_academico%TYPE := '2026-27';
-
-    PROCEDURE matricular (p_id_alumno NUMBER, p_id_modulo NUMBER);
-    PROCEDURE matricular_curso_completo (p_id_alumno NUMBER);
-    PROCEDURE promocionar (p_curso_origen VARCHAR2, p_curso_destino VARCHAR2,
-                           p_promocionados OUT NUMBER, p_pendientes OUT NUMBER);
-    FUNCTION  media (p_id_alumno NUMBER, p_curso VARCHAR2 DEFAULT NULL) RETURN NUMBER;
-END pkg_secretaria;
-/
-```
-
-1. `matricular` reutilitza la lògica de la pràctica 9.3.
-2. `matricular_curso_completo` matricula l'alumne en tots els mòduls del curs del seu grup cridant a `matricular`. Si alguna matrícula falla, **no** n'ha de quedar cap (usa un `SAVEPOINT`).
-3. `promocionar` implementa el guió de promoció de la pràctica 8.7 com a procediment, torna els recomptes en paràmetres `OUT` i llança un error propi si ja existixen matrícules del curs destinació.
-4. Escriu un bloc de prova que execute `promocionar('2025-26', '2026-27', ...)`, mostre els recomptes i faça `ROLLBACK`.
+1. **Promoció de curs.** Lliura el teu `promocion_2026_27.sql` (pràctica 9.3) complet: comprovacions prèvies, transacció única, verificacions, `SPOOL` i idempotència.
+2. **Alta d'alumnat nou.** Convertix el teu `alta_nuevo_alumnado.sql` (EduGest-8) en un guió professional: capçalera, còpia prèvia, bloc amb excepcions que explique l'error, `COMMIT` únic i `SPOOL`.
+3. **Documentació.** En `09-guiones.md` indica, per a cada guió, l'ordre d'execució, què comprova abans de modificar, què passa si falla a mitges i com es torna arrere.
 
 #### Comprovació
 
 {{% comprobacion %}}
-- [ ] La promoció torna 12 alumnes promoguts i 18 matrícules de pendents, igual que el guió del tema 8.
-- [ ] Una segona crida llança l'error propi.
-- [ ] El cos del paquet no té `COMMIT`.
-{{% /comprobacion %}}
-
----
-
-## Projecte EduGest · Tema 9: lògica en el servidor
-
-{{< practica num="EduGest-9" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="edugest/09_plsql/ + docs/09-programacion.md" >}}
-
-#### Enunciat
-
-1. **Catàleg de restriccions tancat.** Implementa amb disparadors o procediments **totes** les restriccions del teu catàleg (Tema 3-Tema 5) que queden pendents. Per a cadascuna, una prova que demostre que funciona.
-2. **Auditoria.** Audita els canvis de nota i les baixes d'alumnat. L'auditoria s'ha de conservar encara que la transacció es desfaça.
-3. **API de secretaria.** Paquet `pkg_secretaria` (pràctica 9.8) i concessió d'`EXECUTE` sobre ell al rol de secretaria. Retira a eixe rol els privilegis `INSERT` directes sobre `MATRICULA`: ara només podrà matricular **a través del procediment**. Explica quin avantatge de seguretat té.
-4. **Tasca nocturna** que recalcula el resum per grup i registra la seua execució.
-5. **Documentació**: taula amb cada objecte PL/SQL, la seua finalitat, els seus paràmetres i els errors propis que pot llançar (codi i missatge).
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] Tots els objectes estan `VALID` en `USER_OBJECTS`.
-- [ ] L'usuari de secretaria pot matricular amb `EXEC edugest.pkg_secretaria.matricular(...)` però no amb un `INSERT` directe.
-- [ ] Cada restricció del catàleg té la seua prova.
+- [ ] Els guions s'executen de principi a fi sobre EduGest restaurat amb els scripts 01 i 02.
+- [ ] Executar qualsevol d'ells per segona vegada no canvia res o s'atura amb un missatge clar.
+- [ ] Un error provocat a mitges no deixa cap canvi aplicat.
 {{% /comprobacion %}}

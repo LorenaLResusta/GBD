@@ -6,7 +6,7 @@ bookToc: true
 
 # Tema 8 · Prácticas
 
-{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,f,g,h" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
@@ -16,8 +16,7 @@ bookToc: true
 | [8.4 Laboratorio de transacciones](#práctica-84--laboratorio-de-transacciones) | Guiada | ●●○ | RA5.f, RA5.g |
 | [8.5 Dos sesiones, un dato: concurrencia y bloqueos](#práctica-85--dos-sesiones-un-dato-concurrencia-y-bloqueos) | Guiada | ●●● | RA5.d, RA5.h |
 | [8.6 Carga de notas con MERGE](#práctica-86--carga-de-notas-con-merge) | Autónoma | ●●○ | RA5.b, RA5.c |
-| [8.7 Reto: guion de promoción de curso](#práctica-87--reto-guion-de-promoción-de-curso) | Reto | ●●● | RA5.d-g |
-| [Proyecto EduGest · Tema 8](#proyecto-edugest--tema-8-guiones-de-mantenimiento) | Proyecto | ●●● | RA5 completo |
+| [Proyecto EduGest · Tema 8](#proyecto-edugest--tema-8-modificación-de-datos) | Proyecto | ●●● | RA5 completo |
 
 > [!IMPORTANT]
 > Antes de **cada** práctica, restaura EduGest ejecutando los scripts 01 y 02 del [proyecto](/guia/proyecto-edugest#4-scripts-descargables). Los números de filas afectadas que se indican suponen los datos originales.
@@ -471,92 +470,16 @@ WHEN MATCHED THEN UPDATE SET m.nota_final = o.nota
 
 ---
 
-## Práctica 8.7 · Reto: guion de promoción de curso
+## Proyecto EduGest · Tema 8: modificación de datos
 
-{{< practica num="8.7" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA5: d, e, f, g" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + salida (SPOOL) + defensa oral" >}}
-
-#### Objetivo
-
-Diseñar un guion transaccional que realiza una tarea compleja de forma segura, verificable y repetible.
-
-#### Contexto
-
-Ha terminado el curso 2025-26 y jefatura de estudios debe preparar el curso 2026-27 para el alumnado de **primer curso**. Las reglas son:
-
-1. **Promociona** a segundo el alumnado de primero con **como máximo un** módulo pendiente. Un módulo está pendiente si su nota de 2025-26 es menor que 5 o está sin calificar.
-2. Al alumnado que promociona se le cambia el grupo al de segundo de su ciclo (1DAM → 2DAM...) y se le matricula en **todos** los módulos de segundo de su ciclo, en primera convocatoria.
-3. **Todo** el alumnado de primero (promocione o no) se matricula en 2026-27 de sus módulos **pendientes**, con la convocatoria siguiente a la que tenía.
-4. Fecha de matrícula: 10 de septiembre de 2026.
+{{< practica num="EduGest-8" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="3" ra="RA5: a, b, c, d, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_modificaciones/*.sql + docs/08-transacciones.md" >}}
 
 #### Enunciado
 
-Escribe `promocion_2026_27.sql` con esta estructura:
-
-```sql
-WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK
-SPOOL promocion_2026_27.log
-
--- 0. Comprobaciones previas (no modifican nada)
---    · ¿Ya existen matrículas de 2026-27? Si existen, el guion no debe ejecutarse.
---    · Listado del alumnado que promociona y del que no.
-
--- 1. Matrículas de módulos pendientes (regla 3)
--- 2. Matrículas de segundo curso (regla 2) — ¡antes de cambiar el grupo!
--- 3. Cambio de grupo (regla 2)
-
--- 4. Verificaciones: recuentos esperados
--- 5. COMMIT
-SPOOL OFF
-```
-
-#### Comprobación
-
-Con los datos originales de EduGest, tu guion debe obtener exactamente:
-
-| Comprobación | Valor esperado |
-|---|---|
-| Alumnado de primero que promociona | 12 (4 de 1DAM, 4 de 1DAW, 4 de 1ASIR) |
-| Matrículas de pendientes insertadas | 18 |
-| Matrículas de segundo insertadas | 36 (20 de DAM y 16 de DAW) |
-| Filas de `ALUMNO` con el grupo cambiado | 12 |
-| Total de matrículas de 2026-27 | 54 |
-| Alumnado por grupo tras el guion | 1ASIR 1 · 1DAM 3 · 1DAW 2 · 2ASIR 4 · 2DAM 10 · 2DAW 9 · sin grupo 3 |
-
-- [ ] Ejecutar el guion **por segunda vez** no cambia nada (se detiene en las comprobaciones previas).
-- [ ] Si provocas un error a mitad (por ejemplo, cambiando el nombre de una tabla), **no** queda ningún cambio aplicado.
-- [ ] Explicas por qué el alumnado de 1ASIR que promociona no recibe matrículas de segundo (pista: consulta qué módulos de ASIR existen) y qué debería hacer el centro.
-
-{{% details title="Pista: el orden importa" %}}
-Si cambias el grupo **antes** de insertar las matrículas, ya no sabrás quién estaba en primero ni podrás distinguir al alumnado que promociona del que ya estaba en segundo. Otra opción profesional es calcular primero la lista de alumnos que promocionan y guardarla en una **tabla temporal global** (`CREATE GLOBAL TEMPORARY TABLE ... ON COMMIT PRESERVE ROWS`) creada **fuera** del guion.
-{{% /details %}}
-
-{{% details title="Pista: detener el guion si ya se ejecutó" %}}
-```sql
-DECLARE
-    v_n NUMBER;
-BEGIN
-    SELECT COUNT(*) INTO v_n FROM matricula WHERE curso_academico = '2026-27';
-    IF v_n > 0 THEN
-        RAISE_APPLICATION_ERROR(-20100, 'Ya existen ' || v_n || ' matrículas de 2026-27');
-    END IF;
-END;
-/
-```
-Con `WHENEVER SQLERROR EXIT`, el error termina el guion.
-{{% /details %}}
-
----
-
-## Proyecto EduGest · Tema 8: guiones de mantenimiento
-
-{{< practica num="EduGest-8" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="3" ra="RA5: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_mantenimiento/*.sql + docs/08-transacciones.md" >}}
-
-#### Enunciado
-
-1. **Datos de 2026-27.** Ejecuta tu guion de promoción (práctica 8.7) y añade un guion `alta_nuevo_alumnado.sql` que dé de alta a **diez** alumnos nuevos de primero con sus matrículas, en una sola transacción.
-2. **Baja lógica.** Añade a `ALUMNO` una columna `fecha_baja` y escribe el guion que da de baja a un alumno **sin borrar** su expediente. Modifica las vistas del tema 5 para que no muestren al alumnado dado de baja.
+1. **Alta de alumnado nuevo.** Escribe un guion `alta_nuevo_alumnado.sql` que dé de alta a **diez** alumnos nuevos de primero con sus matrículas, en una sola transacción.
+2. **Baja lógica.** Añade a `ALUMNO` una columna `fecha_baja` y escribe el guion que da de baja a un alumno **sin borrar** su expediente.
 3. **Política de concurrencia.** En `08-transacciones.md`, decide y justifica la estrategia de bloqueo (pesimista u optimista) para tres operaciones de la aplicación: poner notas, matricular y registrar faltas.
-4. **Integridad.** Revisa tu catálogo de restricciones (Tema 3-Tema 5): ¿alguna puede implementarse con una restricción diferida o con un guion transaccional? Documenta qué queda para el tema 9.
+4. **Integridad.** Revisa tu catálogo de restricciones (Tema 3-Tema 5): ¿alguna puede implementarse con una restricción diferida o con un guion transaccional? Documenta las que quedan sin implementar (RA2.i).
 
 #### Comprobación
 

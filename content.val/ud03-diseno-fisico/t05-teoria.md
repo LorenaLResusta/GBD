@@ -1,17 +1,16 @@
 ---
-title: "T5 · Definició i control de dades"
+title: "T5 · Definició de dades"
 weight: 51
 bookToc: true
 ---
 
-# Tema 5 · Definició i control de dades (DDL i DCL)
+# Tema 5 · Definició de dades (DDL)
 
 ## Resum del tema
 
-Fins ara hem **dissenyat**. En esta unitat **implementem**: convertim l'esquema relacional en taules reals dins d'un SGBD. Per a això usem dos subllenguatges de SQL:
+Fins ara hem **dissenyat**. En esta unitat **implementem**: convertim l'esquema relacional en taules reals dins d'un SGBD. Per a això usem el subllenguatge DDL de SQL:
 
-- **DDL** (*Data Definition Language*): crea, modifica i elimina l'estructura (taules, restriccions, índexs, vistes, seqüències).
-- **DCL** (*Data Control Language*): controla qui pot fer què (usuaris, rols i privilegis).
+- **DDL** (*Data Definition Language*): crea, modifica i elimina l'estructura (taules, restriccions, índexs, seqüències).
 
 Tots els exemples usen **Oracle AI Database 26ai Free**. Quan una característica siga pròpia d'Oracle o d'una versió concreta, s'indica.
 
@@ -19,9 +18,9 @@ Tots els exemples usen **Oracle AI Database 26ai Free**. Quan una característic
 
 ### Temporalització
 
-El tema ocupa **22 hores d'aula** (12 de teoria i 10 de pràctica).
+El tema ocupa **24 hores d'aula** (11 de teoria i 13 de pràctica).
 
-{{< sesiones unidad="T05" horas="22" >}}
+{{< sesiones unidad="T05" horas="24" >}}
 items:
   - {h: 2, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
   - {h: 2, tipo: T, t: "Tipus de dades d'Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
@@ -30,15 +29,15 @@ items:
   - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Pràctica 5.2"}
   - {h: 1, tipo: T, t: "Modificar i eliminar l'estructura (ALTER, DROP)", ref: "§6"}
   - {h: 1, tipo: P, t: "Evolució de l'esquema amb ALTER", ref: "Pràctica 5.5"}
-  - {h: 2, tipo: T, t: "Seqüències, identitat, índexs i vistes", ref: "§7, §8 i §9"}
-  - {h: 1, tipo: P, t: "Índexs, vistes i seqüències en EduGest", ref: "Pràctica 5.6"}
-  - {h: 3, tipo: T, t: "Usuaris, rols i privilegis. Diccionari de dades i eines", ref: "§10 a §12 · taller de privilegis"}
-  - {h: 2, tipo: P, t: "Usuaris, rols i privilegis en EduGest", ref: "Pràctica 5.7"}
-  - {h: 1, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-5"}
+  - {h: 2, tipo: T, t: "Seqüències, identitat i índexs", ref: "§7 i §8"}
+  - {h: 1, tipo: P, t: "Índexs i seqüències en EduGest", ref: "Pràctica 5.6"}
+  - {h: 2, tipo: T, t: "Diccionari de dades i eines gràfiques", ref: "§9 i §10"}
+  - {h: 3, tipo: P, t: "Biblioteca: script complet i bateria de proves", ref: "Pràctica 5.3"}
+  - {h: 3, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-5"}
 autonomo:
-  - "Pràctica 5.3 (biblioteca: script complet i bateria de proves)"
   - "Pràctica 5.4 (sis casos per a implementar)"
-  - "Pràctica 5.8 (depurar un script defectuós)"
+  - "Pràctica 5.7 (depurar un script defectuós)"
+  - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -52,18 +51,18 @@ En acabar esta unitat seràs capaç de:
 - Triar el tipus de dades adequat per a cada columna.
 - Crear taules amb totes les restriccions del disseny lògic: claus primàries, alienes i alternatives, `NOT NULL` i `CHECK`.
 - Modificar i eliminar objectes de manera segura.
-- Crear seqüències, columnes identitat, índexs i vistes.
-- Crear usuaris i rols, i assignar privilegis aplicant el principi de mínim privilegi.
+- Crear seqüències, columnes identitat i índexs.
 - Consultar el diccionari de dades per a comprovar allò que has creat.
 - Usar assistents i eines gràfiques sense dependre'n.
 
 ---
 
-{{< sesion n="1" h="1" tipo="t" >}}SQL, Oracle i emmagatzematge{{< /sesion >}}
 
 {{% curiosidad titulo="D'on ve el nom «Oracle»?" %}}
 Abans de ser una empresa de bases de dades, Larry Ellison, Bob Miner i Ed Oates van treballar en un projecte per a la CIA amb el nom en clau **Oracle**. Quan van fundar la seua pròpia companyia el 1977 (aleshores Software Development Laboratories) van reutilitzar el nom per al producte.
 {{% /curiosidad %}}
+
+{{< sesion n="1" h="2" tipo="t" >}}SQL i Oracle. Emmagatzematge de la informació{{< /sesion >}}
 
 ## 1. SQL i Oracle
 
@@ -72,7 +71,6 @@ Abans de ser una empresa de bases de dades, Larry Ellison, Bob Miner i Ed Oates 
 | Subllenguatge | Sentències | Per a què | Unitat |
 |---|---|---|---|
 | **DDL** | `CREATE`, `ALTER`, `DROP`, `TRUNCATE`, `RENAME`, `COMMENT` | Definir l'estructura | Tema 5 |
-| **DCL** | `GRANT`, `REVOKE` | Controlar l'accés | Tema 5 |
 | **DML** | `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `MERGE` | Consultar i modificar dades | Tema 6 a Tema 8 |
 | **TCL** | `COMMIT`, `ROLLBACK`, `SAVEPOINT` | Controlar transaccions | Tema 8 |
 
@@ -127,7 +125,7 @@ CREATE TABLE producto (
 
 ### 1.4 Usuari i esquema
 
-En Oracle, un **esquema** és el conjunt d'objectes (taules, vistes, índexs...) que pertanyen a un usuari, i té el seu mateix nom. En connectar-te com a `EDUGEST` i crear la taula `ALUMNO`, el seu nom complet és `EDUGEST.ALUMNO`. Un altre usuari amb permís la consultaria així:
+En Oracle, un **esquema** és el conjunt d'objectes (taules, índexs, seqüències...) que pertanyen a un usuari, i té el seu mateix nom. En connectar-te com a `EDUGEST` i crear la taula `ALUMNO`, el seu nom complet és `EDUGEST.ALUMNO`. Un altre usuari amb permís la consultaria així:
 
 ```sql
 SELECT * FROM edugest.alumno;
@@ -172,11 +170,12 @@ SELECT ROWID, nombre FROM alumno FETCH FIRST 3 ROWS ONLY;
 
 ---
 
-{{< sesion n="2" h="2" tipo="t" >}}Tipus de dades d'Oracle{{< /sesion >}}
 
 {{% curiosidad titulo="En Oracle, la cadena buida és NULL" %}}
 A diferència de l'estàndard SQL, Oracle tracta `''` (cadena de longitud zero) com a `NULL`. Per això `WHERE nombre = ''` mai no torna files i cal escriure `WHERE nombre IS NULL`.
 {{% /curiosidad %}}
+
+{{< sesion n="2" h="2" tipo="t" >}}Tipus de dades d'Oracle{{< /sesion >}}
 
 ## 3. Tipus de dades
 
@@ -258,7 +257,8 @@ Prova quins valors admet una columna i com els arredoneix Oracle. Observa què p
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}CREATE TABLE i restriccions{{< /sesion >}}
+
+{{< sesion n="3" h="2" tipo="t" >}}CREATE TABLE i restriccions d'integritat{{< /sesion >}}
 
 ## 4. Creació de taules: `CREATE TABLE`
 
@@ -405,7 +405,7 @@ CONSTRAINT ck_reserva_fechas  CHECK (fecha_salida > fecha_entrada)
 > [!WARNING]
 > Si `nota_final` és `NULL`, la condició `nota_final BETWEEN 0 AND 10` és **desconeguda** i el `CHECK` **l'accepta**. Si la columna ha de tindre valor, afig `NOT NULL`.
 >
-> Un `CHECK` **no** pot usar subconsultes, ni consultar altres taules, ni cridar `SYSDATE`. Les regles que ho necessiten són restriccions no representables (Tema 3, apartat 6) i s'implementen amb triggers (Tema 9).
+> Un `CHECK` **no** pot usar subconsultes, ni consultar altres taules, ni cridar `SYSDATE`. Les regles que ho necessiten són restriccions no representables (Tema 3, apartat 6) i es comproven amb guions de sentències (Tema 9).
 
 ### 5.5 Consultar les restriccions en el diccionari
 
@@ -466,11 +466,12 @@ A el tema 3 vas dissenyar l'esquema relacional sense escriure SQL. Esta taula tr
 
 ---
 
-{{< sesion n="6" h="1" tipo="t" >}}Modificar i eliminar l'estructura{{< /sesion >}}
 
 {{% curiosidad titulo="DDL confirma sol" %}}
 En Oracle, cada sentència DDL (`CREATE`, `ALTER`, `DROP`) fa un `COMMIT` implícit abans i després. No es pot desfer amb `ROLLBACK`: per això es prova primer en un esquema de proves.
 {{% /curiosidad %}}
+
+{{< sesion n="6" h="1" tipo="t" >}}Modificar i eliminar l'estructura (ALTER, DROP){{< /sesion >}}
 
 ## 6. Modificar i eliminar l'estructura
 
@@ -539,7 +540,8 @@ SELECT column_name, comments FROM user_col_comments WHERE table_name = 'MATRICUL
 
 ---
 
-{{< sesion n="8" h="1" tipo="t" >}}Seqüències, identitat, índexs i vistes{{< /sesion >}}
+
+{{< sesion n="8" h="2" tipo="t" >}}Seqüències, identitat i índexs{{< /sesion >}}
 
 ## 7. Seqüències i columnes identitat
 
@@ -617,198 +619,9 @@ Mou el lliscador per a veure quants blocs llig una cerca amb índex i sense.
 
 {{< coste-busqueda >}}
 
-## 9. Vistes
+{{< sesion n="10" h="2" tipo="t" >}}Diccionari de dades i eines gràfiques{{< /sesion >}}
 
-Una **vista** és una consulta guardada amb nom que s'usa com si fora una taula. No emmagatzema dades: cada vegada que es consulta, executa el seu `SELECT` (RA3.h).
-
-### 9.1 Per a què servixen
-
-- **Seguretat:** mostrar només algunes columnes o files a certs usuaris.
-- **Simplicitat:** ocultar consultes complexes (diverses taules, càlculs).
-- **Independència lògica:** si canvia l'estructura de les taules, s'adapta la vista i les aplicacions continuen funcionant.
-
-### 9.2 Creació
-
-```sql
--- El professorat necessita el llistat d'alumnes, però no el seu DNI ni el seu telèfon
-CREATE OR REPLACE VIEW v_alumno_listado AS
-    SELECT id_alumno, nia, nombre, apellidos, email, cod_grupo
-    FROM   alumno;
-
--- Vista de només lectura per a tutoria: alumnat d'un grup concret
-CREATE OR REPLACE VIEW v_alumno_1dam AS
-    SELECT id_alumno, nombre, apellidos, email
-    FROM   alumno
-    WHERE  cod_grupo = '1DAM'
-    WITH READ ONLY;
-
--- Vista actualitzable que impedix «traure» files del seu àmbit
-CREATE OR REPLACE VIEW v_matricula_abierta AS
-    SELECT id_matricula, id_alumno, id_modulo, curso_academico, nota_final
-    FROM   matricula
-    WHERE  curso_academico = '2026-27'
-    WITH CHECK OPTION CONSTRAINT ck_v_matricula_abierta;
-
-SELECT * FROM v_alumno_listado WHERE cod_grupo = '2DAW';
-DROP VIEW v_alumno_1dam;
-```
-
-| Clàusula | Efecte |
-|---|---|
-| `OR REPLACE` | Si la vista existix, la substituïx sense perdre els privilegis concedits |
-| `WITH READ ONLY` | No permet `INSERT`, `UPDATE` ni `DELETE` a través de la vista |
-| `WITH CHECK OPTION` | Només permet inserir o modificar files que **continuen complint** el `WHERE` de la vista |
-
-> [!NOTE]
-> Una vista sobre **una sola taula**, sense agrupacions, `DISTINCT` ni columnes calculades, sol ser **actualitzable**: un `UPDATE` sobre la vista modifica la taula base. Les vistes amb `JOIN` només ho són parcialment. Una **vista materialitzada** (`CREATE MATERIALIZED VIEW`) sí que emmagatzema el resultat i es refresca periòdicament: és una eina de rendiment per a informes.
-
----
-
-{{< sesion n="10" h="2" tipo="t" >}}Usuaris, rols i privilegis{{< /sesion >}}
-
-## 10. Control de dades: usuaris, privilegis i rols
-
-### 10.1 El principi de mínim privilegi
-
-Cada usuari ha de tindre **només** els permisos imprescindibles per al seu treball i **només** durant el temps que els necessita. Si una aplicació es connecta com a administrador i patix una injecció SQL, l'atacant obté control total de la base de dades.
-
-```mermaid
-flowchart TB
-    subgraph EDUGEST[Esquema EDUGEST: propietari de les taules]
-      T[(Taules)]
-      V[(Vistes)]
-    end
-    S[rol_secretaria] -->|SELECT, INSERT, UPDATE| T
-    P[rol_profesorado] -->|SELECT vistes · UPDATE nota_final| V
-    C[rol_consulta] -->|SELECT vistes| V
-    u1([sec_ana]) --> S
-    u2([prof_marta]) --> P
-    u3([dir_jefatura]) --> C
-    app([app_edugest]) --> S
-```
-
-### 10.2 Usuaris
-
-{{< sgbd "Oracle 26ai" >}} (connectat com a `SYSTEM` a `FREEPDB1`)
-
-```sql
-CREATE USER prof_marta IDENTIFIED BY "Cambiar_2026"
-    DEFAULT TABLESPACE users
-    QUOTA 0 ON users          -- no podrà crear objectes que ocupen espai
-    PASSWORD EXPIRE;          -- haurà de canviar la contrasenya en entrar
-
-ALTER USER prof_marta IDENTIFIED BY "Nueva_Clave_2026";
-ALTER USER prof_marta ACCOUNT LOCK;     -- bloquejar (baixa temporal)
-ALTER USER prof_marta ACCOUNT UNLOCK;
-DROP USER prof_marta CASCADE;           -- CASCADE esborra també els seus objectes
-```
-
-### 10.3 Privilegis de sistema i d'objecte
-
-| Tipus | Què permet | Exemples |
-|---|---|---|
-| **De sistema** | Realitzar una acció en la base de dades | `CREATE SESSION`, `CREATE TABLE`, `CREATE VIEW`, `CREATE ANY TABLE`, `SELECT ANY TABLE` |
-| **D'objecte** | Realitzar una acció sobre un objecte concret | `SELECT`, `INSERT`, `UPDATE`, `DELETE` sobre una taula o vista; `EXECUTE` sobre un procediment; `REFERENCES` |
-
-```sql
--- Privilegi de sistema: poder connectar-se
-GRANT CREATE SESSION TO prof_marta;
-
--- Privilegis d'objecte (els concedeix el propietari, EDUGEST, o un administrador)
-GRANT SELECT ON edugest.v_alumno_listado TO prof_marta;
-GRANT SELECT, UPDATE (nota_final) ON edugest.matricula TO prof_marta;   -- només eixa columna
-
--- Retirar privilegis
-REVOKE UPDATE ON edugest.matricula FROM prof_marta;
-```
-
-| Opció | Significat | Risc |
-|---|---|---|
-| `WITH ADMIN OPTION` (privilegis de sistema i rols) | El receptor pot concedir el privilegi a altres | En revocar-lo, **no** es revoca en cascada a qui el va rebre |
-| `WITH GRANT OPTION` (privilegis d'objecte) | El receptor pot concedir el privilegi sobre l'objecte | En revocar-lo, **sí** es revoca en cascada |
-
-> [!WARNING]
-> Evita els privilegis `ANY` (`SELECT ANY TABLE`, `DROP ANY TABLE`...): s'apliquen a **tots els esquemes** de la base de dades, inclosos els d'altres aplicacions.
->
-> Des d'**Oracle 23ai** existixen els **privilegis d'esquema**, que limiten l'`ANY` a un esquema concret: `GRANT SELECT ANY TABLE ON SCHEMA edugest TO dir_jefatura;`. Inclouen també les taules que es creen en el futur en eixe esquema.
-
-### 10.4 Rols
-
-Un **rol** és un conjunt de privilegis amb nom. S'assignen privilegis al rol i el rol als usuaris: així, quan arriba una professora nova basta amb una ordre.
-
-```sql
-CREATE ROLE rol_profesorado;
-GRANT CREATE SESSION TO rol_profesorado;
-GRANT SELECT ON edugest.v_alumno_listado TO rol_profesorado;
-GRANT SELECT, UPDATE (nota_final) ON edugest.matricula TO rol_profesorado;
-GRANT SELECT, INSERT, UPDATE ON edugest.falta_asistencia TO rol_profesorado;
-
-GRANT rol_profesorado TO prof_marta;
-REVOKE rol_profesorado FROM prof_marta;
-DROP ROLE rol_profesorado;
-```
-
-| Rol predefinit | Contingut | Ús |
-|---|---|---|
-| `CONNECT` | `CREATE SESSION` | Usuaris que només es connecten |
-| `RESOURCE` | Crear taules, seqüències, procediments, triggers, tipus | Heretat de versions antigues |
-| `DB_DEVELOPER_ROLE` (23ai) | Els privilegis habituals d'un desenvolupador | Comptes de desenvolupament, com `EDUGEST` |
-| `DBA` | Tots els privilegis d'administració | Només administradors. Mai per a aplicacions |
-
-### 10.5 Polítiques de contrasenyes: perfils
-
-```sql
-CREATE PROFILE perfil_personal LIMIT
-    FAILED_LOGIN_ATTEMPTS 5       -- bloqueig després de 5 intents fallits
-    PASSWORD_LOCK_TIME    1/24    -- durant 1 hora
-    PASSWORD_LIFE_TIME    180     -- caducitat en dies
-    PASSWORD_REUSE_MAX    5;      -- no repetir les 5 últimes
-
-ALTER USER prof_marta PROFILE perfil_personal;
-```
-
-### 10.6 Consultar usuaris i privilegis
-
-| Vista | Informació |
-|---|---|
-| `USER_SYS_PRIVS`, `USER_ROLE_PRIVS` | Privilegis de sistema i rols de l'usuari connectat |
-| `USER_TAB_PRIVS` | Privilegis d'objecte concedits o rebuts per l'usuari |
-| `ROLE_TAB_PRIVS`, `ROLE_SYS_PRIVS` | Privilegis continguts en els rols |
-| `SESSION_PRIVS`, `SESSION_ROLES` | Privilegis actius en la sessió actual |
-| `DBA_USERS`, `DBA_ROLE_PRIVS` | (Administració) tots els usuaris i els seus rols |
-
-### 10.7 Altres mesures de protecció
-
-- **Autenticació robusta:** contrasenyes llargues, perfils amb caducitat i bloqueig, i comptes personals (res d'usuaris compartits).
-- **Protecció de credencials:** mai escriguis contrasenyes en el codi font ni les pugis a Git. Usa variables d'entorn o gestors de secrets.
-- **Connexions segures:** xifra el trànsit amb TLS (en Oracle, *Native Network Encryption* o TCPS).
-- **Exposició del servei:** el port 1521 **no** ha d'estar accessible des d'Internet; només des dels servidors d'aplicació.
-- **Còpies de seguretat:** Oracle Data Pump (`expdp`/`impdp`) per a exportar esquemes i RMAN per a còpies físiques. Una còpia que no s'ha provat de restaurar no és una còpia.
-- **Dades personals:** vistes i privilegis per columna per a complir la **minimització** del RGPD (Tema 1).
-
-#### Taller de rols i privilegis
-
-Dissenya un rol, assigna'l a un usuari i comprova quines sentències pot executar. Els errors (`ORA-01031`, `ORA-00942`, `ORA-01045`) són els que torna Oracle.
-
-{{< privilegios >}}
-
-> [!WARNING]
-> `SELECT ANY TABLE` i `GRANT ... WITH ADMIN OPTION` són privilegis molt amplis. Concedix-los només quan existisca una raó justificada i documentada: el **mínim privilegi** és una bona pràctica de seguretat i un requisit de protecció de dades.
-
-{{< quiz >}}
-- q: "Un usuari té `SELECT` sobre `ALUMNO` però rep ORA-01045 en connectar-se. Què falta?"
-  options: ["El privilegi `SELECT ANY TABLE`", "El privilegi de sistema `CREATE SESSION`", "Un `COMMIT`", "Un sinònim públic"]
-  answer: 1
-  explain: "ORA-01045 indica que l'usuari no té `CREATE SESSION`: sense ell no pot connectar-se, tinga els privilegis d'objecte que tinga."
-- q: "Quin avantatge principal té agrupar privilegis en un rol?"
-  options: ["Les consultes s'executen més ràpid", "Es gestionen els permisos per funció, no usuari a usuari", "Evita la necessitat de contrasenyes", "Permet saltar-se el mínim privilegi"]
-  answer: 1
-  explain: "Amb rols es concedix o revoca un conjunt coherent de permisos alhora, reduint errors i facilitant l'auditoria."
-{{< /quiz >}}
-
----
-
-## 11. Diccionari de dades
+## 9. Diccionari de dades
 
 El diccionari és el catàleg del SGBD: descriu tots els objectes. És la forma de **comprovar** allò que s'ha creat.
 
@@ -823,21 +636,19 @@ SELECT table_name FROM user_tables ORDER BY 1;
 SELECT column_name, data_type, data_length, data_precision, data_scale, nullable
 FROM   user_tab_columns WHERE table_name = 'ALUMNO' ORDER BY column_id;
 SELECT index_name, index_type, uniqueness FROM user_indexes WHERE table_name = 'ALUMNO';
-SELECT view_name, text FROM user_views;
 SELECT object_name, object_type, status FROM user_objects ORDER BY object_type;
 ```
 
 ---
 
-## 12. Assistents i eines gràfiques
+## 10. Assistents i eines gràfiques
 
-El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llenguatges DDL i DCL**.
+El criteri RA3.g i RA3.h demanen usar **assistents, eines gràfiques i el llenguatge DDL**.
 
 | Tasca | En SQL Developer | Allò que has de revisar |
 |---|---|---|
 | Crear una taula | Clic dret en *Taules* → *Nova taula* (mode avançat per a restriccions) | Pestanya **DDL**: el codi que s'executarà |
 | Veure l'estructura | Doble clic sobre la taula → pestanyes *Columnes*, *Restriccions*, *Índexs*, *DDL* | Noms de les restriccions |
-| Crear un usuari | Finestra *DBA* → *Seguretat* → *Usuaris* → *Crear* | Privilegis mínims |
 | Generar l'esquema complet | *Data Modeler* → model relacional → *Generar DDL* | Ordre de creació i noms |
 
 > [!TIP]
@@ -845,7 +656,7 @@ El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llengua
 
 ---
 
-## 13. Errors freqüents
+## 11. Errors freqüents
 
 | Error | Missatge | Causa i solució |
 |---|---|---|
@@ -862,34 +673,27 @@ El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llengua
 {{< tarjetas titulo="Repassa els termes del tema 5" >}}
 - t: "DDL"
   d: "Llenguatge de definició de dades: CREATE, ALTER, DROP."
-- t: "DCL"
-  d: "Llenguatge de control de dades: GRANT i REVOKE."
 - t: "Clau primària"
   d: "Restricció que identifica cada fila: única i no nul·la."
 - t: "Clau aliena"
   d: "Restricció que obliga que el valor existisca en la taula referenciada."
 - t: "CHECK"
   d: "Restricció que valida una condició sobre els valors de la fila."
-- t: "Vista"
-  d: "Consulta guardada amb nom que s'usa com si fora una taula."
-- t: "Mínim privilegi"
-  d: "Donar a cada usuari només els permisos que necessita."
 {{< /tarjetas >}}
 
-## 14. Resum
+## 12. Resum
 
-- El DDL defineix l'estructura i el DCL controla l'accés. En Oracle, cada sentència DDL confirma la transacció en curs.
+- El DDL defineix l'estructura. En Oracle, cada sentència DDL confirma la transacció en curs.
 - Oracle emmagatzema les taules en segments dins de *tablespaces*, en blocs de dades; cada fila té un `ROWID`.
 - Tria els tipus pel seu ús: `VARCHAR2`, `CHAR`, `NUMBER(p,s)`, `DATE`/`TIMESTAMP` i, des de 23ai, `BOOLEAN`. En Oracle, `''` és `NULL`.
 - Implanta totes les restriccions del disseny **amb nom**: `PRIMARY KEY`, `UNIQUE`, `FOREIGN KEY`, `NOT NULL` i `CHECK`.
 - `ALTER TABLE` modifica l'estructura; `DROP` i `TRUNCATE` són destructius.
 - Les columnes identitat i les seqüències generen claus artificials; els índexs acceleren les cerques a canvi d'escriptures més lentes.
-- Les vistes simplifiquen i protegixen l'accés. Els usuaris, privilegis i rols apliquen el principi de mínim privilegi.
 - El diccionari de dades permet comprovar tot allò creat.
 
 ---
 
-## 15. Autoavaluació
+## 13. Autoavaluació
 
 {{< quiz >}}
 - q: "Quin tipus de dades és més adequat per a un codi postal espanyol com 03690?"
@@ -916,18 +720,6 @@ El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llengua
   options: ["ALTER TABLE alumno ADD COLUMN apodo VARCHAR2(30);", "ALTER TABLE alumno ADD (apodo VARCHAR2(30));", "UPDATE TABLE alumno ADD apodo;", "ALTER alumno INSERT apodo VARCHAR2(30);"]
   answer: 1
   explain: "Oracle no usa la paraula COLUMN en ADD. Els parèntesis permeten afegir diverses columnes alhora."
-- q: "Què fa WITH CHECK OPTION en una vista?"
-  options: ["Fa la vista de només lectura", "Impedix inserir o modificar files que no complisquen el WHERE de la vista", "Comprova les claus alienes", "Crea un índex"]
-  answer: 1
-  explain: "Garantix que les files modificades a través de la vista continuen sent visibles en ella."
-- q: "Una aplicació web només necessita consultar i inserir matrícules. Quina opció aplica el mínim privilegi?"
-  options: ["Connectar-la com a SYSTEM", "Donar-li el rol DBA", "Crear un usuari amb SELECT i INSERT sobre les taules necessàries", "Donar-li SELECT ANY TABLE i INSERT ANY TABLE"]
-  answer: 2
-  explain: "Només els privilegis d'objecte imprescindibles, sobre els objectes concrets. Els privilegis ANY afecten tots els esquemes."
-- q: "Quina diferència hi ha entre WITH ADMIN OPTION i WITH GRANT OPTION en revocar?"
-  options: ["Cap", "Revocar un privilegi amb GRANT OPTION es propaga en cascada; amb ADMIN OPTION no", "ADMIN OPTION s'usa per a taules i GRANT OPTION per a rols", "GRANT OPTION no es pot revocar"]
-  answer: 1
-  explain: "Els privilegis d'objecte concedits amb GRANT OPTION es revoquen en cascada. Els de sistema o rols concedits amb ADMIN OPTION, no."
 - q: "Per què convé crear un índex sobre una clau aliena en Oracle?"
   options: ["Perquè Oracle no permet claus alienes sense índex", "Perquè Oracle no el crea automàticament i accelera els JOIN i els esborrats en la taula pare", "Perquè convertix la clau aliena en única", "No convé mai"]
   answer: 1

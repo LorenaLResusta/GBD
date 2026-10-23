@@ -38,14 +38,14 @@ El módulo **0372. Gestión de bases de datos** (1º de Administración de Siste
 
 ## Horas y unidades por resultado de aprendizaje
 
-Cada RA se corresponde con **una unidad didáctica** (UD01 a UD06), dividida en uno o varios *temas* numerados del 1 al 11. Así se puede evaluar un RA al terminar su unidad.
+Cada RA se corresponde con **una unidad didáctica** (UD01 a UD06), dividida en uno o varios *temas* numerados del 1 al 10. Así se puede evaluar un RA al terminar su unidad.
 
 {tabla}
 
 {mermaid}
 
 > [!NOTE]
-> Las unidades siguen el orden de los RA (UD01 es el RA1, UD02 el RA2, y así hasta la UD06 y el RA6). Los apuntes sobre **bases de datos NoSQL** (tema 11, dentro de la UD06) no corresponden a ningún RA del módulo: son una ampliación que se imparte al final del curso. También se marcan como *Ampliación* las actividades sobre protección de datos, bases de datos distribuidas, Big Data y privilegios (DCL), cuyo contenido no figura entre los CE del RD 1629/2009.
+> Las unidades siguen el orden de los RA (UD01 es el RA1, UD02 el RA2, y así hasta la UD06 y el RA6). Todo el contenido de las unidades se corresponde con los criterios de evaluación del RD 1629/2009; las prácticas y los proyectos no añaden contenidos ajenos a ellos.
 
 ## Criterios de evaluación por resultado de aprendizaje
 
@@ -60,15 +60,15 @@ Para cada criterio de evaluación se recogen evidencias de distintos tipos:
 |---|---|---|
 | Cuestionarios y preguntas de razonamiento | Autoevaluaciones de cada unidad, preguntas de justificación | RA1 |
 | Diagramas y documentos de diseño | Diagrama E/R, esquema relacional, informe de normalización | RA2 |
-| Scripts SQL ejecutables | Scripts DDL y DCL, de consulta y de modificación | RA3, RA4, RA5 |
-| Código PL/SQL con pruebas | Procedimientos, funciones y triggers con su batería de pruebas | RA5.e |
+| Scripts SQL ejecutables | Scripts DDL, de consulta y de modificación | RA3, RA4, RA5 |
+| Guiones PL/SQL con pruebas | Bloques con variables, control de flujo y excepciones con su batería de pruebas | RA5.e |
 | Capturas y registros de ejecución | Planes de ejecución, sesiones concurrentes, ficheros `.log` de Data Pump y SQL*Loader | RA4.g, RA5.h, RA6.g |
 | Entregas del proyecto EduGest | Una tarea de proyecto al final de cada unidad | Todos |
 
 ## Fuente
 
 - [Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de Técnico Superior en Administración de Sistemas Informáticos en Red](https://www.boe.es/eli/es/rd/2009/10/30/1629).
-''', hdr=('RA','Resultado de aprendizaje','Unidad','Temas','Horas'), ampl='Ampliación (UD11)'),
+''', hdr=('RA','Resultado de aprendizaje','Unidad','Temas','Horas')),
  'val': dict(
   head='''---
 title: "Resultats d'aprenentatge i criteris d'avaluació"
@@ -84,14 +84,14 @@ El mòdul **0372. Gestió de bases de dades** (1r d'Administració de Sistemes I
 
 ## Hores i unitats per resultat d'aprenentatge
 
-Cada RA es correspon amb **una unitat didàctica** (UD01 a UD06), dividida en un o diversos *temes* numerats de l'1 a l'11. Així es pot avaluar un RA en acabar la seua unitat.
+Cada RA es correspon amb **una unitat didàctica** (UD01 a UD06), dividida en un o diversos *temes* numerats de l'1 al 10. Així es pot avaluar un RA en acabar la seua unitat.
 
 {tabla}
 
 {mermaid}
 
 > [!NOTE]
-> Les unitats seguixen l'ordre dels RA (UD01 és el RA1, UD02 el RA2, i així fins a la UD06 i el RA6). Els apunts sobre **bases de dades NoSQL** (tema 11, dins de la UD06) no corresponen a cap RA del mòdul: són una ampliació que s'imparteix al final del curs. També es marquen com a *Ampliació* les activitats sobre protecció de dades, bases de dades distribuïdes, Big Data i privilegis (DCL), el contingut dels quals no figura entre els CE del RD 1629/2009.
+> Les unitats seguixen l'ordre dels RA (UD01 és el RA1, UD02 el RA2, i així fins a la UD06 i el RA6). Tot el contingut de les unitats es correspon amb els criteris d'avaluació del RD 1629/2009; les pràctiques i els projectes no afigen continguts aliens a ells.
 
 ## Criteris d'avaluació per resultat d'aprenentatge
 
@@ -106,15 +106,15 @@ Per a cada criteri d'avaluació es recullen evidències de diferents tipus:
 |---|---|---|
 | Qüestionaris i preguntes de raonament | Autoavaluacions de cada unitat, preguntes de justificació | RA1 |
 | Diagrames i documents de disseny | Diagrama E/R, esquema relacional, informe de normalització | RA2 |
-| Scripts SQL executables | Scripts DDL i DCL, de consulta i de modificació | RA3, RA4, RA5 |
-| Codi PL/SQL amb proves | Procediments, funcions i triggers amb la seua bateria de proves | RA5.e |
+| Scripts SQL executables | Scripts DDL, de consulta i de modificació | RA3, RA4, RA5 |
+| Guions PL/SQL amb proves | Blocs amb variables, control de flux i excepcions amb la seua bateria de proves | RA5.e |
 | Captures i registres d'execució | Plans d'execució, sessions concurrents, fitxers `.log` de Data Pump i SQL*Loader | RA4.g, RA5.h, RA6.g |
 | Lliuraments del projecte EduGest | Una tasca de projecte al final de cada unitat | Tots |
 
 ## Font
 
 - [Reial decret 1629/2009, de 30 d'octubre, pel qual s'establix el títol de Tècnic Superior en Administració de Sistemes Informàtics en Xarxa](https://www.boe.es/eli/es/rd/2009/10/30/1629).
-''', hdr=('RA','Resultat d\'aprenentatge','Unitat','Temes','Hores'), ampl='Ampliació (UD11)')}
+''', hdr=('RA','Resultat d\'aprenentatge','Unitat','Temes','Hores'))}
 import json
 def main():
     plan = {u['c']: u for u in json.load(open(f'{R}/data/planificacion.json'))['unidades']}
@@ -131,7 +131,6 @@ def main():
         for ra, us in main_ra.items():
             h = sum(plan[u]['h'] for u in us)
             tb.append(f"| **{ra}** | {cur[ra]['titulo']} | [{udof[ra]}](/{carpeta[udof[ra]]}) | " + ', '.join(f'T{int(u[1:])}' for u in us) + f' | {h} |')
-        tb.append(f"| | *{'Ampliación: bases de datos NoSQL' if lang=='es' else 'Ampliació: bases de dades NoSQL'}* | [UD06](/{carpeta['UD06']}) | T11 | {plan['T11']['h']} |")
         ev = sum(plan[e]['h'] for e in plan if e.startswith('EV'))
         tb.append(f"| | *{'Pruebas de evaluación (3 × 3 h)' if lang=='es' else 'Proves d\'avaluació (3 × 3 h)'}* | | | {ev} |")
         tot = sum(u['h'] for u in plan.values())

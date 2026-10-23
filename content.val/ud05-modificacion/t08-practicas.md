@@ -6,7 +6,7 @@ bookToc: true
 
 # Tema 8 · Pràctiques
 
-{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,f,g,h" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
@@ -16,8 +16,7 @@ bookToc: true
 | [8.4 Laboratori de transaccions](#pràctica-84--laboratori-de-transaccions) | Guiada | ●●○ | RA5.f, RA5.g |
 | [8.5 Dues sessions, una dada: concurrència i bloquejos](#pràctica-85--dues-sessions-una-dada-concurrència-i-bloquejos) | Guiada | ●●● | RA5.d, RA5.h |
 | [8.6 Càrrega de notes amb MERGE](#pràctica-86--càrrega-de-notes-amb-merge) | Autònoma | ●●○ | RA5.b, RA5.c |
-| [8.7 Repte: guió de promoció de curs](#pràctica-87--repte-guió-de-promoció-de-curs) | Repte | ●●● | RA5.d-g |
-| [Projecte EduGest · Tema 8](#projecte-edugest--ud08-guions-de-manteniment) | Projecte | ●●● | RA5 complet |
+| [Projecte EduGest · Tema 8](#projecte-edugest--tema-8-modificació-de-dades) | Projecte | ●●● | RA5 complet |
 
 > [!IMPORTANT]
 > Abans de **cada** pràctica, restaura EduGest executant els scripts 01 i 02 del [projecte](/guia/proyecto-edugest#4-scripts-descarregables). Els números de files afectades que s'indiquen suposen les dades originals.
@@ -471,92 +470,16 @@ WHEN MATCHED THEN UPDATE SET m.nota_final = o.nota
 
 ---
 
-## Pràctica 8.7 · Repte: guió de promoció de curs
+## Projecte EduGest · Tema 8: modificació de dades
 
-{{< practica num="8.7" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: d, e, f, g" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + eixida (SPOOL) + defensa oral" >}}
-
-#### Objectiu
-
-Dissenyar un guió transaccional que realitze una tasca complexa de forma segura, verificable i repetible.
-
-#### Context
-
-Ha acabat el curs 2025-26 i cap d'estudis ha de preparar el curs 2026-27 per a l'alumnat de **primer curs**. Les regles són:
-
-1. **Promociona** a segon l'alumnat de primer amb **com a màxim un** mòdul pendent. Un mòdul està pendent si la seua nota de 2025-26 és menor que 5 o està sense qualificar.
-2. A l'alumnat que promociona se li canvia el grup al de segon del seu cicle (1DAM → 2DAM...) i se'l matricula en **tots** els mòduls de segon del seu cicle, en primera convocatòria.
-3. **Tot** l'alumnat de primer (promocione o no) es matricula en 2026-27 dels seus mòduls **pendents**, amb la convocatòria següent a la que tenia.
-4. Data de matrícula: 10 de setembre de 2026.
+{{< practica num="EduGest-8" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: a, b, c, d, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_modificaciones/*.sql + docs/08-transacciones.md" >}}
 
 #### Enunciat
 
-Escriu `promocion_2026_27.sql` amb esta estructura:
-
-```sql
-WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK
-SPOOL promocion_2026_27.log
-
--- 0. Comprovacions prèvies (no modifiquen res)
---    · Ja existixen matrícules de 2026-27? Si existixen, el guió no s'ha d'executar.
---    · Llistat de l'alumnat que promociona i del que no.
-
--- 1. Matrícules de mòduls pendents (regla 3)
--- 2. Matrícules de segon curs (regla 2) — abans de canviar el grup!
--- 3. Canvi de grup (regla 2)
-
--- 4. Verificacions: recomptes esperats
--- 5. COMMIT
-SPOOL OFF
-```
-
-#### Comprovació
-
-Amb les dades originals d'EduGest, el teu guió ha d'obtindre exactament:
-
-| Comprovació | Valor esperat |
-|---|---|
-| Alumnat de primer que promociona | 12 (4 de 1DAM, 4 de 1DAW, 4 de 1ASIR) |
-| Matrícules de pendents inserides | 18 |
-| Matrícules de segon inserides | 36 (20 de DAM i 16 de DAW) |
-| Files d'`ALUMNO` amb el grup canviat | 12 |
-| Total de matrícules de 2026-27 | 54 |
-| Alumnat per grup després del guió | 1ASIR 1 · 1DAM 3 · 1DAW 2 · 2ASIR 4 · 2DAM 10 · 2DAW 9 · sense grup 3 |
-
-- [ ] Executar el guió **per segona vegada** no canvia res (s'atura en les comprovacions prèvies).
-- [ ] Si provoques un error a mitat (per exemple, canviant el nom d'una taula), **no** queda cap canvi aplicat.
-- [ ] Expliques per què l'alumnat de 1ASIR que promociona no rep matrícules de segon (pista: consulta quins mòduls d'ASIR existixen) i què hauria de fer el centre.
-
-{{% details title="Pista: l'ordre importa" %}}
-Si canvies el grup **abans** d'inserir les matrícules, ja no sabràs qui estava en primer ni podràs distingir l'alumnat que promociona del que ja estava en segon. Una altra opció professional és calcular primer la llista d'alumnes que promocionen i guardar-la en una **taula temporal global** (`CREATE GLOBAL TEMPORARY TABLE ... ON COMMIT PRESERVE ROWS`) creada **fora** del guió.
-{{% /details %}}
-
-{{% details title="Pista: aturar el guió si ja es va executar" %}}
-```sql
-DECLARE
-    v_n NUMBER;
-BEGIN
-    SELECT COUNT(*) INTO v_n FROM matricula WHERE curso_academico = '2026-27';
-    IF v_n > 0 THEN
-        RAISE_APPLICATION_ERROR(-20100, 'Ya existen ' || v_n || ' matrículas de 2026-27');
-    END IF;
-END;
-/
-```
-Amb `WHENEVER SQLERROR EXIT`, l'error acaba el guió.
-{{% /details %}}
-
----
-
-## Projecte EduGest · Tema 8: guions de manteniment
-
-{{< practica num="EduGest-8" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_mantenimiento/*.sql + docs/08-transacciones.md" >}}
-
-#### Enunciat
-
-1. **Dades de 2026-27.** Executa el teu guió de promoció (pràctica 8.7) i afig un guió `alta_nuevo_alumnado.sql` que done d'alta **deu** alumnes nous de primer amb les seues matrícules, en una sola transacció.
-2. **Baixa lògica.** Afig a `ALUMNO` una columna `fecha_baja` i escriu el guió que dona de baixa un alumne **sense esborrar** el seu expedient. Modifica les vistes del tema 5 perquè no mostren l'alumnat donat de baixa.
+1. **Alta d'alumnat nou.** Escriu un guió `alta_nuevo_alumnado.sql` que done d'alta **deu** alumnes nous de primer amb les seues matrícules, en una sola transacció.
+2. **Baixa lògica.** Afig a `ALUMNO` una columna `fecha_baja` i escriu el guió que dona de baixa un alumne **sense esborrar** el seu expedient.
 3. **Política de concurrència.** En `08-transacciones.md`, decidix i justifica l'estratègia de bloqueig (pessimista o optimista) per a tres operacions de l'aplicació: posar notes, matricular i registrar faltes.
-4. **Integritat.** Revisa el teu catàleg de restriccions (Tema 3-Tema 5): alguna pot implementar-se amb una restricció diferida o amb un guió transaccional? Documenta què queda per a el tema 9.
+4. **Integritat.** Revisa el teu catàleg de restriccions (Tema 3-Tema 5): alguna pot implementar-se amb una restricció diferida o amb un guió transaccional? Documenta les que queden sense implementar (RA2.i).
 
 #### Comprovació
 

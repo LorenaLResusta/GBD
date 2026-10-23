@@ -10,24 +10,24 @@ Esta unitat desenvolupa el **RA4** del mòdul.
 
 {{< ra "RA4" >}}
 
-## Tema 6 · Consultes sobre una taula i funcions
+## Tema 6 · Consultes sobre una taula
 
-Amb la base de dades creada i carregada, comencem a **extraure informació**. Esta unitat presenta la sentència `SELECT` sobre una taula: projecció, selecció, ordenació, valors nuls i les funcions de fila d'Oracle. Tot es practica sobre les dades reals del projecte EduGest, amb els resultats esperats perquè pugues comprovar cada consulta.
-
-| Pàgina | Contingut |
-|---|---|
-| [Teoria](/ud04-consultas/t06-teoria) | Eines, `SELECT`, àlies, `DISTINCT`, `ORDER BY`, `WHERE`, `LIKE`, `NULL` i lògica trivalent, `FETCH FIRST`, funcions de text, numèriques, de data, de conversió i `CASE` |
-| [Pràctiques](/ud04-consultas/t06-practicas) | Eines de consulta, 16 consultes per a secretaria amb solució, laboratori de nuls, funcions per a informes, validació de dades i tasca EduGest |
-
-**Durada:** 14 hores d'aula, del 11/01/2027 al 28/01/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.
-
-## Tema 7 · Consultes avançades
-
-La informació útil està repartida entre diverses taules i quasi sempre cal resumir-la. En esta unitat aprendràs a compondre taules (`JOIN` interns i externs), a agrupar i resumir, a aniuar consultes, a combinar resultats amb operadors de conjunts i a comprovar amb el pla d'execució que les teues consultes són eficients.
+Amb la base de dades creada i carregada, comencem a **extraure informació**: la sentència `SELECT` sobre una taula, amb projecció, selecció, ordenació, valors nuls i funcions de fila, sobre les dades del projecte EduGest.
 
 | Pàgina | Contingut |
 |---|---|
-| [Teoria](/ud04-consultas/t07-teoria) | Funcions d'agregat, `GROUP BY`, `HAVING`, `INNER/LEFT/RIGHT/FULL JOIN`, autocomposició, subconsultes, `EXISTS`, `WITH`, `UNION`/`INTERSECT`/`MINUS`, funcions analítiques, vistes i optimització |
-| [Pràctiques](/ud04-consultas/t07-practicas) | Consultes resum, composicions pas a pas, informes de direcció, subconsultes, conjunts, optimització amb mig milió de files, quadre de comandament i tasca EduGest |
+| [Teoria](/ud04-consultas/t06-teoria) | `SELECT`, àlies, `DISTINCT`, `ORDER BY`, `WHERE`, `LIKE`, `NULL`, `FETCH FIRST` i funcions de fila |
+| [Pràctiques](/ud04-consultas/t06-practicas) | Primeres consultes, consultes per a secretaria, laboratori de nuls, funcions, validació de dades i tasca EduGest |
 
-**Durada:** 18 hores d'aula, del 29/01/2027 al 23/02/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.
+**Durada:** 10 hores d'aula, del 16/12/2026 al 14/01/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.
+
+## Tema 7 · Consultes de resum, composicions i subconsultes
+
+La informació útil està repartida entre diverses taules i quasi sempre cal resumir-la. Aprendràs a agrupar i resumir, a compondre taules (`JOIN`), a niuar consultes i a comprovar amb el pla d'execució que són eficients.
+
+| Pàgina | Contingut |
+|---|---|
+| [Teoria](/ud04-consultas/t07-teoria) | Funcions d'agregat, `GROUP BY`, `HAVING`, `INNER/LEFT/RIGHT/FULL JOIN`, autocomposició, subconsultes i pla d'execució |
+| [Pràctiques](/ud04-consultas/t07-practicas) | Consultes resum, composicions, informes, subconsultes, optimització, repte i tasca EduGest |
+
+**Durada:** 16 hores d'aula, del 15/01/2027 al 05/02/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.

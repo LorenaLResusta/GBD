@@ -21,19 +21,18 @@ Su objetivo prioritario es modelar y estructurar la semántica de la informació
 
 El tema ocupa **16 horas de aula** (9 de teoría y 7 de práctica). Cada sesión aparece señalada en la página con una franja de color.
 
-{{< sesiones unidad="T02" horas="16" >}}
+{{< sesiones unidad="T02" horas="12" >}}
 items:
   - {h: 2, tipo: T, t: "Ciclo de vida del diseño. Entidades fuertes y débiles", ref: "§1 y §2.1"}
   - {h: 2, tipo: T, t: "Atributos y relaciones: grado y roles", ref: "§2.2 y §2.3"}
   - {h: 1, tipo: T, t: "Cardinalidades mínima y máxima", ref: "§2.4 · laboratorio interactivo"}
   - {h: 1, tipo: P, t: "Leer y escribir cardinalidades", ref: "Práctica 2.2"}
-  - {h: 2, tipo: P, t: "Biblioteca municipal: del enunciado al diagrama", ref: "Práctica 2.1"}
+  - {h: 1, tipo: P, t: "Biblioteca municipal: del enunciado al diagrama", ref: "Práctica 2.1"}
   - {h: 1, tipo: T, t: "Restricciones avanzadas y jerarquías EER", ref: "§3, §4.1 y §4.2 · clasificador interactivo"}
   - {h: 1, tipo: T, t: "Agregación y relaciones ternarias", ref: "§4.3 y §4.4"}
-  - {h: 1, tipo: T, t: "Metodología en cinco pasos y ejemplos resueltos", ref: "§5 y §6"}
-  - {h: 1, tipo: T, t: "Notaciones y herramientas de modelado", ref: "§7"}
-  - {h: 2, tipo: P, t: "Plataforma de streaming", ref: "Práctica 2.3"}
-  - {h: 2, tipo: P, t: "Modelo conceptual de EduGest", ref: "§8 y proyecto EduGest-2"}
+  - {h: 1, tipo: T, t: "Metodología, ejemplos resueltos, notaciones y herramientas", ref: "§5, §6 y §7"}
+  - {h: 1, tipo: P, t: "Plataforma de streaming", ref: "Práctica 2.3"}
+  - {h: 1, tipo: P, t: "Modelo conceptual de EduGest", ref: "§8 y proyecto EduGest-2"}
 autonomo:
   - "Práctica 2.4 (clínica veterinaria con jerarquías)"
   - "Retos 2.5 y 2.6, retos avanzados 2.7 a 2.10 (entrevista ambigua, historia, ingeniería inversa y comparación de diseños) y retos de requisitos 2.11 a 2.14 (festival, editorial, taller aeronáutico y comunidad de propietarios)"
@@ -236,13 +235,13 @@ Cambia los valores y observa cómo se transforman el diagrama, las frases, el ti
 
 {{< sesion n="4" h="1" tipo="p" practica="2.2" >}}Leer y escribir cardinalidades{{< /sesion >}}
 
-{{< sesion n="5" h="2" tipo="p" practica="2.1" >}}Biblioteca municipal: del enunciado al diagrama{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="p" practica="2.1" >}}Biblioteca municipal: del enunciado al diagrama{{< /sesion >}}
 
 Las sesiones 4 y 5 se hacen con las [prácticas de la unidad](/ud02-diseno-logico/t02-practicas). Llévalas preparadas: tienes que haber leído hasta aquí y haber probado el laboratorio.
 
 ---
 
-{{< sesion n="6" h="2" tipo="t" >}}Restricciones avanzadas y jerarquías EER{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Restricciones avanzadas y jerarquías EER{{< /sesion >}}
 
 ## 3. Restricciones Avanzadas sobre Relaciones
 
@@ -324,7 +323,7 @@ Fija las reglas (cobertura y solapamiento) y marca a qué subtipos pertenece cad
 
 ---
 
-{{< sesion n="7" h="2" tipo="t" >}}Agregación y relaciones ternarias{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Agregación y relaciones ternarias{{< /sesion >}}
 
 ### 4.3 Agregación: Modelado de Asociaciones como Entidades
 
@@ -372,7 +371,7 @@ Fijamos una instancia de $A$ y una instancia de $B$ simultáneamente, y nos preg
 
 ---
 
-{{< sesion n="8" h="1" tipo="t" >}}Metodología en cinco pasos y ejemplos resueltos{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="t" >}}Metodología, ejemplos y notaciones{{< /sesion >}}
 
 ## 5. Fases en la Construcción del Esquema Conceptual
 
@@ -498,8 +497,6 @@ Un congreso científico necesita organizar sus actividades. Se registran los `PA
 
 ---
 
-{{< sesion n="9" h="1" tipo="t" >}}Notaciones y herramientas de modelado{{< /sesion >}}
-
 ## 7. Notaciones y Herramientas de Modelado
 
 El modelo E/R es **uno**, pero hay varias formas de dibujarlo. Es importante reconocerlas porque cada herramienta usa la suya (RA2.b).
@@ -556,9 +553,9 @@ erDiagram
 
 ---
 
-{{< sesion n="10" h="2" tipo="p" practica="2.3" >}}Plataforma de streaming{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="p" practica="2.3" >}}Plataforma de streaming{{< /sesion >}}
 
-{{< sesion n="11" h="2" tipo="p" practica="EduGest-2" >}}Modelo conceptual de EduGest{{< /sesion >}}
+{{< sesion n="10" h="1" tipo="p" practica="EduGest-2" >}}Modelo conceptual de EduGest{{< /sesion >}}
 
 ## 8. Caso Guiado: el Modelo E/R de EduGest
 

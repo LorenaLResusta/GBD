@@ -10,15 +10,15 @@ bookToc: true
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [10.1 Còpia lògica i restauració de la base de dades EduGest](#pràctica-61--còpia-lògica-i-restauració-de-la-base-de-dades-edugest) | Guiada | ●●○ | RA6.a, RA6.b, RA6.c |
-| [10.2 Exportar dades a CSV, JSON i SQL](#pràctica-62--exportar-dades-a-csv-json-i-sql) | Guiada | ●○○ | RA6.d, RA6.e |
-| [10.3 Importar amb SQL\*Loader i llegir els errors](#pràctica-63--importar-amb-sqlloader-i-llegir-els-errors) | Autònoma | ●●○ | RA6.f, RA6.g |
-| [10.4 Oracle cap a MongoDB](#pràctica-64--oracle-cap-a-mongodb) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
-| [10.5 Repte: pla de còpies i simulacre de desastre](#pràctica-65--repte-pla-de-còpies-i-simulacre-de-desastre) | Repte | ●●● | RA6.a, RA6.b, RA6.c, RA6.g |
-| [Projecte EduGest · Tema 10](#projecte-edugest--ud10-seguretat-de-la-informació) | Projecte | ●●● | RA6 complet |
+| [10.1 Còpia lògica i restauració de la base de dades EduGest](#pràctica-101--còpia-lògica-i-restauració-de-la-base-de-dades-edugest) | Guiada | ●●○ | RA6.a, RA6.b, RA6.c |
+| [10.2 Exportar dades a CSV, JSON i SQL](#pràctica-102--exportar-dades-a-csv-json-i-sql) | Guiada | ●○○ | RA6.d, RA6.e |
+| [10.3 Importar amb SQL\*Loader i llegir els errors](#pràctica-103--importar-amb-sqlloader-i-llegir-els-errors) | Autònoma | ●●○ | RA6.f, RA6.g |
+| [10.4 D'Oracle a PostgreSQL](#pràctica-104--doracle-a-postgresql) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
+| [10.5 Repte: pla de còpies i simulacre de desastre](#pràctica-105--repte-pla-de-còpies-i-simulacre-de-desastre) | Repte | ●●● | RA6.a, RA6.b, RA6.c, RA6.g |
+| [Projecte EduGest · Tema 10](#projecte-edugest--tema-10-seguretat-de-la-informació) | Projecte | ●●● | RA6 complet |
 
 > [!IMPORTANT]
-> Estes pràctiques suposen que tens EduGest carregat i els contenidors `oracle26ai` i `mongo8` en marxa (guia d'[entorn](/guia/entorno)). Les comprovacions de files suposen les dades originals: 32 alumnes i 143 matrícules.
+> Estes pràctiques suposen que tens EduGest carregat i els contenidors `oracle26ai` en marxa (i, per a la pràctica 10.4, PostgreSQL) (guia d'[entorn](/guia/entorno)). Les comprovacions de files suposen les dades originals: 32 alumnes i 143 matrícules.
 
 ---
 
@@ -64,8 +64,7 @@ Fer una còpia lògica de l'esquema `EDUGEST`, traure-la del contenidor i restau
     ```sql
     CREATE USER edugest_copia IDENTIFIED BY "Copia_2026"
       DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
-    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW,
-          CREATE PROCEDURE, CREATE TRIGGER TO edugest_copia;
+    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO edugest_copia;
     ```
 
 5. **Restaura en l'esquema de proves:**
@@ -234,9 +233,9 @@ Necessites `OPTIONS`, `LOAD DATA`, `CHARACTERSET`, `INFILE`, `APPEND`, `INTO TAB
 
 ---
 
-## Pràctica 10.4 · Oracle cap a MongoDB
+## Pràctica 10.4 · D'Oracle a PostgreSQL
 
-{{< practica num="10.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA6: e, f, h" sgbd="Oracle 26ai · SQLcl · MongoDB 8.0" entrega="alumnado_mongo.json + captures de la verificació" >}}
+{{< practica num="10.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA6: e, f, h" sgbd="Oracle 26ai · SQLcl · PostgreSQL 17" entrega="alumnado.csv + captures de la verificació" >}}
 
 #### Objectiu
 
@@ -246,62 +245,68 @@ Transferir informació entre dos sistemes gestors diferents i comprovar que no e
 
 {{% steps %}}
 
-1. **Genera un JSON per alumne des d'Oracle**, amb dates en ISO 8601:
+1. **Exporta l'alumnat des d'Oracle** a CSV, amb les dates en ISO 8601:
 
     ```sql
-    SET SQLFORMAT default
-    SET PAGESIZE 0
-    SET FEEDBACK OFF
-    SET LINESIZE 4000
-    SPOOL alumnado_mongo.json
-    SELECT JSON_OBJECT(
-             'nia'              VALUE nia,
-             'nombre'           VALUE nombre,
-             'apellidos'        VALUE apellidos,
-             'grupo'            VALUE cod_grupo,
-             'fecha_nacimiento' VALUE TO_CHAR(fecha_nacimiento, 'YYYY-MM-DD'))
+    SET SQLFORMAT csv
+    SPOOL alumnado.csv
+    SELECT nia, nombre, apellidos, cod_grupo,
+           TO_CHAR(fecha_nacimiento, 'YYYY-MM-DD') AS fecha_nacimiento
     FROM   alumno ORDER BY nia;
     SPOOL OFF
     ```
 
-    Obri el fitxer: ha d'haver-hi 32 línies, cadascuna un objecte JSON.
+    Obri el fitxer: ha de tindre una capçalera i 32 files.
 
-2. **Copia'l al contenidor de MongoDB i importa'l:**
+2. **Arranca PostgreSQL** i crea la taula de destinació. Els tipus d'Oracle es **mapen** als de la destinació (`VARCHAR2` → `VARCHAR`, `DATE` → `DATE`):
 
     ```bash
-    docker cp alumnado_mongo.json mongo8:/tmp/
-    docker exec mongo8 mongoimport --db=edugest_gbd --collection=alumnado --file=/tmp/alumnado_mongo.json
+    docker run -d --name pg17 -e POSTGRES_PASSWORD=Postgres_2026 -p 5432:5432 postgres:17
+    docker cp alumnado.csv pg17:/tmp/
+    docker exec -it pg17 psql -U postgres
     ```
 
-3. **Verifica** en `mongosh`:
-
-    ```javascript
-    use edugest_gbd
-    db.alumnado.countDocuments()
-    db.alumnado.findOne({ nia: "10450037" })
-    db.alumnado.countDocuments({ grupo: "1DAM" })
+    ```sql
+    CREATE TABLE alumnado (
+        nia              VARCHAR(8)   PRIMARY KEY,
+        nombre           VARCHAR(100) NOT NULL,
+        apellidos        VARCHAR(100) NOT NULL,
+        cod_grupo        VARCHAR(10),
+        fecha_nacimiento DATE
+    );
     ```
 
-    Compara els resultats amb `SELECT COUNT(*) FROM alumno` i `... WHERE cod_grupo = '1DAM'` en Oracle.
+3. **Importa el CSV** amb `\copy`:
 
-4. **Inspecciona els tipus.** La data de naixement és en MongoDB un tipus data o un text? Usa `typeof db.alumnado.findOne().fecha_nacimiento` i explica què caldria fer per a guardar-la com a data.
+    ```sql
+    \copy alumnado FROM '/tmp/alumnado.csv' WITH (FORMAT csv, HEADER true, ENCODING 'UTF8')
+    ```
 
-5. **Exporta de tornada** una col·lecció amb `mongoexport` en CSV (`--type=csv --fields=nia,nombre,grupo`) i obri-la en un full de càlcul.
+4. **Verifica** en PostgreSQL i compara amb Oracle:
+
+    ```sql
+    SELECT COUNT(*) FROM alumnado;
+    SELECT * FROM alumnado WHERE nia = '10450037';
+    SELECT cod_grupo, COUNT(*) FROM alumnado GROUP BY cod_grupo ORDER BY 1;
+    SELECT pg_typeof(fecha_nacimiento) FROM alumnado LIMIT 1;
+    ```
+
+    A Oracle, `SELECT COUNT(*) FROM alumno;` i `SELECT cod_grupo, COUNT(*) FROM alumno GROUP BY cod_grupo ORDER BY 1;` han de donar els mateixos números.
 
 {{% /steps %}}
 
 #### Comprovació
 
 {{% comprobacion %}}
-- [ ] `db.alumnado.countDocuments()` torna 32 i coincidix amb Oracle.
+- [ ] El recompte de PostgreSQL és 32 i coincidix amb Oracle.
 - [ ] L'alumne de NIA 10450037 apareix com «Adrián Ferri Baeza», amb l'accent ben posat.
-- [ ] Expliques per què la data arriba com a text i com convertir-la.
+- [ ] La data de naixement és de tipus `date` i els alumnes sense grup tenen `cod_grupo` nul.
 {{% /comprobacion %}}
 
 #### Errors habituals
 
 > [!WARNING]
-> Si `mongoimport` informa de `0 document(s) imported`, mira si el fitxer té línies que no són JSON (capçaleres, línies en blanc o missatges de SQLcl). Si falta `mongoimport`, consulta l'avís de la teoria §4.
+> Si `\copy` informa de `invalid byte sequence for encoding "UTF8"`, el fitxer no està en UTF-8. Si diu `extra data after last expected column`, el CSV té més columnes que la taula de destinació: revisa que la `SELECT` i el `CREATE TABLE` coincidisquen.
 
 ---
 
@@ -333,14 +338,14 @@ L'institut et demana que protegisques EduGest. Has de lliurar:
 
 ## Projecte EduGest · Tema 10: seguretat de la informació
 
-{{< practica num="EduGest-10" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA6: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · MongoDB 8.0" entrega="edugest/10_seguridad/ + docs/10-seguridad.md" >}}
+{{< practica num="EduGest-10" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA6: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · PostgreSQL 17" entrega="edugest/10_seguridad/ + docs/10-seguridad.md" >}}
 
 #### Enunciat
 
-1. **Procediment de còpia i restauració** d'Oracle i de MongoDB, amb les ordres exactes, els usuaris necessaris i la ubicació dels fitxers.
+1. **Procediment de còpia i restauració** d'Oracle, amb les ordres exactes, els usuaris necessaris i la ubicació dels fitxers.
 2. **Guió d'exportació** del llistat d'alumnat d'un grup en CSV i JSON.
 3. **Guió d'importació** d'un fitxer d'alumnat nou amb control de rebutjats i un informe de la càrrega.
-4. **Transferència** dels expedients d'EduGest a MongoDB amb verificació de recomptes.
+4. **Transferència** de l'alumnat d'EduGest a PostgreSQL amb verificació de recomptes.
 5. **Taula d'errors** amb almenys cinc missatges que hages obtingut, la seua causa i la seua solució.
 
 #### Comprovació

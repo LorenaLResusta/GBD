@@ -2457,7 +2457,7 @@ Un centro de acogida de menores necesita un registro informatizado de residentes
 1. Dibuja el diagrama EER en notación de Chen.
 2. Explica qué significa «se eliminan todos sus informes» en el modelo y dónde se documenta.
 3. Clasifica `datos_tutores`: ¿atributo compuesto o entidad? Razona la decisión.
-4. Redacta una nota sobre qué datos serían **especialmente sensibles** y qué medidas pedirías (RGPD y LOPDGDD).
+4. Redacta una nota sobre qué datos serían **especialmente sensibles** y qué medidas pedirías.
 
 {{% /details %}}
 

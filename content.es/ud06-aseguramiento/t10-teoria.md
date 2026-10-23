@@ -10,7 +10,7 @@ bookToc: true
 
 Hasta ahora hemos construido, consultado y programado una base de datos. Falta la pregunta que más se acuerda el día que algo falla: **¿qué pasa si perdemos los datos?** Un disco que se estropea, un `DELETE` sin `WHERE`, un ransomware o un contenedor borrado por error tienen el mismo efecto: la información desaparece. La única defensa es haber hecho **copias de seguridad** y **haber comprobado que se pueden restaurar**.
 
-Esta unidad cubre el **RA6** del módulo: *ejecutar tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia*. Trabajaremos sobre EduGest con las herramientas de **Oracle AI Database 26ai Free** (Data Pump, SQL\*Loader, SQLcl, SQL Developer) y con las de **MongoDB 8.0** (`mongodump`, `mongorestore`, `mongoexport`, `mongoimport`).
+Esta unidad cubre el **RA6** del módulo: *ejecutar tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia*. Trabajaremos sobre EduGest con las herramientas de **Oracle AI Database 26ai Free** (Data Pump, SQL\*Loader, SQLcl, SQL Developer). Para la transferencia entre gestores usaremos **PostgreSQL 17** como destino.
 
 {{< ra "RA6:a,b,c,d,e,f,g,h" >}}
 
@@ -18,37 +18,39 @@ Esta unidad cubre el **RA6** del módulo: *ejecutar tareas de aseguramiento de l
 
 Al terminar esta parte serás capaz de:
 
-- Distinguir los tipos de copia de seguridad (lógica y física, completa, incremental y diferencial, en frío y en caliente) y elegir una estrategia según el tiempo de recuperación y la pérdida de datos admisibles (RA6.a).
+- Distinguir los tipos de copia de seguridad (lógica y física, completa, incremental y diferencial, en frío y en caliente) y elegir una estrategia según el tiempo de recuperación y la pérdida de datos aceptables (RA6.a).
 - Hacer y restaurar una copia lógica de un esquema de Oracle con Data Pump (RA6.b, RA6.c).
-- Hacer y restaurar una copia de una base de datos de MongoDB con `mongodump` y `mongorestore` (RA6.b, RA6.c).
 - Identificar las herramientas de importación y exportación de cada gestor (RA6.d).
-- Exportar datos a CSV, JSON y scripts SQL (RA6.e) e importar ficheros con SQL\*Loader, SQL Developer y `mongoimport` (RA6.f).
+- Exportar datos a CSV, JSON y scripts SQL (RA6.e) e importar ficheros con SQL\*Loader y SQL Developer (RA6.f).
 - Leer los mensajes de error y los ficheros de registro (`.log`, `.bad`) para localizar la causa de un fallo (RA6.g).
-- Transferir información entre dos sistemas gestores distintos (Oracle y MongoDB) cuidando tipos, fechas, nulos y codificación (RA6.h).
+- Transferir información entre dos sistemas gestores distintos (Oracle y PostgreSQL) cuidando tipos, fechas, nulos y codificación (RA6.h).
 
 ### Temporalización
 
-El tema ocupa **12 horas de aula** (4 de teoría y 8 de práctica).
+El tema ocupa **9 horas de aula** (4 de teoría y 5 de práctica).
 
-{{< sesiones unidad="T10" horas="12" >}}
+{{< sesiones unidad="T10" horas="9" >}}
 items:
   - {h: 1, tipo: T, t: "Copias de seguridad: tipos, estrategia y herramientas", ref: "§1 y §2"}
-  - {h: 1, tipo: T, t: "Copia lógica con Data Pump y copias en MongoDB", ref: "§3 y §4"}
+  - {h: 1, tipo: T, t: "Copia lógica con Data Pump", ref: "§3"}
   - {h: 2, tipo: P, t: "Copia lógica de EduGest y restauración", ref: "Práctica 10.1"}
-  - {h: 1, tipo: T, t: "Importar y exportar datos", ref: "§5"}
-  - {h: 2, tipo: P, t: "Exportar datos a CSV, JSON y SQL", ref: "Práctica 10.2"}
-  - {h: 2, tipo: P, t: "Importar con SQL*Loader y leer los errores", ref: "Práctica 10.3"}
-  - {h: 1, tipo: T, t: "Transferencia entre gestores y registros de error", ref: "§6 y §7"}
-  - {h: 2, tipo: P, t: "De Oracle a MongoDB y proyecto de seguridad", ref: "Práctica 10.4 · Proyecto EduGest · Tema 10"}
+  - {h: 1, tipo: T, t: "Importar y exportar datos", ref: "§4"}
+  - {h: 1, tipo: P, t: "Exportar datos a CSV, JSON y SQL", ref: "Práctica 10.2"}
+  - {h: 1, tipo: P, t: "Importar con SQL*Loader y leer los errores", ref: "Práctica 10.3"}
+  - {h: 1, tipo: T, t: "Transferencia entre gestores y registros de error", ref: "§5 y §6"}
+  - {h: 1, tipo: P, t: "De Oracle a PostgreSQL", ref: "Práctica 10.4"}
 autonomo:
   - "Reto 10.5 (plan de copias y simulacro de desastre)"
-  - "Ampliaciones de las prácticas 10.1 a 10.4 y autoevaluación"
+  - "Proyecto EduGest · Tema 10 (aseguramiento de la información)"
+  - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
 > Una copia de seguridad **que nunca se ha restaurado no es una copia: es una esperanza**. En cada práctica de esta parte hay un paso de *restauración y comprobación*. No te lo saltes.
 
 ---
+
+{{< sesion n="1" h="1" tipo="t" >}}Copias de seguridad: tipos, estrategia y herramientas{{< /sesion >}}
 
 ## 1. Por qué y cómo se hacen copias
 
@@ -93,7 +95,6 @@ Para restaurar una incremental necesitas la completa y **todas** las incremental
 | Oracle | **RMAN** (*Recovery Manager*) | Física | Copias completas e incrementales de toda la base de datos |
 | Oracle | Copia en frío del volumen | Física | Entornos de clase: parar el contenedor y copiar el volumen |
 | Oracle | **SQL Developer** (*Herramientas → Exportación de base de datos*) | Lógica (asistente) | Generar scripts de DDL y datos con interfaz gráfica |
-| MongoDB | **`mongodump` / `mongorestore`** | Lógica (BSON) | Copia y restauración de bases de datos o colecciones |
 
 > [!NOTE]
 > **RMAN** es la herramienta profesional de copia física de Oracle (`rman target /` y órdenes como `BACKUP DATABASE`). Funciona de forma muy distinta según la base de datos esté en modo `ARCHIVELOG` o `NOARCHIVELOG`: sin archivado solo permite copias con la base de datos montada pero cerrada. En el contenedor de clase no la usaremos; trabajaremos con **Data Pump**, que es lógica y funciona con la base de datos abierta.
@@ -110,6 +111,8 @@ docker start oracle26ai
 ```
 
 {{< sgbd "Docker" >}} El volumen `oracle-data` se monta en un contenedor auxiliar que lo comprime en la carpeta actual. Para restaurar se hace la operación inversa sobre un volumen vacío. Desventaja: el servicio queda **parado** mientras se copia.
+
+{{< sesion n="2" h="1" tipo="t" >}}Copia lógica con Data Pump{{< /sesion >}}
 
 ## 3. Copia lógica con Data Pump (Oracle)
 
@@ -167,8 +170,7 @@ docker cp oracle26ai:/opt/oracle/admin/FREE/dpdump/<ruta-anotada>/edugest_exp.lo
 -- Como SYSTEM: usuario de prueba para la restauración
 CREATE USER edugest_copia IDENTIFIED BY "Copia_2026"
   DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
-GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW,
-      CREATE PROCEDURE, CREATE TRIGGER TO edugest_copia;
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO edugest_copia;
 ```
 
 ```bash
@@ -200,37 +202,22 @@ MINUS
 SELECT * FROM edugest_copia.alumno;
 ```
 
-## 4. Copia y restauración en MongoDB
+{{< sesion n="4" h="1" tipo="t" >}}Importar y exportar datos{{< /sesion >}}
 
-`mongodump` genera ficheros **BSON** (formato binario de MongoDB) y `mongorestore` los carga.
-
-```bash
-docker exec mongo8 mongodump --db=edugest --out=/tmp/copia_mongo
-docker cp mongo8:/tmp/copia_mongo ./copias/mongo
-
-# Restaurar en una base de datos de pruebas
-docker exec mongo8 mongorestore --nsFrom='edugest.*' --nsTo='edugest_copia.*' /tmp/copia_mongo
-```
-
-> [!WARNING]
-> Estas herramientas forman parte de las *MongoDB Database Tools*. Comprueba que están en tu imagen con `docker exec mongo8 mongodump --version`. Si no, instálalas desde la web de MongoDB y ejecútalas desde tu equipo con `--uri="mongodb://localhost:27017"`.
-
-Para comprobar: `db.expedientes.countDocuments()` en `edugest` y en `edugest_copia` debe dar el mismo número.
-
-## 5. Importar y exportar datos
+## 4. Importar y exportar datos
 
 Una copia sirve para restaurar el **mismo** gestor. La **exportación** y la **importación** de datos sirve para intercambiar información con otras aplicaciones y con otros gestores, usando formatos de texto.
 
-### 5.1 Formatos
+### 4.1 Formatos
 
 | Formato | Ventajas | Cuidado con |
 |---|---|---|
 | **CSV** | Universal; lo abre cualquier hoja de cálculo | Separador (`,` o `;`), comillas, saltos de línea dentro de campos, fechas, decimales (`.` o `,`) |
-| **JSON** | Conserva la estructura anidada; natural para MongoDB y APIs | Los tipos son pocos: las fechas son texto; los `NULL` se escriben `null` o se omiten |
+| **JSON** | Conserva la estructura anidada | Los tipos son pocos: las fechas son texto; los `NULL` se escriben `null` o se omiten |
 | **Script SQL** | Se ejecuta en el mismo gestor o en otro parecido | Dialecto propio de cada gestor |
 | **XML** | Intercambio entre sistemas empresariales | Verboso |
 
-### 5.2 Exportar en Oracle
+### 4.2 Exportar en Oracle
 
 Con **SQLcl** o con la consola de SQL Developer se pueden cambiar los formatos de salida de una consulta:
 
@@ -244,9 +231,9 @@ SET SQLFORMAT default
 
 {{< sgbd "SQLcl" >}} `SQLFORMAT` admite `csv`, `json`, `xml`, `insert` (genera sentencias `INSERT`) y otros. `SPOOL` escribe el resultado en un fichero. Con el **asistente gráfico** de SQL Developer: clic derecho sobre una tabla → *Exportar*, y se elige formato, columnas y destino.
 
-También se puede generar JSON a partir de tablas con las funciones SQL/JSON de Oracle (`JSON_OBJECT`, `JSON_ARRAYAGG`), útil para llevar los datos a MongoDB.
+También se puede generar JSON a partir de tablas con las funciones SQL/JSON de Oracle (`JSON_OBJECT`, `JSON_ARRAYAGG`).
 
-### 5.3 Importar en Oracle con SQL\*Loader
+### 4.3 Importar en Oracle con SQL\*Loader
 
 **SQL\*Loader** (`sqlldr`) carga ficheros de texto en tablas. Necesita un **fichero de control** que dice dónde están los datos y cómo mapearlos:
 
@@ -278,21 +265,11 @@ sqlldr userid=edugest/Edugest_2026@//localhost:1521/FREEPDB1 \
 > [!NOTE]
 > En clase usaremos también el **asistente de importación** de SQL Developer (clic derecho sobre la tabla → *Importar datos*), que genera el mismo tipo de carga sin escribir el fichero de control. Los asistentes ayudan, pero hay que entender qué hacen: se necesita saber leer sus mensajes.
 
-### 5.4 Importar y exportar en MongoDB
+{{< sesion n="7" h="1" tipo="t" >}}Transferencia entre gestores y registros de error{{< /sesion >}}
 
-```bash
-# Exportar una colección a JSON (un documento por línea)
-docker exec mongo8 mongoexport --db=edugest --collection=expedientes --out=/tmp/expedientes.json
+## 5. Transferir información entre gestores
 
-# Importar un fichero JSON (si es un array, añade --jsonArray)
-docker exec mongo8 mongoimport --db=edugest_copia --collection=expedientes --file=/tmp/expedientes.json
-```
-
-Para CSV: `mongoexport --type=csv --fields=nia,nombre,grupo ...` y `mongoimport --type=csv --headerline ...`.
-
-## 6. Transferir información entre gestores
-
-Pasar datos de Oracle a MongoDB (o a PostgreSQL, o a una hoja de cálculo) es una tarea habitual. El proceso siempre tiene los mismos pasos:
+Pasar datos de Oracle a otro gestor (PostgreSQL, MariaDB, SQL Server) o a una hoja de cálculo es una tarea habitual. El proceso siempre tiene los mismos pasos:
 
 1. **Origen:** definir qué datos se transfieren (consulta).
 2. **Transformación:** adaptar tipos, fechas, nulos y estructura al destino.
@@ -306,14 +283,14 @@ Pasar datos de Oracle a MongoDB (o a PostgreSQL, o a una hoja de cálculo) es un
 | **Fechas** | `14/03/2007` se interpreta como `03/14/...` | Usar formato ISO 8601: `2007-03-14` |
 | **Decimales** | `4,75` no es un número en CSV con coma como separador | Usar punto decimal o separador `;` |
 | **Nulos** | Una cadena vacía no es lo mismo que `NULL` | Decidir cómo se representan y comprobar al importar |
-| **Estructura** | Una relación 1:N se convierte en un array incrustado | Diseñar el documento antes (Tema 10) |
+| **Tipos de datos** | `NUMBER`, `VARCHAR2` o `DATE` no existen con ese nombre en el destino | Mapear los tipos antes (`NUMBER`→`NUMERIC`, `VARCHAR2`→`VARCHAR`, `DATE`→`DATE` o `TIMESTAMP`) |
 | **Claves ajenas** | El destino no valida la integridad | Validar con consultas después de importar |
 
-## 7. Mensajes de error y ficheros de registro
+## 6. Mensajes de error y ficheros de registro
 
 Aprender a leer los registros es la diferencia entre resolver un fallo en cinco minutos o en cinco horas.
 
-### 7.1 Método
+### 6.1 Método
 
 1. **Lee el log completo**, no solo la última línea.
 2. Busca el **primer** error: los siguientes suelen ser consecuencia.
@@ -321,7 +298,7 @@ Aprender a leer los registros es la diferencia entre resolver un fallo en cinco 
 4. Busca el código en la documentación oficial ([Oracle Error Help](https://docs.oracle.com/en/error-help/db/)).
 5. Corrige **una** cosa y repite.
 
-### 7.2 Errores frecuentes en copias e importaciones
+### 6.2 Errores frecuentes en copias e importaciones
 
 | Mensaje | Causa habitual | Solución |
 |---|---|---|
@@ -333,44 +310,40 @@ Aprender a leer los registros es la diferencia entre resolver un fallo en cinco 
 | `ORA-00001: unique constraint ... violated` (en `sqlldr`) | Clave duplicada en el fichero | Revisar el `.bad` |
 | `ORA-01722: invalid number` | Un texto donde se esperaba un número | Revisar separadores y decimales |
 | `SQL*Loader-350: Syntax error` | Error en el fichero `.ctl` | Revisar comas, paréntesis y nombre de columnas |
-| `mongorestore: ... E11000 duplicate key error` | El documento ya existe en el destino | Usar `--drop` o restaurar en otra base de datos |
 
-### 7.3 Otros ficheros de registro
+### 6.3 Otros ficheros de registro
 
 - **Alert log** de Oracle (`alert_FREE.log`): eventos de la instancia. En el contenedor, `docker logs oracle26ai` muestra el arranque.
-- **Registro de Docker** de MongoDB: `docker logs mongo8`.
 - **Historial de trabajos de Data Pump**: `SELECT owner_name, job_name, state FROM dba_datapump_jobs;`
 
-## 8. Errores frecuentes
+## 7. Errores frecuentes
 
 | Error | Consecuencia | Prevención |
 |---|---|---|
 | Guardar la copia en el mismo disco/contenedor | Se pierde todo a la vez | Regla 3-2-1 |
 | No probar nunca la restauración | La copia no sirve cuando hace falta | Simulacro periódico en otro esquema |
 | Exportar sin `UTF-8` | Caracteres corruptos | Fijar la codificación |
-| Dejar copias sin cifrar en un USB | Fuga de datos personales (RGPD) | Cifrar y limitar accesos |
+| Dejar copias sin cifrar en un USB | Fuga de datos | Cifrar y limitar accesos |
 | Restaurar encima de los datos reales | Se pierde lo ocurrido desde la copia | Restaurar primero en otro esquema |
 | No registrar qué copia es cuál | No se sabe cuál restaurar | Nombres con fecha y documentación |
 
-## 9. Buenas prácticas
+## 8. Buenas prácticas
 
 - Automatiza las copias (un guion programado) y **revisa los logs**.
 - Nombra los ficheros con fecha y contenido: `edugest_20271105_completa.dmp`.
-- Define quién puede hacer y quién puede restaurar copias (**mínimo privilegio**).
 - Documenta el procedimiento de restauración paso a paso y pruébalo.
 - Conserva varias generaciones de copias, no solo la última.
 
-## 10. Resumen
+## 9. Resumen
 
 - Una copia se elige según el **RPO** y el **RTO**; la regla **3-2-1** guía dónde se guarda.
 - **Data Pump** hace copias lógicas de esquemas de Oracle; **RMAN** hace copias físicas.
-- **`mongodump` / `mongorestore`** hacen lo mismo en MongoDB.
 - Importar y exportar usa **CSV**, **JSON** o **SQL**: cuida codificación, fechas, decimales y nulos.
 - **SQL\*Loader** carga ficheros con un fichero de control y genera `.log` y `.bad`.
 - Transferir entre gestores = exportar → transformar → importar → **verificar**.
 - Los **logs** dicen la causa: lee el primer error.
 
-## 11. Autoevaluación
+## 10. Autoevaluación
 
 {{< quiz >}}
 - q: "Haces una copia completa el domingo y una incremental cada noche. El jueves se pierde el servidor. ¿Qué necesitas para restaurar?"
@@ -394,7 +367,7 @@ Aprender a leer los registros es la diferencia entre resolver un fallo en cinco 
   answer: 1
   explain: "Es el síntoma típico de leer un fichero UTF-8 como si fuera otra codificación."
 - q: "¿Qué copia es **física**?"
-  options: ["Un volcado `.dmp` de Data Pump", "Un `mongodump`", "Copiar el volumen de datos con el servicio parado", "Un CSV exportado"]
+  options: ["Un volcado `.dmp` de Data Pump", "Una captura de pantalla del esquema", "Copiar el volumen de datos con el servicio parado", "Un CSV exportado"]
   answer: 2
   explain: "Una copia física copia los ficheros de la base de datos; las otras son lógicas (objetos y datos)."
 {{< /quiz >}}
@@ -406,5 +379,4 @@ Aprender a leer los registros es la diferencia entre resolver un fallo en cinco 
 - [Oracle AI Database 26ai: Backup and Recovery User's Guide](https://docs.oracle.com/en/database/oracle/oracle-database/26/bradv/) — RMAN y estrategias de copia.
 - [Oracle SQLcl: documentación](https://docs.oracle.com/en/database/oracle/sql-developer-command-line/) — `SET SQLFORMAT`, `SPOOL`.
 - [Oracle Database Error Help](https://docs.oracle.com/en/error-help/db/).
-- [MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/) — `mongodump`, `mongorestore`, `mongoexport` y `mongoimport`.
 - [Real Decreto 1629/2009, de 30 de octubre (módulo profesional 0372 Gestión de bases de datos)](https://www.boe.es/eli/es/rd/2009/10/30/1629).

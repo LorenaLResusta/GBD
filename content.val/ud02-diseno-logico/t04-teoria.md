@@ -16,21 +16,19 @@ En esta unitat aprendràs a reconéixer les anomalies d'un mal disseny, a identi
 {{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalització
 
-El tema ocupa **10 hores d'aula** (4 de teoria i 6 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
+El tema ocupa **8 hores d'aula** (4 de teoria i 4 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
 
-{{< sesiones unidad="T04" horas="10" >}}
+{{< sesiones unidad="T04" horas="8" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalies i dependències funcionals", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Dependències, tancaments i claus", ref: "Pràctica 4.2"}
-  - {h: 1, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
+  - {h: 2, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
   - {h: 1, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 4.1"}
-  - {h: 1, tipo: T, t: "Descomposició sense pèrdua i desnormalització controlada", ref: "§4 i §5"}
-  - {h: 1, tipo: T, t: "Restriccions no representables i procediment complet", ref: "§6 i §7"}
+  - {h: 1, tipo: T, t: "Descomposició, desnormalització i procediment complet", ref: "§4 a §7"}
   - {h: 1, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 4.4"}
-  - {h: 1, tipo: P, t: "En quina forma normal està?", ref: "Pràctica 4.3"}
-  - {h: 1, tipo: P, t: "FNBC i dependències perdudes", ref: "Pràctica 4.5"}
   - {h: 1, tipo: P, t: "Informe de normalització d'EduGest", ref: "Projecte EduGest-4"}
 autonomo:
+  - "Pràctiques 4.3 (en quina forma normal està?) i 4.5 (FNBC i dependències perdudes)"
   - "Pràctica 4.6 (normalitzar o desnormalitzar?)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
@@ -280,7 +278,7 @@ Existixen la **quarta forma normal** (4FN), que tracta les *dependències multiv
 
 ---
 
-{{< sesion n="5" h="1" tipo="t" >}}Descomposició i desnormalització{{< /sesion >}}
+{{< sesion n="5" h="1" tipo="t" >}}Descomposició, desnormalització i procediment{{< /sesion >}}
 
 {{% paso-a-paso titulo="Normalizar un pedido hasta 3FN" %}}
 {{% etapa titulo="0. Punt de partida" %}}
@@ -325,16 +323,14 @@ Quan arribem a el tema 7 podràs comprovar-ho en Oracle: la consulta que reconst
 | Situació | Exemple | Com es controla la redundància |
 |---|---|---|
 | Sistemes analítics (OLAP) | Taula de fets de matrícules amb el nom del cicle repetit | Es carrega per processos ETL, no la modifica ningú |
-| Valors agregats molt consultats | Guardar `num_alumnos` en GRUPO | Trigger que l'actualitza (Tema 9) |
+| Valors agregats molt consultats | Guardar `num_alumnos` en GRUPO | Recalcular-lo amb una consulta de resum quan es necessita |
 | Valors històrics que **han de** congelar-se | Guardar el `precio` en cada línia de factura | No és redundància: el preu del producte canvia, el de la factura no |
-| Bases de dades documentals | Incrustar les dades del cicle en el document de l'alumne (Tema 11) | El model es dissenya segons les consultes |
+| Bases de dades documentals | Incrustar les dades del cicle en el document de l'alumne | El model es dissenya segons les consultes |
 
 > [!CAUTION]
 > Desnormalitzar «perquè els JOIN són lents» sense haver-ho mesurat és un error freqüent. Amb índexs adequats (Tema 5 i Tema 7), un esquema normalitzat respon ràpid en la majoria dels sistemes transaccionals.
 
 ---
-
-{{< sesion n="6" h="1" tipo="t" >}}Restriccions i procediment{{< /sesion >}}
 
 ## 6. Normalització i restriccions no representables
 

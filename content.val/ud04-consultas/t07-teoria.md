@@ -10,13 +10,13 @@ bookToc: true
 
 A el tema 6 vas aprendre a consultar **una** taula. Però una base de dades ben dissenyada reparteix la informació entre moltes taules: el nom de l'alumne està a `ALUMNO`, la seua nota a `MATRICULA` i el nom del mòdul a `MODULO`. Quasi cap pregunta real del centre es respon amb una sola taula. Esta unitat ensenya a **tornar a juntar** el que el disseny va separar (composicions o *joins*), a **resumir** moltes files en poques (funcions d'agregat i `GROUP BY`) i a **encadenar consultes** unes dins d'altres (subconsultes).
 
-El recorregut és acumulatiu. Primer es resumix una sola taula, perquè agrupar és més fàcil d'entendre sense composicions pel mig. Després es combinen taules, primer de forma interna (només les files que emparellen) i després externa (conservant també les que no emparellen: el grup sense tutor, el cicle sense grups). A continuació s'usen subconsultes per a preguntes que necessiten dos passos («qui està per damunt de la mitjana del seu mòdul»). Finalment es guarden les consultes útils com a **vistes**, es combinen resultats amb `UNION`, `INTERSECT` i `MINUS`, i s'introduïxen les **funcions analítiques** i l'**optimització** amb el pla d'execució.
+El recorregut és acumulatiu. Primer es resumix una sola taula, perquè agrupar és més fàcil d'entendre sense composicions pel mig. Després es combinen taules, primer de forma interna (només les files que emparellen) i després externa (conservant també les que no emparellen: el grup sense tutor, el cicle sense grups). A continuació s'usen subconsultes per a preguntes que necessiten dos passos («qui està per damunt de la mitjana del seu mòdul»). Finalment s'estudia l'**optimització** de consultes amb el pla d'execució.
 
 Esta és la unitat que converteix l'SQL en una eina professional: en acabar-la seràs capaç de contestar pràcticament qualsevol pregunta que secretaria, cap d'estudis o l'equip docent li puguen fer a EduGest. A el tema 8 reutilitzaràs quasi tot el d'ací, perquè `UPDATE` i `DELETE` admeten subconsultes, i a el tema 9 encapsularàs estes consultes en procediments i vistes més elaborades.
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** amb les dades del curs **2025-26** carregades amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables): 5 departaments, 12 professors, 4 cicles, 24 mòduls, 6 grups, 32 alumnes, 143 matrícules, 24 assignacions docents i 46 faltes d'assistència.
 
-{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
+{{< ra "RA4:a,c,d,e,f,g" >}}
 
 ### Objectius d'aprenentatge
 
@@ -27,36 +27,32 @@ En acabar esta unitat seràs capaç de:
 - Combinar diverses taules amb composicions internes seguint el camí de les claus alienes.
 - Decidir quan una pregunta exigix una composició externa i escriure-la sense anul·lar-la amb un filtre mal col·locat.
 - Resoldre amb autocomposicions les preguntes en què una taula es relaciona amb si mateixa.
-- Escriure subconsultes d'una fila, de diverses files, correlacionades i amb `EXISTS`, i substituir-les per una clàusula `WITH` quan millore la llegibilitat.
-- Crear vistes que encapsulen composicions i valorar quan són actualitzables.
-- Combinar resultats de diverses consultes amb `UNION`, `UNION ALL`, `INTERSECT` i `MINUS`.
-- Utilitzar funcions analítiques per a comparar cada fila amb el seu grup sense perdre el detall.
+- Escriure subconsultes d'una fila, de diverses files, correlacionades i amb `EXISTS`.
 - Obtindre i interpretar el pla d'execució d'una consulta i aplicar criteris d'optimització.
 
 ### Temporalització
 
-El tema ocupa **18 hores d'aula** (10 de teoria i 8 de pràctica). Les composicions
-i les subconsultes són el nucli del RA3: convé no avançar fins que cada consulta
+El tema ocupa **16 hores d'aula** (9 de teoria i 7 de pràctica). Les composicions
+i les subconsultes són el nucli del RA4: convé no avançar fins que cada consulta
 es puga escriure sense consultar els apunts.
 
-{{< sesiones unidad="T07" horas="18" >}}
+{{< sesiones unidad="T07" horas="16" >}}
 items:
   - {h: 2, tipo: T, t: "Funcions d'agregat, GROUP BY i HAVING", ref: "§1 i §2 · laboratori d'agrupament"}
   - {h: 1, tipo: P, t: "Consultes resum", ref: "Pràctica 7.1"}
   - {h: 2, tipo: T, t: "Composicions internes: INNER JOIN i diverses taules", ref: "§3 · laboratori de composicions"}
   - {h: 2, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 7.2"}
   - {h: 2, tipo: T, t: "Composicions externes i autocomposició", ref: "§4 i §5"}
-  - {h: 2, tipo: P, t: "Informes per a cap d'estudis", ref: "Pràctica 7.3"}
-  - {h: 2, tipo: T, t: "Subconsultes, EXISTS i WITH", ref: "§6"}
+  - {h: 1, tipo: P, t: "Informes per a prefectura", ref: "Pràctica 7.3"}
+  - {h: 2, tipo: T, t: "Subconsultes i EXISTS", ref: "§6"}
   - {h: 1, tipo: P, t: "Subconsultes", ref: "Pràctica 7.4"}
-  - {h: 1, tipo: T, t: "Vistes amb composicions i operadors de conjunts", ref: "§7 i §8"}
-  - {h: 1, tipo: P, t: "Múltiples seleccions i vistes", ref: "Pràctica 7.5"}
-  - {h: 1, tipo: T, t: "Funcions analítiques i optimització de consultes", ref: "§9 i §10"}
-  - {h: 1, tipo: P, t: "Optimització: mesurar abans i després", ref: "Pràctica 7.6"}
+  - {h: 1, tipo: T, t: "Optimització de consultes: pla d'execució", ref: "§7"}
+  - {h: 1, tipo: P, t: "Optimització: mesurar abans i després", ref: "Pràctica 7.5"}
+  - {h: 1, tipo: P, t: "Informes d'EduGest", ref: "Projecte EduGest-7"}
 autonomo:
-  - "Pràctica 7.7 (repte: el quadre de comandament)"
-  - "Projecte EduGest · Tema 7 (informes de secretaria i cap d'estudis)"
-  - "Ampliació de funcions analítiques"
+  - "Pràctiques 7.3 i 7.4 (acabar a casa el que no done temps)"
+  - "Pràctica 7.6 (repte: el quadre de comandament)"
+  - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -70,6 +66,7 @@ autonomo:
 > Si una consulta torna moltes més files de les esperades, quasi sempre falta una condició de composició. Si en torna menys, quasi sempre sobra un filtre o falta una composició externa.
 
 ---
+
 
 {{< sesion n="1" h="2" tipo="t" >}}Funcions d'agregat, GROUP BY i HAVING{{< /sesion >}}
 
@@ -433,62 +430,20 @@ ORDER  BY matriculas DESC;
 *5 files*
 
 > [!TIP]
-> Repetir el `CASE` complet és incòmode i propens a errors. En Oracle **no** es pot escriure `GROUP BY tramo` usant l'àlies, però sí que es pot donar nom al càlcul amb una **subconsulta al `FROM`** o amb una clàusula `WITH` (apartat 6.6):
+> Repetir el `CASE` complet és incòmode i propens a errors. En Oracle **no** es pot escriure `GROUP BY tramo` usant l'àlies, però sí que es pot donar nom al càlcul amb una **subconsulta al `FROM`**:
 >
 > ```sql
-> WITH clasificadas AS (
->     SELECT CASE WHEN nota_final IS NULL THEN 'Sin calificar'
->                 WHEN nota_final < 5     THEN 'Insuficiente'
->                 ELSE                         'Aprobada'
->            END AS tramo
->     FROM   matricula)
 > SELECT tramo, COUNT(*) AS matriculas
-> FROM   clasificadas
+> FROM  (SELECT CASE WHEN nota_final IS NULL THEN 'Sin calificar'
+>                    WHEN nota_final < 5     THEN 'Insuficiente'
+>                    ELSE                         'Aprobada'
+>               END AS tramo
+>        FROM   matricula)
 > GROUP  BY tramo
 > ORDER  BY matriculas DESC;
 > ```
 
-### 2.5 Subtotals: ROLLUP, CUBE i GROUPING SETS
-
-Un informe sol necessitar, a més del detall per grup, una **fila de totals**. `GROUP BY ROLLUP(...)` l'afig automàticament:
-
-{{< sgbd "Oracle 26ai" >}}
-
-```sql
-SELECT id_modulo,
-       COUNT(*)                  AS matriculas,
-       COUNT(nota_final)         AS calificadas,
-       ROUND(AVG(nota_final), 2) AS media,
-       GROUPING(id_modulo)       AS es_total
-FROM   matricula
-WHERE  id_modulo IN (16, 17, 18, 19)
-GROUP  BY ROLLUP(id_modulo)
-ORDER  BY GROUPING(id_modulo), id_modulo;
-```
-
-| ID_MODULO | MATRICULAS | CALIFICADAS | MEDIA | ES_TOTAL |
-|---|---|---|---|---|
-| 16 | 5 | 4 | 6.38 | 0 |
-| 17 | 5 | 5 | 5.8 | 0 |
-| 18 | 5 | 5 | 4.9 | 0 |
-| 19 | 5 | 5 | 6.75 | 0 |
-| (null) | 20 | 19 | 5.93 | 1 |
-
-*5 files*
-
-| Clàusula | Què afig |
-|---|---|
-| `ROLLUP(a, b)` | Subtotals per `a` i un total general: jerarquia d'esquerra a dreta |
-| `CUBE(a, b)` | **Totes** les combinacions de subtotals: per `a`, per `b` i total |
-| `GROUPING SETS((a), (b))` | Exactament els subtotals que indiques |
-| `GROUPING(col)` | Torna 1 si la fila és un subtotal respecte de `col`, i 0 si no |
-
-> [!WARNING]
-> A les files de subtotal, la columna agrupada val `NULL`. Si la columna **ja tenia** valors nuls propis (com `cod_grupo` a `ALUMNO`), no podràs distingir «els alumnes sense grup» de «el total» mirant la columna: necessites `GROUPING(cod_grupo)`. Per a presentar-ho es combina amb `CASE`: `CASE WHEN GROUPING(cod_grupo) = 1 THEN 'TOTAL' ELSE NVL(cod_grupo, '(sin grupo)') END`.
->
-> `ROLLUP`, `CUBE` i `GROUPING SETS` són SQL estàndard i existixen en Oracle, SQL Server i PostgreSQL; en MySQL només hi ha `WITH ROLLUP`. Ací són **ampliació**: resol primer els informes sense subtotals.
-
-### 2.6 Laboratori d'agrupament
+### 2.5 Laboratori d'agrupament
 
 Al laboratori següent treballes amb les **143 matrícules reals** d'EduGest (hi ha 6 notes sense posar, dos d'elles al mòdul 0490). Tria la columna d'agrupament, la funció d'agregat i, si vols, una condició `HAVING`, i observa tres coses alhora: quines files formen cada grup, què torna l'agregat i quin SQL estàs construint en realitat.
 
@@ -516,7 +471,8 @@ Presta atenció especialment a dos experiments:
 
 ---
 
-{{< sesion n="3" h="2" tipo="t" >}}Composicions internes: INNER JOIN{{< /sesion >}}
+
+{{< sesion n="3" h="2" tipo="t" >}}Composicions internes: INNER JOIN i diverses taules{{< /sesion >}}
 
 ## 3. Composicions internes: INNER JOIN
 
@@ -794,21 +750,14 @@ Abans de tocar res, prediu els números: quantes files hauria de tornar cada tip
 {{< join-lab >}}
 
 {{< quiz >}}
-- q: "`FALTA_ASISTENCIA` té 46 files i `MATRICULA` 143. Quantes files torna `SELECT * FROM falta_asistencia f JOIN matricula m ON m.id_matricula = f.id_matricula`?"
-  options: ["46", "143", "189", "6578"]
-  answer: 0
-  explain: "Cada falta apunta a exactament una matrícula mitjançant una clau aliena obligatòria, així que cap fila es duplica ni es perd: 46. Les 6578 files (46 × 143) serien el producte cartesià, el que eixiria si oblidàrem l'`ON`."
 - q: "Per què `SELECT nombre FROM modulo mo JOIN ciclo c ON c.cod_ciclo = mo.cod_ciclo` dona ORA-00918?"
   options: ["Perquè falta `INNER`", "Perquè `nombre` existix a les dues taules i no s'ha qualificat", "Perquè `cod_ciclo` admet nuls", "Perquè cal usar `USING`"]
   answer: 1
   explain: "ORA-00918 és *column ambiguously defined*. Cal escriure `mo.nombre` o `c.nombre`. És la raó per la qual es qualifiquen sempre totes les columnes."
-- q: "Una consulta que compon `ALUMNO` amb `MATRICULA` torna 143 files en lloc de 32. Què passa?"
-  options: ["Hi ha un error: hauria de tornar 32", "És correcte: un alumne té diverses matrícules, així que la seua fila es repetix una vegada per matrícula", "Falta un `DISTINCT`", "Falta una composició externa"]
-  answer: 1
-  explain: "En compondre pel costat «molts» d'una relació 1:N, la fila del costat «un» apareix repetida. És el comportament esperat; si vols una fila per alumne hauràs d'agrupar."
 {{< /quiz >}}
 
 ---
+
 
 {{< sesion n="5" h="2" tipo="t" >}}Composicions externes i autocomposició{{< /sesion >}}
 
@@ -995,46 +944,6 @@ ORDER  BY g.cod_grupo, p.id_profesor;
 
 Un grup sense tutor i set professors que no són tutors de cap grup. Sense el `WHERE`, la composició tornaria 13 files: 5 parelles + 1 + 7.
 
-### 4.7 Nota històrica: l'operador `(+)` d'Oracle
-
-Abans de SQL-92, Oracle expressava les composicions externes amb l'operador `(+)` junt a la columna de la taula **que pot quedar sense dades**:
-
-{{< sgbd "Oracle 26ai" >}}
-
-```sql
--- Sintaxi propietària antiga: equivalent a GRUPO LEFT JOIN PROFESOR
-SELECT g.cod_grupo, p.apellidos
-FROM   grupo g, profesor p
-WHERE  p.id_profesor(+) = g.id_tutor;
-```
-
-Oracle la continua admetent per compatibilitat, però la mateixa documentació recomana la sintaxi estàndard: `(+)` no és portable, no permet `FULL OUTER JOIN`, no es pot combinar lliurement amb `OR` ni amb `IN`, i en consultes de diverses taules és molt difícil de llegir. Has de reconéixer-la en llegir codi antic i **no** escriure-la.
-
-{{% details title="Què torna esta consulta i per què?" %}}
-```sql
-SELECT c.cod_ciclo, COUNT(g.cod_grupo) AS grupos
-FROM   ciclo c LEFT JOIN grupo g ON g.cod_ciclo = c.cod_ciclo
-WHERE  g.turno = 'M'
-GROUP  BY c.cod_ciclo;
-```
-
-Torna **dues** files (ASIR amb 2 i DAM amb 2), no quatre. El `WHERE g.turno = 'M'` elimina les files en què `g.turno` és nul, és a dir, la fila de SMR creada pel `LEFT JOIN`, i també DAW, els dos grups del qual són de vesprada. La composició externa ha quedat anul·lada per a SMR.
-
-Per a obtindre els quatre cicles amb el nombre de grups **de matí** de cadascun, la condició ha d'anar a l'`ON`:
-
-```sql
-SELECT c.cod_ciclo, COUNT(g.cod_grupo) AS grupos
-FROM   ciclo c LEFT JOIN grupo g
-       ON g.cod_ciclo = c.cod_ciclo AND g.turno = 'M'
-GROUP  BY c.cod_ciclo
-ORDER  BY c.cod_ciclo;
-```
-
-Ara ixen 4 files: ASIR 2, DAM 2, DAW **0**, SMR **0**.
-{{% /details %}}
-
----
-
 ## 5. Autocomposició i altres composicions
 
 ### 5.1 Autocomposició (*self join*)
@@ -1104,97 +1013,7 @@ Dos detalls imprescindibles:
 - La condició `b.id_alumno > a.id_alumno` evita que un alumne s'emparelle **amb si mateix** i que cada parella isca **dues voltes** (A-B i B-A). Si la lleves, les 7 files es convertixen en 22.
 - A 1DAM hi ha dos alumnes distints que tenen per cognom «Ferri Baeza» (Adrián i Paula), cosa que explica les files aparentment repetides: són parelles diferents amb cognoms iguals. És un bon recordatori que **el cognom no identifica una persona**: per això la clau primària és `id_alumno`.
 
-### 5.3 `CROSS JOIN` legítim: construir una graella completa
-
-El producte cartesià de l'apartat 3.2 semblava només una font d'errors, però té un ús professional important: **generar totes les combinacions possibles** perquè en un informe apareguen també les cel·les amb valor zero.
-
-Un exemple real: el part trimestral de faltes demana, per a **cada grup**, les faltes justificades i les no justificades. Si es calcula amb composicions normals, els grups sense cap falta simplement no apareixen, i les combinacions sense faltes tampoc:
-
-```sql
--- Sense graella: només apareixen les combinacions que existixen -> 10 files
-SELECT a.cod_grupo, f.justificada, COUNT(*) AS faltas, SUM(f.horas) AS horas
-FROM   falta_asistencia f
-       JOIN matricula m ON m.id_matricula = f.id_matricula
-       JOIN alumno a    ON a.id_alumno    = m.id_alumno
-GROUP  BY a.cod_grupo, f.justificada
-ORDER  BY a.cod_grupo, f.justificada;
-```
-
-Amb `CROSS JOIN` es construïx primer la graella «6 grups × 2 tipus de falta» i després es pengen les dades amb composicions externes:
-
-```sql
-SELECT g.cod_grupo, t.justificada,
-       COUNT(f.id_falta)    AS faltas,
-       NVL(SUM(f.horas), 0) AS horas
-FROM   grupo g
-       CROSS JOIN (SELECT 'N' AS justificada FROM dual
-                   UNION ALL
-                   SELECT 'S'                FROM dual) t
-       LEFT JOIN alumno a           ON a.cod_grupo    = g.cod_grupo
-       LEFT JOIN matricula m        ON m.id_alumno    = a.id_alumno
-       LEFT JOIN falta_asistencia f ON f.id_matricula = m.id_matricula
-                                   AND f.justificada  = t.justificada
-GROUP  BY g.cod_grupo, t.justificada
-ORDER  BY g.cod_grupo, t.justificada;
-```
-
-| COD_GRUPO | JUSTIFICADA | FALTAS | HORAS |
-|---|---|---|---|
-| 1ASIR | N | 4 | 6 |
-| 1ASIR | S | 5 | 5 |
-| 1DAM | N | 7 | 13 |
-| 1DAM | S | 2 | 5 |
-| 1DAW | N | 5 | 9 |
-| 1DAW | S | 2 | 5 |
-| 2ASIR | N | 0 | 0 |
-| 2ASIR | S | 0 | 0 |
-| 2DAM | N | 6 | 14 |
-| 2DAM | S | 6 | 11 |
-| 2DAW | N | 5 | 8 |
-| 2DAW | S | 4 | 5 |
-
-*12 files*
-
-Ara hi ha **12 files** (6 × 2) en compte de 10, i 2ASIR apareix amb zeros explícits, que és el que cap d'estudis necessita veure en un part.
-
-> [!NOTE]
-> Fixa't en la combinació de tècniques: un `CROSS JOIN` **deliberat** per a la graella, `LEFT JOIN` per a no perdre les cel·les buides, la condició `f.justificada = t.justificada` a l'**`ON`** (si estiguera al `WHERE` perdríem de nou 2ASIR), `COUNT` d'una columna de la taula opcional i `NVL` sobre el `SUM`. Les quatre regles dels apartats anteriors actuant juntes.
-
-### 5.4 Compondre amb una subconsulta o amb una vista
-
-Una composició no exigix que els dos operands siguen taules: pot ser una **vista** (apartat 7) o una **subconsulta al `FROM`**, també anomenada *taula en línia* o *vista en línia*. Això permet resumir primer i compondre després:
-
-```sql
--- Resum per mòdul (subconsulta) compost amb el catàleg de mòduls
-SELECT mo.codigo, mo.cod_ciclo, mo.nombre AS modulo,
-       r.calificadas, ROUND(r.media, 2) AS media
-FROM   (SELECT id_modulo,
-               COUNT(nota_final) AS calificadas,
-               AVG(nota_final)   AS media
-        FROM   matricula
-        GROUP  BY id_modulo) r
-       JOIN modulo mo ON mo.id_modulo = r.id_modulo
-WHERE  r.media < 6
-ORDER  BY r.media, mo.codigo;
-```
-
-| CODIGO | COD_CICLO | MODULO | CALIFICADAS | MEDIA |
-|---|---|---|---|---|
-| 0614 | DAW | Despliegue de aplicaciones web | 5 | 4.9 |
-| 0488 | DAM | Desarrollo de interfaces | 6 | 5.42 |
-| 0485 | DAM | Programación | 8 | 5.56 |
-| 0483 | DAW | Sistemas informáticos | 6 | 5.71 |
-| 0613 | DAW | Desarrollo web en entorno servidor | 5 | 5.8 |
-| 0484 | DAW | Bases de datos | 6 | 5.92 |
-| 0484 | DAM | Bases de datos | 7 | 5.93 |
-
-*7 files*
-
-Els set mòduls amb nota mitjana inferior a 6. Observa que el codi 0484 apareix dues voltes, una per cicle: a EduGest el mateix mòdul oficial existix en DAM i en DAW amb `id_modulo` distint, i per això la columna `cod_ciclo` és imprescindible per a interpretar l'informe.
-
----
-
-{{< sesion n="7" h="2" tipo="t" >}}Subconsultes, EXISTS i WITH{{< /sesion >}}
+{{< sesion n="7" h="2" tipo="t" >}}Subconsultes i EXISTS{{< /sesion >}}
 
 ## 6. Subconsultes
 
@@ -1449,604 +1268,17 @@ FETCH FIRST 6 ROWS ONLY;
 > [!NOTE]
 > Una composició pot **duplicar** files si l'altra taula té diverses coincidències; `EXISTS` mai ho fa, perquè només pregunta si n'hi ha alguna. Si una consulta amb `JOIN` et torna files repetides i el que volies era només filtrar, canvia-la per `EXISTS` en lloc d'afegir un `DISTINCT`.
 
-### 6.6 Posar nom als passos: la clàusula WITH (CTE)
+{{< sesion n="9" h="2" tipo="t" >}}Optimització de consultes: pla d'execució{{< /sesion >}}
 
-Quan una consulta necessita dos o tres passos intermedis, aniuar subconsultes la fa il·legible. La clàusula `WITH`, també anomenada **expressió de taula comuna** (*Common Table Expression*, CTE), permet **posar nom** a cada pas i escriure'ls en l'ordre en què es pensen.
+## 7. Optimització de consultes i pla d'execució
 
-{{< sgbd "SQL estándar" >}}
-
-```text
-WITH nom1 AS (SELECT …),
-     nom2 AS (SELECT … FROM nom1 …)
-SELECT … FROM nom2 …
-```
-
-La mateixa consulta de l'apartat 5.4, reescrita:
-
-```sql
-WITH resumen_modulo AS (
-    SELECT id_modulo,
-           COUNT(nota_final) AS calificadas,
-           AVG(nota_final)   AS media
-    FROM   matricula
-    GROUP  BY id_modulo
-)
-SELECT mo.codigo, mo.cod_ciclo, mo.nombre AS modulo,
-       r.calificadas, ROUND(r.media, 2) AS media
-FROM   resumen_modulo r
-       JOIN modulo mo ON mo.id_modulo = r.id_modulo
-WHERE  r.media < 6
-ORDER  BY r.media, mo.codigo;
-```
-
-Torna exactament les **7 files** de l'apartat 5.4. El que canvia és la llegibilitat:
-
-| Subconsulta aniuada | Clàusula `WITH` |
-|---|---|
-| Es llig de dins cap a fora | Es llig d'amunt a avall, en l'ordre del raonament |
-| El pas intermedi no té nom | `resumen_modulo` documenta què és |
-| Si es necessita dues voltes, cal repetir-la | S'escriu una vegada i s'usa diverses |
-| Difícil de depurar | Pots executar la CTE sola per a comprovar-la |
-
-Un exemple amb dos passos, on l'avantatge és evident:
-
-```sql
-WITH media_alumno AS (
-    SELECT a.id_alumno, a.cod_grupo,
-           a.apellidos || ', ' || a.nombre AS alumno,
-           AVG(m.nota_final) AS media
-    FROM   alumno a
-           JOIN matricula m ON m.id_alumno = a.id_alumno
-    WHERE  a.cod_grupo IS NOT NULL
-    GROUP  BY a.id_alumno, a.cod_grupo, a.apellidos, a.nombre
-),
-media_grupo AS (
-    SELECT cod_grupo, AVG(media) AS media_del_grupo
-    FROM   media_alumno
-    GROUP  BY cod_grupo
-)
-SELECT ma.cod_grupo, ma.alumno,
-       ROUND(ma.media, 2)                      AS media_alumno,
-       ROUND(mg.media_del_grupo, 2)            AS media_grupo,
-       ROUND(ma.media - mg.media_del_grupo, 2) AS diferencia
-FROM   media_alumno ma
-       JOIN media_grupo mg ON mg.cod_grupo = ma.cod_grupo
-WHERE  ma.cod_grupo = '2DAM'
-ORDER  BY ma.media DESC;
-```
-
-| COD_GRUPO | ALUMNO | MEDIA_ALUMNO | MEDIA_GRUPO | DIFERENCIA |
-|---|---|---|---|---|
-| 2DAM | Alemany Vidal, Martina | 8.4 | 6.18 | 2.22 |
-| 2DAM | Cerdá Tomás, Nerea | 6.42 | 6.18 | 0.24 |
-| 2DAM | Ripoll Agulló, Iván | 5.94 | 6.18 | -0.24 |
-| 2DAM | Brotons Iborra, Hugo | 5.8 | 6.18 | -0.38 |
-| 2DAM | Belda Quiles, Lucía | 5.38 | 6.18 | -0.8 |
-| 2DAM | Domènech Quiles, María | 5.15 | 6.18 | -1.03 |
-
-*6 files*
-
-> [!NOTE]
-> `media_grupo` és ací la **mitjana de les mitjanes** dels alumnes del grup: **6,18**. No coincidix amb la mitjana de totes les notes de 2DAM, que és **6,17** (`AVG` sobre les 31 notes del grup), perquè els alumnes no tenen el mateix nombre de matrícules i la mitjana de mitjanes pondera igual a tots. La diferència és xicoteta amb estes dades, però és real: és una decisió de càlcul que cal **documentar** a l'informe, perquè en estadística escolar s'usen les dos xifres i confondre-les és un error habitual.
->
-> `WITH` és SQL estàndard i està en Oracle des de la versió 9i. Oracle admet a més CTE **recursives** (`WITH … UNION ALL` amb referència a si mateixa) per a recórrer jerarquies; és matèria d'ampliació, igual que la clàusula propietària `CONNECT BY`.
-
-{{< quiz >}}
-- q: "Per què `SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo)` no torna cap fila?"
-  options: ["Perquè tots els professors són tutors", "Perquè la subconsulta torna un `NULL` i la comparació es torna `UNKNOWN` per a totes les files", "Perquè falta un `DISTINCT` a la subconsulta", "Perquè `NOT IN` no admet subconsultes"]
-  answer: 1
-  explain: "2ASIR no té tutor, així que la subconsulta inclou `NULL`. `x <> NULL` és `UNKNOWN` i la conjunció mai arriba a `TRUE`. Es corregix amb `WHERE id_tutor IS NOT NULL` a la subconsulta o, millor, amb `NOT EXISTS`."
-- q: "Quin error torna Oracle a `WHERE horas > (SELECT horas FROM modulo WHERE cod_ciclo = 'DAM')`?"
-  options: ["ORA-00979: not a GROUP BY expression", "ORA-01427: single-row subquery returns more than one row", "ORA-00918: column ambiguously defined", "Cap: compara amb la primera fila"]
-  answer: 1
-  explain: "La subconsulta torna 10 valors i l'operador `>` n'espera un de sol. Cal resumir amb `AVG`/`MAX` o usar `> ANY` / `> ALL`."
-- q: "Quin és l'avantatge principal d'una clàusula `WITH` enfront de la mateixa subconsulta aniuada?"
-  options: ["Sempre s'executa més ràpid", "Permet nomenar i reutilitzar els passos intermedis, i es llig en l'ordre del raonament", "Evita haver d'usar `GROUP BY`", "És l'única forma d'usar un agregat al `WHERE`"]
-  answer: 1
-  explain: "L'avantatge és de llegibilitat, reutilització i depuració. El rendiment depén de l'optimitzador: una CTE pot materialitzar-se o integrar-se en la consulta, i no és automàticament més ràpida."
-{{< /quiz >}}
-
----
-
-{{< sesion n="9" h="1" tipo="t" >}}Vistes amb composicions i operadors de conjunts{{< /sesion >}}
-
-## 7. Vistes amb composicions
-
-### 7.1 De la consulta útil a la vista
-
-A el tema 5 vas crear vistes sobre una sola taula. El seu veritable valor apareix ara: una vista pot **encapsular una composició de diverses taules** i oferir-la a la resta del centre com si fora una taula senzilla.
-
-| Avantatge | A la pràctica |
-|---|---|
-| **Reutilització** | L'acta s'escriu una vegada; secretaria, tutoria i cap d'estudis la consulten |
-| **Simplicitat** | Qui consulta no necessita conéixer les claus alienes ni els `JOIN` |
-| **Seguretat** | Es concedix `SELECT` sobre la vista, no sobre les taules: el DNI no s'exposa |
-| **Independència lògica** | Si canvia l'estructura de les taules, s'adapta la vista i les aplicacions continuen funcionant |
-| **Coherència** | La regla «aprovat és nota ≥ 5» està escrita en **un** lloc, no en cada informe |
-
-### 7.2 La vista `v_acta`
-
-L'acta d'avaluació d'un mòdul és l'informe més usat del centre: alumne, mòdul, nota i qualificació. Necessita tres taules (`MATRICULA`, `ALUMNO` i `MODULO`), i la qualificació és una regla de negoci que no convé repetir en cada consulta.
-
-{{< sgbd "Oracle 26ai" >}}
-
-```sql
-CREATE OR REPLACE VIEW v_acta AS
-    SELECT m.id_matricula,
-           a.cod_grupo,
-           a.id_alumno,
-           a.nia,
-           a.apellidos || ', ' || a.nombre AS alumno,
-           mo.codigo                       AS cod_modulo,
-           mo.nombre                       AS modulo,
-           m.curso_academico,
-           m.convocatoria,
-           m.nota_final                    AS nota,
-           CASE WHEN m.nota_final IS NULL THEN 'NC'
-                WHEN m.nota_final >= 5    THEN 'APTO'
-                ELSE                           'NO APTO'
-           END                             AS calificacion
-    FROM   matricula m
-           JOIN alumno a  ON a.id_alumno  = m.id_alumno
-           JOIN modulo mo ON mo.id_modulo = m.id_modulo
-WITH READ ONLY;
-```
-
-| Element | Per què hi és |
-|---|---|
-| `OR REPLACE` | Permet corregir la vista sense perdre els privilegis ja concedits |
-| Àlies `AS alumno`, `AS cod_modulo`… | Tota columna calculada **necessita** àlies: sense ell, `CREATE VIEW` falla amb `ORA-00998` |
-| `CASE … 'NC'` | `NC` (no qualificat) es distingix de `NO APTO`: un no presentat no és un suspés |
-| El `CASE` pregunta primer per `NULL` | Si no, `NULL >= 5` seria `UNKNOWN` i cauria a l'`ELSE`, marcant com a `NO APTO` qui no s'ha presentat |
-| `WITH READ ONLY` | És un informe: ningú ha de modificar notes a través d'ell |
-
-Consultar-la és com consultar una taula:
-
-```sql
--- Acta de Bases de dades (0484) del grup 1DAM
-SELECT nia, alumno, nota, calificacion
-FROM   v_acta
-WHERE  cod_grupo = '1DAM' AND cod_modulo = '0484'
-ORDER  BY alumno;
-```
-
-| NIA | ALUMNO | NOTA | CALIFICACION |
-|---|---|---|---|
-| 10450185 | Brotons Soriano, Andrea | 5.75 | APTO |
-| 10450222 | Cerdá Pérez, Tomás | 5.25 | APTO |
-| 10450037 | Ferri Baeza, Adrián | 4.75 | NO APTO |
-| 10450148 | Ferri Baeza, Paula | 6.5 | APTO |
-| 10450074 | Iborra Ferri, Rubén | 4.75 | NO APTO |
-| 10450259 | Quiles Marco, Valeria | 6.5 | APTO |
-| 10450111 | Verdú Espí, Noelia | 8 | APTO |
-
-*7 files*
-
-I, sobretot, es pot **agrupar** com qualsevol taula. El resum de la sessió d'avaluació de 1DAW:
-
-```sql
-SELECT cod_modulo, modulo,
-       SUM(CASE WHEN calificacion = 'APTO'    THEN 1 ELSE 0 END) AS aptos,
-       SUM(CASE WHEN calificacion = 'NO APTO' THEN 1 ELSE 0 END) AS no_aptos,
-       SUM(CASE WHEN calificacion = 'NC'      THEN 1 ELSE 0 END) AS nc
-FROM   v_acta
-WHERE  cod_grupo = '1DAW'
-GROUP  BY cod_modulo, modulo
-ORDER  BY cod_modulo;
-```
-
-| COD_MODULO | MODULO | APTOS | NO_APTOS | NC |
-|---|---|---|---|---|
-| 0373 | Lenguajes de marcas y sistemas de gestión de información | 5 | 1 | 0 |
-| 0483 | Sistemas informáticos | 4 | 2 | 0 |
-| 0484 | Bases de datos | 6 | 0 | 0 |
-| 0485 | Programación | 4 | 2 | 0 |
-| 0487 | Entornos de desarrollo | 5 | 0 | 1 |
-
-*5 files*
-
-Compara la grandària d'esta consulta amb la que faria falta sense la vista: tres composicions, el `CASE` repetit tres voltes i la regla d'aprovat escrita una altra vegada. Eixa reducció és la raó de ser de les vistes.
-
-> [!TIP]
-> Nomena les vistes amb un prefix (`v_`) i documenta la seua finalitat al diccionari de dades:
->
-> ```sql
-> COMMENT ON TABLE v_acta IS 'Acta de evaluación: una fila por matrícula con su calificación APTO/NO APTO/NC';
-> ```
-
-### 7.3 Vistes actualitzables
-
-Una vista no emmagatzema dades, però en alguns casos es pot **modificar a través d'ella** i Oracle trasllada el canvi a la taula base. Per a això, la vista ha de tindre una **taula amb clau preservada**: Oracle ha de poder identificar sense ambigüitat quina fila de quina taula correspon a cada fila de la vista.
-
-| Una vista **no** és actualitzable si conté | Error típic |
-|---|---|
-| `GROUP BY`, `DISTINCT` o funcions d'agregat | `ORA-01732: data manipulation operation not legal on this view` |
-| Operadors de conjunts (`UNION`, `INTERSECT`, `MINUS`) | `ORA-01732` |
-| Columnes calculades (si s'intenta modificar eixa columna) | `ORA-01733: virtual column not allowed here` |
-| `WITH READ ONLY` | `ORA-42399: cannot perform a DML operation on a read-only view` |
-
-En una vista amb composicions, només són modificables les columnes de les taules la clau de les quals es preserva:
-
-```sql
--- v_acta té WITH READ ONLY: este UPDATE falla (ORA-42399)
-UPDATE v_acta SET nota = 7 WHERE id_matricula = 10001;
-```
-
-Si volguérem permetre al professorat posar notes a través d'una vista, caldria crear-la **sense** `WITH READ ONLY` i comprovar que `MATRICULA` conserva la seua clau:
-
-```sql
-CREATE OR REPLACE VIEW v_notas_1dam AS
-    SELECT m.id_matricula, m.id_alumno, m.id_modulo, m.nota_final, a.cod_grupo
-    FROM   matricula m
-           JOIN alumno a ON a.id_alumno = m.id_alumno
-    WHERE  a.cod_grupo = '1DAM'
-WITH CHECK OPTION CONSTRAINT ck_v_notas_1dam;
-
--- Comprovar quines columnes són actualitzables
-SELECT column_name, updatable, insertable, deletable
-FROM   user_updatable_columns
-WHERE  table_name = 'V_NOTAS_1DAM';
-```
-
-| Clàusula | Efecte |
-|---|---|
-| `WITH READ ONLY` | Prohibix `INSERT`, `UPDATE` i `DELETE` a través de la vista |
-| `WITH CHECK OPTION` | Permet modificar, però **rebutja** els canvis que farien que la fila deixara de complir el `WHERE` de la vista (`ORA-01402`) |
-| *(cap)* | Es permet el que Oracle considere actualitzable |
-
-> [!IMPORTANT]
-> **Criteri professional:** una vista d'**informe** es crea sempre `WITH READ ONLY`. És una decisió de seguretat gratuïta que evita modificacions accidentals i documenta la intenció de la vista. Només s'omet quan la vista existix precisament per a permetre modificacions controlades, i llavors s'afig `WITH CHECK OPTION`.
-
-### 7.4 Consultar les vistes al diccionari
-
-```sql
-SELECT view_name, read_only, text_length
-FROM   user_views
-ORDER  BY view_name;
-
--- Veure el SELECT que definix una vista
-SELECT text FROM user_views WHERE view_name = 'V_ACTA';
-
--- De quines taules depén cada vista (útil abans d'un ALTER TABLE)
-SELECT name, referenced_name, referenced_type
-FROM   user_dependencies
-WHERE  name = 'V_ACTA';
-
-DROP VIEW v_notas_1dam;
-```
-
-> [!WARNING]
-> Si s'elimina o es modifica una taula de la qual depén una vista, la vista queda **invàlida** (`status = 'INVALID'` en `USER_OBJECTS`) i qualsevol consulta falla amb `ORA-04063: view has errors`. Abans d'un `ALTER TABLE` o d'un `DROP TABLE`, consulta `USER_DEPENDENCIES`. Oracle **no** impedix esborrar una taula perquè tinga vistes damunt: les vistes no són restriccions.
-
----
-
-## 8. Múltiples seleccions: UNION, INTERSECT i MINUS
-
-### 8.1 Quin problema resolen
-
-Les composicions combinen taules **a l'ample** (afigen columnes). Els **operadors de conjunts** les combinen **a l'alt**: prenen els resultats de dues o més consultes i els apilen, els creuen o els resten. Són l'eina quan la pregunta té forma de «açò **i a més** allò», «el que està en els dos» o «el que està ací **però no** allà».
-
-| Operador | Torna | Duplicats | Estàndard |
-|---|---|---|---|
-| `UNION` | Files de les dues consultes | Els **elimina** | Sí |
-| `UNION ALL` | Files de les dues consultes | Els **conserva** | Sí |
-| `INTERSECT` | Només les files que estan en **ambdues** | Els elimina | Sí |
-| `MINUS` | Files de la primera que **no** estan en la segona | Els elimina | `EXCEPT` en l'estàndard i en PostgreSQL i SQL Server |
-
-```mermaid
-flowchart LR
-    subgraph UNION
-        A1((A)) --- B1((B))
-    end
-    subgraph INTERSECT
-        A2((A)) --- B2((B))
-    end
-    subgraph MINUS
-        A3((A)) --- B3((B))
-    end
-```
-
-> [!NOTE]
-> `MINUS` és el nom històric d'Oracle. Des d'**Oracle 21c** s'admet també `EXCEPT`, que és el nom de l'estàndard i el que usen PostgreSQL i SQL Server. En este curs s'escriu `MINUS`, que funciona en totes les versions d'Oracle, i s'indica ací l'equivalència.
-
-### 8.2 Requisits de compatibilitat
-
-Per a combinar dues consultes amb un operador de conjunts:
-
-1. Han de tindre el **mateix nombre de columnes**. Si no: `ORA-01789: query block has incorrect number of result columns`.
-2. Les columnes han de tindre tipus **compatibles**, en el **mateix ordre**. Si no: `ORA-01790: expression must have same datatype as corresponding expression`.
-3. Els **noms** de les columnes els posa la **primera** consulta.
-4. L'`ORDER BY` va **una sola vegada, al final**, i es referix a les columnes del resultat (per nom de la primera consulta o per posició).
-
-### 8.3 `UNION ALL` y `UNION`
-
-```sql
--- Directori del grup 1DAM: alumnat i el seu tutor en un sol llistat
-SELECT 'Alumno' AS tipo, a.apellidos || ', ' || a.nombre AS persona, a.email
-FROM   alumno a
-WHERE  a.cod_grupo = '1DAM'
-UNION ALL
-SELECT 'Tutor', p.apellidos || ', ' || p.nombre, p.email
-FROM   profesor p
-       JOIN grupo g ON g.id_tutor = p.id_profesor
-WHERE  g.cod_grupo = '1DAM'
-ORDER  BY tipo, persona;
-```
-
-| TIPO | PERSONA | EMAIL |
-|---|---|---|
-| Alumno | Brotons Soriano, Andrea | andreabrotons5@alu.edugest.es |
-| Alumno | Cerdá Pérez, Tomás | tomascerda6@alu.edugest.es |
-| Alumno | Ferri Baeza, Adrián | adrianferri1@alu.edugest.es |
-| Alumno | Ferri Baeza, Paula | paulaferri4@alu.edugest.es |
-| Alumno | Iborra Ferri, Rubén | rubeniborra2@alu.edugest.es |
-| Alumno | Quiles Marco, Valeria | valeriaquiles7@alu.edugest.es |
-| Alumno | Verdú Espí, Noelia | noeliaverdu3@alu.edugest.es |
-| Tutor | Ferrándiz Mora, Lucía | lferrandiz@edugest.es |
-
-*8 files*
-
-La columna literal `'Alumno'` / `'Tutor'` és un recurs molt útil: **etiqueta l'origen** de cada fila en el resultat combinat.
-
-La diferència entre `UNION` i `UNION ALL` es veu amb els duplicats:
-
-```sql
--- UNION ALL: 13 files (6 + 7), amb localitats repetides
-SELECT localidad FROM alumno WHERE cod_grupo = '1DAM'
-UNION ALL
-SELECT localidad FROM alumno WHERE cod_grupo = '1DAW';
-
--- UNION: 5 files, cada localitat una sola vegada
-SELECT localidad FROM alumno WHERE cod_grupo = '1DAM'
-UNION
-SELECT localidad FROM alumno WHERE cod_grupo = '1DAW'
-ORDER  BY 1;
-```
-
-| LOCALIDAD |
-|---|
-| Alicante |
-| El Campello |
-| Elche |
-| Mutxamel |
-| Sant Joan d'Alacant |
-
-*5 files*
-
-> [!TIP]
-> **Usa `UNION ALL` excepte que necessites eliminar duplicats.** Per a eliminar-los, `UNION` ha d'ordenar o aplicar un *hash* a tot el resultat, cosa que costa temps i memòria. I si les dues consultes són disjuntes per construcció (alumnat i professorat, dos cursos acadèmics distints), `UNION` fa eixe treball **per a res**.
-
-### 8.4 `INTERSECT` y `MINUS`
-
-```sql
--- Codis de mòdul que existixen tant en DAM com en ASIR
-SELECT codigo FROM modulo WHERE cod_ciclo = 'DAM'
-INTERSECT
-SELECT codigo FROM modulo WHERE cod_ciclo = 'ASIR'
-ORDER  BY 1;
-```
-
-| CODIGO |
-|---|
-| 0373 |
-
-*1 fila*
-
-Un sol mòdul transversal, *Llenguatges de marques* (0373), comú als dos cicles.
-
-```sql
--- Mòduls propis d'ASIR: els que NO existixen en DAM
-SELECT codigo FROM modulo WHERE cod_ciclo = 'ASIR'
-MINUS
-SELECT codigo FROM modulo WHERE cod_ciclo = 'DAM'
-ORDER  BY 1;
-```
-
-| CODIGO |
-|---|
-| 0369 |
-| 0370 |
-| 0371 |
-| 0372 |
-
-*4 files*
-
-> [!IMPORTANT]
-> `MINUS` **no és simètric**: `A MINUS B` i `B MINUS A` tornen coses distintes. Ací `DAM MINUS ASIR` donaria 9 codis. Abans d'escriure'l, digues en veu alta quin és «el que vull» i quin «el que descarte».
-
-### 8.5 Operador de conjunts o composició?
-
-Moltes preguntes es poden resoldre de les dues formes, i convé saber triar:
-
-| Pregunta | Amb conjunts | Alternativa | Quina preferir |
-|---|---|---|---|
-| Localitats de DAM **o** de DAW | `UNION` | `WHERE cod_ciclo IN ('DAM','DAW')` + `DISTINCT` | L'alternativa: una sola passada |
-| Localitats de DAM **i** de DAW | `INTERSECT` | `EXISTS` doble | `INTERSECT`, més llegible |
-| Codis d'ASIR que no estan en DAM | `MINUS` | `NOT EXISTS` | `MINUS` si són llistes, `NOT EXISTS` si cal mostrar més columnes |
-| Apilar dos informes amb columnes distintes | `UNION ALL` amb etiqueta | — | `UNION ALL` |
-
-El criteri general: si les dues consultes són **estructuralment distintes** (taules distintes, filtres distints), els operadors de conjunts guanyen en claredat. Si només canvia una condició, sol ser millor una sola consulta amb `IN` o amb `OR`.
-
----
-
-{{< sesion n="11" h="1" tipo="t" >}}Funcions analítiques i optimització{{< /sesion >}}
-
-{{% curiosidad titulo="Les funcions analítiques van arribar abans que l'estàndard" %}}
-Oracle va incorporar les funcions analítiques (`RANK`, `LAG`, `SUM … OVER`) en la versió 8i, cap a 1999. L'estàndard SQL no les va arreplegar fins a SQL:2003.
-{{% /curiosidad %}}
-
-## 9. Funcions analítiques
-
-> [!NOTE]
-> Este apartat és **ampliació professional**. No forma part del contingut mínim del RA4, però apareix en quasi qualsevol informe real i en les ofertes d'ocupació, i resol amb una línia el que d'una altra manera exigix dues subconsultes. Està en el currículum de forma implícita, a través de les consultes resum i de l'optimització.
-
-### 9.1 El problema: resumir sense perdre el detall
-
-`GROUP BY` resumix, però **destrueix** el detall: si agrupes per mòdul per a calcular la mitjana, perds les notes individuals. Si vols veure **cada nota junt amb la mitjana del seu mòdul**, amb `GROUP BY` necessites una subconsulta correlacionada (apartat 6.5) o una CTE i una composició.
-
-Les **funcions analítiques** (o funcions de finestra) resolen això: calculen un agregat sobre un conjunt de files relacionades, però **tornen un valor per fila**, sense col·lapsar-les.
-
-```text
-función(argumentos) OVER ( [PARTITION BY columnas] [ORDER BY columnas] )
-```
-
-| Clàusula | Significat |
-|---|---|
-| `OVER (...)` | Marca la funció com a analítica en lloc d'agregada |
-| `PARTITION BY` | Dividix les files en particions (l'equivalent al `GROUP BY`, però sense col·lapsar) |
-| `ORDER BY` | Ordena dins de cada partició: imprescindible per a rangs, `LAG` i `LEAD` |
-
-### 9.2 `AVG` analític enfront d'`AVG` agrupat
-
-```sql
--- Notes de Programació (0485) en 1DAW, cadascuna junt amb la mitjana del mòdul
-SELECT a.apellidos                           AS alumno,
-       mo.codigo,
-       m.nota_final,
-       ROUND(AVG(m.nota_final) OVER (PARTITION BY m.id_modulo), 2) AS media_modulo,
-       ROUND(m.nota_final
-             - AVG(m.nota_final) OVER (PARTITION BY m.id_modulo), 2) AS diferencia
-FROM   matricula m
-       JOIN alumno a  ON a.id_alumno  = m.id_alumno
-       JOIN modulo mo ON mo.id_modulo = m.id_modulo
-WHERE  a.cod_grupo = '1DAW' AND mo.codigo = '0485'
-ORDER  BY m.nota_final DESC, a.apellidos;
-```
-
-| ALUMNO | CODIGO | NOTA_FINAL | MEDIA_MODULO | DIFERENCIA |
-|---|---|---|---|---|
-| Alemany Pérez | 0485 | 7.25 | 6 | 1.25 |
-| Espí Marco | 0485 | 7.25 | 6 | 1.25 |
-| Torregrosa Planelles | 0485 | 7.25 | 6 | 1.25 |
-| Soriano Domènech | 0485 | 6 | 6 | 0 |
-| Valero Cerdá | 0485 | 4.25 | 6 | -1.75 |
-| Iborra Alemany | 0485 | 4 | 6 | -2 |
-
-*6 files*
-
-Sis files de detall **i** la mitjana repetida en cadascuna. Amb `GROUP BY` el resultat tindria una sola fila. Sense `PARTITION BY`, la mitjana seria la de totes les files del resultat (la mateixa, en este cas, perquè només hi ha un mòdul).
-
-### 9.3 Rangs: `ROW_NUMBER`, `RANK` i `DENSE_RANK`
-
-Les tres numeren les files dins de cada partició segons l'`ORDER BY`, però tracten els **empats** de forma distinta:
-
-```sql
--- Classificació de Programació de 1r de DAM (id_modulo 3)
-SELECT a.apellidos || ', ' || a.nombre AS alumno, m.nota_final,
-       ROW_NUMBER() OVER (ORDER BY m.nota_final DESC, a.apellidos) AS fila,
-       RANK()       OVER (ORDER BY m.nota_final DESC)              AS rango,
-       DENSE_RANK() OVER (ORDER BY m.nota_final DESC)              AS rango_denso
-FROM   matricula m
-       JOIN alumno a ON a.id_alumno = m.id_alumno
-WHERE  m.id_modulo = 3
-ORDER  BY fila;
-```
-
-| ALUMNO | NOTA_FINAL | FILA | RANGO | RANGO_DENSO |
-|---|---|---|---|---|
-| Quiles Marco, Valeria | 8 | 1 | 1 | 1 |
-| Cerdá Pérez, Tomás | 7.25 | 2 | 2 | 2 |
-| Ferri Baeza, Adrián | 7.25 | 3 | 2 | 2 |
-| Verdú Espí, Noelia | 6.75 | 4 | 4 | 3 |
-| Brotons Soriano, Andrea | 4.75 | 5 | 5 | 4 |
-| Iborra Ferri, Rubén | 4.5 | 6 | 6 | 5 |
-| Ferri Baeza, Paula | 3.25 | 7 | 7 | 6 |
-| Belda Quiles, Lucía | 2.75 | 8 | 8 | 7 |
-
-*8 files*
-
-| Funció | Amb dos empatats al lloc 2 | Quan usar-la |
-|---|---|---|
-| `ROW_NUMBER()` | 2 i 3 (tria arbitràriament) | Paginar, triar **una** fila per grup |
-| `RANK()` | 2 i 2, i el següent és **4** | Classificacions esportives o acadèmiques |
-| `DENSE_RANK()` | 2 i 2, i el següent és **3** | «Posicions distintes de nota» |
-
-> [!WARNING]
-> `ROW_NUMBER()` és **no determinista** si l'`ORDER BY` de l'`OVER` no distingix les files empatades: cada execució pot assignar els números al revés. Si el resultat es va a publicar o comparar, afig sempre un criteri de desempat (ací, `a.apellidos`).
->
-> Lucía Belda Quiles és de 2DAM i apareix en la classificació d'un mòdul de primer: està **repetint** el mòdul en segona convocatòria. Les dades reals tenen estos casos, i convé no donar per fet que «mòdul de primer» equival a «alumnat de primer».
-
-### 9.4 Els millors de cada grup
-
-Una funció analítica no es pot usar al `WHERE` (s'avalua **després**, junt amb el `SELECT`). Per a filtrar pel seu resultat cal embolicar-la en una subconsulta o en una CTE. Este és el patró estàndard del *top-N per grup*:
-
-```sql
-WITH clasificacion AS (
-    SELECT a.cod_grupo,
-           a.apellidos || ', ' || a.nombre AS alumno,
-           AVG(m.nota_final)                                                   AS media,
-           RANK() OVER (PARTITION BY a.cod_grupo ORDER BY AVG(m.nota_final) DESC) AS puesto
-    FROM   alumno a
-           JOIN matricula m ON m.id_alumno = a.id_alumno
-    WHERE  a.cod_grupo IS NOT NULL
-    GROUP  BY a.cod_grupo, a.id_alumno, a.apellidos, a.nombre
-)
-SELECT cod_grupo, puesto, alumno, ROUND(media, 2) AS media
-FROM   clasificacion
-WHERE  puesto <= 2
-ORDER  BY cod_grupo, puesto;
-```
-
-| COD_GRUPO | PUESTO | ALUMNO | MEDIA |
-|---|---|---|---|
-| 1ASIR | 1 | Pascual Brotons, Aitana | 8.4 |
-| 1ASIR | 2 | Tomás Guillem, Víctor | 7.85 |
-| 1DAM | 1 | Cerdá Pérez, Tomás | 6.95 |
-| 1DAM | 2 | Brotons Soriano, Andrea | 6.7 |
-| 1DAW | 1 | Espí Marco, Julia | 7.05 |
-| 1DAW | 2 | Torregrosa Planelles, Alba | 6.85 |
-| 2DAM | 1 | Alemany Vidal, Martina | 8.4 |
-| 2DAM | 2 | Cerdá Tomás, Nerea | 6.42 |
-| 2DAW | 1 | Sala Brotons, Mateo | 7.13 |
-| 2DAW | 2 | Verdú Castelló, Nicolás | 6 |
-
-*10 files*
-
-Fixa't que la funció analítica s'aplica **sobre un agregat** (`AVG(m.nota_final)`): primer s'agrupa per alumne i després es classifica dins del grup. És perfectament vàlid, perquè les funcions analítiques s'avaluen després del `GROUP BY`.
-
-### 9.5 `LAG` i `LEAD`: mirar la fila anterior i la següent
-
-```sql
--- Historial de faltes de Martina Alemany Vidal (id_alumno 9) i dies entre faltes
-SELECT f.fecha, f.horas, f.justificada,
-       LAG(f.fecha) OVER (ORDER BY f.fecha)            AS falta_anterior,
-       f.fecha - LAG(f.fecha) OVER (ORDER BY f.fecha)  AS dias_desde_la_anterior
-FROM   falta_asistencia f
-       JOIN matricula m ON m.id_matricula = f.id_matricula
-WHERE  m.id_alumno = 9
-ORDER  BY f.fecha;
-```
-
-| FECHA | HORAS | JUSTIFICADA | FALTA_ANTERIOR | DIAS_DESDE_LA_ANTERIOR |
-|---|---|---|---|---|
-| 25/02/2026 | 3 | N | (null) | (null) |
-| 11/03/2026 | 1 | S | 25/02/2026 | 14 |
-| 29/04/2026 | 3 | N | 11/03/2026 | 49 |
-
-*3 files*
-
-La primera fila té `NULL` perquè no hi ha fila anterior. `LAG(expr, n, valor_por_defecto)` admet un desplaçament i un valor per a eixe cas: `LAG(f.fecha, 1, f.fecha)` donaria 0 dies en la primera. `LEAD` fa el mateix mirant cap avant.
-
-| Funció analítica útil | Per a què |
-|---|---|
-| `SUM(x) OVER (ORDER BY f)` | Acumulat (total a data) |
-| `COUNT(*) OVER (PARTITION BY g)` | Grandària del grup junt amb cada fila |
-| `LAG` / `LEAD` | Comparar amb el període anterior o següent |
-| `FIRST_VALUE` / `LAST_VALUE` | El millor i el pitjor de la partició |
-| `NTILE(4)` | Repartir en quartils |
-| `RATIO_TO_REPORT(x)` | Percentatge de cada fila sobre el total de la seua partició |
-
----
-
-## 10. Optimització de consultes i pla d'execució
-
-### 10.1 Què significa optimitzar
+### 7.1 Què significa optimitzar
 
 El criteri RA4.g demana aplicar criteris d'optimització. Optimitzar **no** és escriure la consulta més curta: és aconseguir que el SGBD lligc **menys dades** per a respondre la mateixa pregunta, i comprovar-ho amb mesuraments.
 
 A Oracle, qui decidix **com** s'executa una consulta és l'**optimitzador basat en costos** (CBO). Tu escrius *què* vols (SQL és declaratiu) i ell tria el pla: quina taula llegir primer, si usar un índex i quin algorisme de composició aplicar. Les seues decisions es basen en les **estadístiques** de les taules (nombre de files, valors distints, distribució). Si les estadístiques estan obsoletes, el pla pot ser roïssim.
 
-### 10.2 Obtindre el pla d'execució
+### 7.2 Obtindre el pla d'execució
 
 {{< sgbd "Oracle 26ai" >}}
 
@@ -2075,7 +1307,7 @@ SET AUTOTRACE OFF
 | **SQLcl / SQL\*Plus** | `EXPLAIN PLAN` + `DBMS_XPLAN.DISPLAY` | Pla en text, fàcil de guardar com a evidència |
 | **Qualsevol** | `DBMS_XPLAN.DISPLAY_CURSOR` | Pla realment usat en l'última execució |
 
-### 10.3 Llegir un pla
+### 7.3 Llegir un pla
 
 Un pla té este aspecte (els valors exactes de `Rows`, `Bytes`, `Cost` i `Time` depenen de les estadístiques, de la versió i de l'equip, per la qual cosa **els teus no seran idèntics**):
 
@@ -2114,7 +1346,7 @@ Operacions que has de reconéixer:
 > [!NOTE]
 > A EduGest, amb 32 alumnes i 143 matrícules, **el correcte és que aparega `TABLE ACCESS FULL`**. Llegir una taula de 143 files completa costa una sola lectura de blocs; usar un índex costaria més. Que l'optimitzador ignore els teus índexs en taules menudes no és una fallada: és la decisió encertada. Per a veure diferències mesurables fa falta volum, i això és el que construïx la **pràctica 7.6** amb una taula de 500 000 files.
 
-### 10.4 Índexs i composicions
+### 7.4 Índexs i composicions
 
 Oracle crea índexs automàticament per a `PRIMARY KEY` i `UNIQUE`, però **no** per a les claus alienes. Com que les claus alienes són justament les columnes per les quals es compon, indexar-les és la primera mesura d'optimització de qualsevol esquema. EduGest ja ho fa en l'script 01:
 
@@ -2131,7 +1363,7 @@ CREATE INDEX ix_imparte_profesor ON imparte (id_profesor);
 | Columnes d'`ORDER BY` sobre resultats grans | Columnes que s'actualitzen constantment |
 | Conjunts de columnes d'una consulta crítica (índex de cobertura) | «Per si de cas»: cada índex alenteix els `INSERT` |
 
-### 10.5 Com espatllar un índex sense adonar-se'n
+### 7.5 Com espatllar un índex sense adonar-se'n
 
 Un índex sobre `columna` només es pot usar si el `WHERE` compara **la columna tal qual**. Si li apliques una funció o una operació, l'índex queda inservible perquè Oracle hauria d'avaluar la funció en totes les files per a saber quines complixen:
 
@@ -2164,7 +1396,7 @@ Altres destructors d'índexs habituals:
 > [!IMPORTANT]
 > Que una condició puga usar un índex es diu que siga **«sargable»**. La regla pràctica és: **deixa la columna sola a un costat de l'operador** i mou tots els càlculs a l'altre costat.
 
-### 10.6 Estadístiques
+### 7.6 Estadístiques
 
 ```sql
 -- Recalcular les estadístiques d'una taula (necessari després d'una càrrega massiva)
@@ -2181,7 +1413,7 @@ ORDER  BY table_name;
 
 Oracle arreplega estadístiques automàticament en una finestra de manteniment nocturna, però **després de carregar o esborrar moltes files cal arreplegar-les a mà**: si l'optimitzador creu que la taula té 0 files i en realitat en té mig milió, triarà un `NESTED LOOPS` catastròfic.
 
-### 10.7 Abans i després: un exemple mesurable
+### 7.7 Abans i després: un exemple mesurable
 
 Este és l'experiment de la pràctica 7.6, resumit. Sobre una taula `ACCESO_PORTAL` amb **500 000 files** generades, la consulta `SELECT COUNT(*) FROM acceso_portal WHERE id_alumno = 1234` torna **100 files**, és a dir, el 0,02 % de la taula: un filtre molt selectiu.
 
@@ -2203,7 +1435,7 @@ Provar el model amb altres grandàries:
 
 {{< coste-busqueda >}}
 
-### 10.8 Llista de comprovació abans de donar per bona una consulta
+### 7.8 Llista de comprovació abans de donar per bona una consulta
 
 - [ ] Torna el nombre de files que havia predit.
 - [ ] Totes les taules del `FROM` tenen la seua condició d'emparellament: cap producte cartesià involuntari.
@@ -2212,14 +1444,13 @@ Provar el model amb altres grandàries:
 - [ ] Només es demanen les columnes necessàries; res de `SELECT *` en un informe.
 - [ ] Els filtres s'apliquen com més prompte millor (al `WHERE`, no al `HAVING`).
 - [ ] Les condicions del `WHERE` deixen la columna sola: no hi ha funcions ni conversions implícites sobre columnes indexades.
-- [ ] `UNION ALL` en lloc d'`UNION` quan no pot haver-hi duplicats.
 - [ ] Hi ha índexs sobre les claus alienes que participen en les composicions.
 - [ ] S'ha mirat el pla d'execució i s'entén cada operació.
 - [ ] La consulta porta un comentari amb la pregunta que respon i el nombre de files esperat.
 
 ---
 
-## 11. Errors freqüents
+## 8. Errors freqüents
 
 | Símptoma | Causa | Solució |
 |---|---|---|
@@ -2227,12 +1458,9 @@ Provar el model amb altres grandàries:
 | `ORA-00937: not a single-group group function` | Es barreja una columna normal amb un agregat **sense** `GROUP BY` | Afig el `GROUP BY` o elimina la columna |
 | `ORA-00934: group function is not allowed here` | Un agregat al `WHERE`, al `GROUP BY` o en una restricció | Les condicions sobre agregats van al `HAVING` |
 | `ORA-00918: column ambiguously defined` | Una columna amb el mateix nom en dues taules compostes, sense qualificar | Usa àlies de taula i qualifica **totes** les columnes |
-| `ORA-00904: invalid identifier` | Àlies del `SELECT` usat al `WHERE` o al `HAVING`, o columna mal escrita | Repetix l'expressió, o posa-li nom amb una clàusula `WITH` |
+| `ORA-00904: invalid identifier` | Àlies del `SELECT` usat al `WHERE` o al `HAVING`, o columna mal escrita | Repetix l'expressió, o posa-li nom amb una subconsulta al `FROM` |
 | `ORA-01427: single-row subquery returns more than one row` | Subconsulta comparada amb `=`, `>`… que torna diverses files | Resumix amb `AVG`/`MAX`, o usa `IN`, `ANY` o `ALL` |
-| `ORA-00933: SQL command not properly ended` | `ORDER BY` en el mig d'un `UNION`, o clàusules desordenades | L'`ORDER BY` va una sola vegada, al final del conjunt |
-| `ORA-01789: query block has incorrect number of result columns` | Les consultes d'un `UNION`/`MINUS` no tenen el mateix nombre de columnes | Iguala el nombre i el tipus de columnes, en el mateix ordre |
 | `ORA-25154: column part of USING clause cannot have qualifier` | S'ha qualificat la columna comuna d'un `USING` | Escriu-la sense àlies, o canvia a `JOIN … ON` |
-| `ORA-01732: data manipulation operation not legal on this view` | `UPDATE`/`INSERT` sobre una vista amb `GROUP BY`, `DISTINCT` o agregats | Modifica la taula base, o redissenya la vista |
 | La consulta torna **moltíssimes més** files de les esperades | Falta una condició de composició (producte cartesià) | Comprova que hi ha N−1 condicions `ON` per a N taules |
 | Una composició externa «no funciona» | Un filtre al `WHERE` sobre la taula opcional l'ha convertida en interna | Mou la condició a l'`ON` |
 | Un `COUNT` val 1 on hauria de valer 0 | `COUNT(*)` en un `LEFT JOIN` compta la fila sense parella | Compta una columna de la taula opcional |
@@ -2240,7 +1468,7 @@ Provar el model amb altres grandàries:
 
 ---
 
-## 12. Bones pràctiques
+## 9. Bones pràctiques
 
 - **Escriu la pregunta abans que l'SQL.** Una consulta sense una pregunta clara darrere no es pot comprovar ni revisar.
 - **Prediu el nombre de files** abans d'executar i compara'l després. És la comprovació més rendible que existix.
@@ -2251,8 +1479,6 @@ Provar el model amb altres grandàries:
 - **Filtra com més prompte millor:** al `WHERE`, no al `HAVING`; i no filtres en l'aplicació el que pot filtrar el SGBD.
 - **Compte amb els nuls en els agregats.** Decidix i documenta si un no presentat compta com a zero o no compta.
 - **Prefereix `NOT EXISTS` a `NOT IN`** quan la subconsulta puga tornar nuls.
-- **Posa nom als passos intermedis amb `WITH`** tan prompte com la consulta passe de dos nivells d'aniuament.
-- **Encapsula en vistes els informes recurrents**, amb `WITH READ ONLY` i un comentari que explique la seua finalitat.
 - **Nomena les columnes calculades** amb àlies comprensibles: és el que veurà qui lligca l'informe.
 - **Mira el pla d'execució** de qualsevol consulta que vaja a executar-se de forma habitual, i guarda'l com a evidència quan optimitzes.
 - **Comenta les consultes que lliures**: què responen, quines decisions has pres i quantes files tornen.
@@ -2268,15 +1494,9 @@ Provar el model amb altres grandàries:
   d: "Filtre que s'aplica als grups, després de GROUP BY."
 - t: "Subconsulta correlacionada"
   d: "Subconsulta que usa columnes de la consulta externa i s'avalua fila a fila."
-- t: "CTE (WITH)"
-  d: "Consulta amb nom que es definix abans de la principal i la fa més llegible."
-- t: "UNION ALL"
-  d: "Unix resultats sense eliminar duplicats (més ràpid que UNION)."
-- t: "Funció analítica"
-  d: "Calcula sobre un conjunt de files sense reduir-les a una sola (OVER)."
 {{< /tarjetas >}}
 
-## 13. Resum
+## 10. Resum
 
 | Concepte | Idea clau | Sintaxi essencial |
 |---|---|---|
@@ -2290,10 +1510,6 @@ Provar el model amb altres grandàries:
 | Anticomposició | Buscar el que no existix | `LEFT JOIN … WHERE t.pk IS NULL` |
 | Autocomposició | Una taula amb si mateixa, amb **dos àlies** | `FROM profesor p JOIN profesor j ON …` |
 | Subconsulta | Un `SELECT` dins d'un altre; d'una fila, de diverses o correlacionada | `IN`, `ANY`, `ALL`, `EXISTS` |
-| `WITH` (CTE) | Posa nom als passos intermedis i millora la llegibilitat | `WITH paso AS (…) SELECT …` |
-| Vistes | Consulta guardada; reutilització, simplicitat i seguretat | `CREATE OR REPLACE VIEW … WITH READ ONLY` |
-| Operadors de conjunts | Combinen resultats a l'alt | `UNION`, `UNION ALL`, `INTERSECT`, `MINUS` |
-| Funcions analítiques | Resum **sense perdre** el detall | `AVG(x) OVER (PARTITION BY g ORDER BY f)` |
 | Optimització | Llegir menys dades; mesurar-ho amb el pla | `EXPLAIN PLAN FOR` + `DBMS_XPLAN.DISPLAY` |
 
 Idees que convé endur-se ben gravades:
@@ -2305,7 +1521,7 @@ Idees que convé endur-se ben gravades:
 
 ---
 
-## 14. Autoavaluació
+## 11. Autoavaluació
 
 {{< quiz >}}
 - q: "`MATRICULA` té 143 files, 6 amb `nota_final` nul·la. Quina parella de valors torna `SELECT AVG(nota_final), SUM(nota_final)/COUNT(*) FROM matricula`?"
@@ -2316,10 +1532,6 @@ Idees que convé endur-se ben gravades:
   options: ["`SELECT cod_grupo, nombre, COUNT(*) FROM alumno GROUP BY cod_grupo`", "`SELECT cod_grupo, COUNT(*) FROM alumno WHERE COUNT(*) > 3 GROUP BY cod_grupo`", "`SELECT cod_grupo, COUNT(*) AS n FROM alumno GROUP BY cod_grupo HAVING COUNT(*) > 3 ORDER BY n`", "`SELECT cod_grupo, COUNT(*) AS n FROM alumno GROUP BY cod_grupo HAVING n > 3`"]
   answer: 2
   explain: "La primera dona ORA-00979 (`nombre` no està agrupat); la segona, ORA-00934 (agregat al `WHERE`); la quarta falla perquè l'àlies `n` encara no existix quan s'avalua el `HAVING`. A l'`ORDER BY`, que és l'últim, sí que es pot usar."
-- q: "`CICLO` té 4 files i `GRUPO` 6, i els 6 grups pertanyen a 3 dels cicles. Quantes files torna `SELECT * FROM ciclo c LEFT JOIN grupo g ON g.cod_ciclo = c.cod_ciclo`?"
-  options: ["4", "6", "7", "24"]
-  answer: 2
-  explain: "Les 6 parelles reals més una fila per a SMR, que no té grups, amb les columnes de `GRUPO` a `NULL`: 7. Les 24 files serien el producte cartesià (4 × 6)."
 - q: "Per què `SELECT g.cod_grupo, p.apellidos FROM grupo g LEFT JOIN profesor p ON p.id_profesor = g.id_tutor WHERE p.id_departamento = 1` perd el grup sense tutor?"
   options: ["Perquè `LEFT JOIN` no conserva les files sense parella", "Perquè la condició del `WHERE` s'avalua després de la composició i `NULL = 1` és `UNKNOWN`", "Perquè falta `OUTER`", "Perquè `id_departamento` és clau aliena"]
   answer: 1
@@ -2328,22 +1540,10 @@ Idees que convé endur-se ben gravades:
   options: ["0", "1, perquè la fila existix encara que no tinga dades d'ALUMNO", "NULL", "Depén de la versió d'Oracle"]
   answer: 1
   explain: "La composició externa genera una fila per a eixe grup, així que `COUNT(*)` val 1. Per a obtindre 0 cal comptar una columna de la taula opcional: `COUNT(a.id_alumno)`."
-- q: "Què cal per a escriure una consulta que empareje cada professor amb el cap del seu departament?"
-  options: ["Un `FULL OUTER JOIN`", "Una autocomposició: `PROFESOR` apareix dues voltes amb àlies distints", "Una vista materialitzada", "Un `UNION` de dues consultes"]
-  answer: 1
-  explain: "És una autocomposició a través de `DEPARTAMENTO`: un àlies representa el docent i un altre la seua cap. Sense dos àlies, les columnes serien ambigües (ORA-00918)."
 - q: "Quan és preferible `EXISTS` a un `JOIN`?"
   options: ["Sempre: `EXISTS` és més ràpid", "Quan només es vol filtrar i no mostrar columnes de l'altra taula, sobretot si podria duplicar files", "Quan l'altra taula té clau primària composta", "Mai: `EXISTS` és sintaxi antiga"]
   answer: 1
   explain: "`EXISTS` només comprova si hi ha alguna fila coincident, així que no duplica files ni obliga a afegir `DISTINCT`. Si necessites **mostrar** dades de l'altra taula, cal un `JOIN`."
-- q: "Quina diferència hi ha entre `UNION` i `UNION ALL`?"
-  options: ["`UNION ALL` només admet dues consultes", "`UNION` elimina les files duplicades (i per això ha d'ordenar o fer un hash); `UNION ALL` les conserva i és més ràpid", "`UNION` requerix el mateix nombre de files en les dues consultes", "No hi ha diferència pràctica"]
-  answer: 1
-  explain: "`UNION` fa un treball addicional per a eliminar duplicats. Si per construcció no pot haver-hi duplicats, `UNION ALL` dona el mateix resultat amb menys cost."
-- q: "Quina és la diferència entre `RANK()` i `DENSE_RANK()` quan dues files empaten en el lloc 2?"
-  options: ["`RANK` assigna 2 i 3; `DENSE_RANK`, 2 i 2", "Les dos assignen 2 i 2, però la fila següent rep 4 amb `RANK` i 3 amb `DENSE_RANK`", "`DENSE_RANK` no admet empats", "Són sinònims"]
-  answer: 1
-  explain: "Ambdues donen el mateix rang als empatats. `RANK` deixa un buit (el següent és 4) i `DENSE_RANK` no (el següent és 3). `ROW_NUMBER` sí que donaria 2 i 3, de forma no determinista si no hi ha desempat."
 - q: "Una consulta sobre una taula de 500 000 files usa `WHERE TRUNC(fecha_hora) = DATE '2024-03-15'` i el pla mostra `TABLE ACCESS FULL` malgrat existir un índex sobre `fecha_hora`. Per què?"
   options: ["Perquè l'índex està danyat", "Perquè la funció `TRUNC` s'aplica sobre la columna i l'índex indexa la columna sense modificar", "Perquè falten estadístiques", "Perquè `DATE` no es pot indexar"]
   answer: 1
@@ -2358,4 +1558,4 @@ Idees que convé endur-se ben gravades:
 - [Oracle AI Database 26ai: SQL Language Reference, *CREATE VIEW*](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/CREATE-VIEW.html).
 - [Oracle AI Database 26ai: SQL Tuning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/) — optimitzador, plans d'execució, índexs i estadístiques.
 - [Oracle AI Database 26ai: Database PL/SQL Packages and Types Reference, *DBMS_XPLAN*](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/DBMS_XPLAN.html).
-- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — ensenyaments mínims del mòdul 0484 Bases de dades (RA4 i RA3).
+- [Reial decret 1629/2009, de 30 d'octubre](https://www.boe.es/eli/es/rd/2009/10/30/1629) — ensenyaments mínims del mòdul 0372 Gestió de bases de dades (RA4 i RA3).
