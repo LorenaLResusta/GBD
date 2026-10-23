@@ -4,29 +4,29 @@ weight: 2
 bookToc: true
 ---
 
-# UD10 · Prácticas
+# UD11 · Prácticas
 
-{{< ra "RA7:a,b,c,d,e" "RA1:b" >}}
+{{< ra "RA1:b" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [10.1 Puesta en marcha de MongoDB](#práctica-101--puesta-en-marcha-de-mongodb) | Guiada | ●○○ | RA7.c, RA7.e |
-| [10.2 CRUD sobre los expedientes](#práctica-102--crud-sobre-los-expedientes) | Guiada | ●○○ | RA7.d, RA7.e |
-| [10.3 Consultas con operadores, subdocumentos y arrays](#práctica-103--consultas-con-operadores-subdocumentos-y-arrays) | Autónoma | ●●○ | RA7.d, RA7.e |
-| [10.4 Agregaciones: el mismo informe en SQL y en MongoDB](#práctica-104--agregaciones-el-mismo-informe-en-sql-y-en-mongodb) | Guiada | ●●○ | RA7.d, RA7.e |
-| [10.5 Modelado documental de un catálogo](#práctica-105--modelado-documental-de-un-catálogo) | Autónoma | ●●● | RA7.c, RA7.d |
-| [10.6 Otros modelos: clave-valor y grafos](#práctica-106--otros-modelos-clave-valor-y-grafos) | Autónoma | ●●○ | RA7.a, RA7.b |
-| [10.7 Reto: ¿relacional o NoSQL?](#práctica-107--reto-relacional-o-nosql) | Reto | ●●● | RA7.a, RA7.b, RA1.b |
-| [Proyecto EduGest · UD10](#proyecto-edugest--ud10-el-expediente-documental) | Proyecto | ●●● | RA7 completo |
+| [11.1 Puesta en marcha de MongoDB](#práctica-111--puesta-en-marcha-de-mongodb) | Guiada | ●○○ | Ampliación |
+| [11.2 CRUD sobre los expedientes](#práctica-112--crud-sobre-los-expedientes) | Guiada | ●○○ | Ampliación |
+| [11.3 Consultas con operadores, subdocumentos y arrays](#práctica-113--consultas-con-operadores-subdocumentos-y-arrays) | Autónoma | ●●○ | Ampliación |
+| [11.4 Agregaciones: el mismo informe en SQL y en MongoDB](#práctica-114--agregaciones-el-mismo-informe-en-sql-y-en-mongodb) | Guiada | ●●○ | Ampliación |
+| [11.5 Modelado documental de un catálogo](#práctica-115--modelado-documental-de-un-catálogo) | Autónoma | ●●● | Ampliación |
+| [11.6 Otros modelos: clave-valor y grafos](#práctica-116--otros-modelos-clave-valor-y-grafos) | Autónoma | ●●○ | Ampliación |
+| [11.7 Reto: ¿relacional o NoSQL?](#práctica-117--reto-relacional-o-nosql) | Reto | ●●● | RA1.b, Ampliación |
+| [Proyecto EduGest · UD11](#proyecto-edugest--ud11-el-expediente-documental) | Proyecto | ●●● | RA7 completo |
 
 > [!IMPORTANT]
-> Usaremos **MongoDB Community Server 8.0** en Docker, `mongosh` y **MongoDB Compass**. Los resultados indicados suponen que has cargado [edugest_mongo.js](recursos/nosql/edugest_mongo.js) y no has modificado los datos (repite la carga antes de cada práctica: el script borra y recrea las colecciones).
+> Usaremos **MongoDB Community Server 8.0** en Docker, `mongosh` y **MongoDB Compass**. Los resultados indicados suponen que has cargado {{< recurso "nosql/edugest_mongo.js" >}} y no has modificado los datos (repite la carga antes de cada práctica: el script borra y recrea las colecciones).
 
 ---
 
-## Práctica 10.1 · Puesta en marcha de MongoDB
+## Práctica 11.1 · Puesta en marcha de MongoDB
 
-{{< practica num="10.1" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA7: c, e" sgbd="MongoDB 8.0 · Docker · mongosh · Compass" entrega="Capturas + respuestas" >}}
+{{< practica num="11.1" tipo="Guiada" duracion="1 sesión" nivel="1" ra="Ampliación" sgbd="MongoDB 8.0 · Docker · mongosh · Compass" entrega="Capturas + respuestas" >}}
 
 #### Objetivo
 
@@ -84,9 +84,9 @@ Instalar el servidor, conectar con las dos herramientas cliente y reconocer los 
 
 ---
 
-## Práctica 10.2 · CRUD sobre los expedientes
+## Práctica 11.2 · CRUD sobre los expedientes
 
-{{< practica num="10.2" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA7: d, e" sgbd="MongoDB 8.0 · mongosh" entrega="p10_2.mongodb.js" >}}
+{{< practica num="11.2" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="Ampliación" sgbd="MongoDB 8.0 · mongosh" entrega="p11_2.mongodb.js" >}}
 
 #### Objetivo
 
@@ -96,7 +96,7 @@ Realizar las cuatro operaciones básicas sobre documentos con subdocumentos y ar
 
 {{% steps %}}
 
-1. **Crear.** Inserta a Marina López (consulta el ejemplo de la [teoría](/ud10-nosql/ud10-teoria#51-crear-insertone-e-insertmany)) y a dos alumnos más con `insertMany`. Uno de ellos **sin** `_id`: ¿qué valor le asigna MongoDB?
+1. **Crear.** Inserta a Marina López (consulta el ejemplo de la [teoría](/ud11-nosql/ud11-teoria#51-crear-insertone-e-insertmany)) y a dos alumnos más con `insertMany`. Uno de ellos **sin** `_id`: ¿qué valor le asigna MongoDB?
 
 2. **Leer.** Escribe y ejecuta:
 
@@ -160,9 +160,9 @@ Realizar las cuatro operaciones básicas sobre documentos con subdocumentos y ar
 
 ---
 
-## Práctica 10.3 · Consultas con operadores, subdocumentos y arrays
+## Práctica 11.3 · Consultas con operadores, subdocumentos y arrays
 
-{{< practica num="10.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA7: d, e" sgbd="MongoDB 8.0 · mongosh o Compass" entrega="p10_3.mongodb.js" >}}
+{{< practica num="11.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="Ampliación" sgbd="MongoDB 8.0 · mongosh o Compass" entrega="p11_3.mongodb.js" >}}
 
 #### Enunciado
 
@@ -191,7 +191,7 @@ db.expedientes.find({ matriculas: { $elemMatch: { nota: { $exists: false } } } }
 ```
 {{% /details %}}
 
-{{< solucion id="ud10-001" title="Solución de N7 y N9" />}}
+{{< solucion id="ud11-001" title="Solución de N7 y N9" />}}
 
 #### Comprobación
 
@@ -203,9 +203,9 @@ db.expedientes.find({ matriculas: { $elemMatch: { nota: { $exists: false } } } }
 
 ---
 
-## Práctica 10.4 · Agregaciones: el mismo informe en SQL y en MongoDB
+## Práctica 11.4 · Agregaciones: el mismo informe en SQL y en MongoDB
 
-{{< practica num="10.4" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA7: d, e" sgbd="MongoDB 8.0 · Compass (Aggregations) · Oracle 26ai" entrega="p10_4.mongodb.js + p10_4.sql + comparación" >}}
+{{< practica num="11.4" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="Ampliación" sgbd="MongoDB 8.0 · Compass (Aggregations) · Oracle 26ai" entrega="p11_4.mongodb.js + p11_4.sql + comparación" >}}
 
 #### Objetivo
 
@@ -288,9 +288,9 @@ Construir pipelines de agregación etapa a etapa y comparar su resultado y su le
 
 ---
 
-## Práctica 10.5 · Modelado documental de un catálogo
+## Práctica 11.5 · Modelado documental de un catálogo
 
-{{< practica num="10.5" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA7: c, d" sgbd="MongoDB 8.0" entrega="Documento de diseño + script con validador, datos y consultas" >}}
+{{< practica num="11.5" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="Ampliación" sgbd="MongoDB 8.0" entrega="Documento de diseño + script con validador, datos y consultas" >}}
 
 #### Objetivo
 
@@ -335,9 +335,9 @@ Guarda todas las opiniones en una colección `opiniones` (con la referencia del 
 
 ---
 
-## Práctica 10.6 · Otros modelos: clave-valor y grafos
+## Práctica 11.6 · Otros modelos: clave-valor y grafos
 
-{{< practica num="10.6" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA7: a, b" sgbd="Redis/Valkey (Docker) · Neo4j (Docker o Sandbox)" entrega="Informe con capturas" >}}
+{{< practica num="11.6" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="Ampliación" sgbd="Redis/Valkey (Docker) · Neo4j (Docker o Sandbox)" entrega="Informe con capturas" >}}
 
 #### Objetivo
 
@@ -384,9 +384,9 @@ Completa una tabla con los cuatro modelos (relacional, documental, clave-valor y
 
 ---
 
-## Práctica 10.7 · Reto: ¿relacional o NoSQL?
+## Práctica 11.7 · Reto: ¿relacional o NoSQL?
 
-{{< practica num="10.7" tipo="Reto" duracion="1 sesión + defensa" nivel="3" ra="RA7: a, b · RA1: b" sgbd="—" entrega="Informe de decisión (1 página por caso) + defensa oral" >}}
+{{< practica num="11.7" tipo="Reto" duracion="1 sesión + defensa" nivel="3" ra="RA1: b · Ampliación" sgbd="—" entrega="Informe de decisión (1 página por caso) + defensa oral" >}}
 
 #### Enunciado
 
@@ -396,7 +396,7 @@ Para cada caso, recomienda el modelo (o la combinación de modelos) y justifíca
 2. **App de apuntes colaborativos** del alumnado: cada apunte tiene texto, imágenes, etiquetas variables, comentarios y versiones.
 3. **Sensores de calidad del aire** en todas las aulas del centro: CO₂, temperatura y humedad cada 30 segundos, consultados por intervalos de tiempo.
 4. **Recomendador de ciclos formativos**: «el alumnado que estudió lo mismo que tú y tiene tus intereses eligió...».
-5. **Carrito de la compra** de la tienda de la práctica 10.5.
+5. **Carrito de la compra** de la tienda de la práctica 11.5.
 
 #### Comprobación
 
@@ -408,9 +408,9 @@ Para cada caso, recomienda el modelo (o la combinación de modelos) y justifíca
 
 ---
 
-## Proyecto EduGest · UD10: el expediente documental
+## Proyecto EduGest · UD11: el expediente documental
 
-{{< practica num="EduGest-10" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA7: a-e" sgbd="Oracle 26ai · MongoDB 8.0" entrega="edugest/10_nosql/ + docs/10-nosql.md" >}}
+{{< practica num="EduGest-11" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="Ampliación" sgbd="Oracle 26ai · MongoDB 8.0" entrega="edugest/11_nosql/ + docs/11-nosql.md" >}}
 
 #### Enunciado
 
@@ -434,7 +434,7 @@ Para cada caso, recomienda el modelo (o la combinación de modelos) y justifíca
 2. **Validación.** Añade a la colección un validador `$jsonSchema` coherente con las restricciones de Oracle (NIA de 8 dígitos, nota entre 0 y 10, convocatoria de 1 a 4).
 3. **Consultas.** Reescribe en MongoDB cinco de tus informes de la UD07 y compara resultados.
 4. **Índices.** Crea los índices necesarios y muestra los planes (`explain`).
-5. **Informe final** (`10-nosql.md`): ventajas e inconvenientes del modelo documental para EduGest, qué partes del sistema tendrían sentido en MongoDB y cuáles deben seguir en Oracle, y cómo se mantendrían sincronizadas.
+5. **Informe final** (`11-nosql.md`): ventajas e inconvenientes del modelo documental para EduGest, qué partes del sistema tendrían sentido en MongoDB y cuáles deben seguir en Oracle, y cómo se mantendrían sincronizadas.
 
 #### Comprobación
 

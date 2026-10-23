@@ -13,20 +13,20 @@ Un esquema relacional puede ser **correcto** (guarda toda la información) y aun
 
 En esta unidad aprenderás a reconocer las anomalías de un mal diseño, a identificar dependencias funcionales y claves candidatas, y a llevar un esquema hasta la **tercera forma normal (3FN)** y la **forma normal de Boyce-Codd (FNBC)**. También verás cuándo tiene sentido **desnormalizar** y cómo documentar las reglas que la normalización no resuelve.
 
-{{< ra "RA6:b,c,e,g,h" >}}
+{{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalización
 
-La unidad ocupa **14 horas de aula** (6 de teoría y 8 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
+La unidad ocupa **10 horas de aula** (4 de teoría y 6 de práctica). Es una unidad muy práctica: se aprende a normalizar normalizando.
 
-{{< sesiones unidad="UD04" horas="14" >}}
+{{< sesiones unidad="UD04" horas="10" >}}
 items:
-  - {h: 2, tipo: T, t: "Anomalías y dependencias funcionales", ref: "§1 y §2"}
+  - {h: 1, tipo: T, t: "Anomalías y dependencias funcionales", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Dependencias, cierres y claves", ref: "Práctica 4.2"}
-  - {h: 2, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
-  - {h: 2, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 4.1"}
+  - {h: 1, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
+  - {h: 1, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 4.1"}
   - {h: 1, tipo: T, t: "Descomposición sin pérdida y desnormalización controlada", ref: "§4 y §5"}
   - {h: 1, tipo: T, t: "Restricciones no representables y procedimiento completo", ref: "§6 y §7"}
-  - {h: 2, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 4.4"}
+  - {h: 1, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 4.4"}
   - {h: 1, tipo: P, t: "¿En qué forma normal está?", ref: "Práctica 4.3"}
   - {h: 1, tipo: P, t: "FNBC y dependencias perdidas", ref: "Práctica 4.5"}
   - {h: 1, tipo: P, t: "Informe de normalización de EduGest", ref: "Proyecto EduGest-4"}
@@ -272,7 +272,7 @@ Claves candidatas: (alumno, modulo) y (alumno, profesor).
 - ALUMNO_PROFESOR(<u>alumno, profesor</u>)
 
 > [!WARNING]
-> Esta descomposición **pierde una dependencia**: la regla `alumno, modulo → profesor` («un alumno no tiene dos profesores del mismo módulo») ya no está dentro de una sola tabla y no se puede garantizar con una clave. Por eso, en la práctica, a veces se prefiere quedarse en 3FN y **documentar** la restricción (RA6.h).
+> Esta descomposición **pierde una dependencia**: la regla `alumno, modulo → profesor` («un alumno no tiene dos profesores del mismo módulo») ya no está dentro de una sola tabla y no se puede garantizar con una clave. Por eso, en la práctica, a veces se prefiere quedarse en 3FN y **documentar** la restricción (RA2.i).
 
 ### 3.5 Formas normales superiores
 
@@ -327,7 +327,7 @@ Cuando lleguemos a la UD07 podrás comprobarlo en Oracle: la consulta que recons
 | Sistemas analíticos (OLAP) | Tabla de hechos de matrículas con el nombre del ciclo repetido | Se carga por procesos ETL, no la modifica nadie |
 | Valores agregados muy consultados | Guardar `num_alumnos` en GRUPO | Trigger que lo actualiza (UD09) |
 | Valores históricos que **deben** congelarse | Guardar el `precio` en cada línea de factura | No es redundancia: el precio del producto cambia, el de la factura no |
-| Bases de datos documentales | Incrustar los datos del ciclo en el documento del alumno (UD10) | El modelo se diseña según las consultas |
+| Bases de datos documentales | Incrustar los datos del ciclo en el documento del alumno (UD11) | El modelo se diseña según las consultas |
 
 > [!CAUTION]
 > Desnormalizar «porque los JOIN son lentos» sin haberlo medido es un error frecuente. Con índices adecuados (UD05 y UD07), un esquema normalizado responde rápido en la mayoría de los sistemas transaccionales.

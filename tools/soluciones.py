@@ -113,7 +113,7 @@ def incrustar(html, sal):
     mimes = {'.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp'}
     def img(m):
         src = m.group(1)
-        p = os.path.join(sal, re.sub(r'^/BBDD/', '', src).lstrip('/'))
+        p = os.path.join(sal, re.sub(r'^/(?:BBDD|GBD)/', '', src).lstrip('/'))
         if not os.path.exists(p): return m.group(0)
         mt = mimes.get(os.path.splitext(p)[1].lower(), 'application/octet-stream')
         return f'<img src="data:{mt};base64,{b64(open(p, "rb").read())}"'

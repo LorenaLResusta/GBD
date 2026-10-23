@@ -7,25 +7,25 @@ math: true
 
 # UD03 · Pràctiques
 
-{{< ra "RA6:a,b,c,d,e,f,h" "RA2:a,d,e" >}}
+{{< ra "RA2:b,c,d,e,f,g,i" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [3.1 Biblioteca: de l'E/R a les taules](#pràctica-31--biblioteca-de-ler-a-les-taules) | Guiada | ●○○ | RA6.b, RA6.c, RA6.d, RA6.e |
-| [3.2 Simulador d'integritat referencial](#pràctica-32--simulador-dintegritat-referencial) | Guiada | ●●○ | RA6.f, RA2.e |
-| [3.3 Tres formes de transformar una jerarquia](#pràctica-33--tres-formes-de-transformar-una-jerarquia) | Autònoma | ●●○ | RA6.b, RA6.d, RA6.e |
-| [3.4 Enginyeria inversa d'un esquema](#pràctica-34--enginyeria-inversa-dun-esquema) | Repte | ●●● | RA6.a, RA6.d |
-| [3.5 Catàleg de restriccions d'un hotel](#pràctica-35--catàleg-de-restriccions-dun-hotel) | Autònoma | ●●○ | RA6.h |
-| [Projecte EduGest · UD03](#projecte-edugest--ud03-model-lògic) | Projecte | ●●○ | RA6.a-f, RA6.h |
-| [3.6 Entendre un esquema relacional](#pràctica-36--entendre-un-esquema-relacional) | Guiada | ●○○ | RA6.b, RA6.c, RA6.d |
-| [Tasca 1 · Naviera](#tasca-1--naviera-capitans-contenidors-ports-i-vaixells) | Guiada | ●○○ | RA6.b-e |
-| [Tasca 2 · Institut](#tasca-2--institut-mòduls-matrícules-delegats-i-casellers) | Autònoma | ●●○ | RA6.b-e, RA6.h |
-| [Tasca 3 · Concessionari](#tasca-3--concessionari-vendes-revisions-i-mecànics) | Autònoma | ●●○ | RA6.b-e |
-| [Tasca 4 · Cases rurals](#tasca-4--cases-rurals) | Autònoma | ●●○ | RA6.b-e |
-| [Tasca 5 · Esquema abstracte 1](#tasca-5--esquema-abstracte-1-ternària-11n-i-agregació) | Repte | ●●● | RA6.b-e, RA6.h |
-| [Tasca 6 · Esquema abstracte 2](#tasca-6--esquema-abstracte-2-agregació-amb-relació-11-i-existència) | Repte | ●●● | RA6.b-e, RA6.h |
-| [Tasca 7 · Esquema abstracte 3](#tasca-7--esquema-abstracte-3-ternària-amb-una-entitat-repetida) | Repte | ●●● | RA6.b-e, RA6.h |
-| [Banc d'exercicis](#banc-dexercicis) | Autònoma | ●○○ a ●●● | RA6, RA2 |
+| [3.1 Biblioteca: de l'E/R a les taules](#pràctica-31--biblioteca-de-ler-a-les-taules) | Guiada | ●○○ | RA2.c-f |
+| [3.2 Simulador d'integritat referencial](#pràctica-32--simulador-dintegritat-referencial) | Guiada | ●●○ | RA2.g, RA3.e |
+| [3.3 Tres formes de transformar una jerarquia](#pràctica-33--tres-formes-de-transformar-una-jerarquia) | Autònoma | ●●○ | RA2.c, RA2.e, RA2.f |
+| [3.4 Enginyeria inversa d'un esquema](#pràctica-34--enginyeria-inversa-dun-esquema) | Repte | ●●● | RA2.b, RA2.e |
+| [3.5 Catàleg de restriccions d'un hotel](#pràctica-35--catàleg-de-restriccions-dun-hotel) | Autònoma | ●●○ | RA2.i |
+| [Projecte EduGest · UD03](#projecte-edugest--ud03-model-lògic) | Projecte | ●●○ | RA2.b-g, RA2.i |
+| [3.6 Entendre un esquema relacional](#pràctica-36--entendre-un-esquema-relacional) | Guiada | ●○○ | RA2.c-e |
+| [Tasca 1 · Naviera](#tasca-1--naviera-capitans-contenidors-ports-i-vaixells) | Guiada | ●○○ | RA2.c-f |
+| [Tasca 2 · Institut](#tasca-2--institut-mòduls-matrícules-delegats-i-casellers) | Autònoma | ●●○ | RA2.c-f, RA2.i |
+| [Tasca 3 · Concessionari](#tasca-3--concessionari-vendes-revisions-i-mecànics) | Autònoma | ●●○ | RA2.c-f |
+| [Tasca 4 · Cases rurals](#tasca-4--cases-rurals) | Autònoma | ●●○ | RA2.c-f |
+| [Tasca 5 · Esquema abstracte 1](#tasca-5--esquema-abstracte-1-ternària-11n-i-agregació) | Repte | ●●● | RA2.c-f, RA2.i |
+| [Tasca 6 · Esquema abstracte 2](#tasca-6--esquema-abstracte-2-agregació-amb-relació-11-i-existència) | Repte | ●●● | RA2.c-f, RA2.i |
+| [Tasca 7 · Esquema abstracte 3](#tasca-7--esquema-abstracte-3-ternària-amb-una-entitat-repetida) | Repte | ●●● | RA2.c-f, RA2.i |
+| [Banc d'exercicis](#banc-dexercicis) | Autònoma | ●○○ a ●●● | RA2, RA3 |
 
 > [!TIP]
 > Per a escriure esquemes relacionals usa sempre la mateixa notació: `TABLA(`<u>clave_primaria</u>`, atributo, `*clave_ajena*`)`, i davall de cada taula, les claus alienes amb la taula a la qual apunten, les claus alternatives i els atributs que **admeten nuls**.
@@ -34,7 +34,7 @@ math: true
 
 ## Pràctica 3.1 · Biblioteca: de l'E/R a les taules
 
-{{< practica num="3.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA6: b, c, d, e" sgbd="Paper o ferramenta de modelatge" entrega="Esquema relacional + diagrama relacional" >}}
+{{< practica num="3.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA2: c, d, e, f" sgbd="Paper o ferramenta de modelatge" entrega="Esquema relacional + diagrama relacional" >}}
 
 #### Objectiu
 
@@ -90,7 +90,7 @@ Partim del diagrama de la biblioteca municipal de la [pràctica 2.1](/ud02-model
 
 > [!WARNING]
 > - Crear dues claus alienes separades `isbn → LIBRO` i `num_ejemplar → EJEMPLAR`. `num_ejemplar` per si sol no identifica res.
-> - Oblidar la restricció «un llibre té almenys un autor». La participació mínima 1 de `LIBRO` en `ESCRIBE` **no** es pot garantir amb una clau aliena: cal documentar-la (RA6.h).
+> - Oblidar la restricció «un llibre té almenys un autor». La participació mínima 1 de `LIBRO` en `ESCRIBE` **no** es pot garantir amb una clau aliena: cal documentar-la (RA2.i).
 
 #### Ampliació
 
@@ -100,7 +100,7 @@ Substituïx la clau composta de `PRESTAMO` per un identificador artificial `id_p
 
 ## Pràctica 3.2 · Simulador d'integritat referencial
 
-{{< practica num="3.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA6: f · RA2: e" sgbd="Paper" entrega="Full de respostes" >}}
+{{< practica num="3.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA2: g · RA3: e" sgbd="Paper" entrega="Full de respostes" >}}
 
 #### Objectiu
 
@@ -163,7 +163,7 @@ Quina política triaries per a cada clau aliena d'EduGest? Justifica almenys tre
 
 ## Pràctica 3.3 · Tres formes de transformar una jerarquia
 
-{{< practica num="3.3" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA6: b, d, e" sgbd="Paper o Data Modeler" entrega="Tres esquemes + taula comparativa" >}}
+{{< practica num="3.3" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA2: c, e, f" sgbd="Paper o Data Modeler" entrega="Tres esquemes + taula comparativa" >}}
 
 #### Objectiu
 
@@ -205,7 +205,7 @@ Fes-te tres preguntes per cada opció: quins atributs són obligatoris **només*
 
 ## Pràctica 3.4 · Enginyeria inversa d'un esquema
 
-{{< practica num="3.4" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA6: a, d" sgbd="Paper o draw.io" entrega="Diagrama E/R reconstruït + informe" >}}
+{{< practica num="3.4" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: b, e" sgbd="Paper o draw.io" entrega="Diagrama E/R reconstruït + informe" >}}
 
 #### Objectiu
 
@@ -244,7 +244,7 @@ Amb `INSCRIPCION(id_torneo, id_jugador1, id_jugador2)` com a clau, les files (T1
 
 ## Pràctica 3.5 · Catàleg de restriccions d'un hotel
 
-{{< practica num="3.5" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA6: h · RA2: e" sgbd="Document de text" entrega="Catàleg de restriccions" >}}
+{{< practica num="3.5" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: i · RA3: e" sgbd="Document de text" entrega="Catàleg de restriccions" >}}
 
 #### Objectiu
 
@@ -285,7 +285,7 @@ Classifica cada regla en una d'estes categories: **PK / clau alternativa**, **FK
 
 ## Projecte EduGest · UD03: model lògic
 
-{{< practica num="EduGest-3" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="2" ra="RA6: a, b, c, d, e, f, h" sgbd="draw.io o una altra ferramenta de modelatge" entrega="edugest/docs/03-modelo-relacional.md + diagrama" >}}
+{{< practica num="EduGest-3" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="2" ra="RA2: b, c, d, e, f, g, i" sgbd="draw.io o una altra ferramenta de modelatge" entrega="edugest/docs/03-modelo-relacional.md + diagrama" >}}
 
 #### Enunciat
 
@@ -364,7 +364,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 
 ## Pràctica 3.6 · Entendre un esquema relacional
 
-{{< practica num="3.6" tipo="Guiada" duracion="1 sessió" nivel="1" ra="RA6: b, c, d" sgbd="Paper" entrega="Full de respostes" >}}
+{{< practica num="3.6" tipo="Guiada" duracion="1 sessió" nivel="1" ra="RA2: c, d, e" sgbd="Paper" entrega="Full de respostes" >}}
 
 #### Objectiu
 
@@ -426,7 +426,7 @@ Escriu l'esquema que correspon a «un alumne es matricula d'**una o diverses** a
 
 ### Tasca 1 · Naviera: capitans, contenidors, ports i vaixells
 
-{{< practica num="1" etiqueta="Tasca" tipo="Guiada" duracion="1 sessió" nivel="1" ra="RA6: b, c, d, e" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="1" etiqueta="Tasca" tipo="Guiada" duracion="1 sessió" nivel="1" ra="RA2: c, d, e, f" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -473,7 +473,7 @@ La naviera vol saber en quin **vaixell** viatja cada contenidor. Afig la relaci�
 
 ### Tasca 2 · Institut: mòduls, matrícules, delegats i casellers
 
-{{< practica num="2" etiqueta="Tasca" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA6: b, c, d, e, h" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="2" etiqueta="Tasca" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: c, d, e, f, i" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -520,7 +520,7 @@ Un alumne pot repetir i matricular-se **dues vegades** del mateix mòdul en curs
 
 ### Tasca 3 · Concessionari: vendes, revisions i mecànics
 
-{{< practica num="3" etiqueta="Tasca" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA6: b, c, d, e" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="3" etiqueta="Tasca" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: c, d, e, f" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -560,7 +560,7 @@ El taller guarda **quines peces** es canvien en cada revisió i quantes. Afig l'
 
 ### Tasca 4 · Cases rurals
 
-{{< practica num="4" etiqueta="Tasca" tipo="Autónoma" duracion="1-2 sessions" nivel="2" ra="RA6: b, c, d, e" sgbd="Paper" entrega="Dos esquemes relacionals + pèrdues semàntiques" >}}
+{{< practica num="4" etiqueta="Tasca" tipo="Autónoma" duracion="1-2 sessions" nivel="2" ra="RA2: c, d, e, f" sgbd="Paper" entrega="Dos esquemes relacionals + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -608,7 +608,7 @@ Un client vol reservar **diverses habitacions** amb una sola reserva (número de
 
 ### Tasca 5 · Esquema abstracte 1: ternària 1:1:N i agregació
 
-{{< practica num="5" etiqueta="Tasca" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="5" etiqueta="Tasca" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -643,7 +643,7 @@ Obtín l'esquema lògic relacional i enuncia les **pèrdues semàntiques**.
 
 ### Tasca 6 · Esquema abstracte 2: agregació amb relació 1:1 i existència
 
-{{< practica num="6" etiqueta="Tasca" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="6" etiqueta="Tasca" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 
@@ -672,7 +672,7 @@ Obtín l'esquema lògic relacional i enuncia les pèrdues semàntiques.
 
 ### Tasca 7 · Esquema abstracte 3: ternària amb una entitat repetida
 
-{{< practica num="7" etiqueta="Tasca" tipo="Reto" duracion="1-2 sessions" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
+{{< practica num="7" etiqueta="Tasca" tipo="Reto" duracion="1-2 sessions" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Paper" entrega="Esquema relacional + pèrdues semàntiques" >}}
 
 #### Objectiu
 

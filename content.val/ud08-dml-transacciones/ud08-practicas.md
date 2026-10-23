@@ -6,18 +6,18 @@ bookToc: true
 
 # UD08 · Pràctiques
 
-{{< ra "RA4:a,b,c,d,e,f,g,h" "RA6:f" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [8.1 Altes, canvis i baixes a EduGest](#pràctica-81--altes-canvis-i-baixes-a-edugest) | Guiada | ●○○ | RA4.a, RA4.b |
-| [8.2 Còpies, històrics i INSERT … SELECT](#pràctica-82--còpies-històrics-i-insert--select) | Guiada | ●●○ | RA4.c |
-| [8.3 Modificacions amb subconsultes](#pràctica-83--modificacions-amb-subconsultes) | Autònoma | ●●○ | RA4.b, RA4.c, RA4.h |
-| [8.4 Laboratori de transaccions](#pràctica-84--laboratori-de-transaccions) | Guiada | ●●○ | RA4.e, RA4.f |
-| [8.5 Dues sessions, una dada: concurrència i bloquejos](#pràctica-85--dues-sessions-una-dada-concurrència-i-bloquejos) | Guiada | ●●● | RA4.g, RA4.h |
-| [8.6 Càrrega de notes amb MERGE](#pràctica-86--càrrega-de-notes-amb-merge) | Autònoma | ●●○ | RA4.b, RA4.c |
-| [8.7 Repte: guió de promoció de curs](#pràctica-87--repte-guió-de-promoció-de-curs) | Repte | ●●● | RA4.d, RA4.e, RA4.f, RA4.h |
-| [Projecte EduGest · UD08](#projecte-edugest--ud08-guions-de-manteniment) | Projecte | ●●● | RA4 complet |
+| [8.1 Altes, canvis i baixes a EduGest](#pràctica-81--altes-canvis-i-baixes-a-edugest) | Guiada | ●○○ | RA5.a, RA5.b |
+| [8.2 Còpies, històrics i INSERT … SELECT](#pràctica-82--còpies-històrics-i-insert--select) | Guiada | ●●○ | RA5.c |
+| [8.3 Modificacions amb subconsultes](#pràctica-83--modificacions-amb-subconsultes) | Autònoma | ●●○ | RA5.b-d |
+| [8.4 Laboratori de transaccions](#pràctica-84--laboratori-de-transaccions) | Guiada | ●●○ | RA5.f, RA5.g |
+| [8.5 Dues sessions, una dada: concurrència i bloquejos](#pràctica-85--dues-sessions-una-dada-concurrència-i-bloquejos) | Guiada | ●●● | RA5.d, RA5.h |
+| [8.6 Càrrega de notes amb MERGE](#pràctica-86--càrrega-de-notes-amb-merge) | Autònoma | ●●○ | RA5.b, RA5.c |
+| [8.7 Repte: guió de promoció de curs](#pràctica-87--repte-guió-de-promoció-de-curs) | Repte | ●●● | RA5.d-g |
+| [Projecte EduGest · UD08](#projecte-edugest--ud08-guions-de-manteniment) | Projecte | ●●● | RA5 complet |
 
 > [!IMPORTANT]
 > Abans de **cada** pràctica, restaura EduGest executant els scripts 01 i 02 del [projecte](/guia/proyecto-edugest#4-scripts-descarregables). Els números de files afectades que s'indiquen suposen les dades originals.
@@ -26,7 +26,7 @@ bookToc: true
 
 ## Pràctica 8.1 · Altes, canvis i baixes a EduGest
 
-{{< practica num="8.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA4: a, b" sgbd="Oracle 26ai · SQL Developer" entrega="p8_1.sql + captures de la reixeta" >}}
+{{< practica num="8.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA5: a, b" sgbd="Oracle 26ai · SQL Developer" entrega="p8_1.sql + captures de la reixeta" >}}
 
 #### Objectiu
 
@@ -109,7 +109,7 @@ Inserir, modificar i esborrar dades amb SQL i amb l'eina gràfica, comprovant en
 
 ## Pràctica 8.2 · Còpies, històrics i INSERT … SELECT
 
-{{< practica num="8.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p8_2.sql" >}}
+{{< practica num="8.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: c" sgbd="Oracle 26ai · EDUGEST" entrega="p8_2.sql" >}}
 
 #### Objectiu
 
@@ -208,7 +208,7 @@ Per què la clau primària d'`HISTORICO_NOTA` inclou `cod_ciclo`? Pensa en el m�
 
 ## Pràctica 8.3 · Modificacions amb subconsultes
 
-{{< practica num="8.3" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: b, c, h" sgbd="Oracle 26ai · EDUGEST" entrega="p8_3.sql (cada sentència amb el seu SELECT de comprovació)" >}}
+{{< practica num="8.3" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA5: b, c, d" sgbd="Oracle 26ai · EDUGEST" entrega="p8_3.sql (cada sentència amb el seu SELECT de comprovació)" >}}
 
 #### Objectiu
 
@@ -255,7 +255,7 @@ Executa les tasques **en ordre** sobre les dades originals. Per a cadascuna escr
 
 ## Pràctica 8.4 · Laboratori de transaccions
 
-{{< practica num="8.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA4: e, f" sgbd="Oracle 26ai" entrega="p8_4.sql + taula de resultats" >}}
+{{< practica num="8.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: f, g" sgbd="Oracle 26ai" entrega="p8_4.sql + taula de resultats" >}}
 
 #### Objectiu
 
@@ -316,7 +316,7 @@ END;
 
 ## Pràctica 8.5 · Dues sessions, una dada: concurrència i bloquejos
 
-{{< practica num="8.5" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g, h" sgbd="Oracle 26ai · dues sessions simultànies (dos fulls amb sessió pròpia o dos terminals SQLcl) + SYSTEM" entrega="Cronogrames completats + captures" >}}
+{{< practica num="8.5" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA5: d, h" sgbd="Oracle 26ai · dues sessions simultànies (dos fulls amb sessió pròpia o dos terminals SQLcl) + SYSTEM" entrega="Cronogrames completats + captures" >}}
 
 #### Objectiu
 
@@ -425,7 +425,7 @@ Als pocs segons, Oracle detecta el cicle i una de les sessions (normalment la qu
 
 ## Pràctica 8.6 · Càrrega de notes amb MERGE
 
-{{< practica num="8.6" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA4: b, c" sgbd="Oracle 26ai · assistent d'importació de SQL Developer" entrega="p8_6.sql + notas_0484_dam.csv" >}}
+{{< practica num="8.6" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA5: b, c" sgbd="Oracle 26ai · assistent d'importació de SQL Developer" entrega="p8_6.sql + notas_0484_dam.csv" >}}
 
 #### Context
 
@@ -473,7 +473,7 @@ WHEN MATCHED THEN UPDATE SET m.nota_final = o.nota
 
 ## Pràctica 8.7 · Repte: guió de promoció de curs
 
-{{< practica num="8.7" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA4: d, e, f, h" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + eixida (SPOOL) + defensa oral" >}}
+{{< practica num="8.7" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: d, e, f, g" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + eixida (SPOOL) + defensa oral" >}}
 
 #### Objectiu
 
@@ -549,7 +549,7 @@ Amb `WHENEVER SQLERROR EXIT`, l'error acaba el guió.
 
 ## Projecte EduGest · UD08: guions de manteniment
 
-{{< practica num="EduGest-8" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA4: a-h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_mantenimiento/*.sql + docs/08-transacciones.md" >}}
+{{< practica num="EduGest-8" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: a, b, c, d, e, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_mantenimiento/*.sql + docs/08-transacciones.md" >}}
 
 #### Enunciat
 

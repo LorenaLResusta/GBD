@@ -15,24 +15,24 @@ El **Modelo Relacional**, ideado por Edgar F. Codd en IBM en 1970, es el modelo 
 
 En esta unidad se estudian minuciosamente los conceptos matemáticos y pragmáticos que sustentan el modelo relacional: la estructura formal de una tabla, el dominio y tipado de atributos, el grado y la cardinalidad, las claves (candidatas, primarias, alternativas y foráneas), la semántica de los valores nulos (`NULL`) y las reglas de integridad (inherentes y semánticas). Además, se detalla un catálogo completo de **reglas de transformación para convertir esquemas conceptuales EER en esquemas relacionales lógicos**, ilustrado con abundantes ejemplos reales, esquemas formales y tablas con datos reales.
 
-{{< ra "RA6:a,b,c,d,e,f,h" "RA2:a,d,e" >}}
+{{< ra "RA2:b,c,d,e,f,g,i" >}}
 
 ### Temporalización
 
-La unidad ocupa **17 horas de aula** (9 de teoría y 8 de práctica).
+La unidad ocupa **12 horas de aula** (6 de teoría y 6 de práctica).
 
-{{< sesiones unidad="UD03" horas="17" >}}
+{{< sesiones unidad="UD03" horas="12" >}}
 items:
-  - {h: 2, tipo: T, t: "Relación, atributo, dominio, tupla, grado y cardinalidad. Claves", ref: "§1 y §2 · laboratorio de claves"}
+  - {h: 1, tipo: T, t: "Relación, atributo, dominio, tupla, grado y cardinalidad. Claves", ref: "§1 y §2 · laboratorio de claves"}
   - {h: 2, tipo: T, t: "Restricciones e integridad referencial", ref: "§3 · simulador de integridad"}
   - {h: 1, tipo: P, t: "Simulador de integridad referencial", ref: "Práctica 3.2"}
-  - {h: 2, tipo: T, t: "Reglas de transformación (I): entidades, débiles y atributos", ref: "§4.1 a §4.3 · transformador"}
-  - {h: 2, tipo: T, t: "Reglas de transformación (II): relaciones y jerarquías. Ejemplos", ref: "§4.4 a §4.9 y §5"}
+  - {h: 1, tipo: T, t: "Reglas de transformación (I): entidades, débiles y atributos", ref: "§4.1 a §4.3 · transformador"}
+  - {h: 1, tipo: T, t: "Reglas de transformación (II): relaciones y jerarquías. Ejemplos", ref: "§4.4 a §4.9 y §5"}
   - {h: 2, tipo: P, t: "Biblioteca: del E/R a las tablas", ref: "Práctica 3.1"}
   - {h: 1, tipo: T, t: "Restricciones no representables y herramientas", ref: "§6 y §7"}
-  - {h: 2, tipo: P, t: "Tres formas de transformar una jerarquía", ref: "Práctica 3.3"}
+  - {h: 1, tipo: P, t: "Tres formas de transformar una jerarquía", ref: "Práctica 3.3"}
   - {h: 1, tipo: P, t: "Catálogo de restricciones de un hotel", ref: "Práctica 3.5"}
-  - {h: 2, tipo: P, t: "Modelo lógico de EduGest", ref: "§8 y proyecto EduGest-3"}
+  - {h: 1, tipo: P, t: "Modelo lógico de EduGest", ref: "§8 y proyecto EduGest-3"}
 autonomo:
   - "Tareas de transformación 1 a 7 (E/R → relacional)"
   - "Práctica 3.4 (ingeniería inversa) y práctica 3.6"
@@ -554,7 +554,7 @@ Un concesionario vende `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`i
 
 ## 6. Restricciones que el Modelo Lógico no Puede Expresar
 
-El modelo relacional expresa muy bien las restricciones **de una fila** (atributo obligatorio, regla de fila) y **de clave** (clave primaria, clave alternativa, clave ajena). Pero muchas reglas de negocio afectan a **varias filas o varias tablas** y no se pueden declarar así. El criterio RA6.h exige **analizarlas y documentarlas** para que no se pierdan entre el diseño y la implementación.
+El modelo relacional expresa muy bien las restricciones **de una fila** (atributo obligatorio, regla de fila) y **de clave** (clave primaria, clave alternativa, clave ajena). Pero muchas reglas de negocio afectan a **varias filas o varias tablas** y no se pueden declarar así. El criterio RA2.i exige **analizarlas y documentarlas** para que no se pierdan entre el diseño y la implementación.
 
 | Regla de negocio (EduGest) | ¿Por qué no basta con una restricción declarativa? | Dónde se implementará |
 |---|---|---|
@@ -583,7 +583,7 @@ R1. Jefe de departamento
 
 ## 7. Herramientas Gráficas para el Diseño Lógico
 
-El diseño lógico se representa con un **diagrama relacional**: un rectángulo por tabla con sus columnas, la clave primaria marcada y flechas desde cada clave ajena a la clave primaria que referencia (RA6.a).
+El diseño lógico se representa con un **diagrama relacional**: un rectángulo por tabla con sus columnas, la clave primaria marcada y flechas desde cada clave ajena a la clave primaria que referencia (RA2.b).
 
 | Herramienta | Qué aporta |
 |---|---|
@@ -742,7 +742,7 @@ Responde a las preguntas y pulsa **Corregir**. Cada respuesta incluye una explic
 - q: "La regla «un profesor no puede impartir más de 20 horas semanales» se debe..."
   options: ["Expresar con una regla de fila en la tabla IMPARTE", "Documentar como restricción no representable e implementar con programación en el servidor (UD09)", "Ignorar, ya que no forma parte del modelo", "Resolver con una clave ajena"]
   answer: 1
-  explain: "Afecta a la **suma** de varias filas. Una regla de fila solo ve la fila actual. Se documenta (RA6.h) y se implementa con un trigger o un procedimiento (UD09)."
+  explain: "Afecta a la **suma** de varias filas. Una regla de fila solo ve la fila actual. Se documenta (RA2.i) y se implementa con un trigger o un procedimiento (UD09)."
 {{< /quiz >}}
 
 ## Referencias

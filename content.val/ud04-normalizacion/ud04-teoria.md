@@ -13,20 +13,20 @@ Un esquema relacional pot ser **correcte** (guarda tota la informació) i, tanma
 
 En esta unitat aprendràs a reconéixer les anomalies d'un mal disseny, a identificar dependències funcionals i claus candidates, i a portar un esquema fins a la **tercera forma normal (3FN)** i la **forma normal de Boyce-Codd (FNBC)**. També veuràs quan té sentit **desnormalitzar** i com documentar les regles que la normalització no resol.
 
-{{< ra "RA6:b,c,e,g,h" >}}
+{{< ra "RA2:c,d,f,h,i" >}}
 ### Temporalització
 
-La unitat ocupa **14 hores d'aula** (6 de teoria i 8 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
+La unitat ocupa **10 hores d'aula** (4 de teoria i 6 de pràctica). És una unitat molt pràctica: s'aprén a normalitzar normalitzant.
 
-{{< sesiones unidad="UD04" horas="14" >}}
+{{< sesiones unidad="UD04" horas="10" >}}
 items:
-  - {h: 2, tipo: T, t: "Anomalies i dependències funcionals", ref: "§1 i §2"}
+  - {h: 1, tipo: T, t: "Anomalies i dependències funcionals", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Dependències, tancaments i claus", ref: "Pràctica 4.2"}
-  - {h: 2, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
-  - {h: 2, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 4.1"}
+  - {h: 1, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
+  - {h: 1, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 4.1"}
   - {h: 1, tipo: T, t: "Descomposició sense pèrdua i desnormalització controlada", ref: "§4 i §5"}
   - {h: 1, tipo: T, t: "Restriccions no representables i procediment complet", ref: "§6 i §7"}
-  - {h: 2, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 4.4"}
+  - {h: 1, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 4.4"}
   - {h: 1, tipo: P, t: "En quina forma normal està?", ref: "Pràctica 4.3"}
   - {h: 1, tipo: P, t: "FNBC i dependències perdudes", ref: "Pràctica 4.5"}
   - {h: 1, tipo: P, t: "Informe de normalització d'EduGest", ref: "Projecte EduGest-4"}
@@ -272,7 +272,7 @@ Claus candidates: (alumno, modulo) i (alumno, profesor).
 - ALUMNO_PROFESOR(<u>alumno, profesor</u>)
 
 > [!WARNING]
-> Esta descomposició **perd una dependència**: la regla `alumno, modulo → profesor` («un alumne no té dos professors del mateix mòdul») ja no està dins d'una sola taula i no es pot garantir amb una clau. Per això, a la pràctica, de vegades es preferix quedar-se en 3FN i **documentar** la restricció (RA6.h).
+> Esta descomposició **perd una dependència**: la regla `alumno, modulo → profesor` («un alumne no té dos professors del mateix mòdul») ja no està dins d'una sola taula i no es pot garantir amb una clau. Per això, a la pràctica, de vegades es preferix quedar-se en 3FN i **documentar** la restricció (RA2.i).
 
 ### 3.5 Formes normals superiors
 
@@ -327,7 +327,7 @@ Quan arribem a la UD07 podràs comprovar-ho en Oracle: la consulta que reconstru
 | Sistemes analítics (OLAP) | Taula de fets de matrícules amb el nom del cicle repetit | Es carrega per processos ETL, no la modifica ningú |
 | Valors agregats molt consultats | Guardar `num_alumnos` en GRUPO | Trigger que l'actualitza (UD09) |
 | Valors històrics que **han de** congelar-se | Guardar el `precio` en cada línia de factura | No és redundància: el preu del producte canvia, el de la factura no |
-| Bases de dades documentals | Incrustar les dades del cicle en el document de l'alumne (UD10) | El model es dissenya segons les consultes |
+| Bases de dades documentals | Incrustar les dades del cicle en el document de l'alumne (UD11) | El model es dissenya segons les consultes |
 
 > [!CAUTION]
 > Desnormalitzar «perquè els JOIN són lents» sense haver-ho mesurat és un error freqüent. Amb índexs adequats (UD05 i UD07), un esquema normalitzat respon ràpid en la majoria dels sistemes transaccionals.

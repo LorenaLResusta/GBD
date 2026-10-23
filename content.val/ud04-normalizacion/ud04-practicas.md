@@ -7,23 +7,23 @@ math: true
 
 # UD04 · Pràctiques
 
-{{< ra "RA6:b,c,e,g,h" >}}
+{{< ra "RA2:c,d,f,h,i" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [4.1 Normalitzar les factures d'un taller](#pràctica-41--normalitzar-les-factures-dun-taller) | Guiada | ●○○ | RA6.b, RA6.c, RA6.g |
-| [4.2 Dependències, tancaments i claus](#pràctica-42--dependències-tancaments-i-claus) | Guiada | ●●○ | RA6.e, RA6.g |
-| [4.3 En quina forma normal està?](#pràctica-43--en-quina-forma-normal-està) | Autònoma | ●●○ | RA6.g |
-| [4.4 Reserves d'un hotel rural](#pràctica-44--reserves-dun-hotel-rural) | Autònoma | ●●○ | RA6.b, RA6.c, RA6.e, RA6.g |
-| [4.5 FNBC i dependències perdudes](#pràctica-45--fnbc-i-dependències-perdudes) | Repte | ●●● | RA6.g, RA6.h |
-| [4.6 Normalitzar o desnormalitzar?](#pràctica-46--normalitzar-o-desnormalitzar) | Repte | ●●● | RA6.g |
-| [Projecte EduGest · UD04](#projecte-edugest--ud04-informe-de-normalització) | Projecte | ●●○ | RA6.b, RA6.c, RA6.e, RA6.g, RA6.h |
+| [4.1 Normalitzar les factures d'un taller](#pràctica-41--normalitzar-les-factures-dun-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
+| [4.2 Dependències, tancaments i claus](#pràctica-42--dependències-tancaments-i-claus) | Guiada | ●●○ | RA2.f, RA2.h |
+| [4.3 En quina forma normal està?](#pràctica-43--en-quina-forma-normal-està) | Autònoma | ●●○ | RA2.h |
+| [4.4 Reserves d'un hotel rural](#pràctica-44--reserves-dun-hotel-rural) | Autònoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
+| [4.5 FNBC i dependències perdudes](#pràctica-45--fnbc-i-dependències-perdudes) | Repte | ●●● | RA2.h, RA2.i |
+| [4.6 Normalitzar o desnormalitzar?](#pràctica-46--normalitzar-o-desnormalitzar) | Repte | ●●● | RA2.h |
+| [Projecte EduGest · UD04](#projecte-edugest--ud04-informe-de-normalització) | Projecte | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
 
 ---
 
 ## Pràctica 4.1 · Normalitzar les factures d'un taller
 
-{{< practica num="4.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA6: b, c, g" sgbd="Full de càlcul o paper" entrega="Document amb cada pas de la normalització" >}}
+{{< practica num="4.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA2: c, d, h" sgbd="Full de càlcul o paper" entrega="Document amb cada pas de la normalització" >}}
 
 #### Objectiu
 
@@ -101,7 +101,7 @@ Comprova en la teua solució que la descomposició és **sense pèrdua**: per a 
 
 ## Pràctica 4.2 · Dependències, tancaments i claus
 
-{{< practica num="4.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA6: e, g" sgbd="Paper" entrega="Full d'exercicis" >}}
+{{< practica num="4.2" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA2: f, h" sgbd="Paper" entrega="Full d'exercicis" >}}
 
 #### Objectiu
 
@@ -124,7 +124,7 @@ Per a cada relació, calcula les claus candidates indicant els tancaments que ha
 
 ## Pràctica 4.3 · En quina forma normal està?
 
-{{< practica num="4.3" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA6: g" sgbd="Paper" entrega="Taula de respostes justificades" >}}
+{{< practica num="4.3" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: h" sgbd="Paper" entrega="Taula de respostes justificades" >}}
 
 #### Enunciat
 
@@ -154,7 +154,7 @@ La clau és composta (num_vuelo, fecha). `avion` depén de tota la clau (el mate
 
 ## Pràctica 4.4 · Reserves d'un hotel rural
 
-{{< practica num="4.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA6: b, c, e, g" sgbd="Paper o Data Modeler" entrega="Informe de normalització complet" >}}
+{{< practica num="4.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA2: c, d, f, h" sgbd="Paper o Data Modeler" entrega="Informe de normalització complet" >}}
 
 #### Context
 
@@ -189,7 +189,7 @@ Una reserva pot incloure diverses habitacions, cadascuna amb els seus propis ext
 
 ## Pràctica 4.5 · FNBC i dependències perdudes
 
-{{< practica num="4.5" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA6: g, h" sgbd="Paper" entrega="Anàlisi raonada" >}}
+{{< practica num="4.5" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: h, i" sgbd="Paper" entrega="Anàlisi raonada" >}}
 
 #### Context
 
@@ -213,7 +213,7 @@ Les claus són (alumno, sede) i (alumno, profesor). La descomposició en FNBC é
 
 ## Pràctica 4.6 · Normalitzar o desnormalitzar?
 
-{{< practica num="4.6" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA6: g" sgbd="Document" entrega="Informe de decisió (1 pàgina per cas)" >}}
+{{< practica num="4.6" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: h" sgbd="Document" entrega="Informe de decisió (1 pàgina per cas)" >}}
 
 #### Enunciat
 
@@ -236,7 +236,7 @@ Per a cada proposta d'un company, decidix si l'acceptes, la rebutges o l'accepte
 
 ## Projecte EduGest · UD04: informe de normalització
 
-{{< practica num="EduGest-4" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA6: b, c, e, g, h" sgbd="Document Markdown" entrega="edugest/docs/04-normalizacion.md" >}}
+{{< practica num="EduGest-4" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA2: c, d, f, h, i" sgbd="Document Markdown" entrega="edugest/docs/04-normalizacion.md" >}}
 
 #### Enunciat
 

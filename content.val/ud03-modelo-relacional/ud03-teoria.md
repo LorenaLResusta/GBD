@@ -15,24 +15,24 @@ El **Model Relacional**, ideat per Edgar F. Codd a IBM el 1970, és el model de 
 
 En aquesta unitat s'estudien minuciosament els conceptes matemàtics i pragmàtics que sustenten el model relacional: l'estructura formal d'una taula, el domini i el tipat d'atributs, el grau i la cardinalitat, les claus (candidates, primàries, alternatives i foranes), la semàntica dels valors nuls (`NULL`) i les regles d'integritat (inherents i semàntiques). A més, es detalla un catàleg complet de **regles de transformació per a convertir esquemes conceptuals EER en esquemes relacionals lògics**, il·lustrat amb abundants exemples reals, esquemes formals i taules amb dades reals.
 
-{{< ra "RA6:a,b,c,d,e,f,h" "RA2:a,d,e" >}}
+{{< ra "RA2:b,c,d,e,f,g,i" >}}
 
 ### Temporalització
 
-La unitat ocupa **17 hores d'aula** (9 de teoria i 8 de pràctica).
+La unitat ocupa **12 hores d'aula** (6 de teoria i 6 de pràctica).
 
-{{< sesiones unidad="UD03" horas="17" >}}
+{{< sesiones unidad="UD03" horas="12" >}}
 items:
-  - {h: 2, tipo: T, t: "Relació, atribut, domini, tupla, grau i cardinalitat. Claus", ref: "§1 i §2 · laboratori de claus"}
+  - {h: 1, tipo: T, t: "Relació, atribut, domini, tupla, grau i cardinalitat. Claus", ref: "§1 i §2 · laboratori de claus"}
   - {h: 2, tipo: T, t: "Restriccions i integritat referencial", ref: "§3 · simulador d'integritat"}
   - {h: 1, tipo: P, t: "Simulador d'integritat referencial", ref: "Pràctica 3.2"}
-  - {h: 2, tipo: T, t: "Regles de transformació (I): entitats, febles i atributs", ref: "§4.1 a §4.3 · transformador"}
-  - {h: 2, tipo: T, t: "Regles de transformació (II): relacions i jerarquies. Exemples", ref: "§4.4 a §4.9 i §5"}
+  - {h: 1, tipo: T, t: "Regles de transformació (I): entitats, febles i atributs", ref: "§4.1 a §4.3 · transformador"}
+  - {h: 1, tipo: T, t: "Regles de transformació (II): relacions i jerarquies. Exemples", ref: "§4.4 a §4.9 i §5"}
   - {h: 2, tipo: P, t: "Biblioteca: de l'E/R a les taules", ref: "Pràctica 3.1"}
   - {h: 1, tipo: T, t: "Restriccions no representables i eines", ref: "§6 i §7"}
-  - {h: 2, tipo: P, t: "Tres formes de transformar una jerarquia", ref: "Pràctica 3.3"}
+  - {h: 1, tipo: P, t: "Tres formes de transformar una jerarquia", ref: "Pràctica 3.3"}
   - {h: 1, tipo: P, t: "Catàleg de restriccions d'un hotel", ref: "Pràctica 3.5"}
-  - {h: 2, tipo: P, t: "Model lògic d'EduGest", ref: "§8 i projecte EduGest-3"}
+  - {h: 1, tipo: P, t: "Model lògic d'EduGest", ref: "§8 i projecte EduGest-3"}
 autonomo:
   - "Tasques de transformació 1 a 7 (E/R → relacional)"
   - "Pràctica 3.4 (enginyeria inversa) i pràctica 3.6"
@@ -554,7 +554,7 @@ Un concessionari ven `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`id_
 
 ## 6. Restriccions que el model lògic no pot expressar
 
-El model relacional expressa molt bé les restriccions **d'una fila** (atribut obligatori, regla de fila) i **de clau** (clau primària, clau alternativa, clau aliena). Però moltes regles de negoci afecten **diverses files o diverses taules** i no es poden declarar així. El criteri RA6.h exigix **analitzar-les i documentar-les** perquè no es perden entre el disseny i la implementació.
+El model relacional expressa molt bé les restriccions **d'una fila** (atribut obligatori, regla de fila) i **de clau** (clau primària, clau alternativa, clau aliena). Però moltes regles de negoci afecten **diverses files o diverses taules** i no es poden declarar així. El criteri RA2.i exigix **analitzar-les i documentar-les** perquè no es perden entre el disseny i la implementació.
 
 | Regla de negoci (EduGest) | Per què no basta amb una restricció declarativa? | On s'implementarà |
 |---|---|---|
@@ -583,7 +583,7 @@ R1. Cap de departament
 
 ## 7. Eines gràfiques per al disseny lògic
 
-El disseny lògic es representa amb un **diagrama relacional**: un rectangle per taula amb les seues columnes, la clau primària marcada i fletxes des de cada clau aliena fins a la clau primària que referencia (RA6.a).
+El disseny lògic es representa amb un **diagrama relacional**: un rectangle per taula amb les seues columnes, la clau primària marcada i fletxes des de cada clau aliena fins a la clau primària que referencia (RA2.b).
 
 | Eina | Què aporta |
 |---|---|
@@ -742,7 +742,7 @@ Respon a les preguntes i prem **Corregir**. Cada resposta inclou una explicació
 - q: "La regla «un professor no pot impartir més de 20 hores setmanals» s'ha de..."
   options: ["Expressar amb una regla de fila a la taula IMPARTE", "Documentar com a restricció no representable i implementar amb programació al servidor (UD09)", "Ignorar, ja que no forma part del model", "Resoldre amb una clau aliena"]
   answer: 1
-  explain: "Afecta la **suma** de diverses files. Una regla de fila només veu la fila actual. Es documenta (RA6.h) i s'implementa amb un trigger o un procediment (UD09)."
+  explain: "Afecta la **suma** de diverses files. Una regla de fila només veu la fila actual. Es documenta (RA2.i) i s'implementa amb un trigger o un procediment (UD09)."
 {{< /quiz >}}
 
 ## Referències

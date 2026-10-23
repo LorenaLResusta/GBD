@@ -6,18 +6,18 @@ bookToc: true
 
 # UD07 · Prácticas
 
-{{< ra "RA3:a,c,d,e,f,g,h" "RA2:f" >}}
+{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [7.1 Consultas resumen](#práctica-71--consultas-resumen) | Guiada | ●○○ | RA3.e |
-| [7.2 Composiciones paso a paso](#práctica-72--composiciones-paso-a-paso) | Guiada | ●●○ | RA3.c, RA3.d |
-| [7.3 Informes para jefatura](#práctica-73--informes-para-jefatura) | Autónoma | ●●○ | RA3.c, RA3.d, RA3.e |
-| [7.4 Subconsultas](#práctica-74--subconsultas) | Autónoma | ●●○ | RA3.f |
-| [7.5 Múltiples selecciones y vistas](#práctica-75--múltiples-selecciones-y-vistas) | Autónoma | ●●○ | RA3.g, RA2.f |
-| [7.6 Optimización: medir antes y después](#práctica-76--optimización-medir-antes-y-después) | Guiada | ●●● | RA3.h |
-| [7.7 Reto: el cuadro de mando](#práctica-77--reto-el-cuadro-de-mando) | Reto | ●●● | RA3.c-h |
-| [Proyecto EduGest · UD07](#proyecto-edugest--ud07-informes) | Proyecto | ●●● | RA3 completo |
+| [7.1 Consultas resumen](#práctica-71--consultas-resumen) | Guiada | ●○○ | RA4.c |
+| [7.2 Composiciones paso a paso](#práctica-72--composiciones-paso-a-paso) | Guiada | ●●○ | RA4.d, RA4.e |
+| [7.3 Informes para jefatura](#práctica-73--informes-para-jefatura) | Autónoma | ●●○ | RA4.c-e |
+| [7.4 Subconsultas](#práctica-74--subconsultas) | Autónoma | ●●○ | RA4.f |
+| [7.5 Múltiples selecciones y vistas](#práctica-75--múltiples-selecciones-y-vistas) | Autónoma | ●●○ | RA3.h, RA4.f |
+| [7.6 Optimización: medir antes y después](#práctica-76--optimización-medir-antes-y-después) | Guiada | ●●● | RA4.g |
+| [7.7 Reto: el cuadro de mando](#práctica-77--reto-el-cuadro-de-mando) | Reto | ●●● | RA4.c-g |
+| [Proyecto EduGest · UD07](#proyecto-edugest--ud07-informes) | Proyecto | ●●● | RA4 completo |
 
 > [!IMPORTANT]
 > Trabaja sobre **EDUGEST con los datos originales** (scripts 01 y 02) y con `ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY';`. Intenta cada consulta antes de abrir la solución; como mínimo, comprueba que obtienes el **mismo número de filas**.
@@ -26,7 +26,7 @@ bookToc: true
 
 ## Práctica 7.1 · Consultas resumen
 
-{{< practica num="7.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA3: e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
+{{< practica num="7.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
 
 #### Objetivo
 
@@ -174,7 +174,7 @@ Repite el paso 2 añadiendo `ROLLUP`: `GROUP BY ROLLUP(localidad)`. ¿Qué fila 
 
 ## Práctica 7.2 · Composiciones paso a paso
 
-{{< practica num="7.2" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA3: c, d" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respuestas" >}}
+{{< practica num="7.2" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respuestas" >}}
 
 #### Objetivo
 
@@ -311,7 +311,7 @@ Construir composiciones de varias tablas siguiendo el camino de claves ajenas, y
 
 ## Práctica 7.3 · Informes para jefatura
 
-{{< practica num="7.3" tipo="Autónoma" duracion="3 sesiones" nivel="2" ra="RA3: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentado" >}}
+{{< practica num="7.3" tipo="Autónoma" duracion="3 sesiones" nivel="2" ra="RA4: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentado" >}}
 
 #### Objetivo
 
@@ -363,7 +363,7 @@ Resolver de forma autónoma consultas de varias tablas, decidiendo el tipo de co
 
 ## Práctica 7.4 · Subconsultas
 
-{{< practica num="7.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA3: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
+{{< practica num="7.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
 
 #### Enunciado
 
@@ -403,7 +403,7 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ## Práctica 7.5 · Múltiples selecciones y vistas
 
-{{< practica num="7.5" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA3: g · RA2: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
+{{< practica num="7.5" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA3: h · RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
 
 #### Enunciado
 
@@ -427,7 +427,7 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ## Práctica 7.6 · Optimización: medir antes y después
 
-{{< practica num="7.6" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA3: h" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
+{{< practica num="7.6" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
 
 #### Objetivo
 
@@ -538,7 +538,7 @@ Añade `/*+ FULL(ap) */` justo después de `SELECT` en la consulta 1 con índice
 
 ## Práctica 7.7 · Reto: el cuadro de mando
 
-{{< practica num="7.7" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA3: c, d, e, f, g, h" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
+{{< practica num="7.7" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
 
 #### Enunciado
 
@@ -567,7 +567,7 @@ La dirección quiere un **cuadro de mando** con una sola consulta por indicador.
 
 ## Proyecto EduGest · UD07: informes
 
-{{< practica num="EduGest-7" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA3: a-h · RA2: f" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
+{{< practica num="EduGest-7" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA3: h · RA4: a, b, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
 
 #### Enunciado
 

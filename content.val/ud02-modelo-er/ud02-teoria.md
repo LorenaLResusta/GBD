@@ -15,21 +15,21 @@ El **Model Entitat-Relació Estés (EER)**, introduït originalment per Peter Ch
 
 El seu objectiu prioritari és modelar i estructurar la semàntica de la informació del món real de manera completament abstracta i independent del programari informàtic o Sistema Gestor de Bases de Dades (SGBD) que s'utilitze en la fase d'implementació. En esta unitat s'analitza de forma exhaustiva el flux de treball del disseny de dades, els components elementals del model (**entitats fortes i febles, atributs classificatoris i relacions**), les regles minucioses de **cardinalitat i integritat**, les jerarquies de **generalització i especialització** amb herència d'atributs, el concepte d'**agregació**, el càlcul formal de cardinalitats en **relacions ternàries** i una metodologia estructurada en 5 passos recolzada per casos pràctics reals complets.
 
-{{< ra "RA6:a,d,e,h" >}}
+{{< ra "RA2:a,b,e,f,i" >}}
 
 ### Temporalització
 
-La unitat ocupa **19 hores d'aula** (12 de teoria i 7 de pràctica). Cada sessió apareix assenyalada en la pàgina amb una franja de color.
+La unitat ocupa **16 hores d'aula** (9 de teoria i 7 de pràctica). Cada sessió apareix assenyalada en la pàgina amb una franja de color.
 
-{{< sesiones unidad="UD02" horas="19" >}}
+{{< sesiones unidad="UD02" horas="16" >}}
 items:
   - {h: 2, tipo: T, t: "Cicle de vida del disseny. Entitats fortes i febles", ref: "§1 i §2.1"}
   - {h: 2, tipo: T, t: "Atributs i relacions: grau i rols", ref: "§2.2 i §2.3"}
-  - {h: 2, tipo: T, t: "Cardinalitats mínima i màxima", ref: "§2.4 · laboratori interactiu"}
+  - {h: 1, tipo: T, t: "Cardinalitats mínima i màxima", ref: "§2.4 · laboratori interactiu"}
   - {h: 1, tipo: P, t: "Llegir i escriure cardinalitats", ref: "Pràctica 2.2"}
   - {h: 2, tipo: P, t: "Biblioteca municipal: de l'enunciat al diagrama", ref: "Pràctica 2.1"}
-  - {h: 2, tipo: T, t: "Restriccions avançades i jerarquies EER", ref: "§3, §4.1 i §4.2 · classificador interactiu"}
-  - {h: 2, tipo: T, t: "Agregació i relacions ternàries", ref: "§4.3 i §4.4"}
+  - {h: 1, tipo: T, t: "Restriccions avançades i jerarquies EER", ref: "§3, §4.1 i §4.2 · classificador interactiu"}
+  - {h: 1, tipo: T, t: "Agregació i relacions ternàries", ref: "§4.3 i §4.4"}
   - {h: 1, tipo: T, t: "Metodologia en cinc passos i exemples resolts", ref: "§5 i §6"}
   - {h: 1, tipo: T, t: "Notacions i eines de modelatge", ref: "§7"}
   - {h: 2, tipo: P, t: "Plataforma de streaming", ref: "Pràctica 2.3"}
@@ -502,7 +502,7 @@ Un congrés científic necessita organitzar les seues activitats. Es registren e
 
 ## 7. Notacions i Eines de Modelatge
 
-El model E/R és **un**, però hi ha diverses formes de dibuixar-lo. És important reconéixer-les perquè cada eina usa la seua (RA6.a).
+El model E/R és **un**, però hi ha diverses formes de dibuixar-lo. És important reconéixer-les perquè cada eina usa la seua (RA2.b).
 
 | Notació | Com representa les relacions | Cardinalitat | On la trobaràs |
 |---|---|---|---|
@@ -600,7 +600,7 @@ La **nota** no és de l'alumne (en té moltes) ni del mòdul (el cursen molts): 
 ### Pas 5. Revisió
 
 - Hi ha cicles? Si un alumne pertany a un grup i el grup a un cicle, **no** cal una relació directa ALUMNO-CICLO: seria **redundant** (es deduïx).
-- Hi ha restriccions que el diagrama no arreplega? Sí: un alumne només hauria de matricular-se en mòduls del cicle del seu grup. S'anota com a **restricció textual** (RA6.h).
+- Hi ha restriccions que el diagrama no arreplega? Sí: un alumne només hauria de matricular-se en mòduls del cicle del seu grup. S'anota com a **restricció textual** (RA2.i).
 
 ```mermaid
 erDiagram

@@ -15,25 +15,25 @@ Hasta ahora hemos **diseñado**. En esta unidad **implementamos**: convertimos e
 
 Todos los ejemplos usan **Oracle AI Database 26ai Free**. Cuando una característica sea propia de Oracle o de una versión concreta, se indica.
 
-{{< ra "RA2:a,b,c,d,e,f,g,h" "RA6:a,f" >}}
+{{< ra "RA3" >}}
 
 ### Temporalización
 
-La unidad ocupa **17 horas de aula** (9 de teoría y 8 de práctica).
+La unidad ocupa **22 horas de aula** (12 de teoría y 10 de práctica).
 
-{{< sesiones unidad="UD05" horas="17" >}}
+{{< sesiones unidad="UD05" horas="22" >}}
 items:
-  - {h: 1, tipo: T, t: "SQL y Oracle. Almacenamiento de la información", ref: "§1 y §2"}
+  - {h: 2, tipo: T, t: "SQL y Oracle. Almacenamiento de la información", ref: "§1 y §2"}
   - {h: 2, tipo: T, t: "Tipos de datos de Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE y restricciones de integridad", ref: "§4 y §5 · constructor de CREATE TABLE"}
-  - {h: 2, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 5.1"}
+  - {h: 3, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 5.1"}
   - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Práctica 5.2"}
   - {h: 1, tipo: T, t: "Modificar y eliminar la estructura (ALTER, DROP)", ref: "§6"}
   - {h: 1, tipo: P, t: "Evolución del esquema con ALTER", ref: "Práctica 5.5"}
-  - {h: 1, tipo: T, t: "Secuencias, identidad, índices y vistas", ref: "§7, §8 y §9"}
+  - {h: 2, tipo: T, t: "Secuencias, identidad, índices y vistas", ref: "§7, §8 y §9"}
   - {h: 1, tipo: P, t: "Índices, vistas y secuencias en EduGest", ref: "Práctica 5.6"}
-  - {h: 2, tipo: T, t: "Usuarios, roles y privilegios. Diccionario de datos y herramientas", ref: "§10 a §12 · taller de privilegios"}
-  - {h: 1, tipo: P, t: "Usuarios, roles y privilegios en EduGest", ref: "Práctica 5.7"}
+  - {h: 3, tipo: T, t: "Usuarios, roles y privilegios. Diccionario de datos y herramientas", ref: "§10 a §12 · taller de privilegios"}
+  - {h: 2, tipo: P, t: "Usuarios, roles y privilegios en EduGest", ref: "Práctica 5.7"}
   - {h: 1, tipo: P, t: "Implementación de EduGest", ref: "Proyecto EduGest-5"}
 autonomo:
   - "Práctica 5.3 (biblioteca: script completo y batería de pruebas)"
@@ -137,7 +137,7 @@ SELECT * FROM edugest.alumno;
 
 ## 2. Formato de almacenamiento de la información
 
-El criterio RA2.a pide analizar **cómo** se guarda la información. Oracle organiza el almacenamiento en dos niveles:
+El criterio RA3.a pide analizar **cómo** se guarda la información. Oracle organiza el almacenamiento en dos niveles:
 
 ```mermaid
 flowchart LR
@@ -180,7 +180,7 @@ A diferencia del estándar SQL, Oracle trata `''` (cadena de longitud cero) como
 
 ## 3. Tipos de datos
 
-Elegir bien el tipo de cada columna (RA2.c) evita errores, ahorra espacio y permite que el SGBD valide los datos.
+Elegir bien el tipo de cada columna (RA3.c) evita errores, ahorra espacio y permite que el SGBD valide los datos.
 
 ### 3.1 Tipos principales de Oracle
 
@@ -339,7 +339,7 @@ CREATE TABLE imparte (
 
 ## 5. Restricciones de integridad
 
-Las restricciones implantan en la base de datos las reglas del diseño lógico (RA2.d, RA2.e, RA6.f). El SGBD **rechaza** cualquier operación que las incumpla, venga de la aplicación que venga.
+Las restricciones implantan en la base de datos las reglas del diseño lógico (RA2.g, RA3.d, RA3.e). El SGBD **rechaza** cualquier operación que las incumpla, venga de la aplicación que venga.
 
 ### 5.1 Resumen de restricciones
 
@@ -619,7 +619,7 @@ Mueve el deslizador para ver cuántos bloques lee una búsqueda con y sin índic
 
 ## 9. Vistas
 
-Una **vista** es una consulta guardada con nombre que se usa como si fuera una tabla. No almacena datos: cada vez que se consulta, ejecuta su `SELECT` (RA2.f).
+Una **vista** es una consulta guardada con nombre que se usa como si fuera una tabla. No almacena datos: cada vez que se consulta, ejecuta su `SELECT` (RA3.h).
 
 ### 9.1 Para qué sirven
 
@@ -831,7 +831,7 @@ SELECT object_name, object_type, status FROM user_objects ORDER BY object_type;
 
 ## 12. Asistentes y herramientas gráficas
 
-El criterio RA2.h pide usar **asistentes, herramientas gráficas y los lenguajes DDL y DCL**.
+El criterio RA3.g, RA3.h pide usar **asistentes, herramientas gráficas y los lenguajes DDL y DCL**.
 
 | Tarea | En SQL Developer | Lo que debes revisar |
 |---|---|---|

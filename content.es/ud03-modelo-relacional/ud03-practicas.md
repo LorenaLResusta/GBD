@@ -7,25 +7,25 @@ math: true
 
 # UD03 · Prácticas
 
-{{< ra "RA6:a,b,c,d,e,f,h" "RA2:a,d,e" >}}
+{{< ra "RA2:b,c,d,e,f,g,i" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [3.1 Biblioteca: del E/R a las tablas](#práctica-31--biblioteca-del-er-a-las-tablas) | Guiada | ●○○ | RA6.b, RA6.c, RA6.d, RA6.e |
-| [3.2 Simulador de integridad referencial](#práctica-32--simulador-de-integridad-referencial) | Guiada | ●●○ | RA6.f, RA2.e |
-| [3.3 Tres formas de transformar una jerarquía](#práctica-33--tres-formas-de-transformar-una-jerarquía) | Autónoma | ●●○ | RA6.b, RA6.d, RA6.e |
-| [3.4 Ingeniería inversa de un esquema](#práctica-34--ingeniería-inversa-de-un-esquema) | Reto | ●●● | RA6.a, RA6.d |
-| [3.5 Catálogo de restricciones de un hotel](#práctica-35--catálogo-de-restricciones-de-un-hotel) | Autónoma | ●●○ | RA6.h |
-| [Proyecto EduGest · UD03](#proyecto-edugest--ud03-modelo-lógico) | Proyecto | ●●○ | RA6.a-f, RA6.h |
-| [3.6 Entender un esquema relacional](#práctica-36--entender-un-esquema-relacional) | Guiada | ●○○ | RA6.b, RA6.c, RA6.d |
-| [Tarea 1 · Naviera](#tarea-1--naviera-capitanes-contenedores-puertos-y-barcos) | Guiada | ●○○ | RA6.b-e |
-| [Tarea 2 · Instituto](#tarea-2--instituto-módulos-matrículas-delegados-y-casilleros) | Autónoma | ●●○ | RA6.b-e, RA6.h |
-| [Tarea 3 · Concesionario](#tarea-3--concesionario-ventas-revisiones-y-mecánicos) | Autónoma | ●●○ | RA6.b-e |
-| [Tarea 4 · Casas rurales](#tarea-4--casas-rurales) | Autónoma | ●●○ | RA6.b-e |
-| [Tarea 5 · Esquema abstracto 1](#tarea-5--esquema-abstracto-1-ternaria-11n-y-agregación) | Reto | ●●● | RA6.b-e, RA6.h |
-| [Tarea 6 · Esquema abstracto 2](#tarea-6--esquema-abstracto-2-agregación-con-relación-11-y-existencia) | Reto | ●●● | RA6.b-e, RA6.h |
-| [Tarea 7 · Esquema abstracto 3](#tarea-7--esquema-abstracto-3-ternaria-con-una-entidad-repetida) | Reto | ●●● | RA6.b-e, RA6.h |
-| [Banco de ejercicios](#banco-de-ejercicios) | Autónoma | ●○○ a ●●● | RA6, RA2 |
+| [3.1 Biblioteca: del E/R a las tablas](#práctica-31--biblioteca-del-er-a-las-tablas) | Guiada | ●○○ | RA2.c-f |
+| [3.2 Simulador de integridad referencial](#práctica-32--simulador-de-integridad-referencial) | Guiada | ●●○ | RA2.g, RA3.e |
+| [3.3 Tres formas de transformar una jerarquía](#práctica-33--tres-formas-de-transformar-una-jerarquía) | Autónoma | ●●○ | RA2.c, RA2.e, RA2.f |
+| [3.4 Ingeniería inversa de un esquema](#práctica-34--ingeniería-inversa-de-un-esquema) | Reto | ●●● | RA2.b, RA2.e |
+| [3.5 Catálogo de restricciones de un hotel](#práctica-35--catálogo-de-restricciones-de-un-hotel) | Autónoma | ●●○ | RA2.i |
+| [Proyecto EduGest · UD03](#proyecto-edugest--ud03-modelo-lógico) | Proyecto | ●●○ | RA2.b-g, RA2.i |
+| [3.6 Entender un esquema relacional](#práctica-36--entender-un-esquema-relacional) | Guiada | ●○○ | RA2.c-e |
+| [Tarea 1 · Naviera](#tarea-1--naviera-capitanes-contenedores-puertos-y-barcos) | Guiada | ●○○ | RA2.c-f |
+| [Tarea 2 · Instituto](#tarea-2--instituto-módulos-matrículas-delegados-y-casilleros) | Autónoma | ●●○ | RA2.c-f, RA2.i |
+| [Tarea 3 · Concesionario](#tarea-3--concesionario-ventas-revisiones-y-mecánicos) | Autónoma | ●●○ | RA2.c-f |
+| [Tarea 4 · Casas rurales](#tarea-4--casas-rurales) | Autónoma | ●●○ | RA2.c-f |
+| [Tarea 5 · Esquema abstracto 1](#tarea-5--esquema-abstracto-1-ternaria-11n-y-agregación) | Reto | ●●● | RA2.c-f, RA2.i |
+| [Tarea 6 · Esquema abstracto 2](#tarea-6--esquema-abstracto-2-agregación-con-relación-11-y-existencia) | Reto | ●●● | RA2.c-f, RA2.i |
+| [Tarea 7 · Esquema abstracto 3](#tarea-7--esquema-abstracto-3-ternaria-con-una-entidad-repetida) | Reto | ●●● | RA2.c-f, RA2.i |
+| [Banco de ejercicios](#banco-de-ejercicios) | Autónoma | ●○○ a ●●● | RA2, RA3 |
 
 > [!TIP]
 > Para escribir esquemas relacionales usa siempre la misma notación: `TABLA(`<u>clave_primaria</u>`, atributo, `*clave_ajena*`)`, y debajo de cada tabla, las claves ajenas con la tabla a la que apuntan, las claves alternativas y los atributos que **admiten nulos**.
@@ -34,7 +34,7 @@ math: true
 
 ## Práctica 3.1 · Biblioteca: del E/R a las tablas
 
-{{< practica num="3.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA6: b, c, d, e" sgbd="Papel o herramienta de modelado" entrega="Esquema relacional + diagrama relacional" >}}
+{{< practica num="3.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: c, d, e, f" sgbd="Papel o herramienta de modelado" entrega="Esquema relacional + diagrama relacional" >}}
 
 #### Objetivo
 
@@ -90,7 +90,7 @@ Partimos del diagrama de la biblioteca municipal de la [práctica 2.1](/ud02-mod
 
 > [!WARNING]
 > - Crear dos claves ajenas separadas `isbn → LIBRO` y `num_ejemplar → EJEMPLAR`. `num_ejemplar` por sí solo no identifica nada.
-> - Olvidar la restricción «un libro tiene al menos un autor». La participación mínima 1 de `LIBRO` en `ESCRIBE` **no** se puede garantizar con una clave ajena: hay que documentarla (RA6.h).
+> - Olvidar la restricción «un libro tiene al menos un autor». La participación mínima 1 de `LIBRO` en `ESCRIBE` **no** se puede garantizar con una clave ajena: hay que documentarla (RA2.i).
 
 #### Ampliación
 
@@ -100,7 +100,7 @@ Sustituye la clave compuesta de `PRESTAMO` por un identificador artificial `id_p
 
 ## Práctica 3.2 · Simulador de integridad referencial
 
-{{< practica num="3.2" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA6: f · RA2: e" sgbd="Papel" entrega="Hoja de respuestas" >}}
+{{< practica num="3.2" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA2: g · RA3: e" sgbd="Papel" entrega="Hoja de respuestas" >}}
 
 #### Objetivo
 
@@ -163,7 +163,7 @@ Para cada escenario, indica si la operación **se ejecuta o se rechaza** y, si s
 
 ## Práctica 3.3 · Tres formas de transformar una jerarquía
 
-{{< practica num="3.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: b, d, e" sgbd="Papel o Data Modeler" entrega="Tres esquemas + tabla comparativa" >}}
+{{< practica num="3.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: c, e, f" sgbd="Papel o Data Modeler" entrega="Tres esquemas + tabla comparativa" >}}
 
 #### Objetivo
 
@@ -205,7 +205,7 @@ Hazte tres preguntas por cada opción: ¿qué atributos son obligatorios **solo*
 
 ## Práctica 3.4 · Ingeniería inversa de un esquema
 
-{{< practica num="3.4" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: a, d" sgbd="Papel o draw.io" entrega="Diagrama E/R reconstruido + informe" >}}
+{{< practica num="3.4" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: b, e" sgbd="Papel o draw.io" entrega="Diagrama E/R reconstruido + informe" >}}
 
 #### Objetivo
 
@@ -244,7 +244,7 @@ Con `INSCRIPCION(id_torneo, id_jugador1, id_jugador2)` como clave, las filas (T1
 
 ## Práctica 3.5 · Catálogo de restricciones de un hotel
 
-{{< practica num="3.5" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: h · RA2: e" sgbd="Documento de texto" entrega="Catálogo de restricciones" >}}
+{{< practica num="3.5" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: i · RA3: e" sgbd="Documento de texto" entrega="Catálogo de restricciones" >}}
 
 #### Objetivo
 
@@ -285,7 +285,7 @@ Clasifica cada regla en una de estas categorías: **PK / clave alternativa**, **
 
 ## Proyecto EduGest · UD03: modelo lógico
 
-{{< practica num="EduGest-3" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="2" ra="RA6: a, b, c, d, e, f, h" sgbd="draw.io u otra herramienta de modelado" entrega="edugest/docs/03-modelo-relacional.md + diagrama" >}}
+{{< practica num="EduGest-3" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="2" ra="RA2: b, c, d, e, f, g, i" sgbd="draw.io u otra herramienta de modelado" entrega="edugest/docs/03-modelo-relacional.md + diagrama" >}}
 
 #### Enunciado
 
@@ -364,7 +364,7 @@ CONTENEDOR (cod_contenedor, descripcion, dni_capitan, cod_puerto)
 
 ## Práctica 3.6 · Entender un esquema relacional
 
-{{< practica num="3.6" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA6: b, c, d" sgbd="Papel" entrega="Hoja de respuestas" >}}
+{{< practica num="3.6" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA2: c, d, e" sgbd="Papel" entrega="Hoja de respuestas" >}}
 
 #### Objetivo
 
@@ -426,7 +426,7 @@ Escribe el esquema que corresponde a «un alumno se matricula de **una o varias*
 
 ### Tarea 1 · Naviera: capitanes, contenedores, puertos y barcos
 
-{{< practica num="1" etiqueta="Tarea" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA6: b, c, d, e" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="1" etiqueta="Tarea" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA2: c, d, e, f" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -473,7 +473,7 @@ La naviera quiere saber en qué **barco** viaja cada contenedor. Añade la relac
 
 ### Tarea 2 · Instituto: módulos, matrículas, delegados y casilleros
 
-{{< practica num="2" etiqueta="Tarea" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: b, c, d, e, h" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="2" etiqueta="Tarea" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: c, d, e, f, i" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -520,7 +520,7 @@ Un alumno puede repetir y matricularse **dos veces** del mismo módulo en cursos
 
 ### Tarea 3 · Concesionario: ventas, revisiones y mecánicos
 
-{{< practica num="3" etiqueta="Tarea" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: b, c, d, e" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="3" etiqueta="Tarea" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: c, d, e, f" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -560,7 +560,7 @@ El taller guarda **qué piezas** se cambian en cada revisión y cuántas. Añade
 
 ### Tarea 4 · Casas rurales
 
-{{< practica num="4" etiqueta="Tarea" tipo="Autónoma" duracion="1-2 sesiones" nivel="2" ra="RA6: b, c, d, e" sgbd="Papel" entrega="Dos esquemas relacionales + pérdidas semánticas" >}}
+{{< practica num="4" etiqueta="Tarea" tipo="Autónoma" duracion="1-2 sesiones" nivel="2" ra="RA2: c, d, e, f" sgbd="Papel" entrega="Dos esquemas relacionales + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -608,7 +608,7 @@ Un cliente quiere reservar **varias habitaciones** con una sola reserva (número
 
 ### Tarea 5 · Esquema abstracto 1: ternaria 1:1:N y agregación
 
-{{< practica num="5" etiqueta="Tarea" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="5" etiqueta="Tarea" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -643,7 +643,7 @@ Obtén el esquema lógico relacional y enuncia las **pérdidas semánticas**.
 
 ### Tarea 6 · Esquema abstracto 2: agregación con relación 1:1 y existencia
 
-{{< practica num="6" etiqueta="Tarea" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="6" etiqueta="Tarea" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 
@@ -672,7 +672,7 @@ Obtén el esquema lógico relacional y enuncia las pérdidas semánticas.
 
 ### Tarea 7 · Esquema abstracto 3: ternaria con una entidad repetida
 
-{{< practica num="7" etiqueta="Tarea" tipo="Reto" duracion="1-2 sesiones" nivel="3" ra="RA6: b, c, d, e, h" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
+{{< practica num="7" etiqueta="Tarea" tipo="Reto" duracion="1-2 sesiones" nivel="3" ra="RA2: c, d, e, f, i" sgbd="Papel" entrega="Esquema relacional + pérdidas semánticas" >}}
 
 #### Objetivo
 

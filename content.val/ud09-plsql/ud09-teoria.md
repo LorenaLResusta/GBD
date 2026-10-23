@@ -16,35 +16,35 @@ La unitat avança en cinc passos: primer quines formes hi ha d'automatitzar i am
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables) carregats (32 alumnes, 143 matrícules, 46 faltes) i usen la sintaxi d'**Oracle AI Database 26ai Free**. Cada exemple indica l'eixida que has d'obtindre. Quan alguna cosa és pròpia d'un gestor concret se senyala amb una etiqueta o una nota.
 
-{{< ra "RA5:a,b,c,d,e,f,g,h,i,j" "RA4:d,h" "RA6:h" >}}
+{{< ra "RA2:i" "RA5:d,e" >}}
 
 ### Objectius d'aprenentatge
 
 En acabar esta unitat seràs capaç de:
 
-- Distingir una consulta, un guió, un bloc anònim, una funció, un procediment, un paquet, un disparador i una tasca programada, i triar la forma d'automatització adequada per a cada necessitat (RA5.a).
-- Editar i executar guions amb SQL Developer, SQLcl o SQL\*Plus, usant variables de substitució i l'eixida de `DBMS_OUTPUT` (RA5.b, RA5.c).
+- Distingir una consulta, un guió, un bloc anònim, una funció, un procediment, un paquet, un disparador i una tasca programada, i triar la forma d'automatització adequada per a cada necessitat (RA5.e).
+- Editar i executar guions amb SQL Developer, SQLcl o SQL\*Plus, usant variables de substitució i l'eixida de `DBMS_OUTPUT` (RA5.e).
 - Escriure blocs PL/SQL amb variables, constants i tipus `%TYPE` i `%ROWTYPE`, i distingir les variables de substitució del client de les variables PL/SQL del servidor.
-- Aplicar estructures de control de flux (`IF`, `CASE`, `LOOP`, `WHILE`, `FOR`) i les funcions predefinides del gestor (RA5.e, RA5.g).
-- Recórrer conjunts de files amb cursors implícits, explícits, de bucle `FOR` i amb paràmetres (RA5.i).
-- Definir funcions i procediments d'usuari amb paràmetres `IN`, `OUT` i `IN OUT` (RA5.f).
-- Tractar errors amb excepcions predefinides i pròpies, `PRAGMA EXCEPTION_INIT` i `RAISE_APPLICATION_ERROR` (RA5.j).
-- Implementar amb disparadors l'auditoria de canvis i les regles d'integritat que el model lògic no pot declarar, i resoldre l'error de taula mutant amb un disparador compost (RA5.h, RA4.h, RA6.h).
-- Programar tasques periòdiques amb `DBMS_SCHEDULER`, agrupar subprogrames en paquets i reconéixer els equivalents en MySQL/MariaDB, PostgreSQL i SQL Server (RA5.a, RA5.d, RA4.d).
+- Aplicar estructures de control de flux (`IF`, `CASE`, `LOOP`, `WHILE`, `FOR`) i les funcions predefinides del gestor (RA5.e).
+- Recórrer conjunts de files amb cursors implícits, explícits, de bucle `FOR` i amb paràmetres (RA5.e).
+- Definir funcions i procediments d'usuari amb paràmetres `IN`, `OUT` i `IN OUT` (RA5.e).
+- Tractar errors amb excepcions predefinides i pròpies, `PRAGMA EXCEPTION_INIT` i `RAISE_APPLICATION_ERROR` (RA5.e).
+- Implementar amb disparadors l'auditoria de canvis i les regles d'integritat que el model lògic no pot declarar, i resoldre l'error de taula mutant amb un disparador compost (RA2.i, RA5.d, RA5.e).
+- Programar tasques periòdiques amb `DBMS_SCHEDULER`, agrupar subprogrames en paquets i reconéixer els equivalents en MySQL/MariaDB, PostgreSQL i SQL Server (RA5.e).
 
 ### Temporalització
 
-La unitat ocupa **7 hores d'aula** (4 de teoria i 3 de pràctica). És la unitat amb més codi del curs: convé escriure'l a mà i recompilar-lo, no copiar-lo i apegar-lo. Les pràctiques llargues (la taula mutant, les tasques programades, el paquet de secretaria i el projecte) es completen fora de l'horari d'aula.
+La unitat ocupa **15 hores d'aula** (9 de teoria i 6 de pràctica). És la unitat amb més codi del curs i, junt amb la UD08, desenvolupa el RA5: convé escriure'l a mà i recompilar-lo, no copiar-lo i apegar-lo. Les pràctiques llargues (la taula mutant, les tasques programades, el paquet de secretaria i el projecte) es completen fora de l'horari d'aula.
 
-{{< sesiones unidad="UD09" horas="7" >}}
+{{< sesiones unidad="UD09" horas="15" >}}
 items:
-  - {h: 1, tipo: T, t: "Formes d'automatitzar, eines, estructura del bloc, variables, tipus i `DBMS_OUTPUT`", ref: "§1 a §4"}
-  - {h: 1, tipo: P, t: "Primers blocs: l'expedient d'un alumne", ref: "Pràctica 9.1"}
-  - {h: 1, tipo: T, t: "Control de flux, funcions del gestor, cursors i funcions d'usuari", ref: "§5 a §8 · laboratori de blocs"}
-  - {h: 1, tipo: P, t: "Biblioteca de funcions d'EduGest", ref: "Pràctica 9.2"}
-  - {h: 1, tipo: T, t: "Excepcions i procediments emmagatzemats", ref: "§9 i §10"}
-  - {h: 1, tipo: P, t: "Matrícula amb excepcions (la 9.4, butlletins amb cursors, s'acaba a casa)", ref: "Pràctiques 9.3 i 9.4"}
-  - {h: 1, tipo: T, t: "Disparadors, tasques programades amb `DBMS_SCHEDULER` i paquets", ref: "§11 a §14 · simulador de disparadors"}
+  - {h: 2, tipo: T, t: "Formes d'automatitzar, eines, estructura del bloc, variables, tipus i `DBMS_OUTPUT`", ref: "§1 a §4"}
+  - {h: 2, tipo: P, t: "Primers blocs: l'expedient d'un alumne", ref: "Pràctica 9.1"}
+  - {h: 2, tipo: T, t: "Control de flux, funcions del gestor, cursors i funcions d'usuari", ref: "§5 a §8 · laboratori de blocs"}
+  - {h: 2, tipo: P, t: "Biblioteca de funcions d'EduGest", ref: "Pràctica 9.2"}
+  - {h: 3, tipo: T, t: "Excepcions i procediments emmagatzemats", ref: "§9 i §10"}
+  - {h: 2, tipo: P, t: "Matrícula amb excepcions (la 9.4, butlletins amb cursors, s'acaba a casa)", ref: "Pràctiques 9.3 i 9.4"}
+  - {h: 2, tipo: T, t: "Disparadors, tasques programades amb `DBMS_SCHEDULER` i paquets", ref: "§11 a §14 · simulador de disparadors"}
 autonomo:
   - "Pràctica 9.4 (cursors: butlletins i informes), si no s'ha acabat a l'aula"
   - "Pràctica 9.5 (disparadors d'integritat i auditoria)"
@@ -90,7 +90,7 @@ La UD03 ja va identificar les regles de negoci d'EduGest que el model lògic no 
 
 ### 1.2 Formes d'automatitzar tasques
 
-El criteri RA5.a demana identificar les formes d'automatitzar una tasca en un gestor. En Oracle són estes:
+El criteri RA5.e demana identificar les formes d'automatitzar una tasca en un gestor. En Oracle són estes:
 
 | Forma | Què és | Quan s'executa | Exemple a EduGest |
 |---|---|---|---|
@@ -179,7 +179,7 @@ PL/SQL és propi d'Oracle. Cada gestor té el seu llenguatge: PostgreSQL usa **P
 
 ### 2.1 Eines per a editar guions
 
-El criteri RA5.c demana identificar les eines disponibles. Un guió PL/SQL és text: es pot escriure en qualsevol editor, però les eines especialitzades aporten ressaltat, execució directa i accés al diccionari de dades.
+El criteri RA5.e demana identificar les eines disponibles. Un guió PL/SQL és text: es pot escriure en qualsevol editor, però les eines especialitzades aporten ressaltat, execució directa i accés al diccionari de dades.
 
 | Eina | Tipus | Què aporta | Quan usar-la |
 |---|---|---|---|
@@ -194,7 +194,7 @@ El criteri RA5.c demana identificar les eines disponibles. Un guió PL/SQL és t
 
 ### 2.2 Mètodes d'execució de guions
 
-El criteri RA5.b demana reconéixer els mètodes d'execució de guions. Un guió pot executar-se de diverses maneres:
+El criteri RA5.e demana reconéixer els mètodes d'execució de guions. Un guió pot executar-se de diverses maneres:
 
 | Mètode | On | Què fa |
 |---|---|---|
@@ -639,7 +639,7 @@ Estes funcions són les que permeten registrar **qui** ha fet un canvi i **des d
 
 ## 5. Estructures de control de flux
 
-El criteri RA5.g demana utilitzar estructures de control. PL/SQL té les tres famílies habituals: **condicionals** (`IF`, `CASE`), **repetitives** (`LOOP`, `WHILE`, `FOR`) i de **salt** (`EXIT`, `CONTINUE`, `GOTO`).
+El criteri RA5.e demana utilitzar estructures de control. PL/SQL té les tres famílies habituals: **condicionals** (`IF`, `CASE`), **repetitives** (`LOOP`, `WHILE`, `FOR`) i de **salt** (`EXIT`, `CONTINUE`, `GOTO`).
 
 ### 5.1 `IF`, `ELSIF` y `ELSE`
 
@@ -1257,7 +1257,7 @@ WHERE  justificada = 'N' AND fecha < DATE '2025-11-01';
 
 ### 8.1 Què és una funció i quan crear-la
 
-Una **funció d'usuari** és un subprograma emmagatzemat en la base de dades que **rep paràmetres i torna un únic valor**. El criteri RA5.f demana definir-les. Es crea una funció quan hi ha un càlcul que es repetix i que es vol escriure **una sola vegada**: la qualificació en text d'una nota, l'edat a partir d'una data, la mitjana d'un alumne.
+Una **funció d'usuari** és un subprograma emmagatzemat en la base de dades que **rep paràmetres i torna un únic valor**. El criteri RA5.e demana definir-les. Es crea una funció quan hi ha un càlcul que es repetix i que es vol escriure **una sola vegada**: la qualificació en text d'una nota, l'edat a partir d'una data, la mitjana d'un alumne.
 
 El seu gran avantatge sobre un procediment és que **es pot usar dins d'una consulta SQL**, com qualsevol funció del gestor:
 
@@ -1477,7 +1477,7 @@ END;
 | No hi ha manejador en este bloc | L'excepció **es propaga** al bloc exterior, i així successivament |
 | Cap bloc la tracta | L'error arriba al client: `ORA-xxxxx` |
 
-El criteri RA5.j demana utilitzar excepcions. N'hi ha tres classes:
+El criteri RA5.e demana utilitzar excepcions. N'hi ha tres classes:
 
 | Classe | Qui la llança | Exemple |
 |---|---|---|
@@ -2084,7 +2084,7 @@ S'executa **una vegada** al final. Si alguna cosa falla en qualsevol punt, es de
 
 ### 11.1 Què és un disparador i com es construïx
 
-Un **disparador** és un bloc PL/SQL guardat en la base de dades i associat a un **esdeveniment**. Ningú el crida: Oracle l'executa automàticament quan ocorre l'esdeveniment. És l'eina amb què s'implementen les regles d'integritat que el model lògic no pot declarar (RA6.h), l'auditoria i els valors calculats que s'han d'aplicar **sempre**, vinga el canvi d'on vinga (RA4.h).
+Un **disparador** és un bloc PL/SQL guardat en la base de dades i associat a un **esdeveniment**. Ningú el crida: Oracle l'executa automàticament quan ocorre l'esdeveniment. És l'eina amb què s'implementen les regles d'integritat que el model lògic no pot declarar (RA2.i), l'auditoria i els valors calculats que s'han d'aplicar **sempre**, vinga el canvi d'on vinga (RA5.d).
 
 ```text
 CREATE [OR REPLACE] TRIGGER nombre
@@ -2493,7 +2493,7 @@ En l'escenari 2, la consulta del disparador de fila falla tan bon punt es canvia
 > [!WARNING]
 > Desactivar un disparador **apaga la regla** que implementa. Es fa en càrregues massives controlades (i es reactiva i es **comprova** després), mai «perquè funcione». Un disparador desactivat en producció és una restricció d'integritat que ja no existix.
 
-Els disparadors no es limiten a les sentències DML. Oracle admet disparadors de **sistema**, que responen a esdeveniments de la base de dades o de la sessió (RA5.h: «esdeveniments i disparadors»):
+Els disparadors no es limiten a les sentències DML. Oracle admet disparadors de **sistema**, que responen a esdeveniments de la base de dades o de la sessió (RA5.e: «esdeveniments i disparadors»):
 
 | Categoria | Esdeveniment (exemple) | Ús típic |
 |---|---|---|
@@ -2784,7 +2784,7 @@ EXEC msdb.dbo.sp_add_jobserver   @job_name = N'resumen_nocturno';
 
 ### 13.1 Què és un paquet
 
-Un **paquet** agrupa subprogrames, constants, variables i tipus relacionats davall un mateix nom. És la unitat d'organització de PL/SQL (RA5.d, RA5.f): en lloc de vint procediments solts, un `pkg_secretaria` amb les operacions de la secretaria. Es compon de dues parts:
+Un **paquet** agrupa subprogrames, constants, variables i tipus relacionats davall un mateix nom. És la unitat d'organització de PL/SQL (RA5.e): en lloc de vint procediments solts, un `pkg_secretaria` amb les operacions de la secretaria. Es compon de dues parts:
 
 | Part | Què conté | Qui la veu |
 |---|---|---|
@@ -3176,4 +3176,4 @@ Idees que convé endur-se gravades:
 - [PostgreSQL: PL/pgSQL](https://www.postgresql.org/docs/current/plpgsql.html) y [`pg_cron`](https://github.com/citusdata/pg_cron).
 - [MySQL: Stored Objects](https://dev.mysql.com/doc/refman/8.4/en/stored-objects.html) y [MariaDB: Events](https://mariadb.com/kb/en/events/).
 - [Microsoft: Transact-SQL, disparadors i SQL Server Agent](https://learn.microsoft.com/sql/t-sql/).
-- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — ensenyaments mínims del mòdul 0484 Bases de dades (RA5, i els criteris RA4.d, RA4.h i RA6.h).
+- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — ensenyaments mínims del mòdul 0484 Bases de dades (RA5, i els criteris RA2.i, RA5.d, RA5.e).

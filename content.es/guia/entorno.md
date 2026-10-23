@@ -7,7 +7,7 @@ weight: 3
 
 Durante el curso usaremos dos sistemas gestores:
 
-| | Relacional (UD05 a UD09) | No relacional (UD10) |
+| | Relacional (UD05 a UD10) | No relacional (UD10 y UD11) |
 |---|---|---|
 | **SGBD** | Oracle AI Database 26ai Free | MongoDB Community Server 8.0 |
 | **Versión de referencia** | 23.26.x | 8.0.x |
@@ -138,7 +138,7 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` de `USER_TABLES` muestra las **estadísticas** del optimizador. Puede valer `NULL` hasta que Oracle las recopile. Para contar filas de verdad usa `COUNT(*)`.
 
-## 5. MongoDB Community Server 8.0 (UD10)
+## 5. MongoDB Community Server 8.0 (UD10 y UD11)
 
 ```bash
 docker run -d --name mongo8 -p 27017:27017 \
@@ -158,7 +158,7 @@ show dbs
 Como cliente gráfico usa **MongoDB Compass** con la cadena de conexión `mongodb://localhost:27017`.
 
 > [!CAUTION]
-> Estas instalaciones son **para el aula**. MongoDB arranca sin autenticación y las contraseñas de Oracle son de ejemplo. En la UD05 y en la UD10 veremos por qué un servidor de bases de datos nunca debe exponerse así en producción.
+> Estas instalaciones son **para el aula**. MongoDB arranca sin autenticación y las contraseñas de Oracle son de ejemplo. En la UD05 y en la UD11 veremos por qué un servidor de bases de datos nunca debe exponerse así en producción.
 
 ## 6. Problemas frecuentes
 

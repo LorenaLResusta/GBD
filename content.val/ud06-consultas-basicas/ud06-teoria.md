@@ -12,24 +12,24 @@ Consultar és l'operació més freqüent en qualsevol base de dades. En esta uni
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** carregat amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables), i mostren el resultat que has d'obtindre.
 
-{{< ra "RA3:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" "RA5:e" >}}
 
 ### Temporalització
 
-La unitat ocupa **23 hores d'aula** (12 de teoria i 11 de pràctica). És la unitat amb més hores del curs: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
+La unitat ocupa **14 hores d'aula** (6 de teoria i 8 de pràctica). És la primera unitat del RA4: ací s'adquirix la destresa amb `SELECT` que s'utilitzarà fins al final del mòdul.
 
-{{< sesiones unidad="UD06" horas="23" >}}
+{{< sesiones unidad="UD06" horas="14" >}}
 items:
-  - {h: 2, tipo: T, t: "Eines i sentència SELECT. Projecció, àlies, concatenació i DISTINCT", ref: "§1 i §2"}
+  - {h: 1, tipo: T, t: "Eines i sentència SELECT. Projecció, àlies, concatenació i DISTINCT", ref: "§1 i §2"}
   - {h: 1, tipo: P, t: "Primeres consultes i eines", ref: "Pràctica 6.1"}
-  - {h: 2, tipo: T, t: "Ordenació i selecció amb WHERE: comparació, LIKE i operadors lògics", ref: "§3 i §4 · laboratori de SELECT"}
-  - {h: 3, tipo: P, t: "Consultes per a secretaria", ref: "Pràctica 6.2"}
-  - {h: 2, tipo: T, t: "El valor NULL i la lògica de tres valors", ref: "§5 · simulador de lògica trivalent"}
-  - {h: 2, tipo: P, t: "Laboratori de valors nuls", ref: "Pràctica 6.3"}
+  - {h: 1, tipo: T, t: "Ordenació i selecció amb WHERE: comparació, LIKE i operadors lògics", ref: "§3 i §4 · laboratori de SELECT"}
+  - {h: 2, tipo: P, t: "Consultes per a secretaria", ref: "Pràctica 6.2"}
+  - {h: 1, tipo: T, t: "El valor NULL i la lògica de tres valors", ref: "§5 · simulador de lògica trivalent"}
+  - {h: 1, tipo: P, t: "Laboratori de valors nuls", ref: "Pràctica 6.3"}
   - {h: 1, tipo: T, t: "Limitar el nombre de files", ref: "§6"}
-  - {h: 3, tipo: T, t: "Funcions de fila (I): text, numèriques i de data", ref: "§7.1 a §7.3"}
-  - {h: 2, tipo: T, t: "Funcions de fila (II): conversió, CASE, DECODE i expressions regulars", ref: "§7.4 a §7.6"}
-  - {h: 3, tipo: P, t: "Funcions per a informes", ref: "Pràctica 6.4"}
+  - {h: 1, tipo: T, t: "Funcions de fila (I): text, numèriques i de data", ref: "§7.1 a §7.3"}
+  - {h: 1, tipo: T, t: "Funcions de fila (II): conversió, CASE, DECODE i expressions regulars", ref: "§7.4 a §7.6"}
+  - {h: 2, tipo: P, t: "Funcions per a informes", ref: "Pràctica 6.4"}
   - {h: 1, tipo: P, t: "Validar dades amb SQL", ref: "Pràctica 6.5"}
   - {h: 1, tipo: P, t: "Consultes del dia a dia en EduGest", ref: "Projecte EduGest-6"}
 autonomo:

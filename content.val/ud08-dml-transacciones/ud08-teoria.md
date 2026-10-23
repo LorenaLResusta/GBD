@@ -16,7 +16,7 @@ La unitat reutilitza intensament el que s'ha après a la UD07: dins d'un `UPDATE
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** carregat amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables) i sobre les seues dades del curs 2025-26 (32 alumnes, 143 matrícules, 46 faltes). Cada exemple indica el nombre de files afectades que has d'obtindre.
 
-{{< ra "RA4:a,b,c,d,e,f,g,h" "RA6:f" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
 
 ### Objectius d'aprenentatge
 
@@ -34,18 +34,17 @@ En acabar esta unitat seràs capaç de:
 
 ### Temporalització
 
-La unitat ocupa **6 hores d'aula** (3 de teoria i 3 de pràctica). És una unitat curta
-en relació amb la seua importància professional: aprofita les sessions
+La unitat ocupa **16 hores d'aula** (8 de teoria i 8 de pràctica). És la base del RA5 (el de més pes del mòdul): aprofita les sessions
 pràctiques, que requerixen **dues sessions d'Oracle obertes alhora**.
 
-{{< sesiones unidad="UD08" horas="6" >}}
+{{< sesiones unidad="UD08" horas="16" >}}
 items:
-  - {h: 1, tipo: T, t: "DML: INSERT, UPDATE, DELETE i TRUNCATE", ref: "§1 a §4"}
-  - {h: 1, tipo: P, t: "Altes, canvis i baixes en EduGest", ref: "Pràctica 8.1"}
-  - {h: 1, tipo: T, t: "INSERT … SELECT, MERGE, transaccions, ACID i SAVEPOINT", ref: "§5 a §7 · laboratori de transaccions"}
-  - {h: 1, tipo: P, t: "Laboratori de transaccions", ref: "Pràctica 8.4"}
-  - {h: 1, tipo: T, t: "Concurrència, bloquejos, interbloquejos i restriccions diferides", ref: "§8 a §10"}
-  - {h: 1, tipo: P, t: "Dues sessions, una dada: concurrència i bloquejos", ref: "Pràctica 8.5"}
+  - {h: 2, tipo: T, t: "DML: INSERT, UPDATE, DELETE i TRUNCATE", ref: "§1 a §4"}
+  - {h: 2, tipo: P, t: "Altes, canvis i baixes en EduGest", ref: "Pràctica 8.1"}
+  - {h: 3, tipo: T, t: "INSERT … SELECT, MERGE, transaccions, ACID i SAVEPOINT", ref: "§5 a §7 · laboratori de transaccions"}
+  - {h: 3, tipo: P, t: "Laboratori de transaccions", ref: "Pràctica 8.4"}
+  - {h: 3, tipo: T, t: "Concurrència, bloquejos, interbloquejos i restriccions diferides", ref: "§8 a §10"}
+  - {h: 3, tipo: P, t: "Dues sessions, una dada: concurrència i bloquejos", ref: "Pràctica 8.5"}
 autonomo:
   - "Pràctiques 8.2 i 8.6 (còpies, històrics i càrrega de notes amb MERGE)"
   - "Pràctica 8.3 (modificacions amb subconsultes)"
@@ -144,7 +143,7 @@ Si el nombre de files afectades **no coincidix** amb el de la comprovació prèv
 
 ### 1.4 Eines
 
-El criteri RA4.a demana identificar les **eines i sentències** per a modificar dades. A Oracle les habituals són:
+El criteri RA5.a demana identificar les **eines i sentències** per a modificar dades. A Oracle les habituals són:
 
 | Eina | Com es modifiquen les dades | Què has de vigilar |
 |---|---|---|
@@ -766,7 +765,7 @@ La clau aliena d'`IMPARTE` **no** té regla d'esborrat, així que protegix el pr
 
 ## 5. Inserir des de consultes i `MERGE`
 
-El criteri RA4.c demana **incloure en una taula la informació resultant de l'execució d'una consulta**. És una operació quotidiana: còpies de seguretat, històrics, taules de resum per a informes i càrregues de dades que arriben d'un altre sistema.
+El criteri RA5.c demana **incloure en una taula la informació resultant de l'execució d'una consulta**. És una operació quotidiana: còpies de seguretat, històrics, taules de resum per a informes i càrregues de dades que arriben d'un altre sistema.
 
 ### 5.1 `INSERT … SELECT`
 
@@ -1308,7 +1307,7 @@ Una consulta que porta minuts executant-se necessita veure les dades **tal com e
 
 ## 8. Concurrència i bloquejos
 
-A EduGest treballen alhora secretaria, el professorat posant notes, els tutors registrant faltes i cap d'estudis traient informes. El criteri RA4.g demana **identificar els efectes de les distintes polítiques de bloqueig**; el RA4.h, **adoptar mesures per a mantindre la integritat i la consistència**. Les dues coses s'aprenen provocant els problemes a propòsit.
+A EduGest treballen alhora secretaria, el professorat posant notes, els tutors registrant faltes i cap d'estudis traient informes. El criteri RA5.h demana **identificar els efectes de les distintes polítiques de bloqueig**; el RA5.d, **adoptar mesures per a mantindre la integritat i la consistència**. Les dues coses s'aprenen provocant els problemes a propòsit.
 
 ### 8.1 Els quatre problemes de l'accés concurrent
 
@@ -1537,7 +1536,7 @@ Repeteix l'escenari **«Interbloqueig (ORA-00060)»** del [laboratori de transac
 
 ## 10. Integritat referencial i restriccions diferides
 
-El criteri RA6.f (*aplicar regles d'integritat*) i el RA4.h (*mantindre la integritat i la consistència*) es creuen en este apartat: les restriccions que vam declarar a la UD05 actuen **durant** les modificacions d'esta unitat.
+El criteri RA2.g (*aplicar regles d'integritat*) i el RA5.d (*mantindre la integritat i la consistència*) es creuen en este apartat: les restriccions que vam declarar a la UD05 actuen **durant** les modificacions d'esta unitat.
 
 ### 10.1 Quan comprova Oracle una restricció
 
@@ -1627,7 +1626,7 @@ COMMIT;
 
 ## 11. Guions de manteniment
 
-El criteri RA4.d demana **dissenyar guions de sentències per a dur a terme tasques complexes**. Un guió de manteniment és un fitxer `.sql` que una persona executa en un servidor real: ha de poder-se **llegir, revisar, repetir i auditar**.
+El criteri RA5.e demana **dissenyar guions de sentències per a dur a terme tasques complexes**. Un guió de manteniment és un fitxer `.sql` que una persona executa en un servidor real: ha de poder-se **llegir, revisar, repetir i auditar**.
 
 ### 11.1 Estructura d'un guió professional
 

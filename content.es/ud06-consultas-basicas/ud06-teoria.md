@@ -12,24 +12,24 @@ Consultar es la operación más frecuente en cualquier base de datos. En esta un
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargado con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables), y muestran el resultado que debes obtener.
 
-{{< ra "RA3:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" "RA5:e" >}}
 
 ### Temporalización
 
-La unidad ocupa **23 horas de aula** (12 de teoría y 11 de práctica). Es la unidad con más horas del curso: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
+La unidad ocupa **14 horas de aula** (6 de teoría y 8 de práctica). Es la primera unidad del RA4: aquí se adquiere la destreza con `SELECT` que se utilizará hasta el final del módulo.
 
-{{< sesiones unidad="UD06" horas="23" >}}
+{{< sesiones unidad="UD06" horas="14" >}}
 items:
-  - {h: 2, tipo: T, t: "Herramientas y sentencia SELECT. Proyección, alias, concatenación y DISTINCT", ref: "§1 y §2"}
+  - {h: 1, tipo: T, t: "Herramientas y sentencia SELECT. Proyección, alias, concatenación y DISTINCT", ref: "§1 y §2"}
   - {h: 1, tipo: P, t: "Primeras consultas y herramientas", ref: "Práctica 6.1"}
-  - {h: 2, tipo: T, t: "Ordenación y selección con WHERE: comparación, LIKE y operadores lógicos", ref: "§3 y §4 · laboratorio de SELECT"}
-  - {h: 3, tipo: P, t: "Consultas para secretaría", ref: "Práctica 6.2"}
-  - {h: 2, tipo: T, t: "El valor NULL y la lógica de tres valores", ref: "§5 · simulador de lógica trivalente"}
-  - {h: 2, tipo: P, t: "Laboratorio de valores nulos", ref: "Práctica 6.3"}
+  - {h: 1, tipo: T, t: "Ordenación y selección con WHERE: comparación, LIKE y operadores lógicos", ref: "§3 y §4 · laboratorio de SELECT"}
+  - {h: 2, tipo: P, t: "Consultas para secretaría", ref: "Práctica 6.2"}
+  - {h: 1, tipo: T, t: "El valor NULL y la lógica de tres valores", ref: "§5 · simulador de lógica trivalente"}
+  - {h: 1, tipo: P, t: "Laboratorio de valores nulos", ref: "Práctica 6.3"}
   - {h: 1, tipo: T, t: "Limitar el número de filas", ref: "§6"}
-  - {h: 3, tipo: T, t: "Funciones de fila (I): texto, numéricas y de fecha", ref: "§7.1 a §7.3"}
-  - {h: 2, tipo: T, t: "Funciones de fila (II): conversión, CASE, DECODE y expresiones regulares", ref: "§7.4 a §7.6"}
-  - {h: 3, tipo: P, t: "Funciones para informes", ref: "Práctica 6.4"}
+  - {h: 1, tipo: T, t: "Funciones de fila (I): texto, numéricas y de fecha", ref: "§7.1 a §7.3"}
+  - {h: 1, tipo: T, t: "Funciones de fila (II): conversión, CASE, DECODE y expresiones regulares", ref: "§7.4 a §7.6"}
+  - {h: 2, tipo: P, t: "Funciones para informes", ref: "Práctica 6.4"}
   - {h: 1, tipo: P, t: "Validar datos con SQL", ref: "Práctica 6.5"}
   - {h: 1, tipo: P, t: "Consultas del día a día en EduGest", ref: "Proyecto EduGest-6"}
 autonomo:

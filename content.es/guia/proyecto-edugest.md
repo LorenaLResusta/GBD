@@ -41,7 +41,8 @@ weight: 2
 | UD07 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
 | UD08 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
 | UD09 | Lógica en el servidor: funciones, procedimientos, triggers de auditoría y tarea programada. | Paquete PL/SQL + pruebas |
-| UD10 | Versión documental del expediente del alumnado en MongoDB y comparación con el modelo relacional. | Colección + consultas + informe comparativo |
+| UD10 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
+| UD11 | Ampliación: versión documental del expediente del alumnado en MongoDB y comparación con el modelo relacional. | Colección + consultas + informe comparativo |
 
 ## 3. Modelo de referencia
 
@@ -134,7 +135,7 @@ erDiagram
 
 ### Restricciones que no recoge el diagrama
 
-Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en la UD04 (RA6.h) y se implementan en la UD09 con PL/SQL:
+Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en la UD04 (RA2.i) y se implementan en la UD09 con PL/SQL:
 
 1. El jefe de un departamento debe **pertenecer** a ese departamento.
 2. Un alumno solo puede matricularse en módulos del **ciclo de su grupo**, salvo autorización.
@@ -148,9 +149,9 @@ Los scripts están escritos para **Oracle AI Database 26ai Free**. También func
 
 | Script | Contenido | Se ejecuta como |
 |---|---|---|
-| [edugest_00_usuario.sql](recursos/sql/edugest_00_usuario.sql) | Crea el usuario/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
-| [edugest_01_esquema.sql](recursos/sql/edugest_01_esquema.sql) | Tablas, restricciones, índices y comentarios | `EDUGEST` |
-| [edugest_02_datos.sql](recursos/sql/edugest_02_datos.sql) | Datos de ejemplo del curso 2025-26 | `EDUGEST` |
+| {{< recurso "sql/edugest_00_usuario.sql" >}} | Crea el usuario/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
+| {{< recurso "sql/edugest_01_esquema.sql" >}} | Tablas, restricciones, índices y comentarios | `EDUGEST` |
+| {{< recurso "sql/edugest_02_datos.sql" >}} | Datos de ejemplo del curso 2025-26 | `EDUGEST` |
 
 ```bash
 # Desde la carpeta donde hayas descargado los scripts (SQLcl)

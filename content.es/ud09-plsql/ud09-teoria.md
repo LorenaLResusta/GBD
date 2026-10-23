@@ -16,35 +16,35 @@ La unidad avanza en cinco pasos: primero qué formas hay de automatizar y con qu
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables) cargados (32 alumnos, 143 matrículas, 46 faltas) y usan la sintaxis de **Oracle AI Database 26ai Free**. Cada ejemplo indica la salida que debes obtener. Cuando algo es propio de un gestor concreto se señala con una etiqueta o una nota.
 
-{{< ra "RA5:a,b,c,d,e,f,g,h,i,j" "RA4:d,h" "RA6:h" >}}
+{{< ra "RA2:i" "RA5:d,e" >}}
 
 ### Objetivos de aprendizaje
 
 Al terminar esta unidad serás capaz de:
 
-- Distinguir una consulta, un guion, un bloque anónimo, una función, un procedimiento, un paquete, un disparador y una tarea programada, y elegir la forma de automatización adecuada para cada necesidad (RA5.a).
-- Editar y ejecutar guiones con SQL Developer, SQLcl o SQL\*Plus, usando variables de sustitución y la salida de `DBMS_OUTPUT` (RA5.b, RA5.c).
+- Distinguir una consulta, un guion, un bloque anónimo, una función, un procedimiento, un paquete, un disparador y una tarea programada, y elegir la forma de automatización adecuada para cada necesidad (RA5.e).
+- Editar y ejecutar guiones con SQL Developer, SQLcl o SQL\*Plus, usando variables de sustitución y la salida de `DBMS_OUTPUT` (RA5.e).
 - Escribir bloques PL/SQL con variables, constantes y tipos `%TYPE` y `%ROWTYPE`, y distinguir las variables de sustitución del cliente de las variables PL/SQL del servidor.
-- Aplicar estructuras de control de flujo (`IF`, `CASE`, `LOOP`, `WHILE`, `FOR`) y las funciones predefinidas del gestor (RA5.e, RA5.g).
-- Recorrer conjuntos de filas con cursores implícitos, explícitos, de bucle `FOR` y con parámetros (RA5.i).
-- Definir funciones y procedimientos de usuario con parámetros `IN`, `OUT` e `IN OUT` (RA5.f).
-- Tratar errores con excepciones predefinidas y propias, `PRAGMA EXCEPTION_INIT` y `RAISE_APPLICATION_ERROR` (RA5.j).
-- Implementar con disparadores la auditoría de cambios y las reglas de integridad que el modelo lógico no puede declarar, y resolver el error de tabla mutante con un disparador compuesto (RA5.h, RA4.h, RA6.h).
-- Programar tareas periódicas con `DBMS_SCHEDULER`, agrupar subprogramas en paquetes y reconocer los equivalentes en MySQL/MariaDB, PostgreSQL y SQL Server (RA5.a, RA5.d, RA4.d).
+- Aplicar estructuras de control de flujo (`IF`, `CASE`, `LOOP`, `WHILE`, `FOR`) y las funciones predefinidas del gestor (RA5.e).
+- Recorrer conjuntos de filas con cursores implícitos, explícitos, de bucle `FOR` y con parámetros (RA5.e).
+- Definir funciones y procedimientos de usuario con parámetros `IN`, `OUT` e `IN OUT` (RA5.e).
+- Tratar errores con excepciones predefinidas y propias, `PRAGMA EXCEPTION_INIT` y `RAISE_APPLICATION_ERROR` (RA5.e).
+- Implementar con disparadores la auditoría de cambios y las reglas de integridad que el modelo lógico no puede declarar, y resolver el error de tabla mutante con un disparador compuesto (RA2.i, RA5.d, RA5.e).
+- Programar tareas periódicas con `DBMS_SCHEDULER`, agrupar subprogramas en paquetes y reconocer los equivalentes en MySQL/MariaDB, PostgreSQL y SQL Server (RA5.e).
 
 ### Temporalización
 
-La unidad ocupa **7 horas de aula** (4 de teoría y 3 de práctica). Es la unidad con más código del curso: conviene escribirlo a mano y recompilarlo, no copiarlo y pegarlo. Las prácticas largas (la tabla mutante, las tareas programadas, el paquete de secretaría y el proyecto) se completan fuera del horario de aula.
+La unidad ocupa **15 horas de aula** (9 de teoría y 6 de práctica). Es la unidad con más código del curso y, junto con la UD08, desarrolla el RA5: conviene escribirlo a mano y recompilarlo, no copiarlo y pegarlo. Las prácticas largas (la tabla mutante, las tareas programadas, el paquete de secretaría y el proyecto) se completan fuera del horario de aula.
 
-{{< sesiones unidad="UD09" horas="7" >}}
+{{< sesiones unidad="UD09" horas="15" >}}
 items:
-  - {h: 1, tipo: T, t: "Formas de automatizar, herramientas, estructura del bloque, variables, tipos y `DBMS_OUTPUT`", ref: "§1 a §4"}
-  - {h: 1, tipo: P, t: "Primeros bloques: el expediente de un alumno", ref: "Práctica 9.1"}
-  - {h: 1, tipo: T, t: "Control de flujo, funciones del gestor, cursores y funciones de usuario", ref: "§5 a §8 · laboratorio de bloques"}
-  - {h: 1, tipo: P, t: "Biblioteca de funciones de EduGest", ref: "Práctica 9.2"}
-  - {h: 1, tipo: T, t: "Excepciones y procedimientos almacenados", ref: "§9 y §10"}
-  - {h: 1, tipo: P, t: "Matrícula con excepciones (la 9.4, boletines con cursores, se termina en casa)", ref: "Prácticas 9.3 y 9.4"}
-  - {h: 1, tipo: T, t: "Disparadores, tareas programadas con `DBMS_SCHEDULER` y paquetes", ref: "§11 a §14 · simulador de disparadores"}
+  - {h: 2, tipo: T, t: "Formas de automatizar, herramientas, estructura del bloque, variables, tipos y `DBMS_OUTPUT`", ref: "§1 a §4"}
+  - {h: 2, tipo: P, t: "Primeros bloques: el expediente de un alumno", ref: "Práctica 9.1"}
+  - {h: 2, tipo: T, t: "Control de flujo, funciones del gestor, cursores y funciones de usuario", ref: "§5 a §8 · laboratorio de bloques"}
+  - {h: 2, tipo: P, t: "Biblioteca de funciones de EduGest", ref: "Práctica 9.2"}
+  - {h: 3, tipo: T, t: "Excepciones y procedimientos almacenados", ref: "§9 y §10"}
+  - {h: 2, tipo: P, t: "Matrícula con excepciones (la 9.4, boletines con cursores, se termina en casa)", ref: "Prácticas 9.3 y 9.4"}
+  - {h: 2, tipo: T, t: "Disparadores, tareas programadas con `DBMS_SCHEDULER` y paquetes", ref: "§11 a §14 · simulador de disparadores"}
 autonomo:
   - "Práctica 9.4 (cursores: boletines e informes), si no se ha terminado en el aula"
   - "Práctica 9.5 (disparadores de integridad y auditoría)"
@@ -90,7 +90,7 @@ La UD03 ya identificó las reglas de negocio de EduGest que el modelo lógico no
 
 ### 1.2 Formas de automatizar tareas
 
-El criterio RA5.a pide identificar las formas de automatizar una tarea en un gestor. En Oracle son estas:
+El criterio RA5.e pide identificar las formas de automatizar una tarea en un gestor. En Oracle son estas:
 
 | Forma | Qué es | Cuándo se ejecuta | Ejemplo en EduGest |
 |---|---|---|---|
@@ -179,7 +179,7 @@ PL/SQL es propio de Oracle. Cada gestor tiene su lenguaje: PostgreSQL usa **PL/p
 
 ### 2.1 Herramientas para editar guiones
 
-El criterio RA5.c pide identificar las herramientas disponibles. Un guion PL/SQL es texto: se puede escribir en cualquier editor, pero las herramientas especializadas aportan resaltado, ejecución directa y acceso al diccionario de datos.
+El criterio RA5.e pide identificar las herramientas disponibles. Un guion PL/SQL es texto: se puede escribir en cualquier editor, pero las herramientas especializadas aportan resaltado, ejecución directa y acceso al diccionario de datos.
 
 | Herramienta | Tipo | Qué aporta | Cuándo usarla |
 |---|---|---|---|
@@ -194,7 +194,7 @@ El criterio RA5.c pide identificar las herramientas disponibles. Un guion PL/SQL
 
 ### 2.2 Métodos de ejecución de guiones
 
-El criterio RA5.b pide reconocer los métodos de ejecución de guiones. Un guion puede ejecutarse de varias maneras:
+El criterio RA5.e pide reconocer los métodos de ejecución de guiones. Un guion puede ejecutarse de varias maneras:
 
 | Método | Dónde | Qué hace |
 |---|---|---|
@@ -639,7 +639,7 @@ Estas funciones son las que permiten registrar **quién** hizo un cambio y **des
 
 ## 5. Estructuras de control de flujo
 
-El criterio RA5.g pide utilizar estructuras de control. PL/SQL tiene las tres familias habituales: **condicionales** (`IF`, `CASE`), **repetitivas** (`LOOP`, `WHILE`, `FOR`) y de **salto** (`EXIT`, `CONTINUE`, `GOTO`).
+El criterio RA5.e pide utilizar estructuras de control. PL/SQL tiene las tres familias habituales: **condicionales** (`IF`, `CASE`), **repetitivas** (`LOOP`, `WHILE`, `FOR`) y de **salto** (`EXIT`, `CONTINUE`, `GOTO`).
 
 ### 5.1 `IF`, `ELSIF` y `ELSE`
 
@@ -1257,7 +1257,7 @@ WHERE  justificada = 'N' AND fecha < DATE '2025-11-01';
 
 ### 8.1 Qué es una función y cuándo crearla
 
-Una **función de usuario** es un subprograma almacenado en la base de datos que **recibe parámetros y devuelve un único valor**. El criterio RA5.f pide definirlas. Se crea una función cuando hay un cálculo que se repite y que se quiere escribir **una sola vez**: la calificación en texto de una nota, la edad a partir de una fecha, la media de un alumno.
+Una **función de usuario** es un subprograma almacenado en la base de datos que **recibe parámetros y devuelve un único valor**. El criterio RA5.e pide definirlas. Se crea una función cuando hay un cálculo que se repite y que se quiere escribir **una sola vez**: la calificación en texto de una nota, la edad a partir de una fecha, la media de un alumno.
 
 Su gran ventaja sobre un procedimiento es que **se puede usar dentro de una consulta SQL**, como cualquier función del gestor:
 
@@ -1477,7 +1477,7 @@ END;
 | No hay manejador en este bloque | La excepción **se propaga** al bloque exterior, y así sucesivamente |
 | Ningún bloque la trata | El error llega al cliente: `ORA-xxxxx` |
 
-El criterio RA5.j pide utilizar excepciones. Existen tres clases:
+El criterio RA5.e pide utilizar excepciones. Existen tres clases:
 
 | Clase | Quién la lanza | Ejemplo |
 |---|---|---|
@@ -2084,7 +2084,7 @@ Se ejecuta **una vez** al final. Si algo falla en cualquier punto, se deshace to
 
 ### 11.1 Qué es un disparador y cómo se construye
 
-Un **disparador** es un bloque PL/SQL guardado en la base de datos y asociado a un **evento**. Nadie lo llama: Oracle lo ejecuta automáticamente cuando ocurre el evento. Es la herramienta con la que se implementan las reglas de integridad que el modelo lógico no puede declarar (RA6.h), la auditoría y los valores calculados que deben aplicarse **siempre**, venga el cambio de donde venga (RA4.h).
+Un **disparador** es un bloque PL/SQL guardado en la base de datos y asociado a un **evento**. Nadie lo llama: Oracle lo ejecuta automáticamente cuando ocurre el evento. Es la herramienta con la que se implementan las reglas de integridad que el modelo lógico no puede declarar (RA2.i), la auditoría y los valores calculados que deben aplicarse **siempre**, venga el cambio de donde venga (RA5.d).
 
 ```text
 CREATE [OR REPLACE] TRIGGER nombre
@@ -2493,7 +2493,7 @@ En el escenario 2, la consulta del disparador de fila falla en cuanto se cambia 
 > [!WARNING]
 > Desactivar un disparador **apaga la regla** que implementa. Se hace en cargas masivas controladas (y se reactiva y se **comprueba** después), nunca «para que funcione». Un disparador desactivado en producción es una restricción de integridad que ya no existe.
 
-Los disparadores no se limitan a las sentencias DML. Oracle admite disparadores de **sistema**, que responden a eventos de la base de datos o de la sesión (RA5.h: «eventos y disparadores»):
+Los disparadores no se limitan a las sentencias DML. Oracle admite disparadores de **sistema**, que responden a eventos de la base de datos o de la sesión (RA5.e: «eventos y disparadores»):
 
 | Categoría | Evento (ejemplo) | Uso típico |
 |---|---|---|
@@ -2784,7 +2784,7 @@ EXEC msdb.dbo.sp_add_jobserver   @job_name = N'resumen_nocturno';
 
 ### 13.1 Qué es un paquete
 
-Un **paquete** agrupa subprogramas, constantes, variables y tipos relacionados bajo un mismo nombre. Es la unidad de organización de PL/SQL (RA5.d, RA5.f): en lugar de veinte procedimientos sueltos, un `pkg_secretaria` con las operaciones de la secretaría. Se compone de dos partes:
+Un **paquete** agrupa subprogramas, constantes, variables y tipos relacionados bajo un mismo nombre. Es la unidad de organización de PL/SQL (RA5.e): en lugar de veinte procedimientos sueltos, un `pkg_secretaria` con las operaciones de la secretaría. Se compone de dos partes:
 
 | Parte | Qué contiene | Quién la ve |
 |---|---|---|
@@ -3176,4 +3176,4 @@ Ideas que conviene llevarse grabadas:
 - [PostgreSQL: PL/pgSQL](https://www.postgresql.org/docs/current/plpgsql.html) y [`pg_cron`](https://github.com/citusdata/pg_cron).
 - [MySQL: Stored Objects](https://dev.mysql.com/doc/refman/8.4/en/stored-objects.html) y [MariaDB: Events](https://mariadb.com/kb/en/events/).
 - [Microsoft: Transact-SQL, disparadores y SQL Server Agent](https://learn.microsoft.com/sql/t-sql/).
-- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — enseñanzas mínimas del módulo 0484 Bases de datos (RA5, y los criterios RA4.d, RA4.h y RA6.h).
+- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — enseñanzas mínimas del módulo 0484 Bases de datos (RA5, y los criterios RA2.i, RA5.d, RA5.e).

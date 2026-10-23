@@ -6,17 +6,17 @@ bookToc: true
 
 # UD01 · Prácticas
 
-{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" >}}
+{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
 | [1.1 De la hoja de cálculo al SGBD](#práctica-11--de-la-hoja-de-cálculo-al-sgbd) | Guiada | ●○○ | RA1.a, RA1.d |
-| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e, RA2.a |
+| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e, RA3.a |
 | [1.3 Elegir un SGBD para cada caso](#práctica-13--elegir-un-sgbd-para-cada-caso) | Autónoma | ●●○ | RA1.b, RA1.f |
-| [1.4 Diseño de la distribución de datos](#práctica-14--diseño-de-la-distribución-de-datos) | Autónoma | ●●○ | RA1.c, RA1.g, RA1.h |
-| [1.5 Auditoría de protección de datos](#práctica-15--auditoría-de-protección-de-datos) | Reto | ●●● | RA1.i |
-| [1.6 De los datos a las decisiones](#práctica-16--de-los-datos-a-las-decisiones) | Autónoma | ●○○ | RA1.j |
-| [Proyecto EduGest · UD01](#proyecto-edugest--ud01-informe-de-análisis) | Proyecto | ●●○ | RA1.d, RA1.i |
+| [1.4 Diseño de la distribución de datos](#práctica-14--diseño-de-la-distribución-de-datos) | Autónoma | ●●○ | RA1.c, Ampliación |
+| [1.5 Auditoría de protección de datos](#práctica-15--auditoría-de-protección-de-datos) | Reto | ●●● | Ampliación |
+| [1.6 De los datos a las decisiones](#práctica-16--de-los-datos-a-las-decisiones) | Autónoma | ●○○ | Ampliación |
+| [Proyecto EduGest · UD01](#proyecto-edugest--ud01-informe-de-análisis) | Proyecto | ●●○ | RA1.d, Ampliación |
 
 ---
 
@@ -105,7 +105,7 @@ Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparez
 
 ## Práctica 1.2 · Primer contacto con Oracle: dentro de un SGBD
 
-{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e · RA2: a, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
+{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e · RA3: a, g, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
 
 #### Objetivo
 
@@ -303,7 +303,7 @@ Añade un caso E propuesto por ti, a partir de una empresa real de tu entorno (p
 
 ## Práctica 1.4 · Diseño de la distribución de datos
 
-{{< practica num="1.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA1: c, g, h" sgbd="Papel o draw.io (SQL conceptual)" entrega="Documento con el diseño" >}}
+{{< practica num="1.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA1: c · Ampliación" sgbd="Papel o draw.io (SQL conceptual)" entrega="Documento con el diseño" >}}
 
 #### Objetivo
 
@@ -349,7 +349,7 @@ Investiga qué es el **sharding** en MongoDB y qué papel tiene la *clave de fra
 
 ## Práctica 1.5 · Auditoría de protección de datos
 
-{{< practica num="1.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA1: i · RA6: h" sgbd="Documentación (RGPD, LOPDGDD, guías de la AEPD)" entrega="Informe de auditoría + defensa oral (5 min)" >}}
+{{< practica num="1.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA2: i · Ampliación" sgbd="Documentación (RGPD, LOPDGDD, guías de la AEPD)" entrega="Informe de auditoría + defensa oral (5 min)" >}}
 
 #### Objetivo
 
@@ -398,7 +398,7 @@ Diseña cómo **anonimizarías** los datos de los antiguos alumnos para poder se
 
 ## Práctica 1.6 · De los datos a las decisiones
 
-{{< practica num="1.6" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA1: j" sgbd="Hoja de cálculo (tablas dinámicas)" entrega="Hoja de cálculo + 3 conclusiones" >}}
+{{< practica num="1.6" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="Ampliación" sgbd="Hoja de cálculo (tablas dinámicas)" entrega="Hoja de cálculo + 3 conclusiones" >}}
 
 #### Objetivo
 
@@ -431,7 +431,7 @@ La jefatura de estudios quiere saber si el porcentaje de aprobados en *Bases de 
 
 ## Proyecto EduGest · UD01: informe de análisis
 
-{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f, i" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
+{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f · Ampliación" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
 
 #### Objetivo
 

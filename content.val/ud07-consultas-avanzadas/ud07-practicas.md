@@ -6,18 +6,18 @@ bookToc: true
 
 # UD07 · Pràctiques
 
-{{< ra "RA3:a,c,d,e,f,g,h" "RA2:f" >}}
+{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [7.1 Consultes resum](#pràctica-71--consultes-resum) | Guiada | ●○○ | RA3.e |
-| [7.2 Composicions pas a pas](#pràctica-72--composicions-pas-a-pas) | Guiada | ●●○ | RA3.c, RA3.d |
-| [7.3 Informes per a cap d'estudis](#pràctica-73--informes-per-a-cap-destudis) | Autònoma | ●●○ | RA3.c, RA3.d, RA3.e |
-| [7.4 Subconsultes](#pràctica-74--subconsultes) | Autònoma | ●●○ | RA3.f |
-| [7.5 Múltiples seleccions i vistes](#pràctica-75--múltiples-seleccions-i-vistes) | Autònoma | ●●○ | RA3.g, RA2.f |
-| [7.6 Optimització: mesurar abans i després](#pràctica-76--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA3.h |
-| [7.7 Repte: el quadre de comandament](#pràctica-77--repte-el-quadre-de-comandament) | Repte | ●●● | RA3.c-h |
-| [Projecte EduGest · UD07](#projecte-edugest--ud07-informes) | Projecte | ●●● | RA3 complet |
+| [7.1 Consultes resum](#pràctica-71--consultes-resum) | Guiada | ●○○ | RA4.c |
+| [7.2 Composicions pas a pas](#pràctica-72--composicions-pas-a-pas) | Guiada | ●●○ | RA4.d, RA4.e |
+| [7.3 Informes per a cap d'estudis](#pràctica-73--informes-per-a-cap-destudis) | Autònoma | ●●○ | RA4.c-e |
+| [7.4 Subconsultes](#pràctica-74--subconsultes) | Autònoma | ●●○ | RA4.f |
+| [7.5 Múltiples seleccions i vistes](#pràctica-75--múltiples-seleccions-i-vistes) | Autònoma | ●●○ | RA3.h, RA4.f |
+| [7.6 Optimització: mesurar abans i després](#pràctica-76--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA4.g |
+| [7.7 Repte: el quadre de comandament](#pràctica-77--repte-el-quadre-de-comandament) | Repte | ●●● | RA4.c-g |
+| [Projecte EduGest · UD07](#projecte-edugest--ud07-informes) | Projecte | ●●● | RA4 complet |
 
 > [!IMPORTANT]
 > Treballa sobre **EDUGEST amb les dades originals** (scripts 01 i 02) i amb `ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY';`. Intenta cada consulta abans d'obrir la solució; com a mínim, comprova que obtens el **mateix nombre de files**.
@@ -26,7 +26,7 @@ bookToc: true
 
 ## Pràctica 7.1 · Consultes resum
 
-{{< practica num="7.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA3: e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
+{{< practica num="7.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
 
 #### Objectiu
 
@@ -174,7 +174,7 @@ Repeteix el pas 2 afegint `ROLLUP`: `GROUP BY ROLLUP(localidad)`. Quina fila nov
 
 ## Pràctica 7.2 · Composicions pas a pas
 
-{{< practica num="7.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: c, d" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respostes" >}}
+{{< practica num="7.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respostes" >}}
 
 #### Objectiu
 
@@ -311,7 +311,7 @@ Construir composicions de diverses taules seguint el camí de claus alienes, i d
 
 ## Pràctica 7.3 · Informes per a cap d'estudis
 
-{{< practica num="7.3" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA3: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentat" >}}
+{{< practica num="7.3" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA4: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentat" >}}
 
 #### Objectiu
 
@@ -363,7 +363,7 @@ Resoldre de forma autònoma consultes de diverses taules, decidint el tipus de c
 
 ## Pràctica 7.4 · Subconsultes
 
-{{< practica num="7.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA3: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
+{{< practica num="7.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
 
 #### Enunciat
 
@@ -403,7 +403,7 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ## Pràctica 7.5 · Múltiples seleccions i vistes
 
-{{< practica num="7.5" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA3: g · RA2: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
+{{< practica num="7.5" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA3: h · RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_5.sql" >}}
 
 #### Enunciat
 
@@ -427,7 +427,7 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ## Pràctica 7.6 · Optimització: mesurar abans i després
 
-{{< practica num="7.6" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA3: h" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
+{{< practica num="7.6" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
 
 #### Objectiu
 
@@ -538,7 +538,7 @@ Afig `/*+ FULL(ap) */` just després de `SELECT` en la consulta 1 amb índex i c
 
 ## Pràctica 7.7 · Repte: el quadre de comandament
 
-{{< practica num="7.7" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA3: c, d, e, f, g, h" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
+{{< practica num="7.7" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
 
 #### Enunciat
 
@@ -567,7 +567,7 @@ La direcció vol un **quadre de comandament** amb una sola consulta per indicado
 
 ## Projecte EduGest · UD07: informes
 
-{{< practica num="EduGest-7" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA3: a-h · RA2: f" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
+{{< practica num="EduGest-7" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA3: h · RA4: a, b, c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="edugest/06_informes.sql + 07_vistas_informes.sql + docs/07-optimizacion.md" >}}
 
 #### Enunciat
 

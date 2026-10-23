@@ -15,25 +15,25 @@ Fins ara hem **dissenyat**. En esta unitat **implementem**: convertim l'esquema 
 
 Tots els exemples usen **Oracle AI Database 26ai Free**. Quan una característica siga pròpia d'Oracle o d'una versió concreta, s'indica.
 
-{{< ra "RA2:a,b,c,d,e,f,g,h" "RA6:a,f" >}}
+{{< ra "RA3" >}}
 
 ### Temporalització
 
-La unitat ocupa **17 hores d'aula** (9 de teoria i 8 de pràctica).
+La unitat ocupa **22 hores d'aula** (12 de teoria i 10 de pràctica).
 
-{{< sesiones unidad="UD05" horas="17" >}}
+{{< sesiones unidad="UD05" horas="22" >}}
 items:
-  - {h: 1, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
+  - {h: 2, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
   - {h: 2, tipo: T, t: "Tipus de dades d'Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE i restriccions d'integritat", ref: "§4 i §5 · constructor de CREATE TABLE"}
-  - {h: 2, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 5.1"}
+  - {h: 3, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 5.1"}
   - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Pràctica 5.2"}
   - {h: 1, tipo: T, t: "Modificar i eliminar l'estructura (ALTER, DROP)", ref: "§6"}
   - {h: 1, tipo: P, t: "Evolució de l'esquema amb ALTER", ref: "Pràctica 5.5"}
-  - {h: 1, tipo: T, t: "Seqüències, identitat, índexs i vistes", ref: "§7, §8 i §9"}
+  - {h: 2, tipo: T, t: "Seqüències, identitat, índexs i vistes", ref: "§7, §8 i §9"}
   - {h: 1, tipo: P, t: "Índexs, vistes i seqüències en EduGest", ref: "Pràctica 5.6"}
-  - {h: 2, tipo: T, t: "Usuaris, rols i privilegis. Diccionari de dades i eines", ref: "§10 a §12 · taller de privilegis"}
-  - {h: 1, tipo: P, t: "Usuaris, rols i privilegis en EduGest", ref: "Pràctica 5.7"}
+  - {h: 3, tipo: T, t: "Usuaris, rols i privilegis. Diccionari de dades i eines", ref: "§10 a §12 · taller de privilegis"}
+  - {h: 2, tipo: P, t: "Usuaris, rols i privilegis en EduGest", ref: "Pràctica 5.7"}
   - {h: 1, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-5"}
 autonomo:
   - "Pràctica 5.3 (biblioteca: script complet i bateria de proves)"
@@ -137,7 +137,7 @@ SELECT * FROM edugest.alumno;
 
 ## 2. Format d'emmagatzematge de la informació
 
-El criteri RA2.a demana analitzar **com** es guarda la informació. Oracle organitza l'emmagatzematge en dos nivells:
+El criteri RA3.a demana analitzar **com** es guarda la informació. Oracle organitza l'emmagatzematge en dos nivells:
 
 ```mermaid
 flowchart LR
@@ -180,7 +180,7 @@ A diferència de l'estàndard SQL, Oracle tracta `''` (cadena de longitud zero) 
 
 ## 3. Tipus de dades
 
-Triar bé el tipus de cada columna (RA2.c) evita errors, estalvia espai i permet que el SGBD valide les dades.
+Triar bé el tipus de cada columna (RA3.c) evita errors, estalvia espai i permet que el SGBD valide les dades.
 
 ### 3.1 Tipus principals d'Oracle
 
@@ -339,7 +339,7 @@ CREATE TABLE imparte (
 
 ## 5. Restriccions d'integritat
 
-Les restriccions implanten en la base de dades les regles del disseny lògic (RA2.d, RA2.e, RA6.f). El SGBD **rebutja** qualsevol operació que les incomplisca, vinga de l'aplicació que vinga.
+Les restriccions implanten en la base de dades les regles del disseny lògic (RA2.g, RA3.d, RA3.e). El SGBD **rebutja** qualsevol operació que les incomplisca, vinga de l'aplicació que vinga.
 
 ### 5.1 Resum de restriccions
 
@@ -619,7 +619,7 @@ Mou el lliscador per a veure quants blocs llig una cerca amb índex i sense.
 
 ## 9. Vistes
 
-Una **vista** és una consulta guardada amb nom que s'usa com si fora una taula. No emmagatzema dades: cada vegada que es consulta, executa el seu `SELECT` (RA2.f).
+Una **vista** és una consulta guardada amb nom que s'usa com si fora una taula. No emmagatzema dades: cada vegada que es consulta, executa el seu `SELECT` (RA3.h).
 
 ### 9.1 Per a què servixen
 
@@ -831,7 +831,7 @@ SELECT object_name, object_type, status FROM user_objects ORDER BY object_type;
 
 ## 12. Assistents i eines gràfiques
 
-El criteri RA2.h demana usar **assistents, eines gràfiques i els llenguatges DDL i DCL**.
+El criteri RA3.g, RA3.h demana usar **assistents, eines gràfiques i els llenguatges DDL i DCL**.
 
 | Tasca | En SQL Developer | Allò que has de revisar |
 |---|---|---|

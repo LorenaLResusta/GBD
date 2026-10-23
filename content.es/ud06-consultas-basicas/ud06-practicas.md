@@ -6,16 +6,16 @@ bookToc: true
 
 # UD06 · Prácticas
 
-{{< ra "RA3:a,b" "RA5:e" >}}
+{{< ra "RA4:a,b" "RA5:e" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [6.1 Primeras consultas y herramientas](#práctica-61--primeras-consultas-y-herramientas) | Guiada | ●○○ | RA3.a, RA3.b |
-| [6.2 Consultas para secretaría](#práctica-62--consultas-para-secretaría) | Autónoma | ●●○ | RA3.b |
-| [6.3 Laboratorio de valores nulos](#práctica-63--laboratorio-de-valores-nulos) | Guiada | ●●○ | RA3.b |
-| [6.4 Funciones para informes](#práctica-64--funciones-para-informes) | Autónoma | ●●○ | RA3.b, RA5.e |
-| [6.5 Validar datos con SQL](#práctica-65--validar-datos-con-sql) | Reto | ●●● | RA3.b, RA5.e |
-| [Proyecto EduGest · UD06](#proyecto-edugest--ud06-consultas-del-día-a-día) | Proyecto | ●●○ | RA3.a, RA3.b |
+| [6.1 Primeras consultas y herramientas](#práctica-61--primeras-consultas-y-herramientas) | Guiada | ●○○ | RA4.a, RA4.b |
+| [6.2 Consultas para secretaría](#práctica-62--consultas-para-secretaría) | Autónoma | ●●○ | RA4.b |
+| [6.3 Laboratorio de valores nulos](#práctica-63--laboratorio-de-valores-nulos) | Guiada | ●●○ | RA4.b |
+| [6.4 Funciones para informes](#práctica-64--funciones-para-informes) | Autónoma | ●●○ | RA4.b, RA5.e |
+| [6.5 Validar datos con SQL](#práctica-65--validar-datos-con-sql) | Reto | ●●● | RA4.b, RA5.e |
+| [Proyecto EduGest · UD06](#proyecto-edugest--ud06-consultas-del-día-a-día) | Proyecto | ●●○ | RA4.a, RA4.b |
 
 > [!IMPORTANT]
 > Todas las prácticas usan el esquema de referencia **EDUGEST** con los datos del [script 02](/guia/proyecto-edugest#4-scripts-descargables). Antes de empezar, ejecuta en tu sesión:
@@ -30,7 +30,7 @@ bookToc: true
 
 ## Práctica 6.1 · Primeras consultas y herramientas
 
-{{< practica num="6.1" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA3: a, b" sgbd="Oracle 26ai · SQL Developer (o extensión de VS Code)" entrega="p6_1.sql + captura del generador de consultas" >}}
+{{< practica num="6.1" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA4: a, b" sgbd="Oracle 26ai · SQL Developer (o extensión de VS Code)" entrega="p6_1.sql + captura del generador de consultas" >}}
 
 #### Objetivo
 
@@ -78,7 +78,7 @@ Conocer las herramientas de consulta (hoja de trabajo, generador de consultas, p
 
 ## Práctica 6.2 · Consultas para secretaría
 
-{{< practica num="6.2" tipo="Autónoma" duracion="3 sesiones" nivel="2" ra="RA3: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_2.sql comentado" >}}
+{{< practica num="6.2" tipo="Autónoma" duracion="3 sesiones" nivel="2" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_2.sql comentado" >}}
 
 #### Objetivo
 
@@ -183,7 +183,7 @@ Escribe B5 de tres formas distintas (con `UPPER`, con `LOWER` y con `REGEXP_LIKE
 
 ## Práctica 6.3 · Laboratorio de valores nulos
 
-{{< practica num="6.3" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA3: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="Tabla de predicciones + resultados reales" >}}
+{{< practica num="6.3" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="Tabla de predicciones + resultados reales" >}}
 
 #### Objetivo
 
@@ -217,7 +217,7 @@ Datos de partida: `ALUMNO` tiene 32 filas; 3 sin grupo, 4 sin DNI, 3 sin email y
 
 ## Práctica 6.4 · Funciones para informes
 
-{{< practica num="6.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA3: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentado" >}}
+{{< practica num="6.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_4.sql comentado" >}}
 
 #### Objetivo
 
@@ -261,7 +261,7 @@ Usar las funciones de fila de Oracle para transformar y presentar los datos.
 
 ## Práctica 6.5 · Validar datos con SQL
 
-{{< practica num="6.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA3: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de calidad de datos" >}}
+{{< practica num="6.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA4: b · RA5: e" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de calidad de datos" >}}
 
 #### Objetivo
 
@@ -298,7 +298,7 @@ Debes encontrar **2** profesores con la letra incorrecta. ¿Valdría esta consul
 
 ## Proyecto EduGest · UD06: consultas del día a día
 
-{{< practica num="EduGest-6" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA3: a, b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="edugest/05_consultas_basicas.sql" >}}
+{{< practica num="EduGest-6" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA4: a, b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="edugest/05_consultas_basicas.sql" >}}
 
 #### Enunciado
 

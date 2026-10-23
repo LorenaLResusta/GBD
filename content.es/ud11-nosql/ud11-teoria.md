@@ -4,7 +4,7 @@ weight: 1
 bookToc: true
 ---
 
-# UD10 · Bases de datos no relacionales (NoSQL)
+# UD11 · Bases de datos no relacionales (NoSQL)
 
 ## Resumen del tema
 
@@ -16,7 +16,7 @@ El hilo conductor de la unidad no es la sintaxis de `mongosh`, sino el **criteri
 
 Enlaza con la **UD01** (modelos de datos, bases distribuidas, Big Data y protección de datos), con la **UD03** y la **UD04** (el modelo relacional y la normalización, que ahora servirán de contraste), con la **UD07** (los informes que vamos a reescribir con el *pipeline* de agregación) y con la **UD08** (transacciones y propiedades ACID, que aquí se discuten en un entorno distribuido).
 
-{{< ra "RA7:a,b,c,d,e" "RA1:b" >}}
+{{< ra "RA1:b" >}}
 
 ### Objetivos de aprendizaje
 
@@ -35,21 +35,21 @@ Al terminar esta unidad serás capaz de:
 
 ### Temporalización
 
-La unidad ocupa **4 horas de aula** (2 de teoría y 2 de práctica) y cierra el módulo.
+La unidad ocupa **6 horas de aula** (2 de teoría y 4 de práctica) y cierra el curso como **ampliación**: no corresponde a ningún RA del módulo (RD 1629/2009), pero completa la visión de los tipos de bases de datos del RA1.
 Es una unidad de criterio profesional: importa más saber **cuándo** elegir cada modelo
 que memorizar la sintaxis de `mongosh`.
 
-{{< sesiones unidad="UD10" horas="4" >}}
+{{< sesiones unidad="UD11" horas="6" >}}
 items:
   - {h: 1, tipo: T, t: "Características de NoSQL, BASE y CAP, tipos de bases de datos y elementos de MongoDB", ref: "§1 a §4 · traductor SQL ↔ MongoDB"}
-  - {h: 1, tipo: P, t: "Puesta en marcha de MongoDB y CRUD sobre los expedientes", ref: "Prácticas 10.1 y 10.2"}
+  - {h: 2, tipo: P, t: "Puesta en marcha de MongoDB y CRUD sobre los expedientes", ref: "Prácticas 11.1 y 11.2"}
   - {h: 1, tipo: T, t: "Operaciones CRUD, subdocumentos, arrays y agregaciones", ref: "§5 a §7"}
-  - {h: 1, tipo: P, t: "Modelado documental y decisión razonada", ref: "Prácticas 10.5 y 10.7 · §8 a §11"}
+  - {h: 2, tipo: P, t: "Modelado documental y decisión razonada", ref: "Prácticas 11.5 y 11.7 · §8 a §11"}
 autonomo:
-  - "Práctica 10.3 (operadores, subdocumentos y arrays)"
-  - "Práctica 10.4 (el mismo informe en SQL y en MongoDB)"
-  - "Práctica 10.6 (otros modelos: clave-valor y grafos)"
-  - "Proyecto EduGest · UD10 (el expediente documental)"
+  - "Práctica 11.3 (operadores, subdocumentos y arrays)"
+  - "Práctica 11.4 (el mismo informe en SQL y en MongoDB)"
+  - "Práctica 11.6 (otros modelos: clave-valor y grafos)"
+  - "Proyecto EduGest · UD11 (el expediente documental)"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -295,7 +295,7 @@ Eric Brewer lo planteó como conjetura en el año 2000 y Seth Gilbert y Nancy Ly
 
 **Estructura.** Una tabla *hash* gigante y distribuida: una **clave** única y un **valor** opaco para el gestor (una cadena, un número, un binario o una estructura simple). El acceso por clave es prácticamente instantáneo; sin la clave, no hay forma eficiente de buscar.
 
-**Producto de referencia:** **Valkey** (bifurcación libre de Redis, usada en la práctica 10.6), Redis, Amazon DynamoDB, etcd.
+**Producto de referencia:** **Valkey** (bifurcación libre de Redis, usada en la práctica 11.6), Redis, Amazon DynamoDB, etcd.
 
 ```text
 SET  sesion:abc123 "id_alumno=1;rol=ALUMNO"
@@ -313,7 +313,7 @@ INCR visitas:portal              # incremento atómico
 
 **Producto de referencia:** **MongoDB** (el que usaremos), CouchDB, Amazon DocumentDB, Elasticsearch (orientado a búsqueda).
 
-**Casos de uso reales:** catálogos de productos con características variables (práctica 10.5); expedientes, historiales y contenidos editoriales donde cada ficha tiene secciones distintas; perfiles de usuario y configuraciones de aplicación.
+**Casos de uso reales:** catálogos de productos con características variables (práctica 11.5); expedientes, historiales y contenidos editoriales donde cada ficha tiene secciones distintas; perfiles de usuario y configuraciones de aplicación.
 
 **Límites:** sin integridad referencial declarativa entre colecciones; las consultas que cruzan muchas colecciones son incómodas y más lentas que un `JOIN` bien indexado; el documento tiene un **límite de 16 MB**, lo que prohíbe incrustar colecciones que crecen sin fin (como las opiniones de un producto).
 
@@ -323,7 +323,7 @@ INCR visitas:portal              # incremento atómico
 
 **Producto de referencia:** **Apache Cassandra**, HBase, ScyllaDB; en analítica, las bases de datos columnares puras como ClickHouse.
 
-**Casos de uso reales:** series temporales y telemetría (sensores de CO₂ de las aulas midiendo cada 30 segundos, práctica 10.7); registros de actividad y auditoría a gran escala; sistemas de mensajería con escrituras masivas.
+**Casos de uso reales:** series temporales y telemetría (sensores de CO₂ de las aulas midiendo cada 30 segundos, práctica 11.7); registros de actividad y auditoría a gran escala; sistemas de mensajería con escrituras masivas.
 
 **Límites:** el modelo se diseña **a partir de las consultas** que se van a ejecutar, y consultar por un criterio no previsto puede ser inviable; no hay `JOIN`; los agregados y la unicidad se gestionan con mucho cuidado.
 
@@ -331,7 +331,7 @@ INCR visitas:portal              # incremento atómico
 
 **Estructura.** **Nodos** (entidades) y **aristas** (relaciones), ambos con propiedades. La relación es un elemento de primera clase, no una clave ajena: recorrer «amigos de mis amigos» no multiplica el coste como lo haría una cadena de `JOIN`.
 
-**Producto de referencia:** **Neo4j** (con el lenguaje Cypher, práctica 10.6), ArangoDB, Amazon Neptune.
+**Producto de referencia:** **Neo4j** (con el lenguaje Cypher, práctica 11.6), ArangoDB, Amazon Neptune.
 
 ```text
 MATCH (a:Alumno {nombre:'Adrián'})-[:MATRICULADO]->(m)<-[:MATRICULADO]-(c:Alumno)
@@ -525,7 +525,7 @@ No hay una norma oficial, pero el ecosistema sigue convenios muy estables que co
 
 ### 4.6 La colección `expedientes` de EduGest
 
-Toda la unidad trabaja sobre la versión documental de EduGest que carga el script [edugest_mongo.js](../ud10-practicas): tres colecciones (`expedientes`, `profesores` y `ciclos`) obtenidas de las mismas tablas de Oracle. Este es el documento del alumno 1, completo: {{< sgbd "MongoDB 8.0" >}}
+Toda la unidad trabaja sobre la versión documental de EduGest que carga el script {{< recurso "nosql/edugest_mongo.js" >}}: tres colecciones (`expedientes`, `profesores` y `ciclos`) obtenidas de las mismas tablas de Oracle. Este es el documento del alumno 1, completo: {{< sgbd "MongoDB 8.0" >}}
 
 ```javascript
 db.expedientes.findOne({ _id: 1 })
@@ -576,7 +576,7 @@ Fíjate especialmente en dos operaciones: *«La trampa del array»* y *«Reempla
 {{< mongo-lab >}}
 
 > [!WARNING]
-> El laboratorio es una **simulación didáctica** escrita en JavaScript: reproduce el comportamiento y los mensajes de MongoDB 8.0 sobre seis documentos, pero no es un servidor. Los resultados de la unidad y de las prácticas se obtienen ejecutando las órdenes en el MongoDB que instalaste en la práctica 10.1.
+> El laboratorio es una **simulación didáctica** escrita en JavaScript: reproduce el comportamiento y los mensajes de MongoDB 8.0 sobre seis documentos, pero no es un servidor. Los resultados de la unidad y de las prácticas se obtienen ejecutando las órdenes en el MongoDB que instalaste en la práctica 11.1.
 
 {{< quiz >}}
 - q: "¿Cuál de estas afirmaciones sobre `_id` es correcta?"
@@ -1316,7 +1316,7 @@ Lectura comparada, etapa por etapa:
 > **Dos avisos sobre este informe.**
 >
 > 1. `$match` va **después** de `$unwind` porque la condición es sobre el módulo de cada matrícula. Si se pusiera antes, seleccionaría a los *alumnos* que tienen alguna matrícula de DAM y luego sumaría **todas** sus matrículas, incluidas las de otros ciclos. Es el mismo razonamiento que decidir entre `WHERE` y `HAVING`.
-> 2. `AVG` de Oracle redondea los empates hacia arriba y `$round` de MongoDB los redondea **al dígito par**. En la media de 0483 (exactamente 6,375) los dos dan 6,38, pero no siempre coincidirán; en la práctica 10.4 se analiza el caso.
+> 2. `AVG` de Oracle redondea los empates hacia arriba y `$round` de MongoDB los redondea **al dígito par**. En la media de 0483 (exactamente 6,375) los dos dan 6,38, pero no siempre coincidirán; en la práctica 11.4 se analiza el caso.
 
 {{% details title="¿Por qué `nombre: { $first: ... }` y no `nombre: 1` en el $group?" %}}
 Porque después de `$group` solo existen los campos que se hayan declarado en esa etapa: la clave `_id` y los acumuladores. El nombre del módulo es constante dentro de cada grupo, pero `$group` no lo sabe, así que hay que recogerlo con un acumulador (`$first`, `$last` o `$max`).
@@ -1383,7 +1383,7 @@ Devuelve un único documento con tres arrays, uno por cada subtubería. En SQL e
 
 ---
 
-{{< sesion n="4" h="1" tipo="p" practica="10.5" >}}Modelado documental y decisión razonada{{< /sesion >}}
+{{< sesion n="4" h="1" tipo="p" practica="11.5" >}}Modelado documental y decisión razonada{{< /sesion >}}
 
 {{% paso-a-paso titulo="De tablas a documento: ¿embeber o referenciar?" %}}
 {{% etapa titulo="1. El modelo relacional" %}}
@@ -1444,7 +1444,7 @@ En el modelo documental no hay normalización que aplicar: la decisión es **qu�
 | **Uno a pocos embebido** | Un alumno y sus matrículas del curso; una dirección | Array de subdocumentos dentro del documento padre |
 | **Uno a muchos referenciado** | Un módulo y todas sus matrículas históricas | Colección aparte con el `_id` del padre en cada hijo |
 | **Muchos a muchos con referencias en los dos lados** | Alumnos y módulos, si se consulta en ambos sentidos | `moduloIds` en el alumno y `alumnoIds` en el módulo (con el riesgo de desincronización) |
-| **Subconjunto** (*subset*) | Un producto con miles de opiniones, de las que solo se muestran 5 | Todas en una colección aparte **y** las 5 últimas embebidas (práctica 10.5) |
+| **Subconjunto** (*subset*) | Un producto con miles de opiniones, de las que solo se muestran 5 | Todas en una colección aparte **y** las 5 últimas embebidas (práctica 11.5) |
 | **Dato duplicado por rendimiento** (*extended reference*) | Mostrar el nombre del módulo sin cruzar colecciones | Copiar los 2-3 campos que se muestran, no el documento entero |
 | **Campo calculado** (*computed*) | Nota media del expediente, usada en cada listado | Guardar el valor calculado y actualizarlo en cada escritura |
 
@@ -1710,14 +1710,14 @@ mongorestore --uri="mongodb://appEdugest@localhost:27017" /backup/2026-06-08
 - *Consistencia:* una nota de un acta oficial no admite consistencia eventual.
 - **Decisión: relacional.** La integridad declarativa y las consultas *ad hoc* son exactamente lo que pide el problema. *Qué perderíamos con MongoDB:* claves ajenas, unicidad de combinaciones, `JOIN` cómodos y la capacidad de contestar a una pregunta que nadie había previsto. *Qué ganaríamos:* la lectura del expediente completo en un acceso, que es útil pero no determinante.
 
-**Escenario 2 · Catálogo de productos con atributos variables (práctica 10.5).**
+**Escenario 2 · Catálogo de productos con atributos variables (práctica 11.5).**
 
 - *Datos:* cada familia de producto tiene características distintas, y la lista cambia con cada proveedor.
 - *Consultas:* ficha del producto, listado por categoría con filtros, puntuación media.
 - *Consistencia:* que el stock mostrado sea de hace dos segundos es aceptable; el stock **real** se comprueba al confirmar el pedido.
 - **Decisión: documental.** El modelo relacional obligaría a una tabla por tipo de producto, a decenas de columnas nulas o al patrón *entidad-atributo-valor*, que es incómodo y lento. *Qué perderíamos:* integridad declarativa entre producto y categoría. *Matiz honesto:* el **pedido y el pago** de esa misma tienda deberían ser relacionales y transaccionales. Dos modelos en la misma aplicación.
 
-**Escenario 3 · Telemetría de los sensores de las aulas (práctica 10.7).**
+**Escenario 3 · Telemetría de los sensores de las aulas (práctica 11.7).**
 
 - *Datos:* 40 aulas × 3 magnitudes × 2 medidas por minuto ≈ 126 millones de filas al año, inmutables y siempre con la misma forma.
 - *Consultas:* «media de CO₂ del aula I-12 entre las 9:00 y las 14:00 del jueves»: rangos de tiempo por dispositivo.
@@ -1787,11 +1787,11 @@ Y a la vez hay partes de un centro educativo donde el modelo documental encaja m
 - **Mide con `explain("executionStats")`** y compara `nReturned` con `totalDocsExamined`, igual que lees un plan de ejecución en Oracle.
 - **Activa la autenticación y aplica el mínimo privilegio** antes de exponer el servicio, y nunca escribas contraseñas en los scripts (`passwordPrompt()`).
 - **Prueba la restauración** de las copias de `mongodump`, no solo su creación.
-- **Justifica por escrito la elección de tecnología** con los cinco criterios del §11.5: es lo que te pedirán en una entrevista y en la práctica 10.7.
+- **Justifica por escrito la elección de tecnología** con los cinco criterios del §11.5: es lo que te pedirán en una entrevista y en la práctica 11.7.
 
 ---
 
-{{< tarjetas titulo="Repasa los términos de la UD10" >}}
+{{< tarjetas titulo="Repasa los términos de la UD11" >}}
 - t: "Documento"
   d: "Registro JSON/BSON con campos y valores, que puede anidar otros documentos."
 - t: "Colección"

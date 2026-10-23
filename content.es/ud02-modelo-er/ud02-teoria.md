@@ -15,21 +15,21 @@ El **Modelo Entidad-Relación Extendido (EER)**, introducido originalmente por P
 
 Su objetivo prioritario es modelar y estructurar la semántica de la información del mundo real de forma completamente abstracta e independiente del software informático o Sistema Gestor de Bases de Datos (SGBD) que se utilice en la fase de implementación. En esta unidad se analiza de forma exhaustiva el flujo de trabajo del diseño de datos, los componentes elementales del modelo (**entidades fuertes y débiles, atributos clasificatorios y relaciones**), las reglas minuciosas de **cardinalidad e integridad**, las jerarquías de **generalización y especialización** con herencia de atributos, el concepto de **agregación**, el cálculo formal de cardinalidades en **relaciones ternarias** y una metodología estructurada en 5 pasos respaldada por casos prácticos reales completos.
 
-{{< ra "RA6:a,d,e,h" >}}
+{{< ra "RA2:a,b,e,f,i" >}}
 
 ### Temporalización
 
-La unidad ocupa **19 horas de aula** (12 de teoría y 7 de práctica). Cada sesión aparece señalada en la página con una franja de color.
+La unidad ocupa **16 horas de aula** (9 de teoría y 7 de práctica). Cada sesión aparece señalada en la página con una franja de color.
 
-{{< sesiones unidad="UD02" horas="19" >}}
+{{< sesiones unidad="UD02" horas="16" >}}
 items:
   - {h: 2, tipo: T, t: "Ciclo de vida del diseño. Entidades fuertes y débiles", ref: "§1 y §2.1"}
   - {h: 2, tipo: T, t: "Atributos y relaciones: grado y roles", ref: "§2.2 y §2.3"}
-  - {h: 2, tipo: T, t: "Cardinalidades mínima y máxima", ref: "§2.4 · laboratorio interactivo"}
+  - {h: 1, tipo: T, t: "Cardinalidades mínima y máxima", ref: "§2.4 · laboratorio interactivo"}
   - {h: 1, tipo: P, t: "Leer y escribir cardinalidades", ref: "Práctica 2.2"}
   - {h: 2, tipo: P, t: "Biblioteca municipal: del enunciado al diagrama", ref: "Práctica 2.1"}
-  - {h: 2, tipo: T, t: "Restricciones avanzadas y jerarquías EER", ref: "§3, §4.1 y §4.2 · clasificador interactivo"}
-  - {h: 2, tipo: T, t: "Agregación y relaciones ternarias", ref: "§4.3 y §4.4"}
+  - {h: 1, tipo: T, t: "Restricciones avanzadas y jerarquías EER", ref: "§3, §4.1 y §4.2 · clasificador interactivo"}
+  - {h: 1, tipo: T, t: "Agregación y relaciones ternarias", ref: "§4.3 y §4.4"}
   - {h: 1, tipo: T, t: "Metodología en cinco pasos y ejemplos resueltos", ref: "§5 y §6"}
   - {h: 1, tipo: T, t: "Notaciones y herramientas de modelado", ref: "§7"}
   - {h: 2, tipo: P, t: "Plataforma de streaming", ref: "Práctica 2.3"}
@@ -502,7 +502,7 @@ Un congreso científico necesita organizar sus actividades. Se registran los `PA
 
 ## 7. Notaciones y Herramientas de Modelado
 
-El modelo E/R es **uno**, pero hay varias formas de dibujarlo. Es importante reconocerlas porque cada herramienta usa la suya (RA6.a).
+El modelo E/R es **uno**, pero hay varias formas de dibujarlo. Es importante reconocerlas porque cada herramienta usa la suya (RA2.b).
 
 | Notación | Cómo representa las relaciones | Cardinalidad | Dónde la encontrarás |
 |---|---|---|---|
@@ -600,7 +600,7 @@ La **nota** no es del alumno (tiene muchas) ni del módulo (lo cursan muchos): d
 ### Paso 5. Revisión
 
 - ¿Hay ciclos? Si un alumno pertenece a un grupo y el grupo a un ciclo, **no** hace falta una relación directa ALUMNO-CICLO: sería **redundante** (se deduce).
-- ¿Hay restricciones que el diagrama no recoge? Sí: un alumno solo debería matricularse en módulos del ciclo de su grupo. Se anota como **restricción textual** (RA6.h).
+- ¿Hay restricciones que el diagrama no recoge? Sí: un alumno solo debería matricularse en módulos del ciclo de su grupo. Se anota como **restricción textual** (RA2.i).
 
 ```mermaid
 erDiagram

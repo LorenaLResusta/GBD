@@ -4,7 +4,7 @@ weight: 1
 bookToc: true
 ---
 
-# UD10 · Bases de dades no relacionals (NoSQL)
+# UD11 · Bases de dades no relacionals (NoSQL)
 
 ## Resum del tema
 
@@ -16,7 +16,7 @@ El fil conductor de la unitat no és la sintaxi de `mongosh`, sinó el **criteri
 
 Enllaça amb la **UD01** (models de dades, bases distribuïdes, Big Data i protecció de dades), amb la **UD03** i la **UD04** (el model relacional i la normalització, que ara serviran de contrast), amb la **UD07** (els informes que reescriurem amb el *pipeline* d'agregació) i amb la **UD08** (transaccions i propietats ACID, que ací es discutixen en un entorn distribuït).
 
-{{< ra "RA7:a,b,c,d,e" "RA1:b" >}}
+{{< ra "RA1:b" >}}
 
 ### Objectius d'aprenentatge
 
@@ -35,21 +35,21 @@ En acabar esta unitat seràs capaç de:
 
 ### Temporalització
 
-La unitat ocupa **4 hores d'aula** (2 de teoria i 2 de pràctica) i tanca el mòdul.
+La unitat ocupa **6 hores d'aula** (2 de teoria i 4 de pràctica) i tanca el curs com a **ampliació**: no correspon a cap RA del mòdul (RD 1629/2009), però completa la visió dels tipus de bases de dades del RA1.
 És una unitat de criteri professional: importa més saber **quan** triar cada model
 que memoritzar la sintaxi de `mongosh`.
 
-{{< sesiones unidad="UD10" horas="4" >}}
+{{< sesiones unidad="UD11" horas="6" >}}
 items:
   - {h: 1, tipo: T, t: "Característiques de NoSQL, BASE i CAP, tipus de bases de dades i elements de MongoDB", ref: "§1 a §4 · traductor SQL ↔ MongoDB"}
-  - {h: 1, tipo: P, t: "Posada en marxa de MongoDB i CRUD sobre els expedients", ref: "Pràctiques 10.1 i 10.2"}
+  - {h: 2, tipo: P, t: "Posada en marxa de MongoDB i CRUD sobre els expedients", ref: "Pràctiques 10.1 i 10.2"}
   - {h: 1, tipo: T, t: "Operacions CRUD, subdocuments, arrays i agregacions", ref: "§5 a §7"}
-  - {h: 1, tipo: P, t: "Modelatge documental i decisió raonada", ref: "Pràctiques 10.5 i 10.7 · §8 a §11"}
+  - {h: 2, tipo: P, t: "Modelatge documental i decisió raonada", ref: "Pràctiques 10.5 i 10.7 · §8 a §11"}
 autonomo:
   - "Pràctica 10.3 (operadors, subdocuments i arrays)"
   - "Pràctica 10.4 (el mateix informe en SQL i en MongoDB)"
   - "Pràctica 10.6 (altres models: clau-valor i grafs)"
-  - "Projecte EduGest · UD10 (l'expedient documental)"
+  - "Projecte EduGest · UD11 (l'expedient documental)"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -525,7 +525,7 @@ No hi ha una norma oficial, però l'ecosistema seguix convenis molt estables que
 
 ### 4.6 La col·lecció `expedientes` d'EduGest
 
-Tota la unitat treballa sobre la versió documental d'EduGest que carrega l'script [edugest_mongo.js](../ud10-practicas): tres col·leccions (`expedientes`, `profesores` i `ciclos`) obtingudes de les mateixes taules d'Oracle. Este és el document de l'alumne 1, complet: {{< sgbd "MongoDB 8.0" >}}
+Tota la unitat treballa sobre la versió documental d'EduGest que carrega l'script {{< recurso "nosql/edugest_mongo.js" >}}: tres col·leccions (`expedientes`, `profesores` i `ciclos`) obtingudes de les mateixes taules d'Oracle. Este és el document de l'alumne 1, complet: {{< sgbd "MongoDB 8.0" >}}
 
 ```javascript
 db.expedientes.findOne({ _id: 1 })
@@ -1383,7 +1383,7 @@ Torna un únic document amb tres arrays, un per cada subpipeline. En SQL equival
 
 ---
 
-{{< sesion n="4" h="1" tipo="p" practica="10.5" >}}Modelatge documental i decisió raonada{{< /sesion >}}
+{{< sesion n="4" h="1" tipo="p" practica="11.5" >}}Modelatge documental i decisió raonada{{< /sesion >}}
 
 {{% paso-a-paso titulo="De tablas a documento: ¿embeber o referenciar?" %}}
 {{% etapa titulo="1. El model relacional" %}}
@@ -1791,7 +1791,7 @@ I alhora hi ha parts d'un centre educatiu on el model documental encaixa molt b�
 
 ---
 
-{{< tarjetas titulo="Repassa els termes de la UD10" >}}
+{{< tarjetas titulo="Repassa els termes de la UD11" >}}
 - t: "Document"
   d: "Registre JSON/BSON amb camps i valors, que pot aniuar altres documents."
 - t: "Col·lecció"

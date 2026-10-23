@@ -7,30 +7,30 @@ math: true
 
 # UD02 · Prácticas
 
-{{< ra "RA6:a,d,e,h" >}}
+{{< ra "RA2:a,b,e,f,i" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [2.1 Biblioteca municipal: del enunciado al diagrama](#práctica-21--biblioteca-municipal-del-enunciado-al-diagrama) | Guiada | ●○○ | RA6.a, RA6.d, RA6.e |
-| [2.2 Leer y escribir cardinalidades](#práctica-22--leer-y-escribir-cardinalidades) | Guiada | ●○○ | RA6.d |
-| [2.3 Plataforma de streaming](#práctica-23--plataforma-de-streaming) | Autónoma | ●●○ | RA6.a, RA6.d, RA6.e |
-| [2.4 Clínica veterinaria con jerarquías](#práctica-24--clínica-veterinaria-con-jerarquías) | Autónoma | ●●○ | RA6.d, RA6.e, RA6.h |
-| [2.5 Revisión de un diseño defectuoso](#práctica-25--revisión-de-un-diseño-defectuoso) | Reto | ●●● | RA6.d, RA6.h |
-| [2.6 Autoescuela: ternaria o agregación](#práctica-26--autoescuela-ternaria-o-agregación) | Reto | ●●● | RA6.d |
-| [2.7 Almazara: la entrevista que no lo dice todo](#práctica-27--almazara-la-entrevista-que-no-lo-dice-todo) | Reto | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
-| [2.8 Alquiler de coches: el modelo que recuerda](#práctica-28--alquiler-de-coches-el-modelo-que-recuerda) | Reto | ●●● | RA6.d, RA6.e, RA6.h |
-| [2.9 Ingeniería inversa: del albarán a las entidades](#práctica-29--ingeniería-inversa-del-albarán-a-las-entidades) | Reto | ●●● | RA6.a, RA6.d, RA6.h |
-| [2.10 Dos diseños, un ganador](#práctica-210--dos-diseños-un-ganador) | Reto | ●●● | RA6.d, RA6.h |
-| [2.11 Festival de música: ediciones, escenarios y actuaciones](#práctica-211--festival-de-música-ediciones-escenarios-y-actuaciones) | Reto | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
-| [2.12 Editorial: obras, traducciones y derechos de autor](#práctica-212--editorial-obras-traducciones-y-derechos-de-autor) | Reto | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
-| [2.13 Taller aeronáutico: aeronaves, órdenes de trabajo y habilitaciones](#práctica-213--taller-aeronáutico-aeronaves-órdenes-de-trabajo-y-habilitaciones) | Reto | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
-| [2.14 Comunidad de propietarios: inmuebles, juntas y votaciones](#práctica-214--comunidad-de-propietarios-inmuebles-juntas-y-votaciones) | Reto | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
-| [Proyecto EduGest · UD02](#proyecto-edugest--ud02-modelo-conceptual) | Proyecto | ●●○ | RA6.a, RA6.d, RA6.e, RA6.h |
-| [Banco · Fundamentos (ejercicios 1-5)](#bloque-1--fundamentos) | Autónoma | ●○○ | RA6.a, RA6.d, RA6.e, RA6.h |
-| [Banco · Intermedio (ejercicios 6-15)](#bloque-2--intermedio) | Autónoma | ●●○ | RA6.a, RA6.d, RA6.e, RA6.h |
-| [Banco · Intermedio: integración (ejercicios 16-23)](#bloque-3--intermedio-integración) | Autónoma | ●●○ | RA6.a, RA6.d, RA6.e, RA6.h |
+| [2.1 Biblioteca municipal: del enunciado al diagrama](#práctica-21--biblioteca-municipal-del-enunciado-al-diagrama) | Guiada | ●○○ | RA2.b, RA2.e, RA2.f |
+| [2.2 Leer y escribir cardinalidades](#práctica-22--leer-y-escribir-cardinalidades) | Guiada | ●○○ | RA2.e |
+| [2.3 Plataforma de streaming](#práctica-23--plataforma-de-streaming) | Autónoma | ●●○ | RA2.b, RA2.e, RA2.f |
+| [2.4 Clínica veterinaria con jerarquías](#práctica-24--clínica-veterinaria-con-jerarquías) | Autónoma | ●●○ | RA2.e, RA2.f, RA2.i |
+| [2.5 Revisión de un diseño defectuoso](#práctica-25--revisión-de-un-diseño-defectuoso) | Reto | ●●● | RA2.e, RA2.i |
+| [2.6 Autoescuela: ternaria o agregación](#práctica-26--autoescuela-ternaria-o-agregación) | Reto | ●●● | RA2.e |
+| [2.7 Almazara: la entrevista que no lo dice todo](#práctica-27--almazara-la-entrevista-que-no-lo-dice-todo) | Reto | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
+| [2.8 Alquiler de coches: el modelo que recuerda](#práctica-28--alquiler-de-coches-el-modelo-que-recuerda) | Reto | ●●● | RA2.e, RA2.f, RA2.i |
+| [2.9 Ingeniería inversa: del albarán a las entidades](#práctica-29--ingeniería-inversa-del-albarán-a-las-entidades) | Reto | ●●● | RA2.b, RA2.e, RA2.i |
+| [2.10 Dos diseños, un ganador](#práctica-210--dos-diseños-un-ganador) | Reto | ●●● | RA2.e, RA2.i |
+| [2.11 Festival de música: ediciones, escenarios y actuaciones](#práctica-211--festival-de-música-ediciones-escenarios-y-actuaciones) | Reto | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
+| [2.12 Editorial: obras, traducciones y derechos de autor](#práctica-212--editorial-obras-traducciones-y-derechos-de-autor) | Reto | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
+| [2.13 Taller aeronáutico: aeronaves, órdenes de trabajo y habilitaciones](#práctica-213--taller-aeronáutico-aeronaves-órdenes-de-trabajo-y-habilitaciones) | Reto | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
+| [2.14 Comunidad de propietarios: inmuebles, juntas y votaciones](#práctica-214--comunidad-de-propietarios-inmuebles-juntas-y-votaciones) | Reto | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
+| [Proyecto EduGest · UD02](#proyecto-edugest--ud02-modelo-conceptual) | Proyecto | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
+| [Banco · Fundamentos (ejercicios 1-5)](#bloque-1--fundamentos) | Autónoma | ●○○ | RA2.b, RA2.e, RA2.f, RA2.i |
+| [Banco · Intermedio (ejercicios 6-15)](#bloque-2--intermedio) | Autónoma | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
+| [Banco · Intermedio: integración (ejercicios 16-23)](#bloque-3--intermedio-integración) | Autónoma | ●●○ | RA2.b, RA2.e, RA2.f, RA2.i |
 | [Banco · Intermedio: EER (ejercicios 24-30)](#bloque-4--intermedio-eer) | Autónoma | ●●○ |
-| [Banco · Consolidación (ejercicios 31-35)](#bloque-5--consolidación) | Autónoma | ●●● | RA6.a, RA6.d, RA6.e, RA6.h |
+| [Banco · Consolidación (ejercicios 31-35)](#bloque-5--consolidación) | Autónoma | ●●● | RA2.b, RA2.e, RA2.f, RA2.i |
 
 > [!NOTE]
 > **Cómo están organizadas estas páginas.** El enunciado se presenta como lo contaría una persona del negocio, no como una lista de entidades: **decidir qué es una entidad, un atributo o una relación forma parte del trabajo**. Las tareas, la comprobación y los errores habituales están plegados: despliégalos cuando los necesites, no antes de pensar.
@@ -45,7 +45,7 @@ math: true
 
 ## Práctica 2.1 · Biblioteca municipal: del enunciado al diagrama
 
-{{< practica num="2.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA6: a, d, e" sgbd="draw.io (diagrams.net) o papel" entrega="Diagrama (.drawio + .png) y tabla de supuestos" >}}
+{{< practica num="2.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: b, e, f" sgbd="draw.io (diagrams.net) o papel" entrega="Diagrama (.drawio + .png) y tabla de supuestos" >}}
 
 #### Objetivo
 
@@ -113,7 +113,7 @@ La biblioteca quiere gestionar **reservas**: un socio puede reservar un **libro*
 
 ## Práctica 2.2 · Leer y escribir cardinalidades
 
-{{< practica num="2.2" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA6: d" sgbd="Papel" entrega="Hoja de respuestas" >}}
+{{< practica num="2.2" tipo="Guiada" duracion="1 sesión" nivel="1" ra="RA2: e" sgbd="Papel" entrega="Hoja de respuestas" >}}
 
 #### Objetivo
 
@@ -150,7 +150,7 @@ erDiagram
 
 ## Práctica 2.3 · Plataforma de streaming
 
-{{< practica num="2.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e" sgbd="draw.io u Oracle SQL Developer Data Modeler" entrega="Diagrama + diccionario de datos + supuestos" >}}
+{{< practica num="2.3" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f" sgbd="draw.io u Oracle SQL Developer Data Modeler" entrega="Diagrama + diccionario de datos + supuestos" >}}
 
 #### Contexto
 
@@ -202,7 +202,7 @@ Añade **series**, compuestas por temporadas (1, 2, 3...) y episodios numerados 
 
 ## Práctica 2.4 · Clínica veterinaria con jerarquías
 
-{{< practica num="2.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: d, e, h" sgbd="draw.io" entrega="Diagrama EER + justificación de las jerarquías" >}}
+{{< practica num="2.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: e, f, i" sgbd="draw.io" entrega="Diagrama EER + justificación de las jerarquías" >}}
 
 #### Contexto
 
@@ -248,7 +248,7 @@ Una clínica veterinaria de tamaño medio estrena sistema de gestión. La gerent
 
 ## Práctica 2.5 · Revisión de un diseño defectuoso
 
-{{< practica num="2.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: d, h" sgbd="Papel" entrega="Informe de revisión con el diagrama corregido" >}}
+{{< practica num="2.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: e, i" sgbd="Papel" entrega="Informe de revisión con el diagrama corregido" >}}
 
 #### Contexto
 
@@ -270,7 +270,7 @@ Identificadores inestables, atributos derivados, atributos multivaluados escondi
 
 ## Práctica 2.6 · Autoescuela: ternaria o agregación
 
-{{< practica num="2.6" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: d" sgbd="Papel o draw.io" entrega="Dos diagramas + análisis de cardinalidades" >}}
+{{< practica num="2.6" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: e" sgbd="Papel o draw.io" entrega="Dos diagramas + análisis de cardinalidades" >}}
 
 #### Enunciado
 
@@ -304,7 +304,7 @@ Identificadores inestables, atributos derivados, atributos multivaluados escondi
 
 ## Práctica 2.7 · Almazara: la entrevista que no lo dice todo
 
-{{< practica num="2.7" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Lista de preguntas al cliente + diagrama + supuestos + restricciones" >}}
+{{< practica num="2.7" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Lista de preguntas al cliente + diagrama + supuestos + restricciones" >}}
 
 #### Contexto
 
@@ -361,7 +361,7 @@ Una cooperativa de aceite quiere registrar la trazabilidad de su producción. Es
 
 ## Práctica 2.8 · Alquiler de coches: el modelo que recuerda
 
-{{< practica num="2.8" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA6: d, e, h" sgbd="draw.io o papel" entrega="Diagrama con tratamiento del tiempo + tabla de decisiones" >}}
+{{< practica num="2.8" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA2: e, f, i" sgbd="draw.io o papel" entrega="Diagrama con tratamiento del tiempo + tabla de decisiones" >}}
 
 #### Contexto
 
@@ -408,7 +408,7 @@ Un diseño que solo guarda «lo que es verdad ahora» olvida lo que ya pasó. Un
 
 ## Práctica 2.9 · Ingeniería inversa: del albarán a las entidades
 
-{{< practica num="2.9" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA6: a, d, h" sgbd="Papel o draw.io" entrega="Diagrama + diccionario con datos derivados señalados" >}}
+{{< practica num="2.9" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA2: b, e, i" sgbd="Papel o draw.io" entrega="Diagrama + diccionario con datos derivados señalados" >}}
 
 #### Contexto
 
@@ -472,7 +472,7 @@ Base imponible: 267,60 € · IVA 10 % sobre 23,40 €: 2,34 € · IVA 21 % sob
 
 ## Práctica 2.10 · Dos diseños, un ganador
 
-{{< practica num="2.10" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: d, h" sgbd="Papel" entrega="Tabla de casos de prueba + diseño mejorado" >}}
+{{< practica num="2.10" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: e, i" sgbd="Papel" entrega="Tabla de casos de prueba + diseño mejorado" >}}
 
 #### Contexto
 
@@ -519,7 +519,7 @@ Un club de pádel ha recibido dos propuestas de modelo y no sabe cuál elegir. E
 
 ## Práctica 2.11 · Festival de música: ediciones, escenarios y actuaciones
 
-{{< practica num="2.11" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones + preguntas al cliente" >}}
+{{< practica num="2.11" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones + preguntas al cliente" >}}
 
 #### Contexto
 
@@ -586,7 +586,7 @@ La asociación quiere una **lista de espera de voluntarios** por edición y que 
 
 ## Práctica 2.12 · Editorial: obras, traducciones y derechos de autor
 
-{{< practica num="2.12" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + justificación de jerarquías, reflexivas y agregación + restricciones" >}}
+{{< practica num="2.12" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + justificación de jerarquías, reflexivas y agregación + restricciones" >}}
 
 #### Contexto
 
@@ -653,7 +653,7 @@ Algunas obras tienen **coautoría**. ¿Cambia algo en el modelo? Añade ahora qu
 
 ## Práctica 2.13 · Taller aeronáutico: aeronaves, órdenes de trabajo y habilitaciones
 
-{{< practica num="2.13" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones normativas" >}}
+{{< practica num="2.13" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones normativas" >}}
 
 #### Contexto
 
@@ -723,7 +723,7 @@ La autoridad aeronáutica exige que cada **certificación de orden** quede firma
 
 ## Práctica 2.14 · Comunidad de propietarios: inmuebles, juntas y votaciones
 
-{{< practica num="2.14" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + justificación de la cadena de débiles y de la ternaria + restricciones legales" >}}
+{{< practica num="2.14" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + justificación de la cadena de débiles y de la ternaria + restricciones legales" >}}
 
 #### Contexto
 
@@ -794,7 +794,7 @@ Una comunidad puede tener **subcomunidades** (por ejemplo, un garaje común a va
 
 ## Práctica 2.11 · Festival de música: ediciones, escenarios y actuaciones
 
-{{< practica num="2.11" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones + preguntas al cliente" >}}
+{{< practica num="2.11" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones + preguntas al cliente" >}}
 
 #### Contexto
 
@@ -953,7 +953,7 @@ erDiagram
 
 ## Práctica 2.12 · Editorial: obras, traducciones y derechos de autor
 
-{{< practica num="2.12" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + justificación de jerarquías, reflexivas y agregación + restricciones" >}}
+{{< practica num="2.12" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + justificación de jerarquías, reflexivas y agregación + restricciones" >}}
 
 #### Contexto
 
@@ -1105,7 +1105,7 @@ erDiagram
 
 ## Práctica 2.13 · Taller aeronáutico: aeronaves, órdenes de trabajo y habilitaciones
 
-{{< practica num="2.13" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones normativas" >}}
+{{< practica num="2.13" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + diccionario de datos + restricciones normativas" >}}
 
 #### Contexto
 
@@ -1284,7 +1284,7 @@ erDiagram
 
 ## Práctica 2.14 · Comunidad de propietarios: inmuebles, juntas y votaciones
 
-{{< practica num="2.14" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io" entrega="Diagrama EER + justificación de la cadena de débiles y de la ternaria + restricciones legales" >}}
+{{< practica num="2.14" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io" entrega="Diagrama EER + justificación de la cadena de débiles y de la ternaria + restricciones legales" >}}
 
 #### Contexto
 
@@ -1480,7 +1480,7 @@ erDiagram
 
 ## Proyecto EduGest · UD02: modelo conceptual
 
-{{< practica num="EduGest-2" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io u Oracle SQL Developer Data Modeler" entrega="edugest/docs/02-modelo-er.md + diagrama" >}}
+{{< practica num="EduGest-2" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io u Oracle SQL Developer Data Modeler" entrega="edugest/docs/02-modelo-er.md + diagrama" >}}
 
 #### Objetivo
 
@@ -1553,7 +1553,7 @@ Entidades, atributos, identificadores, relaciones 1:N y N:M, atributos de relaci
 
 ### Ejercicio 1 · Ventas: clientes, productos y proveedores
 
-{{< practica num="1" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA6: a, d, e" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="1" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA2: b, e, f" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1612,7 +1612,7 @@ La empresa quiere guardar la **fecha** y la **cantidad** de cada compra. ¿Dónd
 
 ### Ejercicio 2 · Películas en streaming
 
-{{< practica num="2" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA6: a, d, e" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="2" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA2: b, e, f" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1675,7 +1675,7 @@ Una película puede pertenecer a **varios géneros** (comedia romántica, terror
 
 ### Ejercicio 3 · Multas de tráfico municipales
 
-{{< practica num="3" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA6: a, d, e" sgbd="draw.io o papel" entrega="Diagrama EER + justificación" >}}
+{{< practica num="3" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA2: b, e, f" sgbd="draw.io o papel" entrega="Diagrama EER + justificación" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1735,7 +1735,7 @@ La multa puede **recurrirse** varias veces (fecha del recurso y resolución). ¿
 
 ### Ejercicio 4 · Naviera: capitanes, contenedores, puertos y barcos
 
-{{< practica num="4" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA6: a, d, e" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="4" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA2: b, e, f" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1801,7 +1801,7 @@ La naviera quiere saber en qué **barco** viaja cada contenedor. ¿Cómo se modi
 
 ### Ejercicio 5 · Parentesco y filiación
 
-{{< practica num="5" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA6: d, h" sgbd="draw.io o papel" entrega="Diagrama EER + análisis del enunciado" >}}
+{{< practica num="5" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA2: e, i" sgbd="draw.io o papel" entrega="Diagrama EER + análisis del enunciado" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1871,7 +1871,7 @@ Relaciones 1:1, N:M reflexivas, entidades débiles, atributos compuestos, multiv
 
 ### Ejercicio 6 · Instituto: módulos, matrículas, delegados y casilleros
 
-{{< practica num="6" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones textuales" >}}
+{{< practica num="6" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones textuales" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1938,7 +1938,7 @@ El centro decide guardar los **grupos** como entidad (código, curso, aula). Red
 
 ### Ejercicio 7 · Hospital: pacientes, ingresos y médicos
 
-{{< practica num="7" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="7" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -1998,7 +1998,7 @@ Un ingreso puede ser atendido por **varios médicos** que se turnan. ¿Cómo cam
 
 ### Ejercicio 8 · Clínica veterinaria: calendario de vacunación
 
-{{< practica num="8" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="8" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2061,7 +2061,7 @@ Algunas vacunas se ponen **durante una visita**. ¿Cómo relacionarías la admin
 
 ### Ejercicio 9 · Tienda online: pedidos, líneas y categorías
 
-{{< practica num="9" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + atributos derivados" >}}
+{{< practica num="9" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + atributos derivados" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2123,7 +2123,7 @@ Un producto puede pertenecer a **varias categorías** a la vez. ¿Cambia la card
 
 ### Ejercicio 10 · Concesionario: ventas, revisiones y mecánicos
 
-{{< practica num="10" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
+{{< practica num="10" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + supuestos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2183,7 +2183,7 @@ El taller quiere guardar **qué piezas** se cambiaron en cada revisión y cuánt
 
 ### Ejercicio 11 · Casas rurales: provincias, ciudades y habitaciones
 
-{{< practica num="11" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + identificadores completos" >}}
+{{< practica num="11" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + identificadores completos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2246,7 +2246,7 @@ Variante: además de alquilar, se quiere saber qué **personas viven** en cada c
 
 ### Ejercicio 12 · Consultora de software: proyectos, tareas y desarrolladores
 
-{{< practica num="12" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="12" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2308,7 +2308,7 @@ Se quiere que cada desarrollador tenga **un único rol** por proyecto (jefe de p
 
 ### Ejercicio 13 · Cadena hotelera: hoteles, habitaciones y reservas
 
-{{< practica num="13" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="13" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2370,7 +2370,7 @@ Una reserva puede incluir **varias habitaciones** (una familia reserva dos). ¿Q
 
 ### Ejercicio 14 · Universidad: facultades, departamentos y cátedras
 
-{{< practica num="14" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="14" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2430,7 +2430,7 @@ Los **catedráticos** tienen datos propios (año de oposición, sexenios). Convi
 
 ### Ejercicio 15 · Centro de menores: residentes, educadores e informes
 
-{{< practica num="15" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + nota de protección de datos" >}}
+{{< practica num="15" etiqueta="Ejercicio" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + nota de protección de datos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2499,7 +2499,7 @@ Relaciones ternarias, agregación, dos relaciones entre las mismas entidades, li
 
 ### Ejercicio 16 · Transporte urbano: líneas, paradas y turnos
 
-{{< practica num="16" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + análisis de la ternaria" >}}
+{{< practica num="16" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + análisis de la ternaria" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2565,7 +2565,7 @@ El transbordo se produce realmente **entre paradas**, no entre líneas. Redibuja
 
 ### Ejercicio 17 · Federación deportiva: equipos, partidos e incidencias
 
-{{< practica num="17" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="17" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2625,7 +2625,7 @@ La federación quiere guardar los **jugadores convocados** en cada partido y los
 
 ### Ejercicio 18 · Red de gimnasios: salas, reservas y entrenadores
 
-{{< practica num="18" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="18" etiqueta="Ejercicio" tipo="Autónoma" duracion="1-2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2687,7 +2687,7 @@ Las reservas de clase **tienen un entrenador** responsable. ¿La reserva pasa a 
 
 ### Ejercicio 19 · Repostería PAVA S.A.: recetas, formatos, pedidos y competencia
 
-{{< practica num="19" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario de datos" >}}
+{{< practica num="19" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario de datos" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2751,7 +2751,7 @@ El **precio** de cada formato cambia con el tiempo y se quiere conservar el hist
 
 ### Ejercicio 20 · Planta industrial: lista de materiales e inspecciones
 
-{{< practica num="20" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="20" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2813,7 +2813,7 @@ Algunas piezas se **compran a proveedores** en lugar de fabricarse. ¿Cómo mode
 
 ### Ejercicio 21 · Comandancia de Starship Troopers
 
-{{< practica num="21" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
+{{< practica num="21" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2877,7 +2877,7 @@ Cada trooper tiene una **especialidad** (piloto, agente, médico…) con datos p
 
 ### Ejercicio 22 · Casas de Juego de Tronos: castillos, arquitectos y mecenazgos
 
-{{< practica num="22" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + justificación de la agregación" >}}
+{{< practica num="22" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + justificación de la agregación" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -2951,7 +2951,7 @@ Un castillo puede ser fruto de **varios mecenazgos** (por ejemplo, empezado con 
 
 ### Ejercicio 23 · Campeonato de Quidditch
 
-{{< practica num="23" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + clasificación de la jerarquía + restricciones" >}}
+{{< practica num="23" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + clasificación de la jerarquía + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3043,7 +3043,7 @@ Varias especializaciones en un mismo modelo, cadenas de entidades débiles, tern
 
 ### Ejercicio 24 · Seguridad bancaria: vigilantes, bandas y atracos
 
-{{< practica num="24" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="24" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3105,7 +3105,7 @@ Un detenido puede pertenecer a **varias bandas** a lo largo del tiempo. ¿Qué a
 
 ### Ejercicio 25 · Club hípico: caballos, boxes y lecciones
 
-{{< practica num="25" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="25" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3167,7 +3167,7 @@ Un caballo cambia de box con el tiempo y se quiere conservar el **historial de u
 
 ### Ejercicio 26 · Hotel-balneario: alojados, habitaciones y tratamientos
 
-{{< practica num="26" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="26" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3229,7 +3229,7 @@ Una suite puede **reformarse** y pasar a estándar. ¿Es compatible con una espe
 
 ### Ejercicio 27 · Red eléctrica: centrales, nodos y suministro
 
-{{< practica num="27" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="27" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3291,7 +3291,7 @@ Las centrales renovables se dividen a su vez en **solares** y **eólicas** con a
 
 ### Ejercicio 28 · Festival de música: ediciones, escenarios y actuaciones
 
-{{< practica num="28" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="28" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3353,7 +3353,7 @@ Los festivales tienen **patrocinadores** que aportan un importe por edición. A�
 
 ### Ejercicio 29 · Grupos de supervivientes del apocalipsis zombi
 
-{{< practica num="29" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + clasificación de la jerarquía + restricciones" >}}
+{{< practica num="29" etiqueta="Ejercicio" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + clasificación de la jerarquía + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3419,7 +3419,7 @@ Un integrante puede pertenecer a **varios grupos** con una cuota distinta en cad
 
 ### Ejercicio 30 · Muestra gastronómica: provincias, platos, restaurantes y vinos
 
-{{< practica num="30" etiqueta="Ejercicio" tipo="Autónoma" duracion="2-3 sesiones" nivel="2" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
+{{< practica num="30" etiqueta="Ejercicio" tipo="Autónoma" duracion="2-3 sesiones" nivel="2" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3489,7 +3489,7 @@ Cinco ejercicios muy difíciles que combinan **todo lo explicado en la unidad**:
 
 ### Ejercicio 31 · Aerolínea: rutas, vuelos y tripulación
 
-{{< practica num="31" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
+{{< practica num="31" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3561,7 +3561,7 @@ La aerolínea ofrece vuelos en código compartido: el mismo vuelo se vende con e
 
 ### Ejercicio 32 · Hospital: ingresos, camas y atenciones
 
-{{< practica num="32" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
+{{< practica num="32" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3633,7 +3633,7 @@ Hay que registrar qué pruebas diagnósticas se solicitan en cada atención y su
 
 ### Ejercicio 33 · Logística: artículos, lista de materiales y almacenes
 
-{{< practica num="33" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
+{{< practica num="33" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3705,7 +3705,7 @@ Algunas piezas se fabrican en varias versiones (v1, v2) y la lista de materiales
 
 ### Ejercicio 34 · Circuito de torneos de ajedrez
 
-{{< practica num="34" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
+{{< practica num="34" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 
@@ -3777,7 +3777,7 @@ La federación quiere guardar los movimientos de cada partida en orden. ¿Qué e
 
 ### Ejercicio 35 · Producción de una serie de televisión
 
-{{< practica num="35" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA6: a, d, e, h" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
+{{< practica num="35" etiqueta="Ejercicio" tipo="Autónoma" duracion="3-4 sesiones" nivel="3" ra="RA2: b, e, f, i" sgbd="draw.io o papel" entrega="Diagrama EER + diccionario + restricciones + tablas previstas" >}}
 
 {{% details title="Objetivo de aprendizaje (léelo al terminar)" %}}
 

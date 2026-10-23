@@ -16,7 +16,7 @@ La unidad reutiliza intensamente lo aprendido en la UD07: dentro de un `UPDATE` 
 
 Todos los ejemplos se ejecutan sobre el esquema de referencia **EDUGEST** cargado con los [scripts del proyecto](/guia/proyecto-edugest#4-scripts-descargables) y sobre sus datos del curso 2025-26 (32 alumnos, 143 matrículas, 46 faltas). Cada ejemplo indica el número de filas afectadas que debes obtener.
 
-{{< ra "RA4:a,b,c,d,e,f,g,h" "RA6:f" >}}
+{{< ra "RA2:g" "RA5:a,b,c,d,e,f,g,h" >}}
 
 ### Objetivos de aprendizaje
 
@@ -34,18 +34,17 @@ Al terminar esta unidad serás capaz de:
 
 ### Temporalización
 
-La unidad ocupa **6 horas de aula** (3 de teoría y 3 de práctica). Es una unidad corta
-en relación con su importancia profesional: aprovecha las sesiones
+La unidad ocupa **16 horas de aula** (8 de teoría y 8 de práctica). Es la base del RA5 (el de mayor peso del módulo): aprovecha las sesiones
 prácticas, que requieren **dos sesiones de Oracle abiertas a la vez**.
 
-{{< sesiones unidad="UD08" horas="6" >}}
+{{< sesiones unidad="UD08" horas="16" >}}
 items:
-  - {h: 1, tipo: T, t: "DML: INSERT, UPDATE, DELETE y TRUNCATE", ref: "§1 a §4"}
-  - {h: 1, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 8.1"}
-  - {h: 1, tipo: T, t: "INSERT … SELECT, MERGE, transacciones, ACID y SAVEPOINT", ref: "§5 a §7 · laboratorio de transacciones"}
-  - {h: 1, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 8.4"}
-  - {h: 1, tipo: T, t: "Concurrencia, bloqueos, interbloqueos y restricciones diferidas", ref: "§8 a §10"}
-  - {h: 1, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 8.5"}
+  - {h: 2, tipo: T, t: "DML: INSERT, UPDATE, DELETE y TRUNCATE", ref: "§1 a §4"}
+  - {h: 2, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 8.1"}
+  - {h: 3, tipo: T, t: "INSERT … SELECT, MERGE, transacciones, ACID y SAVEPOINT", ref: "§5 a §7 · laboratorio de transacciones"}
+  - {h: 3, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 8.4"}
+  - {h: 3, tipo: T, t: "Concurrencia, bloqueos, interbloqueos y restricciones diferidas", ref: "§8 a §10"}
+  - {h: 3, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 8.5"}
 autonomo:
   - "Prácticas 8.2 y 8.6 (copias, históricos y carga de notas con MERGE)"
   - "Práctica 8.3 (modificaciones con subconsultas)"
@@ -144,7 +143,7 @@ Si el número de filas afectadas **no coincide** con el de la comprobación prev
 
 ### 1.4 Herramientas
 
-El criterio RA4.a pide identificar las **herramientas y sentencias** para modificar datos. En Oracle las habituales son:
+El criterio RA5.a pide identificar las **herramientas y sentencias** para modificar datos. En Oracle las habituales son:
 
 | Herramienta | Cómo se modifican los datos | Qué debes vigilar |
 |---|---|---|
@@ -766,7 +765,7 @@ La clave ajena de `IMPARTE` **no** tiene regla de borrado, así que protege al p
 
 ## 5. Insertar desde consultas y `MERGE`
 
-El criterio RA4.c pide **incluir en una tabla la información resultante de la ejecución de una consulta**. Es una operación cotidiana: copias de seguridad, históricos, tablas de resumen para informes y cargas de datos que llegan de otro sistema.
+El criterio RA5.c pide **incluir en una tabla la información resultante de la ejecución de una consulta**. Es una operación cotidiana: copias de seguridad, históricos, tablas de resumen para informes y cargas de datos que llegan de otro sistema.
 
 ### 5.1 `INSERT … SELECT`
 
@@ -1308,7 +1307,7 @@ Una consulta que lleva minutos ejecutándose necesita ver los datos **tal como e
 
 ## 8. Concurrencia y bloqueos
 
-En EduGest trabajan a la vez secretaría, el profesorado poniendo notas, los tutores registrando faltas y jefatura sacando informes. El criterio RA4.g pide **identificar los efectos de las distintas políticas de bloqueo**; el RA4.h, **adoptar medidas para mantener la integridad y la consistencia**. Las dos cosas se aprenden provocando los problemas a propósito.
+En EduGest trabajan a la vez secretaría, el profesorado poniendo notas, los tutores registrando faltas y jefatura sacando informes. El criterio RA5.h pide **identificar los efectos de las distintas políticas de bloqueo**; el RA5.d, **adoptar medidas para mantener la integridad y la consistencia**. Las dos cosas se aprenden provocando los problemas a propósito.
 
 ### 8.1 Los cuatro problemas del acceso concurrente
 
@@ -1537,7 +1536,7 @@ Repite el escenario **«Interbloqueo (ORA-00060)»** del [laboratorio de transac
 
 ## 10. Integridad referencial y restricciones diferidas
 
-El criterio RA6.f (*aplicar reglas de integridad*) y el RA4.h (*mantener la integridad y la consistencia*) se cruzan en este apartado: las restricciones que declaramos en la UD05 actúan **durante** las modificaciones de esta unidad.
+El criterio RA2.g (*aplicar reglas de integridad*) y el RA5.d (*mantener la integridad y la consistencia*) se cruzan en este apartado: las restricciones que declaramos en la UD05 actúan **durante** las modificaciones de esta unidad.
 
 ### 10.1 Cuándo comprueba Oracle una restricción
 
@@ -1627,7 +1626,7 @@ COMMIT;
 
 ## 11. Guiones de mantenimiento
 
-El criterio RA4.d pide **diseñar guiones de sentencias para llevar a cabo tareas complejas**. Un guion de mantenimiento es un fichero `.sql` que una persona ejecuta en un servidor real: debe poderse **leer, revisar, repetir y auditar**.
+El criterio RA5.e pide **diseñar guiones de sentencias para llevar a cabo tareas complejas**. Un guion de mantenimiento es un fichero `.sql` que una persona ejecuta en un servidor real: debe poderse **leer, revisar, repetir y auditar**.
 
 ### 11.1 Estructura de un guion profesional
 

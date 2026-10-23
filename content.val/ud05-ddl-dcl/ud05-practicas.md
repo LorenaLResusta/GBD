@@ -6,19 +6,19 @@ bookToc: true
 
 # UD05 · Pràctiques
 
-{{< ra "RA2:a,b,c,d,e,f,g,h" "RA6:a,f" >}}
+{{< ra "RA3" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [5.1 Primeres taules i restriccions en Oracle](#pràctica-51--primeres-taules-i-restriccions-en-oracle) | Guiada | ●○○ | RA2.b, RA2.c, RA2.d, RA2.e |
-| [5.2 Del diagrama de Chen al DDL d'Oracle](#pràctica-52--del-diagrama-de-chen-al-ddl-doracle) | Guiada | ●●○ | RA2.b, RA2.d, RA2.e, RA6.f |
-| [5.3 Biblioteca: script complet i bateria de proves](#pràctica-53--biblioteca-script-complet-i-bateria-de-proves) | Guiada | ●●○ | RA2.b-e, RA2.h |
-| [5.4 Sis casos per a implementar](#pràctica-54--sis-casos-per-a-implementar) | Autònoma | ●●○ | RA2.b-e |
-| [5.5 Evolució de l'esquema amb ALTER](#pràctica-55--evolució-de-lesquema-amb-alter) | Guiada | ●●○ | RA2.b, RA2.e, RA2.h |
-| [5.6 Índexs, vistes i seqüències en EduGest](#pràctica-56--índexs-vistes-i-seqüències-en-edugest) | Guiada | ●●○ | RA2.f, RA2.h |
-| [5.7 Usuaris, rols i privilegis en EduGest](#pràctica-57--usuaris-rols-i-privilegis-en-edugest) | Guiada | ●●● | RA2.g, RA2.h |
-| [5.8 Depurar un script defectuós](#pràctica-58--depurar-un-script-defectuós) | Repte | ●●● | RA2.b-e |
-| [Projecte EduGest · UD05](#projecte-edugest--ud05-implementació) | Projecte | ●●● | RA2 complet |
+| [5.1 Primeres taules i restriccions en Oracle](#pràctica-51--primeres-taules-i-restriccions-en-oracle) | Guiada | ●○○ | RA3.b-e |
+| [5.2 Del diagrama de Chen al DDL d'Oracle](#pràctica-52--del-diagrama-de-chen-al-ddl-doracle) | Guiada | ●●○ | RA2.g, RA3.b, RA3.d, RA3.e |
+| [5.3 Biblioteca: script complet i bateria de proves](#pràctica-53--biblioteca-script-complet-i-bateria-de-proves) | Guiada | ●●○ | RA3.b-e, RA3.g, RA3.h |
+| [5.4 Sis casos per a implementar](#pràctica-54--sis-casos-per-a-implementar) | Autònoma | ●●○ | RA3.b-e |
+| [5.5 Evolució de l'esquema amb ALTER](#pràctica-55--evolució-de-lesquema-amb-alter) | Guiada | ●●○ | RA3.b, RA3.e, RA3.g, RA3.h |
+| [5.6 Índexs, vistes i seqüències en EduGest](#pràctica-56--índexs-vistes-i-seqüències-en-edugest) | Guiada | ●●○ | RA3.g, RA3.h |
+| [5.7 Usuaris, rols i privilegis en EduGest](#pràctica-57--usuaris-rols-i-privilegis-en-edugest) | Guiada | ●●● | RA3.g, RA3.h, Ampliació |
+| [5.8 Depurar un script defectuós](#pràctica-58--depurar-un-script-defectuós) | Repte | ●●● | RA3.b-e |
+| [Projecte EduGest · UD05](#projecte-edugest--ud05-implementació) | Projecte | ●●● | RA3 complet |
 
 > [!IMPORTANT]
 > **Abans de començar.** Necessites l'entorn de la [guia](/guia/entorno) funcionant. Per a les pràctiques 5.1 a 5.5 crea un usuari de proves propi, així no barreges els exercicis amb el projecte. Connecta't com a `SYSTEM` a `FREEPDB1` i executa:
@@ -32,7 +32,7 @@ bookToc: true
 
 ## Pràctica 5.1 · Primeres taules i restriccions en Oracle
 
-{{< practica num="5.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA2: b, c, d, e" sgbd="Oracle AI Database 26ai Free · SQL Developer o SQLcl" entrega="p5_1.sql + p5_1_salida.txt" >}}
+{{< practica num="5.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA3: b, c, d, e" sgbd="Oracle AI Database 26ai Free · SQL Developer o SQLcl" entrega="p5_1.sql + p5_1_salida.txt" >}}
 
 #### Objectiu
 
@@ -162,7 +162,7 @@ Canvia `fk_pedido_cliente` perquè en esborrar un client s'esborren les seues co
 
 ## Pràctica 5.2 · Del diagrama de Chen al DDL d'Oracle
 
-{{< practica num="5.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA2: b, d, e · RA6: f" sgbd="Oracle AI Database 26ai Free" entrega="p5_2.sql amb els cinc casos" >}}
+{{< practica num="5.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA2: g · RA3: b, d, e" sgbd="Oracle AI Database 26ai Free" entrega="p5_2.sql amb els cinc casos" >}}
 
 #### Objectiu
 
@@ -346,7 +346,7 @@ ROLLBACK;
 
 ## Pràctica 5.3 · Biblioteca: script complet i bateria de proves
 
-{{< practica num="5.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA2: b, c, d, e, h" sgbd="Oracle 26ai · SQL Developer Data Modeler (opcional)" entrega="biblioteca.sql + pruebas_biblioteca.sql" >}}
+{{< practica num="5.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: b, c, d, e, g, h" sgbd="Oracle 26ai · SQL Developer Data Modeler (opcional)" entrega="biblioteca.sql + pruebas_biblioteca.sql" >}}
 
 #### Objectiu
 
@@ -494,7 +494,7 @@ Explica per què funciona (pensa en com tracta Oracle les files les claus d'índ
 
 ## Pràctica 5.4 · Sis casos per a implementar
 
-{{< practica num="5.4" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA2: b, c, d, e" sgbd="Oracle 26ai" entrega="Un script per cas + bateria de proves" >}}
+{{< practica num="5.4" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Un script per cas + bateria de proves" >}}
 
 #### Objectiu
 
@@ -539,7 +539,7 @@ Crea `DEPARTAMENTO` sense la columna del cap o amb la columna però sense la cla
 
 ## Pràctica 5.5 · Evolució de l'esquema amb ALTER
 
-{{< practica num="5.5" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA2: b, e, h" sgbd="Oracle 26ai" entrega="p5_5_cambios.sql" >}}
+{{< practica num="5.5" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: b, e, g, h" sgbd="Oracle 26ai" entrega="p5_5_cambios.sql" >}}
 
 #### Objectiu
 
@@ -575,7 +575,7 @@ Per a cada canvi, escriu la sentència i comprova el resultat amb `DESC` o amb e
 
 ## Pràctica 5.6 · Índexs, vistes i seqüències en EduGest
 
-{{< practica num="5.6" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA2: f, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_vistas_indices.sql" >}}
+{{< practica num="5.6" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: g, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_vistas_indices.sql" >}}
 
 #### Objectiu
 
@@ -669,7 +669,7 @@ Crea una vista `v_resumen_grupo` amb el codi de grup, el cicle, el torn i el nom
 
 ## Pràctica 5.7 · Usuaris, rols i privilegis en EduGest
 
-{{< practica num="5.7" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA2: g, h" sgbd="Oracle 26ai (connexions com a SYSTEM, EDUGEST i els usuaris creats)" entrega="edugest/03_seguridad.sql + matriu de proves" >}}
+{{< practica num="5.7" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA3: g, h · Ampliació" sgbd="Oracle 26ai (connexions com a SYSTEM, EDUGEST i els usuaris creats)" entrega="edugest/03_seguridad.sql + matriu de proves" >}}
 
 #### Objectiu
 
@@ -789,7 +789,7 @@ Completa la matriu amb ✅ (permés) o ❌ (error i codi). Els teus resultats ha
 
 ## Pràctica 5.8 · Depurar un script defectuós
 
-{{< practica num="5.8" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregit + informe d'errors" >}}
+{{< practica num="5.8" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregit + informe d'errors" >}}
 
 #### Objectiu
 
@@ -840,7 +840,7 @@ Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` n
 
 ## Projecte EduGest · UD05: implementació
 
-{{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: a-h · RA6: a, f" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 03_seguridad.sql, 04_vistas_indices.sql i docs/05-implementacion.md" >}}
+{{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h · Ampliació" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 03_seguridad.sql, 04_vistas_indices.sql i docs/05-implementacion.md" >}}
 
 #### Enunciat
 

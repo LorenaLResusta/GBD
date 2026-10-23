@@ -1,82 +1,70 @@
 # Resultados de Aprendizaje y Criterios de Evaluación
-# Módulo profesional 0484. Bases de datos (DAM y DAW)
-# Fuente: Real Decreto 405/2023, de 29 de mayo (BOE-A-2023-13221)
+# Módulo profesional 0372. Gestión de bases de datos (1º ASIR)
+# Fuente: Real Decreto 1629/2009, de 30 de octubre, por el que se establece el título de
+# Técnico Superior en Administración de Sistemas Informáticos en Red y se fijan sus enseñanzas mínimas.
 # Texto literal de las enseñanzas mínimas.
 RA1:
   titulo: "Reconoce los elementos de las bases de datos analizando sus funciones y valorando la utilidad de los sistemas gestores."
   ce:
-    a: "Se han analizado los sistemas lógicos de almacenamiento y sus características."
+    a: "Se han analizado los distintos sistemas lógicos de almacenamiento y sus funciones."
     b: "Se han identificado los distintos tipos de bases de datos según el modelo de datos utilizado."
     c: "Se han identificado los distintos tipos de bases de datos en función de la ubicación de la información."
-    d: "Se ha evaluado la utilidad de un sistema gestor de bases de datos."
-    e: "Se ha reconocido la función de cada uno de los elementos de un sistema gestor de bases de datos."
+    d: "Se ha reconocido la utilidad de un sistema gestor de bases de datos."
+    e: "Se ha descrito la función de cada uno de los elementos de un sistema gestor de bases de datos."
     f: "Se han clasificado los sistemas gestores de bases de datos."
-    g: "Se ha reconocido la utilidad de las bases de datos distribuidas."
-    h: "Se han analizado las políticas de fragmentación de la información."
-    i: "Se ha identificado la legislación vigente sobre protección de datos."
-    j: "Se han reconocido los conceptos de Big Data y de la inteligencia de negocios."
 RA2:
-  titulo: "Crea bases de datos definiendo su estructura y las características de sus elementos según el modelo relacional."
+  titulo: "Diseña modelos lógicos normalizados interpretando diagramas entidad/relación."
   ce:
-    a: "Se ha analizado el formato de almacenamiento de la información."
-    b: "Se han creado las tablas y las relaciones entre ellas."
+    a: "Se ha identificado el significado de la simbología propia de los diagramas entidad/relación."
+    b: "Se han utilizado herramientas gráficas para representar el diseño lógico."
+    c: "Se han identificado las tablas del diseño lógico."
+    d: "Se han identificado los campos que forman parte de las tablas del diseño lógico."
+    e: "Se han identificado las relaciones entre las tablas del diseño lógico."
+    f: "Se han definido los campos clave."
+    g: "Se han aplicado las reglas de integridad."
+    h: "Se han aplicado las reglas de normalización hasta un nivel adecuado."
+    i: "Se han identificado y documentado las restricciones que no pueden plasmarse en el diseño lógico."
+RA3:
+  titulo: "Realiza el diseño físico de bases de datos utilizando asistentes, herramientas gráficas y el lenguaje de definición de datos."
+  ce:
+    a: "Se han definido las estructuras físicas de almacenamiento."
+    b: "Se han creado tablas."
     c: "Se han seleccionado los tipos de datos adecuados."
     d: "Se han definido los campos clave en las tablas."
-    e: "Se han implantado las restricciones reflejadas en el diseño lógico."
-    f: "Se han creado vistas."
-    g: "Se han creado los usuarios y se les han asignado privilegios."
-    h: "Se han utilizado asistentes, herramientas gráficas y los lenguajes de definición y control de datos."
-RA3:
-  titulo: "Consulta la información almacenada en una base de datos empleando asistentes, herramientas gráficas y el lenguaje de manipulación de datos."
+    e: "Se han implantado todas las restricciones reflejadas en el diseño lógico."
+    f: "Se ha verificado mediante un conjunto de datos de prueba que la implementación se ajusta al modelo."
+    g: "Se han utilizado asistentes y herramientas gráficas."
+    h: "Se ha utilizado el lenguaje de definición de datos."
+    i: "Se ha definido y documentado el diccionario de datos."
+RA4:
+  titulo: "Consulta la información almacenada manejando asistentes, herramientas gráficas y el lenguaje de manipulación de datos."
   ce:
     a: "Se han identificado las herramientas y sentencias para realizar consultas."
     b: "Se han realizado consultas simples sobre una tabla."
-    c: "Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas."
-    d: "Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas."
-    e: "Se han realizado consultas resumen."
+    c: "Se han realizado consultas que generan valores de resumen."
+    d: "Se han realizado consultas sobre el contenido de varias tablas mediante composiciones internas."
+    e: "Se han realizado consultas sobre el contenido de varias tablas mediante composiciones externas."
     f: "Se han realizado consultas con subconsultas."
-    g: "Se han realizado consultas que implican múltiples selecciones."
-    h: "Se han aplicado criterios de optimización de consultas."
-RA4:
-  titulo: "Modifica la información almacenada en la base de datos utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos."
+    g: "Se han valorado las ventajas e inconvenientes de las distintas opciones válidas para llevar a cabo una consulta determinada."
+RA5:
+  titulo: "Modifica la información almacenada utilizando asistentes, herramientas gráficas y el lenguaje de manipulación de datos."
   ce:
     a: "Se han identificado las herramientas y sentencias para modificar el contenido de la base de datos."
     b: "Se han insertado, borrado y actualizado datos en las tablas."
     c: "Se ha incluido en una tabla la información resultante de la ejecución de una consulta."
-    d: "Se han diseñado guiones de sentencias para llevar a cabo tareas complejas."
-    e: "Se ha reconocido el funcionamiento de las transacciones."
-    f: "Se han anulado parcial o totalmente los cambios producidos por una transacción."
-    g: "Se han identificado los efectos de las distintas políticas de bloqueo de registros."
-    h: "Se han adoptado medidas para mantener la integridad y consistencia de la información."
-RA5:
-  titulo: "Desarrolla procedimientos almacenados evaluando y utilizando las sentencias del lenguaje incorporado en el sistema gestor de bases de datos."
-  ce:
-    a: "Se han identificado las diversas formas de automatizar tareas."
-    b: "Se han reconocido los métodos de ejecución de guiones."
-    c: "Se han identificado las herramientas disponibles para editar guiones."
-    d: "Se han definido y utilizado guiones para automatizar tareas."
-    e: "Se ha hecho uso de las funciones proporcionadas por el sistema gestor."
-    f: "Se han definido procedimientos y funciones de usuario."
-    g: "Se han utilizado estructuras de control de flujo."
-    h: "Se han definido eventos y disparadores."
-    i: "Se han utilizado cursores."
-    j: "Se han utilizado excepciones."
+    d: "Se han adoptado medidas para mantener la integridad y consistencia de la información."
+    e: "Se han diseñado guiones de sentencias para llevar a cabo tareas complejas."
+    f: "Se ha reconocido el funcionamiento de las transacciones."
+    g: "Se han anulado parcial o totalmente los cambios producidos por una transacción."
+    h: "Se han identificado los efectos de las distintas políticas de bloqueo de registros."
 RA6:
-  titulo: "Diseña modelos relacionales normalizados interpretando diagramas entidad/relación."
+  titulo: "Ejecuta tareas de aseguramiento de la información, analizándolas y aplicando mecanismos de salvaguarda y transferencia."
   ce:
-    a: "Se han utilizado herramientas gráficas para representar el diseño lógico."
-    b: "Se han identificado las tablas del diseño lógico."
-    c: "Se han identificado los campos que forman parte de las tablas del diseño lógico."
-    d: "Se han analizado las relaciones entre las tablas del diseño lógico."
-    e: "Se han identificado los campos clave."
-    f: "Se han aplicado reglas de integridad."
-    g: "Se han aplicado reglas de normalización."
-    h: "Se han analizado y documentado las restricciones que no pueden plasmarse en el diseño lógico."
-RA7:
-  titulo: "Gestiona la información almacenada en bases de datos no relacionales, evaluando y utilizando las posibilidades que proporciona el sistema gestor."
-  ce:
-    a: "Se han caracterizado las bases de datos no relacionales."
-    b: "Se han evaluado los principales tipos de bases de datos no relacionales."
-    c: "Se han identificado los elementos utilizados en estas bases de datos."
-    d: "Se han identificado distintas formas de gestión de la información según el tipo de base de datos no relacionales."
-    e: "Se han utilizado las herramientas del sistema gestor para la gestión de la información almacenada."
+    a: "Se han identificado herramientas gráficas y en línea de comandos para la administración de copias de seguridad."
+    b: "Se han realizado copias de seguridad."
+    c: "Se han restaurado copias de seguridad."
+    d: "Se han identificado las herramientas para importar y exportar datos."
+    e: "Se han exportado datos a diversos formatos."
+    f: "Se han importado datos con distintos formatos."
+    g: "Se ha interpretado correctamente la información suministrada por los mensajes de error y los ficheros de registro."
+    h: "Se ha transferido información entre sistemas gestores."

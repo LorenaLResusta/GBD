@@ -6,19 +6,19 @@ bookToc: true
 
 # UD09 · Pràctiques
 
-{{< ra "RA5:a,b,c,d,e,f,g,h,i,j" "RA4:d,h" "RA6:h" >}}
+{{< ra "RA2:i" "RA5:d,e" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [9.1 Primers blocs: l'expedient d'un alumne](#pràctica-91--primers-blocs-lexpedient-dun-alumne) | Guiada | ●○○ | RA5.b, RA5.c, RA5.e, RA5.g |
-| [9.2 Biblioteca de funcions d'EduGest](#pràctica-92--biblioteca-de-funcions-dedugest) | Guiada | ●●○ | RA5.e, RA5.f |
-| [9.3 Procediment de matrícula amb excepcions](#pràctica-93--procediment-de-matrícula-amb-excepcions) | Guiada | ●●○ | RA5.f, RA5.g, RA5.j |
-| [9.4 Cursors: butlletins i informes](#pràctica-94--cursors-butlletins-i-informes) | Autònoma | ●●○ | RA5.g, RA5.i |
-| [9.5 Disparadors d'integritat i auditoria](#pràctica-95--disparadors-dintegritat-i-auditoria) | Guiada | ●●● | RA5.h, RA6.h, RA4.h |
-| [9.6 Repte: la taula mutant](#pràctica-96--repte-la-taula-mutant) | Repte | ●●● | RA5.h, RA5.i |
-| [9.7 Tasques programades](#pràctica-97--tasques-programades) | Guiada | ●●○ | RA5.a, RA5.d, RA5.h |
-| [9.8 Repte: el paquet de secretaria](#pràctica-98--repte-el-paquet-de-secretaria) | Repte | ●●● | RA5.d, RA5.f, RA5.j, RA4.d |
-| [Projecte EduGest · UD09](#projecte-edugest--ud09-lògica-en-el-servidor) | Projecte | ●●● | RA5 complet, RA6.h |
+| [9.1 Primers blocs: l'expedient d'un alumne](#pràctica-91--primers-blocs-lexpedient-dun-alumne) | Guiada | ●○○ | RA5.e |
+| [9.2 Biblioteca de funcions d'EduGest](#pràctica-92--biblioteca-de-funcions-dedugest) | Guiada | ●●○ | RA5.e |
+| [9.3 Procediment de matrícula amb excepcions](#pràctica-93--procediment-de-matrícula-amb-excepcions) | Guiada | ●●○ | RA5.e |
+| [9.4 Cursors: butlletins i informes](#pràctica-94--cursors-butlletins-i-informes) | Autònoma | ●●○ | RA5.e |
+| [9.5 Disparadors d'integritat i auditoria](#pràctica-95--disparadors-dintegritat-i-auditoria) | Guiada | ●●● | RA2.i, RA5.d, RA5.e |
+| [9.6 Repte: la taula mutant](#pràctica-96--repte-la-taula-mutant) | Repte | ●●● | RA5.e |
+| [9.7 Tasques programades](#pràctica-97--tasques-programades) | Guiada | ●●○ | RA5.e |
+| [9.8 Repte: el paquet de secretaria](#pràctica-98--repte-el-paquet-de-secretaria) | Repte | ●●● | RA5.e |
+| [Projecte EduGest · UD09](#projecte-edugest--ud09-lògica-en-el-servidor) | Projecte | ●●● | RA5 complet, RA2.i |
 
 > [!IMPORTANT]
 > - Treballa com a `EDUGEST` sobre les dades originals (scripts 01 i 02).
@@ -29,7 +29,7 @@ bookToc: true
 
 ## Pràctica 9.1 · Primers blocs: l'expedient d'un alumne
 
-{{< practica num="9.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA5: b, c, e, g" sgbd="Oracle 26ai · SQL Developer i SQLcl" entrega="p9_1.sql + eixida" >}}
+{{< practica num="9.1" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA5: e" sgbd="Oracle 26ai · SQL Developer i SQLcl" entrega="p9_1.sql + eixida" >}}
 
 #### Objectiu
 
@@ -129,7 +129,7 @@ Tiene faltas registradas
 
 ## Pràctica 9.2 · Biblioteca de funcions d'EduGest
 
-{{< practica num="9.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e, f" sgbd="Oracle 26ai" entrega="funcions/*.sql + proves" >}}
+{{< practica num="9.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="funcions/*.sql + proves" >}}
 
 #### Objectiu
 
@@ -183,7 +183,7 @@ Què passa si intentes usar en un `SELECT` una funció que fa un `INSERT`? Prova
 
 ## Pràctica 9.3 · Procediment de matrícula amb excepcions
 
-{{< practica num="9.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: f, g, j" sgbd="Oracle 26ai" entrega="pr_matricular.sql + bateria de proves" >}}
+{{< practica num="9.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_matricular.sql + bateria de proves" >}}
 
 #### Objectiu
 
@@ -239,7 +239,7 @@ Afig un paràmetre `p_forzar BOOLEAN DEFAULT FALSE` que permeta saltar-se la reg
 
 ## Pràctica 9.4 · Cursors: butlletins i informes
 
-{{< practica num="9.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA5: g, i" sgbd="Oracle 26ai" entrega="pr_boletin.sql + pr_alerta_faltas.sql + eixides" >}}
+{{< practica num="9.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_boletin.sql + pr_alerta_faltas.sql + eixides" >}}
 
 #### Enunciat
 
@@ -276,7 +276,7 @@ Pistes: `RPAD(nombre, 45)` alinea columnes; `TO_CHAR(nota, '90.00')` formata la 
 
 ## Pràctica 9.5 · Disparadors d'integritat i auditoria
 
-{{< practica num="9.5" tipo="Guiada" duracion="3 sessions" nivel="3" ra="RA5: h · RA6: h · RA4: h" sgbd="Oracle 26ai" entrega="triggers/*.sql + matriu de proves" >}}
+{{< practica num="9.5" tipo="Guiada" duracion="3 sessions" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="triggers/*.sql + matriu de proves" >}}
 
 #### Objectiu
 
@@ -348,7 +348,7 @@ Implementar amb disparadors l'auditoria de canvis i les restriccions d'EduGest q
 
 ## Pràctica 9.6 · Repte: la taula mutant
 
-{{< practica num="9.6" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA5: h, i" sgbd="Oracle 26ai" entrega="trg_imparte_max_horas.sql + proves + explicació" >}}
+{{< practica num="9.6" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="trg_imparte_max_horas.sql + proves + explicació" >}}
 
 #### Enunciat
 
@@ -371,7 +371,7 @@ Cada sessió veu només els seus propis canvis sense confirmar (consistència de
 
 ## Pràctica 9.7 · Tasques programades
 
-{{< practica num="9.7" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: a, d, h" sgbd="Oracle 26ai · DBMS_SCHEDULER" entrega="jobs.sql + captura de l'historial" >}}
+{{< practica num="9.7" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: e" sgbd="Oracle 26ai · DBMS_SCHEDULER" entrega="jobs.sql + captura de l'historial" >}}
 
 #### Objectiu
 
@@ -412,7 +412,7 @@ Automatitzar tasques periòdiques en el servidor i comprovar-ne l'execució.
 
 ## Pràctica 9.8 · Repte: el paquet de secretaria
 
-{{< practica num="9.8" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: d, f, j · RA4: d" sgbd="Oracle 26ai" entrega="pkg_secretaria.sql (especificació i cos) + proves + defensa" >}}
+{{< practica num="9.8" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="pkg_secretaria.sql (especificació i cos) + proves + defensa" >}}
 
 #### Enunciat
 
@@ -448,7 +448,7 @@ END pkg_secretaria;
 
 ## Projecte EduGest · UD09: lògica en el servidor
 
-{{< practica num="EduGest-9" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA5: a-j · RA6: h · RA4: h" sgbd="Oracle 26ai" entrega="edugest/09_plsql/ + docs/09-programacion.md" >}}
+{{< practica num="EduGest-9" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="edugest/09_plsql/ + docs/09-programacion.md" >}}
 
 #### Enunciat
 

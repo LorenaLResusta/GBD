@@ -6,19 +6,19 @@ bookToc: true
 
 # UD09 · Prácticas
 
-{{< ra "RA5:a,b,c,d,e,f,g,h,i,j" "RA4:d,h" "RA6:h" >}}
+{{< ra "RA2:i" "RA5:d,e" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [9.1 Primeros bloques: el expediente de un alumno](#práctica-91--primeros-bloques-el-expediente-de-un-alumno) | Guiada | ●○○ | RA5.b, RA5.c, RA5.e, RA5.g |
-| [9.2 Biblioteca de funciones de EduGest](#práctica-92--biblioteca-de-funciones-de-edugest) | Guiada | ●●○ | RA5.e, RA5.f |
-| [9.3 Procedimiento de matrícula con excepciones](#práctica-93--procedimiento-de-matrícula-con-excepciones) | Guiada | ●●○ | RA5.f, RA5.g, RA5.j |
-| [9.4 Cursores: boletines e informes](#práctica-94--cursores-boletines-e-informes) | Autónoma | ●●○ | RA5.g, RA5.i |
-| [9.5 Disparadores de integridad y auditoría](#práctica-95--disparadores-de-integridad-y-auditoría) | Guiada | ●●● | RA5.h, RA6.h, RA4.h |
-| [9.6 Reto: la tabla mutante](#práctica-96--reto-la-tabla-mutante) | Reto | ●●● | RA5.h, RA5.i |
-| [9.7 Tareas programadas](#práctica-97--tareas-programadas) | Guiada | ●●○ | RA5.a, RA5.d, RA5.h |
-| [9.8 Reto: el paquete de secretaría](#práctica-98--reto-el-paquete-de-secretaría) | Reto | ●●● | RA5.d, RA5.f, RA5.j, RA4.d |
-| [Proyecto EduGest · UD09](#proyecto-edugest--ud09-lógica-en-el-servidor) | Proyecto | ●●● | RA5 completo, RA6.h |
+| [9.1 Primeros bloques: el expediente de un alumno](#práctica-91--primeros-bloques-el-expediente-de-un-alumno) | Guiada | ●○○ | RA5.e |
+| [9.2 Biblioteca de funciones de EduGest](#práctica-92--biblioteca-de-funciones-de-edugest) | Guiada | ●●○ | RA5.e |
+| [9.3 Procedimiento de matrícula con excepciones](#práctica-93--procedimiento-de-matrícula-con-excepciones) | Guiada | ●●○ | RA5.e |
+| [9.4 Cursores: boletines e informes](#práctica-94--cursores-boletines-e-informes) | Autónoma | ●●○ | RA5.e |
+| [9.5 Disparadores de integridad y auditoría](#práctica-95--disparadores-de-integridad-y-auditoría) | Guiada | ●●● | RA2.i, RA5.d, RA5.e |
+| [9.6 Reto: la tabla mutante](#práctica-96--reto-la-tabla-mutante) | Reto | ●●● | RA5.e |
+| [9.7 Tareas programadas](#práctica-97--tareas-programadas) | Guiada | ●●○ | RA5.e |
+| [9.8 Reto: el paquete de secretaría](#práctica-98--reto-el-paquete-de-secretaría) | Reto | ●●● | RA5.e |
+| [Proyecto EduGest · UD09](#proyecto-edugest--ud09-lógica-en-el-servidor) | Proyecto | ●●● | RA5 completo, RA2.i |
 
 > [!IMPORTANT]
 > - Trabaja como `EDUGEST` sobre los datos originales (scripts 01 y 02).
@@ -29,7 +29,7 @@ bookToc: true
 
 ## Práctica 9.1 · Primeros bloques: el expediente de un alumno
 
-{{< practica num="9.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA5: b, c, e, g" sgbd="Oracle 26ai · SQL Developer y SQLcl" entrega="p9_1.sql + salida" >}}
+{{< practica num="9.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA5: e" sgbd="Oracle 26ai · SQL Developer y SQLcl" entrega="p9_1.sql + salida" >}}
 
 #### Objetivo
 
@@ -129,7 +129,7 @@ Tiene faltas registradas
 
 ## Práctica 9.2 · Biblioteca de funciones de EduGest
 
-{{< practica num="9.2" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA5: e, f" sgbd="Oracle 26ai" entrega="funciones/*.sql + pruebas" >}}
+{{< practica num="9.2" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="funciones/*.sql + pruebas" >}}
 
 #### Objetivo
 
@@ -183,7 +183,7 @@ ORDER  BY id_alumno;
 
 ## Práctica 9.3 · Procedimiento de matrícula con excepciones
 
-{{< practica num="9.3" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA5: f, g, j" sgbd="Oracle 26ai" entrega="pr_matricular.sql + batería de pruebas" >}}
+{{< practica num="9.3" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_matricular.sql + batería de pruebas" >}}
 
 #### Objetivo
 
@@ -239,7 +239,7 @@ Añade un parámetro `p_forzar BOOLEAN DEFAULT FALSE` que permita saltarse la re
 
 ## Práctica 9.4 · Cursores: boletines e informes
 
-{{< practica num="9.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA5: g, i" sgbd="Oracle 26ai" entrega="pr_boletin.sql + pr_alerta_faltas.sql + salidas" >}}
+{{< practica num="9.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="pr_boletin.sql + pr_alerta_faltas.sql + salidas" >}}
 
 #### Enunciado
 
@@ -276,7 +276,7 @@ Pistas: `RPAD(nombre, 45)` alinea columnas; `TO_CHAR(nota, '90.00')` formatea la
 
 ## Práctica 9.5 · Disparadores de integridad y auditoría
 
-{{< practica num="9.5" tipo="Guiada" duracion="3 sesiones" nivel="3" ra="RA5: h · RA6: h · RA4: h" sgbd="Oracle 26ai" entrega="triggers/*.sql + matriz de pruebas" >}}
+{{< practica num="9.5" tipo="Guiada" duracion="3 sesiones" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="triggers/*.sql + matriz de pruebas" >}}
 
 #### Objetivo
 
@@ -348,7 +348,7 @@ Implementar con disparadores la auditoría de cambios y las restricciones de Edu
 
 ## Práctica 9.6 · Reto: la tabla mutante
 
-{{< practica num="9.6" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA5: h, i" sgbd="Oracle 26ai" entrega="trg_imparte_max_horas.sql + pruebas + explicación" >}}
+{{< practica num="9.6" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="trg_imparte_max_horas.sql + pruebas + explicación" >}}
 
 #### Enunciado
 
@@ -371,7 +371,7 @@ Cada sesión ve solo sus propios cambios sin confirmar (consistencia de lectura)
 
 ## Práctica 9.7 · Tareas programadas
 
-{{< practica num="9.7" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA5: a, d, h" sgbd="Oracle 26ai · DBMS_SCHEDULER" entrega="jobs.sql + captura del historial" >}}
+{{< practica num="9.7" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA5: e" sgbd="Oracle 26ai · DBMS_SCHEDULER" entrega="jobs.sql + captura del historial" >}}
 
 #### Objetivo
 
@@ -412,7 +412,7 @@ Automatizar tareas periódicas en el servidor y comprobar su ejecución.
 
 ## Práctica 9.8 · Reto: el paquete de secretaría
 
-{{< practica num="9.8" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA5: d, f, j · RA4: d" sgbd="Oracle 26ai" entrega="pkg_secretaria.sql (especificación y cuerpo) + pruebas + defensa" >}}
+{{< practica num="9.8" tipo="Reto" duracion="3 sesiones" nivel="3" ra="RA5: e" sgbd="Oracle 26ai" entrega="pkg_secretaria.sql (especificación y cuerpo) + pruebas + defensa" >}}
 
 #### Enunciado
 
@@ -448,7 +448,7 @@ END pkg_secretaria;
 
 ## Proyecto EduGest · UD09: lógica en el servidor
 
-{{< practica num="EduGest-9" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA5: a-j · RA6: h · RA4: h" sgbd="Oracle 26ai" entrega="edugest/09_plsql/ + docs/09-programacion.md" >}}
+{{< practica num="EduGest-9" tipo="Proyecto" duracion="Trabajo transversal (2 semanas)" nivel="3" ra="RA2: i · RA5: d, e" sgbd="Oracle 26ai" entrega="edugest/09_plsql/ + docs/09-programacion.md" >}}
 
 #### Enunciado
 

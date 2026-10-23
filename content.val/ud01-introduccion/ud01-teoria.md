@@ -15,18 +15,18 @@ Un **sistema gestor de bases de dades (SGBD)** és el component de programari es
 
 Aquesta unitat tracta en profunditat la transició històrica des dels suports físics primitius (targetes perforades, cintes magnètiques i discos plans) fins als SGBD relacionals i NoSQL actuals. S'hi analitzen detalladament els mètodes d'organització de fitxers (seqüencials, d'accés aleatori mitjançant el càlcul de l'*offset* i indexats amb arbres B), l'arquitectura estàndard de tres nivells **ANSI/SPARC**, els components interns d'un motor de base de dades, les regles d'integritat referencial i de domini, la gestió de la concurrència mitjançant **transaccions ACID**, les polítiques de seguretat i recuperació, així com les topologies de desplegament i els subconjunts del llenguatge SQL.
 
-{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" "RA7:a" >}}
+{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
 ### Temporalització
 
-La unitat ocupa **12 hores d'aula** (8 de teoria i 4 de pràctica).
+La unitat ocupa **10 hores d'aula** (6 de teoria i 4 de pràctica).
 
-{{< sesiones unidad="UD01" horas="12" >}}
+{{< sesiones unidad="UD01" horas="10" >}}
 items:
   - {h: 2, tipo: T, t: "Dades i informació. Història. Sistemes basats en fitxers", ref: "§1 a §3"}
   - {h: 1, tipo: P, t: "Del full de càlcul al SGBD", ref: "Pràctica 1.1"}
-  - {h: 2, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
+  - {h: 1, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
   - {h: 2, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
-  - {h: 2, tipo: T, t: "Integritat, concurrència i transaccions. Seguretat. Models de dades i llenguatges", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Integritat, concurrència i transaccions. Seguretat. Models de dades i llenguatges", ref: "§6 a §8"}
   - {h: 1, tipo: T, t: "Classificació dels SGBD. Bases de dades distribuïdes i fragmentació", ref: "§9 i §10"}
   - {h: 1, tipo: T, t: "Big Data, intel·ligència empresarial i protecció de dades", ref: "§11 i §12"}
   - {h: 1, tipo: P, t: "Informe d'anàlisi d'EduGest", ref: "Projecte EduGest-1"}
@@ -619,7 +619,7 @@ graph TD
   - *Orientats a grafs:* Representen de manera nativa els nodes i les relacions (Neo4j).
   - *Columnars:* Agrupen les dades en famílies de columnes per a llegir-les i escriure-les a gran escala (Cassandra).
 
-La UD10 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
+La UD11 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
 
 > [!WARNING]
 > **NoSQL no vol dir necessàriament «sense ACID»**: les garanties transaccionals varien segons el producte i la configuració. Abans de triar un sistema, comprova quines propietats oferix.
@@ -738,7 +738,7 @@ Segons **on** s'emmagatzemen les dades (RA1.c), una base de dades pot ser:
 
 ### 10.2 Utilitat de les bases de dades distribuïdes
 
-Una base de dades distribuïda és útil quan (RA1.g):
+Una base de dades distribuïda és útil quan:
 
 - L'organització està **repartida geogràficament** (seus, delegacions, països) i cada seu treballa sobretot amb les seues pròpies dades.
 - Es necessita **alta disponibilitat**: si un node falla, els altres continuen donant servei.
@@ -748,11 +748,11 @@ Una base de dades distribuïda és útil quan (RA1.g):
 A canvi, el sistema és més complex: cal coordinar les transaccions entre nodes (per exemple, amb el protocol de **confirmació en dues fases**, *two-phase commit*), mantindre la coherència de les còpies i tolerar les fallades de xarxa.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD10).
+> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD11).
 
 ### 10.3 Polítiques de fragmentació
 
-**Fragmentar** és dividir una taula en parts (*fragments*) que s'emmagatzemen en nodes diferents (RA1.h). Tota fragmentació ha de complir tres regles:
+**Fragmentar** és dividir una taula en parts (*fragments*) que s'emmagatzemen en nodes diferents. Tota fragmentació ha de complir tres regles:
 
 1. **Completitud:** cada dada de la taula original està en algun fragment.
 2. **Reconstrucció:** la taula original es pot recompondre a partir dels fragments.
@@ -795,7 +795,7 @@ A més de fragmentar, es poden **replicar** les dades: guardar-ne còpies comple
 
 ### 11.1 Big Data
 
-**Big Data** és el conjunt de tècniques i tecnologies que permeten emmagatzemar i analitzar volums de dades tan grans, ràpids o variats que no es poden tractar amb les eines tradicionals (RA1.j). Se sol descriure amb les **V**:
+**Big Data** és el conjunt de tècniques i tecnologies que permeten emmagatzemar i analitzar volums de dades tan grans, ràpids o variats que no es poden tractar amb les eines tradicionals. Se sol descriure amb les **V**:
 
 | V | Significat | Exemple |
 |---|---|---|
@@ -836,7 +836,7 @@ flowchart LR
 
 ## 12. Legislació sobre protecció de dades
 
-Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu electrònic, notes, salut... El seu tractament està regulat per llei (RA1.i). Com a desenvolupador o administrador, eres responsable de dissenyar sistemes que complisquen la normativa.
+Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu electrònic, notes, salut... El seu tractament està regulat per llei. Com a desenvolupador o administrador, eres responsable de dissenyar sistemes que complisquen la normativa.
 
 ### 12.1 Normativa vigent
 

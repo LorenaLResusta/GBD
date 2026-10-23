@@ -15,18 +15,18 @@ Un **sistema gestor de bases de datos (SGBD)** es el componente de software esen
 
 Esta unidad trata en profundidad la transición histórica desde los soportes físicos primitivos (tarjetas perforadas, cintas magnéticas y discos planos) hasta los SGBD relacionales y NoSQL actuales. Se analizan en detalle los métodos de organización de ficheros (secuenciales, de acceso aleatorio mediante el cálculo del *offset* e indexados con árboles B), la arquitectura estándar de tres niveles **ANSI/SPARC**, los componentes internos de un motor de base de datos, las reglas de integridad referencial y de dominio, la gestión de la concurrencia mediante **transacciones ACID**, las políticas de seguridad y recuperación, así como las topologías de despliegue y los subconjuntos del lenguaje SQL.
 
-{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" "RA7:a" >}}
+{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
 ### Temporalización
 
-La unidad ocupa **12 horas de aula** (8 de teoría y 4 de práctica).
+La unidad ocupa **10 horas de aula** (6 de teoría y 4 de práctica).
 
-{{< sesiones unidad="UD01" horas="12" >}}
+{{< sesiones unidad="UD01" horas="10" >}}
 items:
   - {h: 2, tipo: T, t: "Datos e información. Historia. Sistemas basados en ficheros", ref: "§1 a §3"}
   - {h: 1, tipo: P, t: "De la hoja de cálculo al SGBD", ref: "Práctica 1.1"}
-  - {h: 2, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
+  - {h: 1, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
   - {h: 2, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
-  - {h: 2, tipo: T, t: "Integridad, concurrencia y transacciones. Seguridad. Modelos de datos y lenguajes", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Integridad, concurrencia y transacciones. Seguridad. Modelos de datos y lenguajes", ref: "§6 a §8"}
   - {h: 1, tipo: T, t: "Clasificación de los SGBD. Bases de datos distribuidas y fragmentación", ref: "§9 y §10"}
   - {h: 1, tipo: T, t: "Big Data, inteligencia empresarial y protección de datos", ref: "§11 y §12"}
   - {h: 1, tipo: P, t: "Informe de análisis de EduGest", ref: "Proyecto EduGest-1"}
@@ -619,7 +619,7 @@ graph TD
   - *Orientados a grafos:* Representan de forma nativa los nodos y las relaciones (Neo4j).
   - *Columnares:* Agrupan los datos en familias de columnas para leerlos y escribirlos a gran escala (Cassandra).
 
-La UD10 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
+La UD11 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
 
 > [!WARNING]
 > **NoSQL no significa necesariamente «sin ACID»**: las garantías transaccionales varían según el producto y la configuración. Antes de elegir un sistema, comprueba qué propiedades ofrece.
@@ -738,7 +738,7 @@ Según **dónde** se almacenan los datos (RA1.c), una base de datos puede ser:
 
 ### 10.2 Utilidad de las bases de datos distribuidas
 
-Una base de datos distribuida es útil cuando (RA1.g):
+Una base de datos distribuida es útil cuando:
 
 - La organización está **repartida geográficamente** (sedes, delegaciones, países) y cada sede trabaja sobre todo con sus propios datos.
 - Se necesita **alta disponibilidad**: si un nodo falla, los demás siguen dando servicio.
@@ -748,11 +748,11 @@ Una base de datos distribuida es útil cuando (RA1.g):
 A cambio, el sistema es más complejo: hay que coordinar las transacciones entre nodos (por ejemplo, con el protocolo de **confirmación en dos fases**, *two-phase commit*), mantener la coherencia de las copias y tolerar los fallos de red.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD10).
+> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD11).
 
 ### 10.3 Políticas de fragmentación
 
-**Fragmentar** es dividir una tabla en partes (*fragmentos*) que se almacenan en nodos distintos (RA1.h). Toda fragmentación debe cumplir tres reglas:
+**Fragmentar** es dividir una tabla en partes (*fragmentos*) que se almacenan en nodos distintos. Toda fragmentación debe cumplir tres reglas:
 
 1. **Completitud:** cada dato de la tabla original está en algún fragmento.
 2. **Reconstrucción:** la tabla original se puede recomponer a partir de los fragmentos.
@@ -795,7 +795,7 @@ Además de fragmentar, se pueden **replicar** los datos: guardar copias completa
 
 ### 11.1 Big Data
 
-**Big Data** es el conjunto de técnicas y tecnologías que permiten almacenar y analizar volúmenes de datos tan grandes, rápidos o variados que no se pueden tratar con las herramientas tradicionales (RA1.j). Se suele describir con las **V**:
+**Big Data** es el conjunto de técnicas y tecnologías que permiten almacenar y analizar volúmenes de datos tan grandes, rápidos o variados que no se pueden tratar con las herramientas tradicionales. Se suele describir con las **V**:
 
 | V | Significado | Ejemplo |
 |---|---|---|
@@ -836,7 +836,7 @@ flowchart LR
 
 ## 12. Legislación sobre protección de datos
 
-Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo electrónico, notas, salud... Su tratamiento está regulado por ley (RA1.i). Como desarrollador o administrador, eres responsable de diseñar sistemas que cumplan la normativa.
+Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo electrónico, notas, salud... Su tratamiento está regulado por ley. Como desarrollador o administrador, eres responsable de diseñar sistemas que cumplan la normativa.
 
 ### 12.1 Normativa vigente
 

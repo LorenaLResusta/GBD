@@ -16,7 +16,7 @@ Esta és la unitat que converteix l'SQL en una eina professional: en acabar-la s
 
 Tots els exemples s'executen sobre l'esquema de referència **EDUGEST** amb les dades del curs **2025-26** carregades amb els [scripts del projecte](/guia/proyecto-edugest#4-scripts-descarregables): 5 departaments, 12 professors, 4 cicles, 24 mòduls, 6 grups, 32 alumnes, 143 matrícules, 24 assignacions docents i 46 faltes d'assistència.
 
-{{< ra "RA3:a,c,d,e,f,g,h" "RA2:f" >}}
+{{< ra "RA3:h" "RA4:a,c,d,e,f,g" >}}
 
 ### Objectius d'aprenentatge
 
@@ -35,18 +35,18 @@ En acabar esta unitat seràs capaç de:
 
 ### Temporalització
 
-La unitat ocupa **16 hores d'aula** (10 de teoria i 6 de pràctica). Les composicions
+La unitat ocupa **18 hores d'aula** (10 de teoria i 8 de pràctica). Les composicions
 i les subconsultes són el nucli del RA3: convé no avançar fins que cada consulta
 es puga escriure sense consultar els apunts.
 
-{{< sesiones unidad="UD07" horas="16" >}}
+{{< sesiones unidad="UD07" horas="18" >}}
 items:
   - {h: 2, tipo: T, t: "Funcions d'agregat, GROUP BY i HAVING", ref: "§1 i §2 · laboratori d'agrupament"}
   - {h: 1, tipo: P, t: "Consultes resum", ref: "Pràctica 7.1"}
   - {h: 2, tipo: T, t: "Composicions internes: INNER JOIN i diverses taules", ref: "§3 · laboratori de composicions"}
-  - {h: 1, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 7.2"}
+  - {h: 2, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 7.2"}
   - {h: 2, tipo: T, t: "Composicions externes i autocomposició", ref: "§4 i §5"}
-  - {h: 1, tipo: P, t: "Informes per a cap d'estudis", ref: "Pràctica 7.3"}
+  - {h: 2, tipo: P, t: "Informes per a cap d'estudis", ref: "Pràctica 7.3"}
   - {h: 2, tipo: T, t: "Subconsultes, EXISTS i WITH", ref: "§6"}
   - {h: 1, tipo: P, t: "Subconsultes", ref: "Pràctica 7.4"}
   - {h: 1, tipo: T, t: "Vistes amb composicions i operadors de conjunts", ref: "§7 i §8"}
@@ -100,7 +100,7 @@ flowchart LR
 | `LISTAGG(expr, sep)` | Concatena els valors del grup en una cadena | Sí | text |
 
 > [!NOTE]
-> `COUNT`, `SUM`, `AVG`, `MIN` i `MAX` són SQL estàndard i existixen en tots els SGBD. `STDDEV`, `VARIANCE`, `MEDIAN` i `LISTAGG` són extensions d'Oracle (algunes estan també en PostgreSQL amb un altre nom). `MEDIAN` i `LISTAGG` es tracten com a ampliació: l'avaluable del RA3.e són les cinc primeres.
+> `COUNT`, `SUM`, `AVG`, `MIN` i `MAX` són SQL estàndard i existixen en tots els SGBD. `STDDEV`, `VARIANCE`, `MEDIAN` i `LISTAGG` són extensions d'Oracle (algunes estan també en PostgreSQL amb un altre nom). `MEDIAN` i `LISTAGG` es tracten com a ampliació: l'avaluable del RA4.c són les cinc primeres.
 
 ### 1.2 Exemple senzill: comptar
 
@@ -1878,7 +1878,7 @@ Oracle va incorporar les funcions analítiques (`RANK`, `LAG`, `SUM … OVER`) e
 ## 9. Funcions analítiques
 
 > [!NOTE]
-> Este apartat és **ampliació professional**. No forma part del contingut mínim del RA3, però apareix en quasi qualsevol informe real i en les ofertes d'ocupació, i resol amb una línia el que d'una altra manera exigix dues subconsultes. Està en el currículum de forma implícita, a través de les consultes resum i de l'optimització.
+> Este apartat és **ampliació professional**. No forma part del contingut mínim del RA4, però apareix en quasi qualsevol informe real i en les ofertes d'ocupació, i resol amb una línia el que d'una altra manera exigix dues subconsultes. Està en el currículum de forma implícita, a través de les consultes resum i de l'optimització.
 
 ### 9.1 El problema: resumir sense perdre el detall
 
@@ -2042,7 +2042,7 @@ La primera fila té `NULL` perquè no hi ha fila anterior. `LAG(expr, n, valor_p
 
 ### 10.1 Què significa optimitzar
 
-El criteri RA3.h demana aplicar criteris d'optimització. Optimitzar **no** és escriure la consulta més curta: és aconseguir que el SGBD lligc **menys dades** per a respondre la mateixa pregunta, i comprovar-ho amb mesuraments.
+El criteri RA4.g demana aplicar criteris d'optimització. Optimitzar **no** és escriure la consulta més curta: és aconseguir que el SGBD lligc **menys dades** per a respondre la mateixa pregunta, i comprovar-ho amb mesuraments.
 
 A Oracle, qui decidix **com** s'executa una consulta és l'**optimitzador basat en costos** (CBO). Tu escrius *què* vols (SQL és declaratiu) i ell tria el pla: quina taula llegir primer, si usar un índex i quin algorisme de composició aplicar. Les seues decisions es basen en les **estadístiques** de les taules (nombre de files, valors distints, distribució). Si les estadístiques estan obsoletes, el pla pot ser roïssim.
 
@@ -2358,4 +2358,4 @@ Idees que convé endur-se ben gravades:
 - [Oracle AI Database 26ai: SQL Language Reference, *CREATE VIEW*](https://docs.oracle.com/en/database/oracle/oracle-database/26/sqlrf/CREATE-VIEW.html).
 - [Oracle AI Database 26ai: SQL Tuning Guide](https://docs.oracle.com/en/database/oracle/oracle-database/26/tgsql/) — optimitzador, plans d'execució, índexs i estadístiques.
 - [Oracle AI Database 26ai: Database PL/SQL Packages and Types Reference, *DBMS_XPLAN*](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/DBMS_XPLAN.html).
-- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — ensenyaments mínims del mòdul 0484 Bases de dades (RA3 i RA2).
+- [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221) — ensenyaments mínims del mòdul 0484 Bases de dades (RA4 i RA3).

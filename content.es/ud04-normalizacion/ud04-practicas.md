@@ -7,23 +7,23 @@ math: true
 
 # UD04 · Prácticas
 
-{{< ra "RA6:b,c,e,g,h" >}}
+{{< ra "RA2:c,d,f,h,i" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [4.1 Normalizar las facturas de un taller](#práctica-41--normalizar-las-facturas-de-un-taller) | Guiada | ●○○ | RA6.b, RA6.c, RA6.g |
-| [4.2 Dependencias, cierres y claves](#práctica-42--dependencias-cierres-y-claves) | Guiada | ●●○ | RA6.e, RA6.g |
-| [4.3 ¿En qué forma normal está?](#práctica-43--en-qué-forma-normal-está) | Autónoma | ●●○ | RA6.g |
-| [4.4 Reservas de un hotel rural](#práctica-44--reservas-de-un-hotel-rural) | Autónoma | ●●○ | RA6.b, RA6.c, RA6.e, RA6.g |
-| [4.5 FNBC y dependencias perdidas](#práctica-45--fnbc-y-dependencias-perdidas) | Reto | ●●● | RA6.g, RA6.h |
-| [4.6 ¿Normalizar o desnormalizar?](#práctica-46--normalizar-o-desnormalizar) | Reto | ●●● | RA6.g |
-| [Proyecto EduGest · UD04](#proyecto-edugest--ud04-informe-de-normalización) | Proyecto | ●●○ | RA6.b, RA6.c, RA6.e, RA6.g, RA6.h |
+| [4.1 Normalizar las facturas de un taller](#práctica-41--normalizar-las-facturas-de-un-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
+| [4.2 Dependencias, cierres y claves](#práctica-42--dependencias-cierres-y-claves) | Guiada | ●●○ | RA2.f, RA2.h |
+| [4.3 ¿En qué forma normal está?](#práctica-43--en-qué-forma-normal-está) | Autónoma | ●●○ | RA2.h |
+| [4.4 Reservas de un hotel rural](#práctica-44--reservas-de-un-hotel-rural) | Autónoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
+| [4.5 FNBC y dependencias perdidas](#práctica-45--fnbc-y-dependencias-perdidas) | Reto | ●●● | RA2.h, RA2.i |
+| [4.6 ¿Normalizar o desnormalizar?](#práctica-46--normalizar-o-desnormalizar) | Reto | ●●● | RA2.h |
+| [Proyecto EduGest · UD04](#proyecto-edugest--ud04-informe-de-normalización) | Proyecto | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
 
 ---
 
 ## Práctica 4.1 · Normalizar las facturas de un taller
 
-{{< practica num="4.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA6: b, c, g" sgbd="Hoja de cálculo o papel" entrega="Documento con cada paso de la normalización" >}}
+{{< practica num="4.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: c, d, h" sgbd="Hoja de cálculo o papel" entrega="Documento con cada paso de la normalización" >}}
 
 #### Objetivo
 
@@ -101,7 +101,7 @@ Comprueba en tu solución que la descomposición es **sin pérdida**: para cada 
 
 ## Práctica 4.2 · Dependencias, cierres y claves
 
-{{< practica num="4.2" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA6: e, g" sgbd="Papel" entrega="Hoja de ejercicios" >}}
+{{< practica num="4.2" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA2: f, h" sgbd="Papel" entrega="Hoja de ejercicios" >}}
 
 #### Objetivo
 
@@ -124,7 +124,7 @@ Para cada relación, calcula las claves candidatas indicando los cierres que has
 
 ## Práctica 4.3 · ¿En qué forma normal está?
 
-{{< practica num="4.3" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA6: g" sgbd="Papel" entrega="Tabla de respuestas justificadas" >}}
+{{< practica num="4.3" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: h" sgbd="Papel" entrega="Tabla de respuestas justificadas" >}}
 
 #### Enunciado
 
@@ -154,7 +154,7 @@ La clave es compuesta (num_vuelo, fecha). `avion` depende de toda la clave (el m
 
 ## Práctica 4.4 · Reservas de un hotel rural
 
-{{< practica num="4.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA6: b, c, e, g" sgbd="Papel o Data Modeler" entrega="Informe de normalización completo" >}}
+{{< practica num="4.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: c, d, f, h" sgbd="Papel o Data Modeler" entrega="Informe de normalización completo" >}}
 
 #### Contexto
 
@@ -189,7 +189,7 @@ Una reserva puede incluir varias habitaciones, cada una con sus propios extras. 
 
 ## Práctica 4.5 · FNBC y dependencias perdidas
 
-{{< practica num="4.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: g, h" sgbd="Papel" entrega="Análisis razonado" >}}
+{{< practica num="4.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: h, i" sgbd="Papel" entrega="Análisis razonado" >}}
 
 #### Contexto
 
@@ -213,7 +213,7 @@ Las claves son (alumno, sede) y (alumno, profesor). La descomposición en FNBC e
 
 ## Práctica 4.6 · ¿Normalizar o desnormalizar?
 
-{{< practica num="4.6" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA6: g" sgbd="Documento" entrega="Informe de decisión (1 página por caso)" >}}
+{{< practica num="4.6" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: h" sgbd="Documento" entrega="Informe de decisión (1 página por caso)" >}}
 
 #### Enunciado
 
@@ -236,7 +236,7 @@ Para cada propuesta de un compañero, decide si la aceptas, la rechazas o la ace
 
 ## Proyecto EduGest · UD04: informe de normalización
 
-{{< practica num="EduGest-4" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA6: b, c, e, g, h" sgbd="Documento Markdown" entrega="edugest/docs/04-normalizacion.md" >}}
+{{< practica num="EduGest-4" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA2: c, d, f, h, i" sgbd="Documento Markdown" entrega="edugest/docs/04-normalizacion.md" >}}
 
 #### Enunciado
 

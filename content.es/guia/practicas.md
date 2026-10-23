@@ -5,7 +5,7 @@ weight: 4
 
 # Cómo son las prácticas
 
-Cada unidad tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA7 se demuestran **haciendo**, no memorizando.
+Cada unidad tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA6 se demuestran **haciendo**, no memorizando.
 
 ## 1. Tipos de práctica
 
@@ -66,7 +66,7 @@ Un script entregado debe poder **ejecutarse de principio a fin** en una base de 
 ```sql
 -- =============================================================
 -- Práctica 5.2 · Tienda online · Script de creación
--- Autor/a: Nombre Apellidos (1DAM)
+-- Autor/a: Nombre Apellidos (1ASIR)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Fecha: 2026-11-10
 -- =============================================================

@@ -5,7 +5,7 @@ weight: 4
 
 # Com són les pràctiques
 
-Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA7 es demostren **fent**, no memoritzant.
+Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA6 es demostren **fent**, no memoritzant.
 
 ## 1. Tipus de pràctica
 
@@ -66,7 +66,7 @@ Un script lliurat ha de poder **executar-se de principi a fi** en una base de da
 ```sql
 -- =============================================================
 -- Pràctica 5.2 · Botiga en línia · Script de creació
--- Autor/a: Nom Cognoms (1DAM)
+-- Autor/a: Nom Cognoms (1ASIR)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Data: 2026-11-10
 -- =============================================================
