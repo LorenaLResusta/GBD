@@ -4,11 +4,11 @@ weight: 1
 bookToc: true
 ---
 
-# UDxx · Título de la unidad
+# Tema N · Título del tema
 
 ## Resumen del tema
 
-Qué problema resuelve esta unidad y qué aprenderá el alumnado.
+Qué problema resuelve este tema y qué aprenderá el alumnado.
 
 {{`{{< ra "RAx:a,b" >}}`}}
 

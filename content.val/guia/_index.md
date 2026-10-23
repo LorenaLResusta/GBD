@@ -6,11 +6,11 @@ bookCollapseSection: false
 
 # Guia del mòdul
 
-Esta secció reunix la informació que necessites **abans** de començar les unitats i que consultaràs durant tot el curs:
+Esta secció reunix la informació que necessites **abans** de començar els temes i que consultaràs durant tot el curs:
 
 - [Guia didàctica i calendari](/#guia-didàctica-del-curs-202627): repartiment de les 160 hores en tres avaluacions i dates de proves.
-- [Resultats d'aprenentatge i criteris d'avaluació](/guia/ra-ce): text oficial del RD 1629/2009 i en quines unitats es treballa cada criteri.
-- [Projecte EduGest](/guia/proyecto-edugest): la base de dades d'un centre educatiu que construirem i ampliarem unitat a unitat.
+- [Resultats d'aprenentatge i criteris d'avaluació](/guia/ra-ce): text oficial del RD 1629/2009 i en quins temes es treballa cada criteri.
+- [Projecte EduGest](/guia/proyecto-edugest): la base de dades d'un centre educatiu que construirem i ampliarem tema a tema.
 - [Entorn de treball](/guia/entorno): instal·lació d'Oracle AI Database 26ai Free, eines client i PostgreSQL (opcional).
 - [Com són les pràctiques](/guia/practicas): estructura de les pràctiques, nivells, lliurament i avaluació.
 

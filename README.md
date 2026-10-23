@@ -6,27 +6,27 @@ Apuntes del módulo profesional **0372. Gestión de bases de datos** de 1º del 
 
 ```text
 content.es/
-├── _index.md                      Portada: unidades, mapa RA ↔ unidades, convenciones
+├── _index.md                      Portada: temas, mapa RA ↔ temas, convenciones
 ├── guia/                          Guía del módulo
-│   ├── ra-ce.md                   RA y CE oficiales y su relación con las unidades
+│   ├── ra-ce.md                   RA y CE oficiales y en qué tema se trabaja cada CE
 │   ├── proyecto-edugest.md        Proyecto transversal (centro educativo) y scripts
 │   ├── entorno.md                 Oracle AI Database 26ai Free (y PostgreSQL opcional) en Docker
 │   └── practicas.md               Tipos de práctica, normas de entrega y rúbrica
-├── ud01-introduccion/             UD01 · RA1 · Sistemas de almacenamiento y SGBD (8 h)
-│   └── t01-teoria.md, t01-practicas.md
-├── ud02-diseno-logico/            UD02 · RA2 · Diseño lógico (32 h)
-│   └── tema 2 (E/R, 12 h), tema 3 (relacional, 12 h), tema 4 (normalización, 8 h)
-├── ud03-diseno-fisico/            UD03 · RA3 · Diseño físico: DDL en Oracle (24 h)
-│   └── tema 5
-├── ud04-consultas/                UD04 · RA4 · Consultas (26 h)
-│   └── tema 6 (una tabla y funciones, 10 h), tema 7 (agrupamiento, JOIN, subconsultas, plan de ejecución, 16 h)
-├── ud05-modificacion/             UD05 · RA5 · Modificación de la información (52 h)
-│   └── tema 8 (DML, transacciones y concurrencia, 36 h), tema 9 (guiones de sentencias, 16 h)
-└── ud06-aseguramiento/            UD06 · RA6 · Aseguramiento de la información (9 h)
-    └── tema 10 (copias, importación y exportación, 9 h)
+├── tema1-introduccion/            Tema 1 · RA1 · Sistemas de almacenamiento y SGBD (8 h)
+│   └── teoria.md, practicas.md
+├── tema2-diseno-logico/           Tema 2 · RA2 · Diseño lógico (32 h)
+│   └── er-*, relacional-*, normalizacion-* (teoría y prácticas de cada parte)
+├── tema3-diseno-fisico/           Tema 3 · RA3 · Diseño físico: DDL en Oracle (24 h)
+│   └── teoria.md, practicas.md
+├── tema4-consultas/               Tema 4 · RA4 · Consultas (26 h)
+│   └── una-tabla-*, resumen-*
+├── tema5-modificacion/            Tema 5 · RA5 · Modificación de la información (52 h)
+│   └── dml-*, guiones-*
+└── tema6-aseguramiento/           Tema 6 · RA6 · Aseguramiento de la información (9 h)
+    └── teoria.md, practicas.md
 ```
 
-Cada unidad (una por RA) tiene un `_index.md` con la presentación de sus temas; cada tema tiene `tNN-teoria.md` y `tNN-practicas.md`. Las prácticas conservan la numeración del tema (práctica 5.1 = tema 5).
+Hay un tema por RA. Cada tema tiene un `_index.md` con su presentación y páginas de teoría y de prácticas (una pareja por parte cuando el tema tiene varias). Las prácticas se numeran con el número del tema (práctica 5.1 = tema 5).
 
 
 ## Recursos
@@ -38,7 +38,7 @@ Cada unidad (una por RA) tiene un `_index.md` con la presentación de sus temas;
 | `static/recursos/sql/edugest_02_datos.sql` | Datos de ejemplo (curso 2025-26) |
 | `assets/images/` | Diagramas SVG usados en las páginas (`![...](images/x.svg)`) |
 | `data/curriculo.yaml` | Texto oficial de los RA y CE del RD 1629/2009 (lo usa el shortcode `ra`) |
-| `data/planificacion.json` | Horas, fechas y evaluaciones de cada unidad (160 h) |
+| `data/planificacion.json` | Horas, fechas y evaluaciones de cada tema (160 h) |
 | `tools/gen_ra_ce.py` | Regenera `guia/ra-ce.md` a partir del currículo y de los shortcodes `ra` |
 
 ## Elementos interactivos (shortcodes)
@@ -66,11 +66,11 @@ Cada unidad (una por RA) tiene un `_index.md` con la presentación de sus temas;
 Para crear una página nueva con la estructura de las demás:
 
 ```bash
-hugo new --kind teoria   content.es/ud11-ejemplo/ud11-teoria.md
-hugo new --kind practicas content.es/ud11-ejemplo/ud11-practicas.md
+hugo new --kind teoria   content.es/tema7-ejemplo/teoria.md
+hugo new --kind practicas content.es/tema7-ejemplo/practicas.md
 ```
 
-## Diagramas explicativos (UD01-UD04)
+## Diagramas explicativos
 
 Los diagramas de `assets/images/*.svg` (arquitectura, ACID, E/R, relacional, ejemplos de Chen…) se generan con `tools/gen_infografias.py` (necesita `Pillow`). El generador ajusta el texto al ancho de cada caja, así que no se desborda ni se corta. Para cambiar uno, edita su función y ejecuta `python3 tools/gen_infografias.py <nombre>`. Los elementos con `data-tip` se vuelven interactivos con el shortcode `diagrama`.
 

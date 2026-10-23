@@ -4,7 +4,7 @@ weight: 2
 bookToc: true
 ---
 
-# UDxx · Prácticas
+# Tema N · Prácticas
 
 {{`{{< ra "RAx:a,b" >}}`}}
 

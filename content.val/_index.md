@@ -17,84 +17,65 @@ Apunts del mòdul professional **0372. Gestió de bases de dades**, de **primer 
 
 > [!NOTE]
 > Estos apunts **no són un manual de SQL**. Estan organitzats perquè assolisques els resultats d'aprenentatge oficials del mòdul. Recorren el cicle de vida complet d'una base de dades:
-> **anàlisi → model conceptual → model lògic → normalització → disseny físic → consultes → modificació → programació → còpies de seguretat, importació i exportació.**
+> **anàlisi → model conceptual → model lògic → normalització → disseny físic → consultes → modificació → guions → còpies de seguretat, importació i exportació.**
 
 ## El cicle de treball amb una base de dades
 
 ```mermaid
 flowchart LR
-    A[Requisits] --> B[Model E/R<br/>Tema 2]
-    B --> C[Model relacional<br/>Tema 3]
-    C --> D[Normalització<br/>Tema 4]
-    D --> E[DDL<br/>Tema 5]
-    E --> F[Consultes<br/>Temas 6-7]
-    F --> G[DML i transaccions<br/>Tema 8]
-    G --> H[Guions<br/>Tema 9]
-    H --> J[Còpies i importació<br/>Tema 10]
+    A[Requisits] --> B[Disseny lògic<br/>Tema 2]
+    B --> C[Disseny físic<br/>Tema 3]
+    C --> D[Consultes<br/>Tema 4]
+    D --> E[Modificació<br/>Tema 5]
+    E --> F[Còpies i importació<br/>Tema 6]
+    S[SGBD<br/>Tema 1] -.-> B
 ```
 
 ## Guia didàctica del curs 2026/27
 
-El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanals, una per dia lectiu) entre el **9 de setembre de 2026** i el **24 de maig de 2027**. Cada **resultat d'aprenentatge (RA)** es correspon amb **una unitat didàctica** (UD01 a UD06), dividida en un o diversos *temes* numerats de l'1 al 10.
+El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanals, una per dia lectiu) entre el **9 de setembre de 2026** i el **24 de maig de 2027**. S'organitza en **6 temes, un per cada resultat d'aprenentatge (RA)**: el tema 1 desenvolupa el RA1, el tema 2 el RA2, i així fins al tema 6 i el RA6.
 
-| RA | Resultat d'aprenentatge (resum) | Unitats | Hores |
-|---|---|---|:-:|
-| **RA1** | Elements de les bases de dades i utilitat dels sistemes gestors | UD01 (tema 1) | 8 |
-| **RA2** | Disseny de models lògics normalitzats a partir de diagrames E/R | UD02 (temes 2, 3 i 4) | 32 |
-| **RA3** | Disseny físic amb assistents, ferramentes gràfiques i DDL | UD03 (tema 5) | 24 |
-| **RA4** | Consulta de la informació amb SQL | UD04 (temes 6 i 7) | 26 |
-| **RA5** | Modificació de la informació, transaccions i guions | UD05 (temes 8 i 9) | 52 |
-| **RA6** | Assegurament de la informació: còpies, importació i exportació | UD06 (tema 10) | 9 |
-| | *Proves d'avaluació (3 × 3 h)* | EV1 · EV2 · EV3 | 9 |
-| | **Total** | | **160** |
+| Tema | RA | Resultat d'aprenentatge (resum) | Hores | Del | Al |
+|---|---|---|:-:|---|---|
+| [Tema 1](/tema1-introduccion) · Sistemes d'emmagatzematge i SGBD | **RA1** | Elements de les bases de dades i utilitat dels sistemes gestors | 8 | 09/09/2026 | 18/09/2026 |
+| [Tema 2](/tema2-diseno-logico) · Disseny lògic de bases de dades | **RA2** | Disseny de models lògics normalitzats a partir de diagrames E/R | 32 | 21/09/2026 | 05/11/2026 |
+| [Tema 3](/tema3-diseno-fisico) · Disseny físic (DDL) | **RA3** | Disseny físic amb assistents, ferramentes gràfiques i DDL | 24 | 06/11/2026 | 10/12/2026 |
+| | | *Prova i revisió de la 1a avaluació* | 3 | 11/12/2026 | 15/12/2026 |
+| [Tema 4](/tema4-consultas) · Consultes | **RA4** | Consulta de la informació amb SQL | 26 | 16/12/2026 | 05/02/2027 |
+| | | *Prova i revisió de la 2a avaluació* | 3 | 08/02/2027 | 10/02/2027 |
+| [Tema 5](/tema5-modificacion) · Modificació de la informació | **RA5** | Modificació de la informació, transaccions i guions | 52 | 11/02/2027 | 06/05/2027 |
+| [Tema 6](/tema6-aseguramiento) · Assegurament de la informació | **RA6** | Còpies de seguretat, importació, exportació i transferència de dades | 9 | 07/05/2027 | 19/05/2027 |
+| | | *Prova i revisió de la 3a avaluació i final* | 3 | 20/05/2027 | 24/05/2027 |
+| | | **Total** | **160** | | |
 
 > [!NOTE]
-> El RD 1629/2009 fixa **105 hores** com a ensenyaments mínims del mòdul; el currículum de la Comunitat Valenciana l'amplia fins a **160 hores** (5 per setmana en 1r ASIR). Tots els criteris d'avaluació es cobrixen en les unitats. El repartiment d'hores és orientatiu i es pot ajustar a cada grup.
+> El RD 1629/2009 fixa **105 hores** com a ensenyaments mínims del mòdul; el currículum de la Comunitat Valenciana l'amplia fins a **160 hores** (5 per setmana en 1r ASIR). Tots els criteris d'avaluació es cobrixen en els temes. El repartiment d'hores és orientatiu i es pot ajustar a cada grup.
 
 {{< calendario >}}
 
-### Repartiment d'hores per avaluació
-
-| Avaluació | Unitat | Tema | Hores | Del | Al |
-|---|---|---|:-:|---|---|
-| **1a** (67 h) | **UD01** · Sistemes d'emmagatzematge i SGBD (RA1) | Tema 1 · Sistemes d'emmagatzematge i SGBD | 8 | 09/09/2026 | 18/09/2026 |
-|  | **UD02** · Disseny lògic (RA2) | Tema 2 · Model Entitat/Relació | 12 | 21/09/2026 | 06/10/2026 |
-|  |  | Tema 3 · Model relacional | 12 | 07/10/2026 | 26/10/2026 |
-|  |  | Tema 4 · Normalització | 8 | 27/10/2026 | 05/11/2026 |
-|  | **UD03** · Disseny físic (RA3) | Tema 5 · Definició de dades (DDL) | 24 | 06/11/2026 | 10/12/2026 |
-|  | | Prova i revisió de la 1a avaluació | 3 | 11/12/2026 | 15/12/2026 |
-| **2a** (29 h) | **UD04** · Consultes (RA4) | Tema 6 · Consultes sobre una taula | 10 | 16/12/2026 | 14/01/2027 |
-|  |  | Tema 7 · Consultes de resum, composicions i subconsultes | 16 | 15/01/2027 | 05/02/2027 |
-|  | | Prova i revisió de la 2a avaluació | 3 | 08/02/2027 | 10/02/2027 |
-| **3a** (64 h) | **UD05** · Modificació de la informació (RA5) | Tema 8 · Modificació de dades, transaccions i concurrència | 36 | 11/02/2027 | 14/04/2027 |
-|  |  | Tema 9 · Guions de sentències | 16 | 15/04/2027 | 06/05/2027 |
-|  | **UD06** · Assegurament de la informació (RA6) | Tema 10 · Seguretat de les dades: còpies, importació i exportació | 9 | 07/05/2027 | 19/05/2027 |
-|  | | Prova i revisió de la 3a avaluació i final | 3 | 20/05/2027 | 24/05/2027 |
-| | | **Total** | **160** | | |
-
 ### Criteris de la planificació
 
-- **Una unitat per RA.** Cada resultat d'aprenentatge té la seua pròpia unitat, de manera que cada RA pot avaluar-se en acabar la seua unitat. El pes de les hores seguix el del currículum: el disseny lògic (RA2), les consultes (RA4) i la modificació de dades (RA5) concentren la major part de la càrrega.
-- **Avaluacions.** La 1a avaluació tanca els RA1, RA2 i RA3; la 2a, el RA4; la 3a, els RA5 i RA6. El RA5 pesa més que la resta pel nombre de criteris d'avaluació que agrupa (DML, transaccions, bloquejos, integritat i guions).
-- **Teoria i pràctica en la mateixa unitat.** Cada tema indica en la seua pàgina de teoria una *temporalització* amb el repartiment de sessions entre teoria (T) i pràctica (P). La suma d'hores de cada tema coincidix amb la d'esta taula.
-- **Pràctica guiada a l'aula, pràctica autònoma fora d'ella.** Les pràctiques guiades i la tasca del projecte EduGest es fan a classe. Les pràctiques autònomes, els reptes i les ampliacions són treball personal, i els dubtes es treballen en les sessions de pràctica.
+- **Un tema per RA.** Cada resultat d'aprenentatge té el seu propi tema, de manera que cada RA s'avalua en acabar el seu tema. El pes de les hores seguix el nombre de criteris d'avaluació de cada RA: el disseny lògic (RA2), les consultes (RA4) i la modificació de dades (RA5) concentren la major part de la càrrega.
+- **Avaluacions.** La 1a avaluació tanca els RA1, RA2 i RA3; la 2a, el RA4; la 3a, els RA5 i RA6.
+- **Teoria i pràctica en el mateix tema.** Cada pàgina de teoria inclou una *temporalització* amb el repartiment de sessions entre teoria (T) i pràctica (P). En els temes amb diverses parts, la suma de les parts coincidix amb les hores del tema.
+- **Pràctica guiada a l'aula, pràctica autònoma fora d'ella.** Les pràctiques guiades i la tasca del projecte EduGest es fan a classe. Les pràctiques autònomes i els reptes són treball personal, i els dubtes es treballen en les sessions de pràctica.
 - **Proves d'avaluació.** Cada avaluació reserva 3 hores a la prova i a la seua revisió.
-- **Un dia lectiu equival a una hora.** Els festius i els dies sense docència no compten. Els dies que es perden per festes locals o activitats del centre es recuperen retallant les sessions de pràctica de l'última unitat impartida.
+- **Un dia lectiu equival a una hora.** Els festius i els dies sense docència no compten. Els dies que es perden es recuperen retallant les sessions de pràctica de l'últim tema impartit.
 
 > [!CAUTION]
 > **Planificació provisional.** Les dates procedixen del calendari escolar provisional 2026/27 i encara no s'han ajustat a l'horari real de 1r ASIR. Quan es fixe l'horari definitiu cal revisar l'arxiu `data/planificacion.json` i la *temporalització* de cada tema; la taula i el calendari s'actualitzen sols i la compilació falla si les hores d'un tema deixen de sumar.
 
-## Unitats didàctiques
+## Temes
 
-Cada tema té dos pàgines: **teoria** (conceptes, exemples i autoavaluació) i **pràctiques** (pràctiques guiades, autònomes, reptes i la tasca del projecte EduGest).
+Cada tema té pàgines de **teoria** (conceptes, exemples i autoavaluació) i de **pràctiques** (pràctiques guiades, autònomes, reptes i la tasca del projecte EduGest), numerades amb el número del tema (pràctica 4.3 = tema 4).
 
 <div class="bd-cards">
-  <div class="bd-card"><span class="bd-card-ra">RA1</span><h3>UD01 · Sistemes d'emmagatzematge i SGBD</h3><p>Fitxers enfront de bases de dades, arquitectura i funcions d'un SGBD, i classificació dels sistemes gestors.</p><div class="bd-card-links"><a href="ud01-introduccion/">Veure la unitat</a></div></div>
-  <div class="bd-card"><span class="bd-card-ra">RA2</span><h3>UD02 · Disseny lògic</h3><p>Temes 2 a 4: model Entitat/Relació (EER), model relacional i normalització fins a FNBC.</p><div class="bd-card-links"><a href="ud02-diseno-logico/">Veure la unitat</a></div></div>
-  <div class="bd-card"><span class="bd-card-ra">RA3</span><h3>UD03 · Disseny físic</h3><p>Tema 5: DDL en Oracle (taules, tipus, restriccions, seqüències, índexs) i diccionari de dades.</p><div class="bd-card-links"><a href="ud03-diseno-fisico/">Veure la unitat</a></div></div>
-  <div class="bd-card"><span class="bd-card-ra">RA4</span><h3>UD04 · Consultes</h3><p>Temes 6 i 7: SELECT, funcions de fila, agrupament, composicions, subconsultes i pla d'execució.</p><div class="bd-card-links"><a href="ud04-consultas/">Veure la unitat</a></div></div>
-  <div class="bd-card"><span class="bd-card-ra">RA5</span><h3>UD05 · Modificació de la informació</h3><p>Temes 8 i 9: INSERT, UPDATE, DELETE, MERGE, transaccions, bloquejos, integritat i guions de sentències.</p><div class="bd-card-links"><a href="ud05-modificacion/">Veure la unitat</a></div></div>
-  <div class="bd-card"><span class="bd-card-ra">RA6</span><h3>UD06 · Assegurament de la informació</h3><p>Tema 10: còpies de seguretat, importació i exportació de dades i transferència entre gestors.</p><div class="bd-card-links"><a href="ud06-aseguramiento/">Veure la unitat</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA1</span><h3>Tema 1 · Sistemes d'emmagatzematge i SGBD</h3><p>Fitxers enfront de bases de dades, arquitectura i funcions d'un SGBD, i classificació dels sistemes gestors.</p><div class="bd-card-links"><a href="tema1-introduccion/">Veure el tema</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA2</span><h3>Tema 2 · Disseny lògic de bases de dades</h3><p>Model Entitat/Relació, model relacional i normalització.</p><div class="bd-card-links"><a href="tema2-diseno-logico/">Veure el tema</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA3</span><h3>Tema 3 · Disseny físic (DDL)</h3><p>DDL en Oracle: taules, tipus, restriccions, seqüències, índexs i diccionari de dades.</p><div class="bd-card-links"><a href="tema3-diseno-fisico/">Veure el tema</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA4</span><h3>Tema 4 · Consultes</h3><p>SELECT, funcions de fila, agrupament, composicions, subconsultes i pla d'execució.</p><div class="bd-card-links"><a href="tema4-consultas/">Veure el tema</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA5</span><h3>Tema 5 · Modificació de la informació</h3><p>INSERT, UPDATE, DELETE, MERGE, transaccions, bloquejos, integritat i guions de sentències.</p><div class="bd-card-links"><a href="tema5-modificacion/">Veure el tema</a></div></div>
+  <div class="bd-card"><span class="bd-card-ra">RA6</span><h3>Tema 6 · Assegurament de la informació</h3><p>Còpies de seguretat, importació i exportació de dades i transferència entre gestors.</p><div class="bd-card-links"><a href="tema6-aseguramiento/">Veure el tema</a></div></div>
 </div>
 
 ## Com llegir estos apunts

@@ -5,9 +5,9 @@ weight: 3
 
 # Entorn de treball
 
-Durant el curs s'usa un únic sistema gestor, **Oracle**, i, només en la pràctica 10.4 (transferència entre gestors), un segon gestor relacional, **PostgreSQL**.
+Durant el curs s'usa un únic sistema gestor, **Oracle**, i, només en la pràctica 6.4 (transferència entre gestors), un segon gestor relacional, **PostgreSQL**.
 
-| | Oracle (Tema 1 a Tema 10) | PostgreSQL (només pràctica 10.4) |
+| | Oracle (Tema 1 a Tema 6) | PostgreSQL (només pràctica 6.4) |
 |---|---|---|
 | **SGBD** | Oracle AI Database 26ai Free | PostgreSQL 17 |
 | **Versió de referència** | 23.26.x | 17.x |
@@ -118,7 +118,7 @@ Ordres útils de SQLcl i SQL\*Plus (no són SQL, són ordres del client):
 |---|---|
 | `DESC tabla` | Mostra l'estructura d'una taula |
 | `@fichero.sql` | Executa un script |
-| `SET SERVEROUTPUT ON` | Mostra l'eixida de `DBMS_OUTPUT` (Tema 9) |
+| `SET SERVEROUTPUT ON` | Mostra l'eixida de `DBMS_OUTPUT` (Tema 5) |
 | `SPOOL salida.txt` / `SPOOL OFF` | Guarda l'eixida en un fitxer (evidències) |
 | `SET SQLFORMAT ansiconsole` | Taules més llegibles (només SQLcl) |
 | `HISTORY` | Historial d'ordres (només SQLcl) |
@@ -138,7 +138,7 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` d'`USER_TABLES` mostra les **estadístiques** de l'optimitzador. Pot valdre `NULL` fins que Oracle les recopile. Per a comptar files de veritat usa `COUNT(*)`.
 
-## 5. PostgreSQL 17 (només pràctica 10.4)
+## 5. PostgreSQL 17 (només pràctica 6.4)
 
 ```bash
 docker run -d --name pg17 -p 5432:5432 \

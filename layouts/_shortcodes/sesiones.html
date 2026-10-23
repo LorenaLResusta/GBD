@@ -11,19 +11,20 @@
 {{- $o := .Inner | transform.Unmarshal -}}
 {{- $uni := .Get "unidad" -}}
 {{- $tot := int (.Get "horas") -}}
+{{- $parte := .Get "parte" -}}
 {{- $sc := newScratch -}}
 {{- range $o.items }}{{ $sc.Add (upper .tipo) (int .h) }}{{ end -}}
 {{- $T := default 0 ($sc.Get "T") -}}{{- $P := default 0 ($sc.Get "P") -}}{{- $E := default 0 ($sc.Get "E") -}}
 {{- $sum := add (add $T $P) $E -}}
-{{- if ne $sum $tot }}{{ errorf "sesiones %s: las sesiones suman %d h y la unidad tiene %d h" $uni $sum $tot }}{{ end -}}
+{{- if ne $sum $tot }}{{ errorf "sesiones %s: las sesiones suman %d h y el tema tiene %d h" $uni $sum $tot }}{{ end -}}
 {{- $u := dict -}}
 {{- range site.Data.planificacion.unidades }}{{ if eq .c $uni }}{{ $u = . }}{{ end }}{{ end -}}
-{{- if and $u (ne (int $u.h) $tot) }}{{ errorf "sesiones %s: planificacion.json asigna %d h y la página declara %d h" $uni (int $u.h) $tot }}{{ end -}}
+{{- if and $u (not $parte) (ne (int $u.h) $tot) }}{{ errorf "sesiones %s: planificacion.json asigna %d h y la página declara %d h" $uni (int $u.h) $tot }}{{ end -}}
 <div class="bd-temp">
   <div class="bd-temp-head">
-    <strong>{{ if hasPrefix $uni "T" }}Tema {{ strings.TrimLeft "T0" $uni }}{{ else }}{{ $uni }}{{ end }} · {{ $tot }} {{ if eq site.Language.Lang "val" }}hores d'aula{{ else }}horas de aula{{ end }}</strong>
+    <strong>{{ if hasPrefix $uni "T" }}Tema {{ strings.TrimLeft "T0" $uni }}{{ else }}{{ $uni }}{{ end }}{{ with $parte }} ({{ . }}){{ end }} · {{ $tot }} {{ if eq site.Language.Lang "val" }}hores d'aula{{ else }}horas de aula{{ end }}</strong>
     <span>{{ i18n "ses_teoria" }} {{ $T }} h · {{ i18n "practica" }} {{ $P }} h{{ if $E }} · {{ i18n "ses_eval" }} {{ $E }} h{{ end }}</span>
-    {{- with $u }}<span>Del {{ time.AsTime .ini | time.Format "02/01/2006" }} al {{ time.AsTime .fin | time.Format "02/01/2006" }}</span>{{ end }}
+    {{- if and $u (not $parte) }}{{ with $u }}<span>Del {{ time.AsTime .ini | time.Format "02/01/2006" }} al {{ time.AsTime .fin | time.Format "02/01/2006" }}</span>{{ end }}{{ end }}
   </div>
   <div class="bd-temp-bar" role="img" aria-label="{{ if eq site.Language.Lang "val" }}Repartiment d'hores{{ else }}Reparto de horas{{ end }}">
     <i class="t" style="width:{{ div (mul $T 100.0) $tot }}%"></i><i class="p" style="width:{{ div (mul $P 100.0) $tot }}%"></i><i class="e" style="width:{{ div (mul $E 100.0) $tot }}%"></i>

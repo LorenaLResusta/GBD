@@ -8,7 +8,7 @@ weight: 2
 **EduGest** es la base de datos de gestión académica de un instituto de Formación Profesional ficticio, el *IES Serra Gelada*. Es el hilo conductor del curso: empieza como una entrevista con el cliente y termina como una base de datos relacional completa, consultada, modificada y con copias de seguridad.
 
 > [!IMPORTANT]
-> Diseñar y administrar una base de datos no es un conjunto de temas aislados. Es un proceso continuo. Cada unidad añade una capa a EduGest y **usa lo que se hizo en la anterior**. Guarda tu trabajo en un repositorio Git desde el primer día.
+> Diseñar y administrar una base de datos no es un conjunto de temas aislados. Es un proceso continuo. Cada tema añade una capa a EduGest y **usa lo que se hizo en la anterior**. Guarda tu trabajo en un repositorio Git desde el primer día.
 
 ## 1. Enunciado: entrevista con la jefatura de estudios
 
@@ -30,24 +30,24 @@ weight: 2
 
 ## 2. Evolución del proyecto durante el curso
 
-| Unidad | Lo que se añade a EduGest | Entregable |
+| Tema | Lo que se añade a EduGest | Entregable |
 |---|---|---|
 | Tema 1 | Análisis del sistema actual (hojas de cálculo) y justificación de un SGBD. | Informe de análisis |
 | Tema 2 | Modelo conceptual: diagrama E/R a partir del enunciado. | Diagrama E/R + diccionario de datos |
-| Tema 3 | Modelo lógico: transformación al modelo relacional. | Esquema relacional con PK, FK y restricciones |
-| Tema 4 | Normalización del esquema y de la hoja heredada de matrículas. | Informe de normalización hasta 3FN |
-| Tema 5 | Implementación en Oracle: tablas, restricciones, secuencias e índices. | Script `01_esquema.sql` y batería de pruebas |
-| Tema 6 | Consultas sobre una tabla para el día a día de secretaría. | Script de consultas comentado |
-| Tema 7 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
-| Tema 8 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
-| Tema 9 | Guiones de sentencias: expediente del alumno, matrícula con control de errores y promoción de curso. | Guiones PL/SQL básicos + pruebas |
-| Tema 10 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
+| Tema 2 | Modelo lógico: transformación al modelo relacional. | Esquema relacional con PK, FK y restricciones |
+| Tema 2 | Normalización del esquema y de la hoja heredada de matrículas. | Informe de normalización hasta 3FN |
+| Tema 3 | Implementación en Oracle: tablas, restricciones, secuencias e índices. | Script `01_esquema.sql` y batería de pruebas |
+| Tema 4 | Consultas sobre una tabla para el día a día de secretaría. | Script de consultas comentado |
+| Tema 4 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
+| Tema 5 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
+| Tema 5 | Guiones de sentencias: expediente del alumno, matrícula con control de errores y promoción de curso. | Guiones PL/SQL básicos + pruebas |
+| Tema 6 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
 
 ## 3. Modelo de referencia
 
-El diagrama siguiente es la **solución de referencia** que se publica cuando termina el tema 4. Hasta entonces, cada estudiante trabaja con su propio diseño.
+El diagrama siguiente es la **solución de referencia** que se publica cuando termina el tema 2. Hasta entonces, cada estudiante trabaja con su propio diseño.
 
-{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar el tema 3)" %}}
+{{% details title="Ver el diagrama de la solución de referencia (no lo abras hasta acabar el tema 2)" %}}
 
 ```mermaid
 erDiagram
@@ -134,7 +134,7 @@ erDiagram
 
 ### Restricciones que no recoge el diagrama
 
-Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en el tema 4 (RA2.i) y se comprueban en el tema 9 con guiones de sentencias:
+Algunas reglas de negocio no se pueden expresar con claves ni con `CHECK` de una sola fila. Se documentan en el tema 2 (RA2.i) y se comprueban en el tema 5 con guiones de sentencias:
 
 1. El jefe de un departamento debe **pertenecer** a ese departamento.
 2. Un alumno solo puede matricularse en módulos del **ciclo de su grupo**, salvo autorización.

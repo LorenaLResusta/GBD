@@ -1,4 +1,4 @@
-{{- /* Widget UD02: leer una cardinalidad en pata de gallo y en pares (mín, máx). */ -}}
+{{- /* Widget: leer una cardinalidad en pata de gallo y en pares (mín, máx). */ -}}
 {{- $id := printf "erl-%d" .Ordinal -}}
 <div class="bd-w" id="{{ $id }}" style="--c: var(--color-accent-note)">
   <div class="bd-w-head"><span class="bd-w-tag">Interactivo</span> Laboratorio de cardinalidades <span class="bd-w-sub">Elige un caso o fija tú los valores</span></div>
@@ -95,7 +95,7 @@
     var chk = document.createElement('p');
     if (ab[0] === 1 && ab[1] === 'N' && ba[0] === 1 && ba[1] === 'N')
       chk.innerHTML = '<span class="warn">Revisa:</span> con mínimos 1 en las dos direcciones, ¿cómo se crea la primera instancia? Una de las dos participaciones suele ser opcional.';
-    else chk.innerHTML = '<span class="ok">Siguiente paso:</span> en la UD03 verás cómo se transforma este caso en tablas (apartados 4.4 a 4.6).';
+    else chk.innerHTML = '<span class="ok">Siguiente paso:</span> en el modelo relacional verás cómo se transforma este caso en tablas (apartados 4.4 a 4.6).';
     out.appendChild(chk);
   }
   q('preset').addEventListener('change', function () {

@@ -5,7 +5,7 @@ weight: 4
 
 # Com són les pràctiques
 
-Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA6 es demostren **fent**, no memoritzant.
+Cada tema té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA6 es demostren **fent**, no memoritzant.
 
 ## 1. Tipus de pràctica
 
@@ -14,7 +14,7 @@ Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part pri
 | **Guiada** | Es presenta el procediment pas a pas. El seu objectiu és aprendre la tècnica. | A classe. Es comprova al final de la sessió amb la llista de comprovació. |
 | **Autònoma** | Es planteja un problema semblant sense el procediment. El seu objectiu és aplicar la tècnica. | Individual. Es lliura i s'avalua. |
 | **Repte** | Un problema obert o amb una dificultat extra. Exigix analitzar i decidir. | Opcional o per a pujar nota. Es defén oralment. |
-| **Projecte** | La tasca d'EduGest de la unitat. | Individual o per parelles. Forma part del projecte final. |
+| **Projecte** | La tasca d'EduGest del tema. | Individual o per parelles. Forma part del projecte final. |
 
 La dificultat s'indica amb tres punts: ●○○ bàsic, ●●○ intermedi i ●●● avançat.
 
@@ -43,14 +43,14 @@ Crea un repositori Git privat per al mòdul amb esta estructura:
 ```text
 bbdd-<tu-usuario>/
 ├── README.md                 # nom, grup i estat de cada pràctica
-├── ud01/
+├── tema1/
 │   └── p1.1-analisis.md
-├── ud02/
+├── tema2/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud05/
-│   ├── p5.1-tienda.sql
-│   └── evidencias/p5.1-salida.txt
+├── tema3/
+│   ├── p3.1-tienda.sql
+│   └── evidencias/p3.1-salida.txt
 ├── ...
 └── edugest/                  # el proyecto transversal
     ├── 01_esquema.sql
@@ -65,7 +65,7 @@ Un script lliurat ha de poder **executar-se de principi a fi** en una base de da
 
 ```sql
 -- =============================================================
--- Pràctica 5.2 · Botiga en línia · Script de creació
+-- Pràctica 3.2 · Botiga en línia · Script de creació
 -- Autor/a: Nom Cognoms (1ASIR)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Data: 2026-11-10

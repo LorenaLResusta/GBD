@@ -5,7 +5,7 @@ weight: 4
 
 # Cómo son las prácticas
 
-Cada unidad tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA6 se demuestran **haciendo**, no memorizando.
+Cada tema tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA6 se demuestran **haciendo**, no memorizando.
 
 ## 1. Tipos de práctica
 
@@ -14,7 +14,7 @@ Cada unidad tiene una página de **prácticas**. Las prácticas son la parte pri
 | **Guiada** | Se presenta el procedimiento paso a paso. Su objetivo es aprender la técnica. | En clase. Se comprueba al final de la sesión con la lista de comprobación. |
 | **Autónoma** | Se plantea un problema parecido sin el procedimiento. Su objetivo es aplicar la técnica. | Individual. Se entrega y se evalúa. |
 | **Reto** | Un problema abierto o con una dificultad extra. Exige analizar y decidir. | Opcional o para subir nota. Se defiende oralmente. |
-| **Proyecto** | La tarea de EduGest de la unidad. | Individual o por parejas. Forma parte del proyecto final. |
+| **Proyecto** | La tarea de EduGest del tema. | Individual o por parejas. Forma parte del proyecto final. |
 
 La dificultad se indica con tres puntos: ●○○ básico, ●●○ intermedio y ●●● avanzado.
 
@@ -43,14 +43,14 @@ Crea un repositorio Git privado para el módulo con esta estructura:
 ```text
 bbdd-<tu-usuario>/
 ├── README.md                 # nombre, grupo y estado de cada práctica
-├── ud01/
+├── tema1/
 │   └── p1.1-analisis.md
-├── ud02/
+├── tema2/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud05/
-│   ├── p5.1-tienda.sql
-│   └── evidencias/p5.1-salida.txt
+├── tema3/
+│   ├── p3.1-tienda.sql
+│   └── evidencias/p3.1-salida.txt
 ├── ...
 └── edugest/                  # el proyecto transversal
     ├── 01_esquema.sql
@@ -65,7 +65,7 @@ Un script entregado debe poder **ejecutarse de principio a fin** en una base de 
 
 ```sql
 -- =============================================================
--- Práctica 5.2 · Tienda online · Script de creación
+-- Práctica 3.2 · Tienda online · Script de creación
 -- Autor/a: Nombre Apellidos (1ASIR)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Fecha: 2026-11-10

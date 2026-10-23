@@ -5,9 +5,9 @@ weight: 3
 
 # Entorno de trabajo
 
-Durante el curso se usa un único sistema gestor, **Oracle**, y, solo en la práctica 10.4 (transferencia entre gestores), un segundo gestor relacional, **PostgreSQL**.
+Durante el curso se usa un único sistema gestor, **Oracle**, y, solo en la práctica 6.4 (transferencia entre gestores), un segundo gestor relacional, **PostgreSQL**.
 
-| | Oracle (Tema 1 a Tema 10) | PostgreSQL (solo práctica 10.4) |
+| | Oracle (Tema 1 a Tema 6) | PostgreSQL (solo práctica 6.4) |
 |---|---|---|
 | **SGBD** | Oracle AI Database 26ai Free | PostgreSQL 17 |
 | **Versión de referencia** | 23.26.x | 17.x |
@@ -118,7 +118,7 @@ sql edugest/Edugest_2026@//localhost:1521/FREEPDB1
 |---|---|
 | `DESC tabla` | Muestra la estructura de una tabla |
 | `@fichero.sql` | Ejecuta un script |
-| `SET SERVEROUTPUT ON` | Muestra la salida de `DBMS_OUTPUT` (Tema 9) |
+| `SET SERVEROUTPUT ON` | Muestra la salida de `DBMS_OUTPUT` (Tema 5) |
 | `SPOOL salida.txt` / `SPOOL OFF` | Guarda la salida en un fichero (evidencias) |
 | `SET SQLFORMAT ansiconsole` | Tablas más legibles (solo SQLcl) |
 | `HISTORY` | Historial de órdenes (solo SQLcl) |
@@ -138,7 +138,7 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` de `USER_TABLES` muestra las **estadísticas** del optimizador. Puede valer `NULL` hasta que Oracle las recopile. Para contar filas de verdad usa `COUNT(*)`.
 
-## 5. PostgreSQL 17 (solo práctica 10.4)
+## 5. PostgreSQL 17 (solo práctica 6.4)
 
 ```bash
 docker run -d --name pg17 -p 5432:5432 \
