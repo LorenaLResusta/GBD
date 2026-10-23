@@ -7,7 +7,7 @@ weight: 3
 
 Durante el curso usaremos dos sistemas gestores:
 
-| | Relacional (UD03 a UD05) | No relacional (UD06) |
+| | Relacional (UD05 a UD09) | No relacional (UD10) |
 |---|---|---|
 | **SGBD** | Oracle AI Database 26ai Free | MongoDB Community Server 8.0 |
 | **Versión de referencia** | 23.26.x | 8.0.x |
@@ -17,7 +17,7 @@ Durante el curso usaremos dos sistemas gestores:
 | **Modelado** | Oracle SQL Developer Data Modeler, draw.io, Mermaid | — |
 
 > [!NOTE]
-> **¿Por qué Oracle?** Es uno de los SGBD relacionales más implantados en grandes organizaciones. Su lenguaje procedimental (PL/SQL) es la referencia para los guiones y la programación en el SGBD (RA5). La edición *Free* no tiene coste, incluye las funciones de la versión comercial con límites de tamaño (2 CPU, 2 GB de RAM y 12 GB de datos de usuario).
+> **¿Por qué Oracle?** Es uno de los SGBD relacionales más implantados en grandes organizaciones. Su lenguaje procedimental (PL/SQL) es la referencia para el RA5. La edición *Free* no tiene coste, incluye las funciones de la versión comercial con límites de tamaño (2 CPU, 2 GB de RAM y 12 GB de datos de usuario).
 >
 > **¿Por qué MongoDB?** Es la base de datos documental más utilizada en el desarrollo web y multiplataforma. Su modelo de documentos JSON permite comparar de forma muy clara con el modelo relacional.
 
@@ -118,7 +118,7 @@ sql edugest/Edugest_2026@//localhost:1521/FREEPDB1
 |---|---|
 | `DESC tabla` | Muestra la estructura de una tabla |
 | `@fichero.sql` | Ejecuta un script |
-| `SET SERVEROUTPUT ON` | Muestra la salida de `DBMS_OUTPUT` (UD05) |
+| `SET SERVEROUTPUT ON` | Muestra la salida de `DBMS_OUTPUT` (UD09) |
 | `SPOOL salida.txt` / `SPOOL OFF` | Guarda la salida en un fichero (evidencias) |
 | `SET SQLFORMAT ansiconsole` | Tablas más legibles (solo SQLcl) |
 | `HISTORY` | Historial de órdenes (solo SQLcl) |
@@ -138,7 +138,7 @@ SELECT COUNT(*) FROM matricula;   -- 143
 > [!WARNING]
 > `num_rows` de `USER_TABLES` muestra las **estadísticas** del optimizador. Puede valer `NULL` hasta que Oracle las recopile. Para contar filas de verdad usa `COUNT(*)`.
 
-## 5. MongoDB Community Server 8.0 (UD06)
+## 5. MongoDB Community Server 8.0 (UD10)
 
 ```bash
 docker run -d --name mongo8 -p 27017:27017 \
@@ -158,7 +158,7 @@ show dbs
 Como cliente gráfico usa **MongoDB Compass** con la cadena de conexión `mongodb://localhost:27017`.
 
 > [!CAUTION]
-> Estas instalaciones son **para el aula**. MongoDB arranca sin autenticación y las contraseñas de Oracle son de ejemplo. En la UD03 y en la UD06 veremos por qué un servidor de bases de datos nunca debe exponerse así en producción.
+> Estas instalaciones son **para el aula**. MongoDB arranca sin autenticación y las contraseñas de Oracle son de ejemplo. En la UD05 y en la UD10 veremos por qué un servidor de bases de datos nunca debe exponerse así en producción.
 
 ## 6. Problemas frecuentes
 

@@ -6,17 +6,17 @@ bookToc: true
 
 # UD01 · Prácticas
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" >}}
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
 | [1.1 De la hoja de cálculo al SGBD](#práctica-11--de-la-hoja-de-cálculo-al-sgbd) | Guiada | ●○○ | RA1.a, RA1.d |
-| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e, RA3.a |
+| [1.2 Primer contacto con Oracle](#práctica-12--primer-contacto-con-oracle-dentro-de-un-sgbd) | Guiada | ●●○ | RA1.e, RA2.a |
 | [1.3 Elegir un SGBD para cada caso](#práctica-13--elegir-un-sgbd-para-cada-caso) | Autónoma | ●●○ | RA1.b, RA1.f |
-| [1.4 Diseño de la distribución de datos](#práctica-14--diseño-de-la-distribución-de-datos) | Autónoma | ●●○ | RA1.c |
-| [1.5 Auditoría de protección de datos](#práctica-15--auditoría-de-protección-de-datos) | Reto | ●●● | RA1.d |
-| [1.6 De los datos a las decisiones](#práctica-16--de-los-datos-a-las-decisiones) | Autónoma | ●○○ | RA1.a |
-| [Proyecto EduGest · UD01](#proyecto-edugest--ud01-informe-de-análisis) | Proyecto | ●●○ | RA1.d |
+| [1.4 Diseño de la distribución de datos](#práctica-14--diseño-de-la-distribución-de-datos) | Autónoma | ●●○ | RA1.c, RA1.g, RA1.h |
+| [1.5 Auditoría de protección de datos](#práctica-15--auditoría-de-protección-de-datos) | Reto | ●●● | RA1.i |
+| [1.6 De los datos a las decisiones](#práctica-16--de-los-datos-a-las-decisiones) | Autónoma | ●○○ | RA1.j |
+| [Proyecto EduGest · UD01](#proyecto-edugest--ud01-informe-de-análisis) | Proyecto | ●●○ | RA1.d, RA1.i |
 
 ---
 
@@ -95,17 +95,17 @@ Tu respuesta es completa si:
 
 > [!WARNING]
 > - Confundir **redundancia** con **inconsistencia**. La redundancia es repetir un dato; la inconsistencia es que sus copias no coincidan. La primera provoca la segunda.
-> - Responder con definiciones copiadas en lugar de ejemplos de la hoja. El criterio RA1.d pide **reconocer** la utilidad del SGBD en un caso concreto.
+> - Responder con definiciones copiadas en lugar de ejemplos de la hoja. El criterio RA1.d pide **evaluar** la utilidad del SGBD en un caso concreto.
 
 #### Ampliación
 
-Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparezca una sola vez. No hace falta usar la notación formal: basta con indicar qué columnas iría en cada tabla y cómo se relacionan. Guarda la propuesta: la revisaremos en la UD02 (normalización).
+Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparezca una sola vez. No hace falta usar la notación formal: basta con indicar qué columnas iría en cada tabla y cómo se relacionan. Guarda la propuesta: la revisaremos en la UD04 (normalización).
 
 ---
 
 ## Práctica 1.2 · Primer contacto con Oracle: dentro de un SGBD
 
-{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e · RA3: a, g, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
+{{< practica num="1.2" tipo="Guiada" duracion="3 sesiones" nivel="2" ra="RA1: e · RA2: a, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fichero de salida (SPOOL) + respuestas" >}}
 
 #### Objetivo
 
@@ -303,7 +303,7 @@ Añade un caso E propuesto por ti, a partir de una empresa real de tu entorno (p
 
 ## Práctica 1.4 · Diseño de la distribución de datos
 
-{{< practica num="1.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA1: c" sgbd="Papel o draw.io (SQL conceptual)" entrega="Documento con el diseño" >}}
+{{< practica num="1.4" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA1: c, g, h" sgbd="Papel o draw.io (SQL conceptual)" entrega="Documento con el diseño" >}}
 
 #### Objetivo
 
@@ -349,7 +349,7 @@ Investiga qué es el **sharding** en MongoDB y qué papel tiene la *clave de fra
 
 ## Práctica 1.5 · Auditoría de protección de datos
 
-{{< practica num="1.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA1: d · RA2: i" sgbd="Documentación (RGPD, LOPDGDD, guías de la AEPD)" entrega="Informe de auditoría + defensa oral (5 min)" >}}
+{{< practica num="1.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA1: i · RA6: h" sgbd="Documentación (RGPD, LOPDGDD, guías de la AEPD)" entrega="Informe de auditoría + defensa oral (5 min)" >}}
 
 #### Objetivo
 
@@ -373,7 +373,7 @@ Elabora un informe con:
 1. **Inventario de datos personales** de EduGest: tabla con el dato, la persona interesada, si es una categoría especial y su finalidad.
 2. Un **registro simplificado de la actividad de tratamiento** (art. 30 RGPD): responsable, finalidades, categorías de datos e interesados, destinatarios, plazos de conservación y medidas de seguridad.
 3. Para cada nueva petición, indica si es lícita, qué condiciones exigiría y qué cambios implicaría en la base de datos.
-4. Al menos **seis medidas técnicas** que aplicarás en las unidades siguientes, indicando la unidad (por ejemplo: «vista sin datos de contacto para el profesorado, UD03»).
+4. Al menos **seis medidas técnicas** que aplicarás en las unidades siguientes, indicando la unidad (por ejemplo: «vista sin datos de contacto para el profesorado, UD05»).
 5. El procedimiento que seguiría el centro ante una **brecha de seguridad**.
 
 #### Comprobación
@@ -398,7 +398,7 @@ Diseña cómo **anonimizarías** los datos de los antiguos alumnos para poder se
 
 ## Práctica 1.6 · De los datos a las decisiones
 
-{{< practica num="1.6" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA1: a" sgbd="Hoja de cálculo (tablas dinámicas)" entrega="Hoja de cálculo + 3 conclusiones" >}}
+{{< practica num="1.6" tipo="Autónoma" duracion="1 sesión" nivel="1" ra="RA1: j" sgbd="Hoja de cálculo (tablas dinámicas)" entrega="Hoja de cálculo + 3 conclusiones" >}}
 
 #### Objetivo
 
@@ -424,14 +424,14 @@ La jefatura de estudios quiere saber si el porcentaje de aprobados en *Bases de 
 - [ ] La respuesta del punto 5 menciona el impacto en el rendimiento y los datos históricos.
 
 > [!TIP]
-> Lo que acabas de hacer con la tabla dinámica es una **consulta resumen**. En la UD04 la escribirás en SQL con `GROUP BY` y `AVG`.
+> Lo que acabas de hacer con la tabla dinámica es una **consulta resumen**. En la UD07 la escribirás en SQL con `GROUP BY` y `AVG`.
 {{% /comprobacion %}}
 
 ---
 
 ## Proyecto EduGest · UD01: informe de análisis
 
-{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
+{{< practica num="EduGest-1" tipo="Proyecto" duracion="Trabajo transversal (1 semana)" nivel="2" ra="RA1: c, d, f, i" sgbd="Documento Markdown en el repositorio" entrega="edugest/docs/01-analisis.md" >}}
 
 #### Objetivo
 

@@ -34,20 +34,20 @@ weight: 2
 |---|---|---|
 | UD01 | Anàlisi del sistema actual (fulls de càlcul) i justificació d'un SGBD. Dades personals i RGPD. | Informe d'anàlisi |
 | UD02 | Model conceptual: diagrama E/R a partir de l'enunciat. | Diagrama E/R + diccionari de dades |
-| UD02 | Model lògic: transformació al model relacional. | Esquema relacional amb PK, FK i restriccions |
-| UD02 | Normalització de l'esquema i del full heretat de matrícules. | Informe de normalització fins a 3FN |
-| UD03 | Implementació en Oracle: taules, restriccions, índexs, vistes, usuaris i rols. | Scripts `01_esquema.sql` i `03_seguridad.sql` |
-| UD04 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
-| UD04 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
-| UD05 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
-| UD05 | Lògica en el servidor: funcions, procediments, triggers d'auditoria i tasca programada. | Paquet PL/SQL + proves |
-| UD06 | Versió documental de l'expedient de l'alumnat en MongoDB i comparació amb el model relacional. | Col·lecció + consultes + informe comparatiu |
+| UD03 | Model lògic: transformació al model relacional. | Esquema relacional amb PK, FK i restriccions |
+| UD04 | Normalització de l'esquema i del full heretat de matrícules. | Informe de normalització fins a 3FN |
+| UD05 | Implementació en Oracle: taules, restriccions, índexs, vistes, usuaris i rols. | Scripts `01_esquema.sql` i `03_seguridad.sql` |
+| UD06 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
+| UD07 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
+| UD08 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
+| UD09 | Lògica en el servidor: funcions, procediments, triggers d'auditoria i tasca programada. | Paquet PL/SQL + proves |
+| UD10 | Versió documental de l'expedient de l'alumnat en MongoDB i comparació amb el model relacional. | Col·lecció + consultes + informe comparatiu |
 
 ## 3. Model de referència
 
-El diagrama següent és la **solució de referència** que es publica quan acaba la UD02. Fins llavors, cada estudiant treballa amb el seu propi disseny.
+El diagrama següent és la **solució de referència** que es publica quan acaba la UD04. Fins llavors, cada estudiant treballa amb el seu propi disseny.
 
-{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar la UD02)" %}}
+{{% details title="Vore el diagrama de la solució de referència (no l'òbris fins a acabar la UD03)" %}}
 
 ```mermaid
 erDiagram
@@ -134,7 +134,7 @@ erDiagram
 
 ### Restriccions que no arreplega el diagrama
 
-Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en la UD02 (RA2.i) i s'implementen en la UD05 amb PL/SQL:
+Algunes regles de negoci no es poden expressar amb claus ni amb `CHECK` d'una sola fila. Es documenten en la UD04 (RA6.h) i s'implementen en la UD09 amb PL/SQL:
 
 1. El cap d'un departament ha de **pertànyer** a eixe departament.
 2. Un alumne només es pot matricular en mòduls del **cicle del seu grup**, excepte autorització.
@@ -148,9 +148,9 @@ Els scripts estan escrits per a **Oracle AI Database 26ai Free**. També funcion
 
 | Script | Contingut | S'executa com a |
 |---|---|---|
-| {{< recurso "sql/edugest_00_usuario.sql" >}} | Crea l'usuari/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
-| {{< recurso "sql/edugest_01_esquema.sql" >}} | Taules, restriccions, índexs i comentaris | `EDUGEST` |
-| {{< recurso "sql/edugest_02_datos.sql" >}} | Dades d'exemple del curs 2025-26 | `EDUGEST` |
+| [edugest_00_usuario.sql](recursos/sql/edugest_00_usuario.sql) | Crea l'usuari/esquema `EDUGEST` | `SYSTEM` en `FREEPDB1` |
+| [edugest_01_esquema.sql](recursos/sql/edugest_01_esquema.sql) | Taules, restriccions, índexs i comentaris | `EDUGEST` |
+| [edugest_02_datos.sql](recursos/sql/edugest_02_datos.sql) | Dades d'exemple del curs 2025-26 | `EDUGEST` |
 
 ```bash
 # Des de la carpeta on hages descarregat els scripts (SQLcl)

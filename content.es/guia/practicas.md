@@ -5,7 +5,7 @@ weight: 4
 
 # Cómo son las prácticas
 
-Cada unidad tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA6 se demuestran **haciendo**, no memorizando.
+Cada unidad tiene una página de **prácticas**. Las prácticas son la parte principal del módulo: los criterios de evaluación de RA2 a RA7 se demuestran **haciendo**, no memorizando.
 
 ## 1. Tipos de práctica
 
@@ -22,7 +22,7 @@ La dificultad se indica con tres puntos: ●○○ básico, ●●○ intermedio
 
 Todas las prácticas siguen el mismo esquema. Así sabes qué se espera en cada apartado:
 
-{{< practica num="X.Y" tipo="Guiada" duracion="Tiempo orientativo" nivel="2" ra="" sgbd="Software y versión" entrega="Qué hay que entregar" >}}
+{{< practica num="X.Y" tipo="Guiada" duracion="Tiempo orientativo" nivel="2" ra="RAx: criterios" sgbd="Software y versión" entrega="Qué hay que entregar" >}}
 
 1. **Objetivo.** Qué competencia o resultado se pretende desarrollar.
 2. **Contexto.** La situación profesional que se plantea.
@@ -48,7 +48,7 @@ bbdd-<tu-usuario>/
 ├── ud02/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud03/
+├── ud05/
 │   ├── p5.1-tienda.sql
 │   └── evidencias/p5.1-salida.txt
 ├── ...
@@ -65,7 +65,7 @@ Un script entregado debe poder **ejecutarse de principio a fin** en una base de 
 
 ```sql
 -- =============================================================
--- Práctica 3.2 · Tienda online · Script de creación
+-- Práctica 5.2 · Tienda online · Script de creación
 -- Autor/a: Nombre Apellidos (1DAM)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Fecha: 2026-11-10

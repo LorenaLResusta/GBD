@@ -1,6 +1,6 @@
-baseURL = "https://lorenalresusta.github.io/GBD/"
+baseURL = "https://lorenalresusta.github.io/BBDD/"
 locale = "es-es"
-title = "Gestión de Bases de Datos · 1º ASIR"
+title = "Bases de Datos · DAM / DAW"
 theme = "hugo-book"
 
 # Configuración multilingüe
@@ -11,17 +11,17 @@ defaultContentLanguage = "es"
     label = "Castellano"
     weight = 1
     contentDir = "content.es"
-    title = "Gestión de Bases de Datos · 1º ASIR"
+    title = "Bases de Datos · DAM / DAW"
     locale = "es-es"
-    copyright = "Apuntes del módulo 0372 Gestión de Bases de Datos · Curso 2026/27"
+    copyright = "Apuntes del módulo 0484 Bases de Datos · Curso 2026/27"
 
   [languages.val]
     label = "Valencià"
     weight = 2
     contentDir = "content.val"
-    title = "Gestió de Bases de dades · 1r ASIR"
+    title = "Bases de dades · DAM / DAW"
     locale = "ca-valencia"
-    copyright = "Apunts del mòdul 0372 Gestió de Bases de dades · Curs 2026/27"
+    copyright = "Apunts del mòdul 0484 Bases de dades · Curs 2026/27"
 
 [markup]
   [markup.goldmark.renderer]
@@ -51,12 +51,12 @@ defaultContentLanguage = "es"
   # Resuelve las imágenes "images/x.svg" desde assets/images
   BookPortableLinks = 'warning'
   BookDateFormat = '02/01/2006'
-  BookRepo = 'https://github.com/lorenalresusta/GBD'
+  BookRepo = 'https://github.com/lorenalresusta/BBDD'
 
 [languages.es.menus]
   [[languages.es.menus.after]]
-    name = "RD 1629/2009 (BOE)"
-    url = "https://www.boe.es/eli/es/rd/2009/10/30/1629"
+    name = "RD 405/2023 (BOE)"
+    url = "https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221"
     weight = 20
   [[languages.es.menus.after]]
     name = "Documentación Oracle 26ai"
@@ -69,8 +69,8 @@ defaultContentLanguage = "es"
 
 [languages.val.menus]
   [[languages.val.menus.after]]
-    name = "RD 1629/2009 (BOE)"
-    url = "https://www.boe.es/eli/es/rd/2009/10/30/1629"
+    name = "RD 405/2023 (BOE)"
+    url = "https://www.boe.es/buscar/act.php?id=BOE-A-2023-13221"
     weight = 20
   [[languages.val.menus.after]]
     name = "Documentació d'Oracle 26ai"

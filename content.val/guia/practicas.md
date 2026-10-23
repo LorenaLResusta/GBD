@@ -5,7 +5,7 @@ weight: 4
 
 # Com són les pràctiques
 
-Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA6 es demostren **fent**, no memoritzant.
+Cada unitat té una pàgina de **pràctiques**. Les pràctiques són la part principal del mòdul: els criteris d'avaluació de RA2 a RA7 es demostren **fent**, no memoritzant.
 
 ## 1. Tipus de pràctica
 
@@ -22,7 +22,7 @@ La dificultat s'indica amb tres punts: ●○○ bàsic, ●●○ intermedi i �
 
 Totes les pràctiques seguixen el mateix esquema. Així saps què s'espera en cada apartat:
 
-{{< practica num="X.Y" tipo="Guiada" duracion="Tiempo orientativo" nivel="2" ra="" sgbd="Software y versión" entrega="Qué hay que entregar" >}}
+{{< practica num="X.Y" tipo="Guiada" duracion="Tiempo orientativo" nivel="2" ra="RAx: criterios" sgbd="Software y versión" entrega="Qué hay que entregar" >}}
 
 1. **Objectiu.** Quina competència o resultat es pretén desenvolupar.
 2. **Context.** La situació professional que es planteja.
@@ -48,7 +48,7 @@ bbdd-<tu-usuario>/
 ├── ud02/
 │   ├── p2.1-biblioteca.drawio
 │   └── p2.1-biblioteca.png
-├── ud03/
+├── ud05/
 │   ├── p5.1-tienda.sql
 │   └── evidencias/p5.1-salida.txt
 ├── ...
@@ -65,7 +65,7 @@ Un script lliurat ha de poder **executar-se de principi a fi** en una base de da
 
 ```sql
 -- =============================================================
--- Pràctica 3.2 · Botiga en línia · Script de creació
+-- Pràctica 5.2 · Botiga en línia · Script de creació
 -- Autor/a: Nom Cognoms (1DAM)
 -- SGBD: Oracle AI Database 26ai Free 23.26
 -- Data: 2026-11-10

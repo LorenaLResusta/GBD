@@ -15,20 +15,23 @@ Un **sistema gestor de bases de datos (SGBD)** es el componente de software esen
 
 Esta unidad trata en profundidad la transición histórica desde los soportes físicos primitivos (tarjetas perforadas, cintas magnéticas y discos planos) hasta los SGBD relacionales y NoSQL actuales. Se analizan en detalle los métodos de organización de ficheros (secuenciales, de acceso aleatorio mediante el cálculo del *offset* e indexados con árboles B), la arquitectura estándar de tres niveles **ANSI/SPARC**, los componentes internos de un motor de base de datos, las reglas de integridad referencial y de dominio, la gestión de la concurrencia mediante **transacciones ACID**, las políticas de seguridad y recuperación, así como las topologías de despliegue y los subconjuntos del lenguaje SQL.
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" "RA7:a" >}}
 ### Temporalización
 
-La unidad ocupa **8 horas de aula** (2 de teoría y 6 de práctica).
+La unidad ocupa **12 horas de aula** (8 de teoría y 4 de práctica).
 
-{{< sesiones unidad="UD01" horas="8" >}}
+{{< sesiones unidad="UD01" horas="12" >}}
 items:
-  - {h: 2, tipo: T, t: "Datos, ficheros frente a bases de datos, SGBD y arquitectura", ref: "§1 a §5"}
-  - {h: 6, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
+  - {h: 2, tipo: T, t: "Datos e información. Historia. Sistemas basados en ficheros", ref: "§1 a §3"}
+  - {h: 1, tipo: P, t: "De la hoja de cálculo al SGBD", ref: "Práctica 1.1"}
+  - {h: 2, tipo: T, t: "Bases de datos y SGBD. Arquitectura y componentes", ref: "§4 y §5"}
+  - {h: 2, tipo: P, t: "Primer contacto con Oracle", ref: "Práctica 1.2"}
+  - {h: 2, tipo: T, t: "Integridad, concurrencia y transacciones. Seguridad. Modelos de datos y lenguajes", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Clasificación de los SGBD. Bases de datos distribuidas y fragmentación", ref: "§9 y §10"}
+  - {h: 1, tipo: T, t: "Big Data, inteligencia empresarial y protección de datos", ref: "§11 y §12"}
+  - {h: 1, tipo: P, t: "Informe de análisis de EduGest", ref: "Proyecto EduGest-1"}
 autonomo:
-  - "Teoría §6 a §13 (integridad, seguridad, modelos, clasificación, distribución, Big Data y protección de datos)"
-  - "Práctica 1.1 (de la hoja de cálculo al SGBD)"
-  - "Prácticas 1.3 a 1.6"
-  - "Proyecto EduGest · UD01 (informe de análisis)"
+  - "Prácticas 1.3 (elegir un SGBD), 1.4 (distribución de datos), 1.5 (auditoría de protección de datos) y 1.6"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -46,7 +49,7 @@ Al terminar esta unidad serás capaz de:
 - Identificar la legislación de protección de datos que afecta al diseño de una base de datos.
 
 > [!NOTE]
-> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir de la UD03 trabajaremos con Oracle.
+> Esta unidad es **conceptual**: todavía no instalamos nada ni escribimos SQL de forma sistemática. Los fragmentos SQL que aparecen son ilustrativos y utilizan una sintaxis genérica. A partir de la UD05 trabajaremos con Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visión general de un SGBD" >}}
 
@@ -535,7 +538,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en la UD05.
+> La forma de **iniciar** una transacción depende del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no tiene ninguna de estas órdenes: la transacción comienza automáticamente con la primera instrucción DML y termina con `COMMIT` o `ROLLBACK`. Lo veremos en la UD08.
 
 > [!IMPORTANT]
 > Antes de ejecutar `COMMIT`, la aplicación debe comprobar que **las dos actualizaciones** han afectado a una fila. Si alguna falla, hay que ejecutar `ROLLBACK`: abrir una transacción no valida por sí mismo el resultado de las operaciones.
@@ -616,7 +619,7 @@ graph TD
   - *Orientados a grafos:* Representan de forma nativa los nodos y las relaciones (Neo4j).
   - *Columnares:* Agrupan los datos en familias de columnas para leerlos y escribirlos a gran escala (Cassandra).
 
-La UD06 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
+La UD10 estudia con detalle los modelos NoSQL y en qué casos conviene utilizarlos.
 
 > [!WARNING]
 > **NoSQL no significa necesariamente «sin ACID»**: las garantías transaccionales varían según el producto y la configuración. Antes de elegir un sistema, comprueba qué propiedades ofrece.
@@ -664,7 +667,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en la UD03.
+> Este ejemplo utiliza tipos y sintaxis genéricos. En Oracle, los tipos habituales son `NUMBER` y `VARCHAR2`, y `ALTER TABLE ... ADD` no incluye la palabra `COLUMN`. Lo verás en la UD05.
 
 #### 2. DML (*Data Manipulation Language* - lenguaje de manipulación de datos)
 
@@ -735,7 +738,7 @@ Según **dónde** se almacenan los datos (RA1.c), una base de datos puede ser:
 
 ### 10.2 Utilidad de las bases de datos distribuidas
 
-Una base de datos distribuida es útil cuando (RA1.c):
+Una base de datos distribuida es útil cuando (RA1.g):
 
 - La organización está **repartida geográficamente** (sedes, delegaciones, países) y cada sede trabaja sobre todo con sus propios datos.
 - Se necesita **alta disponibilidad**: si un nodo falla, los demás siguen dando servicio.
@@ -745,11 +748,11 @@ Una base de datos distribuida es útil cuando (RA1.c):
 A cambio, el sistema es más complejo: hay que coordinar las transacciones entre nodos (por ejemplo, con el protocolo de **confirmación en dos fases**, *two-phase commit*), mantener la coherencia de las copias y tolerar los fallos de red.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD06).
+> **Teorema CAP.** Cuando falla la red entre nodos (*Partition*), un sistema distribuido tiene que elegir entre seguir respondiendo con datos posiblemente desactualizados (*Availability*) o rechazar peticiones hasta que se garantice que todos los nodos coinciden (*Consistency*). No existe ningún sistema distribuido que garantice las tres propiedades a la vez. Esta decisión explica muchas diferencias entre los SGBD relacionales y los NoSQL (UD10).
 
 ### 10.3 Políticas de fragmentación
 
-**Fragmentar** es dividir una tabla en partes (*fragmentos*) que se almacenan en nodos distintos (RA1.c). Toda fragmentación debe cumplir tres reglas:
+**Fragmentar** es dividir una tabla en partes (*fragmentos*) que se almacenan en nodos distintos (RA1.h). Toda fragmentación debe cumplir tres reglas:
 
 1. **Completitud:** cada dato de la tabla original está en algún fragmento.
 2. **Reconstrucción:** la tabla original se puede recomponer a partir de los fragmentos.
@@ -792,7 +795,7 @@ Además de fragmentar, se pueden **replicar** los datos: guardar copias completa
 
 ### 11.1 Big Data
 
-**Big Data** es el conjunto de técnicas y tecnologías que permiten almacenar y analizar volúmenes de datos tan grandes, rápidos o variados que no se pueden tratar con las herramientas tradicionales (ampliación). Se suele describir con las **V**:
+**Big Data** es el conjunto de técnicas y tecnologías que permiten almacenar y analizar volúmenes de datos tan grandes, rápidos o variados que no se pueden tratar con las herramientas tradicionales (RA1.j). Se suele describir con las **V**:
 
 | V | Significado | Ejemplo |
 |---|---|---|
@@ -822,18 +825,18 @@ flowchart LR
 |---|---|---|
 | **Uso** | Operaciones del día a día: matricular, facturar | Análisis y toma de decisiones |
 | **Operaciones** | Muchas inserciones y modificaciones pequeñas | Consultas complejas de lectura sobre muchos datos |
-| **Diseño** | Normalizado (UD02) para evitar redundancias | Desnormalizado (esquemas en estrella) para consultar más rápido |
+| **Diseño** | Normalizado (UD04) para evitar redundancias | Desnormalizado (esquemas en estrella) para consultar más rápido |
 | **Datos** | Actuales | Históricos e integrados de varias fuentes |
 | **Ejemplo en EduGest** | Registrar una falta de asistencia | Evolución de la tasa de abandono por ciclo durante los últimos 10 años |
 
 > [!TIP]
-> Las consultas de resumen con `GROUP BY` que harás en la UD04 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
+> Las consultas de resumen con `GROUP BY` que harás en la UD07 son la base de cualquier informe de BI. Herramientas como Power BI, Tableau o Looker Studio generan internamente consultas SQL muy parecidas.
 
 ---
 
 ## 12. Legislación sobre protección de datos
 
-Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo electrónico, notas, salud... Su tratamiento está regulado por ley (ampliación). Como desarrollador o administrador, eres responsable de diseñar sistemas que cumplan la normativa.
+Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo electrónico, notas, salud... Su tratamiento está regulado por ley (RA1.i). Como desarrollador o administrador, eres responsable de diseñar sistemas que cumplan la normativa.
 
 ### 12.1 Normativa vigente
 
@@ -854,10 +857,10 @@ Las bases de datos almacenan muchos **datos personales**: nombre, DNI, correo el
 | Principio (art. 5 RGPD) | Qué significa | Cómo se refleja en la base de datos |
 |---|---|---|
 | Licitud, lealtad y transparencia | Tratar los datos con una base legal e informar de ello a la persona interesada | Registrar el consentimiento o la base legal |
-| Limitación de la finalidad | Utilizar los datos solo para la finalidad para la que se han recogido | Vistas y privilegios según el perfil de usuario (UD03) |
+| Limitación de la finalidad | Utilizar los datos solo para la finalidad para la que se han recogido | Vistas y privilegios según el perfil de usuario (UD05) |
 | **Minimización de datos** | Recoger solo los datos necesarios | No crear columnas «por si acaso» en el diseño (UD02) |
 | Exactitud | Mantener los datos correctos y actualizados | Restricciones `CHECK`, validaciones y procesos de actualización |
-| Limitación del plazo de conservación | No guardar los datos más tiempo del necesario | Procedimientos de borrado o anonimización periódica (UD05) |
+| Limitación del plazo de conservación | No guardar los datos más tiempo del necesario | Procedimientos de borrado o anonimización periódica (UD09) |
 | Integridad y confidencialidad | Proteger los datos frente a accesos no autorizados y pérdidas | Usuarios, roles, cifrado, copias de seguridad, auditoría |
 | Responsabilidad proactiva | Poder demostrar que se cumple la normativa | Documentación del diseño, registro de accesos |
 
@@ -963,7 +966,7 @@ Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye 
 - q: "¿Qué módulo del SGBD decide **cómo** se ejecuta una consulta, por ejemplo, si utiliza un índice o recorre toda la tabla?"
   options: ["El gestor de transacciones", "El optimizador de consultas", "El diccionario de datos", "El gestor de copias de seguridad"]
   answer: 1
-  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en la UD04."
+  explain: "El **optimizador** genera varios planes de ejecución posibles y elige el de coste estimado más bajo. Lo estudiarás en la UD07."
 - q: "Una cadena de clínicas guarda en el servidor de cada ciudad solo los pacientes de esa ciudad. ¿Qué política se aplica?"
   options: ["Fragmentación vertical", "Replicación total", "Fragmentación horizontal", "Normalización"]
   answer: 2
@@ -992,68 +995,6 @@ Responde a las preguntas y pulsa el botón de comprobar. Cada respuesta incluye 
   options: ["24 horas", "72 horas", "15 días", "No es obligatorio notificarla"]
   answer: 1
   explain: "El artículo 33 del RGPD establece un máximo de **72 horas** desde que el responsable tiene constancia de la brecha."
-{{< /quiz >}}
-
-### Autoevaluación ampliada
-
-Dos tests más para afianzar el tema. Corrige al terminar: cada pregunta explica por qué la respuesta es la correcta, y puedes reiniciar y repetirlos las veces que quieras.
-
-#### Test A · Conceptos básicos
-
-{{< quiz >}}
-- q: "¿Cuál es el principal problema de almacenar la información de una organización en ficheros independientes por aplicación?"
-  options: ["Que los ficheros ocupan siempre más espacio que una base de datos", "La redundancia y la inconsistencia: el mismo dato está repetido y puede diferir entre ficheros", "Que no se pueden guardar números", "Que solo permiten un usuario"]
-  answer: 1
-  explain: "Cada aplicación guarda su copia de los datos, de modo que se repiten y, al actualizar uno, los demás quedan desfasados. Es una de las razones por las que nacen los SGBD."
-- q: "¿Qué diferencia hay entre **dato** e **información**?"
-  options: ["Ninguna, son sinónimos", "El dato es un valor sin contexto; la información es el dato interpretado en un contexto útil", "La información siempre es numérica", "El dato solo existe en soporte digital"]
-  answer: 1
-  explain: "«38,5» es un dato; «la temperatura del paciente es 38,5 °C» es información, porque tiene significado para quien la lee."
-- q: "Una **base de datos** es…"
-  options: ["El programa que gestiona los datos", "Un conjunto organizado de datos relacionados entre sí y almacenados de forma estructurada", "Una hoja de cálculo con varias pestañas", "Un servidor con mucho disco"]
-  answer: 1
-  explain: "El programa que la gestiona es el SGBD. Base de datos y SGBD son cosas distintas: los datos y el software que los administra."
-- q: "¿Cuál de estas funciones **no** corresponde a un SGBD?"
-  options: ["Controlar el acceso concurrente", "Garantizar la integridad de los datos", "Diseñar la interfaz gráfica de la aplicación de negocio", "Realizar copias de seguridad y recuperación"]
-  answer: 2
-  explain: "La interfaz de la aplicación la desarrolla el equipo de desarrollo. El SGBD ofrece almacenamiento, consulta, seguridad, integridad, concurrencia y recuperación."
-- q: "¿Qué es la **independencia de los datos**?"
-  options: ["Que los datos no dependen de ningún usuario", "Poder cambiar la estructura de almacenamiento sin tener que modificar las aplicaciones que los usan", "Que cada tabla vive en un servidor distinto", "Que los datos no necesitan claves"]
-  answer: 1
-  explain: "Gracias a los niveles de abstracción (externo, conceptual e interno) se puede reorganizar el almacenamiento físico sin reescribir los programas."
-- q: "El nivel de la arquitectura ANSI/SPARC que describe **qué datos hay y cómo se relacionan**, sin detalles de almacenamiento, es el…"
-  options: ["Nivel interno", "Nivel conceptual", "Nivel externo", "Nivel físico"]
-  answer: 1
-  explain: "El conceptual describe la estructura lógica de toda la base; el externo, las vistas de cada usuario; el interno, el almacenamiento."
-{{< /quiz >}}
-
-#### Test B · Casos y decisiones
-
-{{< quiz >}}
-- q: "Una tienda guarda sus ventas en una hoja de cálculo que editan cinco empleados a la vez y a veces se pisan los cambios. ¿Qué característica de un SGBD resolvería mejor el problema?"
-  options: ["El control de concurrencia y las transacciones", "Un monitor de mayor resolución", "Más memoria RAM en cada equipo", "Cambiar el formato a PDF"]
-  answer: 0
-  explain: "Los bloqueos y las transacciones permiten que varios usuarios modifiquen datos a la vez sin que se pierdan cambios."
-- q: "¿Qué rol se ocupa de crear usuarios, asignar privilegios y hacer copias de seguridad?"
-  options: ["Usuario final", "Programador de aplicaciones", "Administrador de la base de datos (DBA)", "Analista funcional"]
-  answer: 2
-  explain: "El DBA se encarga de la administración, la seguridad y la disponibilidad del sistema."
-- q: "Una aplicación de mensajería necesita guardar millones de mensajes con esquema flexible y escalar horizontalmente. ¿Qué tipo de gestor encaja mejor *a priori*?"
-  options: ["Siempre uno relacional", "Uno NoSQL, valorando el caso concreto", "Un fichero de texto", "Una hoja de cálculo"]
-  answer: 1
-  explain: "Los NoSQL destacan con esquemas flexibles y grandes volúmenes distribuidos, pero la decisión depende de los requisitos (consistencia, consultas, relaciones)."
-- q: "En una base de datos **distribuida**, la fragmentación horizontal consiste en…"
-  options: ["Dividir una tabla por columnas", "Dividir una tabla por filas y repartir cada trozo en un nodo", "Copiar la tabla entera en todos los nodos", "Cifrar la tabla"]
-  answer: 1
-  explain: "La horizontal reparte filas (por ejemplo, por provincia); la vertical reparte columnas; la replicación copia."
-- q: "Una clínica guarda datos de salud de sus pacientes. ¿Qué norma de protección de datos debe tener presente en la UE?"
-  options: ["Solo el Código Civil", "El Reglamento General de Protección de Datos (RGPD) y la LOPDGDD", "Ninguna, los datos son internos", "La ley de propiedad intelectual"]
-  answer: 1
-  explain: "Los datos de salud son una categoría especial: exigen base legal, medidas de seguridad reforzadas y respeto a los derechos de las personas afectadas."
-- q: "¿Qué describe mejor al **Big Data**?"
-  options: ["Una base de datos de más de 1 GB", "Datos de gran volumen, velocidad y variedad que requieren técnicas específicas para su tratamiento", "Cualquier base de datos relacional", "Un tipo de índice"]
-  answer: 1
-  explain: "Las «V» clásicas (volumen, velocidad, variedad…) caracterizan el Big Data; la inteligencia de negocio busca extraer valor de esos datos."
 {{< /quiz >}}
 
 ## Referencias

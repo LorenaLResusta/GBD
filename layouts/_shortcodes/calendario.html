@@ -35,7 +35,7 @@
     units.forEach(function (u) { var b = document.createElement('button'); b.type = 'button'; b.className = 'bd-chip' + (focus === u.c ? ' on' : ''); b.style.borderColor = colorOf[u.c]; if (focus === u.c) b.style.background = colorOf[u.c]; else b.style.color = colorOf[u.c];
       b.textContent = u.c + ' · ' + u.h + ' h'; b.title = u.n; b.addEventListener('click', function () { focus = focus === u.c ? null : u.c; drawLegend(); drawGrid(); showUnit(u); }); l.appendChild(b); });
     var k = q('kinds'); while (k.firstChild) k.removeChild(k.firstChild);
-    [['var(--color-accent-caution)', 'Festivo'], ['var(--color-accent-warning)', 'Vacaciones'], ['var(--color-accent-default)', 'Sin sesiones en la planificación provisional (mayo-junio)'], ['#facc15', 'Sesiones de evaluación (borde amarillo)']].forEach(function (x) { var s = document.createElement('span'); var i = document.createElement('i'); i.style.background = x[0]; s.appendChild(i); s.appendChild(document.createTextNode(x[1])); k.appendChild(s); });
+    [['var(--color-accent-caution)', 'Festivo'], ['var(--color-accent-warning)', 'Vacaciones'], ['var(--color-accent-default)', 'Formación en Empresa (desde el 3 de mayo)'], ['#facc15', 'Sesiones de evaluación (borde amarillo)']].forEach(function (x) { var s = document.createElement('span'); var i = document.createElement('i'); i.style.background = x[0]; s.appendChild(i); s.appendChild(document.createTextNode(x[1])); k.appendChild(s); });
   }
   function showUnit(u) {
     var o = q('info'); while (o.firstChild) o.removeChild(o.firstChild);

@@ -15,20 +15,23 @@ Un **sistema gestor de bases de dades (SGBD)** és el component de programari es
 
 Aquesta unitat tracta en profunditat la transició històrica des dels suports físics primitius (targetes perforades, cintes magnètiques i discos plans) fins als SGBD relacionals i NoSQL actuals. S'hi analitzen detalladament els mètodes d'organització de fitxers (seqüencials, d'accés aleatori mitjançant el càlcul de l'*offset* i indexats amb arbres B), l'arquitectura estàndard de tres nivells **ANSI/SPARC**, els components interns d'un motor de base de dades, les regles d'integritat referencial i de domini, la gestió de la concurrència mitjançant **transaccions ACID**, les polítiques de seguretat i recuperació, així com les topologies de desplegament i els subconjunts del llenguatge SQL.
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" "RA7:a" >}}
 ### Temporalització
 
-La unitat ocupa **8 hores d'aula** (2 de teoria i 6 de pràctica).
+La unitat ocupa **12 hores d'aula** (8 de teoria i 4 de pràctica).
 
-{{< sesiones unidad="UD01" horas="8" >}}
+{{< sesiones unidad="UD01" horas="12" >}}
 items:
-  - {h: 2, tipo: T, t: "Dades, fitxers enfront de bases de dades, SGBD i arquitectura", ref: "§1 a §5"}
-  - {h: 6, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
+  - {h: 2, tipo: T, t: "Dades i informació. Història. Sistemes basats en fitxers", ref: "§1 a §3"}
+  - {h: 1, tipo: P, t: "Del full de càlcul al SGBD", ref: "Pràctica 1.1"}
+  - {h: 2, tipo: T, t: "Bases de dades i SGBD. Arquitectura i components", ref: "§4 i §5"}
+  - {h: 2, tipo: P, t: "Primer contacte amb Oracle", ref: "Pràctica 1.2"}
+  - {h: 2, tipo: T, t: "Integritat, concurrència i transaccions. Seguretat. Models de dades i llenguatges", ref: "§6 a §8"}
+  - {h: 1, tipo: T, t: "Classificació dels SGBD. Bases de dades distribuïdes i fragmentació", ref: "§9 i §10"}
+  - {h: 1, tipo: T, t: "Big Data, intel·ligència empresarial i protecció de dades", ref: "§11 i §12"}
+  - {h: 1, tipo: P, t: "Informe d'anàlisi d'EduGest", ref: "Projecte EduGest-1"}
 autonomo:
-  - "Teoria §6 a §13 (integritat, seguretat, models, classificació, distribució, Big Data i protecció de dades)"
-  - "Pràctica 1.1 (del full de càlcul al SGBD)"
-  - "Pràctiques 1.3 a 1.6"
-  - "Projecte EduGest · UD01 (informe d'anàlisi)"
+  - "Pràctiques 1.3 (triar un SGBD), 1.4 (distribució de dades), 1.5 (auditoria de protecció de dades) i 1.6"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
@@ -46,7 +49,7 @@ En acabar aquesta unitat, seràs capaç de:
 - Identificar la legislació de protecció de dades que afecta el disseny d'una base de dades.
 
 > [!NOTE]
-> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir de la UD03 treballarem amb Oracle.
+> Aquesta unitat és **conceptual**: encara no instal·lem res ni escrivim SQL de manera sistemàtica. Els fragments SQL que hi apareixen són il·lustratius i utilitzen una sintaxi genèrica. A partir de la UD05 treballarem amb Oracle.
 
 {{< diagrama src="sgbd-overview.svg" caption="Visió general d'un SGBD" >}}
 
@@ -535,7 +538,7 @@ COMMIT;
 ```
 
 > [!NOTE]
-> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en la UD05.
+> La manera d'**iniciar** una transacció depén del SGBD: `BEGIN TRANSACTION` (SQL Server), `START TRANSACTION` (MySQL/MariaDB) o `BEGIN` (PostgreSQL). **Oracle** no té cap d'aquestes ordres: la transacció comença automàticament amb la primera instrucció DML i acaba amb `COMMIT` o `ROLLBACK`. Ho veurem en la UD08.
 
 > [!IMPORTANT]
 > Abans d'executar `COMMIT`, l'aplicació ha de comprovar que **les dues actualitzacions** han afectat una fila. Si alguna falla, cal executar `ROLLBACK`: obrir una transacció no valida per si mateix el resultat de les operacions.
@@ -616,7 +619,7 @@ graph TD
   - *Orientats a grafs:* Representen de manera nativa els nodes i les relacions (Neo4j).
   - *Columnars:* Agrupen les dades en famílies de columnes per a llegir-les i escriure-les a gran escala (Cassandra).
 
-La UD06 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
+La UD10 estudia amb detall els models NoSQL i en quins casos convé utilitzar-los.
 
 > [!WARNING]
 > **NoSQL no vol dir necessàriament «sense ACID»**: les garanties transaccionals varien segons el producte i la configuració. Abans de triar un sistema, comprova quines propietats oferix.
@@ -664,7 +667,7 @@ DROP TABLE producto;
 ```
 
 > [!WARNING]
-> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en la UD03.
+> Aquest exemple utilitza tipus i sintaxi genèrics. En Oracle, els tipus habituals són `NUMBER` i `VARCHAR2`, i `ALTER TABLE ... ADD` no inclou la paraula `COLUMN`. Ho veuràs en la UD05.
 
 #### 2. DML (*Data Manipulation Language* - llenguatge de manipulació de dades)
 
@@ -735,7 +738,7 @@ Segons **on** s'emmagatzemen les dades (RA1.c), una base de dades pot ser:
 
 ### 10.2 Utilitat de les bases de dades distribuïdes
 
-Una base de dades distribuïda és útil quan (RA1.c):
+Una base de dades distribuïda és útil quan (RA1.g):
 
 - L'organització està **repartida geogràficament** (seus, delegacions, països) i cada seu treballa sobretot amb les seues pròpies dades.
 - Es necessita **alta disponibilitat**: si un node falla, els altres continuen donant servei.
@@ -745,11 +748,11 @@ Una base de dades distribuïda és útil quan (RA1.c):
 A canvi, el sistema és més complex: cal coordinar les transaccions entre nodes (per exemple, amb el protocol de **confirmació en dues fases**, *two-phase commit*), mantindre la coherència de les còpies i tolerar les fallades de xarxa.
 
 > [!IMPORTANT]
-> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD06).
+> **Teorema CAP.** Quan falla la xarxa entre nodes (*Partition*), un sistema distribuït ha de triar entre continuar responent amb dades possiblement desactualitzades (*Availability*) o rebutjar peticions fins que es garantisca que tots els nodes coincidixen (*Consistency*). No hi ha cap sistema distribuït que garantisca les tres propietats alhora. Esta decisió explica moltes diferències entre els SGBD relacionals i els NoSQL (UD10).
 
 ### 10.3 Polítiques de fragmentació
 
-**Fragmentar** és dividir una taula en parts (*fragments*) que s'emmagatzemen en nodes diferents (RA1.c). Tota fragmentació ha de complir tres regles:
+**Fragmentar** és dividir una taula en parts (*fragments*) que s'emmagatzemen en nodes diferents (RA1.h). Tota fragmentació ha de complir tres regles:
 
 1. **Completitud:** cada dada de la taula original està en algun fragment.
 2. **Reconstrucció:** la taula original es pot recompondre a partir dels fragments.
@@ -792,7 +795,7 @@ A més de fragmentar, es poden **replicar** les dades: guardar-ne còpies comple
 
 ### 11.1 Big Data
 
-**Big Data** és el conjunt de tècniques i tecnologies que permeten emmagatzemar i analitzar volums de dades tan grans, ràpids o variats que no es poden tractar amb les eines tradicionals (ampliació). Se sol descriure amb les **V**:
+**Big Data** és el conjunt de tècniques i tecnologies que permeten emmagatzemar i analitzar volums de dades tan grans, ràpids o variats que no es poden tractar amb les eines tradicionals (RA1.j). Se sol descriure amb les **V**:
 
 | V | Significat | Exemple |
 |---|---|---|
@@ -822,18 +825,18 @@ flowchart LR
 |---|---|---|
 | **Ús** | Operacions del dia a dia: matricular, facturar | Anàlisi i presa de decisions |
 | **Operacions** | Moltes insercions i modificacions menudes | Consultes complexes de lectura sobre moltes dades |
-| **Disseny** | Normalitzat (UD02) per a evitar redundàncies | Desnormalitzat (esquemes en estrela) per a consultar més de pressa |
+| **Disseny** | Normalitzat (UD04) per a evitar redundàncies | Desnormalitzat (esquemes en estrela) per a consultar més de pressa |
 | **Dades** | Actuals | Històriques i integrades de diverses fonts |
 | **Exemple en EduGest** | Registrar una falta d'assistència | Evolució de la taxa d'abandonament per cicle durant els últims 10 anys |
 
 > [!TIP]
-> Les consultes de resum amb `GROUP BY` que faràs en la UD04 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
+> Les consultes de resum amb `GROUP BY` que faràs en la UD07 són la base de qualsevol informe de BI. Eines com Power BI, Tableau o Looker Studio generen internament consultes SQL molt semblants.
 
 ---
 
 ## 12. Legislació sobre protecció de dades
 
-Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu electrònic, notes, salut... El seu tractament està regulat per llei (ampliació). Com a desenvolupador o administrador, eres responsable de dissenyar sistemes que complisquen la normativa.
+Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu electrònic, notes, salut... El seu tractament està regulat per llei (RA1.i). Com a desenvolupador o administrador, eres responsable de dissenyar sistemes que complisquen la normativa.
 
 ### 12.1 Normativa vigent
 
@@ -854,10 +857,10 @@ Les bases de dades emmagatzemen moltes **dades personals**: nom, DNI, correu ele
 | Principi (art. 5 RGPD) | Què significa | Com es reflectix en la base de dades |
 |---|---|---|
 | Licitud, lleialtat i transparència | Tractar les dades amb una base legal i informar-ne la persona interessada | Registrar el consentiment o la base legal |
-| Limitació de la finalitat | Utilitzar les dades només per a la finalitat per a la qual s'han recollit | Vistes i privilegis segons el perfil d'usuari (UD03) |
+| Limitació de la finalitat | Utilitzar les dades només per a la finalitat per a la qual s'han recollit | Vistes i privilegis segons el perfil d'usuari (UD05) |
 | **Minimització de dades** | Recollir només les dades necessàries | No crear columnes «per si de cas» en el disseny (UD02) |
 | Exactitud | Mantindre les dades correctes i actualitzades | Restriccions `CHECK`, validacions i processos d'actualització |
-| Limitació del termini de conservació | No guardar les dades més temps del necessari | Procediments d'esborrament o anonimització periòdica (UD05) |
+| Limitació del termini de conservació | No guardar les dades més temps del necessari | Procediments d'esborrament o anonimització periòdica (UD09) |
 | Integritat i confidencialitat | Protegir les dades davant d'accessos no autoritzats i pèrdues | Usuaris, rols, xifratge, còpies de seguretat, auditoria |
 | Responsabilitat proactiva | Poder demostrar que es complix la normativa | Documentació del disseny, registre d'accessos |
 
@@ -963,7 +966,7 @@ Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una expl
 - q: "Quin mòdul del SGBD decidix **com** s'executa una consulta, per exemple, si utilitza un índex o recorre tota la taula?"
   options: ["El gestor de transaccions", "L'optimitzador de consultes", "El diccionari de dades", "El gestor de còpies de seguretat"]
   answer: 1
-  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en la UD04."
+  explain: "L'**optimitzador** genera diversos plans d'execució possibles i tria el de cost estimat més baix. Ho estudiaràs en la UD07."
 - q: "Una cadena de clíniques guarda en el servidor de cada ciutat només els pacients d'eixa ciutat. Quina política s'hi aplica?"
   options: ["Fragmentació vertical", "Replicació total", "Fragmentació horitzontal", "Normalització"]
   answer: 2
@@ -992,68 +995,6 @@ Respon les preguntes i prem el botó de comprovar. Cada resposta inclou una expl
   options: ["24 hores", "72 hores", "15 dies", "No és obligatori notificar-la"]
   answer: 1
   explain: "L'article 33 del RGPD establix un màxim de **72 hores** des que el responsable té constància de la bretxa."
-{{< /quiz >}}
-
-### Autoavaluació ampliada
-
-Dos tests més per a reforçar el tema. Corregeix en acabar: cada pregunta explica per què la resposta és la correcta, i pots reiniciar-los i repetir-los tantes voltes com vulgues.
-
-#### Test A · Conceptes bàsics
-
-{{< quiz >}}
-- q: "Quin és el principal problema d'emmagatzemar la informació d'una organització en fitxers independents per aplicació?"
-  options: ["Que els fitxers ocupen sempre més espai que una base de dades", "La redundància i la inconsistència: la mateixa dada està repetida i pot diferir entre fitxers", "Que no es poden guardar números", "Que només permeten un usuari"]
-  answer: 1
-  explain: "Cada aplicació guarda la seua còpia de les dades, de manera que es repeteixen i, en actualitzar-ne una, les altres queden desfasades. És una de les raons per les quals naixen els SGBD."
-- q: "Quina diferència hi ha entre **dada** i **informació**?"
-  options: ["Cap, són sinònims", "La dada és un valor sense context; la informació és la dada interpretada en un context útil", "La informació sempre és numèrica", "La dada només existeix en suport digital"]
-  answer: 1
-  explain: "«38,5» és una dada; «la temperatura del pacient és 38,5 °C» és informació, perquè té significat per a qui la llig."
-- q: "Una **base de dades** és…"
-  options: ["El programa que gestiona les dades", "Un conjunt organitzat de dades relacionades entre si i emmagatzemades de manera estructurada", "Un full de càlcul amb diverses pestanyes", "Un servidor amb molt de disc"]
-  answer: 1
-  explain: "El programa que la gestiona és el SGBD. Base de dades i SGBD són coses diferents: les dades i el programari que les administra."
-- q: "Quina d'aquestes funcions **no** correspon a un SGBD?"
-  options: ["Controlar l'accés concurrent", "Garantir la integritat de les dades", "Dissenyar la interfície gràfica de l'aplicació de negoci", "Realitzar còpies de seguretat i recuperació"]
-  answer: 2
-  explain: "La interfície de l'aplicació la desenvolupa l'equip de desenvolupament. El SGBD ofereix emmagatzematge, consulta, seguretat, integritat, concurrència i recuperació."
-- q: "Què és la **independència de les dades**?"
-  options: ["Que les dades no depenen de cap usuari", "Poder canviar l'estructura d'emmagatzematge sense haver de modificar les aplicacions que les usen", "Que cada taula viu en un servidor diferent", "Que les dades no necessiten claus"]
-  answer: 1
-  explain: "Gràcies als nivells d'abstracció (extern, conceptual i intern) es pot reorganitzar l'emmagatzematge físic sense reescriure els programes."
-- q: "El nivell de l'arquitectura ANSI/SPARC que descriu **quines dades hi ha i com es relacionen**, sense detalls d'emmagatzematge, és el…"
-  options: ["Nivell intern", "Nivell conceptual", "Nivell extern", "Nivell físic"]
-  answer: 1
-  explain: "El conceptual descriu l'estructura lògica de tota la base; l'extern, les vistes de cada usuari; l'intern, l'emmagatzematge."
-{{< /quiz >}}
-
-#### Test B · Casos i decisions
-
-{{< quiz >}}
-- q: "Una botiga guarda les seues vendes en un full de càlcul que editen cinc empleats alhora i de vegades es trepitgen els canvis. Quina característica d'un SGBD resoldria millor el problema?"
-  options: ["El control de concurrència i les transaccions", "Un monitor de major resolució", "Més memòria RAM a cada equip", "Canviar el format a PDF"]
-  answer: 0
-  explain: "Els bloquejos i les transaccions permeten que diversos usuaris modifiquen dades alhora sense que es perden canvis."
-- q: "Quin rol s'ocupa de crear usuaris, assignar privilegis i fer còpies de seguretat?"
-  options: ["Usuari final", "Programador d'aplicacions", "Administrador de la base de dades (DBA)", "Analista funcional"]
-  answer: 2
-  explain: "El DBA s'encarrega de l'administració, la seguretat i la disponibilitat del sistema."
-- q: "Una aplicació de missatgeria necessita guardar milions de missatges amb esquema flexible i escalar horitzontalment. Quin tipus de gestor encaixa millor *a priori*?"
-  options: ["Sempre un de relacional", "Un NoSQL, valorant el cas concret", "Un fitxer de text", "Un full de càlcul"]
-  answer: 1
-  explain: "Els NoSQL destaquen amb esquemes flexibles i grans volums distribuïts, però la decisió depén dels requisits (consistència, consultes, relacions)."
-- q: "En una base de dades **distribuïda**, la fragmentació horitzontal consisteix a…"
-  options: ["Dividir una taula per columnes", "Dividir una taula per files i repartir cada tros en un node", "Copiar la taula sencera en tots els nodes", "Xifrar la taula"]
-  answer: 1
-  explain: "L'horitzontal reparteix files (per exemple, per província); la vertical reparteix columnes; la replicació copia."
-- q: "Una clínica guarda dades de salut dels seus pacients. Quina norma de protecció de dades ha de tindre present a la UE?"
-  options: ["Només el Codi Civil", "El Reglament General de Protecció de Dades (RGPD) i la LOPDGDD", "Cap, les dades són internes", "La llei de propietat intel·lectual"]
-  answer: 1
-  explain: "Les dades de salut són una categoria especial: exigeixen base legal, mesures de seguretat reforçades i respecte als drets de les persones afectades."
-- q: "Què descriu millor el **Big Data**?"
-  options: ["Una base de dades de més d'1 GB", "Dades de gran volum, velocitat i varietat que requereixen tècniques específiques per al seu tractament", "Qualsevol base de dades relacional", "Un tipus d'índex"]
-  answer: 1
-  explain: "Les «V» clàssiques (volum, velocitat, varietat…) caracteritzen el Big Data; la intel·ligència de negoci busca extraure'n valor."
 {{< /quiz >}}
 
 ## Referències

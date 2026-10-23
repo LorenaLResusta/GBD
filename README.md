@@ -1,6 +1,6 @@
-# Gestión de Bases de Datos · Módulo 0372 (1º ASIR)
+# Bases de Datos · Módulo 0484 (DAM / DAW)
 
-Apuntes del módulo profesional **0372. Gestión de bases de datos** de 1º de ASIR (Real Decreto 1629/2009), curso 2026/27. Sitio estático generado con **Hugo** y el tema **hugo-book**, publicado en GitHub Pages.
+Apuntes del módulo profesional **0484. Bases de datos** de los ciclos de grado superior DAM y DAW (Real Decreto 405/2023), curso 2026/27. Sitio estático generado con **Hugo** y el tema **hugo-book**, publicado en GitHub Pages.
 
 ## Estructura del contenido
 
@@ -12,25 +12,30 @@ content.es/
 │   ├── proyecto-edugest.md        Proyecto transversal (centro educativo) y scripts
 │   ├── entorno.md                 Oracle AI Database 26ai Free y MongoDB 8.0 en Docker
 │   └── practicas.md               Tipos de práctica, normas de entrega y rúbrica
-├── ud01-introduccion/             RA1 · Sistemas de almacenamiento y SGBD (8 h)
-├── ud02-diseno-logico/            RA2 · Modelo E/R, modelo relacional y normalización (40 h)
-├── ud03-ddl-dcl/                  RA3 · DDL y DCL en Oracle (30 h)
-├── ud04-consultas/                RA4 · Consultas (Parte I: una tabla; Parte II: JOIN, agrupamiento, subconsultas, optimización) (40 h)
-├── ud05-dml-plsql/                RA5 · DML, transacciones, concurrencia y PL/SQL (24 h)
-└── ud06-aseguramiento/            RA6 · Copias de seguridad, importación y exportación, y NoSQL con MongoDB (18 h)
+├── ud01-introduccion/             RA1 · Sistemas de almacenamiento y SGBD
+├── ud02-modelo-er/                RA6 · Modelo Entidad/Relación (EER)
+├── ud03-modelo-relacional/        RA6, RA2 · Modelo relacional
+├── ud04-normalizacion/            RA6 · Normalización
+├── ud05-ddl-dcl/                  RA2 · DDL y DCL en Oracle
+├── ud06-consultas-basicas/        RA3 · Consultas sobre una tabla y funciones
+├── ud07-consultas-avanzadas/      RA3 · JOIN, agrupamiento, subconsultas, optimización
+├── ud08-dml-transacciones/        RA4 · DML, transacciones y concurrencia
+├── ud09-plsql/                    RA5 · PL/SQL: procedimientos, cursores, triggers, jobs
+└── ud10-nosql/                    RA7 · Bases de datos NoSQL con MongoDB
 ```
 
-Cada unidad tiene `_index.md` (presentación y RA/CE) y páginas `udXX-teoria*.md` y `udXX-practicas*.md`. En total, 160 horas.
+Cada unidad tiene `_index.md` (presentación y RA/CE), `udXX-teoria.md` y `udXX-practicas.md`.
 
+> Las carpetas antiguas `content.es/UD01` … `UD06` y `content.val/U01` se conservan, pero su `_index.md` impide que Hugo las publique (`build.render: never`). Su contenido ya está migrado a las nuevas carpetas: se pueden borrar.
 
 ## Recursos
 
 | Ruta | Contenido |
 |---|---|
-| `static/recursos/sql/edugest_00_usuario.sql` | Crea el usuario EDUGEST (ejecutar como SYSTEM en FREEPDB1) |
-| `static/recursos/sql/edugest_01_esquema.sql` | Esquema relacional de referencia |
-| `static/recursos/sql/edugest_02_datos.sql` | Datos de ejemplo (curso 2025-26) |
-| `static/recursos/nosql/edugest_mongo.js` | Versión documental para MongoDB |
+| `assets/recursos/sql/edugest_00_usuario.sql` | Crea el usuario EDUGEST (ejecutar como SYSTEM en FREEPDB1) |
+| `assets/recursos/sql/edugest_01_esquema.sql` | Esquema relacional de referencia |
+| `assets/recursos/sql/edugest_02_datos.sql` | Datos de ejemplo (curso 2025-26) |
+| `assets/recursos/nosql/edugest_mongo.js` | Versión documental para MongoDB |
 | `assets/images/` | Diagramas SVG usados en las páginas (`![...](images/x.svg)`) |
 | `data/curriculo.yaml` | Texto oficial de los RA y CE (lo usa el shortcode `ra`) |
 
@@ -39,7 +44,7 @@ Cada unidad tiene `_index.md` (presentación y RA/CE) y páginas `udXX-teoria*.m
 | Uso | Resultado |
 |---|---|
 | `{{</* ra "RA3:a,b,c" "RA2:f" */>}}` | Cuadro desplegable con los RA y CE oficiales |
-| `{{</* practica num="3.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: b, c" sgbd="Oracle 26ai" entrega="script.sql" */>}}` | Ficha de cabecera de una práctica (tipos: Guiada, Autónoma, Reto, Proyecto) |
+| `{{</* practica num="5.1" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: b, c" sgbd="Oracle 26ai" entrega="script.sql" */>}}` | Ficha de cabecera de una práctica (tipos: Guiada, Autónoma, Reto, Proyecto) |
 | `{{</* quiz */>}} … YAML … {{</* /quiz */>}}` | Test de autoevaluación con corrección y explicaciones |
 | `{{</* sgbd "Oracle 26ai" */>}}` | Etiqueta del SGBD de un ejemplo |
 | `> [!TIP]`, `> [!NOTE]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]` | Avisos de colores (alertas de Markdown del tema) |
@@ -63,7 +68,7 @@ hugo new --kind teoria   content.es/ud11-ejemplo/ud11-teoria.md
 hugo new --kind practicas content.es/ud11-ejemplo/ud11-practicas.md
 ```
 
-## Diagramas explicativos (UD01-UD02)
+## Diagramas explicativos (UD01-UD04)
 
 Los diagramas de `assets/images/*.svg` (arquitectura, ACID, E/R, relacional, ejemplos de Chen…) se generan con `tools/gen_infografias.py` (necesita `Pillow`). El generador ajusta el texto al ancho de cada caja, así que no se desborda ni se corta. Para cambiar uno, edita su función y ejecuta `python3 tools/gen_infografias.py <nombre>`. Los elementos con `data-tip` se vuelven interactivos con el shortcode `diagrama`.
 
@@ -87,7 +92,7 @@ Para volver a cifrar tras cambiar una solución o la clave: `BD_CLAVE='…' pyth
 ```bash
 git submodule update --init --recursive
 hugo server -D
-# http://localhost:1313/GBD/
+# http://localhost:1313/BBDD/
 ```
 
 ---
@@ -384,3 +389,4 @@ jobs:
 - `content.es/` (castellano, idioma por defecto) y `content.val/` (valenciano, ruta `/val/`) tienen la misma estructura de archivos y el mismo número de líneas, de modo que un cambio en uno se localiza fácilmente en el otro.
 - Textos de interfaz de los componentes: `i18n/es.toml` y `i18n/val.toml`. Currículo oficial: `data/curriculo.yaml` (es) y `data/curriculo_val.yaml` (val).
 - Los laboratorios interactivos (`layouts/_shortcodes/*-lab.html`, calendario, etc.) y los SVG de `assets/images` siguen en castellano.
+# GBD

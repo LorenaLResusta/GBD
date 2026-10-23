@@ -6,17 +6,17 @@ bookToc: true
 
 # UD01 · Pràctiques
 
-{{< ra "RA1:a,b,c,d,e,f" "RA3:a" >}}
+{{< ra "RA1:a,b,c,d,e,f,g,h,i,j" "RA2:a" >}}
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
 | [1.1 De la fulla de càlcul al SGBD](#pràctica-11--de-la-fulla-de-càlcul-al-sgbd) | Guiada | ●○○ | RA1.a, RA1.d |
-| [1.2 Primer contacte amb Oracle](#pràctica-12--primer-contacte-amb-oracle-dins-dun-sgbd) | Guiada | ●●○ | RA1.e, RA3.a |
+| [1.2 Primer contacte amb Oracle](#pràctica-12--primer-contacte-amb-oracle-dins-dun-sgbd) | Guiada | ●●○ | RA1.e, RA2.a |
 | [1.3 Triar un SGBD per a cada cas](#pràctica-13--triar-un-sgbd-per-a-cada-cas) | Autònoma | ●●○ | RA1.b, RA1.f |
-| [1.4 Disseny de la distribució de dades](#pràctica-14--disseny-de-la-distribució-de-dades) | Autònoma | ●●○ | RA1.c |
-| [1.5 Auditoria de protecció de dades](#pràctica-15--auditoria-de-protecció-de-dades) | Repte | ●●● | RA1.d |
-| [1.6 De les dades a les decisions](#pràctica-16--de-les-dades-a-les-decisions) | Autònoma | ●○○ | RA1.a |
-| [Projecte EduGest · UD01](#projecte-edugest--ud01-informe-danàlisi) | Projecte | ●●○ | RA1.d |
+| [1.4 Disseny de la distribució de dades](#pràctica-14--disseny-de-la-distribució-de-dades) | Autònoma | ●●○ | RA1.c, RA1.g, RA1.h |
+| [1.5 Auditoria de protecció de dades](#pràctica-15--auditoria-de-protecció-de-dades) | Repte | ●●● | RA1.i |
+| [1.6 De les dades a les decisions](#pràctica-16--de-les-dades-a-les-decisions) | Autònoma | ●○○ | RA1.j |
+| [Projecte EduGest · UD01](#projecte-edugest--ud01-informe-danàlisi) | Projecte | ●●○ | RA1.d, RA1.i |
 
 ---
 
@@ -95,17 +95,17 @@ La teua resposta és completa si:
 
 > [!WARNING]
 > - Confondre **redundància** amb **inconsistència**. La redundància és repetir una dada; la inconsistència és que les seues còpies no coincidisquen. La primera provoca la segona.
-> - Respondre amb definicions copiades en lloc d'exemples del full. El criteri RA1.d demana **reconéixer** la utilitat del SGBD en un cas concret.
+> - Respondre amb definicions copiades en lloc d'exemples del full. El criteri RA1.d demana **avaluar** la utilitat del SGBD en un cas concret.
 
 #### Ampliació
 
-Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en la UD02 (normalització).
+Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en la UD04 (normalització).
 
 ---
 
 ## Pràctica 1.2 · Primer contacte amb Oracle: dins d'un SGBD
 
-{{< practica num="1.2" tipo="Guiada" duracion="3 sessions" nivel="2" ra="RA1: e · RA3: a, g, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fitxer d'eixida (SPOOL) + respostes" >}}
+{{< practica num="1.2" tipo="Guiada" duracion="3 sessions" nivel="2" ra="RA1: e · RA2: a, h" sgbd="Oracle AI Database 26ai Free · Docker · SQL Developer o SQLcl" entrega="Fitxer d'eixida (SPOOL) + respostes" >}}
 
 #### Objectiu
 
@@ -303,7 +303,7 @@ Afig un cas E proposat per tu, a partir d'una empresa real del teu entorn (per e
 
 ## Pràctica 1.4 · Disseny de la distribució de dades
 
-{{< practica num="1.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA1: c" sgbd="Paper o draw.io (SQL conceptual)" entrega="Document amb el disseny" >}}
+{{< practica num="1.4" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA1: c, g, h" sgbd="Paper o draw.io (SQL conceptual)" entrega="Document amb el disseny" >}}
 
 #### Objectiu
 
@@ -349,7 +349,7 @@ Investiga què és el **sharding** en MongoDB i quin paper té la *clau de fragm
 
 ## Pràctica 1.5 · Auditoria de protecció de dades
 
-{{< practica num="1.5" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA1: d · RA2: i" sgbd="Documentació (RGPD, LOPDGDD, guies de l'AEPD)" entrega="Informe d'auditoria + defensa oral (5 min)" >}}
+{{< practica num="1.5" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA1: i · RA6: h" sgbd="Documentació (RGPD, LOPDGDD, guies de l'AEPD)" entrega="Informe d'auditoria + defensa oral (5 min)" >}}
 
 #### Objectiu
 
@@ -373,7 +373,7 @@ Elabora un informe amb:
 1. **Inventari de dades personals** d'EduGest: taula amb la dada, la persona interessada, si és una categoria especial i la seua finalitat.
 2. Un **registre simplificat de l'activitat de tractament** (art. 30 RGPD): responsable, finalitats, categories de dades i interessats, destinataris, terminis de conservació i mesures de seguretat.
 3. Per a cada nova petició, indica si és lícita, quines condicions exigiria i quins canvis implicaria en la base de dades.
-4. Almenys **sis mesures tècniques** que aplicaràs en les unitats següents, indicant la unitat (per exemple: «vista sense dades de contacte per al professorat, UD03»).
+4. Almenys **sis mesures tècniques** que aplicaràs en les unitats següents, indicant la unitat (per exemple: «vista sense dades de contacte per al professorat, UD05»).
 5. El procediment que seguiria el centre davant d'una **bretxa de seguretat**.
 
 #### Comprovació
@@ -398,7 +398,7 @@ Dissenya com **anonimitzaries** les dades dels antics alumnes per a poder contin
 
 ## Pràctica 1.6 · De les dades a les decisions
 
-{{< practica num="1.6" tipo="Autónoma" duracion="1 sessió" nivel="1" ra="RA1: a" sgbd="Full de càlcul (taules dinàmiques)" entrega="Full de càlcul + 3 conclusions" >}}
+{{< practica num="1.6" tipo="Autónoma" duracion="1 sessió" nivel="1" ra="RA1: j" sgbd="Full de càlcul (taules dinàmiques)" entrega="Full de càlcul + 3 conclusions" >}}
 
 #### Objectiu
 
@@ -424,14 +424,14 @@ La direcció d'estudis vol saber si el percentatge d'aprovats en *Bases de dades
 - [ ] La resposta del punt 5 menciona l'impacte en el rendiment i les dades històriques.
 
 > [!TIP]
-> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En la UD04 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
+> Això que acabes de fer amb la taula dinàmica és una **consulta resum**. En la UD07 l'escriuràs en SQL amb `GROUP BY` i `AVG`.
 {{% /comprobacion %}}
 
 ---
 
 ## Projecte EduGest · UD01: informe d'anàlisi
 
-{{< practica num="EduGest-1" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA1: c, d, f" sgbd="Document Markdown en el repositori" entrega="edugest/docs/01-analisis.md" >}}
+{{< practica num="EduGest-1" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA1: c, d, f, i" sgbd="Document Markdown en el repositori" entrega="edugest/docs/01-analisis.md" >}}
 
 #### Objectiu
 
