@@ -35,6 +35,8 @@ items:
   - {h: 1, tipo: P, t: "Modelo conceptual de EduGest", ref: "§8 y proyecto EduGest-2"}
 autonomo:
   - "Práctica 2.4 (clínica veterinaria con jerarquías)"
+  - "Retos 2.5 y 2.6, retos avanzados 2.7 a 2.10 (entrevista ambigua, historia, ingeniería inversa y comparación de diseños) y retos de requisitos 2.11 a 2.14 (festival, editorial, taller aeronáutico y comunidad de propietarios)"
+  - "Banco de ejercicios (30 enunciados)"
 {{< /sesiones >}}
 
 > [!NOTE]

@@ -39,12 +39,13 @@ items:
   - {h: 1, tipo: T, t: "Bloque PL/SQL, variables y tipos", ref: "§3 y §4"}
   - {h: 1, tipo: T, t: "Estructuras de control de flujo", ref: "§5"}
   - {h: 1, tipo: T, t: "Excepciones", ref: "§6"}
-  - {h: 1, tipo: P, t: "Matrícula con excepciones", ref: "Práctica 5.6"}
+  - {h: 1, tipo: P, t: "Matrícula con excepciones", ref: "Práctica 5.8"}
   - {h: 1, tipo: T, t: "Guiones de mantenimiento: estructura, idempotencia y pruebas", ref: "§7"}
-  - {h: 1, tipo: P, t: "Primeros bloques: el expediente de un alumno", ref: "Práctica 5.5"}
+  - {h: 1, tipo: P, t: "Reto: guion de promoción de curso", ref: "Práctica 5.9"}
   - {h: 1, tipo: P, t: "Guiones de mantenimiento de EduGest", ref: "Proyecto EduGest-5"}
 autonomo:
-  - "Terminar en casa lo que no haya dado tiempo de las prácticas 5.5 y 5.6"
+  - "Primeros bloques: el expediente de un alumno (Práctica 5.7)"
+  - "Terminar en casa lo que no haya dado tiempo de las prácticas 5.7 y 5.8"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -1219,7 +1220,7 @@ ORA-20010: El módulo 12 (DAW) no es del ciclo del alumno 1 (DAM)
 ORA-06512: at line 33
 ```
 
-Los números de línea de `ORA-06512` cuentan desde la línea `DECLARE` y te llevan al `RAISE_APPLICATION_ERROR` exacto. La batería completa de ocho pruebas está en la [práctica 5.6](/tema5-modificacion/guiones-practicas#práctica-56--matrícula-con-excepciones). Cuando termines, `ROLLBACK;` devuelve la tabla a su estado original.
+Los números de línea de `ORA-06512` cuentan desde la línea `DECLARE` y te llevan al `RAISE_APPLICATION_ERROR` exacto. La batería completa de ocho pruebas está en la [práctica 5.8](/tema5-modificacion/guiones-practicas#práctica-58--matrícula-con-excepciones). Cuando termines, `ROLLBACK;` devuelve la tabla a su estado original.
 
 > [!TIP]
 > Un bloque que valida siempre tiene la misma estructura: **comprobar → rechazar con un error claro → actuar**. Las comprobaciones van primero y de más barata a más cara; el `INSERT` va al final, cuando ya no puede fallar por una regla de negocio.

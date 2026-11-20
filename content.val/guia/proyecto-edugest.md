@@ -40,7 +40,7 @@ weight: 2
 | Tema 4 | Consultes sobre una taula per al dia a dia de secretaria. | Script de consultes comentat |
 | Tema 4 | Informes: actes, estadístiques per grup, consultes amb JOIN i subconsultes. Optimització. | Script d'informes + plans d'execució |
 | Tema 5 | Altes, baixes i canvis. Promoció de curs dins d'una transacció. | Guió transaccional provat |
-| Tema 5 | Guions de sentències: expedient de l'alumne i matrícula amb control d'errors. | Guions PL/SQL bàsics + proves |
+| Tema 5 | Guions de sentències: expedient de l'alumne, matrícula amb control d'errors i promoció de curs. | Guions PL/SQL bàsics + proves |
 | Tema 6 | Seguretat: còpia lògica de l'esquema, exportació a CSV/JSON/SQL, importació amb SQL*Loader i pla de còpies. | Carpeta `10_seguridad/` amb scripts, registres i pla |
 
 ## 3. Model de referència

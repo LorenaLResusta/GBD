@@ -9,10 +9,12 @@ bookToc: true
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [4.5 Consultes resum](#pràctica-45--consultes-resum) | Guiada | ●○○ | RA4.c |
-| [4.6 Composicions pas a pas](#pràctica-46--composicions-pas-a-pas) | Guiada | ●●○ | RA4.d, RA4.e |
-| [4.7 Subconsultes](#pràctica-47--subconsultes) | Autònoma | ●●○ | RA4.f |
-| [4.8 Optimització: mesurar abans i després](#pràctica-48--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA4.g |
+| [4.6 Consultes resum](#pràctica-46--consultes-resum) | Guiada | ●○○ | RA4.c |
+| [4.7 Composicions pas a pas](#pràctica-47--composicions-pas-a-pas) | Guiada | ●●○ | RA4.d, RA4.e |
+| [4.8 Informes per a cap d'estudis](#pràctica-48--informes-per-a-cap-destudis) | Autònoma | ●●○ | RA4.c-e |
+| [4.9 Subconsultes](#pràctica-49--subconsultes) | Autònoma | ●●○ | RA4.f |
+| [4.10 Optimització: mesurar abans i després](#pràctica-410--optimització-mesurar-abans-i-després) | Guiada | ●●● | RA4.g |
+| [4.11 Repte: el quadre de comandament](#pràctica-411--repte-el-quadre-de-comandament) | Repte | ●●● | RA4.c-g |
 | [Projecte EduGest · Tema 4](#projecte-edugest--tema-4-informes) | Projecte | ●●● | RA4 complet |
 
 > [!IMPORTANT]
@@ -20,9 +22,9 @@ bookToc: true
 
 ---
 
-## Pràctica 4.5 · Consultes resum
+## Pràctica 4.6 · Consultes resum
 
-{{< practica num="4.5" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
+{{< practica num="4.6" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
 
 #### Objectiu
 
@@ -45,6 +47,7 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 
     *1 fila*
 
+
 2. **Agrupar per una columna.** Nombre d'alumnes per localitat, de més a menys.
 
     ```sql
@@ -64,6 +67,7 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
     | San Vicente del Raspeig | 3 |
 
     *6 files*
+
 
 3. **Agrupar per diverses columnes.** Faltes i hores de falta per mes i per tipus (justificada o no).
 
@@ -95,6 +99,7 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 
     *15 files*
 
+
 4. **Filtrar grups.** Mòduls (per `id_modulo`) amb almenys un suspés i el seu nombre de suspesos, només si n'hi ha **dos o més**.
 
     ```sql
@@ -119,6 +124,7 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 
     *8 files*
 
+
 5. **Comptar condicions.** Per a cada convocatòria: matrícules, aprovades, suspeses i sense qualificar.
 
     ```sql
@@ -139,6 +145,7 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 
     *2 files*
 
+
 6. **Provoca els errors típics** i anota el missatge:
 
     ```sql
@@ -157,9 +164,10 @@ Usar funcions d'agregat, `GROUP BY` i `HAVING`, i entendre com influïxen els va
 - [ ] Saps corregir cada un dels tres errors del pas 6.
 {{% /comprobacion %}}
 
-## Pràctica 4.6 · Composicions pas a pas
 
-{{< practica num="4.6" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respostes" >}}
+## Pràctica 4.7 · Composicions pas a pas
+
+{{< practica num="4.7" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respostes" >}}
 
 #### Objectiu
 
@@ -223,6 +231,7 @@ Construir composicions de diverses taules seguint el camí de claus alienes, i d
 
     *10 files*
 
+
 4. **Provoca un producte cartesià** traient la condició `ON` de `MODULO` (en Oracle, substituïx `JOIN modulo mo ON ...` per `CROSS JOIN modulo mo`). Quantes files ixen ara al pas c? Per què?
 
 5. **Interna enfront d'externa.** Executa les dues consultes i explica la diferència:
@@ -279,6 +288,7 @@ Construir composicions de diverses taules seguint el camí de claus alienes, i d
 
     *12 files*
 
+
 {{% /steps %}}
 
 #### Comprovació
@@ -292,9 +302,61 @@ Construir composicions de diverses taules seguint el camí de claus alienes, i d
 
 ---
 
-## Pràctica 4.7 · Subconsultes
+## Pràctica 4.8 · Informes per a cap d'estudis
 
-{{< practica num="4.7" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
+{{< practica num="4.8" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA4: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentat" >}}
+
+#### Objectiu
+
+Resoldre de forma autònoma consultes de diverses taules, decidint el tipus de composició i combinant-les amb agrupaments.
+
+#### Enunciat
+
+**J1.** Llistat de mòduls amb el nom complet del seu cicle, només de 2n curs.
+
+{{< solucion id="tema4-024" title="Solució J1" />}}
+
+**J2.** Professorat amb el nom del seu departament i, si és cap d'algun departament, el nom d'eixe departament (si no, buit).
+
+{{< solucion id="tema4-025" title="Solució J2" />}}
+
+**J3.** Càrrega docent: per a cada professor que impartix classe, nombre de mòduls, nombre de grups distints i hores setmanals totals, de més a menys hores.
+
+{{< solucion id="tema4-026" title="Solució J3" />}}
+
+**J4.** Tots els grups amb el seu nombre d'alumnes i el seu tutor; han d'aparéixer els grups sense alumnes i sense tutor.
+
+{{< solucion id="tema4-027" title="Solució J4" />}}
+
+**J5.** Percentatge d'aprovats per mòdul de DAM (codi, nom, matrícules qualificades i percentatge amb un decimal), del pitjor al millor percentatge.
+
+{{< solucion id="tema4-028" title="Solució J5" />}}
+
+**J6.** Alumnat amb més de 3 hores de faltes **no justificades** en total (nom, grup i hores).
+
+{{< solucion id="tema4-029" title="Solució J6" />}}
+
+**J7.** Professorat del departament d'Informàtica i Comunicacions que **no** és tutor de cap grup.
+
+{{< solucion id="tema4-030" title="Solució J7" />}}
+
+**J8.** Per a cada alumne de 1DAM, la seua nota en *Bases de dades* (0484) i en *Programació* (0485) en la mateixa fila.
+
+{{< solucion id="tema4-031" title="Solució J8" />}}
+
+#### Comprovació
+
+{{% comprobacion %}}
+- [ ] Has triat composició interna o externa segons la pregunta i ho justifiques en un comentari.
+- [ ] J4 mostra 2ASIR amb 0 alumnes i «(sin tutor)».
+- [ ] J5 no dividix entre les matrícules sense qualificar.
+{{% /comprobacion %}}
+
+---
+
+## Pràctica 4.9 · Subconsultes
+
+{{< practica num="4.9" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
 
 #### Enunciat
 
@@ -332,9 +394,9 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ---
 
-## Pràctica 4.8 · Optimització: mesurar abans i després
+## Pràctica 4.10 · Optimització: mesurar abans i després
 
-{{< practica num="4.8" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
+{{< practica num="4.10" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar pla, Autotrace) o SQLcl" entrega="p7_6.sql + taula de mesuraments + captures dels plans" >}}
 
 #### Objectiu
 
@@ -437,6 +499,38 @@ Completa la taula de mesuraments amb les teues dades (els valors exactes depenen
 > Els mesuraments de temps varien entre execucions perquè Oracle guarda en memòria cau els blocs llegits. Executa cada consulta **dos o tres voltes** i anota el temps de les últimes. El **cost** del pla és una estimació de l'optimitzador, no un temps.
 {{% /comprobacion %}}
 
+#### Ampliació
+
+Afig `/*+ FULL(ap) */` just després de `SELECT` en la consulta 1 amb índex i compara. Els *hints* obliguen l'optimitzador a usar un pla concret; en producció només s'usen quan s'ha demostrat que l'optimitzador s'equivoca.
+
+---
+
+## Pràctica 4.11 · Repte: el quadre de comandament
+
+{{< practica num="4.11" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
+
+#### Enunciat
+
+La direcció vol un **quadre de comandament** amb una sola consulta per indicador. Resol cadascun amb la tècnica que consideres més adequada i justifica l'elecció:
+
+1. Per a cada cicle (inclòs SMR): nombre de grups, d'alumnes, de matrícules i nota mitjana.
+2. Per a cada professor que impartix classe: la nota mitjana dels seus alumnes en els mòduls que impartix **en els grups en què els impartix**. (Compte: la composició entre `IMPARTE` i `MATRICULA` ha d'usar el mòdul **i** el grup de l'alumne.)
+3. Alumnes que han suspés **tots** els mòduls en què estan qualificats.
+4. Percentatge d'hores de falta justificades sobre el total, per grup.
+5. Escriu una de les consultes anteriors de dues formes distintes (per exemple, subconsulta enfront de composició) i compara els seus plans d'execució.
+
+#### Comprovació
+
+{{% comprobacion %}}
+- [ ] L'indicador 1 té 4 files i SMR apareix amb zeros.
+- [ ] L'indicador 2 no barreja alumnes d'altres grups amb el mateix mòdul.
+- [ ] Pots defendre cada consulta i explicar el seu pla d'execució.
+
+{{% details title="Pista per a l'indicador 3" %}}
+«Tots suspesos» equival a «no n'hi ha cap d'aprovat» i «en té almenys un de qualificat»: `NOT EXISTS (... nota_final >= 5)` i `EXISTS (... nota_final IS NOT NULL)`. Una altra forma: `GROUP BY` alumne amb `HAVING MAX(nota_final) < 5`.
+{{% /details %}}
+{{% /comprobacion %}}
+
 ---
 
 ## Projecte EduGest · Tema 4: informes
@@ -446,7 +540,7 @@ Completa la taula de mesuraments amb les teues dades (els valors exactes depenen
 #### Enunciat
 
 1. Escriu **deu informes** per a EduGest que en conjunt usen: composicions internes i externes (almenys tres taules en algun), consultes resum amb `HAVING` i subconsultes (una correlacionada i una amb `EXISTS`).
-2. **Optimització:** tria dos dels teus informes, obtín el seu pla d'execució, proposa una millora (índex o reescriptura) i documenta l'abans i el després en `07-optimizacion.md`. Si EduGest té poques dades per a notar la diferència, explica-ho i recolza't en la pràctica 4.8.
+2. **Optimització:** tria dos dels teus informes, obtín el seu pla d'execució, proposa una millora (índex o reescriptura) i documenta l'abans i el després en `07-optimizacion.md`. Si EduGest té poques dades per a notar la diferència, explica-ho i recolza't en la pràctica 4.10.
 
 #### Comprovació
 

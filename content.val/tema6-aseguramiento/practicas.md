@@ -14,6 +14,7 @@ bookToc: true
 | [6.2 Exportar dades a CSV, JSON i SQL](#pràctica-62--exportar-dades-a-csv-json-i-sql) | Guiada | ●○○ | RA6.d, RA6.e |
 | [6.3 Importar amb SQL\*Loader i llegir els errors](#pràctica-63--importar-amb-sqlloader-i-llegir-els-errors) | Autònoma | ●●○ | RA6.f, RA6.g |
 | [6.4 D'Oracle a PostgreSQL](#pràctica-64--doracle-a-postgresql) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
+| [6.5 Repte: pla de còpies i simulacre de desastre](#pràctica-65--repte-pla-de-còpies-i-simulacre-de-desastre) | Repte | ●●● | RA6.a, RA6.b, RA6.c, RA6.g |
 | [Projecte EduGest · Tema 6](#projecte-edugest--tema-6-seguretat-de-la-informació) | Projecte | ●●● | RA6 complet |
 
 > [!IMPORTANT]
@@ -104,6 +105,10 @@ Fer una còpia lògica de l'esquema `EDUGEST`, traure-la del contenidor i restau
 > - `ORA-39087` o `ORA-39070`: el nom del directori és incorrecte o t'has connectat a la CDB. Usa `FREEPDB1`.
 > - `ORA-01918: user 'EDUGEST_COPIA' does not exist`: et vas saltar el pas 4.
 > - El `.dmp` no apareix en fer `docker cp`: la ruta ha de ser la del pas 1, **dins del contenidor**.
+
+#### Ampliació
+
+Repetix l'exportació amb `content=metadata_only` i amb `tables=ALUMNO query=ALUMNO:"WHERE cod_grupo='1DAM'"`. Compara la grandària dels tres bolcats.
 
 ---
 
@@ -302,6 +307,32 @@ Transferir informació entre dos sistemes gestors diferents i comprovar que no e
 
 > [!WARNING]
 > Si `\copy` informa de `invalid byte sequence for encoding "UTF8"`, el fitxer no està en UTF-8. Si diu `extra data after last expected column`, el CSV té més columnes que la taula de destinació: revisa que la `SELECT` i el `CREATE TABLE` coincidisquen.
+
+---
+
+## Pràctica 6.5 · Repte: pla de còpies i simulacre de desastre
+
+{{< practica num="6.5" tipo="Reto" duracion="2 sessions" nivel="3" ra="RA6: a, b, c, g" sgbd="Oracle 26ai · Data Pump · Docker" entrega="plan_copias.md + copia_edugest.sh + registre del simulacre" >}}
+
+#### Enunciat
+
+L'institut et demana que protegisques EduGest. Has de lliurar:
+
+1. **Un pla de còpies** (una pàgina) amb: què es copia, tipus de còpia, freqüència, on es guarda (regla 3-2-1), qui pot restaurar, quant es conserva, RPO i RTO justificats per a la secretaria durant el període d'avaluacions.
+2. **Un guió** `copia_edugest.sh` que exporte l'esquema amb Data Pump, pose la data en el nom del fitxer, traga el `.dmp` i el `.log` del contenidor, **comprove** que el log conté `successfully completed` i avise si no és així.
+3. **Un simulacre de desastre** sobre `EDUGEST_COPIA`: pren una còpia, esborra dades amb un `DELETE` sense `WHERE`, restaura-les amb `impdp` (`table_exists_action=REPLACE`) i demostra amb recomptes que has tornat a l'estat anterior. Registra l'hora d'inici i de fi: eixe és el teu RTO real.
+
+{{% details title="Pista: comprovar el log en un guió" %}}
+`grep -q "successfully completed" edugest_exp.log || echo "ERROR: la còpia ha fallat"`.
+{{% /details %}}
+
+#### Comprovació
+
+{{% comprobacion %}}
+- [ ] El pla complix 3-2-1 i justifica l'RPO.
+- [ ] El guió genera un fitxer amb data en el nom i detecta una fallada (prova-ho amb un usuari o directori inexistent).
+- [ ] El registre del simulacre inclou els recomptes abans, després del desastre i després de la restauració.
+{{% /comprobacion %}}
 
 ---
 

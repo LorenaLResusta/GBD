@@ -15,6 +15,6 @@ Una base de dades que no es pot recuperar no és fiable. Este tema tracta les **
 | Pàgina | Contingut |
 |---|---|
 | [Teoria](/tema6-aseguramiento/teoria) | Tipus i estratègia de còpies, Data Pump, importació i exportació, transferència entre gestors i registres d'error |
-| [Pràctiques](/tema6-aseguramiento/practicas) | Còpia i restauració, exportar a CSV/JSON/SQL, SQL*Loader i d'Oracle a PostgreSQL |
+| [Pràctiques](/tema6-aseguramiento/practicas) | Còpia i restauració, exportar a CSV/JSON/SQL, SQL*Loader, d'Oracle a PostgreSQL i simulacre de desastre |
 
 **Durada:** 25 hores d'aula, del 15/04/2027 al 19/05/2027. Consulta la [guia didàctica](/) per a vore el seu lloc en el calendari del curs.

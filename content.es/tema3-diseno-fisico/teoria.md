@@ -25,15 +25,18 @@ items:
   - {h: 3, tipo: T, t: "SQL y Oracle. Almacenamiento de la información", ref: "§1 y §2"}
   - {h: 3, tipo: T, t: "Tipos de datos de Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE y restricciones de integridad", ref: "§4 y §5 · constructor de CREATE TABLE"}
-  - {h: 6, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 3.1"}
+  - {h: 4, tipo: P, t: "Primeras tablas y restricciones en Oracle", ref: "Práctica 3.1"}
+  - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Práctica 3.2"}
   - {h: 1, tipo: T, t: "Modificar y eliminar la estructura (ALTER, DROP)", ref: "§6"}
-  - {h: 1, tipo: P, t: "Evolución del esquema con ALTER", ref: "Práctica 3.3"}
+  - {h: 1, tipo: P, t: "Evolución del esquema con ALTER", ref: "Práctica 3.5"}
   - {h: 2, tipo: T, t: "Secuencias, identidad e índices", ref: "§7 y §8"}
-  - {h: 1, tipo: P, t: "Índices y secuencias en EduGest", ref: "Práctica 3.4"}
+  - {h: 1, tipo: P, t: "Índices y secuencias en EduGest", ref: "Práctica 3.6"}
   - {h: 2, tipo: T, t: "Diccionario de datos y herramientas gráficas", ref: "§9 y §10"}
-  - {h: 4, tipo: P, t: "Biblioteca: script completo y batería de pruebas", ref: "Práctica 3.2"}
+  - {h: 4, tipo: P, t: "Biblioteca: script completo y batería de pruebas", ref: "Práctica 3.3"}
   - {h: 4, tipo: P, t: "Implementación de EduGest", ref: "Proyecto EduGest-3"}
 autonomo:
+  - "Práctica 3.4 (seis casos para implementar)"
+  - "Práctica 3.7 (depurar un script defectuoso)"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -468,7 +471,7 @@ En el tema 2 diseñaste el esquema relacional sin escribir SQL. Esta tabla tradu
 En Oracle, cada sentencia DDL (`CREATE`, `ALTER`, `DROP`) hace un `COMMIT` implícito antes y después. No se puede deshacer con `ROLLBACK`: por eso se prueba primero en un esquema de pruebas.
 {{% /curiosidad %}}
 
-{{< sesion n="5" h="1" tipo="t" >}}Modificar y eliminar la estructura (ALTER, DROP){{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Modificar y eliminar la estructura (ALTER, DROP){{< /sesion >}}
 
 ## 6. Modificar y eliminar la estructura
 
@@ -538,7 +541,7 @@ SELECT column_name, comments FROM user_col_comments WHERE table_name = 'MATRICUL
 ---
 
 
-{{< sesion n="7" h="2" tipo="t" >}}Secuencias, identidad e índices{{< /sesion >}}
+{{< sesion n="8" h="2" tipo="t" >}}Secuencias, identidad e índices{{< /sesion >}}
 
 ## 7. Secuencias y columnas identidad
 
@@ -616,7 +619,7 @@ Mueve el deslizador para ver cuántos bloques lee una búsqueda con y sin índic
 
 {{< coste-busqueda >}}
 
-{{< sesion n="9" h="2" tipo="t" >}}Diccionario de datos y herramientas gráficas{{< /sesion >}}
+{{< sesion n="10" h="2" tipo="t" >}}Diccionario de datos y herramientas gráficas{{< /sesion >}}
 
 ## 9. Diccionario de datos
 

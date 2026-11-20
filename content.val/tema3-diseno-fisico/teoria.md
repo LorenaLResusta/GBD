@@ -25,15 +25,18 @@ items:
   - {h: 3, tipo: T, t: "SQL i Oracle. Emmagatzematge de la informació", ref: "§1 i §2"}
   - {h: 3, tipo: T, t: "Tipus de dades d'Oracle", ref: "§3 · calculadora de NUMBER(p, s)"}
   - {h: 2, tipo: T, t: "CREATE TABLE i restriccions d'integritat", ref: "§4 i §5 · constructor de CREATE TABLE"}
-  - {h: 6, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 3.1"}
+  - {h: 4, tipo: P, t: "Primeres taules i restriccions en Oracle", ref: "Pràctica 3.1"}
+  - {h: 2, tipo: P, t: "Del diagrama de Chen al DDL", ref: "Pràctica 3.2"}
   - {h: 1, tipo: T, t: "Modificar i eliminar l'estructura (ALTER, DROP)", ref: "§6"}
-  - {h: 1, tipo: P, t: "Evolució de l'esquema amb ALTER", ref: "Pràctica 3.3"}
+  - {h: 1, tipo: P, t: "Evolució de l'esquema amb ALTER", ref: "Pràctica 3.5"}
   - {h: 2, tipo: T, t: "Seqüències, identitat i índexs", ref: "§7 i §8"}
-  - {h: 1, tipo: P, t: "Índexs i seqüències en EduGest", ref: "Pràctica 3.4"}
+  - {h: 1, tipo: P, t: "Índexs i seqüències en EduGest", ref: "Pràctica 3.6"}
   - {h: 2, tipo: T, t: "Diccionari de dades i eines gràfiques", ref: "§9 i §10"}
-  - {h: 4, tipo: P, t: "Biblioteca: script complet i bateria de proves", ref: "Pràctica 3.2"}
+  - {h: 4, tipo: P, t: "Biblioteca: script complet i bateria de proves", ref: "Pràctica 3.3"}
   - {h: 4, tipo: P, t: "Implementació d'EduGest", ref: "Projecte EduGest-3"}
 autonomo:
+  - "Pràctica 3.4 (sis casos per a implementar)"
+  - "Pràctica 3.7 (depurar un script defectuós)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
@@ -468,7 +471,7 @@ A el tema 2 vas dissenyar l'esquema relacional sense escriure SQL. Esta taula tr
 En Oracle, cada sentència DDL (`CREATE`, `ALTER`, `DROP`) fa un `COMMIT` implícit abans i després. No es pot desfer amb `ROLLBACK`: per això es prova primer en un esquema de proves.
 {{% /curiosidad %}}
 
-{{< sesion n="5" h="1" tipo="t" >}}Modificar i eliminar l'estructura (ALTER, DROP){{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Modificar i eliminar l'estructura (ALTER, DROP){{< /sesion >}}
 
 ## 6. Modificar i eliminar l'estructura
 
@@ -538,7 +541,7 @@ SELECT column_name, comments FROM user_col_comments WHERE table_name = 'MATRICUL
 ---
 
 
-{{< sesion n="7" h="2" tipo="t" >}}Seqüències, identitat i índexs{{< /sesion >}}
+{{< sesion n="8" h="2" tipo="t" >}}Seqüències, identitat i índexs{{< /sesion >}}
 
 ## 7. Seqüències i columnes identitat
 
@@ -616,7 +619,7 @@ Mou el lliscador per a veure quants blocs llig una cerca amb índex i sense.
 
 {{< coste-busqueda >}}
 
-{{< sesion n="9" h="2" tipo="t" >}}Diccionari de dades i eines gràfiques{{< /sesion >}}
+{{< sesion n="10" h="2" tipo="t" >}}Diccionari de dades i eines gràfiques{{< /sesion >}}
 
 ## 9. Diccionari de dades
 

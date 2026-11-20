@@ -39,17 +39,19 @@ es puga escriure sense consultar els apunts.
 {{< sesiones unidad="T4" horas="14" parte="Resum, composicions i subconsultes" >}}
 items:
   - {h: 2, tipo: T, t: "Funcions d'agregat, GROUP BY i HAVING", ref: "§1 i §2 · laboratori d'agrupament"}
-  - {h: 1, tipo: P, t: "Consultes resum", ref: "Pràctica 4.5"}
+  - {h: 1, tipo: P, t: "Consultes resum", ref: "Pràctica 4.6"}
   - {h: 2, tipo: T, t: "Composicions internes: INNER JOIN i diverses taules", ref: "§3 · laboratori de composicions"}
-  - {h: 2, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 4.6"}
+  - {h: 2, tipo: P, t: "Composicions pas a pas", ref: "Pràctica 4.7"}
   - {h: 1, tipo: T, t: "Composicions externes i autocomposició", ref: "§4 i §5"}
+  - {h: 1, tipo: P, t: "Informes per a prefectura", ref: "Pràctica 4.8"}
   - {h: 1, tipo: T, t: "Subconsultes i EXISTS", ref: "§6"}
-  - {h: 2, tipo: P, t: "Subconsultes", ref: "Pràctica 4.7"}
+  - {h: 1, tipo: P, t: "Subconsultes", ref: "Pràctica 4.9"}
   - {h: 1, tipo: T, t: "Optimització de consultes: pla d'execució", ref: "§7"}
-  - {h: 1, tipo: P, t: "Optimització: mesurar abans i després", ref: "Pràctica 4.8"}
+  - {h: 1, tipo: P, t: "Optimització: mesurar abans i després", ref: "Pràctica 4.10"}
   - {h: 1, tipo: P, t: "Informes d'EduGest", ref: "Projecte EduGest-4"}
 autonomo:
-  - "Pràctica 4.7 (acabar a casa el que no done temps)"
+  - "Pràctiques 4.8 i 4.9 (acabar a casa el que no done temps)"
+  - "Pràctica 4.11 (repte: el quadre de comandament)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
@@ -642,7 +644,7 @@ ORDER  BY mo.codigo;
 *5 files*
 
 > [!TIP]
-> **Construïx les composicions d'una en una.** Afig una taula, executa `SELECT COUNT(*)`, comprova que el número és el que esperes i passa a la següent. Així, quan el número se'n vaja de mare, sabràs exactament quin `JOIN` l'ha causat. La pràctica 4.6 està muntada sobre esta tècnica.
+> **Construïx les composicions d'una en una.** Afig una taula, executa `SELECT COUNT(*)`, comprova que el número és el que esperes i passa a la següent. Així, quan el número se'n vaja de mare, sabràs exactament quin `JOIN` l'ha causat. La pràctica 4.7 està muntada sobre esta tècnica.
 
 ### 3.5 Composicions i agrupaments junts
 
@@ -1011,7 +1013,7 @@ Dos detalls imprescindibles:
 - La condició `b.id_alumno > a.id_alumno` evita que un alumne s'emparelle **amb si mateix** i que cada parella isca **dues voltes** (A-B i B-A). Si la lleves, les 7 files es convertixen en 22.
 - A 1DAM hi ha dos alumnes distints que tenen per cognom «Ferri Baeza» (Adrián i Paula), cosa que explica les files aparentment repetides: són parelles diferents amb cognoms iguals. És un bon recordatori que **el cognom no identifica una persona**: per això la clau primària és `id_alumno`.
 
-{{< sesion n="6" h="1" tipo="t" >}}Subconsultes i EXISTS{{< /sesion >}}
+{{< sesion n="7" h="1" tipo="t" >}}Subconsultes i EXISTS{{< /sesion >}}
 
 ## 6. Subconsultes
 
@@ -1266,7 +1268,7 @@ FETCH FIRST 6 ROWS ONLY;
 > [!NOTE]
 > Una composició pot **duplicar** files si l'altra taula té diverses coincidències; `EXISTS` mai ho fa, perquè només pregunta si n'hi ha alguna. Si una consulta amb `JOIN` et torna files repetides i el que volies era només filtrar, canvia-la per `EXISTS` en lloc d'afegir un `DISTINCT`.
 
-{{< sesion n="8" h="1" tipo="t" >}}Optimització de consultes: pla d'execució{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="t" >}}Optimització de consultes: pla d'execució{{< /sesion >}}
 
 ## 7. Optimització de consultes i pla d'execució
 

@@ -13,6 +13,7 @@ bookToc: true
 | [4.2 Consultas para secretaría](#práctica-42--consultas-para-secretaría) | Autónoma | ●●○ | RA4.b |
 | [4.3 Laboratorio de valores nulos](#práctica-43--laboratorio-de-valores-nulos) | Guiada | ●●○ | RA4.b |
 | [4.4 Funciones para informes](#práctica-44--funciones-para-informes) | Autónoma | ●●○ | RA4.b |
+| [4.5 Validar datos con SQL](#práctica-45--validar-datos-con-sql) | Reto | ●●● | RA4.b |
 | [Proyecto EduGest · Tema 4](#proyecto-edugest--tema-4-consultas-del-día-a-día) | Proyecto | ●●○ | RA4.a, RA4.b |
 
 > [!IMPORTANT]
@@ -173,6 +174,10 @@ Secretaría necesita respuestas rápidas a preguntas del día a día. Escribe un
 > - En B4, la condición `especialidad <> 'Informática'` excluye también a quien tenga la especialidad a `NULL`. En estos datos no hay ninguno, pero en una consulta real tendrías que decidir si incluirlos con `OR especialidad IS NULL`.
 > - En B8, `fecha BETWEEN DATE '2025-12-01' AND DATE '2025-12-31'` no incluiría una falta del 31 a las 10:00. En estos datos todas las fechas son a las 00:00, pero acostúmbrate al intervalo semiabierto.
 
+#### Ampliación
+
+Escribe B5 de dos formas distintas (con `UPPER` y con `LOWER`) y comprueba que dan el mismo resultado.
+
 ---
 
 ## Práctica 4.3 · Laboratorio de valores nulos
@@ -250,6 +255,43 @@ Usar las funciones de fila de Oracle para transformar y presentar los datos.
 - [ ] F3 calcula años **completos**, no la diferencia de años del calendario.
 - [ ] F5 muestra los días en castellano aunque tu sesión esté en inglés.
 {{% /comprobacion %}}
+
+---
+
+## Práctica 4.5 · Validar datos con SQL
+
+{{< practica num="4.5" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA4: b" sgbd="Oracle 26ai · esquema EDUGEST" entrega="p6_5.sql + informe de calidad de datos" >}}
+
+#### Objetivo
+
+Usar consultas y funciones del SGBD para auditar la **calidad de los datos**, una tarea profesional habitual antes de migrar o explotar una base de datos.
+
+#### Contexto
+
+Jefatura sospecha que hay datos mal introducidos. Te pide un informe de calidad.
+
+#### Enunciado
+
+1. **Letra del DNI.** La letra de un DNI es el carácter que ocupa la posición `MOD(número, 23) + 1` en la cadena `'TRWAGMYFPDXBNJZSQVHLCKE'`. Escribe una consulta que muestre el profesorado cuyo DNI tiene la letra **incorrecta**.
+2. **Formato del correo.** Lista el alumnado cuyo email no cumple el patrón `texto@alu.edugest.es`.
+3. **NIA.** Comprueba que todos los NIA tienen exactamente 8 dígitos numéricos.
+4. **Coherencia de edades.** ¿Hay alumnado menor de 16 años a fecha 15/09/2025? ¿Y mayor de 30?
+5. **Fechas de faltas.** ¿Hay faltas registradas en sábado o domingo?
+6. Redacta un **informe** con los problemas encontrados y propón, para cada uno, una restricción (Tema 3) o una comprobación en un guion (Tema 5) que lo habría evitado.
+
+{{% details title="Pista para el apartado 1" %}}
+```sql
+SELECT nombre, apellidos, dni,
+       SUBSTR('TRWAGMYFPDXBNJZSQVHLCKE', MOD(TO_NUMBER(SUBSTR(dni, 1, 8)), 23) + 1, 1) AS letra_correcta
+FROM   profesor
+WHERE  SUBSTR(dni, 9, 1) <> SUBSTR('TRWAGMYFPDXBNJZSQVHLCKE', MOD(TO_NUMBER(SUBSTR(dni, 1, 8)), 23) + 1, 1);
+```
+Debes encontrar **2** profesores con la letra incorrecta. ¿Valdría esta consulta para un NIE (que empieza por X, Y o Z)?
+{{% /details %}}
+
+{{% details title="Pista para el apartado 5" %}}
+`TO_CHAR(fecha, 'D')` depende del territorio de la sesión (en unos países la semana empieza en domingo y en otros en lunes). Es más fiable `TO_CHAR(fecha, 'DY', 'NLS_DATE_LANGUAGE=ENGLISH') IN ('SAT', 'SUN')`.
+{{% /details %}}
 
 ---
 

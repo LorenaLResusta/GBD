@@ -39,12 +39,13 @@ items:
   - {h: 1, tipo: T, t: "Bloc PL/SQL, variables i tipus", ref: "§3 i §4"}
   - {h: 1, tipo: T, t: "Estructures de control de flux", ref: "§5"}
   - {h: 1, tipo: T, t: "Excepcions", ref: "§6"}
-  - {h: 1, tipo: P, t: "Matrícula amb excepcions", ref: "Pràctica 5.6"}
+  - {h: 1, tipo: P, t: "Matrícula amb excepcions", ref: "Pràctica 5.8"}
   - {h: 1, tipo: T, t: "Guions de manteniment: estructura, idempotència i proves", ref: "§7"}
-  - {h: 1, tipo: P, t: "Primers blocs: l'expedient d'un alumne", ref: "Pràctica 5.5"}
+  - {h: 1, tipo: P, t: "Repte: guió de promoció de curs", ref: "Pràctica 5.9"}
   - {h: 1, tipo: P, t: "Guions de manteniment d'EduGest", ref: "Projecte EduGest-5"}
 autonomo:
-  - "Acabar a casa el que no haja donat temps de les pràctiques 5.5 i 5.6"
+  - "Primers blocs: l'expedient d'un alumne (Pràctica 5.7)"
+  - "Acabar a casa el que no haja donat temps de les pràctiques 5.7 i 5.8"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 
@@ -1219,7 +1220,7 @@ ORA-20010: El módulo 12 (DAW) no es del ciclo del alumno 1 (DAM)
 ORA-06512: at line 33
 ```
 
-Els números de línia d'`ORA-06512` compten des de la línia `DECLARE` i et porten al `RAISE_APPLICATION_ERROR` exacte. La bateria completa de huit proves està en la [pràctica 5.6](/tema5-modificacion/guiones-practicas#pràctica-56--matrícula-amb-excepcions). Quan acabes, `ROLLBACK;` torna la taula al seu estat original.
+Els números de línia d'`ORA-06512` compten des de la línia `DECLARE` i et porten al `RAISE_APPLICATION_ERROR` exacte. La bateria completa de huit proves està en la [pràctica 5.8](/tema5-modificacion/guiones-practicas#pràctica-58--matrícula-amb-excepcions). Quan acabes, `ROLLBACK;` torna la taula al seu estat original.
 
 > [!TIP]
 > Un bloc que valida sempre té la mateixa estructura: **comprovar → rebutjar amb un error clar → actuar**. Les comprovacions van primer i de més barata a més cara; l'`INSERT` va al final, quan ja no pot fallar per una regla de negoci.

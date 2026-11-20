@@ -13,6 +13,7 @@ Cada tema tiene una página de **prácticas**. Las prácticas son la parte princ
 |---|---|---|
 | **Guiada** | Se presenta el procedimiento paso a paso. Su objetivo es aprender la técnica. | En clase. Se comprueba al final de la sesión con la lista de comprobación. |
 | **Autónoma** | Se plantea un problema parecido sin el procedimiento. Su objetivo es aplicar la técnica. | Individual. Se entrega y se evalúa. |
+| **Reto** | Un problema abierto o con una dificultad extra. Exige analizar y decidir. | Opcional o para subir nota. Se defiende oralmente. |
 | **Proyecto** | La tarea de EduGest del tema. | Individual o por parejas. Forma parte del proyecto final. |
 
 La dificultad se indica con tres puntos: ●○○ básico, ●●○ intermedio y ●●● avanzado.
@@ -30,6 +31,7 @@ Todas las prácticas siguen el mismo esquema. Así sabes qué se espera en cada 
 5. **Desarrollo.** El procedimiento guiado (solo en prácticas guiadas).
 6. **Comprobación.** Pruebas que permiten verificar que el resultado es correcto.
 7. **Errores habituales.** Problemas frecuentes y cómo diagnosticarlos.
+8. **Ampliación.** Una modificación que te obliga a aplicar lo aprendido por tu cuenta.
 
 > [!TIP]
 > Lee la **Comprobación** antes de empezar. Te dice exactamente qué resultado tienes que obtener y te ahorra tiempo.

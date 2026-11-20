@@ -40,7 +40,7 @@ weight: 2
 | Tema 4 | Consultas sobre una tabla para el día a día de secretaría. | Script de consultas comentado |
 | Tema 4 | Informes: actas, estadísticas por grupo, consultas con JOIN y subconsultas. Optimización. | Script de informes + planes de ejecución |
 | Tema 5 | Altas, bajas y cambios. Promoción de curso dentro de una transacción. | Guion transaccional probado |
-| Tema 5 | Guiones de sentencias: expediente del alumno y matrícula con control de errores. | Guiones PL/SQL básicos + pruebas |
+| Tema 5 | Guiones de sentencias: expediente del alumno, matrícula con control de errores y promoción de curso. | Guiones PL/SQL básicos + pruebas |
 | Tema 6 | Seguridad: copia lógica del esquema, exportación a CSV/JSON/SQL, importación con SQL*Loader y plan de copias. | Carpeta `10_seguridad/` con scripts, registros y plan |
 
 ## 3. Modelo de referencia

@@ -11,8 +11,10 @@ bookToc: true
 |---|---|---|---|
 | [5.1 Altes, canvis i baixes a EduGest](#pràctica-51--altes-canvis-i-baixes-a-edugest) | Guiada | ●○○ | RA5.a, RA5.b |
 | [5.2 Còpies, històrics i INSERT … SELECT](#pràctica-52--còpies-històrics-i-insert--select) | Guiada | ●●○ | RA5.c |
-| [5.3 Laboratori de transaccions](#pràctica-53--laboratori-de-transaccions) | Guiada | ●●○ | RA5.f, RA5.g |
-| [5.4 Dues sessions, una dada: concurrència i bloquejos](#pràctica-54--dues-sessions-una-dada-concurrència-i-bloquejos) | Guiada | ●●● | RA5.d, RA5.h |
+| [5.3 Modificacions amb subconsultes](#pràctica-53--modificacions-amb-subconsultes) | Autònoma | ●●○ | RA5.b-d |
+| [5.4 Laboratori de transaccions](#pràctica-54--laboratori-de-transaccions) | Guiada | ●●○ | RA5.f, RA5.g |
+| [5.5 Dues sessions, una dada: concurrència i bloquejos](#pràctica-55--dues-sessions-una-dada-concurrència-i-bloquejos) | Guiada | ●●● | RA5.d, RA5.h |
+| [5.6 Càrrega de notes amb MERGE](#pràctica-56--càrrega-de-notes-amb-merge) | Autònoma | ●●○ | RA5.b, RA5.c |
 | [Projecte EduGest · Tema 5](#projecte-edugest--tema-5-modificació-de-dades) | Projecte | ●●● | RA5 complet |
 
 > [!IMPORTANT]
@@ -98,7 +100,7 @@ Inserir, modificar i esborrar dades amb SQL i amb l'eina gràfica, comprovant en
 #### Errors habituals
 
 > [!WARNING]
-> - Si la segona sessió **es queda penjada** en el pas 5 o 6, és que intenta modificar una fila bloquejada per la primera sessió, que encara no ha fet `COMMIT`. Ho estudiaràs en la pràctica 5.4.
+> - Si la segona sessió **es queda penjada** en el pas 5 o 6, és que intenta modificar una fila bloquejada per la primera sessió, que encara no ha fet `COMMIT`. Ho estudiaràs en la pràctica 5.5.
 > - Tancar SQL Developer amb canvis pendents mostra un avís per a confirmar-los o desfer-los. **Llig l'avís.**
 
 ---
@@ -196,11 +198,62 @@ Guardar en taules el resultat de consultes: còpies de seguretat ràpides, taule
 - [ ] Després del pas 4, les notes tornen a ser les originals.
 {{% /comprobacion %}}
 
+#### Ampliació
+
+Per què la clau primària d'`HISTORICO_NOTA` inclou `cod_ciclo`? Pensa en el mòdul 0484, que existix en DAM i en DAW.
+
 ---
 
-## Pràctica 5.3 · Laboratori de transaccions
+## Pràctica 5.3 · Modificacions amb subconsultes
 
-{{< practica num="5.3" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: f, g" sgbd="Oracle 26ai" entrega="p8_4.sql + taula de resultats" >}}
+{{< practica num="5.3" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA5: b, c, d" sgbd="Oracle 26ai · EDUGEST" entrega="p8_3.sql (cada sentència amb el seu SELECT de comprovació)" >}}
+
+#### Objectiu
+
+Escriure modificacions que depenen de dades d'altres taules, comprovant abans i després les files afectades.
+
+#### Enunciat
+
+Executa les tasques **en ordre** sobre les dades originals. Per a cadascuna escriu: (1) un `SELECT` que mostre les files que es modificaran, (2) la sentència de modificació i (3) un `SELECT` de verificació. El nombre de files afectades ha de coincidir amb l'indicat.
+
+| # | Tasca | Files |
+|---|---|---|
+| M1 | Donar d'alta l'alumna Marina López Ortega (NIA 10452001, nascuda el 14/03/2007, d'Alacant, grup 1DAM) | 1 |
+| M2 | Matricular Marina en **tots** els mòduls de 1r de DAM per al curs 2026-27 amb una sola sentència | 5 |
+| M3 | Pujar a 5 les notes de Bases de dades de DAM (`0484`) compreses entre 4,5 i 5 (sense incloure el 5) | 2 |
+| M4 | Assignar el grup 1DAW als alumnes sense grup nascuts en 2006 | 3 |
+| M5 | Assignar com a tutor de 2ASIR l'únic professor del departament d'Informàtica que no impartix classe (sense escriure el seu identificador) | 1 |
+| M6 | Justificar totes les faltes de l'alumna Martina Alemany Vidal | 3 |
+| M7 | Esborrar les faltes justificades anteriors a l'1 de novembre de 2025 | 5 |
+| M8 | Augmentar un 10 % (arredonit) les hores dels mòduls de 2n de DAW | 4 |
+| M9 | Canviar el domini del correu de **tot** el professorat de `@edugest.es` a `@iesserragelada.es` | 12 |
+| M10 | Donar de baixa Adrián Ferri Baeza (id 1). Abans, compta quantes files de **cada taula** desapareixeran | 1 + 5 + 3 |
+
+{{% details title="Pistes" %}}
+- **M2:** `INSERT INTO matricula (...) SELECT 1001, id_modulo, '2026-27', ... FROM modulo WHERE ...`. Si Marina no té l'id 1001 en la teua base de dades, obtín l'id amb una subconsulta pel seu NIA.
+- **M6:** les faltes no tenen l'alumne: cal arribar a ell a través de la matrícula. `WHERE id_matricula IN (SELECT m.id_matricula FROM matricula m JOIN alumno a ... )`. Martina té 3 faltes i una ja està justificada: sense condició addicional es modifiquen 3; si afigs `AND justificada = 'N'`, només 2. Les dues opcions deixen el mateix resultat.
+- **M9:** `REPLACE(email, '@edugest.es', '@iesserragelada.es')`. Complix el nou correu el `CHECK` de l'email?
+- **M10:** les faltes desapareixen perquè `fk_falta_matricula` també té `ON DELETE CASCADE`.
+{{% /details %}}
+
+{{< solucion id="tema5-001" title="Solució (M3, M5 y M10)" />}}
+
+#### Comprovació
+
+{{% comprobacion %}}
+- [ ] Les files afectades coincidixen amb la taula. Si no coincidixen, **no** confirmes: fes `ROLLBACK` i revisa la condició.
+- [ ] Al final, `SELECT COUNT(*) FROM alumno;` torna 32 (33 amb Marina menys Adrián) i `SELECT COUNT(*) FROM matricula;` torna 143 (+5 −5).
+- [ ] Cap sentència usa identificadors escrits a mà quan l'enunciat demana obtindre'ls.
+
+> [!CAUTION]
+> M10 elimina documents acadèmics en cascada. En un sistema real no s'esborraria l'alumne: es marcaria com a **baixa** (per exemple, amb una columna `fecha_baja`) per a conservar el seu expedient. Escriu en el teu script un comentari que propose esta alternativa.
+{{% /comprobacion %}}
+
+---
+
+## Pràctica 5.4 · Laboratori de transaccions
+
+{{< practica num="5.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA5: f, g" sgbd="Oracle 26ai" entrega="p8_4.sql + taula de resultats" >}}
 
 #### Objectiu
 
@@ -242,11 +295,26 @@ Executa cada experiment i **prediu** els saldos finals abans de consultar `SELEC
 - [ ] Pots explicar amb les teues paraules l'**atomicitat de sentència** (experiment 4) i per què és perillosa si l'aplicació confirma sense comprovar els errors.
 {{% /comprobacion %}}
 
+#### Ampliació: la transferència segura
+
+Escriu la transferència de 500 € d'A a C com una transacció que **no** confirme res si alguna de les dues actualitzacions no afecta exactament una fila. Usa `SQL%ROWCOUNT` en un bloc anònim (avanç del tema 5):
+
+```sql
+BEGIN
+    UPDATE cuenta SET saldo = saldo - 500 WHERE id_cuenta = 'A';
+    IF SQL%ROWCOUNT <> 1 THEN ROLLBACK; RAISE_APPLICATION_ERROR(-20001, 'Cuenta origen inexistente'); END IF;
+    UPDATE cuenta SET saldo = saldo + 500 WHERE id_cuenta = 'Z';     -- compte inexistent
+    IF SQL%ROWCOUNT <> 1 THEN ROLLBACK; RAISE_APPLICATION_ERROR(-20002, 'Cuenta destino inexistente'); END IF;
+    COMMIT;
+END;
+/
+```
+
 ---
 
-## Pràctica 5.4 · Dues sessions, una dada: concurrència i bloquejos
+## Pràctica 5.5 · Dues sessions, una dada: concurrència i bloquejos
 
-{{< practica num="5.4" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA5: d, h" sgbd="Oracle 26ai · dues sessions simultànies (dos fulls amb sessió pròpia o dos terminals SQLcl) + SYSTEM" entrega="Cronogrames completats + captures" >}}
+{{< practica num="5.5" tipo="Guiada" duracion="2 sessions" nivel="3" ra="RA5: d, h" sgbd="Oracle 26ai · dues sessions simultànies (dos fulls amb sessió pròpia o dos terminals SQLcl) + SYSTEM" entrega="Cronogrames completats + captures" >}}
 
 #### Objectiu
 
@@ -254,7 +322,7 @@ Observar en directe els efectes de les distintes polítiques de bloqueig i dels 
 
 #### Preparació
 
-Usa la taula `CUENTA` de la pràctica 5.3 restaurada a A = 1000, B = 200, C = 50. Obri **dues sessions** com a `EDUGEST`: **S1** i **S2**. En SQL Developer, obri el segon full amb *Full de treball SQL no compartit* (`Ctrl+Mayús+N`); si no, els dos fulls compartixen sessió i no veuràs res.
+Usa la taula `CUENTA` de la pràctica 5.4 restaurada a A = 1000, B = 200, C = 50. Obri **dues sessions** com a `EDUGEST`: **S1** i **S2**. En SQL Developer, obri el segon full amb *Full de treball SQL no compartit* (`Ctrl+Mayús+N`); si no, els dos fulls compartixen sessió i no veuràs res.
 
 #### Experiment 1 · Les lectures no es bloquegen
 
@@ -353,6 +421,54 @@ Als pocs segons, Oracle detecta el cicle i una de les sessions (normalment la qu
 
 ---
 
+## Pràctica 5.6 · Càrrega de notes amb MERGE
+
+{{< practica num="5.6" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA5: b, c" sgbd="Oracle 26ai · assistent d'importació de SQL Developer" entrega="p8_6.sql + notas_0484_dam.csv" >}}
+
+#### Context
+
+El professor de Bases de dades de DAM lliura les notes finals en un CSV. Algunes matrícules ja tenien nota (cal actualitzar-la si ha canviat) i s'ha incorporat una alumna nova que no estava matriculada.
+
+#### Enunciat
+
+1. Crea el fitxer `notas_0484_dam.csv` amb este contingut:
+
+    ```text
+    NIA,NOTA
+    10450037,5.25
+    10450074,5
+    10450111,8
+    10450148,7
+    10452001,6.5
+    ```
+
+2. Crea la taula de càrrega `carga_notas_0484 (nia CHAR(8), nota NUMBER(4,2))` i **importa-la** amb l'assistent de SQL Developer (clic dret → *Importar dades*).
+3. Escriu un `MERGE` que, per a cada fila del CSV, actualitze la nota de la matrícula del curs 2025-26 en el mòdul 0484 de DAM **només si és distinta**.
+4. Per al NIA 10452001, que no té matrícula de 2025-26, el `MERGE` no ha de fer res: escriu una consulta que ho detecte com a **incidència**.
+5. Executa el `MERGE` dues voltes. Quantes files es fusionen cada vegada?
+
+#### Comprovació
+
+- [ ] La primera execució fusiona **3** files (la de 10450111 ja tenia un 8) i la segona, **0**.
+- [ ] La consulta d'incidències torna el NIA 10452001.
+
+{{% details title="Pista: el MERGE" %}}
+```sql
+MERGE INTO matricula m
+USING (SELECT c.nota, mt.id_matricula
+       FROM   carga_notas_0484 c
+              JOIN alumno a     ON a.nia = c.nia
+              JOIN matricula mt ON mt.id_alumno = a.id_alumno
+              JOIN modulo mo    ON mo.id_modulo = mt.id_modulo
+       WHERE  mo.codigo = '0484' AND mo.cod_ciclo = 'DAM' AND mt.curso_academico = '2025-26') o
+ON (m.id_matricula = o.id_matricula)
+WHEN MATCHED THEN UPDATE SET m.nota_final = o.nota
+                  WHERE m.nota_final IS NULL OR m.nota_final <> o.nota;
+```
+{{% /details %}}
+
+---
+
 ## Projecte EduGest · Tema 5: modificació de dades
 
 {{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: a, b, c, d, f, g, h" sgbd="Oracle 26ai · SQLcl" entrega="edugest/08_modificaciones/*.sql + docs/08-transacciones.md" >}}
@@ -369,5 +485,5 @@ Als pocs segons, Oracle detecta el cicle i una de les sessions (normalment la qu
 {{% comprobacion %}}
 - [ ] Tots els guions són transaccionals: un error deixa la base de dades com estava.
 - [ ] Cap guió conté DDL entre sentències DML de la mateixa transacció.
-- [ ] L'estratègia de concurrència està justificada amb arguments de la pràctica 5.4.
+- [ ] L'estratègia de concurrència està justificada amb arguments de la pràctica 5.5.
 {{% /comprobacion %}}

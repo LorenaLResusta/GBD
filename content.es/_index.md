@@ -58,7 +58,7 @@ El módulo se imparte con una carga de **160 horas de aula** (5 horas semanales,
 - **Un tema por RA.** Cada resultado de aprendizaje tiene su propio tema, de modo que cada RA se evalúa al terminar su tema. Las horas de cada tema son proporcionales al número de criterios de evaluación de su RA (151 horas de clase para 47 CE, unas 3,2 horas por criterio).
 - **Evaluaciones.** Al llegar a la 1ª evaluación se han terminado los RA1 y RA2; en la 2ª, RA3; en la 3ª, RA4, RA5 y RA6. Cada RA se evalúa al terminar su tema.
 - **Teoría y práctica en el mismo tema.** Cada página de teoría incluye una *temporalización* con el reparto de sesiones entre teoría (T) y práctica (P). En los temas con varias partes, la suma de sus partes coincide con las horas del tema.
-- **Práctica guiada en el aula, práctica autónoma fuera de ella.** Las prácticas guiadas y la tarea del proyecto EduGest se hacen en clase. Las prácticas autónomas son trabajo personal, y las dudas se trabajan en las sesiones de práctica.
+- **Práctica guiada en el aula, práctica autónoma fuera de ella.** Las prácticas guiadas y la tarea del proyecto EduGest se hacen en clase. Las prácticas autónomas y los retos son trabajo personal, y las dudas se trabajan en las sesiones de práctica.
 - **Pruebas de evaluación.** Cada evaluación reserva 3 horas a la prueba y a su revisión.
 - **Un día lectivo equivale a una hora.** Los festivos y los días sin docencia no cuentan. Los días que se pierdan se recuperan recortando las sesiones de práctica del último tema impartido.
 
@@ -67,7 +67,7 @@ El módulo se imparte con una carga de **160 horas de aula** (5 horas semanales,
 
 ## Temas
 
-Cada tema tiene páginas de **teoría** (conceptos, ejemplos y autoevaluación) y de **prácticas** (prácticas guiadas, autónomas y la tarea del proyecto EduGest), numeradas con el número del tema (práctica 4.3 = tema 4).
+Cada tema tiene páginas de **teoría** (conceptos, ejemplos y autoevaluación) y de **prácticas** (prácticas guiadas, autónomas, retos y la tarea del proyecto EduGest), numeradas con el número del tema (práctica 4.3 = tema 4).
 
 <div class="bd-cards">
   <div class="bd-card"><span class="bd-card-ra">RA1</span><h3>Tema 1 · Sistemas de almacenamiento y SGBD</h3><p>Ficheros frente a bases de datos, arquitectura y funciones de un SGBD, y clasificación de los sistemas gestores.</p><div class="bd-card-links"><a href="tema1-introduccion/">Ver el tema</a></div></div>

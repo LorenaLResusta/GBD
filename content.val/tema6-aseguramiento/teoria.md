@@ -40,6 +40,7 @@ items:
   - {h: 3, tipo: T, t: "Transferència entre gestors i registres d'error", ref: "§5 i §6"}
   - {h: 2, tipo: P, t: "D'Oracle a PostgreSQL", ref: "Pràctica 6.4"}
 autonomo:
+  - "Repte 6.5 (pla de còpies i simulacre de desastre)"
   - "Projecte EduGest · Tema 6 (assegurament de la informació)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
