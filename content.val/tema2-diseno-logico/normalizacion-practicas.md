@@ -10,19 +10,17 @@ math: true
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [2.21 Normalitzar les factures d'un taller](#pràctica-221--normalitzar-les-factures-dun-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
-| [2.22 Dependències, tancaments i claus](#pràctica-222--dependències-tancaments-i-claus) | Guiada | ●●○ | RA2.f, RA2.h |
-| [2.23 En quina forma normal està?](#pràctica-223--en-quina-forma-normal-està) | Autònoma | ●●○ | RA2.h |
-| [2.24 Reserves d'un hotel rural](#pràctica-224--reserves-dun-hotel-rural) | Autònoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
-| [2.25 FNBC i dependències perdudes](#pràctica-225--fnbc-i-dependències-perdudes) | Repte | ●●● | RA2.h, RA2.i |
-| [2.26 Normalitzar o desnormalitzar?](#pràctica-226--normalitzar-o-desnormalitzar) | Repte | ●●● | RA2.h |
+| [2.9 Normalitzar les factures d'un taller](#pràctica-29--normalitzar-les-factures-dun-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
+| [2.10 Dependències, tancaments i claus](#pràctica-210--dependències-tancaments-i-claus) | Guiada | ●●○ | RA2.f, RA2.h |
+| [2.11 En quina forma normal està?](#pràctica-211--en-quina-forma-normal-està) | Autònoma | ●●○ | RA2.h |
+| [2.12 Reserves d'un hotel rural](#pràctica-212--reserves-dun-hotel-rural) | Autònoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
 | [Projecte EduGest · Tema 2](#projecte-edugest--tema-2-informe-de-normalització) | Projecte | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
 
 ---
 
-## Pràctica 2.21 · Normalitzar les factures d'un taller
+## Pràctica 2.9 · Normalitzar les factures d'un taller
 
-{{< practica num="2.21" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA2: c, d, h" sgbd="Full de càlcul o paper" entrega="Document amb cada pas de la normalització" >}}
+{{< practica num="2.9" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA2: c, d, h" sgbd="Full de càlcul o paper" entrega="Document amb cada pas de la normalització" >}}
 
 #### Objectiu
 
@@ -92,15 +90,11 @@ Regles del negoci (confirmades amb el taller):
 > - Guardar `dni_cliente` també en FACTURA «per a no haver de passar pel vehicle». Seria una dependència transitiva: si el vehicle canvia de propietari, les factures antigues mostrarien dades contradictòries. Compte: si el negoci exigix conservar qui va pagar cada factura encara que el cotxe canvie de propietari, llavors **sí** que és una dada pròpia de la factura. Pregunta al client.
 > - Esborrar `precio_aplicado` per pensar que és redundant amb `precio_actual`.
 
-#### Ampliació
-
-Comprova en la teua solució que la descomposició és **sense pèrdua**: per a cada parell de taules que es combinen, indica l'atribut comú i de quina taula és clau. Quan acabes el tema 4, escriu el `JOIN` que reconstruïx el full original.
-
 ---
 
-## Pràctica 2.22 · Dependències, tancaments i claus
+## Pràctica 2.10 · Dependències, tancaments i claus
 
-{{< practica num="2.22" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA2: f, h" sgbd="Paper" entrega="Full d'exercicis" >}}
+{{< practica num="2.10" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA2: f, h" sgbd="Paper" entrega="Full d'exercicis" >}}
 
 #### Objectiu
 
@@ -121,9 +115,9 @@ Per a cada relació, calcula les claus candidates indicant els tancaments que ha
 
 ---
 
-## Pràctica 2.23 · En quina forma normal està?
+## Pràctica 2.11 · En quina forma normal està?
 
-{{< practica num="2.23" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: h" sgbd="Paper" entrega="Taula de respostes justificades" >}}
+{{< practica num="2.11" tipo="Autónoma" duracion="1 sessió" nivel="2" ra="RA2: h" sgbd="Paper" entrega="Taula de respostes justificades" >}}
 
 #### Enunciat
 
@@ -151,9 +145,9 @@ La clau és composta (num_vuelo, fecha). `avion` depén de tota la clau (el mate
 
 ---
 
-## Pràctica 2.24 · Reserves d'un hotel rural
+## Pràctica 2.12 · Reserves d'un hotel rural
 
-{{< practica num="2.24" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA2: c, d, f, h" sgbd="Paper o Data Modeler" entrega="Informe de normalització complet" >}}
+{{< practica num="2.12" tipo="Autónoma" duracion="2 sessions" nivel="2" ra="RA2: c, d, f, h" sgbd="Paper o Data Modeler" entrega="Informe de normalització complet" >}}
 
 #### Context
 
@@ -182,53 +176,6 @@ Una reserva pot incloure diverses habitacions, cadascuna amb els seus propis ext
 - [ ] `extras` es tracta com a multivalorat en 1FN i acaba en una taula amb la seua pròpia clau.
 - [ ] El preu per nit s'associa al **tipus** d'habitació, no a la reserva.
 - [ ] L'esquema final té entre 6 i 8 taules, i totes estan en 3FN.
-{{% /comprobacion %}}
-
----
-
-## Pràctica 2.25 · FNBC i dependències perdudes
-
-{{< practica num="2.25" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: h, i" sgbd="Paper" entrega="Anàlisi raonada" >}}
-
-#### Context
-
-En una autoescola, cada **professor** dóna classe en **una sola** seu. Un alumne, en cada seu a què acudix, té assignat **un únic** professor.
-
-CLASE(alumno, sede, profesor) amb `alumno, sede → profesor` i `profesor → sede`.
-
-#### Enunciat
-
-1. Calcula les claus candidates.
-2. Demostra que la relació està en 3FN però no en FNBC.
-3. Descompon-la en FNBC i comprova que la descomposició és sense pèrdua.
-4. Quina dependència es perd? Escriu un exemple de dades que la incomplisca i que les noves taules acceptarien.
-5. Recomana una solució per a l'autoescola i explica com garantiries la regla perduda (avança el que faries a el tema 5).
-
-{{% details title="Pista" %}}
-Les claus són (alumno, sede) i (alumno, profesor). La descomposició en FNBC és PROFESOR_SEDE(<u>profesor</u>, sede) i ALUMNO_PROFESOR(<u>alumno, profesor</u>). Prova d'assignar al mateix alumne dos professors de la mateixa seu.
-{{% /details %}}
-
----
-
-## Pràctica 2.26 · Normalitzar o desnormalitzar?
-
-{{< practica num="2.26" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA2: h" sgbd="Document" entrega="Informe de decisió (1 pàgina per cas)" >}}
-
-#### Enunciat
-
-Per a cada proposta d'un company, decidix si l'acceptes, la rebutges o l'acceptes amb condicions. Justifica la decisió amb arguments d'integritat, rendiment i manteniment.
-
-1. «Guardem el `nombre_ciclo` en cada fila de MATRICULA perquè els informes de secretaria no necessiten tres JOIN».
-2. «Afegim `num_alumnos` a la taula GRUPO, perquè el panell de direcció d'estudis el consulta cada vegada que s'obri».
-3. «A la taula de comandes de la botiga en línia guardem l'adreça d'enviament completa, encara que ja estiga en CLIENTE».
-4. «Per al quadre de comandament de la direcció, creem una taula amb una fila per cicle, curs i any amb la nota mitjana i el nombre d'aprovats, que es recalcula cada nit».
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] El cas 3 s'identifica com una dada **històrica** (l'adreça pot canviar després de la comanda).
-- [ ] El cas 4 es relaciona amb els sistemes OLAP del tema 1.
-- [ ] Quan acceptes una redundància, expliques **com** es manté sincronitzada.
 {{% /comprobacion %}}
 
 ---

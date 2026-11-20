@@ -58,7 +58,7 @@ El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanal
 - **Un tema per RA.** Cada resultat d'aprenentatge té el seu propi tema, de manera que cada RA s'avalua en acabar el seu tema. Les hores de cada tema són proporcionals al nombre de criteris d'avaluació del seu RA (151 hores de classe per a 47 CE, unes 3,2 hores per criteri).
 - **Avaluacions.** En arribar a la 1a avaluació s'han acabat els RA1 i RA2; en la 2a, RA3; en la 3a, RA4, RA5 i RA6. Cada RA s'avalua en acabar el seu tema.
 - **Teoria i pràctica en el mateix tema.** Cada pàgina de teoria inclou una *temporalització* amb el repartiment de sessions entre teoria (T) i pràctica (P). En els temes amb diverses parts, la suma de les parts coincidix amb les hores del tema.
-- **Pràctica guiada a l'aula, pràctica autònoma fora d'ella.** Les pràctiques guiades i la tasca del projecte EduGest es fan a classe. Les pràctiques autònomes i els reptes són treball personal, i els dubtes es treballen en les sessions de pràctica.
+- **Pràctica guiada a l'aula, pràctica autònoma fora d'ella.** Les pràctiques guiades i la tasca del projecte EduGest es fan a classe. Les pràctiques autònomes són treball personal, i els dubtes es treballen en les sessions de pràctica.
 - **Proves d'avaluació.** Cada avaluació reserva 3 hores a la prova i a la seua revisió.
 - **Un dia lectiu equival a una hora.** Els festius i els dies sense docència no compten. Els dies que es perden es recuperen retallant les sessions de pràctica de l'últim tema impartit.
 
@@ -67,7 +67,7 @@ El mòdul s'imparteix amb una càrrega de **160 hores d'aula** (5 hores setmanal
 
 ## Temes
 
-Cada tema té pàgines de **teoria** (conceptes, exemples i autoavaluació) i de **pràctiques** (pràctiques guiades, autònomes, reptes i la tasca del projecte EduGest), numerades amb el número del tema (pràctica 4.3 = tema 4).
+Cada tema té pàgines de **teoria** (conceptes, exemples i autoavaluació) i de **pràctiques** (pràctiques guiades, autònomes i la tasca del projecte EduGest), numerades amb el número del tema (pràctica 4.3 = tema 4).
 
 <div class="bd-cards">
   <div class="bd-card"><span class="bd-card-ra">RA1</span><h3>Tema 1 · Sistemes d'emmagatzematge i SGBD</h3><p>Fitxers enfront de bases de dades, arquitectura i funcions d'un SGBD, i classificació dels sistemes gestors.</p><div class="bd-card-links"><a href="tema1-introduccion/">Veure el tema</a></div></div>

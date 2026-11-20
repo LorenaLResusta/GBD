@@ -94,10 +94,6 @@ La teua resposta és completa si:
 > - Confondre **redundància** amb **inconsistència**. La redundància és repetir una dada; la inconsistència és que les seues còpies no coincidisquen. La primera provoca la segona.
 > - Respondre amb definicions copiades en lloc d'exemples del full. El criteri RA1.d demana **avaluar** la utilitat del SGBD en un cas concret.
 
-#### Ampliació
-
-Proposa com dividiries el full en **diverses taules** perquè cada dada aparega una sola vegada. No cal usar la notació formal: basta amb indicar quines columnes aniria en cada taula i com es relacionen. Guarda la proposta: la revisarem en el tema 2 (normalització).
-
 ---
 
 ## Pràctica 1.2 · Primer contacte amb Oracle: dins d'un SGBD
@@ -238,10 +234,6 @@ T'incorpores al departament de sistemes d'EduGest. Abans de començar a desenvol
 | `ORA-12514` | La base de dades encara arranca o has escrit mal el servei | Espera i usa `FREEPDB1` |
 | `docker: Error response from daemon: Conflict` | Ja existix un contenidor amb eixe nom | `docker start oracle26ai` en lloc de `docker run` |
 
-#### Ampliació
-
-Executa `docker stats oracle26ai` mentre llances diverses consultes. Anota la memòria que consumix el contenidor i relaciona-la amb el paràmetre `sga_target`. Després executa l'script `edugest_00_usuario.sql` del [projecte EduGest](/guia/proyecto-edugest) i comprova que el nou usuari apareix en `dba_users`.
-
 ---
 
 ## Pràctica 1.3 · Triar un SGBD per a cada cas
@@ -292,15 +284,11 @@ Acaba amb una taula resum i una conclusió: existix un SGBD que siga el millor p
 > [!WARNING]
 > Triar el SGBD «més popular» o «el que conec» no és una justificació. Cada recomanació ha de recolzar-se en una característica del cas.
 
-#### Ampliació
-
-Afig un cas E proposat per tu, a partir d'una empresa real del teu entorn (per exemple, la de les teues pràctiques en empresa), i resol-lo amb el mateix esquema.
-
 ---
 
 ## Projecte EduGest · Tema 1: informe d'anàlisi
 
-{{< practica num="EduGest-1" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA1: c, d, f · Ampliació" sgbd="Document Markdown en el repositori" entrega="edugest/docs/01-analisis.md" >}}
+{{< practica num="EduGest-1" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="2" ra="RA1: c, d, f" sgbd="Document Markdown en el repositori" entrega="edugest/docs/01-analisis.md" >}}
 
 #### Objectiu
 

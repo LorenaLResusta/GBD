@@ -21,15 +21,14 @@ Esta part del tema ocupa **7 hores d'aula** (3 de teoria i 4 de pràctica). És 
 {{< sesiones unidad="T2" horas="7" parte="Normalització" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalies i dependències funcionals", ref: "§1 i §2"}
-  - {h: 1, tipo: P, t: "Dependències, tancaments i claus", ref: "Pràctica 2.22"}
+  - {h: 1, tipo: P, t: "Dependències, tancaments i claus", ref: "Pràctica 2.10"}
   - {h: 1, tipo: T, t: "Les formes normals: 1FN, 2FN, 3FN i FNBC", ref: "§3"}
-  - {h: 1, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 2.21"}
+  - {h: 1, tipo: P, t: "Normalitzar les factures d'un taller", ref: "Pràctica 2.9"}
   - {h: 1, tipo: T, t: "Descomposició, desnormalització i procediment complet", ref: "§4 a §7"}
-  - {h: 1, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 2.24"}
+  - {h: 1, tipo: P, t: "Reserves d'un hotel rural", ref: "Pràctica 2.12"}
   - {h: 1, tipo: P, t: "Informe de normalització d'EduGest", ref: "Projecte EduGest-2"}
 autonomo:
-  - "Pràctiques 2.23 (en quina forma normal està?) i 4.5 (FNBC i dependències perdudes)"
-  - "Pràctica 2.26 (normalitzar o desnormalitzar?)"
+  - "Pràctica 2.11 (en quina forma normal està?)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 

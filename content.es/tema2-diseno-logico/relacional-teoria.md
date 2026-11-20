@@ -25,18 +25,15 @@ Esta parte del tema ocupa **11 horas de aula** (6 de teoría y 5 de práctica).
 items:
   - {h: 1, tipo: T, t: "Relación, atributo, dominio, tupla, grado y cardinalidad. Claves", ref: "§1 y §2 · laboratorio de claves"}
   - {h: 2, tipo: T, t: "Restricciones e integridad referencial", ref: "§3 · simulador de integridad"}
-  - {h: 1, tipo: P, t: "Simulador de integridad referencial", ref: "Práctica 2.16"}
+  - {h: 1, tipo: P, t: "Simulador de integridad referencial", ref: "Práctica 2.6"}
   - {h: 1, tipo: T, t: "Reglas de transformación (I): entidades, débiles y atributos", ref: "§4.1 a §4.3 · transformador"}
   - {h: 1, tipo: T, t: "Reglas de transformación (II): relaciones y jerarquías. Ejemplos", ref: "§4.4 a §4.9 y §5"}
-  - {h: 1, tipo: P, t: "Biblioteca: del E/R a las tablas", ref: "Práctica 2.15"}
+  - {h: 1, tipo: P, t: "Biblioteca: del E/R a las tablas", ref: "Práctica 2.5"}
   - {h: 1, tipo: T, t: "Restricciones no representables y herramientas", ref: "§6 y §7"}
-  - {h: 1, tipo: P, t: "Tres formas de transformar una jerarquía", ref: "Práctica 2.17"}
-  - {h: 1, tipo: P, t: "Catálogo de restricciones de un hotel", ref: "Práctica 2.19"}
+  - {h: 1, tipo: P, t: "Tres formas de transformar una jerarquía", ref: "Práctica 2.7"}
+  - {h: 1, tipo: P, t: "Catálogo de restricciones de un hotel", ref: "Práctica 2.8"}
   - {h: 1, tipo: P, t: "Modelo lógico de EduGest", ref: "§8 y proyecto EduGest-2"}
 autonomo:
-  - "Tareas de transformación 1 a 7 (E/R → relacional)"
-  - "Práctica 2.18 (ingeniería inversa) y práctica 2.20"
-  - "Banco de 20 ejercicios"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -232,9 +229,9 @@ Cambia la política de la clave ajena, intenta borrar, cambiar y insertar filas,
 
 ---
 
-{{< sesion n="3" h="1" tipo="p" practica="2.16" >}}Simulador de integridad referencial{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="p" practica="2.6" >}}Simulador de integridad referencial{{< /sesion >}}
 
-La práctica 2.16 se hace en la [página de prácticas](/tema2-diseno-logico/relacional-practicas), con lápiz y papel, y se implementará en el tema 3.
+La práctica 2.6 se hace en la [página de prácticas](/tema2-diseno-logico/relacional-practicas), con lápiz y papel, y se implementará en el tema 3.
 
 ---
 
@@ -548,7 +545,7 @@ Un concesionario vende `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`i
 
 ---
 
-{{< sesion n="6" h="1" tipo="p" practica="2.15" >}}Biblioteca: del E/R a las tablas{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="p" practica="2.5" >}}Biblioteca: del E/R a las tablas{{< /sesion >}}
 
 {{< sesion n="7" h="1" tipo="t" >}}Restricciones no representables y herramientas{{< /sesion >}}
 
@@ -601,9 +598,9 @@ Hazte tres preguntas, en este orden: ¿se decide mirando **una sola fila**? → 
 
 ---
 
-{{< sesion n="8" h="1" tipo="p" practica="2.17" >}}Tres formas de transformar una jerarquía{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="p" practica="2.7" >}}Tres formas de transformar una jerarquía{{< /sesion >}}
 
-{{< sesion n="9" h="1" tipo="p" practica="2.19" >}}Catálogo de restricciones de un hotel{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="p" practica="2.8" >}}Catálogo de restricciones de un hotel{{< /sesion >}}
 
 ## 8. Caso Guiado: EduGest del Modelo E/R al Relacional
 

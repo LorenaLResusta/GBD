@@ -40,7 +40,6 @@ items:
   - {h: 3, tipo: T, t: "Transferencia entre gestores y registros de error", ref: "§5 y §6"}
   - {h: 2, tipo: P, t: "De Oracle a PostgreSQL", ref: "Práctica 6.4"}
 autonomo:
-  - "Reto 6.5 (plan de copias y simulacro de desastre)"
   - "Proyecto EduGest · Tema 6 (aseguramiento de la información)"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}

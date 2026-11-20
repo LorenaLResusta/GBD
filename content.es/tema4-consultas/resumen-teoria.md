@@ -39,19 +39,17 @@ se pueda escribir sin consultar los apuntes.
 {{< sesiones unidad="T4" horas="14" parte="Resumen, composiciones y subconsultas" >}}
 items:
   - {h: 2, tipo: T, t: "Funciones de agregado, GROUP BY y HAVING", ref: "§1 y §2 · laboratorio de agrupamiento"}
-  - {h: 1, tipo: P, t: "Consultas resumen", ref: "Práctica 4.6"}
+  - {h: 1, tipo: P, t: "Consultas resumen", ref: "Práctica 4.5"}
   - {h: 2, tipo: T, t: "Composiciones internas: INNER JOIN y varias tablas", ref: "§3 · laboratorio de composiciones"}
-  - {h: 2, tipo: P, t: "Composiciones paso a paso", ref: "Práctica 4.7"}
+  - {h: 2, tipo: P, t: "Composiciones paso a paso", ref: "Práctica 4.6"}
   - {h: 1, tipo: T, t: "Composiciones externas y autocomposición", ref: "§4 y §5"}
-  - {h: 1, tipo: P, t: "Informes para jefatura", ref: "Práctica 4.8"}
   - {h: 1, tipo: T, t: "Subconsultas y EXISTS", ref: "§6"}
-  - {h: 1, tipo: P, t: "Subconsultas", ref: "Práctica 4.9"}
+  - {h: 2, tipo: P, t: "Subconsultas", ref: "Práctica 4.7"}
   - {h: 1, tipo: T, t: "Optimización de consultas: plan de ejecución", ref: "§7"}
-  - {h: 1, tipo: P, t: "Optimización: medir antes y después", ref: "Práctica 4.10"}
+  - {h: 1, tipo: P, t: "Optimización: medir antes y después", ref: "Práctica 4.8"}
   - {h: 1, tipo: P, t: "Informes de EduGest", ref: "Proyecto EduGest-4"}
 autonomo:
-  - "Prácticas 4.8 y 4.9 (terminar en casa lo que no dé tiempo)"
-  - "Práctica 4.11 (reto: el cuadro de mando)"
+  - "Práctica 4.7 (terminar en casa lo que no dé tiempo)"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -644,7 +642,7 @@ ORDER  BY mo.codigo;
 *5 filas*
 
 > [!TIP]
-> **Construye las composiciones de una en una.** Añade una tabla, ejecuta `SELECT COUNT(*)`, comprueba que el número es el que esperas y pasa a la siguiente. Así, cuando el número se desmadre, sabrás exactamente qué `JOIN` lo ha causado. La práctica 4.7 está montada sobre esta técnica.
+> **Construye las composiciones de una en una.** Añade una tabla, ejecuta `SELECT COUNT(*)`, comprueba que el número es el que esperas y pasa a la siguiente. Así, cuando el número se desmadre, sabrás exactamente qué `JOIN` lo ha causado. La práctica 4.6 está montada sobre esta técnica.
 
 ### 3.5 Composiciones y agrupamientos juntos
 
@@ -1021,7 +1019,7 @@ Dos detalles imprescindibles:
 - La condición `b.id_alumno > a.id_alumno` evita que un alumno se empareje **consigo mismo** y que cada pareja salga **dos veces** (A-B y B-A). Si la quitas, las 7 filas se convierten en 22.
 - En 1DAM hay dos alumnos distintos que se apellidan «Ferri Baeza» (Adrián y Paula), lo que explica las filas aparentemente repetidas: son parejas diferentes con apellidos iguales. Es un buen recordatorio de que **el apellido no identifica a una persona**: por eso la clave primaria es `id_alumno`.
 
-{{< sesion n="7" h="1" tipo="t" >}}Subconsultas y EXISTS{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Subconsultas y EXISTS{{< /sesion >}}
 
 ## 6. Subconsultas
 
@@ -1276,7 +1274,7 @@ FETCH FIRST 6 ROWS ONLY;
 > [!NOTE]
 > Una composición puede **duplicar** filas si la otra tabla tiene varias coincidencias; `EXISTS` nunca lo hace, porque solo pregunta si hay alguna. Si una consulta con `JOIN` te devuelve filas repetidas y lo único que querías era filtrar, cámbiala por `EXISTS` en lugar de añadir un `DISTINCT`.
 
-{{< sesion n="9" h="1" tipo="t" >}}Optimización de consultas: plan de ejecución{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="t" >}}Optimización de consultas: plan de ejecución{{< /sesion >}}
 
 ## 7. Optimización de consultas y plan de ejecución
 
@@ -1423,7 +1421,7 @@ Oracle recoge estadísticas automáticamente en una ventana de mantenimiento noc
 
 ### 7.7 Antes y después: un ejemplo medible
 
-Este es el experimento de la práctica 4.11, resumido. Sobre una tabla `ACCESO_PORTAL` con **500 000 filas** generadas, la consulta `SELECT COUNT(*) FROM acceso_portal WHERE id_alumno = 1234` devuelve **100 filas**, es decir, el 0,02 % de la tabla: un filtro muy selectivo.
+Este es el experimento de la práctica 4.8, resumido. Sobre una tabla `ACCESO_PORTAL` con **500 000 filas** generadas, la consulta `SELECT COUNT(*) FROM acceso_portal WHERE id_alumno = 1234` devuelve **100 filas**, es decir, el 0,02 % de la tabla: un filtro muy selectivo.
 
 | Situación | Operación del plan | Bloques leídos | Interpretación |
 |---|---|---|---|

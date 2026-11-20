@@ -11,16 +11,13 @@ bookToc: true
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
 | [3.1 Primeres taules i restriccions en Oracle](#pràctica-31--primeres-taules-i-restriccions-en-oracle) | Guiada | ●○○ | RA3.b-e |
-| [3.2 Del diagrama de Chen al DDL d'Oracle](#pràctica-32--del-diagrama-de-chen-al-ddl-doracle) | Guiada | ●●○ | RA2.g, RA3.b, RA3.d, RA3.e |
-| [3.3 Biblioteca: script complet i bateria de proves](#pràctica-33--biblioteca-script-complet-i-bateria-de-proves) | Guiada | ●●○ | RA3.b-e, RA3.g, RA3.h |
-| [3.4 Sis casos per a implementar](#pràctica-34--sis-casos-per-a-implementar) | Autònoma | ●●○ | RA3.b-e |
-| [3.5 Evolució de l'esquema amb ALTER](#pràctica-35--evolució-de-lesquema-amb-alter) | Guiada | ●●○ | RA3.b, RA3.e, RA3.g, RA3.h |
-| [3.6 Índexs i seqüències en EduGest](#pràctica-36--índexs-i-seqüències-en-edugest) | Guiada | ●●○ | RA3.a, RA3.d, RA3.h |
-| [3.7 Depurar un script defectuós](#pràctica-37--depurar-un-script-defectuós) | Repte | ●●● | RA3.b-e |
+| [3.2 Biblioteca: script complet i bateria de proves](#pràctica-32--biblioteca-script-complet-i-bateria-de-proves) | Guiada | ●●○ | RA3.b-e, RA3.g, RA3.h |
+| [3.3 Evolució de l'esquema amb ALTER](#pràctica-33--evolució-de-lesquema-amb-alter) | Guiada | ●●○ | RA3.b, RA3.e, RA3.g, RA3.h |
+| [3.4 Índexs i seqüències en EduGest](#pràctica-34--índexs-i-seqüències-en-edugest) | Guiada | ●●○ | RA3.a, RA3.d, RA3.h |
 | [Projecte EduGest · Tema 3](#projecte-edugest--tema-3-implementació) | Projecte | ●●● | RA3 complet |
 
 > [!IMPORTANT]
-> **Abans de començar.** Necessites l'entorn de la [guia](/guia/entorno) funcionant. Per a les pràctiques 3.1 a 3.5 crea un usuari de proves propi, així no barreges els exercicis amb el projecte. Connecta't com a `SYSTEM` a `FREEPDB1` i executa:
+> **Abans de començar.** Necessites l'entorn de la [guia](/guia/entorno) funcionant. Per a les pràctiques 3.1 a 3.3 crea un usuari de proves propi, així no barreges els exercicis amb el projecte. Connecta't com a `SYSTEM` a `FREEPDB1` i executa:
 >
 > ```sql
 > CREATE USER practicas IDENTIFIED BY "Practicas_2026" DEFAULT TABLESPACE users QUOTA UNLIMITED ON users;
@@ -153,199 +150,11 @@ Completa esta taula. El teu resultat ha de coincidir:
 | `ORA-00907: missing right parenthesis` | Falta una coma entre columnes o sobra una abans del parèntesi final |
 | `ORA-00904: invalid identifier` | Columna mal escrita o paraula reservada usada com a nom (`date`, `number`, `user`...) |
 
-#### Ampliació
-
-Canvia `fk_pedido_cliente` perquè en esborrar un client s'esborren les seues comandes. Hauràs d'eliminar la restricció i tornar a crear-la amb `ALTER TABLE`. És una bona decisió per a una botiga? Justifica-ho.
-
 ---
 
-## Pràctica 3.2 · Del diagrama de Chen al DDL d'Oracle
+## Pràctica 3.2 · Biblioteca: script complet i bateria de proves
 
-{{< practica num="3.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA2: g · RA3: b, d, e" sgbd="Oracle AI Database 26ai Free" entrega="p5_2.sql amb els cinc casos" >}}
-
-#### Objectiu
-
-Implementar en Oracle els patrons de transformació del tema 2 (1:N, N:M, entitat feble, 1:1 i jerarquia) i reconéixer les diferències amb altres SGBD.
-
-#### Context
-
-Un company ha escrit estos exemples per a **MySQL 8**. Cal portar-los a **Oracle**. Per a cada cas tens les dues versions en pestanyes: compara abans de mirar la d'Oracle.
-
-### Cas A · Relació N:M amb atributs
-
-{{< diagrama src="chen-alumno-asignatura.svg" caption="Diagrama de Chen de la relació N:M entre ALUMNO i ASIGNATURA amb atributs" >}}
-
-{{< tabs >}}
-{{% tab "MySQL 8 (original)" %}}
-```sql
-CREATE TABLE matricula (
-    id_alumno INT NOT NULL,
-    id_asignatura INT NOT NULL,
-    fecha DATE NOT NULL,
-    nota DECIMAL(4, 2),
-    PRIMARY KEY (id_alumno, id_asignatura),
-    CONSTRAINT chk_matricula_nota CHECK (nota IS NULL OR nota BETWEEN 0 AND 10),
-    CONSTRAINT fk_matricula_alumno FOREIGN KEY (id_alumno)
-        REFERENCES alumno (id_alumno) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_matricula_asignatura FOREIGN KEY (id_asignatura)
-        REFERENCES asignatura (id_asignatura) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB;
-```
-{{% /tab %}}
-{{% tab "Oracle 26ai" %}}
-```sql
-CREATE TABLE alumno (
-    id_alumno  NUMBER(6)     CONSTRAINT pk_alumno PRIMARY KEY,
-    nombre     VARCHAR2(100) CONSTRAINT nn_alumno_nombre NOT NULL
-);
-
-CREATE TABLE asignatura (
-    id_asignatura  NUMBER(5)     CONSTRAINT pk_asignatura PRIMARY KEY,
-    titulo         VARCHAR2(120) CONSTRAINT nn_asignatura_titulo NOT NULL,
-    creditos       NUMBER(2)     CONSTRAINT nn_asignatura_creditos NOT NULL,
-    CONSTRAINT ck_asignatura_creditos CHECK (creditos > 0)
-);
-
-CREATE TABLE matricula (
-    id_alumno      NUMBER(6),
-    id_asignatura  NUMBER(5),
-    fecha          DATE         DEFAULT SYSDATE CONSTRAINT nn_matricula_fecha NOT NULL,
-    nota           NUMBER(4,2),
-    CONSTRAINT pk_matricula PRIMARY KEY (id_alumno, id_asignatura),
-    CONSTRAINT ck_matricula_nota CHECK (nota BETWEEN 0 AND 10),
-    CONSTRAINT fk_matricula_alumno FOREIGN KEY (id_alumno)
-        REFERENCES alumno (id_alumno) ON DELETE CASCADE,
-    CONSTRAINT fk_matricula_asignatura FOREIGN KEY (id_asignatura)
-        REFERENCES asignatura (id_asignatura)
-);
-CREATE INDEX ix_matricula_asignatura ON matricula (id_asignatura);
-```
-{{% /tab %}}
-{{< /tabs >}}
-
-{{% details title="Què ha canviat i per què?" %}}
-1. `INT` i `DECIMAL` passen a `NUMBER`; `VARCHAR` a `VARCHAR2`. Sobra `ENGINE = InnoDB`.
-2. `ON UPDATE CASCADE` **no existix** en Oracle. Les claus primàries no haurien de canviar mai.
-3. `nota IS NULL OR ...` sobra: un `CHECK` ja accepta les files en què la condició és desconeguda.
-4. S'ha llevat `ON DELETE CASCADE` de l'assignatura: esborrar una assignatura no hauria d'esborrar en silenci les notes de l'alumnat. És una decisió de disseny que has de justificar.
-5. S'afig un índex sobre `id_asignatura`. La columna `id_alumno` no ho necessita perquè és la primera columna de la clau primària, que ja té índex.
-{{% /details %}}
-
-### Cas B · Entitat feble amb clau composta
-
-{{< diagrama src="chen-edificio-aula.svg" caption="Diagrama de Chen de l'entitat feble AULA dependent d'EDIFICIO" >}}
-
-{{< tabs >}}
-{{% tab "MySQL 8 (original)" %}}
-```sql
-CREATE TABLE aula (
-    cod_edificio VARCHAR(10) NOT NULL,
-    num_aula SMALLINT NOT NULL,
-    capacidad SMALLINT NOT NULL,
-    PRIMARY KEY (cod_edificio, num_aula),
-    CONSTRAINT chk_aula_capacidad CHECK (capacidad > 0),
-    CONSTRAINT fk_aula_edificio FOREIGN KEY (cod_edificio)
-        REFERENCES edificio (cod_edificio) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB;
-```
-{{% /tab %}}
-{{% tab "Oracle 26ai" %}}
-```sql
-CREATE TABLE edificio (
-    cod_edificio  VARCHAR2(10)  CONSTRAINT pk_edificio PRIMARY KEY,
-    nombre        VARCHAR2(100) CONSTRAINT nn_edificio_nombre NOT NULL
-);
-
-CREATE TABLE aula (
-    cod_edificio  VARCHAR2(10),
-    num_aula      NUMBER(4),
-    capacidad     NUMBER(3) CONSTRAINT nn_aula_capacidad NOT NULL,
-    CONSTRAINT pk_aula PRIMARY KEY (cod_edificio, num_aula),
-    CONSTRAINT ck_aula_capacidad CHECK (capacidad > 0),
-    CONSTRAINT fk_aula_edificio FOREIGN KEY (cod_edificio)
-        REFERENCES edificio (cod_edificio) ON DELETE CASCADE
-);
-```
-{{% /tab %}}
-{{< /tabs >}}
-
-Ací `ON DELETE CASCADE` **sí** que té sentit: una aula no existix sense el seu edifici (dependència d'existència).
-
-### Cas C · Relació 1:1 opcional
-
-{{< diagrama src="chen-empleado-vehiculo.svg" caption="Diagrama de Chen de la relació 1:1 opcional entre EMPLEADO i VEHICULO" >}}
-
-Escriu tu la versió Oracle a partir de la MySQL i després compara-la amb la solució.
-
-```sql
--- MySQL 8 (original)
-CREATE TABLE vehiculo (
-    matricula VARCHAR(10) PRIMARY KEY,
-    modelo VARCHAR(80) NOT NULL,
-    id_empleado INT UNIQUE,
-    CONSTRAINT fk_vehiculo_empleado FOREIGN KEY (id_empleado)
-        REFERENCES empleado (id_empleado) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB;
-```
-
-{{< solucion id="tema3-001" title="Solució en Oracle" />}}
-
-### Cas D · Jerarquia (taula per a la superclasse i per a cada subclasse)
-
-{{< diagrama src="chen-jerarquia-empleados.svg" caption="Diagrama EER d'especialització d'EMPLEADO" >}}
-
-```sql
-CREATE TABLE personal (
-    id_personal  NUMBER(6)     CONSTRAINT pk_personal PRIMARY KEY,
-    nombre       VARCHAR2(100) CONSTRAINT nn_personal_nombre NOT NULL,
-    tipo         CHAR(3)       CONSTRAINT nn_personal_tipo NOT NULL,
-    CONSTRAINT ck_personal_tipo CHECK (tipo IN ('PRO', 'ADM')),
-    -- clau alternativa necessària perquè les subclasses referencien (id, tipus)
-    CONSTRAINT uq_personal_id_tipo UNIQUE (id_personal, tipo)
-);
-
-CREATE TABLE programador (
-    id_personal         NUMBER(6) CONSTRAINT pk_programador PRIMARY KEY,
-    tipo                CHAR(3)   DEFAULT 'PRO' NOT NULL,
-    lenguaje_principal  VARCHAR2(60) NOT NULL,
-    CONSTRAINT ck_programador_tipo CHECK (tipo = 'PRO'),
-    CONSTRAINT fk_programador_personal FOREIGN KEY (id_personal, tipo)
-        REFERENCES personal (id_personal, tipo) ON DELETE CASCADE
-);
-
-CREATE TABLE administrativo (
-    id_personal      NUMBER(6) CONSTRAINT pk_administrativo PRIMARY KEY,
-    tipo             CHAR(3)   DEFAULT 'ADM' NOT NULL,
-    nivel_ofimatica  VARCHAR2(40) NOT NULL,
-    CONSTRAINT ck_administrativo_tipo CHECK (tipo = 'ADM'),
-    CONSTRAINT fk_administrativo_personal FOREIGN KEY (id_personal, tipo)
-        REFERENCES personal (id_personal, tipo) ON DELETE CASCADE
-);
-```
-
-> [!TIP]
-> **Truc professional per a garantir una jerarquia disjunta només amb restriccions.** El discriminador `tipo` es repetix en cada subclasse amb un `CHECK` de valor fix, i la clau aliena és composta (id, tipo). Així, un empleat de tipus `'ADM'` no pot aparéixer en `PROGRAMADOR`: la clau aliena (id, 'PRO') no trobaria la seua fila. Allò que **no** garantix és que la jerarquia siga **total** (que tot empleat estiga en alguna subclasse).
-
-#### Comprovació
-
-Prova la jerarquia:
-
-```sql
-INSERT INTO personal VALUES (1, 'Marta', 'PRO');
-INSERT INTO programador (id_personal, lenguaje_principal) VALUES (1, 'Java');        -- correcte
-INSERT INTO administrativo (id_personal, nivel_ofimatica) VALUES (1, 'Avanzado');    -- ha de fallar
-ROLLBACK;
-```
-
-- [ ] Els cinc casos es creen sense errors executant l'script de principi a fi dues vegades seguides (inclou els `DROP` inicials).
-- [ ] L'última inserció falla amb ORA-02291.
-- [ ] En `p5_2.sql` expliques amb comentaris cada diferència entre MySQL i Oracle.
-
----
-
-## Pràctica 3.3 · Biblioteca: script complet i bateria de proves
-
-{{< practica num="3.3" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: b, c, d, e, g, h" sgbd="Oracle 26ai · SQL Developer Data Modeler (opcional)" entrega="biblioteca.sql + pruebas_biblioteca.sql" >}}
+{{< practica num="3.2" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA3: b, c, d, e, g, h" sgbd="Oracle 26ai · SQL Developer Data Modeler (opcional)" entrega="biblioteca.sql + pruebas_biblioteca.sql" >}}
 
 #### Objectiu
 
@@ -353,7 +162,7 @@ Construir un script de creació professional (relanzable, ordenat i comentat) i 
 
 #### Context
 
-Implementem l'esquema relacional de la biblioteca de la [pràctica 2.15](/tema2-diseno-logico/relacional-practicas#pràctica-215--biblioteca-de-ler-a-les-taules).
+Implementem l'esquema relacional de la biblioteca de la [pràctica 2.5](/tema2-diseno-logico/relacional-practicas#pràctica-25--biblioteca-de-ler-a-les-taules).
 
 {{< diagrama src="chen-biblioteca.svg" caption="Diagrama de Chen de la biblioteca" >}}
 
@@ -476,69 +285,11 @@ Implementem l'esquema relacional de la biblioteca de la [pràctica 2.15](/tema2-
 - [ ] Opcional: importes l'esquema en SQL Developer Data Modeler (*Arxiu → Importar → Diccionari de dades*) i adjuntes el diagrama relacional generat.
 {{% /comprobacion %}}
 
-#### Ampliació
-
-La regla «un exemplar no pot tindre dos préstecs oberts alhora» no es pot expressar amb un `CHECK`. Pista: Oracle permet **índexs únics basats en funció** que només indexen les files que complixen una condició:
-
-```sql
-CREATE UNIQUE INDEX ux_prestamo_abierto ON prestamo (
-    CASE WHEN fecha_devolucion IS NULL THEN isbn END,
-    CASE WHEN fecha_devolucion IS NULL THEN num_ejemplar END
-);
-```
-
-Explica per què funciona (pensa en com tracta Oracle les files les claus d'índex de les quals són totes `NULL`) i afig dues proves que ho demostren.
-
 ---
 
-## Pràctica 3.4 · Sis casos per a implementar
+## Pràctica 3.3 · Evolució de l'esquema amb ALTER
 
-{{< practica num="3.4" tipo="Autónoma" duracion="3 sessions" nivel="2" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Un script per cas + bateria de proves" >}}
-
-#### Objectiu
-
-Implementar de manera autònoma esquemes xicotets amb totes les seues restriccions i provar-los.
-
-#### Enunciat
-
-Per a cada cas: decidix taules, tipus, claus primàries i alienes, restriccions i política d'esborrat; escriu el DDL en l'ordre correcte; i escriu **almenys tres proves** (una correcta i dos que hagen de fallar).
-
-**1. Clínica: consultes i pacients.** Una consulta correspon a un únic pacient; un pacient pot tindre diverses consultes. De cada consulta es guarda data, motiu i import. L'import no pot ser negatiu. No es permet esborrar pacients amb consultes registrades.
-
-{{< diagrama src="chen-paciente-consulta.svg" caption="Diagrama de Chen de PACIENTE i CONSULTA" >}}
-
-**2. Cine: pel·lícules i actors.** Una pel·lícula té diversos actors i un actor pot actuar en moltes pel·lícules. En la relació es guarda el personatge i l'ordre d'aparició. El mateix actor no pot aparéixer dues vegades en una pel·lícula ni dos actors poden tindre el mateix ordre en una pel·lícula.
-
-{{< diagrama src="chen-actor-pelicula.svg" caption="Diagrama de Chen d'ACTOR i PELICULA" >}}
-
-**3. Hotel: habitacions febles.** Cada habitació s'identifica pel seu número dins d'un hotel. Guarda capacitat i preu per nit, tots dos majors que zero. Si s'elimina un hotel, s'eliminen les seues habitacions.
-
-{{< diagrama src="chen-hotel-habitacion.svg" caption="Diagrama de Chen d'HOTEL i HABITACION" >}}
-
-**4. Empresa: empleats i departaments.** Cada empleat treballa en un departament, que pot existir abans de contractar empleats. Cada departament té un cap, que és un dels empleats (dependència circular!). Guarda el nom del departament i la data de contractació de l'empleat, que no pot ser anterior a 1990.
-
-**5. Botiga: comandes i productes.** Una comanda inclou diversos productes; un producte apareix en moltes comandes. Per cada línia es guarda la quantitat (positiva) i el preu unitari aplicat. Una comanda no repetix producte. Afig una columna **virtual** `importe_linea`.
-
-**6. Personal d'un centre.** Tot membre del personal és professor o tècnic, mai tots dos. Un professor té especialitat; un tècnic, àrea de suport. Usa la tècnica del cas D de la pràctica 3.2.
-
-#### Comprovació
-
-{{% comprobacion %}}
-- [ ] Totes les restriccions tenen nom amb el prefix correcte.
-- [ ] El cas 4 crea la clau aliena del cap amb `ALTER TABLE` després de crear les dues taules.
-- [ ] El cas 5 usa `GENERATED ALWAYS AS (cantidad * precio_unitario) VIRTUAL`.
-- [ ] Cap script usa `ON UPDATE` ni `ENGINE`.
-
-{{% details title="Pista: cas 4 (dependència circular)" %}}
-Crea `DEPARTAMENTO` sense la columna del cap o amb la columna però sense la clau aliena. Crea `EMPLEADO` amb la seua clau aliena a `DEPARTAMENTO`. Finalment: `ALTER TABLE departamento ADD CONSTRAINT fk_departamento_jefe FOREIGN KEY (id_jefe) REFERENCES empleado (id_empleado);`. Per a **inserir** les dades tindràs el mateix problema: inserix el departament sense cap, després l'empleat i finalment actualitza el cap.
-{{% /details %}}
-{{% /comprobacion %}}
-
----
-
-## Pràctica 3.5 · Evolució de l'esquema amb ALTER
-
-{{< practica num="3.5" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: b, e, g, h" sgbd="Oracle 26ai" entrega="p5_5_cambios.sql" >}}
+{{< practica num="3.3" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: b, e, g, h" sgbd="Oracle 26ai" entrega="p5_5_cambios.sql" >}}
 
 #### Objectiu
 
@@ -572,9 +323,9 @@ Per a cada canvi, escriu la sentència i comprova el resultat amb `DESC` o amb e
 
 ---
 
-## Pràctica 3.6 · Índexs i seqüències en EduGest
+## Pràctica 3.4 · Índexs i seqüències en EduGest
 
-{{< practica num="3.6" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: a, d, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_indices_secuencias.sql" >}}
+{{< practica num="3.4" tipo="Guiada" duracion="1 sessió" nivel="2" ra="RA3: a, d, h" sgbd="Oracle 26ai · esquema EDUGEST amb els scripts 01 i 02" entrega="edugest/04_indices_secuencias.sql" >}}
 
 #### Objectiu
 
@@ -621,57 +372,6 @@ Carrega l'esquema de referència: executa [els scripts del projecte](/guia/proye
 
 ---
 
-## Pràctica 3.7 · Depurar un script defectuós
-
-{{< practica num="3.7" tipo="Reto" duracion="1 sessió" nivel="3" ra="RA3: b, c, d, e" sgbd="Oracle 26ai" entrega="Script corregit + informe d'errors" >}}
-
-#### Objectiu
-
-Diagnosticar errors de sintaxi i de disseny a partir dels missatges del SGBD.
-
-#### Enunciat
-
-Este script d'un gimnàs té **almenys deu errors**, uns de sintaxi d'Oracle i altres de disseny. Executa'l, corregix els errors un a un i documenta en una taula: línia, missatge d'Oracle (si n'hi ha), causa i correcció.
-
-```sql
-CREATE TABLE sesion (
-    id_sesion INT AUTO_INCREMENT PRIMARY KEY,
-    id_actividad NUMBER(5) REFERENCES actividad(id_actividad),
-    dia DATE NOT NULL,
-    sala VARCHAR2(10)
-    plazas NUMBER(3) CHECK (plazas > 0)
-);
-
-CREATE TABLE actividad (
-    id_actividad NUMBER(5) PRIMARY KEY,
-    nombre VARCHAR2(50) NOT NULL UNIQUE,
-    precio NUMBER(3,2) CHECK (precio >= 0)
-);
-
-CREATE TABLE socio (
-    num_socio NUMBER(6) PRIMARY KEY,
-    dni NUMBER(8),
-    nombre VARCHAR2(80) NOT NULL,
-    fecha_alta DATE DEFAULT SYSDATE CHECK (fecha_alta <= SYSDATE),
-    edad NUMBER(3)
-);
-
-CREATE TABLE reserva (
-    num_socio NUMBER(6) REFERENCES socio,
-    id_sesion NUMBER(6) REFERENCES sesion,
-    fecha_reserva DATE,
-    PRIMARY KEY (num_socio)
-) ENGINE = InnoDB;
-
-ALTER TABLE socio ADD COLUMN email VARCHAR2(100);
-```
-
-{{% details title="Pista: categories d'errors que has de trobar" %}}
-Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` no permés en Oracle (1), precisió numèrica insuficient (1), tipus inadequat per a un identificador de persona (1), atribut derivat (1), clau primària incorrecta (1), restriccions sense nom (totes).
-{{% /details %}}
-
----
-
 ## Projecte EduGest · Tema 3: implementació
 
 {{< practica num="EduGest-3" tipo="Proyecto" duracion="Treball transversal (2 setmanes)" nivel="3" ra="RA2: b, g · RA3: a, b, c, d, e, g, h" sgbd="Oracle 26ai" entrega="edugest/01_esquema.sql, 04_indices_secuencias.sql i docs/05-implementacion.md" >}}
@@ -681,7 +381,7 @@ Sintaxi d'un altre SGBD (2), ordre de creació (1), coma oblidada (1), `CHECK` n
 1. **El teu script d'esquema.** Implementa en Oracle **el teu** model relacional normalitzat (EduGest-2) en un script relanzable, amb totes les restriccions amb nom, índexs sobre les claus alienes i comentaris en les taules.
 2. **Comparació.** Executa el teu script en un usuari `EDUGEST_MIO` i el de referència en `EDUGEST`. Usa el diccionari (`USER_TAB_COLUMNS`, `USER_CONSTRAINTS`) per a llistar les diferències i justifica les teues en `05-implementacion.md`.
 3. **Restriccions implementables amb DDL.** Del teu catàleg de restriccions (Tema 2-Tema 2), implementa totes les que es puguen expressar amb `CHECK` o índexs únics basats en funció. Documenta les que no es poden plasmar amb DDL (RA2.i).
-4. **Índexs i seqüències.** Lliura `04_indices_secuencias.sql` (pràctica 3.6).
+4. **Índexs i seqüències.** Lliura `04_indices_secuencias.sql` (pràctica 3.4).
 5. **Diagrama.** Genera amb SQL Developer Data Modeler el diagrama relacional de l'esquema `EDUGEST` per enginyeria inversa i inclou-lo en la documentació.
 
 #### Comprovació

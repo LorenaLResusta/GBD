@@ -94,10 +94,6 @@ Tu respuesta es completa si:
 > - Confundir **redundancia** con **inconsistencia**. La redundancia es repetir un dato; la inconsistencia es que sus copias no coincidan. La primera provoca la segunda.
 > - Responder con definiciones copiadas en lugar de ejemplos de la hoja. El criterio RA1.d pide **evaluar** la utilidad del SGBD en un caso concreto.
 
-#### Ampliación
-
-Propón cómo dividirías la hoja en **varias tablas** para que cada dato aparezca una sola vez. No hace falta usar la notación formal: basta con indicar qué columnas iría en cada tabla y cómo se relacionan. Guarda la propuesta: la revisaremos en el tema 2 (normalización).
-
 ---
 
 ## Práctica 1.2 · Primer contacto con Oracle: dentro de un SGBD
@@ -238,10 +234,6 @@ Te incorporas al departamento de sistemas de EduGest. Antes de empezar a desarro
 | `ORA-12514` | La base de datos todavía arranca o has escrito mal el servicio | Espera y usa `FREEPDB1` |
 | `docker: Error response from daemon: Conflict` | Ya existe un contenedor con ese nombre | `docker start oracle26ai` en lugar de `docker run` |
 
-#### Ampliación
-
-Ejecuta `docker stats oracle26ai` mientras lanzas varias consultas. Anota la memoria que consume el contenedor y relaciónala con el parámetro `sga_target`. Después ejecuta el script `edugest_00_usuario.sql` del [proyecto EduGest](/guia/proyecto-edugest) y comprueba que el nuevo usuario aparece en `dba_users`.
-
 ---
 
 ## Práctica 1.3 · Elegir un SGBD para cada caso
@@ -291,10 +283,6 @@ Termina con una tabla resumen y una conclusión: ¿existe un SGBD que sea el mej
 
 > [!WARNING]
 > Elegir el SGBD «más popular» o «el que conozco» no es una justificación. Cada recomendación debe apoyarse en una característica del caso.
-
-#### Ampliación
-
-Añade un caso E propuesto por ti, a partir de una empresa real de tu entorno (por ejemplo, la de tus prácticas en empresa), y resuélvelo con el mismo esquema.
 
 ---
 

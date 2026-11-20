@@ -25,18 +25,15 @@ Esta part del tema ocupa **11 hores d'aula** (6 de teoria i 5 de pràctica).
 items:
   - {h: 1, tipo: T, t: "Relació, atribut, domini, tupla, grau i cardinalitat. Claus", ref: "§1 i §2 · laboratori de claus"}
   - {h: 2, tipo: T, t: "Restriccions i integritat referencial", ref: "§3 · simulador d'integritat"}
-  - {h: 1, tipo: P, t: "Simulador d'integritat referencial", ref: "Pràctica 2.16"}
+  - {h: 1, tipo: P, t: "Simulador d'integritat referencial", ref: "Pràctica 2.6"}
   - {h: 1, tipo: T, t: "Regles de transformació (I): entitats, febles i atributs", ref: "§4.1 a §4.3 · transformador"}
   - {h: 1, tipo: T, t: "Regles de transformació (II): relacions i jerarquies. Exemples", ref: "§4.4 a §4.9 i §5"}
-  - {h: 1, tipo: P, t: "Biblioteca: de l'E/R a les taules", ref: "Pràctica 2.15"}
+  - {h: 1, tipo: P, t: "Biblioteca: de l'E/R a les taules", ref: "Pràctica 2.5"}
   - {h: 1, tipo: T, t: "Restriccions no representables i eines", ref: "§6 i §7"}
-  - {h: 1, tipo: P, t: "Tres formes de transformar una jerarquia", ref: "Pràctica 2.17"}
-  - {h: 1, tipo: P, t: "Catàleg de restriccions d'un hotel", ref: "Pràctica 2.19"}
+  - {h: 1, tipo: P, t: "Tres formes de transformar una jerarquia", ref: "Pràctica 2.7"}
+  - {h: 1, tipo: P, t: "Catàleg de restriccions d'un hotel", ref: "Pràctica 2.8"}
   - {h: 1, tipo: P, t: "Model lògic d'EduGest", ref: "§8 i projecte EduGest-2"}
 autonomo:
-  - "Tasques de transformació 1 a 7 (E/R → relacional)"
-  - "Pràctica 2.18 (enginyeria inversa) i pràctica 2.20"
-  - "Banc de 20 exercicis"
 {{< /sesiones >}}
 
 > [!IMPORTANT]
@@ -232,9 +229,9 @@ Canvia la política de la clau aliena, intenta esborrar, canviar i inserir files
 
 ---
 
-{{< sesion n="3" h="1" tipo="p" practica="2.16" >}}Simulador d'integritat referencial{{< /sesion >}}
+{{< sesion n="3" h="1" tipo="p" practica="2.6" >}}Simulador d'integritat referencial{{< /sesion >}}
 
-La pràctica 2.16 es fa a la [pàgina de pràctiques](/tema2-diseno-logico/relacional-practicas), amb llapis i paper, i s'implementarà a el tema 3.
+La pràctica 2.6 es fa a la [pàgina de pràctiques](/tema2-diseno-logico/relacional-practicas), amb llapis i paper, i s'implementarà a el tema 3.
 
 ---
 
@@ -548,7 +545,7 @@ Un concessionari ven `COCHE` (`matricula`, `modelo`, `precio`) a `CLIENTE` (`id_
 
 ---
 
-{{< sesion n="6" h="1" tipo="p" practica="2.15" >}}Biblioteca: de l'E/R a les taules{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="p" practica="2.5" >}}Biblioteca: de l'E/R a les taules{{< /sesion >}}
 
 {{< sesion n="7" h="1" tipo="t" >}}Restriccions no representables i eines{{< /sesion >}}
 
@@ -601,9 +598,9 @@ Fes-te tres preguntes, en este ordre: es decidix mirant **una sola fila**? → r
 
 ---
 
-{{< sesion n="8" h="1" tipo="p" practica="2.17" >}}Tres formes de transformar una jerarquia{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="p" practica="2.7" >}}Tres formes de transformar una jerarquia{{< /sesion >}}
 
-{{< sesion n="9" h="1" tipo="p" practica="2.19" >}}Catàleg de restriccions d'un hotel{{< /sesion >}}
+{{< sesion n="9" h="1" tipo="p" practica="2.8" >}}Catàleg de restriccions d'un hotel{{< /sesion >}}
 
 ## 8. Cas guiat: EduGest del model E/R al relacional
 

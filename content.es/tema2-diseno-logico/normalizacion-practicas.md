@@ -10,19 +10,17 @@ math: true
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [2.21 Normalizar las facturas de un taller](#práctica-221--normalizar-las-facturas-de-un-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
-| [2.22 Dependencias, cierres y claves](#práctica-222--dependencias-cierres-y-claves) | Guiada | ●●○ | RA2.f, RA2.h |
-| [2.23 ¿En qué forma normal está?](#práctica-223--en-qué-forma-normal-está) | Autónoma | ●●○ | RA2.h |
-| [2.24 Reservas de un hotel rural](#práctica-224--reservas-de-un-hotel-rural) | Autónoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
-| [2.25 FNBC y dependencias perdidas](#práctica-225--fnbc-y-dependencias-perdidas) | Reto | ●●● | RA2.h, RA2.i |
-| [2.26 ¿Normalizar o desnormalizar?](#práctica-226--normalizar-o-desnormalizar) | Reto | ●●● | RA2.h |
+| [2.9 Normalizar las facturas de un taller](#práctica-29--normalizar-las-facturas-de-un-taller) | Guiada | ●○○ | RA2.c, RA2.d, RA2.h |
+| [2.10 Dependencias, cierres y claves](#práctica-210--dependencias-cierres-y-claves) | Guiada | ●●○ | RA2.f, RA2.h |
+| [2.11 ¿En qué forma normal está?](#práctica-211--en-qué-forma-normal-está) | Autónoma | ●●○ | RA2.h |
+| [2.12 Reservas de un hotel rural](#práctica-212--reservas-de-un-hotel-rural) | Autónoma | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h |
 | [Proyecto EduGest · Tema 2](#proyecto-edugest--tema-2-informe-de-normalización) | Proyecto | ●●○ | RA2.c, RA2.d, RA2.f, RA2.h, RA2.i |
 
 ---
 
-## Práctica 2.21 · Normalizar las facturas de un taller
+## Práctica 2.9 · Normalizar las facturas de un taller
 
-{{< practica num="2.21" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: c, d, h" sgbd="Hoja de cálculo o papel" entrega="Documento con cada paso de la normalización" >}}
+{{< practica num="2.9" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA2: c, d, h" sgbd="Hoja de cálculo o papel" entrega="Documento con cada paso de la normalización" >}}
 
 #### Objetivo
 
@@ -92,15 +90,11 @@ Reglas del negocio (confirmadas con el taller):
 > - Guardar `dni_cliente` también en FACTURA «para no tener que pasar por el vehículo». Sería una dependencia transitiva: si el vehículo cambia de dueño, las facturas antiguas mostrarían datos contradictorios. Ojo: si el negocio exige conservar quién pagó cada factura aunque el coche cambie de dueño, entonces **sí** es un dato propio de la factura. Pregunta al cliente.
 > - Borrar `precio_aplicado` por pensar que es redundante con `precio_actual`.
 
-#### Ampliación
-
-Comprueba en tu solución que la descomposición es **sin pérdida**: para cada par de tablas que se combinan, indica el atributo común y de qué tabla es clave. Cuando termines el tema 4, escribe el `JOIN` que reconstruye la hoja original.
-
 ---
 
-## Práctica 2.22 · Dependencias, cierres y claves
+## Práctica 2.10 · Dependencias, cierres y claves
 
-{{< practica num="2.22" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA2: f, h" sgbd="Papel" entrega="Hoja de ejercicios" >}}
+{{< practica num="2.10" tipo="Guiada" duracion="1 sesión" nivel="2" ra="RA2: f, h" sgbd="Papel" entrega="Hoja de ejercicios" >}}
 
 #### Objetivo
 
@@ -121,9 +115,9 @@ Para cada relación, calcula las claves candidatas indicando los cierres que has
 
 ---
 
-## Práctica 2.23 · ¿En qué forma normal está?
+## Práctica 2.11 · ¿En qué forma normal está?
 
-{{< practica num="2.23" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: h" sgbd="Papel" entrega="Tabla de respuestas justificadas" >}}
+{{< practica num="2.11" tipo="Autónoma" duracion="1 sesión" nivel="2" ra="RA2: h" sgbd="Papel" entrega="Tabla de respuestas justificadas" >}}
 
 #### Enunciado
 
@@ -151,9 +145,9 @@ La clave es compuesta (num_vuelo, fecha). `avion` depende de toda la clave (el m
 
 ---
 
-## Práctica 2.24 · Reservas de un hotel rural
+## Práctica 2.12 · Reservas de un hotel rural
 
-{{< practica num="2.24" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: c, d, f, h" sgbd="Papel o Data Modeler" entrega="Informe de normalización completo" >}}
+{{< practica num="2.12" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA2: c, d, f, h" sgbd="Papel o Data Modeler" entrega="Informe de normalización completo" >}}
 
 #### Contexto
 
@@ -182,53 +176,6 @@ Una reserva puede incluir varias habitaciones, cada una con sus propios extras. 
 - [ ] `extras` se trata como multivaluado en 1FN y termina en una tabla con su propia clave.
 - [ ] El precio por noche se asocia al **tipo** de habitación, no a la reserva.
 - [ ] El esquema final tiene entre 6 y 8 tablas, y todas están en 3FN.
-{{% /comprobacion %}}
-
----
-
-## Práctica 2.25 · FNBC y dependencias perdidas
-
-{{< practica num="2.25" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: h, i" sgbd="Papel" entrega="Análisis razonado" >}}
-
-#### Contexto
-
-En una autoescuela, cada **profesor** da clase en **una sola** sede. Un alumno, en cada sede a la que acude, tiene asignado **un único** profesor.
-
-CLASE(alumno, sede, profesor) con `alumno, sede → profesor` y `profesor → sede`.
-
-#### Enunciado
-
-1. Calcula las claves candidatas.
-2. Demuestra que la relación está en 3FN pero no en FNBC.
-3. Descomponla en FNBC y comprueba que la descomposición es sin pérdida.
-4. ¿Qué dependencia se pierde? Escribe un ejemplo de datos que la incumpla y que las nuevas tablas aceptarían.
-5. Recomienda una solución para la autoescuela y explica cómo garantizarías la regla perdida (adelanta lo que harías en el tema 5).
-
-{{% details title="Pista" %}}
-Las claves son (alumno, sede) y (alumno, profesor). La descomposición en FNBC es PROFESOR_SEDE(<u>profesor</u>, sede) y ALUMNO_PROFESOR(<u>alumno, profesor</u>). Prueba a asignar al mismo alumno dos profesores de la misma sede.
-{{% /details %}}
-
----
-
-## Práctica 2.26 · ¿Normalizar o desnormalizar?
-
-{{< practica num="2.26" tipo="Reto" duracion="1 sesión" nivel="3" ra="RA2: h" sgbd="Documento" entrega="Informe de decisión (1 página por caso)" >}}
-
-#### Enunciado
-
-Para cada propuesta de un compañero, decide si la aceptas, la rechazas o la aceptas con condiciones. Justifica la decisión con argumentos de integridad, rendimiento y mantenimiento.
-
-1. «Guardemos el `nombre_ciclo` en cada fila de MATRICULA para que los informes de secretaría no necesiten tres JOIN».
-2. «Añadamos `num_alumnos` a la tabla GRUPO, porque el panel de jefatura lo consulta cada vez que se abre».
-3. «En la tabla de pedidos de la tienda online guardemos la dirección de envío completa, aunque ya esté en CLIENTE».
-4. «Para el cuadro de mando de la dirección, creemos una tabla con una fila por ciclo, curso y año con la nota media y el número de aprobados, que se recalcula cada noche».
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] El caso 3 se identifica como un dato **histórico** (la dirección puede cambiar después del pedido).
-- [ ] El caso 4 se relaciona con los sistemas OLAP del tema 1.
-- [ ] Cuando aceptas una redundancia, explicas **cómo** se mantiene sincronizada.
 {{% /comprobacion %}}
 
 ---

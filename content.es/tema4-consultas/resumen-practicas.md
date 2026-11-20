@@ -9,12 +9,10 @@ bookToc: true
 
 | Práctica | Tipo | Nivel | CE principales |
 |---|---|---|---|
-| [4.6 Consultas resumen](#práctica-46--consultas-resumen) | Guiada | ●○○ | RA4.c |
-| [4.7 Composiciones paso a paso](#práctica-47--composiciones-paso-a-paso) | Guiada | ●●○ | RA4.d, RA4.e |
-| [4.8 Informes para jefatura](#práctica-48--informes-para-jefatura) | Autónoma | ●●○ | RA4.c-e |
-| [4.9 Subconsultas](#práctica-49--subconsultas) | Autónoma | ●●○ | RA4.f |
-| [4.10 Optimización: medir antes y después](#práctica-410--optimización-medir-antes-y-después) | Guiada | ●●● | RA4.g |
-| [4.11 Reto: el cuadro de mando](#práctica-411--reto-el-cuadro-de-mando) | Reto | ●●● | RA4.c-g |
+| [4.5 Consultas resumen](#práctica-45--consultas-resumen) | Guiada | ●○○ | RA4.c |
+| [4.6 Composiciones paso a paso](#práctica-46--composiciones-paso-a-paso) | Guiada | ●●○ | RA4.d, RA4.e |
+| [4.7 Subconsultas](#práctica-47--subconsultas) | Autónoma | ●●○ | RA4.f |
+| [4.8 Optimización: medir antes y después](#práctica-48--optimización-medir-antes-y-después) | Guiada | ●●● | RA4.g |
 | [Proyecto EduGest · Tema 4](#proyecto-edugest--tema-4-informes) | Proyecto | ●●● | RA4 completo |
 
 > [!IMPORTANT]
@@ -22,9 +20,9 @@ bookToc: true
 
 ---
 
-## Práctica 4.6 · Consultas resumen
+## Práctica 4.5 · Consultas resumen
 
-{{< practica num="4.6" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
+{{< practica num="4.5" tipo="Guiada" duracion="2 sesiones" nivel="1" ra="RA4: c" sgbd="Oracle 26ai · EDUGEST" entrega="p7_1.sql" >}}
 
 #### Objetivo
 
@@ -47,7 +45,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 
     *1 fila*
 
-
 2. **Agrupar por una columna.** Número de alumnos por localidad, de más a menos.
 
     ```sql
@@ -67,7 +64,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
     | San Vicente del Raspeig | 3 |
 
     *6 filas*
-
 
 3. **Agrupar por varias columnas.** Faltas y horas de falta por mes y por tipo (justificada o no).
 
@@ -99,7 +95,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 
     *15 filas*
 
-
 4. **Filtrar grupos.** Módulos (por `id_modulo`) con al menos un suspenso y su número de suspensos, solo si hay **dos o más**.
 
     ```sql
@@ -124,7 +119,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 
     *8 filas*
 
-
 5. **Contar condiciones.** Para cada convocatoria: matrículas, aprobadas, suspensas y sin calificar.
 
     ```sql
@@ -145,7 +139,6 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 
     *2 filas*
 
-
 6. **Provoca los errores típicos** y anota el mensaje:
 
     ```sql
@@ -164,10 +157,9 @@ Usar funciones de agregado, `GROUP BY` y `HAVING`, y entender cómo influyen los
 - [ ] Sabes corregir cada uno de los tres errores del paso 6.
 {{% /comprobacion %}}
 
+## Práctica 4.6 · Composiciones paso a paso
 
-## Práctica 4.7 · Composiciones paso a paso
-
-{{< practica num="4.7" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respuestas" >}}
+{{< practica num="4.6" tipo="Guiada" duracion="2 sesiones" nivel="2" ra="RA4: d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_2.sql + respuestas" >}}
 
 #### Objetivo
 
@@ -231,7 +223,6 @@ Construir composiciones de varias tablas siguiendo el camino de claves ajenas, y
 
     *10 filas*
 
-
 4. **Provoca un producto cartesiano** quitando la condición `ON` de `MODULO` (en Oracle, sustituye `JOIN modulo mo ON ...` por `CROSS JOIN modulo mo`). ¿Cuántas filas salen ahora en el paso c? ¿Por qué?
 
 5. **Interna frente a externa.** Ejecuta las dos consultas y explica la diferencia:
@@ -288,7 +279,6 @@ Construir composiciones de varias tablas siguiendo el camino de claves ajenas, y
 
     *12 filas*
 
-
 {{% /steps %}}
 
 #### Comprobación
@@ -302,61 +292,9 @@ Construir composiciones de varias tablas siguiendo el camino de claves ajenas, y
 
 ---
 
-## Práctica 4.8 · Informes para jefatura
+## Práctica 4.7 · Subconsultas
 
-{{< practica num="4.8" tipo="Autónoma" duracion="3 sesiones" nivel="2" ra="RA4: c, d, e" sgbd="Oracle 26ai · EDUGEST" entrega="p7_3.sql comentado" >}}
-
-#### Objetivo
-
-Resolver de forma autónoma consultas de varias tablas, decidiendo el tipo de composición y combinándolas con agrupamientos.
-
-#### Enunciado
-
-**J1.** Listado de módulos con el nombre completo de su ciclo, solo de 2º curso.
-
-{{< solucion id="tema4-024" title="Solución J1" />}}
-
-**J2.** Profesorado con el nombre de su departamento y, si es jefe de algún departamento, el nombre de ese departamento (si no, vacío).
-
-{{< solucion id="tema4-025" title="Solución J2" />}}
-
-**J3.** Carga docente: para cada profesor que imparte clase, número de módulos, número de grupos distintos y horas semanales totales, de más a menos horas.
-
-{{< solucion id="tema4-026" title="Solución J3" />}}
-
-**J4.** Todos los grupos con su número de alumnos y su tutor; deben aparecer los grupos sin alumnos y sin tutor.
-
-{{< solucion id="tema4-027" title="Solución J4" />}}
-
-**J5.** Porcentaje de aprobados por módulo de DAM (código, nombre, matrículas calificadas y porcentaje con un decimal), del peor al mejor porcentaje.
-
-{{< solucion id="tema4-028" title="Solución J5" />}}
-
-**J6.** Alumnado con más de 3 horas de faltas **no justificadas** en total (nombre, grupo y horas).
-
-{{< solucion id="tema4-029" title="Solución J6" />}}
-
-**J7.** Profesorado del departamento de Informática y Comunicaciones que **no** es tutor de ningún grupo.
-
-{{< solucion id="tema4-030" title="Solución J7" />}}
-
-**J8.** Para cada alumno de 1DAM, su nota en *Bases de datos* (0484) y en *Programación* (0485) en la misma fila.
-
-{{< solucion id="tema4-031" title="Solución J8" />}}
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] Has elegido composición interna o externa según la pregunta y lo justificas en un comentario.
-- [ ] J4 muestra 2ASIR con 0 alumnos y «(sin tutor)».
-- [ ] J5 no divide entre las matrículas sin calificar.
-{{% /comprobacion %}}
-
----
-
-## Práctica 4.9 · Subconsultas
-
-{{< practica num="4.9" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
+{{< practica num="4.7" tipo="Autónoma" duracion="2 sesiones" nivel="2" ra="RA4: f" sgbd="Oracle 26ai · EDUGEST" entrega="p7_4.sql" >}}
 
 #### Enunciado
 
@@ -394,9 +332,9 @@ SELECT nombre FROM profesor WHERE id_profesor NOT IN (SELECT id_tutor FROM grupo
 
 ---
 
-## Práctica 4.10 · Optimización: medir antes y después
+## Práctica 4.8 · Optimización: medir antes y después
 
-{{< practica num="4.10" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
+{{< practica num="4.8" tipo="Guiada" duracion="2 sesiones" nivel="3" ra="RA4: g" sgbd="Oracle 26ai · SQL Developer (Explicar plan, Autotrace) o SQLcl" entrega="p7_6.sql + tabla de mediciones + capturas de los planes" >}}
 
 #### Objetivo
 
@@ -499,38 +437,6 @@ Completa la tabla de mediciones con tus datos (los valores exactos dependen de t
 > Las mediciones de tiempo varían entre ejecuciones porque Oracle guarda en caché los bloques leídos. Ejecuta cada consulta **dos o tres veces** y anota el tiempo de las últimas. El **coste** del plan es una estimación del optimizador, no un tiempo.
 {{% /comprobacion %}}
 
-#### Ampliación
-
-Añade `/*+ FULL(ap) */` justo después de `SELECT` en la consulta 1 con índice y compara. Las *hints* obligan al optimizador a usar un plan concreto; en producción solo se usan cuando se ha demostrado que el optimizador se equivoca.
-
----
-
-## Práctica 4.11 · Reto: el cuadro de mando
-
-{{< practica num="4.11" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA4: c, d, e, f, g" sgbd="Oracle 26ai · EDUGEST" entrega="p7_7.sql + defensa oral" >}}
-
-#### Enunciado
-
-La dirección quiere un **cuadro de mando** con una sola consulta por indicador. Resuelve cada uno con la técnica que consideres más adecuada y justifica la elección:
-
-1. Para cada ciclo (incluido SMR): número de grupos, de alumnos, de matrículas y nota media.
-2. Para cada profesor que imparte clase: la nota media de sus alumnos en los módulos que imparte **en los grupos en los que los imparte**. (Cuidado: la composición entre `IMPARTE` y `MATRICULA` debe usar el módulo **y** el grupo del alumno.)
-3. Alumnos que han suspendido **todos** los módulos en los que están calificados.
-4. Porcentaje de horas de falta justificadas sobre el total, por grupo.
-5. Escribe una de las consultas anteriores de dos formas distintas (por ejemplo, subconsulta frente a composición) y compara sus planes de ejecución.
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] El indicador 1 tiene 4 filas y SMR aparece con ceros.
-- [ ] El indicador 2 no mezcla alumnos de otros grupos con el mismo módulo.
-- [ ] Puedes defender cada consulta y explicar su plan de ejecución.
-
-{{% details title="Pista para el indicador 3" %}}
-«Todos suspendidos» equivale a «no existe ninguno aprobado» y «tiene al menos uno calificado»: `NOT EXISTS (... nota_final >= 5)` y `EXISTS (... nota_final IS NOT NULL)`. Otra forma: `GROUP BY` alumno con `HAVING MAX(nota_final) < 5`.
-{{% /details %}}
-{{% /comprobacion %}}
-
 ---
 
 ## Proyecto EduGest · Tema 4: informes
@@ -540,7 +446,7 @@ La dirección quiere un **cuadro de mando** con una sola consulta por indicador.
 #### Enunciado
 
 1. Escribe **diez informes** para EduGest que en conjunto usen: composiciones internas y externas (al menos tres tablas en alguno), consultas resumen con `HAVING` y subconsultas (una correlacionada y una con `EXISTS`).
-2. **Optimización:** elige dos de tus informes, obtén su plan de ejecución, propón una mejora (índice o reescritura) y documenta el antes y el después en `07-optimizacion.md`. Si EduGest tiene pocos datos para notar la diferencia, explícalo y apóyate en la práctica 4.10.
+2. **Optimización:** elige dos de tus informes, obtén su plan de ejecución, propón una mejora (índice o reescritura) y documenta el antes y el después en `07-optimizacion.md`. Si EduGest tiene pocos datos para notar la diferencia, explícalo y apóyate en la práctica 4.8.
 
 #### Comprobación
 

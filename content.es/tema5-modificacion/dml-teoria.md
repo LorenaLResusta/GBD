@@ -41,17 +41,15 @@ items:
   - {h: 2, tipo: T, t: "Modificar datos: herramientas, INSERT", ref: "§1 y §2"}
   - {h: 2, tipo: P, t: "Altas, cambios y bajas en EduGest", ref: "Práctica 5.1"}
   - {h: 2, tipo: T, t: "UPDATE, DELETE y TRUNCATE", ref: "§3 y §4"}
-  - {h: 2, tipo: P, t: "Modificaciones con subconsultas", ref: "Práctica 5.3"}
   - {h: 2, tipo: T, t: "INSERT … SELECT, CTAS y MERGE", ref: "§5"}
-  - {h: 1, tipo: P, t: "Copias, históricos y carga de notas con MERGE", ref: "Prácticas 5.2 y 5.6"}
+  - {h: 3, tipo: P, t: "Copias, históricos e INSERT … SELECT", ref: "Práctica 5.2"}
   - {h: 1, tipo: T, t: "Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT", ref: "§6 y §7 · laboratorio de transacciones"}
-  - {h: 1, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 5.4"}
+  - {h: 1, tipo: P, t: "Laboratorio de transacciones", ref: "Práctica 5.3"}
   - {h: 1, tipo: T, t: "Concurrencia, bloqueos e interbloqueos", ref: "§8 y §9"}
-  - {h: 1, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 5.5"}
+  - {h: 1, tipo: P, t: "Dos sesiones, un dato: concurrencia y bloqueos", ref: "Práctica 5.4"}
   - {h: 1, tipo: T, t: "Integridad referencial y restricciones diferidas", ref: "§10"}
   - {h: 2, tipo: P, t: "Modificaciones en EduGest", ref: "Proyecto EduGest-5"}
 autonomo:
-  - "Terminar en casa las modificaciones de la práctica 5.3 que no hayan dado tiempo"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 
@@ -767,7 +765,7 @@ La clave ajena de `IMPARTE` **no** tiene regla de borrado, así que protege al p
 ---
 
 
-{{< sesion n="5" h="2" tipo="t" >}}INSERT … SELECT, CTAS y MERGE{{< /sesion >}}
+{{< sesion n="4" h="2" tipo="t" >}}INSERT … SELECT, CTAS y MERGE{{< /sesion >}}
 
 ## 5. Insertar desde consultas y `MERGE`
 
@@ -1027,7 +1025,7 @@ WHEN NOT MATCHED THEN
 ---
 
 
-{{< sesion n="7" h="1" tipo="t" >}}Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT{{< /sesion >}}
+{{< sesion n="6" h="1" tipo="t" >}}Transacciones, ACID, COMMIT, ROLLBACK y SAVEPOINT{{< /sesion >}}
 
 ## 6. Transacciones y propiedades ACID
 
@@ -1122,7 +1120,7 @@ SELECT COUNT(*) FROM matricula WHERE nota_final > 10;   -- 0: no se ha aplicado 
 Aunque la sentencia había empezado a modificar filas, al llegar a una nota de 10 falla y Oracle **deshace sus propios cambios**. La transacción, en cambio, sigue abierta: si antes habías hecho otro `UPDATE` correcto, **sigue pendiente de confirmación**.
 
 > [!WARNING]
-> La atomicidad de sentencia es la trampa de la que nacen la mitad de las inconsistencias de las aplicaciones mal escritas: ejecutan tres sentencias, una falla, **no comprueban el error** y lanzan `COMMIT`. El resultado es una transacción a medias confirmada. Toda aplicación debe comprobar el resultado de cada sentencia y decidir `COMMIT` o `ROLLBACK` en consecuencia (práctica 5.4).
+> La atomicidad de sentencia es la trampa de la que nacen la mitad de las inconsistencias de las aplicaciones mal escritas: ejecutan tres sentencias, una falla, **no comprueban el error** y lanzan `COMMIT`. El resultado es una transacción a medias confirmada. Toda aplicación debe comprobar el resultado de cada sentencia y decidir `COMMIT` o `ROLLBACK` en consecuencia (práctica 5.3).
 
 ### 6.4 Cuándo empieza y cuándo acaba una transacción en Oracle
 
@@ -1308,7 +1306,7 @@ Una consulta que lleva minutos ejecutándose necesita ver los datos **tal como e
 ---
 
 
-{{< sesion n="9" h="1" tipo="t" >}}Concurrencia, bloqueos e interbloqueos{{< /sesion >}}
+{{< sesion n="8" h="1" tipo="t" >}}Concurrencia, bloqueos e interbloqueos{{< /sesion >}}
 
 ## 8. Concurrencia y bloqueos
 
@@ -1539,7 +1537,7 @@ Repite el escenario **«Interbloqueo (ORA-00060)»** del [laboratorio de transac
 
 ---
 
-{{< sesion n="11" h="1" tipo="t" >}}Integridad referencial y restricciones diferidas{{< /sesion >}}
+{{< sesion n="10" h="1" tipo="t" >}}Integridad referencial y restricciones diferidas{{< /sesion >}}
 
 ## 10. Integridad referencial y restricciones diferidas
 

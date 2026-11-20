@@ -13,7 +13,6 @@ Cada tema té una pàgina de **pràctiques**. Les pràctiques són la part princ
 |---|---|---|
 | **Guiada** | Es presenta el procediment pas a pas. El seu objectiu és aprendre la tècnica. | A classe. Es comprova al final de la sessió amb la llista de comprovació. |
 | **Autònoma** | Es planteja un problema semblant sense el procediment. El seu objectiu és aplicar la tècnica. | Individual. Es lliura i s'avalua. |
-| **Repte** | Un problema obert o amb una dificultat extra. Exigix analitzar i decidir. | Opcional o per a pujar nota. Es defén oralment. |
 | **Projecte** | La tasca d'EduGest del tema. | Individual o per parelles. Forma part del projecte final. |
 
 La dificultat s'indica amb tres punts: ●○○ bàsic, ●●○ intermedi i ●●● avançat.
@@ -31,7 +30,6 @@ Totes les pràctiques seguixen el mateix esquema. Així saps què s'espera en ca
 5. **Desenvolupament.** El procediment guiat (només en pràctiques guiades).
 6. **Comprovació.** Proves que permeten verificar que el resultat és correcte.
 7. **Errors habituals.** Problemes freqüents i com diagnosticar-los.
-8. **Ampliació.** Una modificació que t'obliga a aplicar el que has aprés pel teu compte.
 
 > [!TIP]
 > Llig la **Comprovació** abans de començar. Et diu exactament quin resultat has d'obtindre i t'estalvia temps.

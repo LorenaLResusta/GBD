@@ -9,9 +9,8 @@ bookToc: true
 
 | Pràctica | Tipus | Nivell | CE principals |
 |---|---|---|---|
-| [5.7 Primers blocs: l'expedient d'un alumne](#pràctica-57--primers-blocs-lexpedient-dun-alumne) | Guiada | ●○○ | RA5.e |
-| [5.8 Matrícula amb excepcions](#pràctica-58--matrícula-amb-excepcions) | Guiada | ●●○ | RA5.e |
-| [5.9 Repte: guió de promoció de curs](#pràctica-59--repte-guió-de-promoció-de-curs) | Repte | ●●● | RA5.d-g |
+| [5.5 Primers blocs: l'expedient d'un alumne](#pràctica-55--primers-blocs-lexpedient-dun-alumne) | Guiada | ●○○ | RA5.e |
+| [5.6 Matrícula amb excepcions](#pràctica-56--matrícula-amb-excepcions) | Guiada | ●●○ | RA5.e |
 | [Projecte EduGest · Tema 5](#projecte-edugest--tema-5-guions-de-manteniment) | Projecte | ●●● | RA5.d, RA5.e |
 
 > [!IMPORTANT]
@@ -21,9 +20,9 @@ bookToc: true
 
 ---
 
-## Pràctica 5.7 · Primers blocs: l'expedient d'un alumne
+## Pràctica 5.5 · Primers blocs: l'expedient d'un alumne
 
-{{< practica num="5.7" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA5: e" sgbd="Oracle 26ai · SQL Developer i SQLcl" entrega="p9_1.sql + eixida" >}}
+{{< practica num="5.5" tipo="Guiada" duracion="2 sessions" nivel="1" ra="RA5: e" sgbd="Oracle 26ai · SQL Developer i SQLcl" entrega="p9_1.sql + eixida" >}}
 
 #### Objectiu
 
@@ -121,9 +120,9 @@ Tiene faltas registradas
 
 ---
 
-## Pràctica 5.8 · Matrícula amb excepcions
+## Pràctica 5.6 · Matrícula amb excepcions
 
-{{< practica num="5.8" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="matricula_bloque.sql + bateria de proves" >}}
+{{< practica num="5.6" tipo="Guiada" duracion="2 sessions" nivel="2" ra="RA5: e" sgbd="Oracle 26ai" entrega="matricula_bloque.sql + bateria de proves" >}}
 
 #### Objectiu
 
@@ -171,95 +170,15 @@ L'alumne 1 ja tenia una matrícula del mòdul 4 en 2025-26 (convocatòria 1). El
 {{% /details %}}
 {{% /comprobacion %}}
 
-#### Ampliació
-
-Afig una variable `v_forzar BOOLEAN := FALSE` que permeta saltar-se la regla del cicle (matrícula autoritzada per prefectura) i comprova que, sense ella, la regla continua aplicant-se.
-
 ---
 
-
-## Pràctica 5.9 · Repte: guió de promoció de curs
-
-{{< practica num="5.9" tipo="Reto" duracion="3 sessions" nivel="3" ra="RA5: d, e, f, g" sgbd="Oracle 26ai · SQLcl" entrega="promocion_2026_27.sql + eixida (SPOOL) + defensa oral" >}}
-
-#### Objectiu
-
-Dissenyar un guió transaccional que realitze una tasca complexa de forma segura, verificable i repetible.
-
-#### Context
-
-Ha acabat el curs 2025-26 i cap d'estudis ha de preparar el curs 2026-27 per a l'alumnat de **primer curs**. Les regles són:
-
-1. **Promociona** a segon l'alumnat de primer amb **com a màxim un** mòdul pendent. Un mòdul està pendent si la seua nota de 2025-26 és menor que 5 o està sense qualificar.
-2. A l'alumnat que promociona se li canvia el grup al de segon del seu cicle (1DAM → 2DAM...) i se'l matricula en **tots** els mòduls de segon del seu cicle, en primera convocatòria.
-3. **Tot** l'alumnat de primer (promocione o no) es matricula en 2026-27 dels seus mòduls **pendents**, amb la convocatòria següent a la que tenia.
-4. Data de matrícula: 10 de setembre de 2026.
-
-#### Enunciat
-
-Escriu `promocion_2026_27.sql` amb esta estructura:
-
-```sql
-WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK
-SPOOL promocion_2026_27.log
-
--- 0. Comprovacions prèvies (no modifiquen res)
---    · Ja existixen matrícules de 2026-27? Si existixen, el guió no s'ha d'executar.
---    · Llistat de l'alumnat que promociona i del que no.
-
--- 1. Matrícules de mòduls pendents (regla 3)
--- 2. Matrícules de segon curs (regla 2) — abans de canviar el grup!
--- 3. Canvi de grup (regla 2)
-
--- 4. Verificacions: recomptes esperats
--- 5. COMMIT
-SPOOL OFF
-```
-
-#### Comprovació
-
-Amb les dades originals d'EduGest, el teu guió ha d'obtindre exactament:
-
-| Comprovació | Valor esperat |
-|---|---|
-| Alumnat de primer que promociona | 12 (4 de 1DAM, 4 de 1DAW, 4 de 1ASIR) |
-| Matrícules de pendents inserides | 18 |
-| Matrícules de segon inserides | 36 (20 de DAM i 16 de DAW) |
-| Files d'`ALUMNO` amb el grup canviat | 12 |
-| Total de matrícules de 2026-27 | 54 |
-| Alumnat per grup després del guió | 1ASIR 1 · 1DAM 3 · 1DAW 2 · 2ASIR 4 · 2DAM 10 · 2DAW 9 · sense grup 3 |
-
-- [ ] Executar el guió **per segona vegada** no canvia res (s'atura en les comprovacions prèvies).
-- [ ] Si provoques un error a mitat (per exemple, canviant el nom d'una taula), **no** queda cap canvi aplicat.
-- [ ] Expliques per què l'alumnat de 1ASIR que promociona no rep matrícules de segon (pista: consulta quins mòduls d'ASIR existixen) i què hauria de fer el centre.
-
-{{% details title="Pista: l'ordre importa" %}}
-Si canvies el grup **abans** d'inserir les matrícules, ja no sabràs qui estava en primer ni podràs distingir l'alumnat que promociona del que ja estava en segon. Una altra opció professional és calcular primer la llista d'alumnes que promocionen i guardar-la en una **taula temporal global** (`CREATE GLOBAL TEMPORARY TABLE ... ON COMMIT PRESERVE ROWS`) creada **fora** del guió.
-{{% /details %}}
-
-{{% details title="Pista: aturar el guió si ja es va executar" %}}
-```sql
-DECLARE
-    v_n NUMBER;
-BEGIN
-    SELECT COUNT(*) INTO v_n FROM matricula WHERE curso_academico = '2026-27';
-    IF v_n > 0 THEN
-        RAISE_APPLICATION_ERROR(-20100, 'Ya existen ' || v_n || ' matrículas de 2026-27');
-    END IF;
-END;
-/
-```
-Amb `WHENEVER SQLERROR EXIT`, l'error acaba el guió.
-{{% /details %}}
-
----
 ## Projecte EduGest · Tema 5: guions de manteniment
 
 {{< practica num="EduGest-5" tipo="Proyecto" duracion="Treball transversal (1 setmana)" nivel="3" ra="RA5: d, e" sgbd="Oracle 26ai · SQLcl" entrega="edugest/09_guiones/*.sql + docs/09-guiones.md" >}}
 
 #### Enunciat
 
-1. **Promoció de curs.** Lliura el teu `promocion_2026_27.sql` (pràctica 5.9) complet: comprovacions prèvies, transacció única, verificacions, `SPOOL` i idempotència.
+1. **Matrícula.** Lliura el bloc de matrícula de la pràctica 5.6 complet: comprovacions prèvies, excepcions amb missatges clars, `COMMIT` únic i `SPOOL`.
 2. **Alta d'alumnat nou.** Convertix el teu `alta_nuevo_alumnado.sql` (EduGest-5) en un guió professional: capçalera, còpia prèvia, bloc amb excepcions que explique l'error, `COMMIT` únic i `SPOOL`.
 3. **Documentació.** En `09-guiones.md` indica, per a cada guió, l'ordre d'execució, què comprova abans de modificar, què passa si falla a mitges i com es torna arrere.
 

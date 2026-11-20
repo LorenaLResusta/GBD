@@ -21,15 +21,14 @@ Esta parte del tema ocupa **7 horas de aula** (3 de teoría y 4 de práctica). E
 {{< sesiones unidad="T2" horas="7" parte="Normalización" >}}
 items:
   - {h: 1, tipo: T, t: "Anomalías y dependencias funcionales", ref: "§1 y §2"}
-  - {h: 1, tipo: P, t: "Dependencias, cierres y claves", ref: "Práctica 2.22"}
+  - {h: 1, tipo: P, t: "Dependencias, cierres y claves", ref: "Práctica 2.10"}
   - {h: 1, tipo: T, t: "Las formas normales: 1FN, 2FN, 3FN y FNBC", ref: "§3"}
-  - {h: 1, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 2.21"}
+  - {h: 1, tipo: P, t: "Normalizar las facturas de un taller", ref: "Práctica 2.9"}
   - {h: 1, tipo: T, t: "Descomposición, desnormalización y procedimiento completo", ref: "§4 a §7"}
-  - {h: 1, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 2.24"}
+  - {h: 1, tipo: P, t: "Reservas de un hotel rural", ref: "Práctica 2.12"}
   - {h: 1, tipo: P, t: "Informe de normalización de EduGest", ref: "Proyecto EduGest-2"}
 autonomo:
-  - "Prácticas 2.23 (¿en qué forma normal está?) y 4.5 (FNBC y dependencias perdidas)"
-  - "Práctica 2.26 (¿normalizar o desnormalizar?)"
+  - "Práctica 2.11 (¿en qué forma normal está?)"
   - "Ejercicios resueltos y autoevaluación"
 {{< /sesiones >}}
 

@@ -30,7 +30,7 @@ items:
   - {h: 1, tipo: P, t: "Consultes del dia a dia en EduGest", ref: "Projecte EduGest-4"}
 autonomo:
   - "Acabar les consultes de la pràctica 4.2 que no hagen donat temps a l'aula"
-  - "Pràctiques 4.3 (laboratori de valors nuls) i 6.5 (validar dades amb SQL)"
+  - "Pràctica 4.3 (laboratori de valors nuls)"
   - "Exercicis resolts i autoavaluació"
 {{< /sesiones >}}
 

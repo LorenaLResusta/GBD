@@ -14,7 +14,6 @@ bookToc: true
 | [6.2 Exportar datos a CSV, JSON y SQL](#práctica-62--exportar-datos-a-csv-json-y-sql) | Guiada | ●○○ | RA6.d, RA6.e |
 | [6.3 Importar con SQL\*Loader y leer los errores](#práctica-63--importar-con-sqlloader-y-leer-los-errores) | Autónoma | ●●○ | RA6.f, RA6.g |
 | [6.4 De Oracle a PostgreSQL](#práctica-64--de-oracle-a-postgresql) | Guiada | ●●○ | RA6.e, RA6.f, RA6.h |
-| [6.5 Reto: plan de copias y simulacro de desastre](#práctica-65--reto-plan-de-copias-y-simulacro-de-desastre) | Reto | ●●● | RA6.a, RA6.b, RA6.c, RA6.g |
 | [Proyecto EduGest · Tema 6](#proyecto-edugest--tema-6-seguridad-de-la-información) | Proyecto | ●●● | RA6 completo |
 
 > [!IMPORTANT]
@@ -105,10 +104,6 @@ Hacer una copia lógica del esquema `EDUGEST`, sacarla del contenedor y restaura
 > - `ORA-39087` o `ORA-39070`: el nombre del directorio es incorrecto o te has conectado a la CDB. Usa `FREEPDB1`.
 > - `ORA-01918: user 'EDUGEST_COPIA' does not exist`: te saltaste el paso 4.
 > - El `.dmp` no aparece al hacer `docker cp`: la ruta debe ser la del paso 1, **dentro del contenedor**.
-
-#### Ampliación
-
-Repite la exportación con `content=metadata_only` y con `tables=ALUMNO query=ALUMNO:"WHERE cod_grupo='1DAM'"`. Compara el tamaño de los tres volcados.
 
 ---
 
@@ -307,32 +302,6 @@ Transferir información entre dos sistemas gestores distintos y comprobar que no
 
 > [!WARNING]
 > Si `\copy` informa de `invalid byte sequence for encoding "UTF8"`, el fichero no está en UTF-8. Si dice `extra data after last expected column`, el CSV tiene más columnas que la tabla de destino: revisa que la `SELECT` y el `CREATE TABLE` coincidan.
-
----
-
-## Práctica 6.5 · Reto: plan de copias y simulacro de desastre
-
-{{< practica num="6.5" tipo="Reto" duracion="2 sesiones" nivel="3" ra="RA6: a, b, c, g" sgbd="Oracle 26ai · Data Pump · Docker" entrega="plan_copias.md + copia_edugest.sh + registro del simulacro" >}}
-
-#### Enunciado
-
-El instituto te pide que protejas EduGest. Tienes que entregar:
-
-1. **Un plan de copias** (una página) con: qué se copia, tipo de copia, frecuencia, dónde se guarda (regla 3-2-1), quién puede restaurar, cuánto se conserva, RPO y RTO justificados para la secretaría durante el periodo de evaluaciones.
-2. **Un guion** `copia_edugest.sh` que exporte el esquema con Data Pump, ponga la fecha en el nombre del fichero, saque el `.dmp` y el `.log` del contenedor, **compruebe** que el log contiene `successfully completed` y avise si no es así.
-3. **Un simulacro de desastre** sobre `EDUGEST_COPIA`: toma una copia, borra datos con un `DELETE` sin `WHERE`, restáuralos con `impdp` (`table_exists_action=REPLACE`) y demuestra con recuentos que has vuelto al estado anterior. Registra la hora de inicio y de fin: ese es tu RTO real.
-
-{{% details title="Pista: comprobar el log en un guion" %}}
-`grep -q "successfully completed" edugest_exp.log || echo "ERROR: la copia ha fallado"`.
-{{% /details %}}
-
-#### Comprobación
-
-{{% comprobacion %}}
-- [ ] El plan cumple 3-2-1 y justifica el RPO.
-- [ ] El guion genera un fichero con fecha en el nombre y detecta un fallo (pruébalo con un usuario o directorio inexistente).
-- [ ] El registro del simulacro incluye los recuentos antes, tras el desastre y tras la restauración.
-{{% /comprobacion %}}
 
 ---
 
